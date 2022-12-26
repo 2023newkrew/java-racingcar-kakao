@@ -39,11 +39,17 @@ public class TDD {
         assertThat(result).isEqualTo(expected);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"//;|n1;2;3:6", "//a|n12a34a56:102"}, delimiter = ':')
-    public void testMultipleNumberStringWithCustomDelimiter(String input, int expected) {
-        int result = calculator.calculate(input);
-        assertThat(result).isEqualTo(expected);
+    @Test
+    public void testMultipleNumberStringWithCustomDelimiter() {
+        int result = calculator.calculate("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    public void testMultipleNumberStringWithCustomDelimiter2() {
+        int result = calculator.calculate("//a\n12a34a56");
+        assertThat(result).isEqualTo(102);
+    }
+
 
 }
