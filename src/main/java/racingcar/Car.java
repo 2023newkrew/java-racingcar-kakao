@@ -13,8 +13,16 @@ public class Car {
         return position;
     }
 
+    public void playTurn() {
+        determineToMove(makeRandomNumber());
+    }
+
     public void determineToMove(int random) {
         if (random >= 4)
             position += 1;
+    }
+
+    public int makeRandomNumber() {
+        return (int) (Math.random() * 10);
     }
 }
