@@ -23,4 +23,10 @@ public class StringSumTest {
         assertThat(customDelimiter).isEqualTo(";");
     }
 
+    @Test
+    public void splitTest() {
+        String[] list = stringSum.splitByDelimiter();
+        assertThat(list).isEqualTo(testList);
+    }
+
 }
