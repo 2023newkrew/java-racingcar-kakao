@@ -1,5 +1,6 @@
 package str_calc;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +35,16 @@ public class StringCalculatorTest {
         assertEquals(stringCalculator.toInt("112"),112);
         assertThrows(RuntimeException.class,()-> stringCalculator.toInt("a"));
         assertThrows(RuntimeException.class,()-> stringCalculator.toInt("-1"));
+    }
+
+    @Test
+    @DisplayName("텍스트를 Integer List로 반환")
+    public void toIntList() {
+        //given
+        StringCalculator stringCalculator = new StringCalculator();
+
+        //when, then
+        assertEquals(stringCalculator.toIntList("1,2:3"), List.of(1,2,3));
+        assertThrows(RuntimeException.class,()-> stringCalculator.toIntList("1,2:-3"));
     }
 }

@@ -27,4 +27,12 @@ public class StringCalculator {
         if(intValue<0) throw new RuntimeException("음수를 입력할 수 없습니다.");
         return  intValue;
     }
+
+    public List<Integer> toIntList(String text) {
+        List<Integer> intList = new ArrayList<>();
+        for (String token : this.splitText(text)) {
+            intList.add(toInt(token));
+        }
+        return intList;
+    }
 }
