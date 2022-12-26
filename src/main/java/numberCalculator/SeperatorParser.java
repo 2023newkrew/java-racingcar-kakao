@@ -1,3 +1,5 @@
+package numberCalculator;
+
 import java.util.regex.Pattern;
 
 public class SeperatorParser {

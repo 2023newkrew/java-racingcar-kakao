@@ -1,9 +1,10 @@
-import exceptions.InvalidFormatException;
+package numberCalculator;
+
+import numberCalculator.exceptions.InvalidFormatException;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Calculator {

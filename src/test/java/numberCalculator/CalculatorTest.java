@@ -1,4 +1,7 @@
-import exceptions.InvalidFormatException;
+package numberCalculator;
+
+import numberCalculator.Calculator;
+import numberCalculator.exceptions.InvalidFormatException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
