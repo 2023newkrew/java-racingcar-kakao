@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class StringSumTest {
 
@@ -29,4 +30,15 @@ public class StringSumTest {
         assertThat(list).isEqualTo(testList);
     }
 
+    @Test
+    public void stringToIntegerTest() {
+        Integer testInteger = stringSum.stringToInteger("1");
+        assertThat(testInteger).isEqualTo(1);
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
+            stringSum.stringToInteger("abc");
+        });
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
+            stringSum.stringToInteger("-1");
+        });
+    }
 }
