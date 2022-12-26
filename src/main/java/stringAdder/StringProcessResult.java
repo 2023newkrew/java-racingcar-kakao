@@ -29,11 +29,18 @@ public class StringProcessResult {
         return Objects.hash(splitToken, numString);
     }
 
+    private void checkNumberPositive(int number) {
+        if (number < 0) {
+            throw new RuntimeException();
+        }
+    }
+
     public int[] split() {
         String[] splitNumStrings = numString.split(getDelimiterPattern());
         int[] numbers = new int[splitNumStrings.length];
         for (int i = 0; i < splitNumStrings.length; i++) {
             numbers[i] = Integer.parseInt(splitNumStrings[i]);
+            checkNumberPositive(numbers[i]);
         }
         return numbers;
     }
