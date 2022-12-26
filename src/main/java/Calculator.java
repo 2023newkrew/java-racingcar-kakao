@@ -5,6 +5,6 @@ public class Calculator {
         if (Objects.isNull(input) || input.isEmpty()) {
             return 0;
         }
-        return -1;
+        return Integer.parseInt(input);
     }
 }
