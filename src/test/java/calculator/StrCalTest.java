@@ -47,4 +47,11 @@ public class StrCalTest {
         StrCal custom = new StrCal("//[!$#&", "1,2:3[4");
         assertThat(custom.calculate()).isEqualTo(10);
     }
+
+    @Test
+    void minusString() {
+        assertThatThrownBy(() -> {
+            new StrCal("-12,3:4");
+        }).isInstanceOf(RuntimeException.class);
+    }
 }
