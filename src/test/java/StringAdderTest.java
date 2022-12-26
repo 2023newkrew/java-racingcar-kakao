@@ -78,4 +78,16 @@ public class StringAdderTest {
             stringAdder.isValid(numbers);
         }).isInstanceOf(RuntimeException.class);
     }
+    @Test
+    public void summationTest(){
+        String [] numbers = {"1","2","3"};
+        String [] numbers2 = {"1","2","3","4"};
+        int result = stringAdder.summation(numbers);
+        assertThat(result).isEqualTo(6);
+        result = stringAdder.summation(numbers2);
+        assertThat(result).isEqualTo(10);
+    }
+
+
+
 }

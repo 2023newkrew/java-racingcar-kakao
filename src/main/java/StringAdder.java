@@ -1,23 +1,24 @@
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringAdder {
     public int add(String text) {
         int number = -1;
-        if(isNullOrBlank(text))
+        if (isNullOrBlank(text)) {
             return 0;
-        try{
-            number = Integer.parseInt(text);
         }
-        catch(NumberFormatException e){
+        try {
+            number = Integer.parseInt(text);
+        } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             throw e;
         }
         return number;
     }
 
-    public boolean isNullOrBlank(String text){
+    public boolean isNullOrBlank(String text) {
         return text == null || text.isBlank();
     }
 
@@ -26,7 +27,7 @@ public class StringAdder {
         StringBuilder stringBuilder = new StringBuilder(",|;");
         String customDelimiter = null;
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-        if(m.find()){
+        if (m.find()) {
             customDelimiter = m.group(1);
             stringBuilder.append("|" + customDelimiter);
             return m.group(2).split(stringBuilder.toString());
@@ -38,5 +39,9 @@ public class StringAdder {
         if (Arrays.stream(numbers).anyMatch(number -> Integer.parseInt(number) < 0)) {
             throw new RuntimeException("negative");
         }
+    }
+
+    public int summation(String[] numbers) {
+        return Arrays.stream(numbers).map(Integer::parseInt).reduce(0, Integer::sum);
     }
 }
