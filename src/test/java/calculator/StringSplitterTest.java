@@ -26,7 +26,7 @@ class StringSplitterTest {
         String str = "1,2,3";
         StringSplitter stringSplitter = new StringSplitter(str);
         String delimiter = stringSplitter.extractDelimiter();
-        assertThat(delimiter).isEqualTo(",");
+        assertThat(delimiter).isEqualTo(",|;");
 
         str = "//;;\n1;;2;;3;;45";
         stringSplitter = new StringSplitter(str);
