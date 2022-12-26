@@ -21,7 +21,9 @@ public class StringCalculatorTest {
                 Arguments.of("", new String[]{}),
                 Arguments.of("1,2", new String[]{"1", "2"}),
                 Arguments.of("1,2,3", new String[]{"1", "2", "3"}),
-                Arguments.of("1,2:3", new String[]{"1", "2", "3"})
+                Arguments.of("1,2:3", new String[]{"1", "2", "3"}),
+                Arguments.of("//;\n1;2;3", new String[]{"1", "2", "3"}),
+                Arguments.of("//-\n1-2", new String[]{"1", "2"})
         );
     }
 
@@ -40,4 +42,5 @@ public class StringCalculatorTest {
                 Arguments.of(new String[]{"1", "2", "3"}, 6)
         );
     }
+
 }
