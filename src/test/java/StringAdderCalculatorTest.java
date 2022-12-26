@@ -18,26 +18,27 @@ public class StringAdderCalculatorTest {
     @DisplayName("빈 문자열 또는 null 값을 입력할 경우 0을 반환해야 한다.")
     @ValueSource(strings = {"", "  "})
     public void empty(String input) {
-        assertThat(calculator.calculate(input)).isEqualTo(0);
+        assertThat(calculator.calculate(new Prompt(input))).isEqualTo(0);
     }
 
     @ParameterizedTest
     @DisplayName(" 숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
     @ValueSource(strings = {"1", "24"})
     public void singleInteger(String input) {
-        assertThat(calculator.calculate(input)).isEqualTo(Integer.parseInt(input));
+        assertThat(calculator.calculate(new Prompt(input))).isEqualTo(Integer.parseInt(input));
     }
 
     @Test
     @DisplayName("숫자 두개를 컴마(,) 구분자로 입력할 경우 두 숫자의 합을 반환한다.")
     public void addIntegerSeparatedByComma() {
-        assertThat(calculator.calculate("1,4")).isEqualTo(5 );
+        assertThat(calculator.calculate(new Prompt("1,4"))).isEqualTo(5 );
     }
 
     @Test
     @DisplayName("“//”와 “\\n” 문자 사이에 커스텀 구분자를 지정할 수 있다.")
     public void addIntegerSeparatedByCustomDelimiter() {
-        assertThat(calculator.calculate("//;\n1;2;3")).isEqualTo(6);
+
+        assertThat(calculator.calculate(new Prompt("//;\n1;2;3"))).isEqualTo(6);
     }
 }
 
