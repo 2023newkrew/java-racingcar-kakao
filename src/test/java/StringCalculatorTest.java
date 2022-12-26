@@ -61,4 +61,12 @@ public class StringCalculatorTest {
         assertThatThrownBy(targetString::calculate)
                 .isInstanceOf(RuntimeException.class);
     }
+
+    @ValueSource(strings = {"-3", "-7:124", "//;\n1;2:-3"})
+    @ParameterizedTest
+    void inputRangeExceptionTest(String input) {
+        TargetString targetString = new TargetString(input);
+        assertThatThrownBy(targetString::calculate)
+                .isInstanceOf(RuntimeException.class);
+    }
 }
