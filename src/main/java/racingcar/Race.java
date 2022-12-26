@@ -1,7 +1,10 @@
 package racingcar;
 
+import java.util.ArrayList;
+
 public class Race {
     String nameStr;
+    ArrayList<Car> cars = new ArrayList<>();
 
     public Race() {
         this.nameStr = "pobi,crong,honux";
@@ -11,14 +14,27 @@ public class Race {
         this.nameStr = nameStr;
     }
 
-    public boolean verifyName(String input) {
+    public void verifyName(String input) {
         if(input.length() < 6){
-            return true;
+            return;
         }
-        return false;
+        throw new IllegalArgumentException();
     }
 
     public String[] nameSplit() {
         return nameStr.split(",");
+    }
+
+    public void carInput(String[] nameSplit) {
+        for (String name : nameSplit){
+            verifyName(name);
+            cars.add(new Car(name));
+        }
+    }
+
+    public void printRace() {
+        for(Car car: cars){
+            car.printStatus();
+        }
     }
 }
