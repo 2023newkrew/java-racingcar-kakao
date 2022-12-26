@@ -1,24 +1,29 @@
 package calculator;
 
 public class StrCal {
-    private final String str;
+    private String str;
     private String regex = ",|:";
 
     public StrCal(String str) {
-        if (str.contains("-"))
-            throw new RuntimeException("negative value passed");
+        if(str == null || str.length() == 0){
+            this.str = str;
+            return;
+        }
         this.str = str;
+        if (str.startsWith("//"))
+            customDelimiter();
+        if (!this.regex.contains("-") && str.contains("-"))
+            throw new RuntimeException();
     }
 
-    public StrCal(String del, String str) {
-        if (!del.contains("-") && str.contains("-"))
-            throw new RuntimeException("negative value passed");
+    private void customDelimiter(){
+        String deli = "";
+        String[] tmp = str.split("\n");
 
-        del = del.substring(2);
-        for (int i = 0; i < del.length(); i++)
-            regex += "|\\" + del.charAt(i);
-
-        this.str = str;
+        deli = tmp[0].substring(2);
+        this.str = tmp[1];
+        for(Character c : deli.toCharArray())
+            regex += "|\\" + c;
     }
 
     public int calculate() {

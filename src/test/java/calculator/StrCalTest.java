@@ -38,13 +38,13 @@ public class StrCalTest {
 
     @Test
     void invalidCustomString() {
-        StrCal invalid = new StrCal("//$", "1@2,3:4");
+        StrCal invalid = new StrCal("//$\n1@2,3:4");
         assertThatThrownBy(invalid::calculate).isInstanceOf(RuntimeException.class);
     }
 
     @Test
     void customString() {
-        StrCal custom = new StrCal("//[!$#&", "1,2:3[4");
+        StrCal custom = new StrCal("//[!$#&\n1,2:3[4");
         assertThat(custom.calculate()).isEqualTo(10);
     }
 
