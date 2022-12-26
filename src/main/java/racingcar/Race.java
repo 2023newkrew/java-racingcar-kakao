@@ -51,4 +51,20 @@ public class Race {
 
         return max;
     }
+
+    public void raceWinner() {
+        int max = raceMaxCnt();
+        StringBuilder sb = new StringBuilder();
+        for(Car car : cars){
+            sb.append(raceWinnerCheck(car, max));
+        }
+        System.out.println(sb.substring(0, sb.length()-2) + "가 최종 우승했습니다.");
+    }
+
+    public String raceWinnerCheck(Car car, int max){
+        if(car.getCnt() == max){
+            return car.getName() + ", ";
+        }
+        return "";
+    }
 }

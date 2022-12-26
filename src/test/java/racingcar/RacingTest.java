@@ -50,6 +50,16 @@ public class RacingTest {
 
     @Test
     void raceMaxCntTest() {
+        Race race = new Race("pobi,crong,honux");
+        race.carInput(race.nameSplit());
+        race.getCars().get(0).move();
+        race.getCars().get(0).move();
+        race.getCars().get(0).move();
+        assertEquals(race.raceMaxCnt(), 3);
+    }
+
+    @Test
+    void raceWinnerTest(){
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
@@ -58,6 +68,13 @@ public class RacingTest {
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
-        assertEquals(race.raceMaxCnt(), 3);
+
+        race.getCars().get(2).move();
+        race.getCars().get(2).move();
+        race.getCars().get(2).move();
+
+        race.raceWinner();
+        String actual = out.toString();
+        assertEquals(actual, "pobi, honux가 최종 우승했습니다.\n");
     }
 }
