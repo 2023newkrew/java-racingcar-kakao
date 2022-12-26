@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Random;
+
 public class Car {
     String name;
     int cnt;
@@ -19,5 +21,14 @@ public class Car {
 
     public void move() {
         this.cnt++;
+    }
+
+    public void race() {
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+
+        if (random.nextInt(9) > 3) {
+            move();
+        }
     }
 }
