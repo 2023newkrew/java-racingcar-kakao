@@ -1,8 +1,12 @@
 package stringcalculator;
 
 public class StringCalculator {
+    private final String delimiter = ",|:";
 
     public String[] split(String s) {
-        return new String[]{"1", "2"};
+        if (s == null || s.isEmpty()) {
+            return new String[]{};
+        }
+        return s.split(delimiter);
     }
 }
