@@ -32,16 +32,14 @@ public class Calculator {
         return addIntegerElements();
     }
 
-    private int toInteger(String possibleNumber) throws RuntimeException {
-        try {
-            int number = Integer.parseInt(possibleNumber);
+    private int toIntegerIfPositive(String possibleNumber) throws RuntimeException {
+        int number = Integer.parseInt(possibleNumber);
 
-            if (number < 0) throw new RuntimeException();
-
-            return number;
-        } catch (NumberFormatException e) {
+        if (number < 0) {
             throw new RuntimeException();
         }
+        
+        return number;
     }
 
     public boolean isEmptyOrNull() {
@@ -51,7 +49,7 @@ public class Calculator {
     public void splitText() {
         String[] numbers = this.text.split(this.delimiters);
 
-        Arrays.stream(numbers).forEach(e -> this.numbers.add(toInteger(e)));
+        Arrays.stream(numbers).forEach(e -> this.numbers.add(toIntegerIfPositive(e)));
     }
 
     public Matcher checkCustomDelimiter() {
