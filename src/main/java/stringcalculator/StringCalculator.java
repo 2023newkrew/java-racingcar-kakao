@@ -41,7 +41,7 @@ public class StringCalculator {
     }
 
     public boolean registerDelimiterIfNotExist(String input) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
         if (m.find()) {
             delimiters.add(m.group(1));
@@ -52,7 +52,7 @@ public class StringCalculator {
     }
 
     public String parseNumberContainingString(String input) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
         if (m.find()) {
             return m.group(2);

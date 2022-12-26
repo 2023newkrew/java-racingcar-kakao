@@ -142,4 +142,22 @@ public class StringCalculatorTest {
                 .isInstanceOf(RuntimeException.class);
     }
 
+    @Test
+    @DisplayName("패턴은 일치하지만, 구분자가 숫자인 경우 예외 발생")
+    void playStringCalculatorWithInvalidInput4() {
+        String input = "//6\n26269";
+
+        assertThatThrownBy(() -> stringCalculator.run(input))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("사용자의 입력값이 커스텀 구분자 패턴과 일치하지 않는 경우 예외 발생")
+    void playStringCalculatorWithInvalidInput5() {
+        String input = "//;_\n2;2_9";
+
+        assertThatThrownBy(() -> stringCalculator.run(input))
+                .isInstanceOf(RuntimeException.class);
+    }
+
 }
