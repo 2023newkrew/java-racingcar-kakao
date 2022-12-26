@@ -1,21 +1,21 @@
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class StringUtilTest {
+public class StringParserTest {
 
     @Test
     void splitWithDefaultDelimiter() {
         String input = "1,2;3";
-        StringUtil stringUtil = new StringUtil();
-        String[] result = stringUtil.split(input);
+        StringParser stringParser = new StringParser();
+        String[] result = stringParser.split(input);
         Assertions.assertThat(result).hasSize(3);
     }
 
     @Test
     void splitWithCustomDelimiter() {
         String input = "1:2,3;4";
-        StringUtil stringUtil = new StringUtil();
-        String[] result = stringUtil.split(input, ":");
+        StringParser stringParser = new StringParser();
+        String[] result = stringParser.split(input, ":");
         Assertions.assertThat(result).hasSize(4);
     }
 }

@@ -4,10 +4,10 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 
-    StringUtil stringUtil;
+    StringParser stringParser;
 
-    public Calculator(StringUtil stringUtil) {
-        this.stringUtil = stringUtil;
+    public Calculator(StringParser stringParser) {
+        this.stringParser = stringParser;
     }
 
     public Integer calc(String inputstring) {
@@ -18,10 +18,10 @@ public class Calculator {
         Matcher m = Pattern.compile("//(.+)\n(.*)").matcher(inputstring);
         if (m.find()) {
             String customDelimiter = m.group(1);
-            String[] numbers = stringUtil.split(m.group(2), customDelimiter);
+            String[] numbers = stringParser.split(m.group(2), customDelimiter);
             return stringArraySum(numbers);
         }
-        String[] numbers = stringUtil.split(inputstring);
+        String[] numbers = stringParser.split(inputstring);
 
         return stringArraySum(numbers);
     }

@@ -11,7 +11,7 @@ public class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator(new StringUtil());
+        calculator = new Calculator(new StringParser());
     }
 
     @ParameterizedTest

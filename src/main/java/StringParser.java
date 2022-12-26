@@ -1,4 +1,4 @@
-public class StringUtil {
+public class StringParser {
 
 
     public String[] split(String input) {
