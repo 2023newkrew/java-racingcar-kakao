@@ -7,13 +7,16 @@ import java.util.regex.Pattern;
 public class Calculator {
 
     private final Pattern pattern = Pattern.compile("//(.)\n(.*)");
+
     public int calculate(String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             return 0;
         }
         String[] numbers = splitInputToNumbers(input);
         Optional<Integer> result = Arrays.stream(numbers).map(this::parseToInt).reduce(Integer::sum);
-        return result.orElseThrow(() -> {throw new RuntimeException("입력된 숫자가 없습니다.");});
+        return result.orElseThrow(() -> {
+            throw new RuntimeException("입력된 숫자가 없습니다.");
+        });
     }
 
     private int parseToInt(String next) {
