@@ -30,7 +30,7 @@ public class TargetString {
 
     private List<Integer> splitString() {
         customizeDelimiter();
-        List<Integer> tokens= Arrays.stream(inputString.split(delimiters)).map(x -> validateInt(x)).collect(Collectors.toList());
+        List<Integer> tokens= Arrays.stream(inputString.split(delimiters)).map(this::validateInt).collect(Collectors.toList());
         return tokens;
     }
 
@@ -46,9 +46,16 @@ public class TargetString {
     private Integer validateInt(String input) {
         try {
             Integer inputInt = Integer.parseInt(input);
+            validateRange(inputInt);
             return inputInt;
         } catch (NumberFormatException e){
             throw new RuntimeException("구분자로 구분되는 것은 정수여야 합니다.");
+        }
+    }
+
+    private void validateRange(Integer inputInt) {
+        if (inputInt < 0) {
+            throw new RuntimeException("모든 값은 0 이상이어야 합니다.");
         }
     }
 
