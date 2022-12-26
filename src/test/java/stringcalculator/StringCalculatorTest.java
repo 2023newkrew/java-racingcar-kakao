@@ -1,6 +1,5 @@
 package stringcalculator;
 
-import org.assertj.core.util.Sets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -85,6 +84,17 @@ public class StringCalculatorTest {
 
         assertThat(result.length).isEqualTo(3);
         assertThat(result).containsExactly("6", "1", "5");
+    }
+
+    @Test
+    @DisplayName("양의 정수들을 더한다.")
+    void addNumber() {
+        String input = "1:2:3";
+        String[] strArr = stringCalculator.splitByDelimiter(input);
+        IntegerList numberList = new IntegerList(strArr);
+
+        int result = numberList.calculateSum();
+        assertThat(result).isEqualTo(6);
     }
 
 }
