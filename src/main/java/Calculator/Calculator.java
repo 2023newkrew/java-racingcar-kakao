@@ -22,6 +22,10 @@ public class Calculator {
         this.delimiters = delimiters;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public int run() throws RuntimeException {
         if (this.isEmptyOrNull()) return 0;
 
@@ -38,7 +42,7 @@ public class Calculator {
         if (number < 0) {
             throw new RuntimeException();
         }
-        
+
         return number;
     }
 
@@ -53,7 +57,7 @@ public class Calculator {
     }
 
     public Matcher checkCustomDelimiter() {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher m = Pattern.compile("^//(.)\n(.*)").matcher(text);
 
         if (!m.find()) return null;
         return m;
@@ -66,10 +70,6 @@ public class Calculator {
             setDelimiters(buildDelimiters(m.group(1)));
             setText(m.group(2));
         }
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public static String buildDelimiters(String customDelimiter) {
