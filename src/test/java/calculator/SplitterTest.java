@@ -41,4 +41,19 @@ public class SplitterTest {
                 Arguments.of("2;3;4", Arrays.asList(2,3,4))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("generator3")
+    void givenCustomDelimiter_thenReturnList(String input, List<Integer> expected){
+        Splitter splitter = new Splitter();
+        List<Integer> result = splitter.split(input);
+
+        assertThat(result).isEqualTo(expected);
+    }
+    private static Stream<Arguments> generator3(){
+        return Stream.of(
+                Arguments.of("//^$\n4$5^6,7", Arrays.asList(4,5,6,7)),
+                Arguments.of("//*\n1*2*3", Arrays.asList(1,2,3))
+                );
+    }
 }
