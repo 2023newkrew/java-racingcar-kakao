@@ -1,8 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -87,7 +85,11 @@ public class StringAdderTest {
         result = stringAdder.summation(numbers2);
         assertThat(result).isEqualTo(10);
     }
+    @Test
+    public void addTest(){
+        String text = "1,2,3";
+        int result = stringAdder.add(text);
+        assertThat(result).isEqualTo(6);
 
-
-
+    }
 }

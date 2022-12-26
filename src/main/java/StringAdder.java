@@ -5,17 +5,18 @@ import java.util.stream.Collectors;
 
 public class StringAdder {
     public int add(String text) {
-        int number = -1;
+        int result = -1;
         if (isNullOrBlank(text)) {
             return 0;
         }
         try {
-            number = Integer.parseInt(text);
+            String[] numbers = split(text);
+            result = summation(numbers);
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             throw e;
         }
-        return number;
+        return result;
     }
 
     public boolean isNullOrBlank(String text) {
