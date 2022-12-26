@@ -34,5 +34,10 @@ public class StringAdderCalculatorTest {
         assertThat(calculator.calculate("1,4")).isEqualTo(5 );
     }
 
+    @Test
+    @DisplayName("“//”와 “\\n” 문자 사이에 커스텀 구분자를 지정할 수 있다.")
+    public void addIntegerSeparatedByCustomDelimiter() {
+        assertThat(calculator.calculate("//;\n1;2;3")).isEqualTo(6);
+    }
 }
 
