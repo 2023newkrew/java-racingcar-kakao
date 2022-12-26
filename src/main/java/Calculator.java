@@ -1,40 +1,20 @@
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Calculator {
 
-    private final List<String> delimiters = Arrays.asList(",", ":");
-    private final String equation;
-
-
-    public Calculator(String equation) {
-        String customDelimiter = separateCustomDelimiter(equation);
-        Optional.ofNullable(customDelimiter).map(delimiters::add);
-
-        this.equation = separatePureEquation(equation);
+    private int sumAll(int[] numbers) {
+        return Arrays.stream(numbers).sum();
     }
 
-    public String[] separate(String testString) {
-        String[] tokens = testString.split(",|:");
-        return tokens;
-    }
-
-    private String separateCustomDelimiter(String equation) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(equation);
-        if (m.find()) {
-            return m.group(1);
+    private int[] convertAll(String[] numbers) {
+        int[] results = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            results[i] = Integer.parseInt(numbers[i]);
         }
-        return null;
+        return results;
     }
 
-    private String separatePureEquation(String equation) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(equation);
-        if (m.find()) {
-            return m.group(2);
-        }
-        return equation;
+    public int sumAll(String[] numbers) {
+        return sumAll(convertAll(numbers));
     }
 }
