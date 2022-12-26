@@ -68,4 +68,18 @@ public class StringCalculatorTest {
         assertEquals(stringCalculator.sumText("1,2:3"), 6);
         assertThrows(RuntimeException.class,()-> stringCalculator.sumText("1,2:-3"));
     }
+
+    @Test
+    @DisplayName("커스텀 구분자를 추가하는 기능 테스트")
+    public void addSeperator() {
+        //given
+        StringCalculator stringCalculator = new StringCalculator();
+
+        //when
+        stringCalculator.addSeperator(";");
+
+        //then
+        assertEquals(stringCalculator.sumText("1,2:3;4"), 10);
+        assertThrows(RuntimeException.class,()-> stringCalculator.sumText("1,2:3`4"));
+    }
 }

@@ -47,4 +47,8 @@ public class StringCalculator {
     public int sumText(String text) {
         return this.sumIntList(this.toIntList(text));
     }
+
+    public void addSeperator(String seperator) {
+        this.seperators.add(seperator);
+    }
 }
