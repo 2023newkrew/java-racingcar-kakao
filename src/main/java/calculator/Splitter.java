@@ -26,7 +26,7 @@ public class Splitter {
     private List<Integer> arrayToList(String input, String delimiters){
         try{
             return Arrays.stream(input.split(delimiters))
-                    .mapToInt(Integer::parseInt)
+                    .mapToInt(e -> Integer.parseInt(e.trim()))
                     .boxed()
                     .collect(Collectors.toList());
         }catch (NumberFormatException numberFormatException){

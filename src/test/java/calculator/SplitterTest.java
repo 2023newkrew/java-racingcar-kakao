@@ -23,7 +23,9 @@ public class SplitterTest {
     private static Stream<Arguments> generator1(){
         return Stream.of(
                 Arguments.of("1,2,3", Arrays.asList(1,2,3)),
-                Arguments.of("2,3", Arrays.asList(2,3))
+                Arguments.of("2,3", Arrays.asList(2,3)),
+                Arguments.of("   2,3    ", Arrays.asList(2,3)),
+                Arguments.of("  2 ,   3 ", Arrays.asList(2,3))
         );
     }
 
