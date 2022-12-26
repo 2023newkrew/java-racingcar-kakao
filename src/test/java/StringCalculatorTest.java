@@ -1,6 +1,10 @@
-import domain.TargetString;
+import calculator.domain.TargetString;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
     @Test
@@ -48,5 +52,13 @@ public class StringCalculatorTest {
     void allDelimiterTest() {
         TargetString targetString = new TargetString("//A\n1,2:3A4");
         assertThat(targetString.calculate()).isEqualTo(10);
+    }
+
+    @ValueSource(strings = {"2.3", "ab9", "1e9"})
+    @ParameterizedTest
+    void inputTypeExceptionTest(String input) {
+        TargetString targetString = new TargetString(input);
+        assertThatThrownBy(targetString::calculate)
+                .isInstanceOf(RuntimeException.class);
     }
 }
