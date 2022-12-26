@@ -32,4 +32,11 @@ public class TDD {
         assertThat(result).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"1,2;3:6", "12,34;56:102"}, delimiter = ':')
+    public void testMultipleNumberStringWithCommaAndColon(String input, int expected) {
+        int result = calculator.calculate(input);
+        assertThat(result).isEqualTo(expected);
+    }
+
 }
