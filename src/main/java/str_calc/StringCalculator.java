@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -50,5 +52,14 @@ public class StringCalculator {
 
     public void addSeperator(String seperator) {
         this.seperators.add(seperator);
+    }
+
+    public String extractSeperator(String text) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        if (m.find()) {
+            this.addSeperator(m.group(1));
+            return m.group(2);
+        }
+        return text;
     }
 }

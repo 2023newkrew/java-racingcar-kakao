@@ -11,9 +11,14 @@ public class IOView {
         this.br = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public String inputText() throws IOException {
+    public String inputText() {
         System.out.print("텍스트를 입력해주세요 : ");
-        String text = br.readLine();
+        String text = null;
+        try {
+            text = br.readLine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return text;
     }
 

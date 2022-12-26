@@ -82,4 +82,18 @@ public class StringCalculatorTest {
         assertEquals(stringCalculator.sumText("1,2:3;4"), 10);
         assertThrows(RuntimeException.class,()-> stringCalculator.sumText("1,2:3`4"));
     }
+
+    @Test
+    @DisplayName("텍스트에서 커스텀 구분자를 추출하는 기능 테스트")
+    public void extractSeperator() {
+        //given
+        StringCalculator stringCalculator = new StringCalculator();
+
+        //when
+        String text = stringCalculator.extractSeperator("//;\n1,2:3;4");
+
+        //then
+        assertEquals(text, "1,2:3;4");
+        assertEquals(stringCalculator.sumText(text), 10);
+    }
 }
