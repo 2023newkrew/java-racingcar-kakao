@@ -20,6 +20,7 @@
     - parseSplitter
     - parseTargetString
     - splitTargetString
+    - castStringToInteger
 - StringVerifier
     - isInteger
     - isPositive
