@@ -6,7 +6,7 @@ public class Calculator {
             return 0;
         }
 
-        String[] numbers = inputstring.split(",");
+        String[] numbers = inputstring.split("[,:]");
         return stringArraySum(numbers);
     }
 
