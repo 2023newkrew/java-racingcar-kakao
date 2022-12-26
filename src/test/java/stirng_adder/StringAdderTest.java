@@ -1,8 +1,12 @@
+package stirng_adder;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import string_adder.StringAdder;
+import string_adder.StringAdderConstant;
 
 public class StringAdderTest {
 
