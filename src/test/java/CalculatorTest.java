@@ -45,11 +45,18 @@ public class CalculatorTest {
 
         assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1, 2));
     }
+    @Test
+    void checkSplitTextWithColon(){
+        Calculator calculator = new Calculator("1:2:3");
 
+        assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1,2,3));
+    }
     @Test
     void checkSplitTextWithCommaAndColon(){
         Calculator calculator = new Calculator("1,2:3");
 
         assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1,2,3));
     }
+
+
 }
