@@ -63,12 +63,12 @@ class StringAccumulatorTest {
 
         @ParameterizedTest
         @MethodSource
-        void should_throwException_when_newlineNotExists(StringAccumulator accumulator) {
+        void should_throwException_when_invalidTokens(StringAccumulator accumulator) {
             assertThatThrownBy(accumulator::accumulate)
                     .isInstanceOf(RuntimeException.class);
         }
 
-        Stream<Arguments> should_throwException_when_newlineNotExists() {
+        Stream<Arguments> should_throwException_when_invalidTokens() {
             return Stream.of(
                     Arguments.of(StringAccumulator.from(String.join(",", List.of("-1", "1")))),
                     Arguments.of(StringAccumulator.from(String.join(",", List.of("1 2", "3")))),

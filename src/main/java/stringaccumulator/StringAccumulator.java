@@ -32,7 +32,13 @@ public class StringAccumulator {
     }
 
     public long accumulate() {
-        return 0;
+        return StringSplitter.from(separator)
+                .split(content)
+                .stream()
+                .map(String::trim)
+                .filter(token -> !token.isBlank())
+                .mapToLong(Long::parseUnsignedLong)
+                .sum();
     }
 
     public boolean equalsTo(String separator, String content) {
