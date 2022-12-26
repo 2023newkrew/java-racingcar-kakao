@@ -3,13 +3,11 @@ package stringAdder;
 import java.util.*;
 
 public class StringProcessResult {
-    private final List<String> splitToken;
+    private final List<String> splitToken = new ArrayList<>();;
     private final String numString;
 
     public StringProcessResult(String customDelimiter, String numString) {
-        this.splitToken = new ArrayList<>();
-        this.splitToken.add(",");
-        this.splitToken.add(":");
+        this.splitToken.addAll(Arrays.asList(",", ":"));
         if (customDelimiter != null) {
             this.splitToken.add(customDelimiter);
         }
