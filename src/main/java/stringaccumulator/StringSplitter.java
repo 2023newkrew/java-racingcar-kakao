@@ -18,8 +18,10 @@ public class StringSplitter {
     }
 
     private StringSplitter(String separatorFormat) {
-        checkFormatValidation(separatorFormat);
         separators = new ArrayList<>(DEFAULT_SEPARATORS);
+        if (separatorFormat == null)
+            return;
+        checkFormatValidation(separatorFormat);
         addCustomSeparator(separatorFormat);
     }
 
