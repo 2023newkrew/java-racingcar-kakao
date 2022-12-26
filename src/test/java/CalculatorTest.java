@@ -5,6 +5,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -66,14 +67,14 @@ public class CalculatorTest {
     void getIfCustomDelimiterExist() {
         Calculator calculator = new Calculator("//;\n1;2;3");
 
-        assertThat(calculator.getCustomDelimiter()).isEqualTo(";");
+        assertThat(calculator.checkCustomDelimiter()).isInstanceOf(Matcher.class);
     }
 
     @Test
     void getNullIfCustomDelimiterNotExist() {
         Calculator calculator = new Calculator("1;2;3");
 
-        assertThat(calculator.getCustomDelimiter()).isNull();
+        assertThat(calculator.checkCustomDelimiter()).isNull();
     }
 
     @ParameterizedTest

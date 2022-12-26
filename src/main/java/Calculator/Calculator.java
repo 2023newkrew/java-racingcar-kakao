@@ -1,6 +1,5 @@
 package Calculator;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Calculator {
     public int run() throws RuntimeException {
         if (this.isEmptyOrNull()) return 0;
 
-        setDelimiters(buildDelimiters(getCustomDelimiter()));
+        handleCustomDelimiter();
 
         splitText();
 
@@ -55,27 +54,28 @@ public class Calculator {
         Arrays.stream(numbers).forEach(e -> this.numbers.add(toInteger(e)));
     }
 
-    public String getCustomDelimiter() {
+    public Matcher checkCustomDelimiter() {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 
         if (!m.find()) return null;
-        this.text = m.group(2);
-        return m.group(1);
+        return m;
     }
 
+    public void handleCustomDelimiter() {
+        Matcher m = checkCustomDelimiter();
+
+        if (m != null) {
+            setDelimiters(buildDelimiters(m.group(1)));
+            setText(m.group(2));
+        }
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public static String buildDelimiters(String customDelimiter) {
-        StringBuilder delimiters = new StringBuilder();
-
-        delimiters.append("[,:");
-
-        if (customDelimiter != null) {
-            delimiters.append(customDelimiter);
-        }
-
-        delimiters.append("]");
-
-        return delimiters.toString();
+        return "[,:" + customDelimiter + "]";
     }
 
     public int addIntegerElements() {
