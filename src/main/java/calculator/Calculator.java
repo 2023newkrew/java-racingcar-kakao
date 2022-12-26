@@ -1,6 +1,13 @@
 package calculator;
 
+import java.util.List;
+
 public class Calculator {
+    private final Splitter splitter;
+
+    public Calculator(){
+        this.splitter = new Splitter();
+    }
     public Integer calculate(String expression) {
         if (expression.isBlank()){
             return 0;
@@ -9,7 +16,11 @@ public class Calculator {
             return Integer.parseInt(expression);
         }
 
-        return 1;
+        return calcSum(splitter.split(expression));
+    }
+
+    private Integer calcSum(List<Integer> numbers){
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
 }
