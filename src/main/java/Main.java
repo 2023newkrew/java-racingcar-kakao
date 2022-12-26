@@ -11,4 +11,10 @@ public class Main {
         }
         return input;
     }
+
+    public static boolean textException(String inputString) {
+        if(inputString == null) return false;
+        if(inputString.isEmpty()) return false;
+        return true;
+    }
 }
