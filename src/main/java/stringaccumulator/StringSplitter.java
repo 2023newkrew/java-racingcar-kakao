@@ -39,7 +39,7 @@ public class StringSplitter {
         int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
         String customSeparator = separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
         if (!customSeparator.isEmpty())
-            separators.add(customSeparator);
+            separators.add(0, customSeparator);
     }
 
     public boolean contains(String separator) {
@@ -47,6 +47,7 @@ public class StringSplitter {
     }
 
     public List<String> split(String content) {
-        return null;
+        String splitRegex = String.join("|", separators);
+        return List.of(content.split(splitRegex));
     }
 }
