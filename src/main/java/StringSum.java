@@ -50,4 +50,11 @@ public class StringSum {
         int numbersSum = Arrays.stream(numbers).sum();
         return numbersSum;
     }
+
+    public int calculate() {
+        customDelimiter();
+        String tokens[] = splitByDelimiter();
+        int numbers[] = stringsToIntegers(tokens);
+        return summation(numbers);
+    }
 }
