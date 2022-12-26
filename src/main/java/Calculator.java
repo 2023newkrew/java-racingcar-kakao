@@ -9,7 +9,7 @@ public class Calculator {
         if (Objects.isNull(input) || input.isEmpty()) {
             return 0;
         }
-        String[] numbers = input.split(",");
+        String[] numbers = input.split("[,;]");
         Optional<Integer> result = Arrays.stream(numbers).map(this::parseToInt).reduce(Integer::sum);
         return result.orElse(-1);
     }
