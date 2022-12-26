@@ -1,3 +1,5 @@
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -22,15 +24,17 @@ public class CalculatorRunner {
 
     private String receiveInput() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("문자열을 입력해주세요.");
-        return sc.nextLine();
+        String retString = "";
+        System.out.print("문자열을 입력해주세요: ");
+        retString = sc.next();
+        return retString;
     }
 
     private Integer calculate(String input) {
         Character splitter = parser.parseSplitter(input);
         String targetString = parser.parseTargetString(input);
         String[] targetStringArray = parser.splitTargetString(targetString, splitter);
-        Integer[] targetIntegerArray =Arrays.stream(targetStringArray)
+        Integer[] targetIntegerArray = Arrays.stream(targetStringArray)
                     .map(parser::castStringToInteger)
                     .toArray(Integer[]::new);
         return Calculator.add(targetIntegerArray);

@@ -7,7 +7,7 @@ public class StringParser {
     private static final Character[] BASIC_SPLITTER = new Character[]{',', ':'};
 
     public Character parseSplitter(String s) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(s);
+        Matcher m = Pattern.compile("//(.)\\\\n(.*)").matcher(s);
         if (m.find()) {
             return m.group(1).charAt(0);
         }
@@ -32,7 +32,7 @@ public class StringParser {
         return s.split(sb.toString(), -1);
     }
     public String parseTargetString(String s) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(s);
+        Matcher m = Pattern.compile("//(.)\\\\n(.*)").matcher(s);
         if (m.find()) {
             return m.group(2);
         }
