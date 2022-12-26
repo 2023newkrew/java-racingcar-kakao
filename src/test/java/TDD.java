@@ -3,10 +3,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class TDD {
-    private Calculator calculator = new Calculator();
+    private final Calculator calculator = new Calculator();
     @Test
     public void testEmptyString() {
         int result = calculator.calculate("");
@@ -25,4 +24,12 @@ public class TDD {
         int result = calculator.calculate(input);
         assertThat(result).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,2:3", "12,34,56:102"}, delimiter = ':')
+    public void testMultipleNumberStringWithComma(String input, int expected) {
+        int result = calculator.calculate(input);
+        assertThat(result).isEqualTo(expected);
+    }
+
 }
