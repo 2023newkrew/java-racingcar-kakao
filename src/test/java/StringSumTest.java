@@ -43,8 +43,8 @@ public class StringSumTest {
     }
 
     @Test
-    public void summation() {
-        Integer[] numbers = new Integer[] {1, 2, 3};
+    public void summationTest() {
+        int[] numbers = new int[] {1, 2, 3};
         assertThat(stringSum.summation(numbers)).isEqualTo(6);
     }
 
