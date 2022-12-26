@@ -3,7 +3,6 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,33 +14,33 @@ public class CarTest {
 
     @BeforeAll
     public static void setUp() throws NoSuchFieldException {
-        distance = Car.class.getDeclaredField("distance");
+        distance = RacingCar.class.getDeclaredField("distance");
         distance.setAccessible(true);
     }
 
     @Test
     public void moveTest() throws IllegalAccessException {
-        Car car = new Car("abc");
-        car.move(5);
-        int dist = (int) distance.get(car);
+        Car racingCar = new RacingCar("abc");
+        racingCar.move(5);
+        int dist = (int) distance.get(racingCar);
         assertThat(dist).isEqualTo(1);
     }
 
     @Test
     public void doNotMoveTest() throws IllegalAccessException {
-        Car car = new Car("abc");
-        car.move(2);
-        int dist = (int) distance.get(car);
+        Car racingCar = new RacingCar("abc");
+        racingCar.move(2);
+        int dist = (int) distance.get(racingCar);
         assertThat(dist).isEqualTo(0);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"abc", "def"})
     public void toStringTest(String input) {
-        Car car = new Car(input);
+        Car racingCar = new RacingCar(input);
         for (int i = 0; i < 3; i++) {
-            car.move(5);
-            assertThat(car.toString()).isEqualTo(input + " : " +"-".repeat(i+1));
+            racingCar.move(5);
+            assertThat(racingCar.toString()).isEqualTo(input + " : " +"-".repeat(i+1));
         }
     }
 
