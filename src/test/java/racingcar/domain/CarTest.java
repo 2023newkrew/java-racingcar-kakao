@@ -12,19 +12,12 @@ import racingcar.domain.RacingCar;
 
 public class CarTest {
 
-    private static Field distance;
-
-    @BeforeAll
-    public static void setUp() throws NoSuchFieldException {
-        distance = RacingCar.class.getDeclaredField("distance");
-        distance.setAccessible(true);
-    }
 
     @Test
     public void moveTest() throws IllegalAccessException {
         Car racingCar = new RacingCar("abc");
         racingCar.move(5);
-        int dist = (int) distance.get(racingCar);
+        int dist = racingCar.getDistance();
         assertThat(dist).isEqualTo(1);
     }
 
@@ -32,7 +25,7 @@ public class CarTest {
     public void doNotMoveTest() throws IllegalAccessException {
         Car racingCar = new RacingCar("abc");
         racingCar.move(2);
-        int dist = (int) distance.get(racingCar);
+        int dist = racingCar.getDistance();
         assertThat(dist).isEqualTo(0);
     }
 
