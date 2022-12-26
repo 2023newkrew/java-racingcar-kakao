@@ -16,7 +16,7 @@ public class Addition {
         return new AdditionResult(result);
     }
 
-    public AdditionResult addAll(int...nums) {
+    public AdditionResult addAll(Integer...nums) {
         int result = 0;
         for (int num : nums) {
             result += num;

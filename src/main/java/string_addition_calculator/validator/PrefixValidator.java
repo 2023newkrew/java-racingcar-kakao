@@ -2,6 +2,9 @@ package string_addition_calculator.validator;
 
 public class PrefixValidator {
     public void validate(String input) {
+        if (input.length() == 0) {
+            return;
+        }
         if (Character.isDigit(input.charAt(0))) {
             return;
         }
