@@ -29,16 +29,9 @@ public class Calculator {
     public int stringArraySum(String[] stringArray) {
         int sum = 0;
         for (String number : stringArray) {
-            int temp = Integer.parseInt(number);
-            checkNegative(temp);
-            sum += temp;
+            sum += stringParser.parseInt(number);
         }
         return sum;
     }
 
-    public void checkNegative(int number) {
-        if (number < 0) {
-            throw new RuntimeException();
-        }
-    }
 }
