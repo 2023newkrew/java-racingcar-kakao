@@ -1,5 +1,8 @@
 public class StringVerifier {
-    public boolean isInteger(String s) {
+
+    private StringVerifier(){}
+
+    public static boolean isInteger(String s) {
         try {
             int parsedInt = Integer.parseInt(s);
             return true;
@@ -8,11 +11,11 @@ public class StringVerifier {
         }
     }
 
-    public boolean isPositive(Integer i) {
+    public static boolean isPositive(Integer i) {
         return i >= 0;
     }
 
-    public boolean isNullOrEmpty(String s) {
+    public static boolean isNullOrEmpty(String s) {
         return s == null || s.isEmpty();
     }
 }
