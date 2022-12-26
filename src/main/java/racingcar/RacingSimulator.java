@@ -6,16 +6,33 @@ public class RacingSimulator {
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
+    private final int maxTryCount;
+    private int tryCount;
 
-    public RacingSimulator(NumberGenerator numberGenerator, List<Car> cars) {
+    public RacingSimulator(int maxTryCount, NumberGenerator numberGenerator, List<Car> cars) {
+        this.maxTryCount = maxTryCount;
+        this.tryCount = 0;
         this.numberGenerator = numberGenerator;
         this.cars = cars;
     }
 
     public void move() {
+        if(isNotTryable()){
+            throw new IllegalStateException();
+        }
+
+        moveCars();
+    }
+
+    private boolean isNotTryable() {
+        return tryCount >= maxTryCount;
+    }
+
+    private void moveCars() {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
         }
+        tryCount++;
     }
 
     public Result getResult() {
