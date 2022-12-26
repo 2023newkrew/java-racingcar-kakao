@@ -9,4 +9,10 @@ public class TDD {
         int result = calculator.calculate("");
         assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    public void testNullString() {
+        int result = calculator.calculate(null);
+        assertThat(result).isEqualTo(0);
+    }
 }
