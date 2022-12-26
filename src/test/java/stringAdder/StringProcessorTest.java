@@ -6,7 +6,7 @@ public class StringProcessorTest {
 
     @Test
     void checkSplitTokenExist() {
-        StringProcessor stringProcessor = new StringProcessor("//;\n1;2;3");
+        StringProcessor stringProcessor = new StringProcessor("//;\\n1;2;3");
         StringProcessResult stringProcessResult = stringProcessor.getSplitToken();
         assertThat(stringProcessResult).isEqualTo(new StringProcessResult(";", "1;2;3"));
     }
