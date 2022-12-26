@@ -67,6 +67,12 @@ class StringSplitterTest {
                 assertThat(splitter.contains("")).isFalse();
             }
         }
+
+        @Test
+        void should_hasNotEmptyString_when_givenEmptySeparator() {
+            StringSplitter splitter = StringSplitter.from("//\n");
+            assertThat(splitter.contains("")).isFalse();
+        }
     }
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
