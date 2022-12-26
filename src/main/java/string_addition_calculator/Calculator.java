@@ -7,24 +7,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
+
+    private final PrefixValidator prefixValidator;
+    private final NonNegativeValidator nonNegativeValidator;
+    private final Addition addition;
+    private final Splitter splitter;
+    private final StringConverter stringConverter;
+
+    public Calculator() {
+        prefixValidator = new PrefixValidator();
+        nonNegativeValidator = new NonNegativeValidator();
+        addition = new Addition();
+        splitter = new Splitter();
+        stringConverter = new StringConverter();
+    }
+
     public int calculate(String input) {
-        PrefixValidator prefixValidator = new PrefixValidator();
-        Addition addition = new Addition();
-        Splitter splitter = new Splitter();
-        StringConverter converter = new StringConverter();
-        NonNegativeValidator nonNegativeValidator = new NonNegativeValidator();
-
         prefixValidator.validate(input);
-        String[] split = splitter.split(input);
-        List<Integer> numbers = new ArrayList<>();
-        for (String s : split) {
-            converter.convertString(s);
-            int v = converter.getResult();
-            nonNegativeValidator.validate(v);
-            numbers.add(v);
-        }
-        AdditionResult result = addition.addAll(numbers.toArray(new Integer[numbers.size()]));
-
+        List<Integer> numbers = convertInputToNumbers(input);
+        AdditionResult result = addition.addAll(numbers);
         return result.getValue();
+    }
+
+    private List<Integer> convertInputToNumbers(String input) {
+        String[] tokens = splitter.split(input);
+        List<Integer> numbers = new ArrayList<>();
+        for (String token : tokens) {
+            int value = convertTokenToInteger(token);
+            nonNegativeValidator.validate(value);
+            numbers.add(value);
+        }
+        return numbers;
+    }
+
+    private int convertTokenToInteger(String token) {
+        stringConverter.convertString(token);
+        return stringConverter.getResult();
     }
 }
