@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 
 public class StringNumberParser {
     public List<Long> parse(String input, String separator) {
-//        String input = "1:2:3,4";
-        // input
+        if (input.isBlank()) {
+            return new ArrayList<>();
+        }
         if (separator == null) {
             String[] splitStrings = input.split("[,:]");
+            System.out.println("Arrays.toString(splitStrings) = " + Arrays.toString(splitStrings));
             return convertToNumbers(splitStrings);
         }
         return separateWithCustomSeparator(input, separator);
@@ -24,6 +26,8 @@ public class StringNumberParser {
 
     private List<Long> convertToNumbers(String[] splitStrings) {
         List<Long> numbers = new ArrayList<>();
+        System.out.println("Arrays.toString(splitStrings) = " + Arrays.toString(splitStrings));
+        System.out.println("splitStrings.length = " + splitStrings.length);
         for (String splitString : splitStrings) {
             numbers.add(convertToNumber(splitString));
         }
