@@ -68,9 +68,9 @@ public class StringCalculatorTest {
         String input = "//;\n1;2;3";
 
         stringCalculator.registerDelimiterIfNotExist(input);
-        Set<String> delimiters = stringCalculator.getDelimiters();
+        boolean hasCustomDelimiters = stringCalculator.hasCustomDelimiters();
 
-        assertThat(delimiters.size()).isEqualTo(3);
+        assertThat(hasCustomDelimiters).isTrue();
     }
 
     @Test
