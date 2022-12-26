@@ -2,6 +2,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Calculator {
     private String text;
@@ -39,5 +41,12 @@ public class Calculator {
         Arrays.stream(numbers).forEach(e-> arr.add(toInteger(e)));
 
         return arr;
+    }
+
+    public String getCustomDelimiter() {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+
+        if(!m.find()) return null;
+        return m.group(1);
     }
 }

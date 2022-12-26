@@ -65,4 +65,18 @@ public class CalculatorTest {
 
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(calculator::splitText);
     }
+
+    @Test
+    void getIfCustomDelimiterExist(){
+        Calculator calculator = new Calculator("//;\n1;2;3");
+
+        assertThat(calculator.getCustomDelimiter()).isEqualTo(";");
+    }
+
+    @Test
+    void getNullIfCustomDelimiterNotExist(){
+        Calculator calculator = new Calculator("1;2;3");
+
+        assertThat(calculator.getCustomDelimiter()).isNull();
+    }
 }
