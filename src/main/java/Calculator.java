@@ -1,6 +1,4 @@
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -15,15 +13,7 @@ public class Calculator {
             return 0;
         }
 
-        Matcher m = Pattern.compile("//(.+)\n(.*)").matcher(inputstring);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] numbers = stringParser.split(m.group(2), customDelimiter);
-            return stringArraySum(numbers);
-        }
-        String[] numbers = stringParser.split(inputstring);
-
-        return stringArraySum(numbers);
+        return stringArraySum(stringParser.toStringArray(inputstring));
     }
 
     public int stringArraySum(String[] stringArray) {

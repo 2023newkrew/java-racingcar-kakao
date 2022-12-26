@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringParser {
 
 
@@ -15,5 +18,14 @@ public class StringParser {
             throw new RuntimeException();
         }
         return parsedNumber;
+    }
+
+    public String[] toStringArray(String inputstring) {
+        Matcher m = Pattern.compile("//(.+)\n(.*)").matcher(inputstring);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            return split(m.group(2), customDelimiter);
+        }
+        return split(inputstring);
     }
 }
