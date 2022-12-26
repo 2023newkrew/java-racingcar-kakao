@@ -91,7 +91,7 @@ public class StringCalculatorTest {
     void addNumber() {
         String input = "1:2:3";
         String[] strArr = stringCalculator.splitByDelimiter(input);
-        IntegerList numberList = new IntegerList(strArr);
+        PositiveIntegerList numberList = new PositiveIntegerList(strArr);
 
         int result = numberList.calculateSum();
         assertThat(result).isEqualTo(6);
@@ -113,6 +113,33 @@ public class StringCalculatorTest {
 
         int result = stringCalculator.run(input);
         assertThat(result).isEqualTo(16);
+    }
+
+    @Test
+    @DisplayName("양의 정수가 들어가야 할 자리에 특수 문자 입력")
+    void playStringCalculatorWithInvalidInput1() {
+        String input = "//;\n_:2;9";
+
+        assertThatThrownBy(() -> stringCalculator.run(input))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("양의 정수가 들어가야 할 자리에 음수 입력")
+    void playStringCalculatorWithInvalidInput2() {
+        String input = "//;\n-1:2;9";
+
+        assertThatThrownBy(() -> stringCalculator.run(input))
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("음수만 입력")
+    void playStringCalculatorWithInvalidInput3() {
+        String input = "-1";
+
+        assertThatThrownBy(() -> stringCalculator.run(input))
+                .isInstanceOf(RuntimeException.class);
     }
 
 }

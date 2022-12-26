@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class IntegerList {
+public class PositiveIntegerList {
 
     private List<Integer> list;
 
-    public IntegerList(String[] arr) {
+    public PositiveIntegerList(String[] arr) {
         list = Arrays.stream(arr)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -18,5 +18,12 @@ public class IntegerList {
         return list.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    public void validate() {
+        list.stream()
+                .filter(value -> value < 0)
+                .findAny()
+                .ifPresent(value -> { throw new RuntimeException(); });
     }
 }
