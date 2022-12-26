@@ -21,14 +21,14 @@ public class StringCalculatorTest {
     @Test
     @DisplayName("빈 문자열을 입력할 경우 0을 반환한다.")
     void returnZeroIfEmptyString() {
-        int result = stringCalculator.play("");
+        int result = stringCalculator.run("");
         assertThat(result).isEqualTo(0);
     }
 
     @Test
     @DisplayName("null 값을 입력할 경우 0을 반환한다.")
     void returnZeroIfNull() {
-        int result = stringCalculator.play(null);
+        int result = stringCalculator.run(null);
         assertThat(result).isEqualTo(0);
     }
 
@@ -38,7 +38,7 @@ public class StringCalculatorTest {
         String input = "1";
         int expectedResult = Integer.parseInt(input);
 
-        int result = stringCalculator.play(input);
+        int result = stringCalculator.run(input);
         assertThat(result).isEqualTo(expectedResult);
     }
 
@@ -47,7 +47,7 @@ public class StringCalculatorTest {
     void throwExceptionIfCharacterIsNotNumber() {
         String input = "-";
 
-        assertThatThrownBy(() -> stringCalculator.play(input))
+        assertThatThrownBy(() -> stringCalculator.run(input))
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -79,7 +79,7 @@ public class StringCalculatorTest {
         String input = "//_\n6_1:5";
 
         stringCalculator.registerDelimiterIfNotExist(input);
-        String str = stringCalculator.parseNumbuerContainingString(input);
+        String str = stringCalculator.parseNumberContainingString(input);
         String[] result = stringCalculator.splitByDelimiter(str);
 
         assertThat(result.length).isEqualTo(3);
@@ -95,6 +95,24 @@ public class StringCalculatorTest {
 
         int result = numberList.calculateSum();
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("입력된 문자열에 맞게 계산한다.")
+    void playStringCalculator() {
+        String input = "1:2:3";
+
+        int result = stringCalculator.run(input);
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("입력된 문자열에 맞게 계산한다.")
+    void playStringCalculatorWithCustomDelimiter() {
+        String input = "//;\n5:2;9";
+
+        int result = stringCalculator.run(input);
+        assertThat(result).isEqualTo(16);
     }
 
 }

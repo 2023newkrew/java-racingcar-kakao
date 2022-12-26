@@ -13,23 +13,44 @@ public class StringCalculator {
         delimiters = baseDelimiters;
     }
 
-    public int play(String input) {
-        if (!Objects.isNull(input) && input.length() == 1) {
-            return Integer.parseInt(input);
+    public int run(String input) {
+        if (Objects.isNull(input) || input.length() <= 1) {
+            return handleStringLengthShorterThanTwo(input);
         }
 
-        return 0;
+        return calculate(input);
     }
 
-    public void registerDelimiterIfNotExist(String input) {
+    private int calculate(String input) {
+        String str = input;
+        if (registerDelimiterIfNotExist(input)) {
+            str = parseNumberContainingString(input);
+        }
+
+        IntegerList integerList = new IntegerList(splitByDelimiter(str));
+        return integerList.calculateSum();
+    }
+
+    public int handleStringLengthShorterThanTwo(String input) {
+        if (Objects.isNull(input) || input.isEmpty()) {
+            return 0;
+        }
+
+        return Integer.parseInt(input);
+    }
+
+    public boolean registerDelimiterIfNotExist(String input) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
 
         if (m.find()) {
             delimiters.add(m.group(1));
+            return true;
         }
+
+        return false;
     }
 
-    public String parseNumbuerContainingString(String input) {
+    public String parseNumberContainingString(String input) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
 
         if (m.find()) {
