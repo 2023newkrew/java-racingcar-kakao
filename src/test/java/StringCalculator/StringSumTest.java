@@ -1,3 +1,6 @@
+package StringCalculator;
+
+import StringCalculator.StringSum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
