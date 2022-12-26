@@ -39,4 +39,13 @@ public class StringParser {
         return s;
     }
 
+    public Integer castStringToInteger(String s) {
+        if (StringVerifier.isNullOrEmpty(s)) {
+            return 0;
+        }
+        if (StringVerifier.isInteger(s) && StringVerifier.isPositive(Integer.parseInt(s))) {
+            return Integer.parseInt(s);
+        }
+        throw new RuntimeException();
+    }
 }

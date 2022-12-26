@@ -53,4 +53,18 @@ public class StringParserTest {
         String s1 = "\ntest:String";
         Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s1), sp.parseSplitter(s1))).isEqualTo(new String[]{"\ntest", "String"});
     }
+
+    @Test
+    void castStringToInteger() {
+        StringParser sp = new StringParser();
+        String[] s0 = new String[]{"1", "2", "213123123", null, ""};
+        for (String s : s0) {
+            Assertions.assertThatNoException().isThrownBy(() -> sp.castStringToInteger(s));
+        }
+
+        String[] s1 = new String[]{"-1", "!@#", "1e9"};
+        for (String s : s1) {
+            Assertions.assertThatRuntimeException().isThrownBy(() -> sp.castStringToInteger(s));
+        }
+    }
 }
