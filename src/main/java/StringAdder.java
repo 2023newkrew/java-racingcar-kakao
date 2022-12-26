@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringAdder {
     public int add(String text) {
         int number = -1;
@@ -19,6 +23,20 @@ public class StringAdder {
 
 
     public String[] split(String text) {
-        return text.split(",|;");
+        StringBuilder stringBuilder = new StringBuilder(",|;");
+        String customDelimiter = null;
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        if(m.find()){
+            customDelimiter = m.group(1);
+            stringBuilder.append("|" + customDelimiter);
+            return m.group(2).split(stringBuilder.toString());
+        }
+        return text.split(stringBuilder.toString());
+    }
+
+    public void isValid(String[] numbers) {
+        if (Arrays.stream(numbers).anyMatch(number -> Integer.parseInt(number) < 0)) {
+            throw new RuntimeException("negative");
+        }
     }
 }

@@ -62,4 +62,20 @@ public class StringAdderTest {
         String[] numbers = stringAdder.split(text);
         assertThat(numbers).containsExactly("2","5","3");
     }
+
+    @Test
+    public void customDelimiterTest(){
+        String text = "//s\n1s2s3";
+        String[] numbers = stringAdder.split(text);
+        assertThat(numbers).containsExactly("1","2","3");
+    }
+
+    @Test
+    public void ifNegativeThrowRuntimeException(){
+        String text = "-1,2,3";
+        String[] numbers = stringAdder.split(text);
+        assertThatThrownBy(() -> {
+            stringAdder.isValid(numbers);
+        }).isInstanceOf(RuntimeException.class);
+    }
 }
