@@ -18,4 +18,7 @@ public class StringAdder {
     }
 
 
+    public String[] split(String text) {
+        return text.split(",|;");
+    }
 }

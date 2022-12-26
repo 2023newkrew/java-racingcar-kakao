@@ -38,14 +38,28 @@ public class StringAdderTest {
 
 
     @Test
-    public void ParseIntTest(){
+    public void parseIntTest(){
         String text = "2";
         int result = stringAdder.add(text);
         assertThat(result).isEqualTo(2);
     }
     @Test
-    public void ParseAnotherTest(){
+    public void parseAnotherTest(){
         String text = "a";
         assertThatThrownBy(()-> stringAdder.add(text)).isInstanceOf(NumberFormatException.class);
+    }
+
+    @Test
+    public void commaSplitTextTest(){
+        String text = "2,5,3";
+        String[] numbers = stringAdder.split(text);
+        assertThat(numbers).containsExactly("2","5","3");
+    }
+
+    @Test
+    public void semicolonSplitTextTest(){
+        String text = "2;5;3";
+        String[] numbers = stringAdder.split(text);
+        assertThat(numbers).containsExactly("2","5","3");
     }
 }
