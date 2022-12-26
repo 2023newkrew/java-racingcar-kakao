@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         StringProcessor stringProcessor = new StringProcessor(input);
-        StringProcessResult stringProcessResult = stringProcessor.getSplitToken();
+        StringProcessResult stringProcessResult = stringProcessor.getStringProcessResult();
         int[] numbers = stringProcessResult.split();
         System.out.printf("결과: %d\n", NumAdder.add(numbers));
     }

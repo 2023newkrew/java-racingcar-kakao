@@ -9,7 +9,7 @@ public class StringProcessor {
         this.targetString = targetString;
     }
 
-    public StringProcessResult getSplitToken() {
+    public StringProcessResult getStringProcessResult() {
         Matcher m = Pattern.compile("//(.+)\\\\n(.*)").matcher(targetString);
 
         if (m.find()) {

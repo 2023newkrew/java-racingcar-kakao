@@ -7,14 +7,14 @@ public class StringProcessorTest {
     @Test
     void checkSplitTokenExist() {
         StringProcessor stringProcessor = new StringProcessor("//;\\n1;2;3");
-        StringProcessResult stringProcessResult = stringProcessor.getSplitToken();
+        StringProcessResult stringProcessResult = stringProcessor.getStringProcessResult();
         assertThat(stringProcessResult).isEqualTo(new StringProcessResult(";", "1;2;3"));
     }
 
     @Test
     void checkSplitTokenNone() {
         StringProcessor stringProcessor = new StringProcessor("1;2;3");
-        StringProcessResult stringProcessResult = stringProcessor.getSplitToken();
+        StringProcessResult stringProcessResult = stringProcessor.getStringProcessResult();
         assertThat(stringProcessResult).isEqualTo(new StringProcessResult(null, "1;2;3"));
     }
 }
