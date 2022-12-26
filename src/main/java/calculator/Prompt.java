@@ -1,3 +1,5 @@
+package calculator;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,7 +46,7 @@ public class Prompt {
         return delimiters.getRegex();
     }
 
-    public String[] getStringTokens() {
+    public String[] getStringNumbers() {
         return input.split(getDelimiterRegex());
     }
 }
