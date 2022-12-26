@@ -7,21 +7,24 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class TargetString {
+    public static final String TYPE_EXCEPTION_MESSAGE = "[ERROR] 구분자로 구분되는 것은 정수여야 합니다.";
+    public static final String RANGE_EXCEPTION_MESSAGE = "[ERROR] 모든 값은 0 이상이어야 합니다.";
+    public static final String DEFAULT_DELIMITERS = ",|:";
     private String inputString;
     private String delimiters;
     private final Pattern CUSTOM_PATTERN = Pattern.compile("//(.)\n(.*)");
 
-    public TargetString(){
+    public TargetString() {
         this("");
     }
 
-    public TargetString(String inputString){
+    public TargetString(String inputString) {
         this.inputString = inputString;
-        this.delimiters = ",|:";
+        this.delimiters = DEFAULT_DELIMITERS;
     }
 
-    public int calculate(){
-        if (inputString == null||inputString.isEmpty()) {
+    public int calculate() {
+        if (inputString == null || inputString.isEmpty()) {
             return 0;
         }
         List<Integer> numbers = splitString();
@@ -30,7 +33,8 @@ public class TargetString {
 
     private List<Integer> splitString() {
         customizeDelimiter();
-        List<Integer> tokens= Arrays.stream(inputString.split(delimiters)).map(this::validateInt).collect(Collectors.toList());
+        List<Integer> tokens = Arrays.stream(inputString.split(delimiters)).map(this::validateInt)
+                .collect(Collectors.toList());
         return tokens;
     }
 
@@ -48,15 +52,14 @@ public class TargetString {
             Integer inputInt = Integer.parseInt(input);
             validateRange(inputInt);
             return inputInt;
-        } catch (NumberFormatException e){
-            throw new RuntimeException("구분자로 구분되는 것은 정수여야 합니다.");
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(TYPE_EXCEPTION_MESSAGE);
         }
     }
 
     private void validateRange(Integer inputInt) {
         if (inputInt < 0) {
-            throw new RuntimeException("모든 값은 0 이상이어야 합니다.");
+            throw new RuntimeException(RANGE_EXCEPTION_MESSAGE);
         }
     }
-
 }
