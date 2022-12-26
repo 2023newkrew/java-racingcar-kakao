@@ -28,4 +28,11 @@ public class StringSum {
         return tokens;
     }
 
+    public Integer stringToInteger(String s) throws RuntimeException {
+        Integer num = Integer.parseInt(s);
+        if (num < 0) {
+            throw new RuntimeException();
+        }
+        return num;
+    }
 }
