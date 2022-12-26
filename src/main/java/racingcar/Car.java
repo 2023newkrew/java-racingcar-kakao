@@ -9,9 +9,14 @@ public class Car {
         this.distance = 0;
     }
 
-    public void move(int seed){
-        if(seed>3){
+    public void move(int seed) {
+        if (seed > 3) {
             distance++;
         }
+    }
+
+    @Override
+    public String toString() {
+        return name + " : "+"-".repeat(distance);
     }
 }
