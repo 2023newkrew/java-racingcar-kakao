@@ -16,14 +16,14 @@ public class StringAdderTest {
     public void ifNullReturnZero(){
         String text = null;
         int result = stringAdder.add(text);
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isEqualTo(StringAdderConstant.IS_NULL_OR_BLANK);
     }
 
     @Test
     public void ifEmptyReturnZero(){
         String text = "";
         int result = stringAdder.add(text);
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isEqualTo(StringAdderConstant.IS_NULL_OR_BLANK);
     }
 
 
@@ -31,7 +31,7 @@ public class StringAdderTest {
     public void ifBlankReturnZero(){
         String text = "   ";
         int result = stringAdder.add(text);
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isEqualTo(StringAdderConstant.IS_NULL_OR_BLANK);
     }
 
 
@@ -87,9 +87,9 @@ public class StringAdderTest {
     }
     @Test
     public void addTest(){
-        String text = "1,2,3";
+        String text = "1,0,3";
         int result = stringAdder.add(text);
-        assertThat(result).isEqualTo(6);
+        assertThat(result).isEqualTo(4);
 
     }
 }

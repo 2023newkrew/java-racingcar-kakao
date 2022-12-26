@@ -1,19 +1,16 @@
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class StringAdder {
     public int add(String text) {
-        int result = -1;
+        int result;
         if (isNullOrBlank(text)) {
-            return 0;
+            return StringAdderConstant.IS_NULL_OR_BLANK;
         }
         try {
-            String[] numbers = split(text);
-            result = summation(numbers);
+            result = summation(split(text));
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
             throw e;
         }
         return result;
