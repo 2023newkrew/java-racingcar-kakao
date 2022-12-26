@@ -28,6 +28,11 @@ public class StringAdderCalculatorTest {
         assertThat(calculator.calculate(input)).isEqualTo(Integer.parseInt(input));
     }
 
-    
+    @Test
+    @DisplayName("숫자 두개를 컴마(,) 구분자로 입력할 경우 두 숫자의 합을 반환한다.")
+    public void addIntegerSeparatedByComma() {
+        assertThat(calculator.calculate("1,4")).isEqualTo(5 );
+    }
+
 }
 
