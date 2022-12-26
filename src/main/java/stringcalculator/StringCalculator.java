@@ -69,7 +69,7 @@ public class StringCalculator {
         return String.join("|", delimiters);
     }
 
-    public Set<String> getDelimiters() {
-        return delimiters;
+    public boolean hasCustomDelimiters() {
+        return delimiters.size() > 2;
     }
 }
