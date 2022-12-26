@@ -34,6 +34,24 @@ public class RacingCarGameTest {
         assertThat(racingCars.get(2).getDistance()).isEqualTo(3);
     }
 
+    @Test
+    public void getSingleWinner() throws NoSuchFieldException, IllegalAccessException {
+        AppConfig appConfig = new AppConfigImpl();
+        Field randomNumberGenerator = AppConfigImpl.class.getDeclaredField("randomNumberGenerator");
+        randomNumberGenerator.setAccessible(true);
+        randomNumberGenerator.set(appConfig, new FakeRandomNumberGenerator());
+        RacingCarGame racingCarGame = new RacingCarGameImpl(appConfig);
+
+        Car car1 = new RacingCar("pobi");
+        Car car2 = new RacingCar("crong");
+        Car car3 = new RacingCar("honux");
+
+        racingCarGame.add(car1, car2, car3);
+        racingCarGame.run(5);
+
+        assertThat(racingCarGame.getWinner().get(0)).isEqualTo(car3);
+    }
+
     static class FakeRandomNumberGenerator implements RandomNumberGenerator{
         int seed = 0;
         @Override

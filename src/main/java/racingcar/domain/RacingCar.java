@@ -1,12 +1,18 @@
 package racingcar.domain;
 
-public class RacingCar implements Car{
+public class RacingCar implements Car {
     private final String name;
+
+
     private int distance;
 
     public RacingCar(String name) {
         this.name = name;
         this.distance = 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -22,6 +28,6 @@ public class RacingCar implements Car{
 
     @Override
     public String toString() {
-        return name + " : "+"-".repeat(distance);
+        return name + " : " + "-".repeat(distance);
     }
 }
