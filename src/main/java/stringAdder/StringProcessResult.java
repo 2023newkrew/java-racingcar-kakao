@@ -28,4 +28,22 @@ public class StringProcessResult {
     public int hashCode() {
         return Objects.hash(splitToken, numString);
     }
+
+    public int[] split() {
+        String[] splitNumStrings = numString.split(getDelimiterPattern());
+        int[] numbers = new int[splitNumStrings.length];
+        for (int i = 0; i < splitNumStrings.length; i++) {
+            numbers[i] = Integer.parseInt(splitNumStrings[i]);
+        }
+        return numbers;
+    }
+
+    private String getDelimiterPattern() {
+        StringBuilder sb = new StringBuilder("[");
+        for (String token: splitToken) {
+            sb.append(token);
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
