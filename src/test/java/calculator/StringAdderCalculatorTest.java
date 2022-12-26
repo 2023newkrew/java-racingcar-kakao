@@ -53,9 +53,5 @@ public class StringAdderCalculatorTest {
                 });
     }
 
-    @Test
-    public void foo() {
-
-    }
 }
 

@@ -9,7 +9,7 @@ public class Prompt {
     private Delimiters delimiters;
 
     public Prompt(String input) {
-        this.input = input;
+        this.input = input.replaceAll(" ", "");
         this.delimiters = new Delimiters();
     }
 
