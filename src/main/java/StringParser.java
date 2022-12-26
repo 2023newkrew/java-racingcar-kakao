@@ -46,6 +46,6 @@ public class StringParser {
         if (StringVerifier.isInteger(s) && StringVerifier.isPositive(Integer.parseInt(s))) {
             return Integer.parseInt(s);
         }
-        throw new RuntimeException();
+        throw new RuntimeException("Invalid input! start again.");
     }
 }
