@@ -5,6 +5,10 @@ public class NumberParser {
     private String[] stringArray;
 
     public NumberParser(String input) {
+        if (input == null || input.equals("")) {
+            this.input = "0";
+            return;
+        }
         this.input = input;
     }
 

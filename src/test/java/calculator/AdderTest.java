@@ -2,6 +2,10 @@ package calculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class AdderTest {
     @Test
@@ -46,4 +50,14 @@ public class AdderTest {
                 });
     }
 
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {""})
+    void emptyTest(String input) {
+        NumberParser numberParser = new NumberParser(input);
+        numberParser.inputToStringArray();
+        int[] intArr = numberParser.stringArrayToIntArray();
+        int result = Adder.run(intArr);
+        Assertions.assertThat(result).isEqualTo(0);
+    }
 }
