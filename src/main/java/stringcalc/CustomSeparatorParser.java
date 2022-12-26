@@ -1,22 +1,22 @@
 package stringcalc;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CustomSeparatorParser {
 
-    public List<String> parse(String input) {
-        String[] split = input.split("\n");
-        List<String> separators = new ArrayList<>();
-        for (int idx = 0; idx < split.length - 1; idx++) {
-            validateSeparatorFormat(split[idx]);
-            separators.add(split[idx].substring(2));
+    public String parse(String input) {
+        Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            validateSeparatorLength(customDelimiter);
+            return customDelimiter;
         }
-        return separators;
+        return null;
     }
 
-    private void validateSeparatorFormat(String separator){
-        if (separator.length() != 3 || !separator.startsWith("//")) {
+    private void validateSeparatorLength(String separator){
+        if (separator.length() != 1) {
             throw new RuntimeException();
         }
     }

@@ -21,33 +21,19 @@ public class CustomSeparatorParserTest {
     }
 
     @Test
-    void parseCustomSeparator_1(){
+    void parseCustomSeparator(){
         //given
         String input = "//;\n1;2;3";
 
         //when
-        List<String> result = customSeparatorParser.parse(input);
+        String result = customSeparatorParser.parse(input);
 
         //then
-        assertThat(result).hasSize(1);
-        assertThat(result).containsExactly(";");
-    }
-
-    @Test
-    void parseCustomSeparator_2(){
-        //given
-        String input = "//;\n//:\n1;2;3";
-
-        //when
-        List<String> result = customSeparatorParser.parse(input);
-
-        //then
-        assertThat(result).hasSize(2);
-        assertThat(result).containsExactly(";", ":");
+        assertThat(result).isEqualTo(";");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"//;\n//aa\n1;2;3", "//;\n/caa\n1;2;3", "//;\n\n1;2;3", "//;\n123//:\n1;2;3"})
+    @ValueSource(strings = {"//;;\n1;2;3"})
     void parseCustomSeparator_throwEx(String input){
         //then
         assertThatThrownBy(() -> customSeparatorParser.parse(input)).isInstanceOf(RuntimeException.class);
@@ -59,9 +45,9 @@ public class CustomSeparatorParserTest {
         String input = "";
 
         //when
-        List<String> result = customSeparatorParser.parse(input);
+        String result = customSeparatorParser.parse(input);
 
         //then
-        assertThat(result).isEmpty();
+        assertThat(result).isNull();
     }
 }
