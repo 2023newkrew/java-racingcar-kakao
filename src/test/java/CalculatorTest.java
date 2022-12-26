@@ -40,9 +40,16 @@ public class CalculatorTest {
     }
 
     @Test
-    void checkSplitText(){
+    void checkSplitTextWithComma(){
         Calculator calculator = new Calculator("1,2");
 
         assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1, 2));
+    }
+
+    @Test
+    void checkSplitTextWithCommaAndColon(){
+        Calculator calculator = new Calculator("1,2:3");
+
+        assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1,2,3));
     }
 }

@@ -32,7 +32,7 @@ public class Calculator {
     }
 
     public List<Integer> splitText() {
-        String[] numbers = this.text.split(",");
+        String[] numbers = this.text.split("[,:]");
         List<Integer> arr = new ArrayList<>();
 
         Arrays.stream(numbers).forEach(e-> arr.add(toInteger(e)));
