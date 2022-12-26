@@ -38,4 +38,24 @@ public class RacingSimulator {
     public Result getResult() {
         return new Result(cars);
     }
+
+    public Car getWinner() {
+        int winnerPosition = winnerPosition();
+
+        return cars.stream()
+                .filter(car -> isWinner(winnerPosition, car))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    private static boolean isWinner(int winnerPosition, Car car) {
+        return car.getPosition() == winnerPosition;
+    }
+
+    private int winnerPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow();
+    }
 }
