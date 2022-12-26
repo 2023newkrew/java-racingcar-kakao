@@ -4,10 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringParser {
+
+    private static final String SPLITTER_REGEX = "//(.)\\\\n(.*)";
     private static final Character[] BASIC_SPLITTER = new Character[]{',', ':'};
 
     public Character parseSplitter(String s) {
-        Matcher m = Pattern.compile("//(.)\\\\n(.*)").matcher(s);
+        Matcher m = Pattern.compile(SPLITTER_REGEX).matcher(s);
         if (m.find()) {
             return m.group(1).charAt(0);
         }
@@ -21,6 +23,10 @@ public class StringParser {
             splitters.add(splitter);
         }
 
+        return s.split(buildRegexPatternFromSplitterArray(splitters), -1);
+    }
+
+    private String  buildRegexPatternFromSplitterArray(ArrayList<Character> splitters) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("[");
@@ -29,13 +35,16 @@ public class StringParser {
         }
         sb.append("]");
 
-        return s.split(sb.toString(), -1);
+        return sb.toString();
     }
+
     public String parseTargetString(String s) {
-        Matcher m = Pattern.compile("//(.)\\\\n(.*)").matcher(s);
+        Matcher m = Pattern.compile(SPLITTER_REGEX).matcher(s);
+
         if (m.find()) {
             return m.group(2);
         }
+
         return s;
     }
 
