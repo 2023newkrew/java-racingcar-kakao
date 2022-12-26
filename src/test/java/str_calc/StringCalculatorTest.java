@@ -20,4 +20,19 @@ public class StringCalculatorTest {
         //then
         assertEquals(splitedText,List.of("1","4","5","a","b","e"));
     }
+
+    @Test
+    @DisplayName("분리된 문자열들을 유효성 검사 포함하여 숫자로 변환")
+    public void validateText() {
+        //given
+        StringCalculator stringCalculator = new StringCalculator();
+
+        //when, then
+        assertEquals(stringCalculator.toInt("1"),1);
+        assertEquals(stringCalculator.toInt("0"),0);
+        assertEquals(stringCalculator.toInt(""),0);
+        assertEquals(stringCalculator.toInt("112"),112);
+        assertThrows(RuntimeException.class,()-> stringCalculator.toInt("a"));
+        assertThrows(RuntimeException.class,()-> stringCalculator.toInt("-1"));
+    }
 }

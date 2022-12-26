@@ -18,4 +18,13 @@ public class StringCalculator {
     public List<String> splitText(String text) {
         return Arrays.asList(text.split(String.join("|",seperators)));
     }
+
+    public int toInt(String token) {
+        if("".equals(token) || token==null){
+            return 0;
+        }
+        int intValue = Integer.parseInt(token);
+        if(intValue<0) throw new RuntimeException("음수를 입력할 수 없습니다.");
+        return  intValue;
+    }
 }
