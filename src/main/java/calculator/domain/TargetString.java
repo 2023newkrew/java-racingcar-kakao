@@ -1,0 +1,55 @@
+package calculator.domain;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+public class TargetString {
+    private String inputString;
+    private String delimiters;
+    private final Pattern CUSTOM_PATTERN = Pattern.compile("//(.)\n(.*)");
+
+    public TargetString(){
+        this("");
+    }
+
+    public TargetString(String inputString){
+        this.inputString = inputString;
+        this.delimiters = ",|:";
+    }
+
+    public int calculate(){
+        if (inputString == null||inputString.isEmpty()) {
+            return 0;
+        }
+        List<Integer> numbers = splitString();
+        return numbers.stream().reduce(0, Integer::sum);
+    }
+
+    private List<Integer> splitString() {
+        customizeDelimiter();
+        List<Integer> tokens= Arrays.stream(inputString.split(delimiters)).map(x -> validateInt(x)).collect(Collectors.toList());
+        return tokens;
+    }
+
+    private void customizeDelimiter() {
+        Matcher m = CUSTOM_PATTERN.matcher(inputString);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            delimiters += '|' + customDelimiter;
+            inputString = m.group(2);
+        }
+    }
+
+    private Integer validateInt(String input) {
+        try {
+            Integer inputInt = Integer.parseInt(input);
+            return inputInt;
+        } catch (NumberFormatException e){
+            throw new RuntimeException("구분자로 구분되는 것은 정수여야 합니다.");
+        }
+    }
+
+}
