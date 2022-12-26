@@ -16,7 +16,8 @@ class RacingSimulatorTest {
     @Test
     void overTryCountTest() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        RacingSimulator simulator = createRacingSimulator(numberGenerator, 2, "a");
+        final Cars cars = createCars(numberGenerator, "a");
+        RacingSimulator simulator = createRacingSimulator(2, cars);
 
         assertThatThrownBy(() -> move(simulator, 3))
                 .isInstanceOf(IllegalStateException.class);
@@ -25,7 +26,8 @@ class RacingSimulatorTest {
     @Test
     void moveCars() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        RacingSimulator simulator = createRacingSimulator(numberGenerator, 5, "a", "b", "c");
+        final Cars cars = createCars(numberGenerator, "a", "b", "c");
+        RacingSimulator simulator = createRacingSimulator(5, cars);
 
         move(simulator, 1);
 
@@ -38,20 +40,44 @@ class RacingSimulatorTest {
     @Test
     void getSoloWinner() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP, MOVE, STOP, STOP, MOVE, MOVE, MOVE);
-        RacingSimulator simulator = createRacingSimulator(numberGenerator, 3, "a", "b", "c");
+        final Cars cars = createCars(numberGenerator, "a", "b", "c");
+        RacingSimulator simulator = createRacingSimulator(3, cars);
 
         move(simulator, 3);
 
-        Car winner = simulator.getWinner();
-        assertThat(winner.getName()).isEqualTo("a");
+        List<Car> winners = simulator.getWinners();
+        assertThat(winners)
+                .extracting(Car::getName)
+                .hasSize(1)
+                .contains("a");
     }
 
-    private static RacingSimulator createRacingSimulator(NumberGenerator numberGenerator, int maxTryCount, String... names) {
+    @Test
+    void getCoWinners() {
+        NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE);
+        final String[] strings = new String[]{"a", "b", "c"};
+        final Cars cars = createCars(numberGenerator, strings);
+        RacingSimulator simulator = createRacingSimulator(3, cars);
+
+        move(simulator, 3);
+
+        List<Car> winners = simulator.getWinners();
+        assertThat(winners)
+                .extracting(Car::getName)
+                .hasSize(2)
+                .contains("a", "b");
+    }
+
+    private static Cars createCars(NumberGenerator numberGenerator, String... names) {
         List<Car> cars = Stream.of(names)
                 .map(Car::new)
                 .collect(Collectors.toList());
 
-        return new RacingSimulator(maxTryCount, numberGenerator, cars);
+        return new Cars(numberGenerator, cars);
+    }
+
+    private static RacingSimulator createRacingSimulator(int maxTryCount, Cars cars) {
+        return new RacingSimulator(maxTryCount, cars);
     }
 
     private static void move(RacingSimulator simulator, int tryCount) {

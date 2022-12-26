@@ -4,15 +4,13 @@ import java.util.List;
 
 public class RacingSimulator {
 
-    private final List<Car> cars;
-    private final NumberGenerator numberGenerator;
     private final int maxTryCount;
+    private final Cars cars;
     private int tryCount;
 
-    public RacingSimulator(int maxTryCount, NumberGenerator numberGenerator, List<Car> cars) {
+    public RacingSimulator(int maxTryCount, Cars cars) {
         this.maxTryCount = maxTryCount;
         this.tryCount = 0;
-        this.numberGenerator = numberGenerator;
         this.cars = cars;
     }
 
@@ -21,41 +19,19 @@ public class RacingSimulator {
             throw new IllegalStateException();
         }
 
-        moveCars();
+        cars.move();
+        tryCount++;
     }
 
     private boolean isNotTryable() {
         return tryCount >= maxTryCount;
     }
 
-    private void moveCars() {
-        for (Car car : cars) {
-            car.move(numberGenerator.generate());
-        }
-        tryCount++;
-    }
-
     public Result getResult() {
-        return new Result(cars);
+        return cars.getResult();
     }
 
-    public Car getWinner() {
-        int winnerPosition = winnerPosition();
-
-        return cars.stream()
-                .filter(car -> isWinner(winnerPosition, car))
-                .findFirst()
-                .orElseThrow();
-    }
-
-    private static boolean isWinner(int winnerPosition, Car car) {
-        return car.getPosition() == winnerPosition;
-    }
-
-    private int winnerPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow();
+    public List<Car> getWinners() {
+        return cars.getWinners();
     }
 }

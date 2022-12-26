@@ -1,18 +1,16 @@
 package racingcar;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Result {
-    private final Map<String, Integer> positionMap;
 
-    public Result(List<Car> position) {
-        this.positionMap = position.stream()
-                .collect(Collectors.toMap(Car::getName, Car::getPosition));
+    private final Map<String, Integer> positions;
+
+    public Result(Map<String, Integer> positions) {
+        this.positions = positions;
     }
 
     public int getPositionByName(String name) {
-        return positionMap.get(name);
+        return positions.get(name);
     }
 }
