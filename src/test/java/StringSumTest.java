@@ -41,4 +41,11 @@ public class StringSumTest {
             stringSum.stringToInteger("-1");
         });
     }
+
+    @Test
+    public void summation() {
+        Integer[] numbers = new Integer[] {1, 2, 3};
+        assertThat(stringSum.summation(numbers)).isEqualTo(6);
+    }
+
 }

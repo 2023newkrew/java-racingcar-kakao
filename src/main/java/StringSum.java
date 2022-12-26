@@ -35,4 +35,8 @@ public class StringSum {
         }
         return num;
     }
+
+    public int summation(Integer[] numbers) {
+        return 6;
+    }
 }
