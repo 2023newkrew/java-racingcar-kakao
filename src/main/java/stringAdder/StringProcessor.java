@@ -10,7 +10,7 @@ public class StringProcessor {
     }
 
     public StringProcessResult getSplitToken() {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(targetString);
+        Matcher m = Pattern.compile("//(.)\\\\n(.*)").matcher(targetString);
 
         if (m.find()) {
             return new StringProcessResult(m.group(1), m.group(2));
