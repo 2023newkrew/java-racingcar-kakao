@@ -79,4 +79,10 @@ public class CalculatorTest {
 
         assertThat(calculator.getCustomDelimiter()).isNull();
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {";", "!", "$"})
+    void buildDelimiters(String customDelimiter){
+        assertThat(Calculator.buildDelimiters(customDelimiter)).isEqualTo("[,:" + customDelimiter + "]");
+    }
 }

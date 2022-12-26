@@ -49,4 +49,18 @@ public class Calculator {
         if(!m.find()) return null;
         return m.group(1);
     }
+
+
+    public static String buildDelimiters(String customDelimiter) {
+        StringBuilder delimiters = new StringBuilder();
+
+        delimiters.append("[,:");
+
+        if(customDelimiter != null) {
+            delimiters.append(customDelimiter);
+        }
+
+        delimiters.append("]");
+        return delimiters.toString();
+    }
 }
