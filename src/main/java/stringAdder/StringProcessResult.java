@@ -10,7 +10,7 @@ public class StringProcessResult {
         this.splitToken = new ArrayList<>();
         this.splitToken.add(",");
         this.splitToken.add(":");
-        if (splitToken != null) {
+        if (customDelimiter != null) {
             this.splitToken.add(customDelimiter);
         }
         this.numString = numString;
