@@ -14,7 +14,6 @@ public class CalculatorTest {
         Calculator calculator = new Calculator("");
 
         assertThat(calculator.isEmptyOrNull()).isEqualTo(true);
-        assertThat(calculator.run()).isEqualTo(0);
     }
 
     @Test
@@ -22,7 +21,6 @@ public class CalculatorTest {
         Calculator calculator = new Calculator(null);
 
         assertThat(calculator.isEmptyOrNull()).isEqualTo(true);
-        assertThat(calculator.run()).isEqualTo(0);
     }
 
     @Test
