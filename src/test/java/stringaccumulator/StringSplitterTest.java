@@ -47,5 +47,11 @@ class StringSplitterTest {
                 StringSplitter.from("//.\\");
             }).isInstanceOf(RuntimeException.class);
         }
+
+        @Test
+        void should_hasNotEmptyString_when_givenEmptySeparator() {
+            StringSplitter splitter = StringSplitter.from("//\n");
+            assertThat(splitter.contains("")).isFalse();
+        }
     }
 }

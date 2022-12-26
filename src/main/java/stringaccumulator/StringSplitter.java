@@ -36,7 +36,8 @@ public class StringSplitter {
     private void addCustomSeparator(String separatorFormat) {
         int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
         String customSeparator = separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
-        separators.add(customSeparator);
+        if (!customSeparator.isEmpty())
+            separators.add(customSeparator);
     }
 
     public boolean contains(String separator) {
