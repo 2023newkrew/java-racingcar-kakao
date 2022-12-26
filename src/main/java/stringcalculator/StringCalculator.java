@@ -27,4 +27,9 @@ public class StringCalculator {
     private int[] cast(String[] input) {
         return Arrays.stream(input).mapToInt(Integer::parseInt).toArray();
     }
+
+    public int calculate(String s) {
+        String[] splitString = split(s);
+        return sumOf(splitString);
+    }
 }
