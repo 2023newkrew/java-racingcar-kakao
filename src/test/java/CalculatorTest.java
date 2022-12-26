@@ -101,7 +101,7 @@ public class CalculatorTest {
 
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = {"", "0,0,0"})
+    @ValueSource(strings = {"", "0,0,0", "0"})
     void testValidRunWithResult0(String text) {
         Calculator calculator = new Calculator(text);
 
@@ -109,7 +109,7 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,-2,3", "1,,2", "1,2!3", "1, 2,3", ".", "-1", "-2", ";", "!", "1//!\n2!3"})
+    @ValueSource(strings = {"1,-2,3", "1,,2", "1,2!3", "1, 2,3", ".", "-1", "-2", ";", "!", "1//!\n2!3", ",2,3", "1,2,"})
     void testInvalidRun(String text) {
         Calculator calculator = new Calculator(text);
 

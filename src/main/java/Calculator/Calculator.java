@@ -28,9 +28,11 @@ public class Calculator {
 
     public int run() throws RuntimeException {
         if (this.isEmptyOrNull()) return 0;
+        if ('0' > text.charAt(text.length() - 1) || text.charAt(text.length() - 1) > '9') {
+            throw new RuntimeException();
+        }
 
         handleCustomDelimiter();
-
         splitText();
 
         return addIntegerElements();
