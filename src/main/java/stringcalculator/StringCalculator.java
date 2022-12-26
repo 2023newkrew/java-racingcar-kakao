@@ -14,7 +14,7 @@ public class StringCalculator {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(s);
         if (m.find()) {
             String delimiter = m.group(1);
-            return m.group(2).split(delimiter);
+            return m.group(2).split(Pattern.quote(delimiter));
         }
         return s.split(DEFAULT_DELIMITER);
     }
