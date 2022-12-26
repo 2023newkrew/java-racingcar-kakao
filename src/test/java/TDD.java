@@ -1,8 +1,10 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class TDD {
     private final Calculator calculator = new Calculator();
@@ -51,5 +53,9 @@ public class TDD {
         assertThat(result).isEqualTo(102);
     }
 
-
+    @ParameterizedTest
+    @ValueSource(strings = {";;", "1,-2,3", "1,,3", "1,a,b", "a,b;c", "1, 2, 3", "1,  ,3"})
+    public void testInvalidNumberString(String input) {
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.calculate(input)).withMessage("잘못된 숫자가 입력되었습니다.");
+    }
 }
