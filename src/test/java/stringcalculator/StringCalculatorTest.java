@@ -9,19 +9,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringCalculatorTest {
     @ParameterizedTest
-    @MethodSource("generateData")
+    @MethodSource("generateSplitData")
     void split(String input, String[] expected) {
         StringCalculator calculator = new StringCalculator();
         String[] result = calculator.split(input);
         assertThat(result).isEqualTo(expected);
     }
 
-    static Stream<Arguments> generateData() {
+    static Stream<Arguments> generateSplitData() {
         return Stream.of(
                 Arguments.of("", new String[]{}),
                 Arguments.of("1,2", new String[]{"1", "2"}),
                 Arguments.of("1,2,3", new String[]{"1", "2", "3"}),
                 Arguments.of("1,2:3", new String[]{"1", "2", "3"})
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("generateSumOfData")
+    void sumOf(String[] input, int expected) {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.sumOf(input);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> generateSumOfData() {
+        return Stream.of(
+                Arguments.of(new String[]{}, 0),
+                Arguments.of(new String[]{"1", "2"}, 3),
+                Arguments.of(new String[]{"1", "2", "3"}, 6)
         );
     }
 }
