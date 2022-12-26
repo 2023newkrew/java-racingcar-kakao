@@ -20,6 +20,14 @@ public class StringAdderCalculatorTest {
     public void empty(String input) {
         assertThat(calculator.calculate(input)).isEqualTo(0);
     }
+
+    @ParameterizedTest
+    @DisplayName(" 숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
+    @ValueSource(strings = {"1", "24"})
+    public void singleInteger(String input) {
+        assertThat(calculator.calculate(input)).isEqualTo(Integer.parseInt(input));
+    }
+
     
 }
 
