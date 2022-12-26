@@ -11,8 +11,9 @@ public class Calculator {
 
     public int run() throws RuntimeException {
         if(this.isEmptyOrNull()) return 0;
+        List<Integer> arr = splitText();
 
-        return toInteger(this.text);
+        return arr.get(0);
     }
 
     private int toInteger (String possibleNumber) throws RuntimeException {

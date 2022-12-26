@@ -58,5 +58,11 @@ public class CalculatorTest {
         assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1,2,3));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,-2:3", "1, 2:3", "1,,2"})
+    void checkSplitInvalidTextWithDelimiter(String text){
+        Calculator calculator = new Calculator(text);
 
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(calculator::splitText);
+    }
 }
