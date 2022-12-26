@@ -10,19 +10,27 @@ public class Splitter {
 
     public List<Integer> split(String input){
         Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
-        input = input.split("\n")[1];
         String customDelimiter = "";
         String delimiters;
 
         if (m.find()) {
+            input = input.split("\n")[1];
             customDelimiter = m.group(1);
         }
 
         delimiters = "[,;" + customDelimiter + "]";
 
-        return Arrays.stream(input.split(delimiters))
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .collect(Collectors.toList());
+        return arrayToList(input, delimiters);
+    }
+
+    private List<Integer> arrayToList(String input, String delimiters){
+        try{
+            return Arrays.stream(input.split(delimiters))
+                    .mapToInt(Integer::parseInt)
+                    .boxed()
+                    .collect(Collectors.toList());
+        }catch (NumberFormatException numberFormatException){
+            throw new RuntimeException("숫자가 아닌 문자가 포함되어있습니다.");
+        }
     }
 }

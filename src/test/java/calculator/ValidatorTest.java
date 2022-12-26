@@ -14,8 +14,10 @@ public class ValidatorTest {
 
     @ParameterizedTest
     @MethodSource("generator")
-    void givenEmptyOrNullString_thenReturnZero(List<Integer> numbers){
-        assertThatThrownBy(() -> Validator.hasNegative(numbers))
+    void givenNegativeNumber_thenThrowException(List<Integer> numbers){
+        Validator validator = new Validator();
+
+        assertThatThrownBy(() -> validator.hasNegative(numbers))
                 .isInstanceOf(RuntimeException.class);
     }
 
