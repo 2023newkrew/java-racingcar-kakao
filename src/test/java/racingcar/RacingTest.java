@@ -47,4 +47,17 @@ public class RacingTest {
                 "crong : \n" +
                 "honux : \n");
     }
+
+    @Test
+    void raceMaxCntTest() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        Race race = new Race("pobi,crong,honux");
+        race.carInput(race.nameSplit());
+        race.getCars().get(0).move();
+        race.getCars().get(0).move();
+        race.getCars().get(0).move();
+        assertEquals(race.raceMaxCnt(), 3);
+    }
 }

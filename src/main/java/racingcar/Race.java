@@ -37,4 +37,18 @@ public class Race {
             car.printStatus();
         }
     }
+
+    public ArrayList<Car> getCars() {
+        return cars;
+    }
+
+    public int raceMaxCnt() {
+        int max = -1;
+
+        for (Car car: cars) {
+            max = Math.max(max, car.getCnt());
+        }
+
+        return max;
+    }
 }
