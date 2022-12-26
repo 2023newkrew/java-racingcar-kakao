@@ -21,4 +21,17 @@ public class CarTest {
         String actual = out.toString().trim();
         assertEquals(actual, expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"Pobi;Pobi : -"}, delimiter = ';')
+    void carMoveO(String input, String expected) {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        Car car = new Car(input);
+        car.move();
+        car.printStatus();
+        String actual = out.toString().trim();
+        assertEquals(actual, expected);
+    }
 }

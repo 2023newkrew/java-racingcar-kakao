@@ -11,6 +11,13 @@ public class Car {
 
 
     public void printStatus() {
-        System.out.println(name + " : ");
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + " : ");
+        sb.append("-".repeat(Math.max(0, cnt)));
+        System.out.println(sb);
+    }
+
+    public void move() {
+        this.cnt++;
     }
 }
