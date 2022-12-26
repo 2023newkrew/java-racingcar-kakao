@@ -35,4 +35,12 @@ public class StringCalculator {
         }
         return intList;
     }
+
+    public int sumIntList(List<Integer> intList) {
+        int sum = 0;
+        for (int elem : intList) {
+            sum += elem;
+        }
+        return sum;
+    }
 }

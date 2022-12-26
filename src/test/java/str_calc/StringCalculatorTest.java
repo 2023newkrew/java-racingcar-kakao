@@ -47,4 +47,14 @@ public class StringCalculatorTest {
         assertEquals(stringCalculator.toIntList("1,2:3"), List.of(1,2,3));
         assertThrows(RuntimeException.class,()-> stringCalculator.toIntList("1,2:-3"));
     }
+
+    @Test
+    @DisplayName("Integer List의 원소를 더해서 반환")
+    public void sum() {
+        //given
+        StringCalculator stringCalculator = new StringCalculator();
+
+        //when, then
+        assertEquals(stringCalculator.sumIntList(List.of(1,2,3)), 6);
+    }
 }
