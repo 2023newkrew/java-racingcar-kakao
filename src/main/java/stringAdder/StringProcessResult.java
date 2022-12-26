@@ -46,11 +46,6 @@ public class StringProcessResult {
     }
 
     private String getDelimiterPattern() {
-        StringBuilder sb = new StringBuilder("[");
-        for (String token: splitToken) {
-            sb.append(token);
-        }
-        sb.append("]");
-        return sb.toString();
+        return String.join("|", splitToken);
     }
 }
