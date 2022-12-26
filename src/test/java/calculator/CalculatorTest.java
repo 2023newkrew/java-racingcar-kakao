@@ -27,19 +27,18 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2"})
-    void givenOneDigitNum_thenReturnItSelf(String input){
+    @ValueSource(strings = {"1", "2", "12"})
+    void givenOneNum_thenReturnItSelf(String input){
         int result = calculator.calculate(input);
 
         assertThat(result).isEqualTo(Integer.parseInt(input));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a", "!"})
+    @ValueSource(strings = {"a", "!ss", "12a"})
     void givenOneChar_thenReturnException(String input) {
-        int result = calculator.calculate(input);
-
-        assertThat(result).isEqualTo(1);
+        assertThatThrownBy(() -> calculator.calculate(input))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest

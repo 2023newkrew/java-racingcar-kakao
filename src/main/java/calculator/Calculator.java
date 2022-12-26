@@ -4,15 +4,18 @@ import java.util.List;
 
 public class Calculator {
     private final Splitter splitter;
+    private final Validator validator;
 
     public Calculator(){
         this.splitter = new Splitter();
+        this.validator = new Validator();
+
     }
     public Integer calculate(String expression) {
         if (expression.isBlank()){
             return 0;
         }
-        if (expression.length() == 1 && Character.isDigit(expression.charAt(0))){
+        if (validator.isOneNumber(expression)){
             return Integer.parseInt(expression);
         }
 
