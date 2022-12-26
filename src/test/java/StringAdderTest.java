@@ -67,6 +67,11 @@ public class StringAdderTest {
         String[] numbers = stringAdder.split(text);
         assertThat(numbers).containsExactly("1","2","3");
     }
+    @Test
+    public void variousDelimiterTest(){
+        String text = "//s\n1s2;3,4";
+        assertThat(stringAdder.add(text)).isEqualTo(10);
+    }
 
     @Test
     public void ifNegativeThrowRuntimeException(){

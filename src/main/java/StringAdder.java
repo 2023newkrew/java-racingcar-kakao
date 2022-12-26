@@ -23,10 +23,9 @@ public class StringAdder {
 
     public String[] split(String text) {
         StringBuilder stringBuilder = new StringBuilder(",|;");
-        String customDelimiter = null;
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
-            customDelimiter = m.group(1);
+            String customDelimiter = m.group(1);
             stringBuilder.append("|" + customDelimiter);
             return m.group(2).split(stringBuilder.toString());
         }
