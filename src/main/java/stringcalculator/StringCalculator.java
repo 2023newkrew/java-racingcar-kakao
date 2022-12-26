@@ -25,7 +25,11 @@ public class StringCalculator {
     }
 
     private int[] cast(String[] input) {
-        return Arrays.stream(input).mapToInt(Integer::parseInt).toArray();
+        int[] result = Arrays.stream(input).mapToInt(Integer::parseInt).filter(i -> i >= 0).toArray();
+        if (input.length != result.length) {
+            throw new RuntimeException();
+        }
+        return result;
     }
 
     public int calculate(String s) {
