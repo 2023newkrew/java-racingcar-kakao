@@ -23,4 +23,9 @@ public class StringSum {
         return customDelimiter;
     }
 
+    public String[] splitByDelimiter() {
+        String[] tokens = formula.split(delimiter);
+        return tokens;
+    }
+
 }
