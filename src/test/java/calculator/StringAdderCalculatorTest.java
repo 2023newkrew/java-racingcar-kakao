@@ -52,6 +52,5 @@ public class StringAdderCalculatorTest {
                     calculator.calculate(new Prompt("-1:2:3"));
                 });
     }
-
 }
 

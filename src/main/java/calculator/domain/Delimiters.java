@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Delimiters {
-    List<String> delimiters;
+    private final List<String> delimiters;
 
     public Delimiters() {
         this.delimiters = new ArrayList<>(Arrays.asList(":", ","));

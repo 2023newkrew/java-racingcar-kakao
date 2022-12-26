@@ -21,10 +21,14 @@ public class Calculator {
     }
 
     public int parseIntOnlyPositiveStringNumber(String stringNumber) {
-        int number = Integer.parseInt(stringNumber);
-        if (number < 0) {
-            throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
+        try {
+            int number = Integer.parseInt(stringNumber);
+            if (number < 0) {
+                throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
+            }
+            return number;
+        } catch (NumberFormatException e) {
+            throw new RuntimeException();
         }
-        return number;
     }
 }
