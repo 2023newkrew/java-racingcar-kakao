@@ -1,7 +1,5 @@
 package racingcar;
 
-import java.util.List;
-
 public class Car {
     private final String name;
     private int position = 1;
@@ -15,6 +13,14 @@ public class Car {
         this(name, 1);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     public void moveWithPower(int power) {
         if (power > 3) {
             this.position++;
@@ -25,4 +31,15 @@ public class Car {
         return this.name + " : "
                 + "-".repeat(Math.max(0, this.position));
     }
+
+//    public int renewWinners(int max, List<String> result) {
+//        if (position < max) {
+//            return max;
+//        }
+//        if (position > max) {
+//            result.clear();
+//        }
+//        result.add(name);
+//        return position;
+//    }
 }
