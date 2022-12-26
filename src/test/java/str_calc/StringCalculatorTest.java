@@ -57,4 +57,15 @@ public class StringCalculatorTest {
         //when, then
         assertEquals(stringCalculator.sumIntList(List.of(1,2,3)), 6);
     }
+
+    @Test
+    @DisplayName("문자열을 분리 후 더하는 기능 테스트")
+    public void sumText() {
+        //given
+        StringCalculator stringCalculator = new StringCalculator();
+
+        //when, then
+        assertEquals(stringCalculator.sumText("1,2:3"), 6);
+        assertThrows(RuntimeException.class,()-> stringCalculator.sumText("1,2:-3"));
+    }
 }

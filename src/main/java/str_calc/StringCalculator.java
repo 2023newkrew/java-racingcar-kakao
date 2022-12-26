@@ -43,4 +43,8 @@ public class StringCalculator {
         }
         return sum;
     }
+
+    public int sumText(String text) {
+        return this.sumIntList(this.toIntList(text));
+    }
 }
