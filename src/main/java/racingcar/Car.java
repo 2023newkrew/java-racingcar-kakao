@@ -8,7 +8,7 @@ public class Car {
 
     public Car(String name) {
         this.name = name;
-        this.cnt = 0;
+        this.cnt = 1;
     }
 
 
@@ -25,7 +25,6 @@ public class Car {
 
     public void race() {
         Random random = new Random();
-        random.setSeed(System.currentTimeMillis());
 
         if (random.nextInt(9) > 3) {
             move();

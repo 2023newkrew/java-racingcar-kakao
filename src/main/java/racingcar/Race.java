@@ -1,5 +1,8 @@
 package racingcar;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Race {
@@ -36,6 +39,7 @@ public class Race {
         for(Car car: cars){
             car.printStatus();
         }
+        System.out.println();
     }
 
     public ArrayList<Car> getCars() {
@@ -66,5 +70,36 @@ public class Race {
             return car.getName() + ", ";
         }
         return "";
+    }
+
+    public void playTurn() {
+        for (Car car : cars) {
+            car.race();
+        }
+    }
+
+    public void playRace(int turn) {
+        System.out.println("실행결과");
+        printRace();
+        for (int i = 0; i < turn; i++) {
+            playTurn();
+            printRace();
+        }
+        raceWinner();
+    }
+
+    public static void main(String[] args) throws IOException {
+        String text;
+        int turn;
+
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        text = reader.readLine();
+        System.out.println("시도할 회수는 몇회인가요?");
+        turn = Integer.parseInt(reader.readLine());
+
+        Race race = new Race(text);
+        race.carInput(race.nameSplit());
+        race.playRace(turn);
     }
 }
