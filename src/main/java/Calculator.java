@@ -6,23 +6,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
+    public List<Integer> numbers;
     private String text;
+    private String delimiters;
+
+
     public Calculator(String text) {
+        this.numbers = new ArrayList<>();
         this.text = text;
+        delimiters = "[,:]";
+    }
+
+    public void setDelimiters(String delimiters) {
+        this.delimiters = delimiters;
     }
 
     public int run() throws RuntimeException {
-        if(this.isEmptyOrNull()) return 0;
-        List<Integer> arr = splitText();
+        if (this.isEmptyOrNull()) return 0;
 
-        return arr.get(0);
+        setDelimiters(buildDelimiters(getCustomDelimiter()));
+
+        splitText();
+
+        return addIntegerElements();
     }
 
-    private int toInteger (String possibleNumber) throws RuntimeException {
+    private int toInteger(String possibleNumber) throws RuntimeException {
         try {
             int number = Integer.parseInt(possibleNumber);
 
-            if(number<0) throw new RuntimeException();
+            if (number < 0) throw new RuntimeException();
 
             return number;
         } catch (NumberFormatException e) {
@@ -31,22 +44,20 @@ public class Calculator {
     }
 
     public boolean isEmptyOrNull() {
-        return text==null || text.equals("");
+        return text == null || text.equals("");
     }
 
-    public List<Integer> splitText() {
-        String[] numbers = this.text.split("[,:]");
-        List<Integer> arr = new ArrayList<>();
+    public void splitText() {
+        String[] numbers = this.text.split(this.delimiters);
 
-        Arrays.stream(numbers).forEach(e-> arr.add(toInteger(e)));
-
-        return arr;
+        Arrays.stream(numbers).forEach(e -> this.numbers.add(toInteger(e)));
     }
 
     public String getCustomDelimiter() {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 
-        if(!m.find()) return null;
+        if (!m.find()) return null;
+        this.text = m.group(2);
         return m.group(1);
     }
 
@@ -56,11 +67,16 @@ public class Calculator {
 
         delimiters.append("[,:");
 
-        if(customDelimiter != null) {
+        if (customDelimiter != null) {
             delimiters.append(customDelimiter);
         }
 
         delimiters.append("]");
+
         return delimiters.toString();
+    }
+
+    public int addIntegerElements() {
+        return this.numbers.stream().reduce(0, Integer::sum);
     }
 }

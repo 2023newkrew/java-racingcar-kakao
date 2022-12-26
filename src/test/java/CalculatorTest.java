@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
+
 public class CalculatorTest {
     @Test
-    void checkEmptyText(){
+    void checkEmptyText() {
         Calculator calculator = new Calculator("");
 
         assertThat(calculator.isEmptyOrNull()).isEqualTo(true);
@@ -17,7 +18,7 @@ public class CalculatorTest {
     }
 
     @Test
-    void checkNullText(){
+    void checkNullText() {
         Calculator calculator = new Calculator(null);
 
         assertThat(calculator.isEmptyOrNull()).isEqualTo(true);
@@ -25,56 +26,61 @@ public class CalculatorTest {
     }
 
     @Test
-    void singleNoText(){
+    void singleNoText() {
         Calculator calculator = new Calculator("1");
 
         assertThat(calculator.run()).isEqualTo(1);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {".", "-1", "-2", ";" ,"!"})
-    void singleInvalidText(String text){
+    @ValueSource(strings = {".", "-1", "-2", ";", "!"})
+    void singleInvalidText(String text) {
         Calculator calculator = new Calculator(text);
 
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(calculator::run);
     }
 
     @Test
-    void checkSplitTextWithComma(){
+    void checkSplitTextWithComma() {
         Calculator calculator = new Calculator("1,2");
 
-        assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1, 2));
+        calculator.splitText();
+        assertThat(calculator.numbers).isEqualTo(Arrays.asList(1, 2));
     }
+
     @Test
-    void checkSplitTextWithColon(){
+    void checkSplitTextWithColon() {
         Calculator calculator = new Calculator("1:2:3");
 
-        assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1,2,3));
+        calculator.splitText();
+        assertThat(calculator.numbers).isEqualTo(Arrays.asList(1, 2, 3));
     }
+
     @Test
-    void checkSplitTextWithCommaAndColon(){
+    void checkSplitTextWithCommaAndColon() {
         Calculator calculator = new Calculator("1,2:3");
 
-        assertThat(calculator.splitText()).isEqualTo(Arrays.asList(1,2,3));
+        calculator.splitText();
+        assertThat(calculator.numbers).isEqualTo(Arrays.asList(1, 2, 3));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1,-2:3", "1, 2:3", "1,,2"})
-    void checkSplitInvalidTextWithDelimiter(String text){
+    void checkSplitInvalidTextWithDelimiter(String text) {
         Calculator calculator = new Calculator(text);
 
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(calculator::splitText);
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.splitText());
     }
 
     @Test
-    void getIfCustomDelimiterExist(){
+    void getIfCustomDelimiterExist() {
         Calculator calculator = new Calculator("//;\n1;2;3");
 
         assertThat(calculator.getCustomDelimiter()).isEqualTo(";");
     }
 
     @Test
-    void getNullIfCustomDelimiterNotExist(){
+    void getNullIfCustomDelimiterNotExist() {
         Calculator calculator = new Calculator("1;2;3");
 
         assertThat(calculator.getCustomDelimiter()).isNull();
@@ -82,7 +88,37 @@ public class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {";", "!", "$"})
-    void buildDelimiters(String customDelimiter){
+    void buildDelimiters(String customDelimiter) {
         assertThat(Calculator.buildDelimiters(customDelimiter)).isEqualTo("[,:" + customDelimiter + "]");
+    }
+
+    @Test
+    void testAddIntegerElements() {
+        Calculator calculator = new Calculator("1,2,3");
+
+        calculator.splitText();
+        assertThat(calculator.addIntegerElements()).isEqualTo(6);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3", "1,2:3", "//;\n1;2:3"})
+    void testValidRunWithResult6(String text) {
+        Calculator calculator = new Calculator(text);
+
+        assertThat(calculator.run()).isEqualTo(6);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "0,0,0"})
+    void testValidRunWithResult0(String text) {
+        Calculator calculator = new Calculator(text);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,-2,3", "1,,2", "1,2!3", "1, 2,3"})
+    void testInvalidRun() {
+        Calculator calculator = new Calculator("1,-2,3");
+
+        assertThatRuntimeException().isThrownBy(calculator::run);
     }
 }
