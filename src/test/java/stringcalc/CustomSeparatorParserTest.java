@@ -3,6 +3,8 @@ package stringcalc;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -44,12 +46,22 @@ public class CustomSeparatorParserTest {
         assertThat(result).containsExactly(";", ":");
     }
 
-    @Test
-    void parseCustomSeparator_throwEx(){
-        //given
-        String input = "//;\n//aa\n1;2;3";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"//;\n//aa\n1;2;3", "//;\n/caa\n1;2;3", "//;\n\n1;2;3", "//;\n123//:\n1;2;3"})
+    void parseCustomSeparator_throwEx(String input){
         //then
         assertThatThrownBy(() -> customSeparatorParser.parse(input)).isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void parseCustomSeparator_Empty() {
+        //given
+        String input = "";
+
+        //when
+        List<String> result = customSeparatorParser.parse(input);
+
+        //then
+        assertThat(result).isEmpty();
     }
 }
