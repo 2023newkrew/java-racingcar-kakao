@@ -30,14 +30,6 @@ public class CalculatorTest {
         assertThat(calculator.run()).isEqualTo(1);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {".", "-1", "-2", ";", "!"})
-    void singleInvalidText(String text) {
-        Calculator calculator = new Calculator(text);
-
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(calculator::run);
-    }
-
     @Test
     void checkSplitTextWithComma() {
         Calculator calculator = new Calculator("1,2");
@@ -116,9 +108,9 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,-2,3", "1,,2", "1,2!3", "1, 2,3"})
-    void testInvalidRun() {
-        Calculator calculator = new Calculator("1,-2,3");
+    @ValueSource(strings = {"1,-2,3", "1,,2", "1,2!3", "1, 2,3", ".", "-1", "-2", ";", "!"})
+    void testInvalidRun(String text) {
+        Calculator calculator = new Calculator(text);
 
         assertThatRuntimeException().isThrownBy(calculator::run);
     }
