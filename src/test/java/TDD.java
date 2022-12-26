@@ -54,8 +54,19 @@ public class TDD {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {";;", "1,-2,3", "1,,3", "1,a,b", "a,b;c", "1, 2, 3", "1,  ,3"})
+    @ValueSource(strings = {"1,-2,3", "1,,3", "1,a,b", "a,b;c", "1, 2, 3", "1,  ,3"})
     public void testInvalidNumberString(String input) {
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.calculate(input)).withMessage("잘못된 숫자가 입력되었습니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",,,", ";;;"})
+    public void testBlankNumbersString(String input) {
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.calculate(input)).withMessage("입력된 숫자가 없습니다.");
+    }
+
+    @Test
+    public void testBlankNumbersStringWithCustomDelimiter() {
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.calculate("//a\naa")).withMessage("입력된 숫자가 없습니다.");
     }
 }

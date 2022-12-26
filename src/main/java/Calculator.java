@@ -13,11 +13,23 @@ public class Calculator {
         }
         String[] numbers = splitInputToNumbers(input);
         Optional<Integer> result = Arrays.stream(numbers).map(this::parseToInt).reduce(Integer::sum);
-        return result.orElse(-1);
+        return result.orElseThrow(() -> {throw new RuntimeException("입력된 숫자가 없습니다.");});
     }
 
     private int parseToInt(String next) {
-        return Integer.parseInt(next);
+        try {
+            return parseToIntLogic(next);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("잘못된 숫자가 입력되었습니다.");
+        }
+    }
+
+    private int parseToIntLogic(String next) {
+        int result = Integer.parseInt(next);
+        if (result < 0) {
+            throw new NumberFormatException();
+        }
+        return result;
     }
 
 
