@@ -11,7 +11,7 @@ public class CalculatorTest {
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator();
+        calculator = new Calculator(new StringUtil());
     }
 
     @ParameterizedTest
@@ -35,8 +35,14 @@ public class CalculatorTest {
 
     @Test
     void sumOfCommaOrSemiColon() {
-        String input = "1,2:3";
+        String input = "1,2;3";
         assertThatCalcResultEqualTo(input, 6);
+    }
+
+    @Test
+    void customDelimiter() {
+        String input = "//ab\n1ab2,4";
+        assertThatCalcResultEqualTo(input, 7);
     }
 
     void assertThatCalcResultEqualTo(String input, Integer expected) {
