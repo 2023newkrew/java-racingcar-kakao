@@ -1,7 +1,7 @@
 package calculator;
 
-import calculator.Calculator;
-import calculator.Prompt;
+import calculator.domain.Calculator;
+import calculator.domain.Prompt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,6 +51,11 @@ public class StringAdderCalculatorTest {
                 .isThrownBy(() -> {
                     calculator.calculate(new Prompt("-1:2:3"));
                 });
+    }
+
+    @Test
+    public void foo() {
+
     }
 }
 

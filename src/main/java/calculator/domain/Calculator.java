@@ -1,10 +1,6 @@
-package calculator;
+package calculator.domain;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static calculator.MessageConstant.NEGATIVE_NUMBER_EXCEPTION;
+import static calculator.constant.MessageConstant.NEGATIVE_NUMBER_EXCEPTION;
 
 public class Calculator {
     public int calculate(Prompt prompt) {
