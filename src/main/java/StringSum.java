@@ -1,5 +1,7 @@
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class StringSum {
 
@@ -36,7 +38,16 @@ public class StringSum {
         return num;
     }
 
-    public int summation(Integer[] numbers) {
-        return 6;
+    public int[] stringsToIntegers(String[] s) {
+        int[] integers = new int[s.length];
+        for (int i = 0; i < s.length; i++) {
+            integers[i] = stringToInteger(s[i]);
+        }
+        return integers;
+    }
+
+    public int summation(int[] numbers) {
+        int numbersSum = Arrays.stream(numbers).sum();
+        return numbersSum;
     }
 }
