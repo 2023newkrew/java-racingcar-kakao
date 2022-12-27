@@ -7,6 +7,9 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        if (name.length() > 5) {
+            throw new RuntimeException();
+        }
         this.name = name;
         this.position = 1;
     }
