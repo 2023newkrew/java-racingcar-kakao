@@ -4,6 +4,7 @@ import racingcar.domain.Car;
 import racingcar.dto.GameResult;
 import racingcar.dto.CarDto;
 import racingcar.utils.RacingCarConverter;
+import racingcar.utils.RacingCarValidator;
 import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
@@ -14,14 +15,17 @@ public class RacingCarGame {
     private List<Car> cars;
     private int round;
     private RandomNumberGenerator randomNumberGenerator;
+    private RacingCarValidator racingCarValidator;
 
     public RacingCarGame(List<CarDto> carDtos, int gameRound) {
-        this.cars = RacingCarConverter.toCars(carDtos);
-        this.round = gameRound;
-        this.randomNumberGenerator = new RandomNumberGenerator();
+        cars = RacingCarConverter.toCars(carDtos);
+        round = gameRound;
+        randomNumberGenerator = new RandomNumberGenerator();
+        racingCarValidator = new RacingCarValidator();
     }
 
     public GameResult doNextRound() {
+        racingCarValidator.validateRemainingGameRound(round);
         for (Car car : cars) {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
         }
