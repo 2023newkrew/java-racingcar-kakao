@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int THRESHOLD = 4;
+
     private int position;
 
     private final String name;
@@ -20,7 +22,10 @@ public class Car {
         return name == null || name.equals("") || name.length() > 5;
     }
 
-    public void move() {
+    public void move(int random) {
+        if (random < THRESHOLD) {
+            return;
+        }
         position += 1;
     }
 
