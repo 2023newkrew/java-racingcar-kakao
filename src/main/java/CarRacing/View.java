@@ -23,16 +23,17 @@ public class View {
     public void printText() {
         System.out.println("실행 결과");
     }
+
     public void printResult(Car[] cars) {
-        for (int i = 0; i < cars.length; i++) {
-            System.out.println(cars[i]);
+        for (int index = 0; index < cars.length; index++) {
+            System.out.println(cars[index]);
         }
         System.out.println();
     }
 
     public void printWinners(List<String> winners) {
-        for (int i = 0; i < winners.size() - 1; i++) {
-            System.out.print(winners.get(i) + ", ");
+        for (int index = 0; index < winners.size() - 1; index++) {
+            System.out.print(winners.get(index) + ", ");
         }
         System.out.println(winners.get(winners.size()-1) + "가 최종 우승했습니다.");
     }

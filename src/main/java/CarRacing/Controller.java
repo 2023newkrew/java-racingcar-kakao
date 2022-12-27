@@ -17,7 +17,7 @@ public class Controller {
         int inputCount = view.inputCount();
         view.printText();
         view.printResult(carList);
-        for (int i = 0; i < inputCount; i++) {
+        for (int count = 0; count < inputCount; count++) {
             carList = racing.oneCycle(carList);
             view.printResult(carList);
         }

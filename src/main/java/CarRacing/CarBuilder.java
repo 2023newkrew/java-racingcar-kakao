@@ -5,6 +5,7 @@ public class CarBuilder {
     private String name;
 
     public CarBuilder() {}
+
     public Car buildCar() {
         return new Car(position, name);
     }
