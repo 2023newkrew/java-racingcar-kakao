@@ -47,4 +47,29 @@ public class CarTest {
                 Arguments.of("ABCD", 4, "ABCD : -----")
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("getComparableData")
+    void compare(String base, int baseMove, String compare, int compareMove, int expected) {
+        Car baseCar = new Car(base);
+        Car compareCar = new Car(compare);
+
+        for (int i = 0; i < baseMove; i++) {
+            baseCar.move();
+        }
+
+        for (int i = 0; i < compareMove; i++) {
+            compareCar.move();
+        }
+
+        assertThat(baseCar.compareTo(compareCar)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> getComparableData() {
+        return Stream.of(
+                Arguments.of("CAR1", 2, "CAR2", 2, 0),
+                Arguments.of("CAR1", 2, "CAR2", 3, -1),
+                Arguments.of("CAR1", 3, "CAR2", 2, 1)
+        );
+    }
 }
