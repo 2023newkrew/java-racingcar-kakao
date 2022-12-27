@@ -36,4 +36,11 @@ public class CarTest {
         car.moveCar(false);
         assertThat(car.getPosition()).isEqualTo(2);
     }
+
+    @Test
+    public void getMaxPositionTest() {
+        assertThat(positionCar.getMaxPosition(6)).isEqualTo(6);
+        assertThat(positionCar.getMaxPosition(4)).isEqualTo(5);
+        assertThat(positionCar.getMaxPosition(5)).isEqualTo(5);
+    }
 }
