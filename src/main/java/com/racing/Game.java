@@ -13,6 +13,11 @@ public class Game {
         this.runCount = 0;
     }
 
+    /**
+     * 사용자 입력을 통해 carName 분리
+     * cars 생성
+     * @param text
+     */
     public void init(String text) {
         // text(사용자 입력)을 차 이름으로 분리
         String[] carNames = text.split(",");
@@ -25,7 +30,7 @@ public class Game {
     }
 
     /**
-     *
+     * random 값을 통해 모든 차에 대해 movement() 실행
      * @return 각각의 random값
      */
     public ArrayList<Integer> moveCars() {
@@ -39,6 +44,10 @@ public class Game {
         return result;
     }
 
+    /**
+     * 사용자가 지정한 turn 만큼 게임 실행
+     * @param turn
+     */
     public void run(int turn) {
         for(int i=0; i<turn; i++){
             moveCars();
@@ -47,6 +56,9 @@ public class Game {
         }
     }
 
+    /**
+     * 자동차들의 현재 위치를 출력
+     */
     public void printCarsLocation(){
         for(Car car : cars){
             System.out.println(car.printLocation());
@@ -54,6 +66,11 @@ public class Game {
         System.out.println();
     }
 
+    /**
+     * 자동차 중 가장 멀리 간 차들을
+     * maxLocation과 비교해 모두 반환
+     * @return
+     */
     public ArrayList<Car> getWinner() {
         int maxLoc = maxLocation();
         ArrayList<Car> ret = new ArrayList<>();
