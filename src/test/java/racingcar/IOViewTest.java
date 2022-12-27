@@ -2,6 +2,7 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.InputView;
 
 import java.util.List;
 
@@ -12,10 +13,10 @@ public class IOViewTest {
     @DisplayName("자동차들의 이름을 입력받고 리스트를 반환하는 기능")
     public void inputCarsName() {
         //given
-        IOView ioView = new IOView();
+        InputView inputView = new InputView();
 
         //when
-        List<String> carNames = ioView.parseCarNames("oscar,gene,longwrongname");
+        List<String> carNames = inputView.parseCarNames("oscar,gene,longwrongname");
 
         //then
         assertEquals("oscar",carNames.get(0));

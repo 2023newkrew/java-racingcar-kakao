@@ -1,15 +1,17 @@
 package racingcar;
 
+import racingcar.view.InputView;
+
 public class RacingGameController {
 
-    private IOView ioView;
+    private InputView InputView;
 
     public RacingGameController() {
-        this.ioView = new IOView();
+        this.InputView = new InputView();
     }
 
     public void start() {
-        RacingGame racingGame = new RacingGame(ioView.inputCarNames(),ioView.inputFinalTurn());
+        RacingGame racingGame = new RacingGame(InputView.inputCarNames(),InputView.inputFinalTurn());
         racingGame.playGame();
     }
 }
