@@ -18,6 +18,9 @@ public class InputView {
         return names;
     }
 
+    public int inputRunCount(){
+        return scanner.nextInt();
+    }
     private void validate(String name) {
         if(name.length() >5)
             throw new RuntimeException();
