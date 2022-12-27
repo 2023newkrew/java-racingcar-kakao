@@ -15,13 +15,12 @@ public class RacingUI {
         System.out.println("시도할 횟수는 몇 회인가요?");
         return sc.next();
     }
-
-    // todo: DTO(toString() override)로 변환해서 하면 좋을듯.
-    public void displayPosition(List<Car> cars) {
-        cars.forEach(e -> {
-            for (int i = 0; i < e.getPosition(); ++i) {
-                System.out.print("-");
-            }
+    
+    public void displayPosition(List<CarDTO> cars) {
+        cars.forEach(car -> {
+            System.out.printf(car.getName() + ": ");
+            for (int i = 0, n = car.getPosition(); i < n; i++)
+                System.out.printf("-");
             System.out.println();
         });
     }

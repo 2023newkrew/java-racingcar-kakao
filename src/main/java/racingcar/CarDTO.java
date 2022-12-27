@@ -14,11 +14,6 @@ public class CarDTO {
         return position;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-
     private final String name;
-    private int position;
+    private final int position;
 }

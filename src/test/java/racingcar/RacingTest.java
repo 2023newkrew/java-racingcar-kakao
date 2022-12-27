@@ -14,6 +14,4 @@ public class RacingTest {
         racing.makeCars(Arrays.asList("aa", "bbb", "ccc"));
         assertThat(racing.getCarNo()).isEqualTo(3);
     }
-
-
 }
