@@ -18,7 +18,8 @@ public class InputView {
     public List<String> readCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         try {
-            return validator.validateCarNames(scanner.nextLine());
+            String input = scanner.nextLine();
+            return validator.validateCarNames(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readCarNames();
@@ -28,7 +29,8 @@ public class InputView {
     public int readGameRepeat() {
         System.out.println(INPUT_REPEAT_MESSAGE);
         try {
-            return validator.validateGameRepeat(scanner.nextLine());
+            String input = scanner.nextLine();
+            return validator.validateGameRepeat(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameRepeat();
