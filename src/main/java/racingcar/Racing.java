@@ -40,8 +40,7 @@ public class Racing {
 
         List<String> result = new ArrayList<>();
         final int finalMaxDist = maxDist;
-        Stream<Car> filtered = cars.stream().
-                filter(car ->  car.getDistance() == finalMaxDist);
+        Stream<Car> filtered = cars.stream().filter(car ->  car.getDistance() == finalMaxDist);
         filtered.forEach(car -> {result.add(car.getName());});
         return result;
     }
