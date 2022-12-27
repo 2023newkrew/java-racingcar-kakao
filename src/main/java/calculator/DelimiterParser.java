@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,8 +9,8 @@ public class DelimiterParser {
     private String delimiter;
     private String purifiedInput;
 
-    public DelimiterParser(String input) {
-        this.delimiter = ",|:";
+    public DelimiterParser(String input, List<String> defaultDelimiters) {
+        this.delimiter = String.join("|",defaultDelimiters);
         this.matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
         this.purifiedInput = input;
     }
