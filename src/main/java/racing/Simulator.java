@@ -14,16 +14,22 @@ public class Simulator {
         }
     }
 
+    public void run(Random random) {
+        for (Car car : cars) {
+            car.move(random.nextInt(9));
+        }
+    }
+
+    public void simulate(Random random, int times) {
+        for (int i = 0; i < times; i++) {
+            run(random);
+        }
+    }
+
     @Override
     public String toString() {
         return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.joining("\n"));
-    }
-
-    public void run(Random random) {
-        for (Car car : cars) {
-            car.move(random.nextInt(9));
-        }
     }
 }

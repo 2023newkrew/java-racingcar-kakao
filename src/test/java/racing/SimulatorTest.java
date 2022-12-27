@@ -52,4 +52,20 @@ public class SimulatorTest {
             }
         };
     }
+
+    @ParameterizedTest
+    @MethodSource("getSimulateData")
+    void simulate(String names, List<Integer> randoms, int m, String expected) {
+        Simulator simulator = new Simulator();
+        simulator.create(names);
+        simulator.simulate(createRandoms(randoms), m);
+        assertThat(simulator.toString()).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> getSimulateData() {
+        return Stream.of(
+                Arguments.of("A,B", List.of(4, 3, 5, 2), 2, "A : ---\nB : -"),
+                Arguments.of("D,E", List.of(9, 2, 6, 5, 1, 2), 3, "D : ---\nE : --")
+        );
+    }
 }
