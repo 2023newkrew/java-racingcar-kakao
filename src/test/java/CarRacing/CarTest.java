@@ -10,10 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarTest {
 
     private Car car;
+    private Car positionCar;
 
     @BeforeEach
     void setUp() {
         car = new CarBuilder().name("test").buildCar();
+        positionCar = new CarBuilder().name("test").position(5).buildCar();
     }
 
     @Test
