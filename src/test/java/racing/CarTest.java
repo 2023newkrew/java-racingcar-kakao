@@ -72,4 +72,21 @@ public class CarTest {
                 Arguments.of("CAR1", 3, "CAR2", 2, 1)
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("getRandomMoveData")
+    void randomMove(String name, int random, String expected) {
+        Car car = new Car(name);
+        car.move(random);
+        assertThat(car.toString()).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> getRandomMoveData() {
+        return Stream.of(
+                Arguments.of("ABCD", 1, "ABCD : -"),
+                Arguments.of("ABCD", 3, "ABCD : -"),
+                Arguments.of("ABCD", 4, "ABCD : --"),
+                Arguments.of("ABCD", 5, "ABCD : --")
+        );
+    }
 }

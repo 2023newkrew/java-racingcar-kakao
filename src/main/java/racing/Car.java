@@ -15,6 +15,12 @@ public class Car implements Comparable<Car> {
         this.position += 1;
     }
 
+    public void move(int value) {
+        if (value > 3) {
+            move();
+        }
+    }
+
     @Override
     public String toString() {
         String positionString = "-".repeat(position);

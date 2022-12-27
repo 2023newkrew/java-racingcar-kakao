@@ -7,12 +7,7 @@
 * 위치 비교 (compareTo)
 * toString - "name: position"
 
-## RandomMoveStrategy
-* overload isMove for parameter, non parameter
-* isMove? true : false
-
 ## Simulator
-* 전진 조건 (RandomMoveStrategy.isMove?)
 * n대의 자동차
 * m회 시행
 * 시행
