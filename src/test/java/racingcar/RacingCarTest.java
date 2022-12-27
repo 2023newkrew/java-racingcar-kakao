@@ -3,6 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class RacingCarTest {
@@ -61,5 +63,20 @@ public class RacingCarTest {
         assertThat(avanteDto.getPosition()).isZero();
         assertThat(sonataDto.getPosition()).isZero();
     }
+
+    @Test
+    @DisplayName("시도할 횟수만큼 게임을 진행한다.")
+    void selectWinner() {
+        int count = 5;
+        List<Car> list = List.of(new Car("avante"), new Car("sonata"));
+        RacingCarGame racingCarGame = new RacingCarGame(list, count);
+
+        while (!racingCarGame.isFinish()) {
+            racingCarGame.play();
+        }
+
+        assertThat(racingCarGame.isFinish()).isTrue();
+    }
+
 
 }
