@@ -2,7 +2,7 @@ package racingcar;
 
 import java.util.Objects;
 
-public class RacingCar {
+public class RacingCar implements Comparable {
 
     private final String name;
     private int distance;
@@ -44,5 +44,13 @@ public class RacingCar {
             stringBuilder.append('-');
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public int compareTo(Object other) {
+        if (!(other instanceof RacingCar)) {
+            throw new IllegalArgumentException();
+        }
+        return Integer.compare(this.distance, ((RacingCar) other).distance);
     }
 }
