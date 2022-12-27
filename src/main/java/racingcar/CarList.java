@@ -27,4 +27,18 @@ public class CarList {
         RandomUtil randomUtil = new RandomUtil();
         cars.forEach(car -> car.move(randomUtil.generateRandom()));
     }
+
+    public List<Car> selectWinners() {
+        List<Car> winners = new ArrayList<>();
+        OptionalInt maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max();
+        if (maxPosition.isEmpty()) {
+            return winners;
+        }
+        cars.stream()
+                .filter(car -> car.getPosition() == maxPosition.getAsInt())
+                .forEach(winners::add);
+        return winners;
+    }
 }
