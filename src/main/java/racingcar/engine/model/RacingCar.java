@@ -1,8 +1,9 @@
-package racingcar;
+package racingcar.engine.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import racingcar.Console;
 
 public class RacingCar implements Runnable {
 

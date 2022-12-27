@@ -1,7 +1,8 @@
-package racingcar;
+package racingcar.engine.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.engine.model.Car;
 
 public class Referee {
 
