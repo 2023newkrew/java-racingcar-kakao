@@ -1,19 +1,22 @@
 package racingcar;
 
+import racingcar.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Racing {
-
     private List<Car> cars;
     private final RacingUI racingUi;
     private final RacingService racingService;
+    private final RandomGenerator randomGenerator;
 
     Racing() {
         cars = new ArrayList<>();
         racingUi = new RacingUI();
         racingService = new RacingService();
+        randomGenerator = new RandomGenerator();
     }
 
     public void makeCars(List<String> carNames) {
@@ -30,7 +33,7 @@ public class Racing {
     }
 
     public List<CarDTO> getCarDTOs() {
-        return cars.stream().map(e -> e.toDTO()).collect(Collectors.toList());
+        return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }
 
     public void endRace() {

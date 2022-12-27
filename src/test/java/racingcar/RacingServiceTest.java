@@ -1,6 +1,9 @@
 package racingcar;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +12,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class RacingServiceTest {
+    private RacingService racingService;
+
+    @BeforeEach
+    void setUp() {
+        racingService = new RacingService();
+    }
+
     @Test
     void getWinners() {
         List<CarDTO> cars = new ArrayList<>();
@@ -19,8 +29,19 @@ public class RacingServiceTest {
         cars.add(new CarDTO("dd", 4));
         cars.add(new CarDTO("ee", 4));
 
-        RacingService racingService = new RacingService();
+        assertThat(this.racingService.getWinners(cars)).isEqualTo(Arrays.asList("dd", "ee"));
+    }
 
-        assertThat(racingService.getWinners(cars)).isEqualTo(Arrays.asList("dd", "ee"));
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void shouldNotMove(int no) {
+        assertThat(this.racingService.getActionResult(no)).isEqualTo(CarAction.STAY);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void shouldMove(int no) {
+        assertThat(this.racingService.getActionResult(no)).isEqualTo(CarAction.FORWARD);
+
     }
 }

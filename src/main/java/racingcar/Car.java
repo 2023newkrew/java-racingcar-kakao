@@ -9,9 +9,8 @@ public class Car {
         this.name = name;
     }
 
-    public void move(int no) {
-        if (no > 3)
-            position++;
+    public void move() {
+        position++;
     }
 
     public int getPosition() {
