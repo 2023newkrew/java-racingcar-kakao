@@ -30,4 +30,21 @@ public class GameTest {
         game.moveCar(1, 3);
         assertThat(cars[1].getPosition()).isEqualTo(1);
     }
+
+    @Test
+    void findWinner() {
+        Game game = new Game(5, cars);
+        cars[0].move();
+        Car[] winners = game.findWinners();
+        assertThat(winners).isEqualTo(new Car[]{cars[0]});
+    }
+
+    @Test
+    void findMultipleWinners() {
+        Game game = new Game(5, cars);
+        cars[1].move();
+        cars[2].move();
+        Car[] winners = game.findWinners();
+        assertThat(winners).isEqualTo(new Car[]{cars[1], cars[2]});
+    }
 }
