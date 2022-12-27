@@ -48,4 +48,10 @@ public class Racing {
         }
         return winners;
     }
+
+    public String[] handleNames(String inputNames) {
+        String[] names = nameSplit(inputNames);
+        nameExceptions(names);
+        return names;
+    }
 }
