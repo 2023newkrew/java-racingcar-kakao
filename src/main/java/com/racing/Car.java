@@ -18,6 +18,10 @@ public class Car {
     }
 
     public String printLocation() {
-        return "";
+        return String.format(
+                "%s : %s",
+                this.carName,
+                "-".repeat(this.location)
+        );
     }
 }
