@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import racingcar.StubNumberGenerator;
+import racingcar.model.Car;
+import racingcar.model.Cars;
+import racingcar.model.NumberGenerator;
+import racingcar.model.RacingSimulator;
 
 class RacingSimulatorTest {
 
@@ -31,7 +36,7 @@ class RacingSimulatorTest {
 
         move(simulator, 1);
 
-        Result result = simulator.getResult();
+        Cars result = simulator.getCars();
         assertThat(result.getPositionByName("a")).isEqualTo(1);
         assertThat(result.getPositionByName("b")).isEqualTo(1);
         assertThat(result.getPositionByName("c")).isEqualTo(0);
@@ -39,13 +44,17 @@ class RacingSimulatorTest {
 
     @Test
     void getSoloWinner() {
-        NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP, MOVE, STOP, STOP, MOVE, MOVE, MOVE);
+        NumberGenerator numberGenerator = new StubNumberGenerator(
+                MOVE, MOVE, STOP,
+                MOVE, STOP, STOP,
+                MOVE, MOVE, MOVE
+        );
         final Cars cars = createCars(numberGenerator, "a", "b", "c");
         RacingSimulator simulator = createRacingSimulator(3, cars);
 
         move(simulator, 3);
 
-        List<Car> winners = simulator.getWinners();
+        List<Car> winners = simulator.getCars().getWinners();
         assertThat(winners)
                 .extracting(Car::getName)
                 .hasSize(1)
@@ -54,17 +63,21 @@ class RacingSimulatorTest {
 
     @Test
     void getCoWinners() {
-        NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE);
+        NumberGenerator numberGenerator = new StubNumberGenerator(
+                MOVE, MOVE, STOP,
+                MOVE, MOVE, MOVE,
+                MOVE, MOVE, MOVE
+        );
         final String[] strings = new String[]{"a", "b", "c"};
         final Cars cars = createCars(numberGenerator, strings);
         RacingSimulator simulator = createRacingSimulator(3, cars);
 
         move(simulator, 3);
 
-        List<Car> winners = simulator.getWinners();
+        List<Car> winners = simulator.getCars().getWinners();
         assertThat(winners)
-                .extracting(Car::getName)
                 .hasSize(2)
+                .extracting(Car::getName)
                 .contains("a", "b");
     }
 

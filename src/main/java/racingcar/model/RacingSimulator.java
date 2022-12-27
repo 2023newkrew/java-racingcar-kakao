@@ -1,6 +1,4 @@
-package racingcar;
-
-import java.util.List;
+package racingcar.model;
 
 public class RacingSimulator {
 
@@ -27,11 +25,7 @@ public class RacingSimulator {
         return tryCount >= maxTryCount;
     }
 
-    public Result getResult() {
-        return cars.getResult();
-    }
-
-    public List<Car> getWinners() {
-        return cars.getWinners();
+    public Cars getCars() {
+        return cars;
     }
 }

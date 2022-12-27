@@ -1,6 +1,8 @@
 package racingcar;
 
-class StubNumberGenerator implements NumberGenerator {
+import racingcar.model.NumberGenerator;
+
+public class StubNumberGenerator implements NumberGenerator {
 
     private int[] values;
     private int index = 0;
