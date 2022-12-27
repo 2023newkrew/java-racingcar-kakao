@@ -60,7 +60,7 @@ public class CalculatorTest {
     void checkSplitInvalidTextWithDelimiter(String text) {
         Calculator calculator = new Calculator(text);
 
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.splitText());
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(calculator::splitText);
     }
 
     @Test
