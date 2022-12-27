@@ -10,10 +10,10 @@ public class GameRule {
 
     private static final Integer STANDARD_SCORE = 4;
 
-    private static final GamePlayStrategy gp = new RandomPlayStrategy();
+    private static final GamePlayStrategy GAME_PLAY_STRATEGY = new RandomPlayStrategy();
 
     public static Boolean isAbleToProceed() {
-        return gp.generateScore() >= STANDARD_SCORE;
+        return GAME_PLAY_STRATEGY.generateScore() >= STANDARD_SCORE;
     }
 
     public static RacingPlayer[] getWinners(List<RacingPlayer> players) {
