@@ -16,4 +16,8 @@ public class Car {
     public void movement(int rand) {
         if(rand >= 4) this.location++;
     }
+
+    public String printLocation() {
+        return "";
+    }
 }
