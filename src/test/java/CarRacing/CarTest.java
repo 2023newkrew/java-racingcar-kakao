@@ -49,4 +49,9 @@ public class CarTest {
         assertThat(positionCar.getWinnerName(5)).isEqualTo("test");
         assertThat(positionCar.getWinnerName(6)).isEqualTo(null);
     }
+
+    @Test
+    public void toStringTest() {
+        assertThat(positionCar.toString()).isEqualTo("test : -----");
+    }
 }
