@@ -43,4 +43,10 @@ public class CarTest {
         assertThat(positionCar.getMaxPosition(4)).isEqualTo(5);
         assertThat(positionCar.getMaxPosition(5)).isEqualTo(5);
     }
+
+    @Test
+    public void getWinnerNameTest() {
+        assertThat(positionCar.getWinnerName(5)).isEqualTo("test");
+        assertThat(positionCar.getWinnerName(6)).isEqualTo(null);
+    }
 }
