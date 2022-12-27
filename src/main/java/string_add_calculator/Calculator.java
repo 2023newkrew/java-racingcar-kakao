@@ -36,12 +36,14 @@ public class Calculator {
 
     private void isNumeric(String token) {
         int num;
+
         try {
             num = Integer.parseInt(token);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new RuntimeException();
         }
-        if (num < 0){
+
+        if (num < 0) {
             throw new RuntimeException();
         }
     }
@@ -60,10 +62,11 @@ public class Calculator {
             String customDelimiter = m.group(1);
             str_arr = m.group(2).split(customDelimiter);
         }
-        if (str_arr[0].isEmpty()){
+        if (str_arr[0].isEmpty()) {
             System.out.println(0);
             return;
         }
+
         Calculator calculator = new Calculator(str_arr);
         System.out.println(calculator.cal());
     }

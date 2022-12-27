@@ -18,9 +18,10 @@ public class Race {
     }
 
     public void verifyName(String input) {
-        if(input.length() < 6){
+        if (input.length() < 6) {
             return;
         }
+
         throw new IllegalArgumentException();
     }
 
@@ -29,14 +30,14 @@ public class Race {
     }
 
     public void carInput(String[] nameSplit) {
-        for (String name : nameSplit){
+        for (String name : nameSplit) {
             verifyName(name);
             cars.add(new Car(name));
         }
     }
 
     public void printRace() {
-        for(Car car: cars){
+        for (Car car: cars) {
             car.printStatus();
         }
         System.out.println();
@@ -59,14 +60,14 @@ public class Race {
     public void raceWinner() {
         int max = raceMaxCnt();
         StringBuilder sb = new StringBuilder();
-        for(Car car : cars){
+        for (Car car : cars) {
             sb.append(raceWinnerCheck(car, max));
         }
         System.out.println(sb.substring(0, sb.length()-2) + "가 최종 우승했습니다.");
     }
 
     public String raceWinnerCheck(Car car, int max){
-        if(car.getCnt() == max){
+        if (car.getCnt() == max) {
             return car.getName() + ", ";
         }
         return "";

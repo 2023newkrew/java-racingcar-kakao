@@ -16,13 +16,13 @@ public class RacingTest {
     @ParameterizedTest
     @CsvSource(value = {"Pobi;true",
                         "Ppoobbii;false"}, delimiter = ';')
-    void verifyNameTest(String input, String expected){
+    void verifyNameTest(String input, String expected) {
         Race race = new Race();
         String result = "false";
         try {
             race.verifyName(input);
             result = "true";
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         assertEquals(result, expected);
