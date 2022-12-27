@@ -7,17 +7,11 @@ public class RacingGame {
     private final List<Car> carList = new ArrayList<>();
     private int turn;
 
-    public RacingGame(String carList, int turn) {
-        String[] carNameList = carList.split(",");
-        for (String s : carNameList) {
-            checkNameLength(s);
-            this.carList.add(new Car(s));
+    public RacingGame(List<String> carNameList, int turn) {
+        for (String carName : carNameList) {
+            this.carList.add(new Car(carName, 0));
         }
         this.turn = turn;
-    }
-
-    private void checkNameLength(String s) {
-        if (s.length() > 5) throw new RuntimeException("5글자 이하의 이름만 가능합니다.");
     }
 
     public List<Car> getCarList() {
@@ -32,7 +26,31 @@ public class RacingGame {
         while (turn > 0) {
             playTurn();
             turn -= 1;
+            OutputUI.printTurnResult(carList);
         }
+
+        OutputUI.printGameResult(getWinners());
+    }
+
+    private List<String> getWinners() {
+        int cnt = 0;
+        List<String> winnerList = new ArrayList<>();
+        for (Car car : carList) {
+            cnt = checkIs1st(car, cnt, winnerList);
+        }
+
+        return winnerList;
+    }
+
+    private int checkIs1st(Car car, int cnt, List<String> winnerList) {
+        if (car.getPosition() < cnt) return cnt;
+
+        if (car.getPosition() > cnt) {
+            winnerList.clear();
+        }
+        winnerList.add(car.getName());
+
+        return car.getPosition();
     }
 
     private void playTurn() {

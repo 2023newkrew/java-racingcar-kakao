@@ -4,9 +4,9 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = name;
-        this.position = 0;
+        this.position = position;
     }
 
     public String getName() {
@@ -21,12 +21,12 @@ public class Car {
         determineToMove(makeRandomNumber());
     }
 
-    public void determineToMove(int random) {
+    private void determineToMove(int random) {
         if (random >= 4)
             position += 1;
     }
 
-    public int makeRandomNumber() {
+    private int makeRandomNumber() {
         return (int) (Math.random() * 10);
     }
 }
