@@ -1,10 +1,9 @@
 package racing;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import racing.util.RandomNumberGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -23,11 +22,5 @@ public class RandomNumberGeneratorTest {
         int number = randomNumberGenerator.generateRandomNumber();
         assertThat(number).isGreaterThanOrEqualTo(0);
         assertThat(number).isLessThanOrEqualTo(9);
-    }
-
-    @Test
-    public void randomNumbersValidate() {
-        assertThat(randomNumberGenerator.generateRandomNumbers(10).size())
-                .isEqualTo(10);
     }
 }

@@ -1,12 +1,13 @@
 package racing;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racing.domain.Car;
+import racing.domain.Cars;
+import racing.domain.Game;
 
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -17,7 +18,7 @@ public class GameTest {
     @ParameterizedTest
     @MethodSource("decideWinnerArgument")
     public void decideWinner(Game game, List<Car> expected) {
-        assertThat(game.decideWinner()).isEqualTo(expected);
+        assertThat(game.decideWinners()).isEqualTo(expected);
     }
 
     static Stream<Arguments> decideWinnerArgument() {

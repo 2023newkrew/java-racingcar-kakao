@@ -1,7 +1,8 @@
-package racing;
+package racing.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
     private Cars cars;
@@ -22,7 +23,15 @@ public class Game {
         });
     }
 
-    public List<Car> decideWinner() {
-        return cars.getCarsWithSamePosition(cars.getMaxPosition());
+    public List<String> decideWinners() {
+        return cars.getWinnerNamesWithSamePosition(cars.getMaxPosition());
+    }
+
+    public void play() {
+        cars.play();
+    }
+
+    public Map<String, Integer> getStatus() {
+        return cars.getStatus();
     }
 }

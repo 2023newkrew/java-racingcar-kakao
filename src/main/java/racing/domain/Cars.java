@@ -1,13 +1,15 @@
-package racing;
+package racing.domain;
+
+import racing.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.lang.Math.max;
+
 
 public class Cars {
 
@@ -39,9 +41,30 @@ public class Cars {
         return maxPosition;
     }
 
-    public List<Car> getCarsWithSamePosition(int maxPosition) {
+    public List<String> getWinnerNamesWithSamePosition(int maxPosition) {
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    public void play() {
+        for (Car car : cars) {
+            increasePositionIfMovable(car);
+        }
+    }
+
+    private void increasePositionIfMovable(Car car) {
+        if(isMove(RandomNumberGenerator.generateRandomNumber())) {
+            car.move();
+        }
+    }
+
+    public Map<String, Integer> getStatus() {
+        Map<String, Integer> status = new HashMap<>();
+        for (Car car : cars) {
+            status.put(car.getName(), car.getPosition());
+        }
+        return status;
     }
 }
