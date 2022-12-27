@@ -44,7 +44,13 @@ public class Game {
     }
 
     public ArrayList<Car> getWinner() {
-        return new ArrayList<Car>();
+        int maxLoc = maxLocation();
+        ArrayList<Car> ret = new ArrayList<>();
+        for (Car car : cars) {
+            ret.add(maxLoc == car.location ? car : null);
+        }
+        ret.remove(null);
+        return ret;
     }
 
     /**
@@ -52,6 +58,10 @@ public class Game {
      * @return
      */
     public int maxLocation() {
-        return 0;
+        int tmpMax = 0;
+        for (Car car : cars) {
+            tmpMax = Math.max(tmpMax, car.location);
+        }
+        return tmpMax;
     }
 }
