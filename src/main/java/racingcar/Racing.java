@@ -7,28 +7,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Racing {
-    private List<Car> cars;
+    private final List<Car> cars;
+    private int turn;
     private final RacingUI racingUi;
     private final RacingService racingService;
-    private final RandomGenerator randomGenerator;
+
 
     Racing() {
         cars = new ArrayList<>();
+        turn = 0;
         racingUi = new RacingUI();
         racingService = new RacingService();
-        randomGenerator = new RandomGenerator();
-    }
-
-    public void makeCars(List<String> carNames) {
-        for (String carName : carNames)
-            this.cars.add(new Car(carName));
     }
 
     public int getCarNo() {
         return cars.size();
     }
 
-    public void endTurn() {
+    public void printTurn() {
         racingUi.displayPosition(getCarDTOs());
     }
 
@@ -36,8 +32,44 @@ public class Racing {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }
 
-    public void endRace() {
+    public void printResult() {
         List<String> result = racingService.getWinners(getCarDTOs());
         racingUi.displayWinner(result);
     }
+
+    public void init() {
+        List<String> names = racingService.validateName(racingUi.getNames());
+        makeCars(names);
+
+        int turn = racingService.validateTurn(racingUi.getTurn());
+        setTurn(turn);
+
+        startRace();
+    }
+
+    private void startRace() {
+        for (int i = 0; i < turn; i++) {
+            proceedTurn();
+        }
+        printResult();
+    }
+
+    private void proceedTurn() {
+        this.cars.forEach(car -> {
+            int randNo = RandomGenerator.generateOneDigit();
+            CarAction carAction = racingService.getActionResult(randNo);
+            car.move(carAction);
+        });
+        printTurn();
+    }
+
+    public void makeCars(List<String> carNames) {
+        for (String carName : carNames)
+            this.cars.add(new Car(carName));
+    }
+
+    private void setTurn(int turn) {
+        this.turn = turn;
+    }
+
 }
