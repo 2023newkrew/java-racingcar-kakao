@@ -1,8 +1,9 @@
 package racing_car.model;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final String name;
 
@@ -21,19 +22,25 @@ public class Car {
         return cars;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return distance == car.distance && Objects.equals(name, car.name);
-    }
-
     public String showDistance() {
         return "-".repeat(this.distance);
     }
 
     public void move(int i) {
         this.distance += i;
+    }
+
+
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(this.distance, o.distance);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return distance == car.distance && Objects.equals(name, car.name);
     }
 }

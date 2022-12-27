@@ -31,4 +31,23 @@ public class RacingCarTest {
         String output = car.showDistance();
         assertEquals(output, "-".repeat(number >= 4 ? 1 : 0));
     }
+
+    @Test
+    @DisplayName("차량간 거리 비교")
+    void compareCars() {
+        Car a = new Car("pobi");
+        Car b = new Car("crong");
+
+        a.move(4);
+        b.move(2);
+
+        assertEquals(-1, b.compareTo(a));
+    }
+
+    @Test
+    @DisplayName("우승자 구하기")
+    void getWinner() {
+        
+    }
+
 }
