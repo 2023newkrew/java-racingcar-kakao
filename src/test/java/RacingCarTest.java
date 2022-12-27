@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
+import racing_car.model.GameControl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +29,6 @@ public class RacingCarTest {
         gameControl.carControl(car, number);
 
         String output = car.showDistance();
-        assertEquals(output, "-");
+        assertEquals(output, "-".repeat(number >= 4 ? 1 : 0));
     }
 }

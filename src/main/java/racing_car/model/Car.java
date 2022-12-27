@@ -28,4 +28,12 @@ public class Car {
         Car car = (Car) o;
         return distance == car.distance && Objects.equals(name, car.name);
     }
+
+    public String showDistance() {
+        return "-".repeat(this.distance);
+    }
+
+    public void move(int i) {
+        this.distance += i;
+    }
 }
