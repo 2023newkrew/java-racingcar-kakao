@@ -49,6 +49,7 @@ public class RacingCarModel {
     }
 
     public void progress() {
+        cars.forEach(Car::moveOrStop);
     }
 
     public List<CarInfo> getCarInfos() {
