@@ -14,6 +14,13 @@ public class CarDTO {
         return position;
     }
 
+    @Override
+    public String toString() {
+        return this.name +
+                ": " +
+                "-".repeat(Math.max(0, this.position));
+    }
+
     private final String name;
     private final int position;
 }

@@ -15,14 +15,9 @@ public class RacingUI {
         System.out.println("시도할 횟수는 몇 회인가요?");
         return sc.next();
     }
-    
+
     public void displayPosition(List<CarDTO> cars) {
-        cars.forEach(car -> {
-            System.out.printf(car.getName() + ": ");
-            for (int i = 0, n = car.getPosition(); i < n; i++)
-                System.out.printf("-");
-            System.out.println();
-        });
+        cars.forEach(System.out::println);
     }
 
     public void displayWinner(List<String> names) {
