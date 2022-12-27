@@ -33,8 +33,25 @@ public class IOView {
         return Integer.parseInt(input);
     }
 
-    public static void main(String[] args) {
-        IOView ioView = new IOView();
-        ioView.inputFinalTurn();
+    public String carPosToOutputText(RacingCar racingCar) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(racingCar.getName()).append(" : ");
+        for(int i=0; i<=racingCar.getPos(); i++) {
+            sb.append("-");
+        }
+        return sb.append("\n").toString();
     }
+
+    public void printTurnResult(List<RacingCar> cars) {
+        StringBuilder sb = new StringBuilder();
+        for(RacingCar rc : cars) {
+            sb.append(carPosToOutputText(rc));
+        }
+        System.out.println(sb);
+    }
+
+    public void printGameResultMessage() {
+        System.out.println("실행 결과");
+    }
+
 }
