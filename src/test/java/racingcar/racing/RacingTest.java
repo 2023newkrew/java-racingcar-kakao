@@ -1,8 +1,7 @@
-package racingcar;
+package racingcar.racing;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.racing.Racing;
 
 import java.util.Arrays;
 

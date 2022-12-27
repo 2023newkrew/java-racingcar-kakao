@@ -1,9 +1,6 @@
-package racingcar;
+package racingcar.car;
 
 import org.junit.jupiter.api.Test;
-import racingcar.car.Car;
-import racingcar.car.CarAction;
-import racingcar.car.CarDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
