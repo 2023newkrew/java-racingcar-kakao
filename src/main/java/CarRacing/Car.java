@@ -27,6 +27,10 @@ public class Car {
         }
     }
 
+    public void carEvent() {
+        moveCar(isMove(createRandomNumber()));
+    }
+
     public int getPosition() {
         return position;
     }
