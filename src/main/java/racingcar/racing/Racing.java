@@ -1,5 +1,8 @@
-package racingcar;
+package racingcar.racing;
 
+import racingcar.car.Car;
+import racingcar.car.CarAction;
+import racingcar.car.CarDTO;
 import racingcar.util.RandomGenerator;
 
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ public class Racing {
     private final RacingService racingService;
 
 
-    Racing() {
+    public Racing() {
         cars = new ArrayList<>();
         turn = 0;
         racingUi = new RacingUI();

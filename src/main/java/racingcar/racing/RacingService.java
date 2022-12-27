@@ -1,5 +1,7 @@
-package racingcar;
+package racingcar.racing;
 
+import racingcar.car.CarAction;
+import racingcar.car.CarDTO;
 import racingcar.util.StringParser;
 
 import java.util.List;

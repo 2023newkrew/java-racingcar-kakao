@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.racing;
+
+import racingcar.car.CarDTO;
 
 import java.util.List;
 import java.util.Scanner;
