@@ -27,12 +27,12 @@ public class Simulator {
         }
     }
 
-    public List<String> winners() {
+    public String winners() {
         Car maxCar = Collections.max(cars);
         return cars.stream()
                 .filter(c -> c.compareTo(maxCar) == 0)
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.joining(", "));
     }
 
     @Override
