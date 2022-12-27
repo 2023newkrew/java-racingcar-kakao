@@ -1,6 +1,7 @@
 package CarRacing;
 
 public class Racing {
+    private Car[] cars;
     public String[] nameSplit(String inputString) {
         return inputString.split(",");
     }
@@ -15,5 +16,13 @@ public class Racing {
         for (int i = 0; i < names.length; i++) {
             nameException(names[i]);
         }
+    }
+
+    public Car[] makeCarList(String[] names) {
+        cars = new Car[names.length];
+        for (int i = 0; i < cars.length; i++) {
+            cars[i] = new Car(names[i]);
+        }
+        return cars;
     }
 }
