@@ -1,9 +1,8 @@
-package racingcar;
+package racingcar.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,9 +29,7 @@ public class RacingTest {
     @Test
     void racingProgress() {
         racing.doStep();
-        racing.getCarList().forEach((car) -> {
-            assertThat(car.getDistance()).isGreaterThanOrEqualTo(0);
-        });
+        racing.getCarList().forEach((car) -> assertThat(car.getDistance()).isGreaterThanOrEqualTo(0));
         assertThat(racing.getCount()).isEqualTo(4);
     }
 

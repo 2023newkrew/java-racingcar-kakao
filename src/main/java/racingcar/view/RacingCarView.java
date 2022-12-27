@@ -1,6 +1,7 @@
-package racingcar;
+package racingcar.view;
 
-import javax.management.RuntimeMBeanException;
+import racingcar.model.Car;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -45,11 +46,9 @@ public class RacingCarView {
 
     public void printWinners(List<String> winners) {
         StringBuilder sb = new StringBuilder();
-        winners.forEach(w -> {
-            sb.append(w).append(", ");
-        });
+        winners.forEach(w -> sb.append(w).append(", "));
         sb.delete(sb.length() - 2, sb.length() - 1);
         sb.append("가 최종 우승했습니다.");
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }

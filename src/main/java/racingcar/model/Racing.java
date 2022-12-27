@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.model;
+
+import racingcar.model.stratedy.RandomStratedy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +15,11 @@ public class Racing {
     }
 
     public void addCars(List<String> names) {
-        for (String name : names)
-            cars.add(new Car(name));
+        for (String name : names) {
+            Car car = new Car(name);
+            car.setMovableStrategy(new RandomStratedy());
+            cars.add(car);
+        }
     }
 
     public List<Car> getCarList() {
@@ -42,9 +47,7 @@ public class Racing {
         List<String> result = new ArrayList<>();
         final int finalMaxDist = maxDist;
         Stream<Car> filtered = cars.stream().filter(car -> car.getDistance() == finalMaxDist);
-        filtered.forEach(car -> {
-            result.add(car.getName());
-        });
+        filtered.forEach(car -> result.add(car.getName()));
         return result;
     }
 }

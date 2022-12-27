@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.model.Racing;
+import racingcar.view.RacingCarView;
+
 public class App {
     public static void main(String[] args) {
         RacingCarView racingCarView = new RacingCarView();
