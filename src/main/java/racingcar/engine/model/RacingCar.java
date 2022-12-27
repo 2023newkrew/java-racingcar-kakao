@@ -3,6 +3,7 @@ package racingcar.engine.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 import racingcar.Console;
 
 public class RacingCar implements Runnable {
@@ -25,69 +26,57 @@ public class RacingCar implements Runnable {
 
     @Override
     public void run() {
-        List<Car> cars = getCars();
-        int count = getCount();
+        List<Car> cars = requestUntilSuccess(getCars());
+        int count = requestUntilSuccess(getCount());
         showOutput(cars, count);
     }
 
-    private List<Car> getCars() {
-        Optional<List<Car>> result = getCarsSafely();
-        while(result.isEmpty()) {
-            result = getCarsSafely();
-        }
-        return result.get();
+    private Supplier<List<Car>> getCars() {
+        return () -> {
+            String input = console.input("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            String[] carNames = inputParser.splitByComma(input);
+            List<Car> cars = new ArrayList<>();
+            for (String carName : carNames) {
+                cars.add(new Car(carName));
+            }
+            return cars;
+        };
     }
 
-    private Optional<List<Car>> getCarsSafely() {
-        try {
-            return Optional.of(getCarsLogic());
-        } catch(RuntimeException e) {
-            console.printError(e.getMessage());
-            return Optional.empty();
-        }
-    }
-
-    private List<Car> getCarsLogic() {
-        String input = console.input("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] carNames = inputParser.splitByComma(input);
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
-    }
-
-    private int getCount() {
-        Optional<Integer> result = getCountSafely();
-        while(result.isEmpty()) {
-            result = getCountSafely();
-        }
-        return result.get();
-    }
-
-    private Optional<Integer> getCountSafely() {
-        try {
-            return Optional.of(getCountLogic());
-        } catch (RuntimeException e) {
-            console.printError(e.getMessage());
-            return Optional.empty();
-        }
-    }
-
-    private int getCountLogic() {
-        String countInput = console.input("시도할 회수는 몇회인가요?");
-        return inputParser.parseToInt(countInput);
+    private Supplier<Integer> getCount() {
+        return () -> {
+            String countInput = console.input("시도할 회수는 몇회인가요?");
+            return inputParser.parseToInt(countInput);
+        };
     }
 
     private void showOutput(List<Car> cars, int count) {
-        console.printOutput("실행 결과");
+        console.printOutput("\n실행 결과");
         printCurrentStatus(cars);
         for (int i = 0; i < count; i++) {
+            console.printOutput("\n");
             moveAllCars(cars);
             printCurrentStatus(cars);
         }
         List<String> winners = referee.judgeWinner(cars);
-        console.printOutput(String.join(", ", winners) + "가 최종 우승했습니다.");
+        console.printOutput(String.join(", ", winners) + "(이)가 최종 우승했습니다.");
+    }
+
+    private <T> T requestUntilSuccess(Supplier<T> getT) {
+        Optional<T> result = wrapTryCatch(getT);
+        while(result.isEmpty()) {
+            result = wrapTryCatch(getT);
+        }
+        return result.get();
+    }
+
+    private <T> Optional<T> wrapTryCatch(Supplier<T> getT) {
+        try {
+            return Optional.of(getT.get());
+        } catch(RuntimeException e) {
+            console.printError(e.getMessage());
+            return Optional.empty();
+        }
     }
 
     private void printCurrentStatus(List<Car> cars) {
