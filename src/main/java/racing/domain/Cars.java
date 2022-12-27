@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
     private final int length;
+    public static final String RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 정확히 자동차 개수만큼의 랜덤 값이 필요합니다.";
+
 
     public Cars(List<String> carNames) {
         cars = carNames.stream()
@@ -17,7 +19,7 @@ public class Cars {
 
     public void play(List<Double> randomNumbers) {
         if (randomNumbers.size() != length) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE);
         }
         for (int i = 0; i < length; i++) {
             cars.get(i).move(randomNumbers.get(i));
