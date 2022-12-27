@@ -59,7 +59,7 @@ public class RacingGameTest {
     }
 
     @Test
-    void getWinnersTest2() throws InvocationTargetException, IllegalAccessException {
+    void coWinnerTest() throws InvocationTargetException, IllegalAccessException {
         RacingGame racingGame = new RacingGame(new ArrayList<>(), 5);
 
         List<Car> testCarList = new ArrayList<>();

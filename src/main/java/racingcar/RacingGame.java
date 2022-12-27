@@ -33,19 +33,19 @@ public class RacingGame {
     }
 
     private List<String> getWinners() {
-        int cnt = 0;
+        int maxPosition = 0;
         List<String> winnerList = new ArrayList<>();
         for (Car car : carList) {
-            cnt = checkIs1st(car, cnt, winnerList);
+            maxPosition = checkIs1st(car, maxPosition, winnerList);
         }
 
         return winnerList;
     }
 
-    private int checkIs1st(Car car, int cnt, List<String> winnerList) {
-        if (car.getPosition() < cnt) return cnt;
+    private int checkIs1st(Car car, int maxPosition, List<String> winnerList) {
+        if (car.getPosition() < maxPosition) return maxPosition;
 
-        if (car.getPosition() > cnt) {
+        if (car.getPosition() > maxPosition) {
             winnerList.clear();
         }
         winnerList.add(car.getName());
