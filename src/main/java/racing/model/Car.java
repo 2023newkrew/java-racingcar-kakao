@@ -1,28 +1,30 @@
 package racing.model;
 
-public class Car {
-    private String name;
+import java.util.Random;
+
+public class Car implements Comparable<Car>{
+    private final String name;
     private Integer position;
+    private final Random random;
 
     public Car(String name, Integer position) {
         this.name = name;
         this.position = position;
+        this.random = new Random();
     }
 
-    String getName() {
+    public void tryMove() {
+        if (random.nextInt(10) >= 4) {
+            position++;
+        }
+    }
+
+    public String getName() {
         return this.name;
     }
 
-    void setName(String name) {
-        this.name = name;
-    }
-
-    Integer getPosition() {
+    public Integer getPosition() {
         return this.position;
-    }
-
-    void setPosition(Integer posiition) {
-        this.position = posiition;
     }
 
     @Override
@@ -32,5 +34,15 @@ public class Car {
             return this.name.equals(other.name);
         }
         return false;
+    }
+
+    @Override
+    public String toString(){
+        return name + " : " + "-".repeat(Math.max(1, position));
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return Integer.compare(this.position, other.position);
     }
 }
