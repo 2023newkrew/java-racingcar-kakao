@@ -13,7 +13,7 @@ public class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new Car("test");
+        car = new CarBuilder().name("test").buildCar();
     }
 
     @Test

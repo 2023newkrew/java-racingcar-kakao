@@ -21,7 +21,7 @@ public class Racing {
     public Car[] makeCarList(String[] names) {
         cars = new Car[names.length];
         for (int i = 0; i < cars.length; i++) {
-            cars[i] = new Car(names[i]);
+            cars[i] = new CarBuilder().name(names[i]).buildCar();
         }
         return cars;
     }

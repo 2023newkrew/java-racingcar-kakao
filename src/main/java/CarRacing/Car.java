@@ -7,8 +7,8 @@ public class Car {
     private int position;
     private String name;
 
-    public Car(String name) {
-        position = 1;
+    public Car(int position, String name) {
+        this.position = position;
         this.name = name;
     }
 
