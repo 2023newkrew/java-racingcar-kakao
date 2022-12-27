@@ -4,11 +4,10 @@ import java.util.Random;
 
 public class Car {
     private String name;
-    private int count;
+    private int count = 1;
 
     public Car(String name) {
         this.name = name;
-        this.count = 1;
     }
 
 
