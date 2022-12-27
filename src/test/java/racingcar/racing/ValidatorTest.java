@@ -1,14 +1,14 @@
 package racingcar.racing;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class ValidatorTest {
+
     @ParameterizedTest
     @ValueSource(strings = {"aasd", "asssz", "zzz"})
     void validName(String name) {

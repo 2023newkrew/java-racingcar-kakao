@@ -1,6 +1,10 @@
 package racingcar.car;
 
 public class CarDTO {
+
+    private final String name;
+    private final int position;
+
     public CarDTO(String name, int position) {
         this.name = name;
         this.position = position;
@@ -16,11 +20,6 @@ public class CarDTO {
 
     @Override
     public String toString() {
-        return this.name +
-                ": " +
-                "-".repeat(Math.max(0, this.position));
+        return this.name + ": " + "-".repeat(Math.max(0, this.position));
     }
-
-    private final String name;
-    private final int position;
 }

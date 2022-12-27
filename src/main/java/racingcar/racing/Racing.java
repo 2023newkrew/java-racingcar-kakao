@@ -1,20 +1,19 @@
 package racingcar.racing;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.car.Car;
 import racingcar.car.CarAction;
 import racingcar.car.CarDTO;
 import racingcar.util.RandomGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Racing {
+
     private final List<Car> cars;
     private int turn;
     private final RacingUI racingUi;
     private final RacingService racingService;
-
 
     public Racing() {
         cars = new ArrayList<>();
@@ -67,12 +66,12 @@ public class Racing {
     }
 
     public void makeCars(List<String> carNames) {
-        for (String carName : carNames)
+        for (String carName : carNames) {
             this.cars.add(new Car(carName));
+        }
     }
 
     private void setTurn(int turn) {
         this.turn = turn;
     }
-
 }

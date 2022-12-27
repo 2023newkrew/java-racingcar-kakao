@@ -1,11 +1,11 @@
 package racingcar.racing;
 
-import racingcar.car.CarDTO;
-
 import java.util.List;
 import java.util.Scanner;
+import racingcar.car.CarDTO;
 
 public class RacingUI {
+
     private final Scanner sc = new Scanner(System.in);
 
     public String getNames() {

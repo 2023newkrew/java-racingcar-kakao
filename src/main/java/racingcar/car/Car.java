@@ -1,6 +1,7 @@
 package racingcar.car;
 
 public class Car {
+
     private int position;
     private final String name;
 
@@ -10,7 +11,9 @@ public class Car {
     }
 
     public void move(CarAction carAction) {
-        if (carAction == CarAction.FORWARD) position++;
+        if (carAction == CarAction.FORWARD) {
+            position++;
+        }
     }
 
     public CarDTO toDTO() {

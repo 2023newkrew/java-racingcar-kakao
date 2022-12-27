@@ -1,13 +1,13 @@
 package racingcar.racing;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.car.CarAction;
 import racingcar.car.CarDTO;
 import racingcar.util.StringParser;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class RacingService {
+
     private static final int THRESHOLD = 4;
 
     public List<String> getWinners(List<CarDTO> cars) {
@@ -23,7 +23,9 @@ public class RacingService {
     }
 
     public CarAction getActionResult(int no) {
-        if (no < THRESHOLD) return CarAction.STAY;
+        if (no < THRESHOLD) {
+            return CarAction.STAY;
+        }
 
         return CarAction.FORWARD;
     }
@@ -39,7 +41,9 @@ public class RacingService {
     }
 
     public int validateTurn(String turnInput) throws IllegalArgumentException {
-        if (!Validator.isValidTurn(turnInput)) throw new IllegalArgumentException();
+        if (!Validator.isValidTurn(turnInput)) {
+            throw new IllegalArgumentException();
+        }
 
         return Integer.parseInt(turnInput);
     }
