@@ -10,6 +10,10 @@ public class RacingCar {
         this.distance = 1;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void move(boolean isMove) {
         if (!isMove) {
             return;
