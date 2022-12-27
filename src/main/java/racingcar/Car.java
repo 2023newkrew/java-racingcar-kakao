@@ -24,6 +24,10 @@ public class Car {
     public void stay() {
     }
 
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
     public String getCarName() {
         return this.carName;
     }

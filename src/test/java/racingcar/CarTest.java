@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 public class CarTest {
 
     @Test
-    void create_test() {
+    void create_car_test() {
         Car car = new Car("joel");
 
         int position = car.getPosition();
