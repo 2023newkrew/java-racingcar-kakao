@@ -14,14 +14,14 @@ public class CalculatorTest {
     void checkEmptyText() {
         Calculator calculator = new Calculator("");
 
-        assertThat(calculator.isEmptyOrNull()).isEqualTo(true);
+        assertThat(calculator.isEmptyOrNull()).isTrue();
     }
 
     @Test
     void checkNullText() {
         Calculator calculator = new Calculator(null);
 
-        assertThat(calculator.isEmptyOrNull()).isEqualTo(true);
+        assertThat(calculator.isEmptyOrNull()).isTrue();
     }
 
     @Test
