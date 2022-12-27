@@ -8,6 +8,10 @@ public class RacingGame {
     private int finalTurn;
     private int turnCount;
 
+    public List<RacingCar> getCars() {
+        return this.cars;
+    }
+
     public int getTurnCount() {
         return this.turnCount;
     }
@@ -37,6 +41,25 @@ public class RacingGame {
     public void playGame() {
         while(this.turnCount<this.finalTurn) {
             this.proceedTurn();
+        }
+    }
+
+    public List<RacingCar> judgeWinners() {
+        int maxPos = -1;
+
+        for(RacingCar rc : this.cars) {
+            maxPos = Math.max(maxPos,rc.getPos());
+        }
+        List<RacingCar> winners = new ArrayList<>();
+        for(RacingCar rc : this.cars) {
+            appendWinner(winners, rc, maxPos);
+        }
+        return winners;
+    }
+
+    public void appendWinner(List<RacingCar> winners, RacingCar racingCar, int maxPos) {
+        if(racingCar.getPos()==maxPos) {
+            winners.add(racingCar);
         }
     }
 }
