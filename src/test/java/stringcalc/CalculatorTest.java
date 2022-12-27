@@ -31,4 +31,17 @@ public class CalculatorTest {
         //then
         assertThat(sum).isZero();
     }
+
+    @Test
+    public void calculate_customSeparator() {
+        //given
+        String input = "//;\n1;2;3";
+
+        //when
+        Calculator calculator = new Calculator();
+        Long sum = calculator.calculate(input);
+
+        //then
+        assertThat(sum).isEqualTo(6L);
+    }
 }
