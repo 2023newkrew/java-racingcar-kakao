@@ -41,5 +41,37 @@ class RacingCarModelTest {
     }
 
 
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    class from {
 
+        @ParameterizedTest
+        @MethodSource
+        void should_throwException_when_givenCars(List<Car> cars) {
+            assertThatThrownBy(() -> RacingCarModel.from(cars))
+                    .isInstanceOf(RuntimeException.class);
+        }
+
+        Stream<Arguments> should_throwException_when_givenCars() {
+            Engine engine = Engine.defaultEngine;
+            return Stream.of(
+                    Arguments.of((Object) null),
+                    Arguments.of(List.of()),
+                    Arguments.of(
+                            List.of(Car.from("abc", engine),
+                                    Car.from("abc", engine))
+                    ));
+        }
+
+        @Test
+        void should_returnRacingCarModel_when_givenValidCars() {
+            Engine engine = Engine.defaultEngine;
+            List<Car> cars = List.of(
+                    Car.from("abc", engine),
+                    Car.from("abcd", engine)
+            );
+            RacingCarModel model = RacingCarModel.from(cars);
+            assertThat(model).isNotNull();
+        }
+    }
 }
