@@ -47,7 +47,20 @@ public class RacingCarTest {
     @Test
     @DisplayName("우승자 구하기")
     void getWinner() {
-        
+        String testNames = "pobi,crong,honux,ryan,chunsik,jordy";
+        Car[] cars = Car.from(testNames);
+
+        int[] distances = new int[] {1, 5, 2, 5, 4, 5};
+        for (int i = 0; i < distances.length; i++) {
+            cars[i].move(distances[i]);
+        }
+
+        GameControl gameControl = new GameControl();
+        Car[] winners = gameControl.getWinners(cars);
+
+        assertArrayEquals(new Car[] {
+                cars[1], cars[3], cars[5]
+        }, winners);
     }
 
 }
