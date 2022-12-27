@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Objects;
+
 public class RacingCar {
 
     private final String name;
@@ -19,6 +21,19 @@ public class RacingCar {
             return;
         }
         this.distance++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RacingCar racingCar = (RacingCar) o;
+        return distance == racingCar.distance && Objects.equals(name, racingCar.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, distance);
     }
 
     @Override
