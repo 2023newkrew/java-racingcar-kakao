@@ -2,8 +2,7 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public class RacingCar implements Runnable {
 
@@ -25,15 +24,61 @@ public class RacingCar implements Runnable {
 
     @Override
     public void run() {
+        List<Car> cars = getCars();
+        int count = getCount();
+        showOutput(cars, count);
+    }
+
+    private List<Car> getCars() {
+        Optional<List<Car>> result = getCarsSafely();
+        while(result.isEmpty()) {
+            result = getCarsSafely();
+        }
+        return result.get();
+    }
+
+    private Optional<List<Car>> getCarsSafely() {
+        try {
+            return Optional.of(getCarsLogic());
+        } catch(RuntimeException e) {
+            console.printError(e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    private List<Car> getCarsLogic() {
         String input = console.input("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String[] carNames = inputParser.splitByComma(input);
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        return cars;
+    }
+
+    private int getCount() {
+        Optional<Integer> result = getCountSafely();
+        while(result.isEmpty()) {
+            result = getCountSafely();
+        }
+        return result.get();
+    }
+
+    private Optional<Integer> getCountSafely() {
+        try {
+            return Optional.of(getCountLogic());
+        } catch (RuntimeException e) {
+            console.printError(e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    private int getCountLogic() {
         String countInput = console.input("시도할 회수는 몇회인가요?");
-        int count = inputParser.parseToInt(countInput);
-        console.printOutput(Integer.toString(count));
+        return inputParser.parseToInt(countInput);
+    }
+
+    private void showOutput(List<Car> cars, int count) {
         console.printOutput("실행 결과");
         printCurrentStatus(cars);
         for (int i = 0; i < count; i++) {
