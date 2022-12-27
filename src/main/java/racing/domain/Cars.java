@@ -1,21 +1,12 @@
 package racing.domain;
 
-import racing.util.RandomNumberGenerator;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.lang.Math.max;
-
+import static racing.util.RandomNumberGenerator.generateRandomNumber;
 
 public class Cars {
-
-    private List<Car> cars;
-
-    private static final int THRESHOLD = 4;
+    private final List<Car> cars;
 
     public Cars() {
         this.cars = new ArrayList<>();
@@ -25,46 +16,41 @@ public class Cars {
         this.cars = cars;
     }
 
-    public boolean isMove(int number) {
-        return number >= THRESHOLD;
-    }
-
+    private static final int THRESHOLD = 4;
+    private static final int RANDOM_BOUND = 10;
     public void add(Car car) {
         cars.add(car);
     }
 
     public int getMaxPosition() {
-        int maxPosition = -1;
-        for (Car car: cars) {
-            maxPosition = max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
+        return Collections.max(cars, Comparator.comparing(Car::getPosition))
+                .getPosition();
     }
 
-    public List<String> getWinnerNamesWithSamePosition(int maxPosition) {
+    public List<String> getNamesWithSamePosition(int position) {
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.getPosition() == position)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    public void play() {
-        for (Car car : cars) {
-            increasePositionIfMovable(car);
-        }
+    public void playTurn() {
+        cars.forEach(this::movePositionIfMovable);
     }
 
-    private void increasePositionIfMovable(Car car) {
-        if(isMove(RandomNumberGenerator.generateRandomNumber())) {
+    private void movePositionIfMovable(Car car) {
+        if (isMovable()) {
             car.move();
         }
     }
 
+    public boolean isMovable() {
+        return generateRandomNumber(RANDOM_BOUND) >= THRESHOLD;
+    }
+
     public Map<String, Integer> getStatus() {
-        Map<String, Integer> status = new HashMap<>();
-        for (Car car : cars) {
-            status.put(car.getName(), car.getPosition());
-        }
+        Map<String, Integer> status = new LinkedHashMap<>();
+        cars.forEach(car -> status.put(car.getName(), car.getPosition()));
         return status;
     }
 }

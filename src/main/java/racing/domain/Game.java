@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Game {
-    private Cars cars;
-
+    private final Cars cars;
     public Game() {
         this.cars = new Cars();
     }
@@ -15,23 +14,17 @@ public class Game {
         this.cars = cars;
     }
 
-    public void initialize(String input) {
-        String[] carNames = input.split(",");
+    public void initialize(String[] carNames) {
         Arrays.stream(carNames)
-            .forEach(carName -> {
-                cars.add(new Car(carName));
-        });
+            .forEach(carName -> cars.add(new Car(carName)));
     }
 
-    public List<String> decideWinners() {
-        return cars.getWinnerNamesWithSamePosition(cars.getMaxPosition());
+    public List<String> getWinnerNames() {
+        return cars.getNamesWithSamePosition(cars.getMaxPosition());
     }
 
-    public void play() {
-        cars.play();
-    }
-
-    public Map<String, Integer> getStatus() {
+    public Map<String, Integer> playTurn() {
+        cars.playTurn();
         return cars.getStatus();
     }
 }
