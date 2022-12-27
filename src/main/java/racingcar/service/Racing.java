@@ -1,6 +1,6 @@
-package racingcar.model;
+package racingcar.service;
 
-import racingcar.model.stratedy.RandomStratedy;
+import racingcar.service.stratedy.RandomStratedy;
 
 import java.util.ArrayList;
 import java.util.List;

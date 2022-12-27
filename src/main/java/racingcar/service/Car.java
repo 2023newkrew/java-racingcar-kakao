@@ -1,7 +1,7 @@
-package racingcar.model;
+package racingcar.service;
 
-import racingcar.model.stratedy.MovableStrategy;
-import racingcar.model.stratedy.RandomStratedy;
+import racingcar.service.stratedy.MovableStrategy;
+import racingcar.service.stratedy.RandomStratedy;
 
 public class Car {
     private final String name;

@@ -1,4 +1,4 @@
-package racingcar.model.stratedy;
+package racingcar.service.stratedy;
 
 public class RandomStratedy implements MovableStrategy {
     private final int FORWARD_NUM = 4;
