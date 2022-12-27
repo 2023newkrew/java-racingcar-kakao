@@ -71,7 +71,7 @@ public class SimulatorTest {
 
     @ParameterizedTest
     @MethodSource("getWinnersData")
-    void winners(String names, List<Integer> randoms, int times, List<String> winners) {
+    void winners(String names, List<Integer> randoms, int times, String winners) {
         Simulator simulator = new Simulator();
         simulator.create(names);
         simulator.simulate(createRandoms(randoms), times);
@@ -80,8 +80,8 @@ public class SimulatorTest {
 
     private static Stream<Arguments> getWinnersData() {
         return Stream.of(
-                Arguments.of("A,B", List.of(4, 3, 5, 2), 2, List.of("A")),
-                Arguments.of("D,E", List.of(9, 2, 6, 5, 1, 4), 3, List.of("D", "E"))
+                Arguments.of("A,B", List.of(4, 3, 5, 2), 2, "A"),
+                Arguments.of("D,E", List.of(9, 2, 6, 5, 1, 4), 3, "D, E")
         );
     }
 }
