@@ -2,12 +2,12 @@ package stringcalc;
 
 import java.util.List;
 
-public class Calculator {
+public class StringCalculator {
 
     private final StringNumberParser stringNumberParser;
     private final CustomSeparatorParser customSeparatorParser;
 
-    public Calculator() {
+    public StringCalculator() {
         stringNumberParser = new StringNumberParser();
         customSeparatorParser = new CustomSeparatorParser();
     }
