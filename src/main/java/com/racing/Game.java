@@ -18,7 +18,9 @@ public class Game {
         String[] carNames = text.split(",");
 
         for(String carName : carNames){
-            cars.add(new Car(carName));
+            Car car = new Car(carName);
+            car.checkName();
+            cars.add(car);
         }
     }
 
