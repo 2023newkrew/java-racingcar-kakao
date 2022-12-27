@@ -22,7 +22,7 @@ public class Main {
      */
     private static void printWinner(Game game) {
         // 모든 승자의 이름을 출력
-        for (Car car : game.getWinner()) {
+        for (Car car : game.getWinners()) {
             car.printCarName();
             System.out.print(" ");
         }

@@ -62,7 +62,7 @@ public class Game {
     /**
      * @return 가장 location이 큰 모든 Car 목록을 반환한다.
      */
-    public ArrayList<Car> getWinner() {
+    public ArrayList<Car> getWinners() {
         int maxLocation = getMaxLocation();
         ArrayList<Car> ret = new ArrayList<>();
         for (Car eachCar : this.cars) {

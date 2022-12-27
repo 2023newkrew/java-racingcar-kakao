@@ -9,7 +9,7 @@ public class CarTest {
 
     // 차 이름이 5글자 이하인지에 대한 테스트
     @Test
-    void checkNameTest(){
+    void validateNameTest(){
         Car car = new Car("carName");
 
         // RuntimeException 발생 시 종료
@@ -18,7 +18,7 @@ public class CarTest {
     }
 
     @Test
-    void movementTest(){
+    void moveTest(){
         Car car1 = new Car("car1");
         // 기본 상태 0이여야 함
         assertThat(car1.location).isEqualTo(0);

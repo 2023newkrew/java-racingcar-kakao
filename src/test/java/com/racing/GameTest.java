@@ -60,22 +60,21 @@ public class GameTest {
         game.init("car1,car2");
         game.run(5);
 
-        ArrayList<Car> winners = game.getWinner();
+        ArrayList<Car> actualWinners = game.getWinners();
+        ArrayList<Car> expectWinners = makeExpectWinners(game);
 
-        ArrayList<Car> cmpWinners = makeCmpWinners(game);
-
-        assertThat(winners).isEqualTo(cmpWinners);
+        assertThat(actualWinners).isEqualTo(expectWinners);
     }
 
-    public ArrayList<Car> makeCmpWinners(Game game){
-        ArrayList<Car> cmpWinners = new ArrayList<>();
+    public ArrayList<Car> makeExpectWinners(Game game){
+        ArrayList<Car> expectWinners = new ArrayList<>();
         int maxLocation = game.getMaxLocation();
         if(game.cars.get(0).location == maxLocation){
-            cmpWinners.add(game.cars.get(0));
+            expectWinners.add(game.cars.get(0));
         }
         if(game.cars.get(1).location == maxLocation){
-            cmpWinners.add(game.cars.get(1));
+            expectWinners.add(game.cars.get(1));
         }
-        return cmpWinners;
+        return expectWinners;
     }
 }
