@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -52,6 +53,17 @@ public class IOView {
 
     public void printGameResultMessage() {
         System.out.println("실행 결과");
+    }
+
+    public void printWinners(List<RacingCar> winners) {
+        // pobi, honux가 최종 우승했습니다.
+        StringBuilder sb = new StringBuilder();
+        List<String> winnerNames = new ArrayList<>();
+        for(RacingCar winner : winners) {
+            winnerNames.add(winner.getName());
+        }
+        sb.append(String.join(", ",winnerNames));
+        System.out.println(sb+"가 최종 우승했습니다.");
     }
 
 }

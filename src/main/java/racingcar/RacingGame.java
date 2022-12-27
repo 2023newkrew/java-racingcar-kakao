@@ -7,7 +7,6 @@ public class RacingGame {
     private List<RacingCar> cars;
     private int finalTurn;
     private int turnCount;
-
     private IOView ioView;
 
     public List<RacingCar> getCars() {
@@ -47,6 +46,7 @@ public class RacingGame {
         while(this.turnCount<this.finalTurn) {
             this.proceedTurn();
         }
+        ioView.printWinners(judgeWinners());
     }
 
     public List<RacingCar> judgeWinners() {
