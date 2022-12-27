@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Game {
     public ArrayList<Car> cars;
+    public int runCount;
 
     public Game(){
         this.cars = new ArrayList<>();
@@ -32,5 +33,8 @@ public class Game {
             car.movement(rand);
         }
         return result;
+    }
+
+    public void run(int i) {
     }
 }
