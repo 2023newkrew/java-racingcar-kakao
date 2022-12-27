@@ -20,6 +20,7 @@ public class RacingGame {
         for (String name : names) {
             cars.add(new RacingCar(name));
         }
+        this.finalTurn = finalTurn;
     }
 
     public int generateRandomNumber() {
@@ -31,5 +32,11 @@ public class RacingGame {
             rc.accelerate(this.generateRandomNumber());
         }
         this.turnCount++;
+    }
+
+    public void playGame() {
+        while(this.turnCount<this.finalTurn) {
+            this.proceedTurn();
+        }
     }
 }
