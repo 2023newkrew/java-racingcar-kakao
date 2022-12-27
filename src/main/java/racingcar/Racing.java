@@ -34,8 +34,8 @@ public class Racing {
             Round();
             i++;
         }
+        GetWinner();
         return i;
-
     }
     public boolean Round() {
         for (Car car : cars) {
@@ -46,5 +46,19 @@ public class Racing {
     private boolean random() {
         Random rand = new Random();
         return rand.nextInt(10) >= 4;
+    }
+
+    public List<String> GetWinner(){
+        int maxPosition = 0;
+        List<String> winnerList = new ArrayList<>();
+        for (Car car : cars){
+            maxPosition = Math.max(car.getPosition(), maxPosition);
+        }
+        for (Car car : cars){
+            if(car.getPosition() == maxPosition){
+                winnerList.add(car.getName());
+            }
+        }
+        return winnerList;
     }
 }
