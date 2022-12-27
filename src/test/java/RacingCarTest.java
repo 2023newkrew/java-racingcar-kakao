@@ -17,4 +17,17 @@ public class RacingCarTest {
                 new Car("honux")
         });
     }
+
+    @Test
+    @DisplayName("차량 전진 제어")
+    void carControl(){
+        GameControl gameControl = new GameControl();
+        Car car = new Car("pobi");
+
+        int number = gameControl.generateRandomNumber();
+        gameControl.carControl(car, number);
+
+        String output = car.showDistance();
+        assertEquals(output, "-");
+    }
 }
