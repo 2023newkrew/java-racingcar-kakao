@@ -23,6 +23,14 @@ public class Car {
         position++;
     }
 
+    public void print() {
+        System.out.printf("%s : ", name);
+        for (int i = 0; i < position; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private final int totalTurns;
+    private int curTurn = 0;
     private final Car[] cars;
 
     public Game(int totalTurns, Car[] cars) {
@@ -34,5 +35,24 @@ public class Game {
             addIfAhead(winnersList, car);
         }
         return winnersList.toArray(new Car[winnersList.size()]);
+    }
+
+    public void play() {
+        for (int i = 0; i < cars.length; i++) {
+            moveCar(i, RandomNumGenerator.generateRandomNum());
+        }
+        printCars();
+        curTurn++;
+    }
+
+    public boolean isEnd() {
+        return curTurn == totalTurns;
+    }
+
+    public void printCars() {
+        for (Car car : cars) {
+            car.print();
+        }
+        System.out.println();
     }
 }

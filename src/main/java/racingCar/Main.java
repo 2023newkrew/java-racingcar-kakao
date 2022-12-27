@@ -30,7 +30,12 @@ public class Main {
         System.out.println("\n실행 결과");
         Car[] cars = Main.namesToCars(carNameString);
         Game game = new Game(totalTurns, cars);
-        // 출력
+
+        game.printCars();
+        while (!game.isEnd()) {
+            game.play();
+        }
+
         Car[] winners = game.findWinners();
         System.out.printf("%s가 최종 우승했습니다.\n", Main.carsToNames(winners));
     }
