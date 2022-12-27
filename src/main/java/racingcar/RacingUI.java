@@ -18,6 +18,7 @@ public class RacingUI {
 
     public void displayPosition(List<CarDTO> cars) {
         cars.forEach(System.out::println);
+        System.out.println();
     }
 
     public void displayWinner(List<String> names) {
