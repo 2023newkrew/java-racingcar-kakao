@@ -1,4 +1,4 @@
-package racingcar.engine.model;
+package racingcar.engine;
 
 public class InputParser {
 

@@ -1,10 +1,11 @@
-package racingcar.engine.model;
+package racingcar.engine;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 import racingcar.Console;
+import racingcar.engine.model.Car;
 
 public class RacingCar implements Runnable {
 
@@ -64,7 +65,7 @@ public class RacingCar implements Runnable {
 
     private <T> T requestUntilSuccess(Supplier<T> getT) {
         Optional<T> result = wrapTryCatch(getT);
-        while(result.isEmpty()) {
+        while (result.isEmpty()) {
             result = wrapTryCatch(getT);
         }
         return result.get();
@@ -73,7 +74,7 @@ public class RacingCar implements Runnable {
     private <T> Optional<T> wrapTryCatch(Supplier<T> getT) {
         try {
             return Optional.of(getT.get());
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             console.printError(e.getMessage());
             return Optional.empty();
         }

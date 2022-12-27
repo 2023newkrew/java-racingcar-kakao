@@ -1,9 +1,9 @@
 package racingcar;
 
-import racingcar.engine.model.InputParser;
-import racingcar.engine.model.RacingCar;
-import racingcar.engine.model.RandomNumberGenerator;
-import racingcar.engine.model.Referee;
+import racingcar.engine.InputParser;
+import racingcar.engine.RacingCar;
+import racingcar.engine.RandomNumberGenerator;
+import racingcar.engine.Referee;
 
 public class App {
     public static void main(String[] args) {
