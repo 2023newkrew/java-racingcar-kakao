@@ -5,11 +5,10 @@ public class Car implements Comparable {
     private final String name;
     private final String PROGRESS_INNER_STRING = " : ";
     private final String PROGRESS_SYMBOL = "-";
-    private int distance;
+    private int distance = 0;
 
     public Car(String name) {
         this.name = name;
-        distance = 0;
     }
 
     public String getName() {

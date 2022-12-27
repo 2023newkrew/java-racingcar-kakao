@@ -7,14 +7,9 @@ import racing.view.OutputView;
 
 public class GameController {
     private final String RESULT_MESSAGE = "실행 결과";
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private Game game;
-
-    public GameController() {
-        inputView = new InputView();
-        outputView = new OutputView();
-    }
 
     public void play() {
         List<String> carNames = inputView.readCarNames();

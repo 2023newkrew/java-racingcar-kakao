@@ -8,12 +8,11 @@ import racing.utils.RandomNumberGenerator;
 public class Game {
     private final Cars cars;
     private final int length;
-    private final RandomNumberGenerator generator;
+    private final RandomNumberGenerator generator = new RandomNumberGenerator();
 
     public Game(List<String> carNames) {
         cars = new Cars(carNames);
         length = carNames.size();
-        generator = new RandomNumberGenerator();
     }
 
     public void play() {

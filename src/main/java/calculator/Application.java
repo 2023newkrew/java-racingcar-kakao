@@ -4,7 +4,6 @@ import calculator.domain.TargetString;
 import java.util.Scanner;
 
 public class Application {
-
     private static final Scanner sc = new Scanner(System.in);
     public static final String INPUT_MESSAGE = "계산식을 입력해주세요.";
     public static final String OUTPUT_MESSAGE_FORMAT = "계산결과는 %d 입니다.";
