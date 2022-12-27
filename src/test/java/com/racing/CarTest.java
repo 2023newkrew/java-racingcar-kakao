@@ -1,8 +1,8 @@
 package com.racing;
 
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
 
@@ -30,5 +30,14 @@ public class CarTest {
         // 1만큼 이동함(사유 : 입력이 4 임) 위치는 1임
         car1.movement(4);
         assertThat(car1.location).isEqualTo(1);
+    }
+
+    // 차의 현재 location 출력 테스트
+    @Test
+    void printLocationTest(){
+        Car car1 = new Car("car1");
+        // 한 칸 이동
+        car1.movement(9);
+        assertThat(car1.printLocation()).isEqualTo("car1 : -");
     }
 }
