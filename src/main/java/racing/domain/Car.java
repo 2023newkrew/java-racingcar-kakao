@@ -3,11 +3,15 @@ package racing.domain;
 public class Car implements Comparable{
     private final double MOVE_LOWER_BOUND = 4.0;
     private int distance;
-    public final String name;
+    private final String name;
 
     public Car(String name) {
         this.name = name;
         distance = 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean move(double number) {
@@ -26,7 +30,7 @@ public class Car implements Comparable{
         return number >= MOVE_LOWER_BOUND;
     }
 
-    public int getDifference(int opponentDistance) {
+    private int getDifference(int opponentDistance) {
         return opponentDistance - distance;
     }
 
@@ -34,5 +38,10 @@ public class Car implements Comparable{
     public int compareTo(Object o) {
         Car car = (Car) o;
         return car.getDifference(distance);
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + "-".repeat(distance);
     }
 }

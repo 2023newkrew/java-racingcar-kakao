@@ -29,12 +29,15 @@ public class Cars {
         Car winnerCar = cars.get(length - 1);
         List<String> winners = cars.stream()
                 .filter(car -> car.compareTo(winnerCar) == 0)
-                .map(car -> car.name)
+                .map(Car::getName)
                 .collect(Collectors.toList());
         return winners;
     }
 
     public List<String> getStatus() {
-        return null;
+        List<String> status = cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.toList());
+        return status;
     }
 }
