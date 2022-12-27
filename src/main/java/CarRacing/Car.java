@@ -1,5 +1,7 @@
 package CarRacing;
 
+import java.util.Random;
+
 public class Car {
 
     private int position;
@@ -10,6 +12,9 @@ public class Car {
         this.name = name;
     }
 
+    public int createRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(10);
     }
 
     public boolean isMove(int randomNumber) {
