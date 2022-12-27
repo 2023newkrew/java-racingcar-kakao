@@ -14,7 +14,7 @@ public class Race {
     }
 
     public void verifyName(String input) {
-        if(input.length() < 6){
+        if(input.length() < 6 && input.length() > 0){
             return;
         }
         throw new IllegalArgumentException();
@@ -24,11 +24,28 @@ public class Race {
         return carNameCsv.split(",");
     }
 
-    public void carInput(String[] nameSplit) {
-        for (String name : nameSplit){
-            verifyName(name);
-            cars.add(new Car(name));
+    public void ready(){
+        this.carNamesCheck(nameSplit());
+    }
+    public void carNamesCheck(String[] nameSplit) {
+        for (String carName : nameSplit){
+            carInput(carName);
         }
+        if (cars.size() == 1){
+            System.out.println("경주할 자동차는 2대 이상이어야 합니다.");
+            cars = new ArrayList<>();
+        }
+    }
+
+    public void carInput(String carName){
+        try {
+            verifyName(carName);
+        } catch (IllegalArgumentException e){
+            cars = new ArrayList<>();
+            System.out.println("자동차 이름은 1자 이상 5자 이하여야 합니다. : '" + carName + "'");
+            return;
+        }
+        cars.add(new Car(carName));
     }
 
     public void printRace() {
@@ -85,17 +102,24 @@ public class Race {
     }
 
     public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String text;
         int turn;
+        Race race = null;
 
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        text = reader.readLine();
+        while (race == null || race.getCars().isEmpty()){
+            System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            text = reader.readLine();
+            race = new Race(text);
+            race.ready();
+
+        }
+
+
         System.out.println("시도할 회수는 몇회인가요?");
         turn = Integer.parseInt(reader.readLine());
 
-        Race race = new Race(text);
-        race.carInput(race.nameSplit());
+
         race.playRace(turn);
     }
 }

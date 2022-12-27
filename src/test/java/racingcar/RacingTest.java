@@ -40,7 +40,7 @@ public class RacingTest {
         System.setOut(new PrintStream(out));
 
         Race race = new Race("pobi,crong,honux");
-        race.carInput(race.nameSplit());
+        race.carNamesCheck(race.nameSplit());
         race.printRace();
         String actual = out.toString();
         assertEquals(actual,"pobi : -\n" +
@@ -51,7 +51,7 @@ public class RacingTest {
     @Test
     void raceMaxCntTest() {
         Race race = new Race("pobi,crong,honux");
-        race.carInput(race.nameSplit());
+        race.carNamesCheck(race.nameSplit());
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
@@ -64,7 +64,7 @@ public class RacingTest {
         System.setOut(new PrintStream(out));
 
         Race race = new Race("pobi,crong,honux");
-        race.carInput(race.nameSplit());
+        race.carNamesCheck(race.nameSplit());
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
