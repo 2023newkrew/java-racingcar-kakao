@@ -15,7 +15,7 @@ public class CarTest {
 
     @BeforeAll
     void init() {
-        car = new Car();
+        car = new Car("");
     }
 
     @ValueSource(doubles = {0.1, 3.9, 2.2, 3.999})

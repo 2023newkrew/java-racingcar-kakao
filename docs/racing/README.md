@@ -37,7 +37,7 @@
 ### Domain
 - Car 객체 (implements Comparable)
   - 속성: name(String), distance(int)
-  - 메서드: toString(), compareTo()
+  - 메서드: toString(), compareTo(), move() 
 - Game 객체
   - 속성: cars List<Car>
   - 메서드: toString(), getWinners(), chooseWinners()
@@ -53,3 +53,4 @@
 ### Controller
 - Controller
   - inputView, outputView, names:List<String>, Game, reps
+
