@@ -32,3 +32,68 @@
     - private receiveInput
     - private calculate
     - private printResult
+
+---
+
+## CarRacing
+
+### Domain
+
+#### Interface
+
+- interface RacingPlayer
+  - property
+    - String name
+    - int position
+  - method
+    - proceedNextTurn
+    - getScore
+    - getName
+- interface GamePlayStrategy
+  - generateScore
+
+#### Class
+
+- class Car implements RacingPlayer
+  - @override toString
+- GameRule
+  - static property
+    - STANDARD_SCORE
+    - GAME_PLAY_STRATEGY
+  - static method
+    - isAbleToProceed
+    - getWinners
+- RandomPlayStrategy implements GamePlayStrategy
+
+### View
+
+- OutputView
+  - method
+    - askForNames
+    - askForNumberOfTurns
+    - printCurrentStatus
+    - printWinners
+    - getConcatenatedNameFromArray
+- InputView
+  - method
+    - getPlayerNames
+    - getNumberOfTurns
+    - verifyName
+
+### Controller
+
+- class RacingController
+  - property
+    - inputView
+    - racingPlayers
+    - playerNames
+    - numberOfTurns
+  - method
+    - run
+    - getNamesFromUser
+    - getNumberOfTurnsFromUser
+    - printResult
+    - createPlayers
+    - runSingleTurn
+    - sleep
+
