@@ -1,3 +1,105 @@
+# java-racingcar-kakao
+
+## 기능 요구사항
+
+- 주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다.
+- 각 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
+- 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
+- 사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.
+- 전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
+- 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
+
+## 제약 사항
+
+- 자동차
+    - 자동차의 이름은 전후 공백을 제거한 뒤 사용한다.
+    - 자동차의 이름은 1~5글자이다.
+    - 자동차의 이름은 중복을 허용하지 않는다.
+    - 자동차의 갯수의 범위는 [1,100]이다.
+- 반복 횟수의 범위는 [1,100]이다.
+
+## 기능 명세
+
+### 1. 문자열의 유효성을 확인한 다음 각각의 이름으로 구분하는 기능
+- 이름의 갯수가 많을 경우 예외 발생 
+- ",abc"일 경우 ["", "abc"]
+
+### 2. 자동차의 이름이 유효한지 확인하는 기능
+- ""일 경우 예외 발생
+- "123456"일 경우 예외 발생
+- "abc"일 경우 "abc"
+- " abc"일 경우 "abc"
+- " abc "일 경우 "abc"
+- " a bc "일 경우 "a bc"
+- "  12345  "일 경우 "12345"
+- "a"일 경우 "a"
+
+### 3. 자동차를 움직이거나 멈추는 기능
+- engine의 moveOrStop이 true일 경우 getCarInfo().getPosition() = 1
+- engine의 moveOrStop이 false일 경우 getCarInfo().getPosition() = 0
+
+### 4. 자동차가 없거나 자동차의 이름에 중복이 있는지 확인하는 기능
+- null 일 경우 예외 발생
+- [] 일 경우 예외 발생
+- [{"abc",0},{"abc",0}]일 경우 예외 발생
+- [{"abc",0},{"abcd",0}]일 경우 성공
+
+### 5. 경주의 승자를 찾아내는 기능
+- [{"car1", 1}, {"car2", 2}, {"car3", 3}]일 경우 [{"car3", 3}]
+- [{"car1", 1}, {"car2", 1}, {"car3", 1}]일 경우 [{"car1", 1}, {"car2", 1}, {"car3", 1}]
+- [{"car1", 1}]일 경우 [{"car1", 1}]
+
+### 6. 게임을 진행하는 기능
+
+### 7. UI 
+
+## 객체 설계
+
+### RacingCarController
+
+- racingCarView : RacingCarView
+- racingCarModel : RacingCarModel
+- static RacingCarController create()
+- void start()[6]
+
+### RacingCarModel
+
+- cars : Car[]
+- static String[] parseNames(nameLine:String)[1]
+- static RacingCarModel : from(cars: Car[])[4]
+- void progress()
+- CarInfo[] getCarInfos()
+- CarInfo[] getWinners()[5]
+
+### Car
+
+- name : String
+- position : int
+- engine : Engine
+- static Car from(name:String,engine:Engine)[2]
+- void moveOrStop()[3]
+- CarInfo getCarInfo()
+
+### Engine
+- static Engine create()
+- boolean moveOrStop()
+
+### CarInfo
+
+- name : String
+- position : int
+- static CarInfo from(name:String,position:int)
+- String getName()
+- int getPosition()
+
+### RacingCarView[7]
+
+- String inputNameLine()
+- int inputCount()
+- void printResultText()
+- void printProgressResult(result:CarInfo[])
+- void printWinners(winners:CarInfo[])
+
 # java-string-accumulator-kakao
 
 ## 기능 요구사항
