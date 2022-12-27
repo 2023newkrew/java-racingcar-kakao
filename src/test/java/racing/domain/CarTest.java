@@ -4,16 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CarTest {
-
     private Car car;
 
-    @BeforeAll
+    @BeforeEach
     void init() {
         car = new Car("");
     }
@@ -28,5 +28,16 @@ public class CarTest {
     @ParameterizedTest
     void moveTrueTest(double number) {
         assertThat(car.move(number)).isEqualTo(true);
+    }
+
+    @Test
+    void compareDistanceTest(){
+        Car opponent = new Car("123");
+        assertThat(opponent.compareTo(car)).isEqualTo(0);
+        assertThat(car.compareTo(opponent)).isEqualTo(0);
+
+        opponent.move(5);
+        assertThat(opponent.compareTo(car)).isGreaterThan(0);
+        assertThat(car.compareTo(opponent)).isLessThan(0);
     }
 }
