@@ -25,7 +25,9 @@ public class CarList {
 
     public void moveAll() {
         RandomUtil randomUtil = new RandomUtil();
-        cars.forEach(car -> car.move(randomUtil.generateRandom()));
+        for (Car car : cars) {
+            car.move(randomUtil.generateRandom());
+        }
     }
 
     public List<Car> selectWinners() {
@@ -40,5 +42,14 @@ public class CarList {
                 .filter(car -> car.getPosition() == maxPosition.getAsInt())
                 .forEach(winners::add);
         return winners;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Car car : cars) {
+            stringBuilder.append(car.toString() + "\n");
+        }
+        return stringBuilder.toString();
     }
 }
