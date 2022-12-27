@@ -1,12 +1,12 @@
-package string_calculator;
+package calculator;
 
-import string_calculator.model.Calculator;
-import string_calculator.model.Parser;
-import string_calculator.model.Validator;
+import calculator.model.Calculator;
+import calculator.model.Parser;
+import calculator.model.Validator;
 
 public class Application {
     public static void main(String[] args) {
-        String testString =  "//:\n9:2,-8,4";
+        String testString = "//:\n9:2,-8,4";
 
         Parser parser = new Parser(testString);
         String[] parseResult = parser.parse();

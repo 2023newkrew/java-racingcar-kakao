@@ -14,16 +14,15 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public static Car[] from(String names) {
-        String[] separatedNames = names.split(",");
-        return Arrays.stream(separatedNames)
+    public static Car[] from(String[] names) {
+        return Arrays.stream(names)
                 .map(Car::new)
                 .collect(Collectors.toList())
                 .toArray(Car[]::new);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String showDistance() {

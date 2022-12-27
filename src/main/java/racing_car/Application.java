@@ -1,15 +1,15 @@
 package racing_car;
 
-import racing_car.model.Car;
-import racing_car.model.Game;
-
 import java.util.Arrays;
 import java.util.Scanner;
+
+import racing_car.model.Car;
+import racing_car.model.Game;
 
 public class Application {
 
     public static void main(String[] args) {
-        Game game = new Game(getCars());
+        Game game = new Game(separateCarNamesByDelimiter(",", getCarNamesWithDelimiter()));
         int playCount = getPlayCount();
 
         System.out.println("실행결과");
@@ -21,12 +21,16 @@ public class Application {
         printGameResult(game);
     }
 
-    private static Car[] getCars() {
+    private static String getCarNamesWithDelimiter() {
         Scanner sc = new Scanner(System.in);
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = sc.nextLine();
 
-        return Car.from(input);
+        return sc.next();
+    }
+
+    private static Car[] separateCarNamesByDelimiter(String delimiter, String target) {
+
+        return Car.from(target.split(delimiter));
     }
 
     private static int getPlayCount() {
@@ -38,12 +42,15 @@ public class Application {
 
     private static void printGameResult(Game game) {
         Car[] winner = game.getWinners();
-        String[] winnerNames = Arrays.stream(winner).map(Car::getName).toArray(String[]::new);
+        String[] winnerNames = Arrays.stream(winner)
+                .map(Car::getName)
+                .toArray(String[]::new);
         System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
     private static void printGameProcess(Game game) {
-        Arrays.stream(game.getCars()).forEach(car -> System.out.print(car.getName() + " : " + car.showDistance() + "\n"));
+        Arrays.stream(game.getCars())
+                .forEach(car -> System.out.print(car.getName() + " : " + car.showDistance() + "\n"));
         System.out.println();
     }
 }

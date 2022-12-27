@@ -1,3 +1,5 @@
+package racing_car;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
@@ -7,11 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RacingCarTest {
 
+    private static Car[] separateCarNamesByDelimiter(String delimiter, String target) {
+
+        return Car.from(target.split(delimiter));
+    }
+
     @Test
     @DisplayName("제공된 문자열로 자동차 배열 생성")
-    void separateByComma() {
+    void separateByDelimiter() {
         String testNames = "pobi,crong,honux";
-        Car[] cars = Car.from(testNames);
+        Car[] cars = separateCarNamesByDelimiter(",", testNames);
         assertArrayEquals(cars, new Car[]{
                 new Car("pobi"),
                 new Car("crong"),
@@ -23,7 +30,7 @@ public class RacingCarTest {
     @DisplayName("빈 문자열 테스트")
     void emptyName() {
         String testNames = "";
-        Car[] cars = Car.from(testNames);
+        Car[] cars = Car.from(testNames.split(","));
         assertArrayEquals(cars, new Car[]{
                 new Car("")
         });
@@ -60,7 +67,7 @@ public class RacingCarTest {
     @DisplayName("우승자 구하기")
     void getWinners() {
         String testNames = "pobi,crong,honux,ryan,chunsik,jordy";
-        Car[] cars = Car.from(testNames);
+        Car[] cars = separateCarNamesByDelimiter(",", testNames);
 
         int[] distances = new int[]{1, 5, 2, 5, 4, 5};
         for (int i = 0; i < distances.length; i++) {

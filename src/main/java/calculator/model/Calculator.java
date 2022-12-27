@@ -1,4 +1,4 @@
-package string_calculator.model;
+package calculator.model;
 
 import java.util.Arrays;
 
@@ -9,11 +9,9 @@ public class Calculator {
     }
 
     private int[] convertAll(String[] numbers) {
-        int[] results = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            results[i] = Integer.parseInt(numbers[i]);
-        }
-        return results;
+        return Arrays.stream(numbers)
+                .mapToInt(Integer::parseInt)
+                .toArray();
     }
 
     public int sumAll(String[] numbers) {
