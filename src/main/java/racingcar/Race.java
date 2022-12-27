@@ -6,15 +6,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Race {
-    private String nameStr;
+    private String carNameCsv;
     private ArrayList<Car> cars = new ArrayList<>();
 
-    public Race() {
-        this.nameStr = "pobi,crong,honux";
-    }
-
-    public Race(String nameStr) {
-        this.nameStr = nameStr;
+    public Race(String carNameCsv) {
+        this.carNameCsv = carNameCsv;
     }
 
     public void verifyName(String input) {
@@ -25,7 +21,7 @@ public class Race {
     }
 
     public String[] nameSplit() {
-        return nameStr.split(",");
+        return carNameCsv.split(",");
     }
 
     public void carInput(String[] nameSplit) {

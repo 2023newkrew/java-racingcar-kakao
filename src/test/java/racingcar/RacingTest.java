@@ -17,7 +17,7 @@ public class RacingTest {
     @CsvSource(value = {"Pobi;true",
                         "Ppoobbii;false"}, delimiter = ';')
     void verifyNameTest(String input, String expected){
-        Race race = new Race();
+        Race race = new Race("pobi,crong,honux");
         String result = "false";
         try {
             race.verifyName(input);
