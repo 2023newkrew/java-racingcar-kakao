@@ -37,4 +37,32 @@ class ViewTest {
         Assertions.assertThatThrownBy(() -> view.inputCarNames())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void inputTryCount() {
+        InputStream inputStream = new ByteArrayInputStream("012".getBytes());
+        View view = new View(System.out, inputStream);
+
+        int tryCount = view.inputTryCount();
+
+        Assertions.assertThat(tryCount).isEqualTo(12);
+    }
+
+    @Test
+    void inputNotNumberTryCount() {
+        InputStream inputStream = new ByteArrayInputStream("abc".getBytes());
+        View view = new View(System.out, inputStream);
+
+        Assertions.assertThatThrownBy(() -> view.inputTryCount())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void inputOver100TryNumber() {
+        InputStream inputStream = new ByteArrayInputStream("100".getBytes());
+        View view = new View(System.out, inputStream);
+
+        Assertions.assertThatThrownBy(() -> view.inputTryCount())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

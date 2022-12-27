@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class View {
 
+    public static final int MAX_TRY_COUNT = 99;
+    public static final int MAX_NAME_LENGTH = 5;
     private final PrintStream printStream;
     private final Scanner scanner;
 
@@ -19,23 +21,18 @@ public class View {
     }
 
     public List<String> inputCarNames() {
+        printStream.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         List<String> names = getCarNames();
 
-        if (hasOverLengthName(names)) {
-            throw new IllegalArgumentException("자동차 이름은 5글자를 넘을 수 없습니다.");
-        }
-
-        if (hasDuplicatedName(names)) {
-            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+        if (hasOverLengthName(names) || hasDuplicatedName(names)) {
+            throw new IllegalArgumentException("자동차 이름은 " + MAX_NAME_LENGTH + "글자 이하의 유일한 이름이어야 합니다.");
         }
 
         return names;
     }
 
     private List<String> getCarNames() {
-        printStream.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String names = scanner.nextLine();
-
         return trim(split(names));
     }
 
@@ -56,6 +53,21 @@ public class View {
 
     private boolean hasOverLengthName(List<String> trimmedNames) {
         return trimmedNames.stream()
-                .anyMatch(name -> name.length() > 5);
+                .anyMatch(name -> name.length() > MAX_NAME_LENGTH);
+    }
+
+    public int inputTryCount() {
+        printStream.println("시도할 회수는 몇회인가요?");
+        String value = scanner.nextLine();
+
+        if (isInvalidTryCount(value)) {
+            throw new IllegalArgumentException("시도 회수는 " + MAX_TRY_COUNT + "이하의 숫자여야합니다.");
+        }
+
+        return Integer.parseInt(value);
+    }
+
+    private static boolean isInvalidTryCount(String value) {
+        return !(value.matches("\\d+") && Integer.parseInt(value) <= MAX_TRY_COUNT);
     }
 }
