@@ -18,14 +18,14 @@ public class View {
             roundNum = sc.nextLine();
         } while (!racing.RegisterCarRoundNum(roundNum));
     }
-    public void RunRound(){
+    void RunRound(){
         for (int i = 0  ; i < racing.GetRoundNum() ; i++) {
             racing.Round();
             String result = racing.RoundResult();
             PrintRoundResult(result);
         }
     }
-    public void PrintRoundResult(String result) {
+    void PrintRoundResult(String result) {
         String[] temp = result.split(",");
         for(int i = 0 ; i < temp.length ; i+=2){
             System.out.print(temp[i] +" : ");
@@ -34,8 +34,8 @@ public class View {
         System.out.println();
     }
 
-    public void PrintWinner(){
-        System.out.print(String.join(", ", racing.GetWinner()));
+    void PrintWinner(){
+        System.out.print(String.join(", ", racing.GetWinner().split(",")));
         System.out.println("가 최종 우승했습니다.");
     }
 
