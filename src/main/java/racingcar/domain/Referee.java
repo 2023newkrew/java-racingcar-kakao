@@ -1,6 +1,8 @@
 package racingcar.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Referee {
@@ -60,6 +62,14 @@ public class Referee {
             maxPosition = Math.max(maxPosition, car.getPosition());
         }
         return maxPosition;
+    }
+
+    public Map<String, Integer> announceRoundResult() {
+        Map<String, Integer> roundResult = new LinkedHashMap<>();
+        for (Car car : registeredCars) {
+            roundResult.put(car.getCarName(), car.getPosition());
+        }
+        return roundResult;
     }
 
     public int getRoundToPlay() {
