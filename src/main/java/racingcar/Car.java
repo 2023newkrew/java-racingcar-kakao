@@ -10,10 +10,10 @@ public class Car {
     }
 
     public void forward() {
-        distance += (int)(Math.random() * 10) >= 4 ? 1 : 0;
+        distance += (int) (Math.random() * 10) >= 4 ? 1 : 0;
     }
 
-    public int getDistance(){
+    public int getDistance() {
         return this.distance;
     }
 

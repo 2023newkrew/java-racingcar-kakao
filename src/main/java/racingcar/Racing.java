@@ -13,7 +13,7 @@ public class Racing {
     }
 
     public void addCars(List<String> names) {
-        for (String name: names)
+        for (String name : names)
             cars.add(new Car(name));
     }
 
@@ -36,13 +36,15 @@ public class Racing {
 
     public List<String> winner() {
         int maxDist = 0;
-        for(Car car : cars)
+        for (Car car : cars)
             maxDist = Math.max(maxDist, car.getDistance());
 
         List<String> result = new ArrayList<>();
         final int finalMaxDist = maxDist;
-        Stream<Car> filtered = cars.stream().filter(car ->  car.getDistance() == finalMaxDist);
-        filtered.forEach(car -> {result.add(car.getName());});
+        Stream<Car> filtered = cars.stream().filter(car -> car.getDistance() == finalMaxDist);
+        filtered.forEach(car -> {
+            result.add(car.getName());
+        });
         return result;
     }
 }

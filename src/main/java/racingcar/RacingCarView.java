@@ -18,7 +18,7 @@ public class RacingCarView {
 
     private void checkCarName(List<String> names) throws RuntimeException {
         names.forEach(s -> {
-            if(s.length() > 5) throw new RuntimeException();
+            if (s.length() > 5) throw new RuntimeException();
         });
     }
 
@@ -27,14 +27,14 @@ public class RacingCarView {
         return (new Scanner(System.in)).nextInt();
     }
 
-    public void printResultOfCars(List<Car> cars){
+    public void printResultOfCars(List<Car> cars) {
         cars.forEach(this::printResultOfACar);
         System.out.println();
     }
 
-    private void printResultOfACar(Car car){
+    private void printResultOfACar(Car car) {
         System.out.print(car.getName() + " : ");
-        for(int i = 0; i < car.getDistance(); i++)
+        for (int i = 0; i < car.getDistance(); i++)
             System.out.print("-");
         System.out.println();
     }
@@ -48,7 +48,7 @@ public class RacingCarView {
         winners.forEach(w -> {
             sb.append(w).append(", ");
         });
-        sb.delete(sb.length()-2, sb.length()-1);
+        sb.delete(sb.length() - 2, sb.length() - 1);
         sb.append("가 최종 우승했습니다.");
         System.out.println(sb.toString());
     }

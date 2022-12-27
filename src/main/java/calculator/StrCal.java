@@ -5,7 +5,7 @@ public class StrCal {
     private String regex = ",|:";
 
     public StrCal(String str) {
-        if(str == null || str.length() == 0){
+        if (str == null || str.length() == 0) {
             this.str = str;
             return;
         }
@@ -16,13 +16,13 @@ public class StrCal {
             throw new RuntimeException();
     }
 
-    private void customDelimiter(){
+    private void customDelimiter() {
         String deli = "";
         String[] tmp = str.split("\n");
 
         deli = tmp[0].substring(2);
         this.str = tmp[1];
-        for(Character c : deli.toCharArray())
+        for (Character c : deli.toCharArray())
             regex += "|\\" + c;
     }
 

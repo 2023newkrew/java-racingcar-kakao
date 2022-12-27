@@ -30,7 +30,7 @@ public class RacingTest {
     @Test
     void racingProgress() {
         racing.doStep();
-        racing.getCarList().forEach((car)->{
+        racing.getCarList().forEach((car) -> {
             assertThat(car.getDistance()).isGreaterThanOrEqualTo(0);
         });
         assertThat(racing.getCount()).isEqualTo(4);
@@ -47,7 +47,7 @@ public class RacingTest {
 
     @Test
     void racingResult() {
-        while(!racing.isFinished()){
+        while (!racing.isFinished()) {
             racing.doStep();
         }
         assertThat(racing.winner()).containsAnyOf("davi", "sean");
