@@ -11,7 +11,6 @@ public class InputView {
         for (String name : splitStrings) {
             verifyName(name);
         }
-
         return splitStrings;
     }
 

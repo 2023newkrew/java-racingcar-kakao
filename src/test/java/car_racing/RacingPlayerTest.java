@@ -6,31 +6,30 @@ import org.junit.jupiter.api.Test;
 
 public class RacingPlayerTest {
 
-    RacingPlayer[] rcs;
+    RacingPlayer[] players;
 
     @BeforeEach
     void init() {
-        rcs = new RacingPlayer[]{
+        players = new RacingPlayer[]{
                 new Car("Tester")
         };
     }
 
     @Test
     void proceedNextTurnTest_forwardSuccess() {
-        for (RacingPlayer rc : rcs) {
-            String prevOutput = rc.toString();
-            rc.proceedNextTurn(true);
-            Assertions.assertThat(rc.toString()).isEqualTo(prevOutput + "-");
+        for (RacingPlayer player : players) {
+            String prevOutput = player.toString();
+            player.proceedNextTurn(true);
+            Assertions.assertThat(player.toString()).isEqualTo(prevOutput + "-");
         }
     }
 
     @Test
     void proceedNextTurnTest_forwardFail() {
-        for (RacingPlayer rc : rcs) {
-            String prevOutput = rc.toString();
-            rc.proceedNextTurn(false);
-            Assertions.assertThat(rc.toString()).isEqualTo(prevOutput);
-
+        for (RacingPlayer player : players) {
+            String prevOutput = player.toString();
+            player.proceedNextTurn(false);
+            Assertions.assertThat(player.toString()).isEqualTo(prevOutput);
         }
     }
 }

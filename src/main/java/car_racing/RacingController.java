@@ -9,7 +9,6 @@ public class RacingController {
     private String[] playerNames;
     private Integer numberOfTurns;
 
-
     public RacingController() {
         racingPlayers = new ArrayList<>();
         inputView = new InputView();
