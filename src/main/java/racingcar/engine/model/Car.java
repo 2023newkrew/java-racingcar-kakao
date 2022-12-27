@@ -36,11 +36,6 @@ public class Car {
         }
     }
 
-    public String getCurrentStatus() {
-        return this.name + " : "
-                + "-".repeat(Math.max(0, this.position));
-    }
-
     public int renewWinners(int max, List<String> result) {
         if (position < max) {
             return max;
@@ -50,5 +45,11 @@ public class Car {
         }
         result.add(name);
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " : "
+                + "-".repeat(Math.max(0, this.position));
     }
 }

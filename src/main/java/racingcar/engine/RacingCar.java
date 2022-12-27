@@ -82,7 +82,7 @@ public class RacingCar implements Runnable {
 
     private void printCurrentStatus(List<Car> cars) {
         for (Car car : cars) {
-            console.printOutput(car.getCurrentStatus());
+            console.printOutput(car.toString());
         }
     }
 
