@@ -3,24 +3,24 @@ package racingcar;
 import java.util.Random;
 
 public class Car {
-    String name;
-    int cnt;
+    private String name;
+    private int count;
 
     public Car(String name) {
         this.name = name;
-        this.cnt = 1;
+        this.count = 1;
     }
 
 
     public void printStatus() {
         StringBuilder sb = new StringBuilder();
         sb.append(name + " : ");
-        sb.append("-".repeat(Math.max(0, cnt)));
+        sb.append("-".repeat(Math.max(0, count)));
         System.out.println(sb);
     }
 
     public void move() {
-        this.cnt++;
+        this.count++;
     }
 
     public void race() {
@@ -35,7 +35,7 @@ public class Car {
         return name;
     }
 
-    public int getCnt() {
-        return cnt;
+    public int getCount() {
+        return count;
     }
 }

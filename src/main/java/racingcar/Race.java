@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Race {
-    String nameStr;
-    ArrayList<Car> cars = new ArrayList<>();
+    private String nameStr;
+    private ArrayList<Car> cars = new ArrayList<>();
 
     public Race() {
         this.nameStr = "pobi,crong,honux";
@@ -50,7 +50,7 @@ public class Race {
         int max = -1;
 
         for (Car car: cars) {
-            max = Math.max(max, car.getCnt());
+            max = Math.max(max, car.getCount());
         }
 
         return max;
@@ -66,7 +66,7 @@ public class Race {
     }
 
     public String raceWinnerCheck(Car car, int max){
-        if(car.getCnt() == max){
+        if(car.getCount() == max){
             return car.getName() + ", ";
         }
         return "";
