@@ -2,6 +2,8 @@ package com.racing;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -17,5 +19,19 @@ public class GameTest {
         assertThat(game.cars.get(0).printLocation()).isEqualTo("car1 : ");
         assertThat(game.cars.get(1).printLocation()).isEqualTo("car2 : ");
         assertThat(game.cars.get(2).printLocation()).isEqualTo("car3 : ");
+    }
+
+    // 모든 차 이동 (1턴)
+    @Test
+    void moveCarsTest(){
+        Game game = new Game();
+        game.init("car1,car2,car3");
+
+        ArrayList<Integer> rands = game.moveCars();
+
+        for(int i=0; i<3; i++){
+            String move = rands.get(i) < 4 ? "" : "-";
+            assertThat(game.cars.get(i).printLocation()).isEqualTo("car" + i + " : " + move);
+        }
     }
 }
