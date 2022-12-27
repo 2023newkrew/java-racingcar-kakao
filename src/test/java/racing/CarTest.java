@@ -19,4 +19,11 @@ public class CarTest {
     void carException(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new Car(name));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1234", "ABCD"})
+    void toString(String name) {
+        Car car = new Car(name);
+        assertThat(car.toString()).isEqualTo(String.format("%s : -", name));
+    }
 }
