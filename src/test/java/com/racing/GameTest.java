@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class GameTest {
 
@@ -16,9 +15,9 @@ public class GameTest {
         // init에서 3개의 자동차를 선언했으므로 길이가 3이여야 함
         assertThat(game.cars).hasSize(3);
         // 각 자동차는 이동거리가 0인 자동차이고 각각의 이름은 car1, car2, car3 이므로 아래와 같은 출력값을 가져야 한다.
-        assertThat(game.cars.get(0).printLocation()).isEqualTo("car1 : ");
-        assertThat(game.cars.get(1).printLocation()).isEqualTo("car2 : ");
-        assertThat(game.cars.get(2).printLocation()).isEqualTo("car3 : ");
+        assertThat(game.cars.get(0).formatLocation()).isEqualTo("car1 : ");
+        assertThat(game.cars.get(1).formatLocation()).isEqualTo("car2 : ");
+        assertThat(game.cars.get(2).formatLocation()).isEqualTo("car3 : ");
     }
 
     // 모든 차 이동 (1턴)
@@ -31,7 +30,7 @@ public class GameTest {
 
         for(int i=0; i<3; i++){
             String move = rands.get(i) < 4 ? "" : "-";
-            assertThat(game.cars.get(i).printLocation()).isEqualTo("car" + (i + 1) + " : " + move);
+            assertThat(game.cars.get(i).formatLocation()).isEqualTo("car" + (i + 1) + " : " + move);
         }
     }
 
@@ -52,7 +51,7 @@ public class GameTest {
 
         // 자동차 location의 max 값 직접 구함
         int findMax = Math.max(game.cars.get(0).location, game.cars.get(1).location);
-        assertThat(findMax).isEqualTo(game.maxLocation());
+        assertThat(findMax).isEqualTo(game.getMaxLocation());
     }
 
     @Test
@@ -70,7 +69,7 @@ public class GameTest {
 
     public ArrayList<Car> makeCmpWinners(Game game){
         ArrayList<Car> cmpWinners = new ArrayList<>();
-        int maxLocation = game.maxLocation();
+        int maxLocation = game.getMaxLocation();
         if(game.cars.get(0).location == maxLocation){
             cmpWinners.add(game.cars.get(0));
         }

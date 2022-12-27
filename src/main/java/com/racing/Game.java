@@ -14,9 +14,7 @@ public class Game {
     }
 
     /**
-     * 사용자 입력을 통해 carName 분리
-     * cars 생성
-     * @param text
+     * @param text 초기화를 위해 자동차 이름들의 목록을 반환한다.
      */
     public void init(String text) {
         // text(사용자 입력)을 차 이름으로 분리
@@ -24,14 +22,13 @@ public class Game {
 
         for(String carName : carNames){
             Car car = new Car(carName);
-            car.checkName();
+            car.validateName();
             cars.add(car);
         }
     }
 
     /**
-     * random 값을 통해 모든 차에 대해 movement() 실행
-     * @return 각각의 random값
+     * @return 각각의 Car에 move 값으로 넣어지는 0~9 사이의 값을 삽입한다.
      */
     public ArrayList<Integer> moveCars() {
         Random random = new Random();
@@ -39,14 +36,13 @@ public class Game {
         for (Car car : cars) {
             int rand = random.nextInt(10);
             result.add(rand);
-            car.movement(rand);
+            car.move(rand);
         }
         return result;
     }
 
     /**
-     * 사용자가 지정한 turn 만큼 게임 실행
-     * @param turn
+     * @param turn 지정한 횟수만큼 moveCars를 수행한다.
      */
     public void run(int turn) {
         for(int i=0; i<turn; i++){
@@ -57,22 +53,20 @@ public class Game {
     }
 
     /**
-     * 자동차들의 현재 위치를 출력
+     * 자동차들의 현재 위치를 출력하는 메서드.
      */
     public void printCarsLocation(){
         for(Car car : cars){
-            System.out.println(car.printLocation());
+            System.out.println(car.formatLocation());
         }
         System.out.println();
     }
 
     /**
-     * 자동차 중 가장 멀리 간 차들을
-     * maxLocation과 비교해 모두 반환
-     * @return
+     * @return 가장 location이 큰 모든 Car 목록을 반환한다.
      */
     public ArrayList<Car> getWinner() {
-        int maxLoc = maxLocation();
+        int maxLoc = getMaxLocation();
         ArrayList<Car> ret = new ArrayList<>();
         for (Car car : cars) {
             ret.add(maxLoc == car.location ? car : null);
@@ -82,10 +76,9 @@ public class Game {
     }
 
     /**
-     * 자동차가 간 거리 중 가장 최대값
-     * @return
+     * @return 자동차들이 이동한 거리 중 가장 최대값을 반환한다.
      */
-    public int maxLocation() {
+    public int getMaxLocation() {
         int tmpMax = 0;
         for (Car car : cars) {
             tmpMax = Math.max(tmpMax, car.location);
