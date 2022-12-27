@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
-import racing_car.model.GameControl;
+import racing_car.model.Game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +12,7 @@ public class RacingCarTest {
     void separateByComma() {
         String testNames = "pobi,crong,honux";
         Car[] cars = Car.from(testNames);
-        assertArrayEquals(cars, new Car[] {
+        assertArrayEquals(cars, new Car[]{
                 new Car("pobi"),
                 new Car("crong"),
                 new Car("honux")
@@ -24,20 +24,23 @@ public class RacingCarTest {
     void emptyName() {
         String testNames = "";
         Car[] cars = Car.from(testNames);
-        assertArrayEquals(cars, new Car[] {
+        assertArrayEquals(cars, new Car[]{
                 new Car("")
         });
     }
 
     @Test
     @DisplayName("차량 전진 제어")
-    void carControl(){
-        GameControl gameControl = new GameControl();
-        Car car = new Car("pobi");
+    void carControl() {
+        Game game = new Game(new Car[]{
+                new Car("pobi")
+        });
+        game.moveCar(0);
 
-        gameControl.carControl(car);
+        Car[] cars = game.getCars();
+        Car firstCar = cars[0];
 
-        String output = car.showDistance();
+        String output = firstCar.showDistance();
         assertTrue(output.equals("-") || output.equals(""));
     }
 
@@ -55,21 +58,20 @@ public class RacingCarTest {
 
     @Test
     @DisplayName("우승자 구하기")
-    void getWinner() {
+    void getWinners() {
         String testNames = "pobi,crong,honux,ryan,chunsik,jordy";
         Car[] cars = Car.from(testNames);
 
-        int[] distances = new int[] {1, 5, 2, 5, 4, 5};
+        int[] distances = new int[]{1, 5, 2, 5, 4, 5};
         for (int i = 0; i < distances.length; i++) {
             cars[i].move(distances[i]);
         }
 
-        GameControl gameControl = new GameControl();
-        Car[] winners = gameControl.getWinners(cars);
+        Game game = new Game(cars);
+        Car[] winners = game.getWinners();
 
-        assertArrayEquals(new Car[] {
+        assertArrayEquals(new Car[]{
                 cars[1], cars[3], cars[5]
         }, winners);
     }
-
 }

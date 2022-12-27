@@ -1,6 +1,8 @@
 package racing_car.model;
 
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Car implements Comparable<Car> {
 
@@ -16,13 +18,12 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public static Car[] from(String names){
+    public static Car[] from(String names) {
         String[] separatedNames = names.split(",");
-        Car[] cars = new Car[separatedNames.length];
-        for (int i = 0; i < separatedNames.length; i++) {
-            cars[i] = new Car(separatedNames[i]);
-        }
-        return cars;
+        return Arrays.stream(separatedNames)
+                .map(Car::new)
+                .collect(Collectors.toList())
+                .toArray(Car[]::new);
     }
 
     public String showDistance() {
@@ -33,7 +34,6 @@ public class Car implements Comparable<Car> {
         this.distance += i;
     }
 
-
     @Override
     public int compareTo(Car o) {
         return Integer.compare(this.distance, o.distance);
@@ -41,8 +41,12 @@ public class Car implements Comparable<Car> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return distance == car.distance && Objects.equals(name, car.name);
     }
