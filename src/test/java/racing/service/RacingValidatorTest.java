@@ -15,10 +15,9 @@ public class RacingValidatorTest {
         racingValidator = new RacingValidator();
     }
     @ParameterizedTest
-    @ValueSource(strings = {"hello", "   ccc  "})
+    @ValueSource(strings = {"hello", "ccc"})
     public void givenNormalCarName_whenCarNameValidate_thenOk(String input) {
-        assertThatThrownBy(() -> racingValidator.carNameValidate(input))
-                .doesNotThrowAnyException();
+        assertThatNoException().isThrownBy(() -> racingValidator.carNameValidate(input));
     }
 
     @ParameterizedTest
