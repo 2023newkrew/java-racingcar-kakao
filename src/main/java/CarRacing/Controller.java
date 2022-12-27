@@ -3,23 +3,34 @@ package CarRacing;
 import java.util.List;
 
 public class Controller {
-    public static void main(String[] args) {
-        View view = new View();
-        Racing racing = new Racing();
+    static View view = new View();
+    static Racing racing = new Racing();
+    static Car[] carList;
 
+    public static void handleNames() {
         String inputNames = view.inputNames();
         String[] names = racing.handleNames(inputNames);
-        Car[] carList = racing.makeCarList(names);
+        carList =  racing.makeCarList(names);
+    }
 
+    public static void playRacing() {
         int inputCount = view.inputCount();
-
         view.printText();
         view.printResult(carList);
         for (int i = 0; i < inputCount; i++) {
             carList = racing.oneCycle(carList);
             view.printResult(carList);
         }
+    }
+
+    public static void winnerResult() {
         List<String> winners = racing.getWinner(carList);
         view.printWinners(winners);
+    }
+
+    public static void main(String[] args) {
+        handleNames();
+        playRacing();
+        winnerResult();
     }
 }
