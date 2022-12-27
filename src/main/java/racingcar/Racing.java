@@ -17,7 +17,7 @@ public class Racing {
     public void proceedRound() {
         for (Car car: cars) {
             car.move();
-            System.out.println(car.toStringWithPosition());
+            System.out.println(car);
         }
         System.out.println();
     }
@@ -57,7 +57,7 @@ public class Racing {
         ArrayList<Car> winners = getWinners(this.cars);
         String[] result = new String[winners.size()];
         for (int i = 0; i < winners.size(); i++) {
-            result[i] = winners.get(i).toString();
+            result[i] = winners.get(i).toStringOnlyName();
         }
         return String.join(", ", result);
     }

@@ -12,8 +12,8 @@ public class RacingTest {
         Assertions.assertThat(cars.length).isEqualTo(3);
 
         for(int i =0; i<3; i++) {
-            Assertions.assertThat(cars[i].toString()).isEqualTo(names[i]);
-            Assertions.assertThat(cars[i].toStringWithPosition()).isEqualTo(names[i]+" : -");
+            Assertions.assertThat(cars[i].toStringOnlyName()).isEqualTo(names[i]);
+            Assertions.assertThat(cars[i].toString()).isEqualTo(names[i]+" : -");
         }
     }
 
@@ -33,7 +33,7 @@ public class RacingTest {
             }
         }
 
-        Assertions.assertThat(racing.getWinner(cars).toStringWithPosition()).isEqualTo("c : ------");
+        Assertions.assertThat(racing.getWinner(cars).toString()).isEqualTo("c : ------");
     }
 
     @Test

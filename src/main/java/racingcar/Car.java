@@ -23,11 +23,11 @@ public class Car implements Comparable{
         return false;
     }
 
-    @Override
-    public String toString() {
+    public String toStringOnlyName() {
         return name;
     }
-    public String toStringWithPosition(){
+    @Override
+    public String toString(){
         return name + " : " + position;
     }
 
@@ -39,18 +39,6 @@ public class Car implements Comparable{
         return this.position.compareTo(((Car) o).position);
     }
 
-    @Override
-    public boolean equals(Object o){
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
-        Car car = (Car) o;
-        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
-    }
-
     public boolean equalsPosition(Object o) {
         if (this == o){
             return true;
@@ -60,10 +48,5 @@ public class Car implements Comparable{
         }
         Car car = (Car) o;
         return Objects.equals(position, car.position);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, randomGenerator, position);
     }
 }
