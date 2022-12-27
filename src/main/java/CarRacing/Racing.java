@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class Racing {
-    private Car[] cars;
     public String[] nameSplit(String inputString) {
         return inputString.split(",");
     }
@@ -23,7 +22,7 @@ public class Racing {
     }
 
     public Car[] makeCarList(String[] names) {
-        cars = new Car[names.length];
+        Car[] cars = new Car[names.length];
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new CarBuilder().name(names[i]).buildCar();
         }
