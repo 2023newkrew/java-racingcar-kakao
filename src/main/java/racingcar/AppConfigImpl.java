@@ -6,9 +6,9 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class AppConfigImpl implements AppConfig{
-    public RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
-    public InputView inputView = new InputView();
-    public OutputView outputView = new OutputView();
+    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public RandomNumberGenerator getRandomNumberGenerator() {
         return randomNumberGenerator;

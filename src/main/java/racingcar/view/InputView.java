@@ -4,13 +4,11 @@ import java.util.Scanner;
 
 public class InputView {
 
-    public static final int MAXIMUM_LENGTH = 5;
-    public Scanner scanner;
+    private static final int MAXIMUM_LENGTH = 5;
+    private static final Scanner scanner = new Scanner(System.in);
 
     public InputView() {
-        this.scanner = new Scanner(System.in);
     }
-
     public String[] inputName() {
         String[] names = scanner.nextLine().split(",");
         for (String name : names) {
