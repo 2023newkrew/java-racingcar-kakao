@@ -17,6 +17,11 @@ public class CarTest {
     }
 
     @Test
+    public void createRandomNumberTest() {
+        assertThat(car.createRandomNumber()).isBetween(0, 9);
+    }
+
+    @Test
     public void isMoveTest() {
         assertThat(car.isMove(3)).isEqualTo(false);
         assertThat(car.isMove(4)).isEqualTo(true);
