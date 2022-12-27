@@ -42,5 +42,4 @@ public class RacingCarGameImpl implements RacingCarGame {
     private int getMaxDistance() {
         return cars.stream().max(Comparator.comparingInt(Car::getDistance)).orElseThrow().getDistance();
     }
-
 }
