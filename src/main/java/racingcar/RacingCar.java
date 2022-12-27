@@ -1,6 +1,6 @@
 package racingcar;
 
-public class Car {
+public class RacingCar {
     public final static int POWER_THRESHOLD = 4;
     private int pos;
 

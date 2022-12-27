@@ -10,12 +10,12 @@ public class RacingCarTest {
     @DisplayName("전진 정지 기능 테스트")
     public void move() {
         //given
-        Car car = new Car();
+        RacingCar car = new RacingCar();
 
         //when, then
-        car.accelerate(Car.POWER_THRESHOLD-1);
+        car.accelerate(RacingCar.POWER_THRESHOLD-1);
         assertEquals(0, car.getPos());
-        car.accelerate(Car.POWER_THRESHOLD);
+        car.accelerate(RacingCar.POWER_THRESHOLD);
         assertEquals(1, car.getPos());
     }
 
