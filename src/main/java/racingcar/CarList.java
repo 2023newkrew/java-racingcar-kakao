@@ -1,9 +1,14 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarList {
-    private List<Car> cars;
+    private final List<Car> cars;
+
+    public CarList() {
+        cars = new ArrayList<>();
+    }
 
     public void add(Car other) {
         if (hasDuplicatedName(other)) {
@@ -15,5 +20,10 @@ public class CarList {
     private boolean hasDuplicatedName(Car other) {
         return cars.stream()
                 .anyMatch(car -> car.equals(other));
+    }
+
+    public void moveAll() {
+        RandomUtil randomUtil = new RandomUtil();
+        cars.forEach(car -> car.move(randomUtil.generateRandom()));
     }
 }
