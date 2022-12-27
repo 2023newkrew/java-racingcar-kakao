@@ -40,8 +40,16 @@ public class Game {
     public void run(int turn) {
         for(int i=0; i<turn; i++){
             moveCars();
+            printCarsLocation();
             runCount++;
         }
+    }
+
+    public void printCarsLocation(){
+        for(Car car : cars){
+            System.out.println(car.printLocation());
+        }
+        System.out.println();
     }
 
     public ArrayList<Car> getWinner() {
