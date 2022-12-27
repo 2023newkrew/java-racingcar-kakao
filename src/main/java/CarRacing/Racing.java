@@ -10,4 +10,10 @@ public class Racing {
             throw new RuntimeException("다섯 글자 이상입니다.");
         }
     }
+
+    public void nameExceptions(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            nameException(names[i]);
+        }
+    }
 }
