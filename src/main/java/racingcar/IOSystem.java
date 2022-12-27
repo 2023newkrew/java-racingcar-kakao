@@ -36,6 +36,16 @@ public class IOSystem {
         }
     }
 
+    public void printWinners(List<Car> winners) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Car winner : winners) {
+            stringBuilder.append(winner.getName() + ", ");
+        }
+        stringBuilder.setLength(stringBuilder.length() - 2);
+        stringBuilder.append("가 최종 우승했습니다.");
+
+    }
+
     public int getTrialNumber() {
         int trialNumber = Integer.parseInt(sc.next());
         if (trialNumber < 0) {
