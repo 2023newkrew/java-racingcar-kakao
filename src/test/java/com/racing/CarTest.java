@@ -32,11 +32,19 @@ public class CarTest {
         car1.move(4);
         assertThat(car1.location).isEqualTo(1);
     }
+    @Test
+    void moveNotBoundedTest(){
+        Car car1 = new Car("car1");
+        // move 의 입력값은 0 ~ 9 사이여야 한다.
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(()-> car1.move(-1));
+    }
 
     // 차의 현재 location 출력 테스트
     @Test
     void printLocationTest(){
         Car car1 = new Car("car1");
+        assertThat(car1.formatLocation()).isEqualTo("car1 : ");
         // 한 칸 이동
         car1.move(9);
         assertThat(car1.formatLocation()).isEqualTo("car1 : -");
