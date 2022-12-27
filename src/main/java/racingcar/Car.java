@@ -17,4 +17,8 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public CarDTO toDTO() {
+        return new CarDTO(this.name, this.position);
+    }
 }
