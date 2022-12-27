@@ -23,4 +23,18 @@ public class IOView {
         }
         return carNames;
     }
+
+    public int inputFinalTurn() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        String input = "a";
+        while(!input.matches("[0-9]+")) {
+            input = scanner.nextLine();
+        }
+        return Integer.parseInt(input);
+    }
+
+    public static void main(String[] args) {
+        IOView ioView = new IOView();
+        ioView.inputFinalTurn();
+    }
 }
