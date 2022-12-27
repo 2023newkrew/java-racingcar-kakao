@@ -20,8 +20,15 @@ public class Car {
         return name.equals(carName);
     }
 
+    public boolean isSamePosition(Car other) {
+        return position == other.position;
+    }
+
+    public int comparePosition(Car other) {
+        return other.position - position;
+    }
+
     public CarDto toDto() {
         return CarDto.of(name, position);
     }
-
 }

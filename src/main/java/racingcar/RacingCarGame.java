@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCarGame {
 
@@ -19,6 +20,21 @@ public class RacingCarGame {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
         }
         count--;
+    }
+
+    public List<CarDto> selectWinners() {
+        Car maxPositionCar = calculateMaxPositionCar();
+
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPositionCar))
+                .map(Car::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public Car calculateMaxPositionCar() {
+        return cars.stream()
+                .max(Car::comparePosition)
+                .orElseThrow();
     }
 
     public boolean isFinish() {

@@ -66,7 +66,7 @@ public class RacingCarTest {
 
     @Test
     @DisplayName("시도할 횟수만큼 게임을 진행한다.")
-    void selectWinner() {
+    void playGame() {
         int count = 5;
         List<Car> list = List.of(new Car("avante"), new Car("sonata"));
         RacingCarGame racingCarGame = new RacingCarGame(list, count);
@@ -76,6 +76,20 @@ public class RacingCarTest {
         }
 
         assertThat(racingCarGame.isFinish()).isTrue();
+    }
+
+    @Test
+    @DisplayName("자동차마다 이동한 거리를 비교해서 가장 많이 이동한 자동차들을 선정한다.")
+    void selectWinner() {
+        int count = 5;
+        List<Car> list = List.of(new Car("avante"), new Car("sonata"));
+        RacingCarGame racingCarGame = new RacingCarGame(list, count);
+
+        while (!racingCarGame.isFinish()) {
+            racingCarGame.play();
+        }
+
+        assertThat(racingCarGame.selectWinners()).isNotEmpty();
     }
 
 
