@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Objects;
+
 public class Position implements Comparable{
     private int val;
 
@@ -7,11 +9,7 @@ public class Position implements Comparable{
         this.val = 1;
     }
 
-    public void print(String carName) {
-        System.out.println(carName + " : " + "-".repeat(this.val));
-    }
-
-    public void proceed() {
+    public void move() {
         this.val++;
     }
 
@@ -22,4 +20,28 @@ public class Position implements Comparable{
         }
         return val - ((Position)o).val;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+        Position position = (Position) o;
+        return val == position.val;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val);
+    }
+
+    @Override
+    public String toString() {
+        return "-".repeat(this.val);
+    }
+
+
 }

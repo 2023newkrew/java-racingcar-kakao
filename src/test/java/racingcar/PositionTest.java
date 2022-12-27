@@ -8,7 +8,7 @@ public class PositionTest {
     void compareTest() {
         Position position1 = new Position();
         Position position2 = new Position();
-        position1.proceed();
+        position1.move();
         Assertions.assertThat(position1.compareTo(position2)).isEqualTo(1);
     }
 }
