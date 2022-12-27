@@ -18,6 +18,11 @@ public class RacingCarGameTest {
     static AppConfig appConfig;
     static Field randomNumberGenerator;
     static RacingCarGame racingCarGame;
+
+    /**
+     * RandomNumberGeneratorTest를 위해 구현한 FakeRandomNumberGenerator
+     * generator 실행 횟수가 짝수 일 경우 4 그외 3
+     */
     static class FakeRandomNumberGenerator implements RandomNumberGenerator {
         int seed = 0;
 
@@ -49,15 +54,11 @@ public class RacingCarGameTest {
 
     @Test
     public void runTest() throws NoSuchFieldException, IllegalAccessException {
-
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
-
         racingCarGame.add(car1, car2, car3);
-
         racingCarGame.run(5);
-
         Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
         cars.setAccessible(true);
         ArrayList<Car> racingCars = (ArrayList<Car>) cars.get(racingCarGame);
@@ -71,7 +72,6 @@ public class RacingCarGameTest {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
-
         racingCarGame.add(car1, car2, car3);
         racingCarGame.run(5);
         assertThat(racingCarGame.getWinner().size()).isEqualTo(1);
@@ -83,10 +83,8 @@ public class RacingCarGameTest {
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
         Car car4 = new RacingCar("russell");
-
         racingCarGame.add(car1, car2, car3, car4);
         racingCarGame.run(5);
-
         Assertions.assertThat(racingCarGame.getWinner().size()).isEqualTo(2);
         Assertions.assertThat(racingCarGame.getWinner()).containsExactly(car2, car4);
     }
