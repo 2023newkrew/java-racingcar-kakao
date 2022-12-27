@@ -11,13 +11,13 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (isMovable(randomNumber)) {
             position += 1;
         }
     }
 
-    public boolean isSameName(String carName) {
-        return name.equals(carName);
+    public boolean isMovable(int randomNumber) {
+        return randomNumber >= 4;
     }
 
     public boolean isSamePosition(Car other) {
