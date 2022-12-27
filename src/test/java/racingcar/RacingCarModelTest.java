@@ -10,8 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class RacingCarModelTest {
 
@@ -72,6 +71,45 @@ class RacingCarModelTest {
             );
             RacingCarModel model = RacingCarModel.from(cars);
             assertThat(model).isNotNull();
+        }
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    class getWinners {
+
+        @ParameterizedTest
+        @MethodSource
+        void should_returnCarInfos_when_givenCars(List<Car> cars, List<CarInfo> carInfos) {
+            RacingCarModel model = RacingCarModel.from(cars);
+            List<CarInfo> winners = model.getWinners();
+            assertThatList(winners).isEqualTo(carInfos);
+        }
+
+        Stream<Arguments> should_returnCarInfos_when_givenCars() {
+            Engine engine = Engine.defaultEngine;
+            return Stream.of(
+                    Arguments.of(
+                            List.of(
+                                    Car.from(CarInfo.from("car1", 1), engine),
+                                    Car.from(CarInfo.from("car2", 2), engine),
+                                    Car.from(CarInfo.from("car3", 3), engine)),
+                            List.of(
+                                    CarInfo.from("car3", 3))),
+                    Arguments.of(
+                            List.of(
+                                    Car.from(CarInfo.from("car1", 1), engine),
+                                    Car.from(CarInfo.from("car2", 1), engine),
+                                    Car.from(CarInfo.from("car3", 1), engine)),
+                            List.of(
+                                    CarInfo.from("car1", 1),
+                                    CarInfo.from("car2", 1),
+                                    CarInfo.from("car3", 1))),
+                    Arguments.of(
+                            List.of(
+                                    Car.from(CarInfo.from("car1", 1), engine)),
+                            List.of(
+                                    CarInfo.from("car1", 1))));
         }
     }
 }

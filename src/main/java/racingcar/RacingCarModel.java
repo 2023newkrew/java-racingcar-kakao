@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RacingCarModel {
 
@@ -46,4 +47,31 @@ public class RacingCarModel {
             throw new RuntimeException("Car name Duplicate.");
         }
     }
+
+    public void progress() {
+    }
+
+    public List<CarInfo> getCarInfos() {
+        return cars.stream().map(Car::getCarInfo).collect(Collectors.toList());
+    }
+
+    public List<CarInfo> getWinners() {
+        List<CarInfo> carInfos = getCarInfos();
+        int maxPosition = getMaxPosition(carInfos);
+        return carInfos.stream()
+                .filter(carInfo -> isWinnerCar(carInfo, maxPosition))
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition(List<CarInfo> carInfos) {
+        return carInfos.stream()
+                .mapToInt(CarInfo::getPosition)
+                .max()
+                .getAsInt();
+    }
+
+    private boolean isWinnerCar(CarInfo carInfo, int maxPosition) {
+        return carInfo.getPosition() == maxPosition;
+    }
+
 }
