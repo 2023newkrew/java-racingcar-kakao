@@ -7,6 +7,6 @@ public class InputParser {
     }
 
     public int parseToInt(String input) {
-        return 0;
+        return Integer.parseInt(input);
     }
 }
