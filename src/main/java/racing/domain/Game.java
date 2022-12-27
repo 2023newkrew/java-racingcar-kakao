@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Game {
-    private Cars cars;
+    private final Cars cars;
 
     public Game() {
         this.cars = new Cars();

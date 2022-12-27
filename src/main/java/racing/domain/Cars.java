@@ -13,7 +13,7 @@ import static java.lang.Math.max;
 
 public class Cars {
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     private static final int THRESHOLD = 4;
 
