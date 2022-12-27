@@ -3,6 +3,9 @@ package racingcar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingTest {
@@ -10,9 +13,9 @@ public class RacingTest {
 
     @BeforeEach
     void setUp() {
-        racing = new Racing(5);
-        racing.addCar(new Car("davi"));
-        racing.addCar(new Car("sean"));
+        racing = new Racing();
+        racing.setCount(5);
+        racing.addCars(Arrays.asList("davi", "sean"));
     }
 
     @Test
