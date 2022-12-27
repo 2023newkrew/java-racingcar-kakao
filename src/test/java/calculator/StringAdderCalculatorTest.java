@@ -48,9 +48,9 @@ public class StringAdderCalculatorTest {
     @DisplayName("음수를 전달할 경우 RuntimeException 예외가 발생해야 한다.")
     public void isExistNegativeNumber() {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> {
-                    calculator.calculate(new Prompt("-1:2:3"));
-                });
+            .isThrownBy(() -> {
+                calculator.calculate(new Prompt("-1:2:3"));
+            });
     }
 }
 
