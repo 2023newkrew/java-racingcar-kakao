@@ -1,9 +1,7 @@
 package stringcalc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StringNumberParser {
     public List<Long> parse(String input, String separator) {
@@ -11,25 +9,22 @@ public class StringNumberParser {
             return new ArrayList<>();
         }
         if (separator == null) {
-            String[] splitStrings = input.split("[,:]");
-            System.out.println("Arrays.toString(splitStrings) = " + Arrays.toString(splitStrings));
-            return convertToNumbers(splitStrings);
+            String[] stringNumbers = input.split("[,:]");
+            return convertToNumbers(stringNumbers);
         }
         return separateWithCustomSeparator(input, separator);
     }
 
     private List<Long> separateWithCustomSeparator(String input, String separator) {
-        String stringNumber = input.substring("//.\n".length());
-        String[] splitStrings = stringNumber.split(separator);
-        return convertToNumbers(splitStrings);
+        String sequentialNumberString = input.substring("//.\n".length());
+        String[] stringNumbers = sequentialNumberString.split(separator);
+        return convertToNumbers(stringNumbers);
     }
 
-    private List<Long> convertToNumbers(String[] splitStrings) {
+    private List<Long> convertToNumbers(String[] stringNumbers) {
         List<Long> numbers = new ArrayList<>();
-        System.out.println("Arrays.toString(splitStrings) = " + Arrays.toString(splitStrings));
-        System.out.println("splitStrings.length = " + splitStrings.length);
-        for (String splitString : splitStrings) {
-            numbers.add(convertToNumber(splitString));
+        for (String stringNumber : stringNumbers) {
+            numbers.add(convertToNumber(stringNumber));
         }
         if (numbers.stream().anyMatch(num -> num < 0)) {
             throw new RuntimeException();
@@ -37,9 +32,9 @@ public class StringNumberParser {
         return numbers;
     }
 
-    private Long convertToNumber(String str) {
+    private Long convertToNumber(String stringNumber) {
         try {
-            return Long.parseLong(str);
+            return Long.parseLong(stringNumber);
         }catch (NumberFormatException ex) {
             throw new RuntimeException(ex);
         }
