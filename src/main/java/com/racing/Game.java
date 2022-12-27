@@ -24,6 +24,13 @@ public class Game {
      * @return 각각의 random값
      */
     public ArrayList<Integer> moveCars() {
-        return new ArrayList<>();
+        Random random = new Random();
+        ArrayList<Integer> result = new ArrayList<>();
+        for (Car car : cars) {
+            int rand = random.nextInt(10);
+            result.add(rand);
+            car.movement(rand);
+        }
+        return result;
     }
 }
