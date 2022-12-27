@@ -31,7 +31,7 @@ public class GameTest {
 
         for(int i=0; i<3; i++){
             String move = rands.get(i) < 4 ? "" : "-";
-            assertThat(game.cars.get(i).printLocation()).isEqualTo("car" + i + " : " + move);
+            assertThat(game.cars.get(i).printLocation()).isEqualTo("car" + (i + 1) + " : " + move);
         }
     }
 }
