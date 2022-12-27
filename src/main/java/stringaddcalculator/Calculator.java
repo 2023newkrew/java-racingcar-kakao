@@ -3,10 +3,10 @@ package stringaddcalculator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.lang.Integer.parseInt;
 
 public class Calculator {
 
@@ -22,49 +22,71 @@ public class Calculator {
         isInteger();
 
         for (String token : tokens) {
-            sum += parseInt(token);
+            sum += Integer.parseInt(token);
         }
 
         return sum;
     }
 
     public void isInteger() {
-        for (String token : tokens) {
-            isNumeric(token);
+        for (int i = 0; i < tokens.length ; i++) {
+            isNumeric(tokens, i);
         }
     }
 
-    private void isNumeric(String token) {
+    private void isNumeric(String[] tokens, int index) {
         int num;
+        if(Objects.equals(tokens[index], "")){
+            tokens[index] = "0";
+        }
         try {
-            num = Integer.parseInt(token);
+            num = Integer.parseInt(tokens[index]);
         } catch (NumberFormatException e){
+            System.out.println((index + 1) + "번째 인자 : " + tokens[index] + "은 숫자가 아닙니다.");
             throw new RuntimeException();
         }
         if (num < 0){
+            System.out.println((index + 1) + "번째 인자 : " + tokens[index] + "은 음수 입니.");
             throw new RuntimeException();
         }
     }
 
     public static void main(String[] args) throws IOException {
-        String text;
+
+        while (!stringAddCalculator()) {}
+
+    }
+
+    public static boolean stringAddCalculator() throws IOException {
         String[] str_arr;
+        str_arr = stringToSplit(StringInput());
+        Calculator calculator = new Calculator(str_arr);
+        try {
+            System.out.println(calculator.cal());
+        } catch (Exception e){
+            return false;
+        }
+        return true;
+    }
 
-        System.out.print("Enter positive integer : ");
+    public static String StringInput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String text;
+        System.out.print("Enter positive integer : ");
         text = reader.readLine().replace("\\n","\n");
+        return text;
+    }
+    public static String[] stringToSplit(String text){
+        String[] str_arr;
+        String split = ",|;";
 
-        str_arr = text.split(",|;");
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
-            String customDelimiter = m.group(1);
-            str_arr = m.group(2).split(customDelimiter);
+            split += "|" + m.group(1);
+            text = m.group(2);
         }
-        if (str_arr[0].isEmpty()){
-            System.out.println(0);
-            return;
-        }
-        Calculator calculator = new Calculator(str_arr);
-        System.out.println(calculator.cal());
+
+        str_arr = text.split(split);
+        return str_arr;
     }
 }
