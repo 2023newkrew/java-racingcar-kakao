@@ -3,15 +3,21 @@ package racingcar;
 import java.util.Objects;
 
 public class Car {
+
     private int position;
+
     private final String name;
 
     public Car(String name) {
         position = 1;
-        if (name.length() > 5) {
+        if (isInvalidName(name)) {
             throw new RuntimeException();
         }
         this.name = name;
+    }
+
+    public boolean isInvalidName(String name) {
+        return name == null || name.equals("") || name.length() > 5;
     }
 
     public void move() {
