@@ -48,6 +48,7 @@ public class Calculator {
     }
 
     private void checkDelimiter() {
+        input = input.replace("\\n", "\n");
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
         if (m.find()) {
             String customDelimiter = m.group(1);
