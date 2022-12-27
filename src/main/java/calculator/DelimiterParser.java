@@ -4,15 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DelimiterParser {
-    private final String input;
     private final Matcher matcher;
     private String delimiter;
     private String purifiedInput;
 
     public DelimiterParser(String input) {
-        this.input = input;
         this.delimiter = ",|:";
-        this.matcher = Pattern.compile("//(.)\n(.*)").matcher(this.input);
+        this.matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
         this.purifiedInput = input;
     }
 
