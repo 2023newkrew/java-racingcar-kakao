@@ -1,7 +1,6 @@
 package racing_car.model;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.Collectors;

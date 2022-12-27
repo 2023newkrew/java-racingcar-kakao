@@ -1,6 +1,5 @@
 package racing_car.model;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
@@ -11,6 +10,10 @@ public class Car implements Comparable<Car> {
 
     public Car(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static Car[] from(String names){
