@@ -1,4 +1,8 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.dto.CarDto;
+import racingcar.utils.RacingCarConverter;
+import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,20 +10,20 @@ import java.util.stream.Collectors;
 public class RacingCarGame {
 
     private List<Car> cars;
-    private int count;
+    private int round;
     private RandomNumberGenerator randomNumberGenerator;
 
-    public RacingCarGame(List<CarDto> carDtos, int gameCount) {
+    public RacingCarGame(List<CarDto> carDtos, int gameRound) {
         this.cars = RacingCarConverter.toCars(carDtos);
-        this.count = gameCount;
+        this.round = gameRound;
         this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
-    public GameResult play() {
+    public GameResult doNextRound() {
         for (Car car : cars) {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
         }
-        count--;
+        round--;
 
         List<CarDto> intermediateResult = RacingCarConverter.toCarDtos(cars);
         return new GameResult(intermediateResult);
@@ -42,6 +46,6 @@ public class RacingCarGame {
     }
 
     public boolean isFinish() {
-        return count == 0;
+        return round == 0;
     }
 }

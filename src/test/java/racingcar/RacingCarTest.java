@@ -2,6 +2,11 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.GameResult;
+import racingcar.domain.RacingCarGame;
+import racingcar.dto.CarDto;
+import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
 
@@ -63,7 +68,7 @@ public class RacingCarTest {
         RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
-            racingCarGame.play();
+            racingCarGame.doNextRound();
         }
 
         assertThat(racingCarGame.isFinish()).isTrue();
@@ -77,7 +82,7 @@ public class RacingCarTest {
         RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
-            GameResult gameResult = racingCarGame.play();
+            GameResult gameResult = racingCarGame.doNextRound();
             assertThat(gameResult).isNotNull();
             assertThat(gameResult.getCarStatusList()).hasSize(inputCars.size());
         }
@@ -91,7 +96,7 @@ public class RacingCarTest {
         RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
-            racingCarGame.play();
+            racingCarGame.doNextRound();
         }
         GameResult gameResult = racingCarGame.selectWinners();
 

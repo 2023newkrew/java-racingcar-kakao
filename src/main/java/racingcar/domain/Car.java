@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.dto.CarDto;
 
 public class Car {
 

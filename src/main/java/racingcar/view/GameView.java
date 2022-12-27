@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.view;
 
 import java.util.Scanner;
 
@@ -19,16 +19,19 @@ public class GameView {
         return scanner.nextLine();
     }
 
-    public int getCount() {
+    public int getRound() {
         System.out.println(COUNT_INPUT_MESSAGE);
         return scanner.nextInt();
     }
 
-    public void printResult(String result) {
-        System.out.println(result);
+    public void printResult(String... results) {
+        for (String result : results) {
+            System.out.println(result);
+        }
     }
 
-    public void printResultTitle() {
-        System.out.println(RESULT_TITLE);
+    public void printInitialResult(String result) {
+        printResult(RESULT_TITLE, result);
     }
+
 }
