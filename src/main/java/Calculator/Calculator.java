@@ -27,8 +27,8 @@ public class Calculator {
     }
 
     public int run() throws RuntimeException {
-        if (this.isEmptyOrNull()) return 0;
-        if ('0' > text.charAt(text.length() - 1) || text.charAt(text.length() - 1) > '9') {
+        if (isEmptyOrNull()) return 0;
+        if (isEndsWithNumber()) {
             throw new RuntimeException();
         }
 
@@ -36,6 +36,10 @@ public class Calculator {
         splitText();
 
         return addIntegerElements();
+    }
+
+    private boolean isEndsWithNumber() {
+        return '0' > text.charAt(text.length() - 1) || text.charAt(text.length() - 1) > '9';
     }
 
     private int toIntegerIfPositive(String possibleNumber) throws RuntimeException {
