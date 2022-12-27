@@ -103,22 +103,17 @@ public class Race {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String text;
         int turn;
         Race race = null;
 
         while (race == null || race.getCars().isEmpty()){
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-            text = reader.readLine();
-            race = new Race(text);
+            race = new Race(reader.readLine());
             race.ready();
-
         }
-
 
         System.out.println("시도할 회수는 몇회인가요?");
         turn = Integer.parseInt(reader.readLine());
-
 
         race.playRace(turn);
     }
