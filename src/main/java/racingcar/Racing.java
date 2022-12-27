@@ -10,6 +10,7 @@ public class Racing {
         for (int i = 0; i < names.length; i++) {
             result[i] = new Car(names[i], new RandomGeneratorImpl());
         }
+        cars = result;
         return result;
     }
 
@@ -50,6 +51,15 @@ public class Racing {
             addWinner(car, winner, result);
         }
         return result;
+    }
+
+    public String joinWinners() {
+        ArrayList<Car> winners = getWinners(this.cars);
+        String[] result = new String[winners.size()];
+        for (int i = 0; i < winners.size(); i++) {
+            result[i] = winners.get(i).toString();
+        }
+        return String.join(", ", result);
     }
 
     private void addWinner(Car car, Car winner, ArrayList<Car> result) {
