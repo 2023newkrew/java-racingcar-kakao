@@ -33,7 +33,7 @@ public class StringCalculator {
     }
 
     public int handleStringLengthShorterThanTwo(String input) {
-        if (Objects.isNull(input) || input.isEmpty()) {
+        if (Objects.isNull(input) || input.isBlank()) {
             return 0;
         }
 

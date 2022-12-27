@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.dto;
 
 import racingcar.dto.CarDto;
 

@@ -3,8 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.domain.GameResult;
-import racingcar.domain.RacingCarGame;
+import racingcar.dto.GameResult;
+import racingcar.service.RacingCarGame;
 import racingcar.dto.CarDto;
 import racingcar.utils.RandomNumberGenerator;
 

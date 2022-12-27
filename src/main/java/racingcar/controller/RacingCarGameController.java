@@ -1,55 +1,51 @@
 package racingcar.controller;
 
-import racingcar.domain.GameResult;
-import racingcar.domain.RacingCarGame;
+import racingcar.service.RacingCarGame;
+import racingcar.utils.RacingCarConverter;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
+import racingcar.dto.GameResult;
 import racingcar.dto.CarDto;
 import racingcar.utils.RacingCarValidator;
-import racingcar.view.GameView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCarGameController {
 
-    private GameView gameView;
+    private InputView inputView;
+    private OutputView outputView;
     private RacingCarValidator racingCarValidator;
 
     public RacingCarGameController() {
-        gameView = new GameView();
+        inputView = new InputView();
+        outputView = new OutputView();
         racingCarValidator = new RacingCarValidator();
     }
 
     public void run() {
-        String[] carNames = gameView.getCarNames().split(",");
+        String[] carNames = inputView.getCarNames().split(",");
         racingCarValidator.validateCarNames(carNames);
 
-        List<CarDto> carDtos = createCarList(carNames);
-        int gameRound = gameView.getRound();
+        List<CarDto> carDtos = RacingCarConverter.toCarDtos(carNames);
+        int gameRound = inputView.getRound();
+        racingCarValidator.validateGameRound(gameRound);
 
-        gameView.printInitialResult(createInitialStatus(carDtos));
         execute(carDtos, gameRound);
     }
 
-    public void execute(List<CarDto> carDtos, int count) {
-        RacingCarGame racingCarGame = new RacingCarGame(carDtos, count);
+    public void execute(List<CarDto> carDtos, int round) {
+        RacingCarGame racingCarGame = new RacingCarGame(carDtos, round);
+        outputView.printInitialStatus(createInitialStatus(carDtos));
 
         while (!racingCarGame.isFinish()) {
             GameResult gameResult = racingCarGame.doNextRound();
-            gameView.printResult(gameResult.getIntermediateResult());
+            outputView.print(gameResult.getIntermediateResult());
         }
-
-        gameView.printResult(racingCarGame.selectWinners().getFinalResult());
+        outputView.print(racingCarGame.selectWinners().getFinalResult());
     }
 
     public String createInitialStatus(List<CarDto> carDtos) {
         return new GameResult(carDtos).getIntermediateResult();
-    }
-
-    public List<CarDto> createCarList(String[] carNames) {
-        return Arrays.stream(carNames)
-                .map(carName -> new CarDto(carName, 1))
-                .collect(Collectors.toList());
     }
 
 }

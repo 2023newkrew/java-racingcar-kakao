@@ -1,5 +1,7 @@
-package racingcar.domain;
+package racingcar.service;
 
+import racingcar.domain.Car;
+import racingcar.dto.GameResult;
 import racingcar.dto.CarDto;
 import racingcar.utils.RacingCarConverter;
 import racingcar.utils.RandomNumberGenerator;
@@ -23,7 +25,7 @@ public class RacingCarGame {
         for (Car car : cars) {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
         }
-        round--;
+        round -= 1;
 
         List<CarDto> intermediateResult = RacingCarConverter.toCarDtos(cars);
         return new GameResult(intermediateResult);
