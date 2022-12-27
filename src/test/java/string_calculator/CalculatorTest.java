@@ -1,5 +1,8 @@
+package string_calculator;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import string_calculator.Calculator;
 
 public class CalculatorTest {
 

@@ -1,5 +1,5 @@
-import java.io.InputStream;
-import java.io.InputStreamReader;
+package string_calculator;
+
 import java.util.Arrays;
 import java.util.Scanner;
 

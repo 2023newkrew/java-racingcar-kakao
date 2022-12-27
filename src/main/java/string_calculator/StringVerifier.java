@@ -1,3 +1,5 @@
+package string_calculator;
+
 public class StringVerifier {
 
     private StringVerifier(){}

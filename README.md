@@ -16,16 +16,16 @@
 ### Test의 target
 
 **Class**
-- StringParser
+- string_calculator.StringParser
     - parseSplitter
     - parseTargetString
     - splitTargetString
     - castStringToInteger
-- StringVerifier
+- string_calculator.StringVerifier
     - isInteger
     - isPositive
     - isNullOrEmpty
-- Calculator
+- string_calculator.Calculator
     - add()
 - Runner
     - public run()
