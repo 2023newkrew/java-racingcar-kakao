@@ -32,6 +32,7 @@ public class RacingGameView {
             printMoveStatus(entry.getValue());
             System.out.println();
         }
+        System.out.println();
     }
 
     private void printMoveStatus(Integer move) {
