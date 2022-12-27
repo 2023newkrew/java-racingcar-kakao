@@ -1,10 +1,7 @@
 package racing.domain;
 
 import org.assertj.core.util.Strings;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,6 +24,7 @@ public class CarsTest {
     @Test
     @Deprecated
     @Disabled
+    @DisplayName("랜덤 숫자가 4 이상이면 이동할 수 있다.")
     public void isMove() {
         assertThat(cars.isMovable()).isEqualTo(true);
         assertThat(cars.isMovable()).isEqualTo(true);
@@ -35,6 +33,7 @@ public class CarsTest {
     @Test
     @Deprecated
     @Disabled
+    @DisplayName("랜덤 숫자가 4 미만이면 이동할 수 없다.")
     public void isStop() {
         assertThat(cars.isMovable()).isEqualTo(false);
         assertThat(cars.isMovable()).isEqualTo(false);
@@ -42,6 +41,7 @@ public class CarsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"marcus", "noah.u"})
+    @DisplayName("자동차 이름은 5글자 이하이여야 한다.")
     public void carNameLengthOutOfRange(String input) {
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> {

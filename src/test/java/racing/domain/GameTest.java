@@ -1,5 +1,6 @@
 package racing.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameTest {
     @ParameterizedTest
     @MethodSource("decideWinnerArgument")
+    @DisplayName("가장 높은 위치를 가진 자동차가 우승하며, 공동 우승이 존재할 수 있다.")
     public void decideWinner(Game game, List<String> expected) {
         assertThat(game.getWinnerNames()).isEqualTo(expected);
     }
