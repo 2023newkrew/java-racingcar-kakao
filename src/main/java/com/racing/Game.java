@@ -5,13 +5,10 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Game {
-    public ArrayList<Car> cars;
-    public int runCount;
+    public ArrayList<Car> cars = new ArrayList<>();
+    public int runCount = 0;
 
-    public Game(){
-        this.cars = new ArrayList<>();
-        this.runCount = 0;
-    }
+    public Game(){}
 
     /**
      * @param text 초기화를 위해 자동차 이름들의 목록을 반환한다.
@@ -31,12 +28,12 @@ public class Game {
      * @return 각각의 Car에 move 값으로 넣어지는 0~9 사이의 값을 삽입한다.
      */
     public ArrayList<Integer> moveCars() {
-        Random random = new Random();
+        Random randomGenerator = new Random();
         ArrayList<Integer> result = new ArrayList<>();
-        for (Car car : cars) {
-            int rand = random.nextInt(10);
-            result.add(rand);
-            car.move(rand);
+        for (Car eachCar : this.cars) {
+            int randomNumber = randomGenerator.nextInt(10);
+            result.add(randomNumber);
+            eachCar.move(randomNumber);
         }
         return result;
     }
@@ -66,11 +63,12 @@ public class Game {
      * @return 가장 location이 큰 모든 Car 목록을 반환한다.
      */
     public ArrayList<Car> getWinner() {
-        int maxLoc = getMaxLocation();
+        int maxLocation = getMaxLocation();
         ArrayList<Car> ret = new ArrayList<>();
-        for (Car car : cars) {
-            ret.add(maxLoc == car.location ? car : null);
+        for (Car eachCar : this.cars) {
+            ret.add(maxLocation == eachCar.location ? eachCar : null);
         }
+        // 모든 null 값을 제거한다.
         ret.removeIf(Objects::isNull);
         return ret;
     }
@@ -79,10 +77,10 @@ public class Game {
      * @return 자동차들이 이동한 거리 중 가장 최대값을 반환한다.
      */
     public int getMaxLocation() {
-        int tmpMax = 0;
-        for (Car car : cars) {
-            tmpMax = Math.max(tmpMax, car.location);
+        int tempMaxLocation = 0;
+        for (Car eachCar : this.cars) {
+            tempMaxLocation = Math.max(tempMaxLocation, eachCar.location);
         }
-        return tmpMax;
+        return tempMaxLocation;
     }
 }

@@ -1,27 +1,29 @@
 package com.racing;
 
 public class Car {
-    public int location;
-    private final String carName;
+    public int location = 0;
+    public final String name;
 
     public Car(String carName) {
-        this.carName = carName;
+        this.name = carName;
     }
 
     /**
      * 차 이름이 5글자 초과라면 RuntimeError
      */
     public void validateName() {
-        if (carName.length() > 5) {
+        if (name.length() > 5) {
             throw new RuntimeException("car name length over 5");
         }
     }
 
     /**
-     * @param rand 0~9 사이의 값을 입력받는다 4 이상이면 location을 1 증가시킨다.
+     * @param userInput 0~9 사이의 값을 입력받는다 4 이상이면 location을 1 증가시킨다.
      */
-    public void move(int rand) {
-        if (rand >= 4) this.location++;
+    public void move(int userInput) {
+        if (userInput >= 4){
+            this.location += 1;
+        }
     }
 
     /**
@@ -32,12 +34,12 @@ public class Car {
     public String formatLocation() {
         return String.format(
                 "%s : %s",
-                this.carName,
+                this.name,
                 "-".repeat(this.location)
         );
     }
 
     public void printCarName() {
-        System.out.print(this.carName);
+        System.out.print(this.name);
     }
 }
