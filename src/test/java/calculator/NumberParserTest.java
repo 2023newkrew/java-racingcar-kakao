@@ -48,10 +48,4 @@ public class NumberParserTest {
                 });
 
     }
-
-    @Test
-    void hahaha()
-    {
-        assertThat("안녕하세요".length()).isEqualTo(5);
-    }
 }
