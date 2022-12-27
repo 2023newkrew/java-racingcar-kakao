@@ -30,4 +30,8 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public int getMaxPosition(int maxPosition) {
+        return Math.max(maxPosition, position);
+    }
 }
