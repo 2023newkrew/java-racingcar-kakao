@@ -1,6 +1,7 @@
 package racing;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -24,6 +25,14 @@ public class Simulator {
         for (int i = 0; i < times; i++) {
             run(random);
         }
+    }
+
+    public List<String> winners() {
+        Car maxCar = Collections.max(cars);
+        return cars.stream()
+                .filter(c -> c.compareTo(maxCar) == 0)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     @Override

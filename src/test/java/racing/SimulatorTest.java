@@ -55,10 +55,10 @@ public class SimulatorTest {
 
     @ParameterizedTest
     @MethodSource("getSimulateData")
-    void simulate(String names, List<Integer> randoms, int m, String expected) {
+    void simulate(String names, List<Integer> randoms, int times, String expected) {
         Simulator simulator = new Simulator();
         simulator.create(names);
-        simulator.simulate(createRandoms(randoms), m);
+        simulator.simulate(createRandoms(randoms), times);
         assertThat(simulator.toString()).isEqualTo(expected);
     }
 
@@ -66,6 +66,22 @@ public class SimulatorTest {
         return Stream.of(
                 Arguments.of("A,B", List.of(4, 3, 5, 2), 2, "A : ---\nB : -"),
                 Arguments.of("D,E", List.of(9, 2, 6, 5, 1, 2), 3, "D : ---\nE : --")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("getWinnersData")
+    void winners(String names, List<Integer> randoms, int times, List<String> winners) {
+        Simulator simulator = new Simulator();
+        simulator.create(names);
+        simulator.simulate(createRandoms(randoms), times);
+        assertThat(simulator.winners()).isEqualTo(winners);
+    }
+
+    private static Stream<Arguments> getWinnersData() {
+        return Stream.of(
+                Arguments.of("A,B", List.of(4, 3, 5, 2), 2, List.of("A")),
+                Arguments.of("D,E", List.of(9, 2, 6, 5, 1, 4), 3, List.of("D", "E"))
         );
     }
 }
