@@ -1,5 +1,8 @@
 package CarRacing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Racing {
     private Car[] cars;
     public String[] nameSplit(String inputString) {
@@ -24,5 +27,13 @@ public class Racing {
             cars[i] = new CarBuilder().name(names[i]).buildCar();
         }
         return cars;
+    }
+
+    public List<String> getWinner(Car[] cars) {
+        List<String> winners = new ArrayList<>();
+        int maxPosition = 0;
+        for (int i = 0; i < cars.length; i++) {
+        }
+        return winners;
     }
 }
