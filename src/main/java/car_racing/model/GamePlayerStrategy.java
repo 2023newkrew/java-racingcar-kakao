@@ -1,5 +1,5 @@
 package car_racing.model;
 
-public interface GamePlayStrategy {
+public interface GamePlayerStrategy {
     Integer generateScore();
 }

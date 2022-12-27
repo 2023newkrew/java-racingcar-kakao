@@ -1,8 +1,6 @@
 package car_racing.model;
 
-import car_racing.model.GamePlayStrategy;
-
-public class RandomPlayStrategy implements GamePlayStrategy {
+public class RandomPlayerStrategy implements GamePlayerStrategy {
 
     @Override
     public Integer generateScore() {
