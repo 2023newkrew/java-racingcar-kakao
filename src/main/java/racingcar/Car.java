@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Objects;
+
 public class Car {
     public static final int MIN_CAR_NAME_LENGTH = 1;
     public static final int MAX_CAR_NAME_LENGTH = 5;
@@ -31,6 +33,10 @@ public class Car {
     }
 
     public void moveOrStop() {
+        if (Objects.isNull(engine))
+            throw new RuntimeException("Engine is null.");
+        if(engine.moveOrStop())
+            position++;
     }
 
     public CarInfo getCarInfo() {

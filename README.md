@@ -35,6 +35,7 @@
 - "a"일 경우 "a"
 
 ### 3. 자동차를 움직이거나 멈추는 기능
+- engine이 null일 경우 예외
 - engine의 moveOrStop이 true일 경우 getCarInfo().getPosition() = 1
 - engine의 moveOrStop이 false일 경우 getCarInfo().getPosition() = 0
 
