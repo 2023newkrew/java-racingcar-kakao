@@ -3,15 +3,15 @@ package racingcar.racing;
 import java.util.List;
 
 public class Validator {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 0;
+
 
     public static boolean isValidSingleName(String name) {
-        if (name.length() > 5 || name.length() == 0) {
+        if (name.length() > MAX_NAME_LENGTH || name.length() <= MIN_NAME_LENGTH) {
             return false;
         }
-        if (name.contains(" ")) {
-            return false;
-        }
-        return true;
+        return !name.contains(" ");
     }
 
     public static boolean isValidNames(List<String> names) {
