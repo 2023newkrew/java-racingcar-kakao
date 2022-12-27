@@ -34,4 +34,13 @@ public class GameTest {
             assertThat(game.cars.get(i).printLocation()).isEqualTo("car" + (i + 1) + " : " + move);
         }
     }
+
+    @Test
+    void runTest(){
+        Game game = new Game();
+        game.init("car1,car2,car3");
+        game.run(5);
+        // runCount는 run 메서드가 호출될때 사용된 n 횟수를 다 더한 값이다.
+        assertThat(game.runCount).isEqualTo(5);
+    }
 }
