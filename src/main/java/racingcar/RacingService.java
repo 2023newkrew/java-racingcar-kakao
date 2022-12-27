@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.util.StringParser;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,5 +24,21 @@ public class RacingService {
         if (no < THRESHOLD) return CarAction.STAY;
 
         return CarAction.FORWARD;
+    }
+
+    public List<String> validateName(String nameInput) throws IllegalArgumentException {
+        List<String> carNames = StringParser.parse(nameInput);
+
+        carNames.forEach(name -> {
+            if (!Validator.validateName(name)) throw new IllegalArgumentException();
+        });
+
+        return carNames;
+    }
+
+    public int validateTurn(String turnInput) throws IllegalArgumentException {
+        if (!Validator.isValidTurn(turnInput)) throw new IllegalArgumentException();
+
+        return Integer.parseInt(turnInput);
     }
 }
