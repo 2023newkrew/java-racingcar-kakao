@@ -14,6 +14,10 @@ public class Game {
      * @param text 초기화를 위해 자동차 이름들의 목록을 반환한다.
      */
     public void init(String text) {
+        // 만약 길이가 0 인 문자열이라면 무시한다.
+        if(text.length() == 0){
+            return;
+        }
         // text(사용자 입력)을 차 이름으로 분리
         String[] carNames = text.split(",");
 

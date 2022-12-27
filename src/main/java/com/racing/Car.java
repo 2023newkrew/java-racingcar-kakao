@@ -21,6 +21,9 @@ public class Car {
      * @param userInput 0~9 사이의 값을 입력받는다 4 이상이면 location을 1 증가시킨다.
      */
     public void move(int userInput) {
+        if(userInput < 0 || 9 < userInput){
+            throw new RuntimeException("user input must be in 0..9");
+        }
         if (userInput >= 4){
             this.location += 1;
         }
