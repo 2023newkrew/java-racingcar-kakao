@@ -1,3 +1,5 @@
+package string_calculator.model;
+
 import java.util.Arrays;
 
 public class Calculator {

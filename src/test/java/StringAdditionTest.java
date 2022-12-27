@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import string_calculator.model.Calculator;
+import string_calculator.model.Parser;
+import string_calculator.model.Validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +30,7 @@ public class StringAdditionTest {
     @DisplayName("허용되지 않은 특수문자 감지")
     void detectNegative() {
         String[] testStrings = new String[]{"#", "2", "3", "4", "5"};
-        assertThrowsExactly(RuntimeException.class, ()->Validator.validate(testStrings));
+        assertThrowsExactly(RuntimeException.class, ()-> Validator.validate(testStrings));
     }
 
     @Test
