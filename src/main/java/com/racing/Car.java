@@ -24,4 +24,8 @@ public class Car {
                 "-".repeat(this.location)
         );
     }
+
+    public void printCarName(){
+        System.out.print(this.carName);
+    }
 }
