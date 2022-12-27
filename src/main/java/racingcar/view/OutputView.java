@@ -1,6 +1,8 @@
 package racingcar.view;
 
 import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.RacingCarGame;
 
 public class OutputView {
     public void printStartMessage(){
@@ -11,12 +13,17 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public void printRunResult(List<String> carResults) {
-        System.out.println("실행 결과");
-        printEachRunResult(carResults);
+    public void printRunResult() {
+
+        System.out.println("\n실행 결과");
     }
 
-    private void printEachRunResult(List<String> carResults) {
+    public void printEachRunResult(List<String> carResults) {
+        carResults.forEach(System.out::println);
+        System.out.println();
+    }
 
+    public void printFinalResult(List<String> winnerNames){
+        System.out.println(String.join(" ,",winnerNames)+"가 최종 우승했습니다.");
     }
 }

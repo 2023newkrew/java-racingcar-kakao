@@ -11,7 +11,7 @@ public class InputView {
     }
 
     public String[] inputName() {
-        String[] names = scanner.nextLine().split(" ,");
+        String[] names = scanner.nextLine().split(",");
         for (String name : names) {
             validate(name);
         }

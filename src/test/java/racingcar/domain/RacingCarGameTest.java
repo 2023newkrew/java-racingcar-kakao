@@ -71,6 +71,7 @@ public class RacingCarGameTest {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
+
         racingCarGame.add(car1, car2, car3);
         racingCarGame.run(5);
         assertThat(racingCarGame.getWinner().size()).isEqualTo(1);
@@ -82,6 +83,7 @@ public class RacingCarGameTest {
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
         Car car4 = new RacingCar("russell");
+
         racingCarGame.add(car1, car2, car3, car4);
         racingCarGame.run(5);
 
@@ -89,4 +91,14 @@ public class RacingCarGameTest {
         Assertions.assertThat(racingCarGame.getWinner()).containsExactly(car2, car4);
     }
 
+    @Test
+    public void getCarResultsTest(){
+        Car car1 = new RacingCar("pobi");
+        Car car2 = new RacingCar("crong");
+
+        racingCarGame.add(car1, car2);
+        racingCarGame.run(5);
+
+        assertThat(racingCarGame.getCarResults()).containsExactly("pobi : ", "crong : -----");
+    }
 }
