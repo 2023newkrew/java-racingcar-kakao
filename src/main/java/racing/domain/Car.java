@@ -2,8 +2,10 @@ package racing.domain;
 
 public class Car implements Comparable {
     private final double MOVE_LOWER_BOUND = 4.0;
-    private int distance;
     private final String name;
+    private final String PROGRESS_INNER_STRING = " : ";
+    private final String PROGRESS_SYMBOL = "-";
+    private int distance;
 
     public Car(String name) {
         this.name = name;
@@ -42,6 +44,6 @@ public class Car implements Comparable {
 
     @Override
     public String toString() {
-        return name + " : " + "-".repeat(distance);
+        return name + PROGRESS_INNER_STRING + PROGRESS_SYMBOL.repeat(distance);
     }
 }
