@@ -25,7 +25,7 @@ public class Game {
         for(String carName : carNames){
             Car car = new Car(carName);
             car.checkName();
-            cars.add(car);
+            this.cars.add(car);
         }
     }
 
@@ -36,7 +36,7 @@ public class Game {
     public ArrayList<Integer> moveCars() {
         Random random = new Random();
         ArrayList<Integer> result = new ArrayList<>();
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             int rand = random.nextInt(10);
             result.add(rand);
             car.movement(rand);
@@ -52,7 +52,7 @@ public class Game {
         for(int i=0; i<turn; i++){
             moveCars();
             printCarsLocation();
-            runCount++;
+            this.runCount++;
         }
     }
 
@@ -60,7 +60,7 @@ public class Game {
      * 자동차들의 현재 위치를 출력
      */
     public void printCarsLocation(){
-        for(Car car : cars){
+        for(Car car : this.cars){
             System.out.println(car.printLocation());
         }
         System.out.println();
@@ -74,7 +74,7 @@ public class Game {
     public ArrayList<Car> getWinner() {
         int maxLoc = maxLocation();
         ArrayList<Car> ret = new ArrayList<>();
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             ret.add(maxLoc == car.location ? car : null);
         }
         ret.removeIf(Objects::isNull);
@@ -87,7 +87,7 @@ public class Game {
      */
     public int maxLocation() {
         int tmpMax = 0;
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             tmpMax = Math.max(tmpMax, car.location);
         }
         return tmpMax;

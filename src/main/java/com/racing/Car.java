@@ -11,7 +11,7 @@ public class Car {
      * 차 이름이 5글자 초과라면 RuntimeError
      */
     public void checkName() {
-        if(carName.length() > 5){
+        if(this.carName.length() > 5){
             throw new RuntimeException("car name length over 5");
         }
     }
