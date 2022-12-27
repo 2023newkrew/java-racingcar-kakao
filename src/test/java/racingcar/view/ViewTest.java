@@ -43,7 +43,7 @@ class ViewTest {
         InputStream inputStream = new ByteArrayInputStream("012".getBytes());
         View view = new View(System.out, inputStream);
 
-        int tryCount = view.inputTryCount();
+        int tryCount = view.inputMaxTryCount();
 
         Assertions.assertThat(tryCount).isEqualTo(12);
     }
@@ -53,7 +53,7 @@ class ViewTest {
         InputStream inputStream = new ByteArrayInputStream("abc".getBytes());
         View view = new View(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> view.inputTryCount())
+        Assertions.assertThatThrownBy(() -> view.inputMaxTryCount())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,7 +62,7 @@ class ViewTest {
         InputStream inputStream = new ByteArrayInputStream("100".getBytes());
         View view = new View(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> view.inputTryCount())
+        Assertions.assertThatThrownBy(() -> view.inputMaxTryCount())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

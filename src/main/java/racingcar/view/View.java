@@ -56,7 +56,7 @@ public class View {
                 .anyMatch(name -> name.length() > MAX_NAME_LENGTH);
     }
 
-    public int inputTryCount() {
+    public int inputMaxTryCount() {
         printStream.println("시도할 회수는 몇회인가요?");
         String value = scanner.nextLine();
 

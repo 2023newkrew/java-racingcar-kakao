@@ -13,7 +13,7 @@ public class RacingSimulator {
     }
 
     public void move() {
-        if(isNotTryable()){
+        if(isFinished()){
             throw new IllegalStateException();
         }
 
@@ -21,7 +21,7 @@ public class RacingSimulator {
         tryCount++;
     }
 
-    private boolean isNotTryable() {
+    public boolean isFinished() {
         return tryCount >= maxTryCount;
     }
 

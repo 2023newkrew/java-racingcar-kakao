@@ -8,10 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import racingcar.StubNumberGenerator;
-import racingcar.model.Car;
-import racingcar.model.Cars;
-import racingcar.model.NumberGenerator;
-import racingcar.model.RacingSimulator;
 
 class RacingSimulatorTest {
 
@@ -21,7 +17,7 @@ class RacingSimulatorTest {
     @Test
     void overTryCountTest() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        final Cars cars = createCars(numberGenerator, "a");
+        Cars cars = createCars(numberGenerator, "a");
         RacingSimulator simulator = createRacingSimulator(2, cars);
 
         assertThatThrownBy(() -> move(simulator, 3))
@@ -31,7 +27,7 @@ class RacingSimulatorTest {
     @Test
     void moveCars() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        final Cars cars = createCars(numberGenerator, "a", "b", "c");
+        Cars cars = createCars(numberGenerator, "a", "b", "c");
         RacingSimulator simulator = createRacingSimulator(5, cars);
 
         move(simulator, 1);
@@ -49,7 +45,7 @@ class RacingSimulatorTest {
                 MOVE, STOP, STOP,
                 MOVE, MOVE, MOVE
         );
-        final Cars cars = createCars(numberGenerator, "a", "b", "c");
+        Cars cars = createCars(numberGenerator, "a", "b", "c");
         RacingSimulator simulator = createRacingSimulator(3, cars);
 
         move(simulator, 3);
@@ -68,8 +64,7 @@ class RacingSimulatorTest {
                 MOVE, MOVE, MOVE,
                 MOVE, MOVE, MOVE
         );
-        final String[] strings = new String[]{"a", "b", "c"};
-        final Cars cars = createCars(numberGenerator, strings);
+        Cars cars = createCars(numberGenerator, "a", "b", "c");
         RacingSimulator simulator = createRacingSimulator(3, cars);
 
         move(simulator, 3);
