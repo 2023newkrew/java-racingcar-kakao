@@ -2,13 +2,11 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Racing {
-    List<Car> cars = new ArrayList<Car>();
+    List<Car> cars = new ArrayList<>();
     int roundNum;
-    Racing() {
-        //동적할당
-    }
     public boolean RegisterCarNames(String input) {
         String[] temp = input.split(",");
         for (String name : temp) {
@@ -29,5 +27,24 @@ public class Racing {
         catch (NumberFormatException ex){
             return false;
         }
+    }
+    public int Run() {
+        int i = 0;
+        while(i < roundNum){
+            Round();
+            i++;
+        }
+        return i;
+
+    }
+    public boolean Round() {
+        for (Car car : cars) {
+            car.move(random());
+        }
+        return true;
+    }
+    private boolean random() {
+        Random rand = new Random();
+        return rand.nextInt(10) >= 4;
     }
 }
