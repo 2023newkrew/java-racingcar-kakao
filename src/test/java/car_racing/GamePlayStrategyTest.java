@@ -1,20 +1,20 @@
 package car_racing;
 
-import car_racing.model.GamePlayStrategy;
-import car_racing.model.RandomPlayStrategy;
+import car_racing.model.GamePlayerStrategy;
+import car_racing.model.RandomPlayerStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GamePlayStrategyTest {
 
-    GamePlayStrategy[] gamePlayStrategies;
+    GamePlayerStrategy[] gamePlayStrategies;
     int minScore, maxScore;
 
     @BeforeEach
     void init() {
-        gamePlayStrategies = new GamePlayStrategy[] {
-                new RandomPlayStrategy()
+        gamePlayStrategies = new GamePlayerStrategy[] {
+                new RandomPlayerStrategy()
         };
         minScore = 0;
         maxScore = 9;
@@ -22,7 +22,7 @@ public class GamePlayStrategyTest {
 
     @Test
     void genrateScoreTest() {
-        for (GamePlayStrategy gp:
+        for (GamePlayerStrategy gp:
              gamePlayStrategies) {
             Assertions.assertThat(gp.generateScore()).isBetween(minScore, maxScore);
         }

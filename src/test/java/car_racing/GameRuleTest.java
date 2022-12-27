@@ -3,6 +3,7 @@ package car_racing;
 import car_racing.model.Car;
 import car_racing.model.GameRule;
 import car_racing.model.RacingPlayer;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,8 @@ class GameRuleTest {
 
     @Test
     void getWinnersTest() {
-        RacingPlayer[] result = GameRule.getWinners(players);
-        Assertions.assertThat(result).isEqualTo(players.subList(5, 8).toArray());
+        List<RacingPlayer> result = GameRule.getWinners(players);
+        Assertions.assertThat(result).isEqualTo(players.subList(5, 8));
     }
 
 }
