@@ -42,4 +42,16 @@ public class Game {
             runCount++;
         }
     }
+
+    public ArrayList<Car> getWinner() {
+        return new ArrayList<Car>();
+    }
+
+    /**
+     * 자동차가 간 거리 중 가장 최대값
+     * @return
+     */
+    public int maxLocation() {
+        return 0;
+    }
 }

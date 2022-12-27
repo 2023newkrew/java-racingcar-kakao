@@ -43,4 +43,40 @@ public class GameTest {
         // runCount는 run 메서드가 호출될때 사용된 n 횟수를 다 더한 값이다.
         assertThat(game.runCount).isEqualTo(5);
     }
+
+    @Test
+    void maxLocationTest(){
+        Game game = new Game();
+        game.init("car1,car2");
+        game.run(5);
+
+        // 자동차 location의 max 값 직접 구함
+        int findMax = Math.max(game.cars.get(0).location, game.cars.get(1).location);
+        assertThat(findMax).isEqualTo(game.maxLocation());
+    }
+
+    @Test
+    void getWinnerTest(){
+        Game game = new Game();
+        game.init("car1,car2");
+        game.run(5);
+
+        ArrayList<Car> winners = game.getWinner();
+
+        ArrayList<Car> cmpWinners = makeCmpWinners(game);
+
+        assertThat(winners).isEqualTo(cmpWinners);
+    }
+
+    public ArrayList<Car> makeCmpWinners(Game game){
+        ArrayList<Car> cmpWinners = new ArrayList<>();
+        int maxLocation = game.maxLocation();
+        if(game.cars.get(0).location == maxLocation){
+            cmpWinners.add(game.cars.get(0));
+        }
+        if(game.cars.get(1).location == maxLocation){
+            cmpWinners.add(game.cars.get(1));
+        }
+        return cmpWinners;
+    }
 }
