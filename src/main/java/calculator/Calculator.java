@@ -9,6 +9,9 @@ public class Calculator {
     private String[] splitedNum;
 
     public Calculator(String input) {
+        if (input == null || input.isEmpty()) {
+            input = "0";
+        }
         this.input = input;
     }
 
@@ -21,16 +24,9 @@ public class Calculator {
     }
 
     public int run() {
-        checkEmptyInput();
         checkDelimiter();
         splitString();
         return addNum();
-    }
-
-    private void checkEmptyInput() {
-        if (input == null || input.isEmpty()) {
-            input = "0";
-        }
     }
 
     private void splitString() {
