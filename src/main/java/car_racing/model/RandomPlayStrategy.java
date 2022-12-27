@@ -1,4 +1,6 @@
-package car_racing;
+package car_racing.model;
+
+import car_racing.model.GamePlayStrategy;
 
 public class RandomPlayStrategy implements GamePlayStrategy {
 

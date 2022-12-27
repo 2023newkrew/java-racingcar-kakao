@@ -1,6 +1,6 @@
-package car_racing;
+package car_racing.view;
 
-import java.sql.SQLOutput;
+import car_racing.model.RacingPlayer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

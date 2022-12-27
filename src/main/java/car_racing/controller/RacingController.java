@@ -1,5 +1,10 @@
-package car_racing;
+package car_racing.controller;
 
+import car_racing.model.Car;
+import car_racing.model.GameRule;
+import car_racing.model.RacingPlayer;
+import car_racing.view.InputView;
+import car_racing.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
