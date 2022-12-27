@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -7,11 +8,16 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.*;
 
 public class RacingTest {
+    private Racing racing;
+
+    @BeforeEach
+    void setUp() {
+        this.racing = new Racing();
+    }
+
     @Test
     void checkCarNos() {
-        Racing racing = new Racing();
-
-        racing.makeCars(Arrays.asList("aa", "bbb", "ccc"));
-        assertThat(racing.getCarNo()).isEqualTo(3);
+        this.racing.makeCars(Arrays.asList("aa", "bbb", "ccc"));
+        assertThat(this.racing.getCarNo()).isEqualTo(3);
     }
 }

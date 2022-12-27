@@ -25,8 +25,14 @@ public class Racing {
     }
 
     public void endTurn() {
-        List<CarDTO> carDTOs = cars.stream().map(e -> e.toDTO()).collect(Collectors.toList());
+        racingUi.displayPosition(getCarDTOs());
+    }
 
-        racingUi.displayPosition(carDTOs);
+    public List<CarDTO> getCarDTOs() {
+        return cars.stream().map(e -> e.toDTO()).collect(Collectors.toList());
+    }
+
+    public void getWinner(List<CarDTO> carDTOs) {
+        
     }
 }
