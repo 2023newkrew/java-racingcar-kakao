@@ -1,17 +1,16 @@
 package calculator.domain;
 
 import calculator.constant.MessageConstant;
+import calculator.util.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static calculator.constant.MessageConstant.*;
-import static java.lang.Character.isDigit;
+import static calculator.util.StringUtils.isEmpty;
 
 public class Prompt {
-
     private String input;
-    private Delimiters delimiters;
+    private final Delimiters delimiters;
 
     public Prompt(String input) {
         this.input = input.replaceAll(" ", "");
@@ -19,7 +18,7 @@ public class Prompt {
     }
 
     public boolean isEmptyInput() {
-        return input.isBlank() || input == null;
+        return isEmpty(input);
     }
 
     public void changePromptIfExistCustomDelimiter() {
@@ -44,18 +43,7 @@ public class Prompt {
     }
 
     private void addDelimiter(Matcher matcher) {
-        String group = matcher.group(1);
-        validateDelimiter(group);
         delimiters.add(matcher.group(1));
-    }
-
-    private  void validateDelimiter(String group) {
-        if (group.length() > 1) {
-            throw new RuntimeException(DELIMITER_LENGTH_EXCEPTION);
-        }
-        if (isDigit(group.charAt(0))) {
-            throw new RuntimeException(DELIMITER_FORMAT_EXCEPTION);
-        }
     }
 
     public String getDelimiterRegex() {

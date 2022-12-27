@@ -1,5 +1,8 @@
 package calculator.domain;
 
+import java.util.Arrays;
+
+import static calculator.constant.MessageConstant.INVALID_INPUT_EXCEPTION;
 import static calculator.constant.MessageConstant.NEGATIVE_NUMBER_EXCEPTION;
 
 public class Calculator {
@@ -13,11 +16,9 @@ public class Calculator {
 
     private int calculateWithDelimiter(Prompt prompt) {
         String[] stringNumbers = prompt.getStringNumbers();
-        int ret = 0;
-        for (String stringNumber : stringNumbers) {
-            ret += parseIntOnlyPositiveStringNumber(stringNumber);
-        }
-        return ret;
+        return Arrays.stream(stringNumbers)
+                .mapToInt(this::parseIntOnlyPositiveStringNumber)
+                .sum();
     }
 
     public int parseIntOnlyPositiveStringNumber(String stringNumber) {
@@ -28,7 +29,7 @@ public class Calculator {
             }
             return number;
         } catch (NumberFormatException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(INVALID_INPUT_EXCEPTION);
         }
     }
 }
