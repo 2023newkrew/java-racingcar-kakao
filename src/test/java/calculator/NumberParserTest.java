@@ -44,10 +44,4 @@ public class NumberParserTest {
                     numberParser.inputToIntArray("-1:2:3");
                 });
     }
-
-    @Test
-    void hahaha()
-    {
-        assertThat("안녕하세요".length()).isEqualTo(5);
-    }
 }
