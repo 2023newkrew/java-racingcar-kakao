@@ -2,6 +2,8 @@ package calculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
@@ -45,5 +47,11 @@ public class NumberParserTest {
                     numberParser.stringArrayToIntArray();
                 });
 
+    }
+
+    @Test
+    void hahaha()
+    {
+        assertThat("안녕하세요".length()).isEqualTo(5);
     }
 }
