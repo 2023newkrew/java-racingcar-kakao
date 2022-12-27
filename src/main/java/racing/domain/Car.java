@@ -1,6 +1,6 @@
 package racing.domain;
 
-public class Car implements Comparable{
+public class Car implements Comparable {
     private final double MOVE_LOWER_BOUND = 4.0;
     private int distance;
     private final String name;
