@@ -3,6 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class RacingCarTest {
@@ -14,6 +16,16 @@ public class RacingCarTest {
         Car car = new Car(carName);
 
         assertThat(car.isSameName(carName)).isTrue();
+    }
+
+    @Test
+    @DisplayName("0에서 9 사이에서 random값을 구한다.")
+    void generateRandomNumber() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
+        assertThat(randomNumberGenerator.generateBetweenZeroAndNine())
+                .isGreaterThanOrEqualTo(0)
+                .isLessThan(10);
     }
 
 }
