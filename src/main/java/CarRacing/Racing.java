@@ -1,7 +1,6 @@
 package CarRacing;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Racing {
@@ -16,15 +15,15 @@ public class Racing {
     }
 
     public void nameExceptions(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            nameException(names[i]);
+        for (int index = 0; index < names.length; index++) {
+            nameException(names[index]);
         }
     }
 
     public Car[] makeCarList(String[] names) {
         Car[] cars = new Car[names.length];
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new CarBuilder().name(names[i]).buildCar();
+        for (int index = 0; index < cars.length; index++) {
+            cars[index] = new CarBuilder().name(names[index]).buildCar();
         }
         return cars;
     }
@@ -32,11 +31,11 @@ public class Racing {
     public List<String> getWinner(Car[] cars) {
         List<String> winners = new ArrayList<>();
         int maxPosition = 0;
-        for (int i = 0; i < cars.length; i++) {
-            maxPosition = cars[i].getMaxPosition(maxPosition);
+        for (int index = 0; index < cars.length; index++) {
+            maxPosition = cars[index].getMaxPosition(maxPosition);
         }
-        for (int i = 0; i < cars.length; i++) {
-            String winnerName = cars[i].getWinnerName(maxPosition);
+        for (int index = 0; index < cars.length; index++) {
+            String winnerName = cars[index].getWinnerName(maxPosition);
             winners = addWinner(winners, winnerName);
         }
         return winners;
@@ -50,8 +49,8 @@ public class Racing {
     }
 
     public Car[] oneCycle(Car[] cars) {
-        for (int i = 0; i < cars.length; i++) {
-            cars[i].carEvent();
+        for (int index = 0; index < cars.length; index++) {
+            cars[index].carEvent();
         }
         return cars;
     }
