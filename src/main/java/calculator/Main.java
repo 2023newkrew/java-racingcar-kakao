@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         System.out.println("계산식을 입력하세요");
         String input = br.readLine();
         Calculator calculator = new Calculator(input);
