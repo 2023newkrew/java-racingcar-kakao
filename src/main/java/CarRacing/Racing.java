@@ -36,6 +36,10 @@ public class Racing {
         for (int i = 0; i < cars.length; i++) {
             maxPosition = cars[i].getMaxPosition(maxPosition);
         }
+        for (int i = 0; i < cars.length; i++) {
+            String winnerName = cars[i].getWinnerName(maxPosition);
+            winners = addWinner(winners, winnerName);
+        }
         return winners;
     }
 
