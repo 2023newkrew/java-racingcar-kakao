@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,20 +16,26 @@ public class RacingCarGame {
         this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
-    public void play() {
+    public GameResult play() {
+        List<CarDto> intermediateResult = new ArrayList<>();
+
         for (Car car : cars) {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
+            intermediateResult.add(car.toDto());
         }
         count--;
+
+        return new GameResult(intermediateResult);
     }
 
-    public List<CarDto> selectWinners() {
+    public GameResult selectWinners() {
         Car maxPositionCar = calculateMaxPositionCar();
-
-        return cars.stream()
+        List<CarDto> finalResult = cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .map(Car::toDto)
                 .collect(Collectors.toList());
+
+        return new GameResult(finalResult);
     }
 
     public Car calculateMaxPositionCar() {
