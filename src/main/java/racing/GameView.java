@@ -25,7 +25,7 @@ public class GameView {
         this.scanner = new Scanner(System.in);
     }
 
-    public void init() {    
+    public void init() {
         receiveCarNamesFromUser();
         receiveTryNumFromUser();
     }
