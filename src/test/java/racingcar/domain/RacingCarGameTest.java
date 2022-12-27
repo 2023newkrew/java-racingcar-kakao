@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -74,7 +75,18 @@ public class RacingCarGameTest {
         racingCarGame.run(5);
         assertThat(racingCarGame.getWinner().size()).isEqualTo(1);
         assertThat(racingCarGame.getWinner().get(0)).isEqualTo(car2);
+    }
+    @Test
+    public void getMultiWinner() {
+        Car car1 = new RacingCar("pobi");
+        Car car2 = new RacingCar("crong");
+        Car car3 = new RacingCar("honux");
+        Car car4 = new RacingCar("russell");
+        racingCarGame.add(car1, car2, car3, car4);
+        racingCarGame.run(5);
 
+        Assertions.assertThat(racingCarGame.getWinner().size()).isEqualTo(2);
+        Assertions.assertThat(racingCarGame.getWinner()).containsExactly(car2, car4);
     }
 
 }
