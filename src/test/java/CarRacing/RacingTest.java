@@ -35,4 +35,10 @@ public class RacingTest {
         assertDoesNotThrow(() -> {racing.nameException(correct_name);});
     }
 
+    @Test
+    public void makeCarListTest() {
+        String[] names = new String[] {"pobi", "crong", "honux"};
+        Car[] cars = racing.makeCarList(names);
+        assertThat(cars.length).isEqualTo(names.length);
+    }
 }
