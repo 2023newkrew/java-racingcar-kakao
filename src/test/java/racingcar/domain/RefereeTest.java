@@ -1,10 +1,11 @@
-package racingcar;
-
-import static org.assertj.core.api.AssertionsForClassTypes.*;
+package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 public class RefereeTest {
 
