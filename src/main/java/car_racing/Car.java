@@ -1,7 +1,7 @@
 package car_racing;
 
 public class Car implements RacingPlayer {
-    private String name;
+    private final String name;
 
     private Integer position;
     public Car(String name) {
@@ -14,6 +14,11 @@ public class Car implements RacingPlayer {
         if (proceed) {
             this.position += 1;
         }
+    }
+
+    @Override
+    public Integer getScore() {
+        return this.position;
     }
 
     @Override
