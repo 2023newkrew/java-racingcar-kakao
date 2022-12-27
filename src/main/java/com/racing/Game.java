@@ -9,6 +9,7 @@ public class Game {
 
     public Game(){
         this.cars = new ArrayList<>();
+        this.runCount = 0;
     }
 
     public void init(String text) {
@@ -35,6 +36,10 @@ public class Game {
         return result;
     }
 
-    public void run(int i) {
+    public void run(int turn) {
+        for(int i=0; i<turn; i++){
+            moveCars();
+            runCount++;
+        }
     }
 }
