@@ -16,17 +16,22 @@ public class Car implements Comparable{
     }
 
     public boolean move() {
-        if (randomGenerator.generate(MAX_BOUND+1) >= MOVE_BOUND) {
+        if (movable()) {
             this.position.move();
             return true;
         }
         return false;
     }
 
+    public boolean movable() {
+        return randomGenerator.generate(MAX_BOUND+1) >= MOVE_BOUND;
+    }
+
     @Override
     public String toString() {
         return name;
     }
+
     public String toStringWithPosition(){
         return name + " : " + position;
     }

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Racing {
     private Car[] cars;
-    public Car[] generateCars(String[] names) {
-        Car[] result = new Car[names.length];
-        for (int i = 0; i < names.length; i++) {
-            result[i] = new Car(names[i], new RandomGeneratorImpl());
+    public Car[] generateCars(String[] carNames) {
+        Car[] result = new Car[carNames.length];
+        for (int i = 0; i < carNames.length; i++) {
+            result[i] = new Car(carNames[i], new RandomGeneratorImpl());
         }
         cars = result;
-        return result;
+        return cars;
     }
 
     public void proceedRound() {
