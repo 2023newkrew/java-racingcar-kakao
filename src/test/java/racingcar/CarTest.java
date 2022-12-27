@@ -33,7 +33,7 @@ public class CarTest {
     @Test
     void toStringTest() {
         Car car = new Car("sienna");
-        assertThat(car.toString()).isEqualTo("차 이름: sienna, 거리: 0");
+        assertThat(car.toString()).isEqualTo("차 이름: sienna, 거리: " + INITIAL_DISTANCE);
     }
 
     @Test
