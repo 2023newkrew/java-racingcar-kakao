@@ -27,21 +27,28 @@ public class Racing {
         catch (NumberFormatException ex){
             return false;
         }
-    }
-    public int Run() {
+    }/*
+    public List<String> Run() { /////컨트롤러에서 구현
         int i = 0;
         while(i < roundNum){
             Round();
             i++;
         }
-        GetWinner();
-        return i;
-    }
+        return GetWinner();
+    }*/
     public boolean Round() {
         for (Car car : cars) {
             car.move(random());
         }
         return true;
+    }
+
+    public String RoundResult(){
+        String temp="";
+        for (Car car : cars) {
+            temp += car.getName()+","+car.getPosition()+",";
+        }
+        return temp;
     }
     private boolean random() {
         Random rand = new Random();
@@ -60,5 +67,9 @@ public class Racing {
             }
         }
         return winnerList;
+    }
+
+    public int GetRoundNum(){
+        return roundNum;
     }
 }
