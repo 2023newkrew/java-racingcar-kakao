@@ -2,7 +2,7 @@ package racingcar;
 
 public class InputParser {
 
-    public String[] splitByComma(String s) {
-        return new String[] {};
+    public String[] splitByComma(String input) {
+        return input.split(",");
     }
 }
