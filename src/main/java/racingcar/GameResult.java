@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameResult {
 
@@ -15,11 +16,20 @@ public class GameResult {
     }
 
     public String getIntermediateResult() {
-        return null;
+        StringBuilder result = new StringBuilder();
+
+        for (CarDto carStatus : carStatusList) {
+            result.append(String.format("%s : %s\n", carStatus.getName(), "-".repeat(carStatus.getPosition())));
+        }
+
+        return result.toString();
     }
 
     public String getFinalResult() {
-        return null;
-    }
+        String winners = carStatusList.stream()
+                .map(CarDto::getName)
+                .collect(Collectors.joining(", "));
 
+        return String.format("%s가 최종 우승했습니다.", winners);
+    }
 }

@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,21 +9,19 @@ public class RacingCarGame {
     private int count;
     private RandomNumberGenerator randomNumberGenerator;
 
-    public RacingCarGame(List<Car> cars, int gameCount) {
-        this.cars = cars;
+    public RacingCarGame(List<CarDto> carDtos, int gameCount) {
+        this.cars = RacingCarConverter.toCars(carDtos);
         this.count = gameCount;
         this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
     public GameResult play() {
-        List<CarDto> intermediateResult = new ArrayList<>();
-
         for (Car car : cars) {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
-            intermediateResult.add(car.toDto());
         }
         count--;
 
+        List<CarDto> intermediateResult = RacingCarConverter.toCarDtos(cars);
         return new GameResult(intermediateResult);
     }
 

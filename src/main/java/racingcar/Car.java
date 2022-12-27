@@ -7,7 +7,7 @@ public class Car {
 
     public Car(String carName) {
         name = carName;
-        position = 0;
+        position = 1;
     }
 
     public void move(int randomNumber) {
@@ -25,10 +25,11 @@ public class Car {
     }
 
     public int comparePosition(Car other) {
-        return other.position - position;
+        return position - other.position;
     }
 
     public CarDto toDto() {
-        return CarDto.of(name, position);
+        return new CarDto(name, position);
     }
+
 }

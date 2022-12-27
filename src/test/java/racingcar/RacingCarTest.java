@@ -42,8 +42,8 @@ public class RacingCarTest {
         CarDto avanteDto = avante.toDto();
         CarDto sonataDto = sonata.toDto();
 
-        assertThat(avanteDto.getPosition()).isEqualTo(1);
-        assertThat(sonataDto.getPosition()).isEqualTo(2);
+        assertThat(avanteDto.getPosition()).isEqualTo(2);
+        assertThat(sonataDto.getPosition()).isEqualTo(3);
     }
 
     @Test
@@ -60,16 +60,16 @@ public class RacingCarTest {
         CarDto avanteDto = avante.toDto();
         CarDto sonataDto = sonata.toDto();
 
-        assertThat(avanteDto.getPosition()).isZero();
-        assertThat(sonataDto.getPosition()).isZero();
+        assertThat(avanteDto.getPosition()).isOne();
+        assertThat(sonataDto.getPosition()).isOne();
     }
 
     @Test
     @DisplayName("시도할 횟수만큼 게임을 진행한다.")
     void playGame() {
         int count = 5;
-        List<Car> list = List.of(new Car("avante"), new Car("sonata"));
-        RacingCarGame racingCarGame = new RacingCarGame(list, count);
+        List<CarDto> inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
             racingCarGame.play();
@@ -82,13 +82,13 @@ public class RacingCarTest {
     @DisplayName("시도할 횟수만큼 게임 진행 시 매 시도마다 결과가 반환된다.")
     void returnIntermediateGameResult() {
         int count = 5;
-        List<Car> cars = List.of(new Car("avante"), new Car("sonata"));
-        RacingCarGame racingCarGame = new RacingCarGame(cars, count);
+        List<CarDto> inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
             GameResult gameResult = racingCarGame.play();
             assertThat(gameResult).isNotNull();
-            assertThat(gameResult.getCarStatusList()).hasSize(cars.size());
+            assertThat(gameResult.getCarStatusList()).hasSize(inputCars.size());
         }
     }
 
@@ -96,8 +96,8 @@ public class RacingCarTest {
     @DisplayName("자동차마다 이동한 거리를 비교해서 가장 많이 이동한 자동차들을 선정한다.")
     void selectWinner() {
         int count = 5;
-        List<Car> list = List.of(new Car("avante"), new Car("sonata"));
-        RacingCarGame racingCarGame = new RacingCarGame(list, count);
+        List<CarDto> inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
             racingCarGame.play();
