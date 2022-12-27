@@ -2,6 +2,7 @@ package CarRacing;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingTest {
@@ -20,6 +21,15 @@ public class RacingTest {
         String inputString = "pobi,crong,honux";
         Racing racing = new Racing();
         assertThat(racing.nameSplit(inputString)).isEqualTo(new String[] {"pobi", "crong", "honux"});
+    }
+
+    @Test
+    public void nameExceptionTest() {
+        String wrong_name = "leopss";
+        String correct_name = "pobi";
+        Racing racing = new Racing();
+        assertThrows(RuntimeException.class, () -> {racing.nameException(wrong_name);});
+        assertDoesNotThrow(() -> {racing.nameException(correct_name);});
     }
 
 }
