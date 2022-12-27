@@ -29,9 +29,9 @@ public class RacingService {
     public List<String> validateName(String nameInput) throws IllegalArgumentException {
         List<String> carNames = StringParser.parse(nameInput);
 
-        carNames.forEach(name -> {
-            if (!Validator.validateName(name)) throw new IllegalArgumentException();
-        });
+        if (!Validator.isValidNames(carNames)) {
+            throw new IllegalArgumentException();
+        }
 
         return carNames;
     }
