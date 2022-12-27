@@ -2,11 +2,11 @@ package car_racing.common.exception;
 
 public class InvalidInputFormatException extends RuntimeException {
 
-    InvalidInputFormatException() {
+    public InvalidInputFormatException() {
 
     }
 
-    InvalidInputFormatException(String message) {
+    public InvalidInputFormatException(String message) {
         super(message);
     }
 }

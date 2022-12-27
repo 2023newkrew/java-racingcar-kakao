@@ -1,5 +1,6 @@
 package car_racing.view;
 
+import car_racing.common.exception.InvalidInputFormatException;
 import java.util.Scanner;
 
 public class InputView {
@@ -19,14 +20,14 @@ public class InputView {
     public Integer getNumberOfTurns() {
         int turn = sc.nextInt();
         if (turn <= 0) {
-            throw new RuntimeException("Invalid number for turns");
+            throw new InvalidInputFormatException("Invalid number for turns");
         }
         return turn;
     }
 
     private void verifyName(String name) {
         if (name.length() == 0 || name.length() > 5) {
-            throw new RuntimeException("Invalid Name");
+            throw new InvalidInputFormatException("Invalid Name");
         }
     }
 }
