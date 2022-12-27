@@ -11,10 +11,10 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarGameImpl implements RacingCarGame {
-    private RandomNumberGenerator randomNumberGenerator;
-    private InputView inputView;
-    private OutputView outputView;
-    private ArrayList<Car> cars = new ArrayList<>();
+    private final RandomNumberGenerator randomNumberGenerator;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final ArrayList<Car> cars = new ArrayList<>();
 
     public RacingCarGameImpl(AppConfig appConfig) {
         randomNumberGenerator = appConfig.getRandomNumberGenerator();

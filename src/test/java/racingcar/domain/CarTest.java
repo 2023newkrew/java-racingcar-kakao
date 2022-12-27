@@ -13,18 +13,20 @@ import racingcar.domain.RacingCar;
 public class CarTest {
 
 
-    @Test
-    public void moveTest() throws IllegalAccessException {
+    @ParameterizedTest
+    @ValueSource(ints = {4,5,6,7,8,9})
+    public void moveTest(int input) throws IllegalAccessException {
         Car racingCar = new RacingCar("abc");
-        racingCar.move(5);
+        racingCar.move(input);
         int dist = racingCar.getDistance();
         assertThat(dist).isEqualTo(1);
     }
 
-    @Test
-    public void doNotMoveTest() throws IllegalAccessException {
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3})
+    public void doNotMoveTest(int input) throws IllegalAccessException {
         Car racingCar = new RacingCar("abc");
-        racingCar.move(2);
+        racingCar.move(input);
         int dist = racingCar.getDistance();
         assertThat(dist).isEqualTo(0);
     }

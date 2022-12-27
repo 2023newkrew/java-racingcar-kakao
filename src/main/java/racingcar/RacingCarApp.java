@@ -5,7 +5,7 @@ import racingcar.domain.RacingCarGameImpl;
 
 public class RacingCarApp {
 
-    AppConfig appConfig;
+    private final AppConfig appConfig;
 
     public RacingCarApp(AppConfig appConfig){
         this.appConfig = appConfig;

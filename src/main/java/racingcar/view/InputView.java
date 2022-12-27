@@ -4,12 +4,11 @@ import java.util.Scanner;
 
 public class InputView {
 
-    public Scanner scanner;
+    private static final int MAXIMUM_LENGTH = 5;
+    private static final Scanner scanner = new Scanner(System.in);
 
     public InputView() {
-        this.scanner = new Scanner(System.in);
     }
-
     public String[] inputName() {
         String[] names = scanner.nextLine().split(",");
         for (String name : names) {
@@ -22,7 +21,7 @@ public class InputView {
         return scanner.nextInt();
     }
     private void validate(String name) {
-        if(name.length() >5)
+        if(name.length() > MAXIMUM_LENGTH)
             throw new RuntimeException();
     }
 }

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class RacingCar implements Car {
+    private final int BOUND = 3;
     private final String name;
 
 
@@ -21,7 +22,7 @@ public class RacingCar implements Car {
     }
 
     public void move(int seed) {
-        if (seed > 3) {
+        if (seed > BOUND) {
             distance++;
         }
     }
