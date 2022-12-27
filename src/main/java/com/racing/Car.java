@@ -13,6 +13,7 @@ public class Car {
         }
     }
 
-    public void movement(int i) {
+    public void movement(int rand) {
+        if(rand >= 4) this.location++;
     }
 }
