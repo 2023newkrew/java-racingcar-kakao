@@ -33,6 +33,7 @@ public class Racing {
         List<String> winners = new ArrayList<>();
         int maxPosition = 0;
         for (int i = 0; i < cars.length; i++) {
+            maxPosition = cars[i].getMaxPosition(maxPosition);
         }
         return winners;
     }
