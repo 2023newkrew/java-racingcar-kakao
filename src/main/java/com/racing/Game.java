@@ -1,6 +1,7 @@
 package com.racing;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class Game {
@@ -49,7 +50,7 @@ public class Game {
         for (Car car : cars) {
             ret.add(maxLoc == car.location ? car : null);
         }
-        ret.remove(null);
+        ret.removeIf(Objects::isNull);
         return ret;
     }
 
