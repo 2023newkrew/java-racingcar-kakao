@@ -55,4 +55,18 @@ public class Game {
         }
         System.out.println();
     }
+
+    private static String carsToNames(Car[] cars) {
+        StringBuilder sb = new StringBuilder();
+        for (Car car: cars) {
+            sb.append(car.getName()).append(',');
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
+
+    public void printWinners() {
+        Car[] winners = this.findWinners();
+        System.out.printf("%s가 최종 우승했습니다.\n", Game.carsToNames(winners));
+    }
 }

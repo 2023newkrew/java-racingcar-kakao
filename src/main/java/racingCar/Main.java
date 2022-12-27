@@ -12,31 +12,30 @@ public class Main {
         return cars;
     }
 
-    public static String carsToNames(Car[] cars) {
-        StringBuilder sb = new StringBuilder();
-        for (Car car: cars) {
-            sb.append(car.getName()).append(',');
-        }
-        sb.deleteCharAt(sb.length()-1);
-        return sb.toString();
-    }
-
-    public static void main(String[] args) {
+    private static Car[] getCars(){
         Scanner sc = new Scanner(System.in);
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNameString = sc.nextLine();
+        return Main.namesToCars(carNameString);
+    }
+
+    private static int getTotalTurns() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("시도할 회수는 몇회인가요?");
         int totalTurns = sc.nextInt();
-        System.out.println("\n실행 결과");
-        Car[] cars = Main.namesToCars(carNameString);
+        return totalTurns;
+    }
+
+    public static void main(String[] args) {
+        Car[] cars = getCars();
+        int totalTurns = getTotalTurns();
         Game game = new Game(totalTurns, cars);
 
+        System.out.println("\n실행 결과");
         game.printCars();
         while (!game.isEnd()) {
             game.play();
         }
-
-        Car[] winners = game.findWinners();
-        System.out.printf("%s가 최종 우승했습니다.\n", Main.carsToNames(winners));
+        game.printWinners();
     }
 }
