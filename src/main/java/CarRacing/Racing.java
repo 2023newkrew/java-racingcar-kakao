@@ -49,6 +49,13 @@ public class Racing {
         return winners;
     }
 
+    public Car[] oneCycle(Car[] cars) {
+        for (int i = 0; i < cars.length; i++) {
+            cars[i].carEvent();
+        }
+        return cars;
+    }
+
     public String[] handleNames(String inputNames) {
         String[] names = nameSplit(inputNames);
         nameExceptions(names);
