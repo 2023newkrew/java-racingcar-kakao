@@ -1,10 +1,10 @@
 package calculator;
 
-public class StrCal {
+public class StringCalculator {
     private String str;
     private String regex = ",|:";
 
-    public StrCal(String str) {
+    public StringCalculator(String str) {
         if (str == null || str.length() == 0) {
             this.str = str;
             return;
