@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class InputView {
 
+    public static final int MAXIMUM_LENGTH = 5;
     public Scanner scanner;
 
     public InputView() {
@@ -22,7 +23,7 @@ public class InputView {
         return scanner.nextInt();
     }
     private void validate(String name) {
-        if(name.length() >5)
+        if(name.length() > MAXIMUM_LENGTH)
             throw new RuntimeException();
     }
 }

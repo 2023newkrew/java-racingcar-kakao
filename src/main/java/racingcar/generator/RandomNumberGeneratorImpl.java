@@ -4,9 +4,11 @@ import java.util.Random;
 
 public class RandomNumberGeneratorImpl implements RandomNumberGenerator {
 
+    private final int RANGE = 9;
+
     @Override
     public int generator() {
         Random random = new Random();
-        return random.nextInt(10);
+        return random.nextInt(RANGE + 1);
     }
 }
