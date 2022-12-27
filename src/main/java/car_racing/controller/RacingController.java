@@ -9,7 +9,7 @@ import car_racing.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingController {
+public class RacingController implements GameController {
     private final InputView inputView = new InputView();
     private List<RacingPlayer> racingPlayers;
     private Integer numberOfTurns;
@@ -44,7 +44,20 @@ public class RacingController {
             runSingleTurn();
             OutputView.printCurrentStatus(racingPlayers);
         }
-        OutputView.printWinners(GameRule.getWinners(racingPlayers));
+
+        printResult(racingPlayers);
+    }
+
+    private void printResult(List<RacingPlayer> racingPlayers) {
+        List<RacingPlayer> winners;
+
+        try {
+            winners = GameRule.getWinners(racingPlayers);
+        } catch (InvalidInputFormatException e) {
+            System.out.println(e.getLocalizedMessage());
+            return;
+        }
+        OutputView.printWinners(winners);
     }
 
     private void createPlayers(List<String> playerNames) {

@@ -1,3 +1,4 @@
+import car_racing.controller.GameController;
 import car_racing.controller.RacingController;
 
 public class Application {
@@ -8,7 +9,7 @@ public class Application {
 //
 //        runner.run();
 
-        RacingController racingController = new RacingController();
+        GameController racingController = new RacingController();
         racingController.run();
     }
 }
