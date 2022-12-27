@@ -26,14 +26,12 @@ public class Application {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = sc.nextLine();
 
-        Car[] cars = Car.from(input);
-        return cars;
+        return Car.from(input);
     }
 
     private static int getIter(Scanner sc) {
         System.out.println("시도할 회수는 몇회인가요?");
-        int iter = sc.nextInt();
-        return iter;
+        return sc.nextInt();
     }
 
     private static void printGameResult(GameControl gameControl, Car[] cars) {

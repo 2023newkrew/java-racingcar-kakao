@@ -20,6 +20,16 @@ public class RacingCarTest {
     }
 
     @Test
+    @DisplayName("빈 문자열 테스트")
+    void emptyName() {
+        String testNames = "";
+        Car[] cars = Car.from(testNames);
+        assertArrayEquals(cars, new Car[] {
+                new Car("")
+        });
+    }
+
+    @Test
     @DisplayName("차량 전진 제어")
     void carControl(){
         GameControl gameControl = new GameControl();
