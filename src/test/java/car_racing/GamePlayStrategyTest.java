@@ -19,7 +19,7 @@ public class GamePlayStrategyTest {
     }
 
     @Test
-    void genrateScoreTest() {
+    void generateScoreTest() {
         for (GamePlayStrategy gp:
              gamePlayStrategies) {
             Assertions.assertThat(gp.generateScore()).isBetween(minScore, maxScore);

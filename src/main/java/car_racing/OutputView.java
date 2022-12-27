@@ -1,6 +1,5 @@
 package car_racing;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +15,7 @@ public class OutputView {
     }
 
     public static void printCurrentStatus(List<RacingPlayer> racingPlayers) {
-        for (RacingPlayer racingPlayer :
-                racingPlayers) {
+        for (RacingPlayer racingPlayer : racingPlayers) {
             System.out.println(racingPlayer.toString());
         }
         System.out.println();

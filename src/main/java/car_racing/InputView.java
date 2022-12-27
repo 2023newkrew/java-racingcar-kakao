@@ -8,8 +8,7 @@ public class InputView {
     public String[] getPlayerNames() {
         String inputString = sc.nextLine();
         String[] splitStrings = inputString.split(",", -1);
-        for (String name :
-                splitStrings) {
+        for (String name : splitStrings) {
             verifyName(name);
         }
 

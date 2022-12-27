@@ -14,6 +14,7 @@ public class RacingController {
         racingPlayers = new ArrayList<>();
         inputView = new InputView();
     }
+
     public void run() {
         try {
             getNamesFromUser();
@@ -22,10 +23,10 @@ public class RacingController {
             System.out.println(e.getLocalizedMessage());
             return;
         }
-
         createPlayers();
         printResult();
     }
+
     private void getNamesFromUser() {
         OutputView.askForNames();
         playerNames = inputView.getPlayerNames();
@@ -49,15 +50,13 @@ public class RacingController {
     }
 
     private void createPlayers() {
-        for (String playerName :
-                playerNames) {
+        for (String playerName : playerNames) {
             racingPlayers.add(new Car(playerName));
         }
     }
 
     private void runSingleTurn() {
-        for (RacingPlayer player :
-                racingPlayers) {
+        for (RacingPlayer player : racingPlayers) {
             boolean proceed = GameRule.isAbleToProceed();
             player.proceedNextTurn(proceed);
         }

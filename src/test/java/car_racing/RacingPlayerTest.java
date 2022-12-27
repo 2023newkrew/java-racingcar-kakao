@@ -17,8 +17,7 @@ public class RacingPlayerTest {
 
     @Test
     void proceedNextTurnTest_forwardSuccess() {
-        for (RacingPlayer rc:
-                rcs) {
+        for (RacingPlayer rc : rcs) {
             String prevOutput = rc.toString();
             rc.proceedNextTurn(true);
             Assertions.assertThat(rc.toString()).isEqualTo(prevOutput + "-");
@@ -27,8 +26,7 @@ public class RacingPlayerTest {
 
     @Test
     void proceedNextTurnTest_forwardFail() {
-        for (RacingPlayer rc:
-             rcs) {
+        for (RacingPlayer rc : rcs) {
             String prevOutput = rc.toString();
             rc.proceedNextTurn(false);
             Assertions.assertThat(rc.toString()).isEqualTo(prevOutput);
