@@ -8,7 +8,7 @@ import racingcar.engine.model.Car;
 
 public class CarTest {
 
-    private final Car car =  new Car("pobi");
+    private final Car car = new Car("pobi");
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "jaws", "jayde"})

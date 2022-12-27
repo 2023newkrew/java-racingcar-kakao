@@ -2,7 +2,6 @@ package racingcar.engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import racingcar.engine.model.Car;
 
 public class Referee {
