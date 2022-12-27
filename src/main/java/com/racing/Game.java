@@ -1,6 +1,7 @@
 package com.racing;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     public ArrayList<Car> cars;
@@ -16,5 +17,13 @@ public class Game {
         for(String carName : carNames){
             cars.add(new Car(carName));
         }
+    }
+
+    /**
+     *
+     * @return 각각의 random값
+     */
+    public ArrayList<Integer> moveCars() {
+        return new ArrayList<>();
     }
 }
