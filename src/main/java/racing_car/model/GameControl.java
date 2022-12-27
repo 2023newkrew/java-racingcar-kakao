@@ -7,14 +7,19 @@ import java.util.stream.Collectors;
 
 public class GameControl {
 
-    public int generateRandomNumber() {
+    private int generateRandomNumber() {
         return new Random().nextInt(10);
     }
 
-    public void carControl(Car car, int number) {
+    private void carControl(Car car, int number) {
         if (number >= 4){
             car.move(1);
         }
+    }
+
+    public void carControl(Car car) {
+        int randomNumber = generateRandomNumber();
+        carControl(car, randomNumber);
     }
 
     public Car[] getWinners(Car[] cars) {

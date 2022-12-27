@@ -23,8 +23,7 @@ public class Application {
         System.out.println("실행결과");
         for (int i = 0; i < iter; i++) {
             for (Car car: cars) {
-                int number = gameControl.generateRandomNumber();
-                gameControl.carControl(car, number);
+                gameControl.carControl(car);
                 System.out.print(car.getName() + " : " + car.showDistance() + "\n");
             }
             System.out.println();

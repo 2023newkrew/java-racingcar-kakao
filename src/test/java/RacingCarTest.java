@@ -25,11 +25,10 @@ public class RacingCarTest {
         GameControl gameControl = new GameControl();
         Car car = new Car("pobi");
 
-        int number = gameControl.generateRandomNumber();
-        gameControl.carControl(car, number);
+        gameControl.carControl(car);
 
         String output = car.showDistance();
-        assertEquals(output, "-".repeat(number >= 4 ? 1 : 0));
+        assertTrue(output.equals("-") || output.equals(""));
     }
 
     @Test
