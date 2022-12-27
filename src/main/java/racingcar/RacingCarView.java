@@ -29,9 +29,10 @@ public class RacingCarView {
 
     public void printResultOfCars(List<Car> cars){
         cars.forEach(this::printResultOfACar);
+        System.out.println();
     }
 
-    public void printResultOfACar(Car car){
+    private void printResultOfACar(Car car){
         System.out.print(car.getName() + " : ");
         for(int i = 0; i < car.getDistance(); i++)
             System.out.print("-");
