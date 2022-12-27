@@ -55,5 +55,11 @@ public class RacingTest {
 
     @Test
     public void addWinnerTest() {
+        List<String> winners = new ArrayList<>();
+
+        winners = racing.addWinner(winners, "honux");
+        assertThat(winners.size()).isEqualTo(1);
+        winners = racing.addWinner(winners, null);
+        assertThat(winners.size()).isEqualTo(1);
     }
 }
