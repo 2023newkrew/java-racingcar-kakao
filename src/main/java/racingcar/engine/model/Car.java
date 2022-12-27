@@ -1,5 +1,6 @@
 package racingcar.engine.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Car {
@@ -13,10 +14,6 @@ public class Car {
 
     public Car(String name) {
         this(name, 1);
-    }
-
-    public String getName() {
-        return name;
     }
 
     private void setName(String name) {
@@ -33,10 +30,6 @@ public class Car {
         this.position = position;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public void moveWithPower(int power) {
         if (power > 3) {
             this.position++;
@@ -48,14 +41,14 @@ public class Car {
                 + "-".repeat(Math.max(0, this.position));
     }
 
-//    public int renewWinners(int max, List<String> result) {
-//        if (position < max) {
-//            return max;
-//        }
-//        if (position > max) {
-//            result.clear();
-//        }
-//        result.add(name);
-//        return position;
-//    }
+    public int renewWinners(int max, List<String> result) {
+        if (position < max) {
+            return max;
+        }
+        if (position > max) {
+            result.clear();
+        }
+        result.add(name);
+        return position;
+    }
 }
