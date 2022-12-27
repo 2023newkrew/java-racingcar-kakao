@@ -84,15 +84,15 @@ public class RefereeTest {
         Referee referee = new Referee(3, registeredCars, moveNumberSelector);
 
         referee.moveCars();
-        boolean isGameEnded1 = referee.checkGameEnd();
+        boolean isGameEnded1 = referee.isGameEnd();
         assertThat(isGameEnded1).isFalse();
 
         referee.moveCars();
-        boolean isGameEnded2 = referee.checkGameEnd();
+        boolean isGameEnded2 = referee.isGameEnd();
         assertThat(isGameEnded2).isFalse();
 
         referee.moveCars();
-        boolean isGameEnded3 = referee.checkGameEnd();
+        boolean isGameEnded3 = referee.isGameEnd();
         assertThat(isGameEnded3).isTrue();
     }
 

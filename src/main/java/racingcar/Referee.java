@@ -42,7 +42,7 @@ public class Referee {
         car.stay();
     }
 
-    public boolean checkGameEnd() {
+    public boolean isGameEnd() {
         return this.currentRound == this.roundToPlay;
     }
 

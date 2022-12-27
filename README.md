@@ -44,6 +44,6 @@
       - [x] 게임이 종료가 되었는지 확인한다
       - [x] 모든 자동차의 position을 검토하여 최종 우승자를 결정한다
   - RacingGame
-    - [ ] input을 기반으로 List<Car\>와 Referee를 생성한다
-    - [ ] 게임이 종료되었는지 Referee에게 물어본다
-      - [ ] 게임이 종료되었다면 Referee에게 게임 우승자를 물어본다
+    - [x] input을 기반으로 List<Car\>와 Referee를 생성한다
+    - [x] 게임이 종료되었는지 Referee에게 물어본다
+      - [x] 게임이 종료되었다면 Referee에게 게임 우승자를 물어본다
