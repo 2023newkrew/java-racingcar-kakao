@@ -11,7 +11,7 @@ public class StringAdder {
             return StringAdderConstant.IS_NULL_OR_BLANK;
         }
         try {
-            result = summation(split(text));
+            result = sum(split(text));
         } catch (NumberFormatException e) {
             throw e;
         }
@@ -22,25 +22,29 @@ public class StringAdder {
         return text == null || text.isBlank();
     }
 
-
     public String[] split(String text) {
         StringBuilder stringBuilder = new StringBuilder(",|;");
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher m = Pattern.compile("//(.)\n(.*)")
+                .matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
             stringBuilder.append("|" + customDelimiter);
-            return m.group(2).split(stringBuilder.toString());
+            return m.group(2)
+                    .split(stringBuilder.toString());
         }
         return text.split(stringBuilder.toString());
     }
 
     public void isValid(String[] numbers) {
-        if (Arrays.stream(numbers).anyMatch(number -> Integer.parseInt(number) < 0)) {
+        if (Arrays.stream(numbers)
+                .anyMatch(number -> Integer.parseInt(number) < 0)) {
             throw new RuntimeException("negative");
         }
     }
 
-    public int summation(String[] numbers) {
-        return Arrays.stream(numbers).map(Integer::parseInt).reduce(0, Integer::sum);
+    public int sum(String[] numbers) {
+        return Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .reduce(0, Integer::sum);
     }
 }
