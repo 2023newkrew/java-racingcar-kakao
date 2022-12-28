@@ -1,5 +1,8 @@
 package racing.domain;
 
+import static racing.constant.MessageConstant.INVALID_BLANK_NAME_EXCEPTION;
+import static racing.constant.MessageConstant.INVALID_NAME_LENGTH_EXCEPTION;
+
 public class Name {
 
     private String name;
@@ -11,8 +14,11 @@ public class Name {
     }
 
     private void validateNameLength(String name) {
+        if (name == null || name.isBlank()) {
+            throw new RuntimeException(INVALID_BLANK_NAME_EXCEPTION);
+        }
         if (name.length() > MAX_LENGTH) {
-            throw new RuntimeException();
+            throw new RuntimeException(INVALID_NAME_LENGTH_EXCEPTION);
         }
     }
 
