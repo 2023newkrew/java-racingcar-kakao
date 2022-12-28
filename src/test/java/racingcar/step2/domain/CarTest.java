@@ -32,7 +32,21 @@ class CarTest {
         final Car car = new Car("huny", 5);
         Assertions.assertEquals(car.getPosition(), 5);
     }
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    @ParameterizedTest
+    void 숫자가_4_이상이면_자동차는_전진한다(final int condition){
+        final Car car = new Car("huny");
+        car.move(condition);
+        Assertions.assertEquals(car.getPosition(), 2);
+    }
 
+    @ValueSource(ints = {0, 1, 2, 3})
+    @ParameterizedTest
+    void 숫자가_3_아러이면_자동차는_전진하지_않는다(final int condition){
+        final Car car = new Car("huny");
+        car.move(condition);
+        Assertions.assertEquals(car.getPosition(), 1);
+    }
 
 
 }

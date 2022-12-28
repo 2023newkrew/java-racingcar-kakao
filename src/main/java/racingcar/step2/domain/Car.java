@@ -1,9 +1,9 @@
 package racingcar.step2.domain;
 
-
 public class Car {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
+    private static final int MOVE_THRESHOLD = 4;
     private int position;
 
 
@@ -23,6 +23,14 @@ public class Car {
             throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
         }
     }
+
+
+    public void move(final int condition){
+        if (condition >= MOVE_THRESHOLD){
+            position++;
+        }
+    }
+
 
     public int getPosition() {
         return position;
