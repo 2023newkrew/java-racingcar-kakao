@@ -8,6 +8,9 @@ import static racing.util.RandomNumberGenerator.generateRandomNumber;
 public class Cars {
     private final List<Car> cars;
 
+    private static final int THRESHOLD = 4;
+    private static final int RANDOM_BOUND = 10;
+
     public Cars() {
         this.cars = new ArrayList<>();
     }
@@ -16,8 +19,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    private static final int THRESHOLD = 4;
-    private static final int RANDOM_BOUND = 10;
+
     public void add(Car car) {
         cars.add(car);
     }
