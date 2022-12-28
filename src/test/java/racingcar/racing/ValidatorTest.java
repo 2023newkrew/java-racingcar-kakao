@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ValidatorTest {
@@ -13,16 +11,6 @@ public class ValidatorTest {
     @ValueSource(strings = {"-1", "0", "z"})
     void invalidTurn(String turn) {
         assertThat(Validator.isValidTurn(turn)).isFalse();
-    }
-
-    @Test
-    void duplicateNames() {
-        assertThat(Validator.isValidNames(Arrays.asList("aaa", "aaa"))).isFalse();
-    }
-
-    @Test
-    void uniqueValidNames() {
-        assertThat(Validator.isValidNames(Arrays.asList("aaa", "aab"))).isTrue();
     }
 
     @Test

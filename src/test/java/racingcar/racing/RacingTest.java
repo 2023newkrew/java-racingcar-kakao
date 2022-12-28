@@ -20,4 +20,14 @@ public class RacingTest {
         this.racing.makeCars(Arrays.asList("aa", "bbb", "ccc"));
         assertThat(this.racing.getCarNo()).isEqualTo(3);
     }
+
+    @Test
+    void duplicateNames() {
+        assertThat(Racing.isDuplicateNames(Arrays.asList("aaa", "aaa"))).isTrue();
+    }
+
+    @Test
+    void uniqueValidNames() {
+        assertThat(Racing.isDuplicateNames(Arrays.asList("aaa", "aab"))).isFalse();
+    }
 }

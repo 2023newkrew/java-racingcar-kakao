@@ -4,6 +4,7 @@ import racingcar.car.Car;
 import racingcar.car.CarAction;
 import racingcar.car.CarDTO;
 import racingcar.util.RandomGenerator;
+import racingcar.util.StringParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,9 @@ public class Racing {
         racingUi.displayWinner(result);
     }
 
-    public void init() {
-        List<String> names = racingService.validateName(racingUi.getNames());
+    public void init(String nameInput) {
+        List<String> names = StringParser.parse(nameInput);
+        if (isDuplicateNames(names)) throw new IllegalArgumentException("");
         makeCars(names);
 
         int turn = racingService.validateTurn(racingUi.getTurn());
@@ -67,4 +69,7 @@ public class Racing {
         this.turn = turn;
     }
 
+    public static boolean isDuplicateNames(List<String> names) {
+        return names.size() != names.stream().distinct().count();
+    }
 }
