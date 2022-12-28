@@ -1,19 +1,17 @@
 package racing.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racing.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingSplitterTest {
-    private RacingSplitter racingSplitter;
+    private final RacingSplitter racingSplitter;
 
-    @BeforeEach
-    void setUp(){
+    RacingSplitterTest(){
         racingSplitter = new RacingSplitter();
     }
 
