@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import racingcar.Console;
 import racingcar.engine.model.Car;
 
-public class RacingCar implements Runnable {
+public class RacingGame implements Runnable {
 
     private final InputParser inputParser;
 
@@ -17,8 +17,8 @@ public class RacingCar implements Runnable {
 
     private final Console console;
 
-    public RacingCar(InputParser inputParser, RandomNumberGenerator randomNumberGenerator, Referee referee,
-                     Console console) {
+    public RacingGame(InputParser inputParser, RandomNumberGenerator randomNumberGenerator, Referee referee,
+                      Console console) {
         this.inputParser = inputParser;
         this.randomNumberGenerator = randomNumberGenerator;
         this.referee = referee;

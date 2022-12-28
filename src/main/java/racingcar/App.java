@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.engine.InputParser;
-import racingcar.engine.RacingCar;
+import racingcar.engine.RacingGame;
 import racingcar.engine.RandomNumberGenerator;
 import racingcar.engine.Referee;
 
@@ -12,8 +12,8 @@ public class App {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         Referee referee = new Referee();
 
-        RacingCar racingCar = new RacingCar(inputParser, randomNumberGenerator, referee, console);
+        RacingGame racingGame = new RacingGame(inputParser, randomNumberGenerator, referee, console);
 
-        racingCar.run();
+        racingGame.run();
     }
 }
