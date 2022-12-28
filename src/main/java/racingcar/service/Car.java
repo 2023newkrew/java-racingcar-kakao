@@ -17,6 +17,13 @@ public class Car implements Comparable<Car> {
         this.movableStrategy = movableStrategy;
     }
 
+    private void validateName(String name) {
+        if (name == null || name.length() == 0)
+            throw new IllegalArgumentException();
+        if (name.length() > 5)
+            throw new IllegalArgumentException();
+    }
+
     public void forward() {
         if (movableStrategy.isMove())
             distance++;

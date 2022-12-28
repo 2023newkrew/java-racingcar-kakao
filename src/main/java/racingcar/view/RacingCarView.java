@@ -19,7 +19,8 @@ public class RacingCarView {
 
     private void checkCarName(List<String> names) throws RuntimeException {
         names.forEach(s -> {
-            if (s.length() > 5) throw new RuntimeException();
+            if (s == null || s.length() == 0) throw new IllegalArgumentException();
+            if (s.length() > 5) throw new IllegalArgumentException();
         });
     }
 
