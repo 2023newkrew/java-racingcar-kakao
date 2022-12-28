@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    Scanner sc = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
     public List<String> getPlayerNames() {
-        String inputString = sc.nextLine();
+        String inputString = scanner.nextLine();
         List<String> splitStrings = List.of(inputString.split(",", -1));
         splitStrings.forEach(this::verifyName);
 
@@ -16,7 +16,7 @@ public class InputView {
     }
 
     public Integer getNumberOfTurns() {
-        int turn = sc.nextInt();
+        int turn = scanner.nextInt();
 
         if (turn <= 0) {
             throw new InvalidInputFormatException("Invalid number for turns");
