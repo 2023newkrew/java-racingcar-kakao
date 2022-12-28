@@ -21,8 +21,12 @@ public class RacingCarRepository {
 
     private void validateCarName(List<Car> cars){
         cars.forEach(car -> {
-            if(car.getName().isBlank()) throw new RacingException(ErrorCode.EMPTY_CAR_NAME);
-            if(car.getName().length() > CARNAME_MAX_LENGTH) throw new RacingException(ErrorCode.TOO_LONG_CAR_NAME);
+            if(car.getName().isBlank()){
+                throw new RacingException(ErrorCode.EMPTY_CAR_NAME);
+            }
+            if(car.getName().length() > CARNAME_MAX_LENGTH){
+                throw new RacingException(ErrorCode.TOO_LONG_CAR_NAME);
+            }
         });
 
     }
