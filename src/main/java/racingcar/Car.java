@@ -4,23 +4,23 @@ import java.util.Random;
 
 public class Car {
     private final String name;
-    private int cnt;
+    private int position;
 
     public Car(String name) {
         this.name = name;
-        this.cnt = 1;
+        this.position = 1;
     }
 
 
     public void printStatus() {
         StringBuilder sb = new StringBuilder();
         sb.append(name + " : ");
-        sb.append("-".repeat(Math.max(0, cnt)));
+        sb.append("-".repeat(Math.max(0, position)));
         System.out.println(sb);
     }
 
     public void move() {
-        this.cnt++;
+        this.position++;
     }
 
     public void race() {
@@ -33,7 +33,7 @@ public class Car {
         return name;
     }
 
-    public int getCnt() {
-        return cnt;
+    public int getPosition() {
+        return position;
     }
 }
