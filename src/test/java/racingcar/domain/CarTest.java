@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -18,14 +17,13 @@ class CarTest {
     @MethodSource("provideMovingCountWithMovableNumber")
     void moveIfRandomNumberIsGreaterThanEqualFour(String carName, int movingCount, int randomNumber) {
         Car car = new Car(carName);
-        int initialPosition = 1;
 
         for (int i = 0; i < movingCount; i++) {
             car.move(randomNumber);
         }
 
         CarDto carDto = car.toDto();
-        assertThat(carDto.getPosition()).isEqualTo(initialPosition + movingCount);
+        assertThat(carDto.getPosition()).isEqualTo(movingCount);
     }
 
     @DisplayName("자동차는 random값이 3 이하의 값일 경우 멈춘다.")
@@ -39,7 +37,7 @@ class CarTest {
         }
 
         CarDto carDto = car.toDto();
-        assertThat(carDto.getPosition()).isOne();
+        assertThat(carDto.getPosition()).isZero();
     }
 
     public static Stream<Arguments> provideMovingCountWithMovableNumber() {

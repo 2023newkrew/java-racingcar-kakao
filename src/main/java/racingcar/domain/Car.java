@@ -9,7 +9,7 @@ public class Car {
 
     public Car(String carName) {
         name = carName;
-        position = 1;
+        position = GameSetting.INITIAL_POSITION;
     }
 
     public void move(int randomNumber) {
