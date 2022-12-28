@@ -1,4 +1,4 @@
-package string_add_calculator;
+package stringcalculator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
