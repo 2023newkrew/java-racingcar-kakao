@@ -57,4 +57,15 @@ public class RacingTest {
 
         assertThat(Racing.getWinners(cars)).isEqualTo(Arrays.asList("dd", "ee"));
     }
+
+    @Test
+    void isEnd() {
+        racing.init("aa,bb", "1");
+
+        assertThat(racing.isEnd()).isFalse();
+
+        racing.proceedTurn();
+
+        assertThat(racing.isEnd()).isTrue();
+    }
 }

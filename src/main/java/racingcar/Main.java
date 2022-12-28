@@ -11,6 +11,10 @@ public class Main {
         InputView inputView = new InputView();
 
         racingGame.init(inputView.getNames(), inputView.getTurn());
-        OutputView.printResult(racingGame.startRace());
+
+        while (!racingGame.isEnd()) {
+            OutputView.printTurnResult(racingGame.proceedTurn());
+        }
+        OutputView.printResult(Racing.getWinners(racingGame.getCarDTOs()));
     }
 }
