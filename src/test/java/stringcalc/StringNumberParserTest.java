@@ -9,10 +9,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class StringNumberParserTest {
+class StringNumberParserTest {
 
     @Test
-    public void parseStringNumber_defaultSeparator() {
+    void parseStringNumber_defaultSeparator() {
         // given
         String separator = null;
         String input = "1:2:3,4";
@@ -26,7 +26,7 @@ public class StringNumberParserTest {
     }
 
     @Test
-    public void parseStringNumber_singleNumber() {
+    void parseStringNumber_singleNumber() {
         // given
         String separator = null;
         String input = "1";
@@ -40,7 +40,7 @@ public class StringNumberParserTest {
     }
 
     @Test
-    public void parseStringNumber_empty() {
+    void parseStringNumber_empty() {
         // given
         String separator = null;
         String input = "";
@@ -54,7 +54,7 @@ public class StringNumberParserTest {
     }
 
     @Test
-    public void parseStringNumber_customSeparator() {
+    void parseStringNumber_customSeparator() {
         // given
         String separator = ";";
         String input = "//;\n1;2;3;4";
@@ -69,7 +69,7 @@ public class StringNumberParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1:-2:3,4", "1, ,3:4", "1,a:3,4", "1,2,3,4\n", "1,,,2"})
-    public void parseStringNumber_throw(String input) {
+    void parseStringNumber_throw(String input) {
         // given
         String separator = null;
 
@@ -82,7 +82,7 @@ public class StringNumberParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"//;\n1;-2;3;4", "//;\n1; ;3;4", "//;\n1;a;3;4", "//;\n\n1;2;3;4"})
-    public void parseStringNumber_throw_customSeparator(String input) {
+    void parseStringNumber_throw_customSeparator(String input) {
         // given
         String separator = ";";
 

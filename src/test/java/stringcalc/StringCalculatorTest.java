@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StringCalculatorTest {
+class StringCalculatorTest {
 
     @Test
-    public void calculate(){
+    void calculate(){
         //given
         String input = "1,2,3";
 
@@ -20,7 +20,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void calculate_empty(){
+    void calculate_empty(){
         //given
         String input = "";
 
@@ -33,7 +33,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void calculate_customSeparator() {
+    void calculate_customSeparator() {
         //given
         String input = "//;\n1;2;3";
 
