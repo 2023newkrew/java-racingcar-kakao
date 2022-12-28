@@ -3,7 +3,7 @@ package racingcar;
 import java.util.Objects;
 
 public class Car {
-    /*
+    /**
      * Racing Game에 참가하는 Car 각각의 정보를 담는 클래스입니다.
      * Car Name의 Validation check를 여기서도 진행합니다(Double Check).
      */

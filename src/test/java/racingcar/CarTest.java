@@ -7,28 +7,29 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CarTest {
     Car car;
     int prevPosition;
+    private final static String CAR_DUMMY_STRING = "dummy";
 
     @BeforeEach
     void setUp() {
-        car = new Car("dummy");
+        car = new Car(CAR_DUMMY_STRING);
         prevPosition = car.getPosition();
     }
 
     @Test
     void moveCar() {
         car.move(4);
-        Assertions.assertThat(car.getPosition())
-                .isEqualTo(prevPosition + 1);
+        assertEquals(car.getPosition(), prevPosition + 1);
     }
 
     @Test
     void dontMoveCar() {
         car.move(3);
-        Assertions.assertThat(car.getPosition())
-                .isEqualTo(prevPosition);
+        assertEquals(car.getPosition(), prevPosition);
     }
 
     @ParameterizedTest

@@ -1,11 +1,13 @@
 package racingcar;
 
+import racingcar.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
 public class CarList {
-    /*
+    /**
      * Racing Game에 참가하는 Car객체들을 관리하는 클래스입니다.
      * 구현한 모든 클래스가 조합되어 사용되는 부분
      */
@@ -28,9 +30,8 @@ public class CarList {
     }
 
     public void moveAll() {
-        RandomUtil randomUtil = new RandomUtil();
         for (Car car : cars) {
-            car.move(randomUtil.generateRandom());
+            car.move(RandomUtil.generateRandom());
         }
     }
 

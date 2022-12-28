@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class IOSystem {
-    /*
+    /**
      * 프로그램의 UI로직을 담당하는 클래스입니다.
      * UI로직과 validation로직이 모두 들어가 있습니다.
      */
