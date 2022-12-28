@@ -4,7 +4,7 @@ package racingcar;
 public class Main {
     public static void main(String[] args) {
         Input input = new Input();
-        Racing racing = new Racing();
+        Racing racing = new Racing(new RandomGeneratorImpl());
         racing.generateCars(input.scanNames());
         racing.proceedRounds(input.scanTrialNumber());
         System.out.println("최종결과");

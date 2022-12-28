@@ -4,18 +4,20 @@ import java.util.Objects;
 
 public class Car implements Comparable{
     private final String name;
-    private final RandomGenerator randomGenerator;
     private final Position position;
     private static final int MOVE_BOUND = 4;
     private static final int MAX_BOUND = 9;
 
-    public Car(String name, RandomGenerator rg) {
-        this.name = name;
-        this.randomGenerator = rg;
-        this.position = new Position();
+    public Car(String name) {
+        this(name, 1);
     }
 
-    public boolean move() {
+    public Car(String name, int defaultPosition) {
+        this.name = name;
+        this.position = new Position(defaultPosition);
+    }
+
+    public boolean move(RandomGenerator randomGenerator) {
         if (randomGenerator.generate(MAX_BOUND+1) >= MOVE_BOUND) {
             this.position.move();
             return true;
@@ -52,6 +54,6 @@ public class Car implements Comparable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, randomGenerator, position);
+        return Objects.hash(name, position);
     }
 }

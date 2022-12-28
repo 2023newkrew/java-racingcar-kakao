@@ -3,14 +3,14 @@ package racingcar;
 import java.util.Objects;
 
 public class Position implements Comparable{
-    private int val;
+    private int position;
 
-    public Position() {
-        this.val = 1;
+    public Position(int defaultPosition) {
+        this.position = defaultPosition;
     }
 
     public void move() {
-        this.val++;
+        this.position++;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Position implements Comparable{
         if (!(o instanceof Position)) {
             throw new RuntimeException();
         }
-        return val - ((Position)o).val;
+        return position - ((Position)o).position;
     }
 
     @Override
@@ -30,17 +30,17 @@ public class Position implements Comparable{
             return false;
         }
         Position position = (Position) o;
-        return val == position.val;
+        return this.position == position.position;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(val);
+        return Objects.hash(position);
     }
 
     @Override
     public String toString() {
-        return "-".repeat(this.val);
+        return "-".repeat(this.position);
     }
 
 

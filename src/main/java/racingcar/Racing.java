@@ -5,10 +5,16 @@ import java.util.ArrayList;
 
 public class Racing {
     private Car[] cars;
+    private final RandomGenerator randomGenerator;
+
+    public Racing(RandomGenerator randomGenerator) {
+        this.randomGenerator = randomGenerator;
+    }
+
     public Car[] generateCars(String[] names) {
         Car[] result = new Car[names.length];
         for (int i = 0; i < names.length; i++) {
-            result[i] = new Car(names[i], new RandomGeneratorImpl());
+            result[i] = new Car(names[i]);
         }
         cars = result;
         return result;
@@ -16,7 +22,7 @@ public class Racing {
 
     public void proceedRound() {
         for (Car car: cars) {
-            car.move();
+            car.move(randomGenerator);
             System.out.println(car.toStringWithPosition());
         }
         System.out.println();
