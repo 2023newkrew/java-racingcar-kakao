@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -67,34 +66,20 @@ public class StringCalculatorTest {
     void registerCustomDelimiter() {
         String input = "//;\n1;2;3";
 
-        stringCalculator.registerDelimiterIfNotExist(input);
-        boolean hasCustomDelimiters = stringCalculator.hasCustomDelimiters();
-
-        assertThat(hasCustomDelimiters).isTrue();
+        stringCalculator.run(input);
+        assertThat(stringCalculator.hasCustomDelimiters()).isTrue();
     }
 
     @Test
-    @DisplayName("커스텀 구분자를 기준으로 분리한다.")
+    @DisplayName("커스텀 구분자가 등록되면 이후 해당 구분자를 기준으로 분리가 가능해진다.")
     void splitStringByCustomDelimiter() {
-        String input = "//_\n6_1:5";
+        String str = "8_2:3", input = "//_\n6_1:5";
 
-        stringCalculator.registerDelimiterIfNotExist(input);
-        String str = stringCalculator.parseNumberContainingString(input);
+        stringCalculator.run(input);
         String[] result = stringCalculator.splitByDelimiter(str);
 
         assertThat(result.length).isEqualTo(3);
-        assertThat(result).containsExactly("6", "1", "5");
-    }
-
-    @Test
-    @DisplayName("양의 정수들을 더한다.")
-    void addNumber() {
-        String input = "1:2:3";
-        String[] strArr = stringCalculator.splitByDelimiter(input);
-        PositiveIntegerList numberList = new PositiveIntegerList(strArr);
-
-        int result = numberList.calculateSum();
-        assertThat(result).isEqualTo(6);
+        assertThat(result).containsExactly("8", "2", "3");
     }
 
     @Test

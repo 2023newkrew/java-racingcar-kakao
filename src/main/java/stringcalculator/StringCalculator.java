@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    private static final String CUSTOM_DELIMITER_REGEX = "//([^0-9])\n(.*)";
+    private static final Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_REGEX);
+
     private Set<String> delimiters;
 
     public StringCalculator(Set<String> baseDelimiters) {
@@ -14,8 +17,8 @@ public class StringCalculator {
     }
 
     public int run(String input) {
-        if (Objects.isNull(input) || input.length() <= 1) {
-            return handleStringLengthShorterThanTwo(input);
+        if (Objects.isNull(input) || input.isBlank()) {
+            return 0;
         }
 
         return calculate(input);
@@ -28,20 +31,11 @@ public class StringCalculator {
         }
 
         PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitByDelimiter(str));
-        positiveIntegerList.validate();
         return positiveIntegerList.calculateSum();
     }
 
-    public int handleStringLengthShorterThanTwo(String input) {
-        if (Objects.isNull(input) || input.isBlank()) {
-            return 0;
-        }
-
-        return Integer.parseInt(input);
-    }
-
-    public boolean registerDelimiterIfNotExist(String input) {
-        Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
+    private boolean registerDelimiterIfNotExist(String input) {
+        Matcher m = pattern.matcher(input);
 
         if (m.find()) {
             delimiters.add(m.group(1));
@@ -51,8 +45,8 @@ public class StringCalculator {
         return false;
     }
 
-    public String parseNumberContainingString(String input) {
-        Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
+    private String parseNumberContainingString(String input) {
+        Matcher m = pattern.matcher(input);
 
         if (m.find()) {
             return m.group(2);
@@ -65,7 +59,7 @@ public class StringCalculator {
         return input.split(delimiterToString());
     }
 
-    public String delimiterToString() {
+    private String delimiterToString() {
         return String.join("|", delimiters);
     }
 
