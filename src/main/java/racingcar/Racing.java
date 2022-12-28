@@ -28,11 +28,14 @@ public class Racing {
     boolean registerCarRoundNum(String input) {
         try {
             roundNum = Integer.parseInt(input);
-            return true;
+            return positiveCheck(roundNum);
         }
         catch (NumberFormatException ex){
             return false;
         }
+    }
+    private boolean positiveCheck(int roundNum) {
+        return roundNum > 0;
     }
     boolean round() {
         for (Car car : cars) {
@@ -48,11 +51,10 @@ public class Racing {
         }
         return temp;
     }
-    private boolean random() {
+    protected boolean random() {
         Random rand = new Random();
         return rand.nextInt(10) >= 4;
     }
-
     String getWinner() {
         int maxPosition = 0;
         String winnerList = "";
@@ -66,5 +68,14 @@ public class Racing {
     }
     int getRoundNum(){
         return roundNum;
+    }
+    Car getCar(int index) {
+        try {
+            return cars.get(index);
+        }
+        catch (ArrayIndexOutOfBoundsException ex){
+            ex.printStackTrace();
+            throw ex;
+        }
     }
 }
