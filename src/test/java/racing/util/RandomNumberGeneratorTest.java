@@ -14,11 +14,25 @@ public class RandomNumberGeneratorTest {
 
     private static final int RANDOM_MAX_BOUND = 10;
     private static final int RANDOM_MIN_BOUND = 0;
+
+    private int generatedRandomNumber;
+
+    @BeforeEach
+    void setUp() {
+        generatedRandomNumber = generateRandomNumber(RANDOM_MAX_BOUND);
+    }
+
     @RepeatedTest(1000)
-    @DisplayName("생성된 숫자는 0~9 사이여야 한다.")
-    public void randomNumberValidate() {
-        int number = generateRandomNumber(RANDOM_MAX_BOUND);
-        assertThat(number).isGreaterThanOrEqualTo(RANDOM_MIN_BOUND);
-        assertThat(number).isLessThan(RANDOM_MAX_BOUND);
+    @DisplayName("생성된 랜덤 숫자는 RANDOM_MAX_BOUND(10) 보다 작아야 한다.")
+    public void validateMaxRandomNUmber() {
+        assertThat(generatedRandomNumber)
+                .isLessThan(RANDOM_MAX_BOUND);
+    }
+
+    @RepeatedTest(1000)
+    @DisplayName("생성된 랜덤 숫자는 RANDOM_MIN_BOUND(0) 이상이여야 한다.")
+    public void validateMinRandomNumber() {
+        assertThat(generatedRandomNumber)
+                .isGreaterThanOrEqualTo(RANDOM_MIN_BOUND);
     }
 }
