@@ -1,5 +1,6 @@
 package stringcalc;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,6 +12,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StringNumberParserTest {
 
+    StringNumberParser stringNumberParser;
+
+    @BeforeEach
+    void setUp() {
+        stringNumberParser = new StringNumberParser();
+    }
+
     @Test
     void parseStringNumber_defaultSeparator() {
         // given
@@ -18,7 +26,6 @@ class StringNumberParserTest {
         String input = "1:2:3,4";
 
         // when
-        StringNumberParser stringNumberParser = new StringNumberParser();
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
@@ -32,7 +39,6 @@ class StringNumberParserTest {
         String input = "1";
 
         // when
-        StringNumberParser stringNumberParser = new StringNumberParser();
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
@@ -46,7 +52,6 @@ class StringNumberParserTest {
         String input = "";
 
         // when
-        StringNumberParser stringNumberParser = new StringNumberParser();
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
@@ -60,7 +65,6 @@ class StringNumberParserTest {
         String input = "//;\n1;2;3;4";
 
         // when
-        StringNumberParser stringNumberParser = new StringNumberParser();
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
@@ -73,9 +77,6 @@ class StringNumberParserTest {
         // given
         String separator = null;
 
-        // when
-        StringNumberParser stringNumberParser = new StringNumberParser();
-
         // then
         assertThatThrownBy(() -> stringNumberParser.parse(input, separator)).isInstanceOf(RuntimeException.class);
     }
@@ -85,9 +86,6 @@ class StringNumberParserTest {
     void parseStringNumber_throw_customSeparator(String input) {
         // given
         String separator = ";";
-
-        // when
-        StringNumberParser stringNumberParser = new StringNumberParser();
 
         // then
         assertThatThrownBy(() -> stringNumberParser.parse(input, separator)).isInstanceOf(RuntimeException.class);

@@ -1,10 +1,18 @@
 package stringcalc;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StringCalculatorTest {
+
+    StringCalculator stringCalculator;
+
+    @BeforeEach
+    void setUp() {
+        stringCalculator = new StringCalculator();
+    }
 
     @Test
     void calculate(){
@@ -12,7 +20,6 @@ class StringCalculatorTest {
         String input = "1,2,3";
 
         //when
-        StringCalculator stringCalculator = new StringCalculator();
         Long sum = stringCalculator.calculate(input);
 
         //then
@@ -25,7 +32,6 @@ class StringCalculatorTest {
         String input = "";
 
         //when
-        StringCalculator stringCalculator = new StringCalculator();
         Long sum = stringCalculator.calculate(input);
 
         //then
@@ -38,7 +44,6 @@ class StringCalculatorTest {
         String input = "//;\n1;2;3";
 
         //when
-        StringCalculator stringCalculator = new StringCalculator();
         Long sum = stringCalculator.calculate(input);
 
         //then
