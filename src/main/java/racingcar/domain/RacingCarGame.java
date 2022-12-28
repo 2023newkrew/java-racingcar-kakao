@@ -5,9 +5,10 @@ import java.util.List;
 
 public interface RacingCarGame {
 
-    void run(int times);
+    void run();
 
     void add(String carName);
+    void add(String... carNames);
 
     void add(Car... cars);
 
@@ -17,5 +18,4 @@ public interface RacingCarGame {
 
     List<String> getCarResults();
 
-    void play();
 }

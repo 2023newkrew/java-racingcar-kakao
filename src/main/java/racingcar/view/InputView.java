@@ -20,6 +20,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    //TODO validate logic 추가
     private void validate(String name) {
         if (name.length() > MAXIMUM_LENGTH) {
             throw new RuntimeException();

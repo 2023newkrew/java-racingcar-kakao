@@ -4,19 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.AppConfig;
-import racingcar.AppConfigImpl;
 import racingcar.generator.RandomNumberGenerator;
 
 public class RacingCarGameTest {
-    static AppConfig appConfig;
-    static Field randomNumberGenerator;
     static RacingCarGame racingCarGame;
 
     /**
@@ -35,18 +29,15 @@ public class RacingCarGameTest {
         }
     }
 
-
-    @BeforeAll
-    static void setUp() throws NoSuchFieldException, IllegalAccessException {
-        appConfig = new AppConfigImpl();
-        randomNumberGenerator = AppConfigImpl.class.getDeclaredField("randomNumberGenerator");
-        randomNumberGenerator.setAccessible(true);
+    void run(int times) {
+        for (int i = 0; i < times; i++) {
+            racingCarGame.run();
+        }
     }
 
     @BeforeEach
     void init() throws IllegalAccessException {
-        randomNumberGenerator.set(appConfig, new FakeRandomNumberGenerator());
-        racingCarGame = new RacingCarGameImpl(appConfig);
+        racingCarGame = new RacingCarGameImpl(new FakeRandomNumberGenerator());
     }
 
 
@@ -56,7 +47,7 @@ public class RacingCarGameTest {
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
         racingCarGame.add(car1, car2, car3);
-        racingCarGame.run(5);
+        run(5);
         Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
         cars.setAccessible(true);
         ArrayList<Car> racingCars = (ArrayList<Car>) cars.get(racingCarGame);
@@ -71,7 +62,7 @@ public class RacingCarGameTest {
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
         racingCarGame.add(car1, car2, car3);
-        racingCarGame.run(5);
+        run(5);
         assertThat(racingCarGame.getWinner().size()).isEqualTo(1);
         assertThat(racingCarGame.getWinner().get(0)).isEqualTo(car2);
     }
@@ -83,7 +74,7 @@ public class RacingCarGameTest {
         Car car3 = new RacingCar("honux");
         Car car4 = new RacingCar("soony");
         racingCarGame.add(car1, car2, car3, car4);
-        racingCarGame.run(5);
+        run(5);
         Assertions.assertThat(racingCarGame.getWinner().size()).isEqualTo(2);
         Assertions.assertThat(racingCarGame.getWinner()).containsExactly(car2, car4);
     }
@@ -94,7 +85,7 @@ public class RacingCarGameTest {
         Car car2 = new RacingCar("crong");
 
         racingCarGame.add(car1, car2);
-        racingCarGame.run(5);
+        run(5);
 
         assertThat(racingCarGame.getCarResults()).containsExactly("pobi : ", "crong : -----");
     }

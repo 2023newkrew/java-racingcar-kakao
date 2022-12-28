@@ -1,5 +1,8 @@
 package racingcar.config;
 
+import racingcar.controller.RacingCarGameController;
+import racingcar.controller.RacingCarGameControllerImpl;
+import racingcar.domain.RacingCarGameImpl;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.generator.RandomNumberGeneratorImpl;
 import racingcar.view.InputView;
@@ -9,6 +12,8 @@ public class AppConfigImpl implements AppConfig {
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final RacingCarGameController racingCarGameController = new RacingCarGameControllerImpl(inputView,
+            outputView, new RacingCarGameImpl(randomNumberGenerator));
 
     @Override
     public RandomNumberGenerator getRandomNumberGenerator() {
@@ -24,5 +29,10 @@ public class AppConfigImpl implements AppConfig {
     @Override
     public OutputView getOutputView() {
         return outputView;
+    }
+
+    @Override
+    public RacingCarGameController getRacingCarGameController() {
+        return racingCarGameController;
     }
 }
