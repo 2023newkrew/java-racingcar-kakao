@@ -21,8 +21,9 @@ public class RacingCarModel {
     }
 
     private static void checkNamesSize(List<String> names) {
-        if (names.size() > MAX_CAR_COUNT)
+        if (names.size() > MAX_CAR_COUNT) {
             throw new RuntimeException("car too many. current car count: " + names.size());
+        }
     }
 
     public static RacingCarModel from(List<Car> cars) {
@@ -30,31 +31,39 @@ public class RacingCarModel {
     }
 
     private RacingCarModel(List<Car> cars) {
-        checkCarsEmpty(cars);
-        checkContainsNull(cars);
-        checkNameDuplication(cars);
         this.cars = cars;
+        checkCarsValidation();
     }
 
-    private void checkCarsEmpty(List<Car> cars) {
+    private void checkCarsValidation() {
+        checkCarsEmpty();
+        checkContainsNull();
+        checkNameDuplication();
+    }
+
+    private void checkCarsEmpty() {
         if (Objects.isNull(cars) || cars.isEmpty()) {
             throw new RuntimeException("Cars is Empty.");
         }
     }
 
-    private void checkContainsNull(List<Car> cars) {
+    private void checkContainsNull() {
         if (cars.stream().anyMatch(Objects::isNull)) {
             throw new RuntimeException("Cars has null.");
         }
     }
 
-    private void checkNameDuplication(List<Car> cars) {
-        if (cars.stream()
-                .map(car -> car.getCarInfo().getName())
-                .distinct()
-                .count() != cars.size()) {
+    private void checkNameDuplication() {
+        if (getDistinctCarsCount() != cars.size()) {
             throw new RuntimeException("Car name Duplicate.");
         }
+    }
+
+    private int getDistinctCarsCount() {
+        return (int) cars.stream()
+                .map(car -> car.getCarInfo().getName())
+                .distinct()
+                .count();
     }
 
     public void progress() {
