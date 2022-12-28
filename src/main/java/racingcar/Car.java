@@ -2,27 +2,27 @@ package racingcar;
 
 public class Car {
     private final String name;
-    private final RandomGenerator randomGenerator;
     private int position;
     private static final int MOVE_BOUND = 4;
     private static final int MAX_BOUND = 9;
 
-    public Car(String name, RandomGenerator rg) {
+    public Car(String name) {
         this.name = name;
-        this.randomGenerator = rg;
         this.position = 0;
     }
 
-    public boolean move() {
-        if (movable()) {
+    public void move(RandomGenerator rg) {
+        if (movable(rg)) {
             this.position++;
-            return true;
         }
-        return false;
     }
 
-    public boolean movable() {
-        return randomGenerator.generate(MAX_BOUND) >= MOVE_BOUND;
+    private boolean movable(RandomGenerator rg) {
+        return rg.generate(MAX_BOUND) >= MOVE_BOUND;
+    }
+
+    public int position() {
+        return position;
     }
 
     @Override

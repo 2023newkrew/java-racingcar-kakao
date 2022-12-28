@@ -8,7 +8,7 @@ public class Racing {
     public Car[] generateCars(String[] carNames) {
         Car[] result = new Car[carNames.length];
         for (int i = 0; i < carNames.length; i++) {
-            result[i] = new Car(carNames[i], new RandomGeneratorImpl());
+            result[i] = new Car(carNames[i]);
         }
         cars = result;
         return cars;
@@ -16,7 +16,7 @@ public class Racing {
 
     public void proceedRound() {
         for (Car car: cars) {
-            car.move();
+            car.move(new RandomGeneratorImpl());
             System.out.println(car.toStringWithPosition());
         }
         System.out.println();
