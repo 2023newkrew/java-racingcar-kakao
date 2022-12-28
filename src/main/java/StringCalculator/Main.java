@@ -16,9 +16,13 @@ public class Main {
         return input;
     }
 
+    public static void printAnswer(int answer) {
+        System.out.println("합은 " + answer + "입니다.");
+    }
+
     public static void main(String[] args) {
         String input = inputString();
         stringSum = new StringSum(input);
-        System.out.println("합은 " + stringSum.calculate() + "입니다.");
+        printAnswer(stringSum.calculate());
     }
 }
