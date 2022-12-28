@@ -13,9 +13,9 @@ public class GameController {
 
     public void run() {
         initialize();
-        int repeat = inputView.readGameRepeat();
+        setGameRepeat();
         System.out.println(RESULT_MESSAGE);
-        for (int i = 0; i < repeat; i++) {
+        while (!game.isOver()) {
             playSingleTurn();
         }
         outputView.printWinner(game.getWinners());
@@ -25,9 +25,19 @@ public class GameController {
         try {
             List<String> rawCarNames = inputView.readCarNames();
             game = new Game(rawCarNames);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initialize();
+        }
+    }
+
+    private void setGameRepeat() {
+        try {
+            int repeat = inputView.readGameRepeat();
+            game.setRepeat(repeat);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setGameRepeat();
         }
     }
 

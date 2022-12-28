@@ -9,6 +9,7 @@ import racing.dto.CarDTO;
 public class Game {
     private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름이 중복될 수 없습니다.";
     private final Cars cars;
+    private int gameRepeat;
 
     public Game(final List<String> rawCarNames) {
         validateUniqueness(rawCarNames);
@@ -16,6 +17,10 @@ public class Game {
                 .map(CarName::new)
                 .collect(Collectors.toList());
         cars = new Cars(carNames);
+    }
+
+    public void setRepeat(int repeat) {
+        this.gameRepeat = repeat;
     }
 
     private void validateUniqueness(List<String> rawCarNames) {
@@ -29,6 +34,7 @@ public class Game {
     }
 
     public void play() {
+        gameRepeat--;
         cars.play();
     }
 
@@ -40,5 +46,7 @@ public class Game {
         return cars.getWinners();
     }
 
-
+    public boolean isOver() {
+        return gameRepeat <= 0;
+    }
 }
