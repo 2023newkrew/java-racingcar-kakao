@@ -1,20 +1,21 @@
 package racing.model;
 
-import java.util.Random;
+import racing.util.RandomUtil;
 
 public class Car implements Comparable<Car>{
     private final String name;
     private Integer position;
-    private final Random random;
+
+    private static final Integer MOVE_THRESHOLD = 4;
+    private static final Integer RANGE_OF_RANDOM_NUMBER = 10;
 
     public Car(String name, Integer position) {
         this.name = name;
         this.position = position;
-        this.random = new Random();
     }
 
     public void tryMove() {
-        if (random.nextInt(10) >= 4) {
+        if (RandomUtil.getRandomInteger(RANGE_OF_RANDOM_NUMBER) >= MOVE_THRESHOLD) {
             position++;
         }
     }
