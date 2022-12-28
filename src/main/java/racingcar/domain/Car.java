@@ -1,7 +1,7 @@
-package racingcar.service;
+package racingcar.domain;
 
-import racingcar.service.stratedy.MovableStrategy;
-import racingcar.service.stratedy.RandomStratedy;
+import racingcar.domain.stratedy.MovableStrategy;
+import racingcar.domain.stratedy.RandomStratedy;
 
 public class Car implements Comparable<Car> {
     private final String name;

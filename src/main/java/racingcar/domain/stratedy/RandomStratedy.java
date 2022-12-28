@@ -1,4 +1,4 @@
-package racingcar.service.stratedy;
+package racingcar.domain.stratedy;
 
 import java.util.Random;
 

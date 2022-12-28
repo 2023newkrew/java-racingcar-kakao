@@ -1,6 +1,6 @@
 package racingcar;
 
-import racingcar.service.Racing;
+import racingcar.domain.Racing;
 import racingcar.view.RacingCarView;
 
 public class App {
