@@ -3,8 +3,8 @@ package racingcar;
 import java.util.Objects;
 
 public class CarInfo {
-    private String name;
-    private int position;
+    private final String name;
+    private final int position;
 
     public static CarInfo from(String name, int position) {
         return new CarInfo(name, position);
