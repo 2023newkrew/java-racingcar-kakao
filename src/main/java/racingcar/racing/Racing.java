@@ -10,18 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Racing {
-    private final List<Car> cars;
-    private int turn;
-    private final RacingUI racingUi;
-    private final RacingService racingService;
-
-
-    public Racing() {
-        cars = new ArrayList<>();
-        turn = 0;
-        racingUi = new RacingUI();
-        racingService = new RacingService();
-    }
+    private final List<Car> cars = new ArrayList<>();
+    private int turn = 0;
+    private final RacingUI racingUi = new RacingUI();
+    private final RacingService racingService = new RacingService();
 
     public int getCarNo() {
         return cars.size();

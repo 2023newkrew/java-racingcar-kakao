@@ -1,11 +1,10 @@
 package racingcar.car;
 
 public class Car {
-    private int position;
+    private int position = 0;
     private final String name;
 
     public Car(String name) {
-        position = 0;
         this.name = name;
     }
 
