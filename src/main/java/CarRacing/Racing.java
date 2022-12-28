@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
+
+    private final int MAX_NAME_LENGTH = 5;
     public String[] nameSplit(String inputString) {
         return inputString.split(",");
     }
 
     public void nameException(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException("다섯 글자 이상입니다.");
         }
     }
