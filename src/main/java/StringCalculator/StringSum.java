@@ -14,6 +14,12 @@ public class StringSum {
         delimiter = ",|:";
     }
 
+    public boolean textException(String inputString) {
+        if(inputString == null) return true;
+        if(inputString.isEmpty()) return true;
+        return false;
+    }
+
     public String customDelimiter() {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(formula);
         String customDelimiter = null;
@@ -57,6 +63,9 @@ public class StringSum {
     }
 
     public int calculate() {
+        if(textException(formula)) {
+            return 0;
+        }
         customDelimiter();
         String tokens[] = splitByDelimiter();
         int numbers[] = stringsToIntegers(tokens);

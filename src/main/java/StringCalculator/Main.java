@@ -16,18 +16,8 @@ public class Main {
         return input;
     }
 
-    public static boolean textException(String inputString) {
-        if(inputString == null) return false;
-        if(inputString.isEmpty()) return false;
-        return true;
-    }
-
     public static void main(String[] args) {
         String input = inputString();
-        if (!textException(input)) {
-            System.out.println("합은 0입니다.");
-            return;
-        }
         stringSum = new StringSum(input);
         System.out.println("합은 " + stringSum.calculate() + "입니다.");
     }
