@@ -14,41 +14,31 @@ public class InputTest {
     @ValueSource(strings={"daniel",""})
     void inputLengthException(String inputStr) {
         assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(() -> {
-                    input.validateLength(inputStr);
-                });
+                .isThrownBy(() -> input.validateLength(inputStr));
     }
     @Test
     void inputLengthNotException() {
         String inputStr = "dan";
-        assertThatCode(()->{
-            input.validateLength(inputStr);
-        }).doesNotThrowAnyException();
+        assertThatCode(()-> input.validateLength(inputStr)).doesNotThrowAnyException();
     }
 
     @Test
     void arrayLengthException() {
         String[] inputStr = {"kim"};
         assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(() -> {
-                    input.validateArrayLength(inputStr);
-                });
+                .isThrownBy(() -> input.validateArrayLength(inputStr)).withMessage("경주에 참여할 자동차는 2대 이상이어야 합니다.");
 
     }
     @Test
     void arrayLengthNotException() {
         String[] inputStr = {"kim", "lee"};
-        assertThatCode(()->{
-            input.validateArrayLength(inputStr);
-        }).doesNotThrowAnyException();
+        assertThatCode(()-> input.validateArrayLength(inputStr)).doesNotThrowAnyException();
     }
 
     @Test
     void EachStringNotException(){
         String[] inputStr = {"kim", "lee", "han"};
-        assertThatCode(()->{
-            input.validateEachString(inputStr);
-        }).doesNotThrowAnyException();
+        assertThatCode(()-> input.validateEachString(inputStr)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -56,26 +46,20 @@ public class InputTest {
     void EachStringException(String abnormal){
         String[] inputStr = {"kim", "lee", abnormal};
         assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(() -> {
-                    input.validateEachString(inputStr);
-                });
+                .isThrownBy(() -> input.validateEachString(inputStr)).withMessage("자동차 이름의 길이는 5글자 이하여야 합니다.");
     }
 
     @Test
     void duplicatedCarNameNotExceptionTest() {
         String[] inputStr = {"kim", "lee", "park"};
-        assertThatCode(()->{
-            input.validateDuplication(inputStr);
-        }).doesNotThrowAnyException();
+        assertThatCode(()-> input.validateDuplication(inputStr)).doesNotThrowAnyException();
     }
 
     @Test
     void duplicatedCarNameExceptionTest() {
         String[] inputStr = {"kim", "lee", "kim"};
         assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(()->{
-                    input.validateDuplication(inputStr);
-                });
+                .isThrownBy(()-> input.validateDuplication(inputStr)).withMessage("경주에 참여하는 자동차의 이름에 중복이 있습니다.");
     }
 
     @Test
@@ -89,9 +73,7 @@ public class InputTest {
     @ValueSource(strings = {"3d", "xx", "-1", "0"})
     void trialCountExceptionTest(String trialCount) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(()->{
-                    input.validateTrialCount(trialCount);
-                });
+                .isThrownBy(()-> input.validateTrialCount(trialCount));
     }
 
 }

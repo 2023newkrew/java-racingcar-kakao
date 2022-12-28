@@ -31,14 +31,14 @@ public class Input {
 
     public void validateLength(String inputStr) {
         if (inputStr.length() > 5 || inputStr.length() == 0) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("자동차 이름의 길이는 5글자 이하여야 합니다.");
         }
     }
 
 
     public void validateArrayLength(String[] inputStr) {
         if (inputStr.length<=1){
-            throw new InvalidInputException();
+            throw new InvalidInputException("경주에 참여할 자동차는 2대 이상이어야 합니다.");
         }
     }
 
@@ -51,14 +51,14 @@ public class Input {
     public void validateDuplication(String[] inputStr) {
         Set<String> carNames = new HashSet<>(Arrays.asList(inputStr));
         if (carNames.size() != inputStr.length) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("경주에 참여하는 자동차의 이름에 중복이 있습니다.");
         }
     }
 
     public int validateTrialCount(String trialCount) {
         int result = Integer.parseInt(trialCount);
         if (result < 1) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("시도 횟수는 1회 이상이여야합니다.");
         }
         return result;
     }
