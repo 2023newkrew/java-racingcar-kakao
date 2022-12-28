@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import racingcar.Console;
 import racingcar.engine.model.Car;
 
-public class RacingGame implements Runnable {
+public class RacingGame {
 
     private final InputParser inputParser;
 
@@ -25,7 +25,6 @@ public class RacingGame implements Runnable {
         this.console = console;
     }
 
-    @Override
     public void run() {
         List<Car> cars = requestUntilSuccess(getCars());
         int count = requestUntilSuccess(getCount());
