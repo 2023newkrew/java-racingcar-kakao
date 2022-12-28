@@ -8,8 +8,12 @@ public class RacingCar implements Comparable<RacingCar> {
     private int distance;
 
     public RacingCar(String name) {
+        this(name, 1);
+    }
+
+    public RacingCar(String name, int distance) {
         this.name = name;
-        this.distance = 1;
+        this.distance = distance;
     }
 
     public String getName() {
