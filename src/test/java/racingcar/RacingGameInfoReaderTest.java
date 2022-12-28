@@ -10,13 +10,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class RacingGameInfoReaderTest {
 
-    RacingGameInfoReader racingGameInfoReader;
-
-    @BeforeEach
-    void setUp() {
-        racingGameInfoReader = new RacingGameInfoReader();
-    }
-
     @Test
     void readRacingCars(){
         // given
@@ -25,6 +18,7 @@ class RacingGameInfoReaderTest {
         System.setIn(in);
 
         // when
+        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
         List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
 
         // then
@@ -38,6 +32,8 @@ class RacingGameInfoReaderTest {
         String input = "car1";
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
+
+        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
 
         // when
         List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
@@ -54,8 +50,10 @@ class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
+        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
+
         // then
-        assertThatThrownBy(() -> racingGameInfoReader.readRacingCars())
+        assertThatThrownBy(racingGameInfoReader::readRacingCars)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -66,8 +64,10 @@ class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
+        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
+
         // then
-        assertThatThrownBy(() -> racingGameInfoReader.readRacingCars())
+        assertThatThrownBy(racingGameInfoReader::readRacingCars)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -79,6 +79,7 @@ class RacingGameInfoReaderTest {
         System.setIn(in);
 
         // when
+        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
         int round = racingGameInfoReader.readRound();
 
         // then
