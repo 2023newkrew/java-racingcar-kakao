@@ -6,7 +6,10 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class IOSystem {
-
+    /*
+     * 프로그램의 UI로직을 담당하는 클래스입니다.
+     * UI로직과 validation로직이 모두 들어가 있습니다.
+     */
     private final Scanner sc;
 
     public IOSystem() {
@@ -16,14 +19,29 @@ public class IOSystem {
     public List<String> getCarNamesInput() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNames = sc.next();
-        List<String> carNameList = List.of(carNames.split(","));
-        for (String name : carNameList) {
-            checkInvalidName(name);
-        }
+
+        List<String> carNameList = SplitCarNames(carNames);
+        /* 빈 문자열, 6자 이상 문자열 체크 */
+        validateCarNameList(carNameList);
+
+        checkDuplicatedCarName(carNameList);
+        return carNameList;
+    }
+
+    private void checkDuplicatedCarName(List<String> carNameList) {
         if (hasDuplicatedName(carNameList)) {
             throw new RuntimeException();
         }
-        return carNameList;
+    }
+
+    private void validateCarNameList(List<String> carNameList) {
+        for (String name : carNameList) {
+            checkInvalidName(name);
+        }
+    }
+
+    private static List<String> SplitCarNames(String carNames) {
+        return List.of(carNames.split(","));
     }
 
     private boolean hasDuplicatedName(List<String> carNameList) {
@@ -31,7 +49,7 @@ public class IOSystem {
         return carNameSet.size() < carNameList.size();
     }
 
-    public void checkInvalidName(String name) {
+    private void checkInvalidName(String name) {
         if (name == null || name.equals("") || name.length() > 5) {
             throw new RuntimeException();
         }
@@ -54,10 +72,14 @@ public class IOSystem {
     public int getTrialNumber() {
         System.out.println("시도할 회수는 몇회인가요?");
         int trialNumber = Integer.parseInt(sc.next());
+        checkNegative(trialNumber);
+
+        return trialNumber;
+    }
+
+    private static void checkNegative(int trialNumber) {
         if (trialNumber < 0) {
             throw new RuntimeException();
         }
-
-        return trialNumber;
     }
 }

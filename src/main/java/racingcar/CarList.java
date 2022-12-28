@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.OptionalInt;
 
 public class CarList {
+    /*
+     * Racing Game에 참가하는 Car객체들을 관리하는 클래스입니다.
+     * 구현한 모든 클래스가 조합되어 사용되는 부분
+     */
     private final List<Car> cars;
 
     public CarList() {
@@ -32,16 +36,21 @@ public class CarList {
 
     public List<Car> selectWinners() {
         List<Car> winners = new ArrayList<>();
-        OptionalInt maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max();
-        if (maxPosition.isEmpty()) {
-            return winners;
-        }
+        OptionalInt maxPosition = getMaxPosition();
+        getWinners(winners, maxPosition);
+        return winners;
+    }
+
+    private void getWinners(List<Car> winners, OptionalInt maxPosition) {
         cars.stream()
                 .filter(car -> car.getPosition() == maxPosition.getAsInt())
                 .forEach(winners::add);
-        return winners;
+    }
+
+    private OptionalInt getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max();
     }
 
     @Override
