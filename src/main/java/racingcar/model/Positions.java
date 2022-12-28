@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Positions {
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Positions(List<Car> cars) {
         this.cars = cars;
@@ -25,5 +25,4 @@ public class Positions {
                 .map(Car::getName)
                 .collect(Collectors.toSet());
     }
-
 }
