@@ -15,7 +15,7 @@ public class Calculator {
     }
 
     private int calculateWithDelimiter(Prompt prompt) {
-        String[] stringNumbers = prompt.getStringNumbers();
+        String[] stringNumbers = prompt.getParsedStringNumbers();
         return Arrays.stream(stringNumbers)
                 .mapToInt(this::parseIntOnlyPositiveStringNumber)
                 .sum();
