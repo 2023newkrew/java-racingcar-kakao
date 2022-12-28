@@ -25,7 +25,7 @@ public class Calculator {
 
     private int parseStringToZeroAllPositiveInt(String input) {
         try {
-            return checkZeroOrPositive(Integer.parseInt(input));
+            return checkNegative(Integer.parseInt(input));
         } catch (NumberFormatException e) {
             throw new RuntimeException("0 이상의 숫자만 입력해야합니다.");
         } catch (IllegalArgumentException e) {
@@ -33,7 +33,7 @@ public class Calculator {
         }
     }
 
-    private int checkZeroOrPositive(int input) {
+    private int checkNegative(int input) {
         if (input < 0) {
             throw new IllegalArgumentException();
         }

@@ -12,7 +12,7 @@ public class InputParser {
 
     public int parseStringToPositiveInt(String input) {
         try {
-            return checkPositive(Integer.parseInt(input));
+            return checkZeroOrNegative(Integer.parseInt(input));
         } catch (NumberFormatException e) {
             throw new RuntimeException("1 이상의 숫자만 입력해야합니다.");
         } catch (IllegalArgumentException e) {
@@ -20,7 +20,7 @@ public class InputParser {
         }
     }
 
-    private int checkPositive(int number) {
+    private int checkZeroOrNegative(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException();
         }
