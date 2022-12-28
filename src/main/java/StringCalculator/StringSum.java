@@ -51,8 +51,8 @@ public class StringSum {
 
     public int[] stringsToIntegers(String[] input) {
         int[] integers = new int[input.length];
-        for (int i = 0; i < input.length; i++) {
-            integers[i] = stringToInteger(input[i]);
+        for (int index = 0; index < input.length; index++) {
+            integers[index] = stringToInteger(input[index]);
         }
         return integers;
     }
