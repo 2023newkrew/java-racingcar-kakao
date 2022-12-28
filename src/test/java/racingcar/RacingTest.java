@@ -7,13 +7,13 @@ public class RacingTest {
     @Test
     void generateCarsArray() {
         Racing racing = new Racing(new RandomGeneratorImpl());
-        String[] names = new String[]{"aaa","bbb","ccc"};
+        String[] names = new String[]{"aaa", "bbb", "ccc"};
         Car[] cars = racing.generateCars(names);
         Assertions.assertThat(cars.length).isEqualTo(3);
 
-        for(int i =0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             Assertions.assertThat(cars[i].toString()).isEqualTo(names[i]);
-            Assertions.assertThat(cars[i].toStringWithPosition()).isEqualTo(names[i]+" : -");
+            Assertions.assertThat(cars[i].toStringWithPosition()).isEqualTo(names[i] + " : -");
         }
     }
 
@@ -32,7 +32,7 @@ public class RacingTest {
     }
 
     @Test
-    void winnersTest(){
+    void winnersTest() {
         Car[] cars = new Car[5];
         cars[0] = new Car("a", 2);
         cars[1] = new Car("b", 6);

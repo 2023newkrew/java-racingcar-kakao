@@ -12,11 +12,7 @@ public class Input {
 
     public String[] scanNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] stringArray = split(scanner.nextLine());
-        validateDuplication(stringArray);
-        validateArrayLength(stringArray);
-        validateEachString(stringArray);
-        return stringArray;
+        return split(scanner.nextLine());
     }
 
     public int scanTrialNumber() {
@@ -29,33 +25,39 @@ public class Input {
         return  stringInput.split(delimiter);
     }
 
-    public void validateLength(String inputStr) {
+    public void validate(String[] parsedString) {
+        validateDuplication(parsedString);
+        validateArrayLength(parsedString);
+        validateEachString(parsedString);
+    }
+
+    private void validateLength(String inputStr) {
         if (inputStr.length() > 5 || inputStr.length() == 0) {
             throw new InvalidInputException("자동차 이름의 길이는 5글자 이하여야 합니다.");
         }
     }
 
 
-    public void validateArrayLength(String[] inputStr) {
+    private void validateArrayLength(String[] inputStr) {
         if (inputStr.length<=1){
             throw new InvalidInputException("경주에 참여할 자동차는 2대 이상이어야 합니다.");
         }
     }
 
-    public void validateEachString(String[] inputStr) {
+    private void validateEachString(String[] inputStr) {
         for (String string:inputStr){
             validateLength(string);
         }
     }
 
-    public void validateDuplication(String[] inputStr) {
+    private void validateDuplication(String[] inputStr) {
         Set<String> carNames = new HashSet<>(Arrays.asList(inputStr));
         if (carNames.size() != inputStr.length) {
             throw new InvalidInputException("경주에 참여하는 자동차의 이름에 중복이 있습니다.");
         }
     }
 
-    public int validateTrialCount(String trialCount) {
+    private int validateTrialCount(String trialCount) {
         int result = Integer.parseInt(trialCount);
         if (result < 1) {
             throw new InvalidInputException("시도 횟수는 1회 이상이여야합니다.");
