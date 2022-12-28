@@ -8,14 +8,14 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class View {
+public class InputView {
 
     public static final int MAX_TRY_COUNT = 99;
     public static final int MAX_NAME_LENGTH = 5;
     private final PrintStream printStream;
     private final Scanner scanner;
 
-    public View(PrintStream printStream, InputStream inputStream) {
+    public InputView(PrintStream printStream, InputStream inputStream) {
         this.printStream = printStream;
         this.scanner = new Scanner(inputStream);
     }

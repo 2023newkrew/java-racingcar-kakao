@@ -3,13 +3,13 @@ package racingcar.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingSimulator {
+public class RacingGame {
 
     private final int maxTryCount;
     private final Cars cars;
     private int tryCount;
 
-    public RacingSimulator(int maxTryCount, NumberGenerator numberGenerator, List<String> names) {
+    public RacingGame(int maxTryCount, NumberGenerator numberGenerator, List<String> names) {
         this.cars = createCars(numberGenerator, names);
         this.maxTryCount = maxTryCount;
         this.tryCount = 0;

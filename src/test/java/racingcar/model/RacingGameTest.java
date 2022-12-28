@@ -5,15 +5,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.StubNumberGenerator;
 
-class RacingSimulatorTest {
+class RacingGameTest {
 
     private static final int MOVE = 4;
     private static final int STOP = 3;
@@ -23,7 +21,7 @@ class RacingSimulatorTest {
     void mustParticipateTwoCars() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
 
-        assertThatThrownBy(() -> new RacingSimulator(1, numberGenerator, Collections.emptyList()))
+        assertThatThrownBy(() -> new RacingGame(1, numberGenerator, Collections.emptyList()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -31,12 +29,12 @@ class RacingSimulatorTest {
     @Test
     void overTryCountTest() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        RacingSimulator simulator = new RacingSimulator(2, numberGenerator, List.of("a"));
+        RacingGame racingGame = new RacingGame(2, numberGenerator, List.of("a"));
 
-        simulator.move();
-        simulator.move();
+        racingGame.move();
+        racingGame.move();
 
-        assertThatThrownBy(() -> simulator.move())
+        assertThatThrownBy(() -> racingGame.move())
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -45,11 +43,11 @@ class RacingSimulatorTest {
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void moveCar(int value) {
         NumberGenerator numberGenerator = new StubNumberGenerator(value);
-        RacingSimulator simulator = new RacingSimulator(5, numberGenerator, List.of("a"));
+        RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
 
-        simulator.move();
+        racingGame.move();
 
-        Positions positions = simulator.getPositions();
+        Positions positions = racingGame.getPositions();
         assertThat(positions.getPositionByName("a")).isEqualTo(1);
     }
 
@@ -58,11 +56,11 @@ class RacingSimulatorTest {
     @ValueSource(ints = {0, 1, 2, 3})
     void stopCar(int value) {
         NumberGenerator numberGenerator = new StubNumberGenerator(value);
-        RacingSimulator simulator = new RacingSimulator(5, numberGenerator, List.of("a"));
+        RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
 
-        simulator.move();
+        racingGame.move();
 
-        Positions positions = simulator.getPositions();
+        Positions positions = racingGame.getPositions();
         assertThat(positions.getPositionByName("a")).isEqualTo(0);
     }
 
@@ -70,11 +68,11 @@ class RacingSimulatorTest {
     @Test
     void moveOrStopCars() {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        RacingSimulator simulator = new RacingSimulator(5, numberGenerator, List.of("a", "b", "c"));
+        RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a", "b", "c"));
 
-        simulator.move();
+        racingGame.move();
 
-        Positions positions = simulator.getPositions();
+        Positions positions = racingGame.getPositions();
         assertThat(positions.getPositionByName("a")).isEqualTo(1);
         assertThat(positions.getPositionByName("b")).isEqualTo(1);
         assertThat(positions.getPositionByName("c")).isEqualTo(0);
@@ -88,12 +86,12 @@ class RacingSimulatorTest {
                 MOVE, STOP, STOP,
                 MOVE, MOVE, MOVE
         );
-        RacingSimulator simulator = new RacingSimulator(3, numberGenerator, List.of("a", "b", "c"));
+        RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        simulator.move();
-        simulator.move();
-        simulator.move();
-        Winners winners = simulator.getWinners();
+        racingGame.move();
+        racingGame.move();
+        racingGame.move();
+        Winners winners = racingGame.getWinners();
 
         assertThat(winners.getWinnerCars())
                 .extracting(Car::getName)
@@ -109,13 +107,13 @@ class RacingSimulatorTest {
                 MOVE, MOVE, MOVE,
                 MOVE, MOVE, MOVE
         );
-        RacingSimulator simulator = new RacingSimulator(3, numberGenerator, List.of("a", "b", "c"));
+        RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        simulator.move();
-        simulator.move();
-        simulator.move();
+        racingGame.move();
+        racingGame.move();
+        racingGame.move();
 
-        Winners winners = simulator.getWinners();
+        Winners winners = racingGame.getWinners();
         assertThat(winners.getWinnerCars())
                 .hasSize(2)
                 .extracting(Car::getName)
@@ -130,11 +128,11 @@ class RacingSimulatorTest {
                 MOVE, MOVE, MOVE,
                 MOVE, MOVE, MOVE
         );
-        RacingSimulator simulator = new RacingSimulator(3, numberGenerator, List.of("a", "b", "c"));
+        RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        simulator.move();
+        racingGame.move();
 
-        assertThatThrownBy(() -> simulator.getWinners())
+        assertThatThrownBy(() -> racingGame.getWinners())
                 .isInstanceOf(IllegalStateException.class);
     }
 }

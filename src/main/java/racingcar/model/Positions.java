@@ -1,6 +1,8 @@
 package racingcar.model;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Positions {
 
@@ -17,4 +19,11 @@ public class Positions {
                 .findFirst()
                 .orElseThrow();
     }
+
+    public Set<String> getNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toSet());
+    }
+
 }

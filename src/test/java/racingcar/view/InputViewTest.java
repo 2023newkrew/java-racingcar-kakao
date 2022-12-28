@@ -6,14 +6,14 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class ViewTest {
+class InputViewTest {
 
     @Test
     void splitByCommaAndTrim() {
         InputStream inputStream = new ByteArrayInputStream("ethan    ,\t\tverus  , pobi   \t\n".getBytes());
-        View view = new View(System.out, inputStream);
+        InputView inputView = new InputView(System.out, inputStream);
 
-        List<String> names = view.inputCarNames();
+        List<String> names = inputView.inputCarNames();
 
         Assertions.assertThat(names)
                 .hasSize(3)
@@ -23,27 +23,27 @@ class ViewTest {
     @Test
     void inputUnderFiveLength() {
         InputStream inputStream = new ByteArrayInputStream("ethanasd    ,\t\tverusasd  , pobiasd   \t\n".getBytes());
-        View view = new View(System.out, inputStream);
+        InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> view.inputCarNames())
+        Assertions.assertThatThrownBy(() -> inputView.inputCarNames())
                 .isInstanceOf(IllegalArgumentException.class);
     }
     
     @Test
     void inputDistinctNames() {
         InputStream inputStream = new ByteArrayInputStream("verus, verus, pobi".getBytes());
-        View view = new View(System.out, inputStream);
+        InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> view.inputCarNames())
+        Assertions.assertThatThrownBy(() -> inputView.inputCarNames())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void inputTryCount() {
         InputStream inputStream = new ByteArrayInputStream("012".getBytes());
-        View view = new View(System.out, inputStream);
+        InputView inputView = new InputView(System.out, inputStream);
 
-        int tryCount = view.inputMaxTryCount();
+        int tryCount = inputView.inputMaxTryCount();
 
         Assertions.assertThat(tryCount).isEqualTo(12);
     }
@@ -51,18 +51,18 @@ class ViewTest {
     @Test
     void inputNotNumberTryCount() {
         InputStream inputStream = new ByteArrayInputStream("abc".getBytes());
-        View view = new View(System.out, inputStream);
+        InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> view.inputMaxTryCount())
+        Assertions.assertThatThrownBy(() -> inputView.inputMaxTryCount())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void inputOver100TryNumber() {
         InputStream inputStream = new ByteArrayInputStream("100".getBytes());
-        View view = new View(System.out, inputStream);
+        InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> view.inputMaxTryCount())
+        Assertions.assertThatThrownBy(() -> inputView.inputMaxTryCount())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
