@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,6 +11,8 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class InputTest {
     Input input = new Input();
+
+    @DisplayName("자동차 이름의 길이는 0이상 5이하 여야 함 (예외발생)")
     @ParameterizedTest
     @ValueSource(strings={"daniel",""})
     void inputLengthException(String inputStr) {
@@ -18,6 +21,8 @@ public class InputTest {
                     input.validateLength(inputStr);
                 });
     }
+
+    @DisplayName("자동차 이름의 길이는 0이상 5이하 여야 함 (통과)")
     @Test
     void inputLengthNotException() {
         String inputStr = "dan";
@@ -26,6 +31,7 @@ public class InputTest {
         }).doesNotThrowAnyException();
     }
 
+    @DisplayName("자동차의 대수는 2대 이상이어야 함 (예외발생)")
     @Test
     void arrayLengthException() {
         String[] inputStr = {"kim"};
@@ -35,6 +41,8 @@ public class InputTest {
                 });
 
     }
+
+    @DisplayName("자동차의 대수는 2대 이상이어야 함 (통과)")
     @Test
     void arrayLengthNotException() {
         String[] inputStr = {"kim", "lee"};
@@ -43,6 +51,7 @@ public class InputTest {
         }).doesNotThrowAnyException();
     }
 
+    @DisplayName("여러대의 자동차 이름의 길이는 모두 1 이상 5 이하여야 함 (통과)")
     @Test
     void EachStringNotException(){
         String[] inputStr = {"kim", "lee", "han"};
@@ -51,6 +60,7 @@ public class InputTest {
         }).doesNotThrowAnyException();
     }
 
+    @DisplayName("여러대의 자동차 이름의 길이는 모두 1 이상 5 이하여야 함 (예외발생)")
     @ParameterizedTest
     @ValueSource(strings={"daniel", ""})
     void EachStringException(String abnormal){
@@ -61,6 +71,7 @@ public class InputTest {
                 });
     }
 
+    @DisplayName("자동차 이름은 중복되지 않아야 함 (통과)")
     @Test
     void duplicatedCarNameNotExceptionTest() {
         String[] inputStr = {"kim", "lee", "park"};
@@ -69,6 +80,7 @@ public class InputTest {
         }).doesNotThrowAnyException();
     }
 
+    @DisplayName("자동차 이름은 중복되지 않아야 함 (예외발생)")
     @Test
     void duplicatedCarNameExceptionTest() {
         String[] inputStr = {"kim", "lee", "kim"};
@@ -78,6 +90,7 @@ public class InputTest {
                 });
     }
 
+    @DisplayName("시도 회수는 숫자여야 하며 1 이상이어야 함 (통과)")
     @Test
     void trialCountNotExceptionTest() {
         String trialCount = "3";
@@ -85,6 +98,7 @@ public class InputTest {
 
     }
 
+    @DisplayName("시도 회수는 숫자여야 하며 1 이상이어야 함 (예외발생)")
     @ParameterizedTest
     @ValueSource(strings = {"3d", "xx", "-1", "0"})
     void trialCountExceptionTest(String trialCount) {
