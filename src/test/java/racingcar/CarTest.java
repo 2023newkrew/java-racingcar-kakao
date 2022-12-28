@@ -24,7 +24,7 @@ public class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"Pobi;Pobi : --"}, delimiter = ';')
-    void carMoveO(String input, String expected) {
+    void carMove(String input, String expected) {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 

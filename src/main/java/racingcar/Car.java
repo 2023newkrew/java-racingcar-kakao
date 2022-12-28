@@ -14,8 +14,10 @@ public class Car {
 
     public void printStatus() {
         StringBuilder sb = new StringBuilder();
+
         sb.append(name + " : ");
         sb.append("-".repeat(Math.max(0, position)));
+
         System.out.println(sb);
     }
 

@@ -19,18 +19,19 @@ public class RacingTest {
     void verifyNameTest(String input, String expected) {
         Race race = new Race("");
         String result = "false";
+
         try {
             race.verifyName(input);
             result = "true";
-        } catch (Exception e) {
+        } catch (Exception e) {}
 
-        }
         assertEquals(result, expected);
     }
 
     @Test
     void nameSplitTest() {
         Race race = new Race("pobi,crong,honux");
+
         assertArrayEquals(race.nameSplit(), new String[] {"pobi", "crong", "honux"});
     }
 
@@ -40,8 +41,10 @@ public class RacingTest {
         System.setOut(new PrintStream(out));
 
         Race race = new Race("pobi,crong,honux");
+
         race.carInput(race.nameSplit());
         race.printRace();
+
         String actual = out.toString();
         assertEquals(actual,"pobi : -\n" +
                 "crong : -\n" +
@@ -51,10 +54,12 @@ public class RacingTest {
     @Test
     void raceMaxCntTest() {
         Race race = new Race("pobi,crong,honux");
+
         race.carInput(race.nameSplit());
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
+
         assertEquals(race.raceMaxPosition(), 4);
     }
 
@@ -64,6 +69,7 @@ public class RacingTest {
         System.setOut(new PrintStream(out));
 
         Race race = new Race("pobi,crong,honux");
+
         race.carInput(race.nameSplit());
         race.getCars().get(0).move();
         race.getCars().get(0).move();
@@ -74,6 +80,7 @@ public class RacingTest {
         race.getCars().get(2).move();
 
         race.raceWinner();
+
         String actual = out.toString();
         assertEquals(actual, "pobi, honux가 최종 우승했습니다.\n");
     }

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    String nameStr;
-    List<Car> cars = new ArrayList<>();
+    private final String nameStr;
+    private final List<Car> cars = new ArrayList<>();
 
     public Race(String nameStr) {
         this.nameStr = nameStr;
@@ -37,6 +37,7 @@ public class Race {
         for (Car car: cars) {
             car.printStatus();
         }
+
         System.out.println();
     }
 
@@ -57,9 +58,11 @@ public class Race {
     public void raceWinner() {
         int max = raceMaxPosition();
         StringBuilder sb = new StringBuilder();
+
         for (Car car : cars) {
             sb.append(raceWinnerCheck(car, max));
         }
+
         System.out.println(sb.substring(0, sb.length()-2) + "가 최종 우승했습니다.");
     }
 
@@ -67,6 +70,7 @@ public class Race {
         if (car.getPosition() == max) {
             return car.getName() + ", ";
         }
+
         return "";
     }
 
@@ -78,11 +82,14 @@ public class Race {
 
     public void playRace(int turn) {
         System.out.println("실행결과");
+
         printRace();
+
         for (int i = 0; i < turn; i++) {
             playTurn();
             printRace();
         }
+
         raceWinner();
     }
 

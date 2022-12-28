@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import static java.lang.Integer.parseInt;
 
 public class Calculator {
-
     private final String[] tokens;
 
     public Calculator(String[] tokens) {
