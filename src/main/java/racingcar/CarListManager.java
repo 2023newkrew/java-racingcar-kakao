@@ -4,23 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
-public class CarList {
-    private final List<Car> cars;
-
-    public CarList() {
-        cars = new ArrayList<>();
-    }
+public class CarListManager {
+    private final List<Car> cars = new ArrayList<>();
 
     public void add(Car other) {
         if (hasDuplicatedName(other)) {
             throw new RuntimeException();
         }
         cars.add(other);
-    }
-
-    private boolean hasDuplicatedName(Car other) {
-        return cars.stream()
-                .anyMatch(car -> car.equals(other));
     }
 
     public void moveAll() {
@@ -42,6 +33,11 @@ public class CarList {
                 .filter(car -> car.getPosition() == maxPosition.getAsInt())
                 .forEach(winners::add);
         return winners;
+    }
+
+    private boolean hasDuplicatedName(Car other) {
+        return cars.stream()
+                .anyMatch(car -> car.equals(other));
     }
 
     @Override

@@ -5,30 +5,30 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class CarListTest {
+public class CarListManagerTest {
 
     @Test
     void duplicatedNameException() {
-        CarList carList = new CarList();
+        CarListManager carListManager = new CarListManager();
         Assertions.assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> {
-                    carList.add(new Car("lion"));
-                    carList.add(new Car("lion"));
+                    carListManager.add(new Car("lion"));
+                    carListManager.add(new Car("lion"));
                 });
     }
 
     @Test
     void selectWinners() {
-        CarList carList = new CarList();
+        CarListManager carListManager = new CarListManager();
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
         Car car3 = new Car("car3");
         car1.move(5);
         car2.move(5);
-        carList.add(car1);
-        carList.add(car2);
-        carList.add(car3);
-        List<Car> winner = carList.selectWinners();
+        carListManager.add(car1);
+        carListManager.add(car2);
+        carListManager.add(car3);
+        List<Car> winner = carListManager.selectWinners();
         Assertions.assertThat(winner)
                 .containsOnly(car1, car2);
     }

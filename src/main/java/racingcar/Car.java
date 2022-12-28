@@ -11,15 +11,19 @@ public class Car {
     private final String name;
 
     public Car(String name) {
-        position = 1;
         if (isInvalidName(name)) {
             throw new RuntimeException();
         }
+        position = 1;
         this.name = name;
     }
 
-    public boolean isInvalidName(String name) {
-        return name == null || name.equals("") || name.length() > 5;
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public void move(int random) {
@@ -29,12 +33,8 @@ public class Car {
         position += 1;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
+    private boolean isInvalidName(String name) {
+        return name == null || name.equals("") || name.length() > 5;
     }
 
     @Override

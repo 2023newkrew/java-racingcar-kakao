@@ -4,26 +4,26 @@ import java.util.List;
 
 public class RacingCarGame {
 
-    IOSystem ioSystem;
-    CarList carList;
+    RacingCarView racingCarView;
+    CarListManager carListManager;
 
     public RacingCarGame() {
-        ioSystem = new IOSystem();
-        carList = new CarList();
+        racingCarView = new RacingCarView();
+        carListManager = new CarListManager();
     }
 
     public void start() {
-        List<String> carNamesInput = ioSystem.getCarNamesInput();
-        int trialNumber = ioSystem.getTrialNumber();
+        List<String> carNamesInput = racingCarView.receiveCarNamesInput();
+        int runNumber = racingCarView.receiveRunNumber();
         for (String carName : carNamesInput) {
-            carList.add(new Car(carName));
+            carListManager.add(new Car(carName));
         }
         System.out.println("실행 결과");
-        ioSystem.printGameResult(carList);
-        for (int i = 0; i < trialNumber; i++) {
-            carList.moveAll();
-            ioSystem.printGameResult(carList);
+        racingCarView.printGameResult(carListManager);
+        for (int i = 0; i < runNumber; i++) {
+            carListManager.moveAll();
+            racingCarView.printGameResult(carListManager);
         }
-        ioSystem.printWinners(carList.selectWinners());
+        racingCarView.printWinners(carListManager.selectWinners());
     }
 }
