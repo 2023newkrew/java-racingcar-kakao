@@ -9,11 +9,15 @@ public class RacingCarController {
     private final RacingCarView view;
 
     public static RacingCarController create() {
-        return new RacingCarController();
+        return new RacingCarController(RacingCarView.create());
     }
 
-    private RacingCarController() {
-        view = RacingCarView.create();
+    public static RacingCarController from(RacingCarView view) {
+        return new RacingCarController(view);
+    }
+
+    private RacingCarController(RacingCarView view) {
+        this.view = view;
     }
 
     public void start() {
@@ -66,9 +70,38 @@ public class RacingCarController {
         }
     }
 
-    //Todo:범위를 벗어날 경우 다시 입력
     private int inputCount() {
-        return view.inputCount();
+        Integer count;
+        do {
+            count = tryInputCount();
+        } while (Objects.isNull(count));
+        return count;
+    }
+
+    Integer tryInputCount() {
+        try {
+            int count = view.inputCount();
+            checkCountIsTooSmall(count);
+            checkCountIsTooBig(count);
+            return count;
+        } catch (RuntimeException e) {
+            view.printError(e.getMessage());
+            return null;
+        }
+    }
+
+    private static void checkCountIsTooBig(int count) {
+        int maxCount = 100;
+        if (maxCount < count) {
+            throw new RuntimeException(String.format("count is too big. must be less than %d. your count: %s", maxCount, count));
+        }
+    }
+
+    private static void checkCountIsTooSmall(int count) {
+        int minCount = 0;
+        if (minCount > count) {
+            throw new RuntimeException(String.format("count is too small. must be less than %d. your count: %s", minCount, count));
+        }
     }
 
     private void printWinner() {
