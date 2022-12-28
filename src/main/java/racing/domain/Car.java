@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.dto.CarDTO;
+
 public class Car implements Comparable<Object> {
     private static final int MOVING_LOWER_BOUND = 4;
     private static final String MOVING_SYMBOL = "-";
@@ -44,5 +46,9 @@ public class Car implements Comparable<Object> {
     @Override
     public String toString() {
         return String.format(STATUS_STRING_FORMAT, name, MOVING_SYMBOL.repeat(distance));
+    }
+
+    public CarDTO toDTO() {
+        return new CarDTO(name, distance);
     }
 }

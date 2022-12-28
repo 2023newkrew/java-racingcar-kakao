@@ -1,8 +1,11 @@
 package racing.dto;
 
+import racing.domain.Car;
+
 public class CarDTO {
-    private String name;
-    private int distance;
+    private final String name;
+    private final int distance;
+
     public CarDTO(String name, int distance) {
         this.name = name;
         this.distance = distance;
@@ -14,5 +17,9 @@ public class CarDTO {
 
     public int getDistance() {
         return distance;
+    }
+
+    public static CarDTO from(Car car) {
+        return car.toDTO();
     }
 }
