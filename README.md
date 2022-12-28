@@ -36,8 +36,8 @@
 
 ### 3. 자동차를 움직이거나 멈추는 기능
 - engine이 null일 경우 예외
-- engine의 moveOrStop이 true일 경우 getCarInfo().getPosition() = 1
-- engine의 moveOrStop이 false일 경우 getCarInfo().getPosition() = 0
+- engine의 getPower가 [4,9]일 경우 getCarInfo().getPosition() = 1
+- engine의 getPower가 [0,3]일 경우 getCarInfo().getPosition() = 0
 
 ### 4. 자동차가 없거나 자동차의 이름에 중복이 있는지 확인하는 기능
 - null 일 경우 예외 발생
@@ -82,8 +82,8 @@
 - CarInfo getCarInfo()
 
 ### Engine
-- static Engine create()
-- boolean moveOrStop()
+- static Engine create(maxPower:int)
+- int getPower()
 
 ### CarInfo
 
