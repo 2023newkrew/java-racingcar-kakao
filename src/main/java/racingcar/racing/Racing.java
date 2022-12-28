@@ -33,10 +33,9 @@ public class Racing {
         racingUi.displayWinner(result);
     }
 
-    public void init(String nameInput) {
+    public void init(String nameInput, String turn) {
         makeCars(StringParser.parse(nameInput));
 
-        int turn = racingService.validateTurn(racingUi.getTurn());
         setTurn(turn);
 
         startRace();
@@ -65,11 +64,19 @@ public class Racing {
             this.cars.add(new Car(carName));
     }
 
-    private void setTurn(int turn) {
-        this.turn = turn;
-    }
-
     public static boolean isDuplicateNames(List<String> names) {
         return names.size() != names.stream().distinct().count();
+    }
+
+    private void setTurn(String turn) {
+        int parsedTurn = StringParser.parseTurn(turn);
+
+        if (!isValidTurn(parsedTurn)) throw new IllegalArgumentException();
+
+        this.turn = parsedTurn;
+    }
+
+    public static boolean isValidTurn(int turn) {
+        return turn > 0;
     }
 }

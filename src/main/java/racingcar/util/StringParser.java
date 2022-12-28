@@ -9,4 +9,12 @@ public class StringParser {
 
         return Arrays.asList(texts);
     }
+
+    public static int parseTurn(String turn) {
+        try {
+            return Integer.parseInt(turn);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

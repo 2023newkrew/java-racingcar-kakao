@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class RacingTest {
     private Racing racing;
@@ -29,5 +30,14 @@ public class RacingTest {
     @Test
     void uniqueValidNames() {
         assertThat(Racing.isDuplicateNames(Arrays.asList("aaa", "aab"))).isFalse();
+    }
+
+    @Test
+    void checkInvalidRace() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> racing.init("aa,bb,cc", "-1"));
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> racing.init("aa,bb,aa", "4"));
     }
 }

@@ -26,10 +26,4 @@ public class RacingService {
 
         return CarAction.FORWARD;
     }
-
-    public int validateTurn(String turnInput) throws IllegalArgumentException {
-        if (!Validator.isValidTurn(turnInput)) throw new IllegalArgumentException();
-
-        return Integer.parseInt(turnInput);
-    }
 }

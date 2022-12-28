@@ -7,6 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Racing racingGame = new Racing();
         RacingUI racingUi = new RacingUI();
-        racingGame.init(racingUi.getNames());
+        racingGame.init(racingUi.getNames(), racingUi.getTurn());
     }
 }
