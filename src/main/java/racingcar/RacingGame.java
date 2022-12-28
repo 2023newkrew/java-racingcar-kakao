@@ -5,66 +5,46 @@ import java.util.List;
 
 public class RacingGame {
     private List<Car> cars;
-    private int finalTurn;
-    private int turnCount;
-    private IO ioView;
+    private int turn;
+
+    public RacingGame(List<String> carNames) {
+        this.cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+        this.turn = 0;
+    }
 
     public List<Car> getCars() {
         return this.cars;
     }
 
-    public int getTurnCount() {
-        return this.turnCount;
-    }
-
-    public RacingGame() {
-        this.cars = new ArrayList<>();
-        this.ioView = new IO();
-    }
-    public RacingGame(List<String> names, int finalTurn) {
-        this();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-        this.finalTurn = finalTurn;
-    }
-
     public int generateRandomNumber() {
-        return (int)(Math.random()*1000) %10;
+        return (int)(Math.random()*10) %10;
     }
 
     public void proceedTurn() {
-        for(Car rc : cars) {
-            rc.accelerate(this.generateRandomNumber());
+        for(Car car : cars) {
+            car.accelerate(this.generateRandomNumber());
         }
-        this.turnCount++;
-        ioView.outputTurnResult(this.cars);
+        this.turn += 1;
     }
 
-    public void playGame() {
-        ioView.outputGameResultMessage();
-        while(this.turnCount<this.finalTurn) {
-            this.proceedTurn();
+    public List<Car> getFarthestCars() {
+        int maxPosition = -1;
+        for(Car car : this.cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
         }
-        ioView.outputWinners(judgeWinners());
+        List<Car> farthestCars = new ArrayList<>();
+        for(Car car : this.cars) {
+            this.collectFarthest(farthestCars, car, maxPosition);
+        }
+        return farthestCars;
     }
 
-    public List<Car> judgeWinners() {
-        int maxPos = -1;
-
-        for(Car rc : this.cars) {
-            maxPos = Math.max(maxPos,rc.getPosition());
-        }
-        List<Car> winners = new ArrayList<>();
-        for(Car rc : this.cars) {
-            appendWinner(winners, rc, maxPos);
-        }
-        return winners;
-    }
-
-    public void appendWinner(List<Car> winners, Car racingCar, int maxPos) {
-        if(racingCar.getPosition()==maxPos) {
-            winners.add(racingCar);
+    public void collectFarthest(List<Car> farthestCars, Car racingCar, int maxPosition) {
+        if(racingCar.getPosition() == maxPosition) {
+            farthestCars.add(racingCar);
         }
     }
 }

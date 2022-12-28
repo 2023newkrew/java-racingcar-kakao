@@ -9,53 +9,31 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RacingGameTest {
 
     @Test
-    @DisplayName("한 턴을 플레이하는 기능")
-    public void playTurn() {
-        //given
-        RacingGame racingGame = new RacingGame(List.of("abc","efg","hijkl"),5);
-
-        //when
-        racingGame.proceedTurn();
-        racingGame.proceedTurn();
-
-        //then
-        assertEquals(2,racingGame.getTurnCount());
+    @DisplayName("can generate random number from 0 to 9")
+    public void can_generate_random_number_from_0_to_9() {
+        RacingGame game = new RacingGame(List.of(""));
+        int randomNumber = -1;
+        final int cycle = 10000;
+        for (int i = 0; i < cycle; i++)
+            randomNumber = game.generateRandomNumber();
+            assertTrue(randomNumber >= 0);
+            assertTrue(randomNumber <= 9);
     }
 
     @Test
-    @DisplayName("주어진 수 만큼 턴을 반복하는 기능")
-    public void repeatPlayingTurn() {
-        //given
-        RacingGame racingGame = new RacingGame(List.of("abc","efg","hijkl"),5);
+    @DisplayName("can get only the farthest cars")
+    public void can_get_the_farthest_cars() {
+        RacingGame game = new RacingGame(List.of("a","b","c"));
+        List<Car> farthestCars = game.getFarthestCars();
 
-        //when
-        racingGame.playGame();
-
-        //then
-        assertEquals(5,racingGame.getTurnCount());
-    }
-
-    @Test
-    @DisplayName("게임 종료 후 우승자들을 판별해서 반환하는 기능")
-    public void judgeWinners() {
-        //given
-        RacingGame racingGame = new RacingGame(List.of("abc","efg","hijkl"),5);
-
-        //when
-        racingGame.playGame();
-        List<Car> winners = racingGame.judgeWinners();
-
-        // then
-        // 위너끼리 pos가 같은지 확인
-        int winnerPos = winners.get(0).getPosition();
-        for(Car rc : winners) {
-            assertEquals(winnerPos, rc.getPosition());
+        int maxPosition = farthestCars.get(0).getPosition();
+        for(Car car : farthestCars) {
+            assertEquals(maxPosition, car.getPosition());
         }
 
-        // 위너가 아닌 차들의 pos가 위너의 pos보다 작은지 확인
-        for(Car rc : racingGame.getCars()) {
-            if(winners.contains(rc)) continue;
-            assertTrue(rc.getPosition() < winnerPos);
+        for(Car car : game.getCars()) {
+            if(farthestCars.contains(car)) continue;
+            assertTrue(car.getPosition() < maxPosition);
         }
     }
 }
