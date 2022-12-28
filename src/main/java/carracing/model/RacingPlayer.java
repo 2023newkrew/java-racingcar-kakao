@@ -1,4 +1,4 @@
-package car_racing.model;
+package carracing.model;
 
 public interface RacingPlayer {
     void proceedNextTurn(Boolean proceed);

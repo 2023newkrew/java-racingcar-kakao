@@ -1,6 +1,6 @@
-package car_racing.model;
+package carracing.model;
 
-import car_racing.common.exception.InvalidInputFormatException;
+import carracing.common.exception.InvalidInputFormatException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

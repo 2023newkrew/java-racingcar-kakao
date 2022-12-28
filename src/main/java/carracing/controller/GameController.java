@@ -1,4 +1,4 @@
-package car_racing.controller;
+package carracing.controller;
 
 public interface GameController {
     public void run();

@@ -1,8 +1,8 @@
-package car_racing;
+package carracing;
 
-import car_racing.model.Car;
-import car_racing.model.GameRule;
-import car_racing.model.RacingPlayer;
+import carracing.model.Car;
+import carracing.model.GameRule;
+import carracing.model.RacingPlayer;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

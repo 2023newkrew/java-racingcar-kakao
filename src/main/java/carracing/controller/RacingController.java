@@ -1,11 +1,11 @@
-package car_racing.controller;
+package carracing.controller;
 
-import car_racing.common.exception.InvalidInputFormatException;
-import car_racing.model.Car;
-import car_racing.model.GameRule;
-import car_racing.model.RacingPlayer;
-import car_racing.view.InputView;
-import car_racing.view.OutputView;
+import carracing.common.exception.InvalidInputFormatException;
+import carracing.model.Car;
+import carracing.model.GameRule;
+import carracing.model.RacingPlayer;
+import carracing.view.InputView;
+import carracing.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 

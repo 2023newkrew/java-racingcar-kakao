@@ -1,4 +1,4 @@
-package string_calculator;
+package stringcalculator;
 
 import java.util.Arrays;
 import java.util.Scanner;

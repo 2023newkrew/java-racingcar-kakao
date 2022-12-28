@@ -1,7 +1,7 @@
-package car_racing;
+package carracing;
 
-import car_racing.model.GamePlayerStrategy;
-import car_racing.model.RandomPlayerStrategy;
+import carracing.model.GamePlayerStrategy;
+import carracing.model.RandomPlayerStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

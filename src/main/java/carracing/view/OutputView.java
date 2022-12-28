@@ -1,7 +1,7 @@
-package car_racing.view;
+package carracing.view;
 
-import car_racing.model.RacingPlayer;
-import java.util.Arrays;
+import carracing.model.RacingPlayer;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

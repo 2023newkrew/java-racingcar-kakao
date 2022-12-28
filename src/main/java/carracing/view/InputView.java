@@ -1,6 +1,6 @@
-package car_racing.view;
+package carracing.view;
 
-import car_racing.common.exception.InvalidInputFormatException;
+import carracing.common.exception.InvalidInputFormatException;
 import java.util.List;
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package car_racing.common.exception;
+package carracing.common.exception;
 
 public class InvalidInputFormatException extends RuntimeException {
 
