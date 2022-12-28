@@ -8,6 +8,11 @@ public class Car implements Comparable<Car>{
 
     private static final Integer MOVE_THRESHOLD = 4;
     private static final Integer UPPER_BOUND_OF_RANDOM = 10;
+    private static final Integer INITIAL_POSITION = 1;
+
+    public Car(String name){
+        this(name, INITIAL_POSITION);
+    }
 
     public Car(String name, Integer position) {
         this.name = name;

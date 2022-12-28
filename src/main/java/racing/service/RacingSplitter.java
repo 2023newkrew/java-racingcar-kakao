@@ -11,7 +11,7 @@ public class RacingSplitter {
         List<Car> ret = new ArrayList<>();
         for (String carName: carNames.split(",")) {
             carName = carName.trim();
-            ret.add(new Car(carName, 1));
+            ret.add(new Car(carName));
         }
         return ret;
     }
