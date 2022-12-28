@@ -8,9 +8,9 @@ public class CustomSeparatorParser {
     public String parse(String input) {
         Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
         if (m.find()) {
-            String customDelimiter = m.group(1);
-            validateSeparatorLength(customDelimiter);
-            return customDelimiter;
+            String customSeparator = m.group(1);
+            validateSeparatorLength(customSeparator);
+            return customSeparator;
         }
         return null;
     }
