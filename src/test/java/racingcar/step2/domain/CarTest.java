@@ -27,5 +27,12 @@ class CarTest {
                 isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 자동차의_현재_위치를_알_수_있다(){
+        final Car car = new Car("huny", 5);
+        Assertions.assertEquals(car.getPosition(), 5);
+    }
+
+
 
 }
