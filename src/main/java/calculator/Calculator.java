@@ -11,9 +11,6 @@ public class Calculator {
     private String[] splitedNum;
 
     public Calculator(String input) {
-        if (input == null || input.isEmpty()) {
-            input = "0";
-        }
         this.input = input;
     }
 

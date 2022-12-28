@@ -11,6 +11,11 @@ public class Main {
 
         System.out.println("계산식을 입력하세요");
         String input = br.readLine();
+        if (input == null || input.isBlank()) {
+            System.out.println("= 0");
+            return;
+        }
+
         Calculator calculator = new Calculator(input);
         System.out.println("= " + calculator.run());
     }
