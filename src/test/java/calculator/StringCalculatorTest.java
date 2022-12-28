@@ -21,7 +21,7 @@ public class StringCalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,2:3|6", "22,33,11:1:3|70"}, delimiter = '|')
+    @CsvSource(value = {"1,2:3|6", "22,33,11:1:3|70", "3:1|4"}, delimiter = '|')
     void 기본적인_문자열_입력_테스트(String str, int answer) {
         StringCalculator basic = new StringCalculator(str);
         assertThat(basic.calculate()).isEqualTo(answer);
