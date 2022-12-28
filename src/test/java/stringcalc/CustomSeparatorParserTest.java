@@ -29,9 +29,11 @@ class CustomSeparatorParserTest {
         assertThat(result).isEqualTo(";");
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"//;;\n1;2;3"})
-    void parseCustomSeparator_throwEx(String input){
+    @Test
+    void parseCustomSeparator_throwEx(){
+        //given
+        String input = "//;;\n1;2;3";
+
         //then
         assertThatThrownBy(() -> customSeparatorParser.parse(input)).isInstanceOf(RuntimeException.class);
     }
