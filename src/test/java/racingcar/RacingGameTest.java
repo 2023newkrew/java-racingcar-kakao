@@ -2,6 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.controller.domain.RacingCar;
+import racingcar.controller.domain.RacingGame;
 
 import java.util.List;
 
@@ -12,7 +14,8 @@ public class RacingGameTest {
     @DisplayName("한 턴을 플레이하는 기능")
     public void playTurn() {
         //given
-        RacingGame racingGame = new RacingGame(List.of("abc","efg","hijkl"),5);
+        RacingGame racingGame = new RacingGame();
+        racingGame.init(List.of("abc","efg","hijkl"),5);
 
         //when
         racingGame.proceedTurn();
@@ -26,10 +29,13 @@ public class RacingGameTest {
     @DisplayName("주어진 수 만큼 턴을 반복하는 기능")
     public void repeatPlayingTurn() {
         //given
-        RacingGame racingGame = new RacingGame(List.of("abc","efg","hijkl"),5);
+        RacingGame racingGame = new RacingGame();
+        racingGame.init(List.of("abc","efg","hijkl"),5);
 
         //when
-        racingGame.playGame();
+        while(!racingGame.isFinished()) {
+            racingGame.proceedTurn();
+        }
 
         //then
         assertEquals(5,racingGame.getTurnCount());
@@ -39,10 +45,14 @@ public class RacingGameTest {
     @DisplayName("게임 종료 후 우승자들을 판별해서 반환하는 기능")
     public void judgeWinners() {
         //given
-        RacingGame racingGame = new RacingGame(List.of("abc","efg","hijkl"),5);
+        RacingGame racingGame = new RacingGame();
+        racingGame.init(List.of("abc","efg","hijkl"),5);
 
         //when
-        racingGame.playGame();
+        while(!racingGame.isFinished()) {
+            racingGame.proceedTurn();
+        }
+
         List<RacingCar> winners = racingGame.judgeWinners();
 
         // then

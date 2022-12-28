@@ -1,6 +1,4 @@
-package racingcar;
-
-import racingcar.view.OutputView;
+package racingcar.controller.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +7,6 @@ public class RacingGame {
     private List<RacingCar> cars;
     private int finalTurn;
     private int turnCount;
-    private OutputView outputView;
 
     public List<RacingCar> getCars() {
         return this.cars;
@@ -21,34 +18,29 @@ public class RacingGame {
 
     public RacingGame() {
         this.cars = new ArrayList<>();
-        this.outputView = new OutputView();
     }
-    public RacingGame(List<String> names, int finalTurn) {
-        this();
+
+    public void init(List<String> names, int finalTurn) {
         for (String name : names) {
             cars.add(new RacingCar(name));
         }
         this.finalTurn = finalTurn;
     }
 
+    public boolean isFinished() {
+        return this.turnCount >= this.finalTurn;
+    }
+
     public int generateRandomNumber() {
         return (int)(Math.random()*1000) %10;
     }
 
-    public void proceedTurn() {
+    public List<RacingCar> proceedTurn() {
         for(RacingCar rc : cars) {
-            rc.accelerate(this.generateRandomNumber());
+            rc.accelerate(generateRandomNumber());
         }
         this.turnCount++;
-        outputView.printTurnResult(this.cars);
-    }
-
-    public void playGame() {
-        outputView.printGameResultMessage();
-        while(this.turnCount<this.finalTurn) {
-            this.proceedTurn();
-        }
-        outputView.printWinners(judgeWinners());
+        return this.cars;
     }
 
     public List<RacingCar> judgeWinners() {
@@ -69,4 +61,6 @@ public class RacingGame {
             winners.add(racingCar);
         }
     }
+
+
 }

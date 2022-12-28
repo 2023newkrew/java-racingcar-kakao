@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.controller.domain;
 
 public class RacingCar {
     public final static int POWER_THRESHOLD = 4;

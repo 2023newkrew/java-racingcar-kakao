@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.RacingCar;
+import racingcar.controller.domain.RacingCar;
 
 import java.util.ArrayList;
 import java.util.List;
