@@ -5,6 +5,7 @@ import java.util.Random;
 public class Car {
     private final String name;
     private int position;
+    private final Random random = new Random();
 
     public Car(String name) {
         this.name = name;
@@ -26,7 +27,7 @@ public class Car {
     }
 
     public void race() {
-        if (new Random().nextInt(9) > 3) {
+        if (random.nextInt(9) > 3) {
             move();
         }
     }
