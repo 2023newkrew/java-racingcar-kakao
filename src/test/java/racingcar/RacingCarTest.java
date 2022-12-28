@@ -30,7 +30,6 @@ class RacingCarTest {
     @Test
     void moveTest_stop(){
         // given
-        RacingCar racingCar = new RacingCar("name");
         int prevDist = racingCar.getDistance();
 
         // when
