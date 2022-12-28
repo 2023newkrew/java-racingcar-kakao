@@ -2,7 +2,7 @@ package racingcar;
 
 import java.util.Objects;
 
-public class RacingCar implements Comparable {
+public class RacingCar implements Comparable<RacingCar> {
 
     private final String name;
     private int distance;
@@ -47,10 +47,7 @@ public class RacingCar implements Comparable {
     }
 
     @Override
-    public int compareTo(Object other) {
-        if (!(other instanceof RacingCar)) {
-            throw new IllegalArgumentException();
-        }
-        return Integer.compare(this.distance, ((RacingCar) other).distance);
+    public int compareTo(RacingCar other) {
+        return Integer.compare(this.distance, other.distance);
     }
 }
