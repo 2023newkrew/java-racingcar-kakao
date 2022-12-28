@@ -19,13 +19,18 @@ public class Car {
     }
 
     private Car(CarInfo carInfo, Engine engine) {
-        this.name = carInfo.getName().trim();
-        checkNameLength();
+        this.name = getValidCarName(carInfo.getName());
         this.position = carInfo.getPosition();
         this.engine = engine;
     }
 
-    private void checkNameLength() {
+    private static String getValidCarName(String name) {
+        String nameWithTrim = name.trim();
+        checkNameLength(nameWithTrim);
+        return nameWithTrim;
+    }
+
+    private static void checkNameLength(String name) {
         if (name.length() < MIN_CAR_NAME_LENGTH) {
             throw new RuntimeException("Car name too short.");
         }
