@@ -8,7 +8,7 @@ public class CarListManager {
     private final List<Car> cars = new ArrayList<>();
 
     public void add(Car other) {
-        if (hasDuplicatedName(other)) {
+        if (hasDuplicatedCar(other)) {
             throw new RuntimeException();
         }
         cars.add(other);
@@ -35,7 +35,7 @@ public class CarListManager {
         return winners;
     }
 
-    private boolean hasDuplicatedName(Car other) {
+    private boolean hasDuplicatedCar(Car other) {
         return cars.stream()
                 .anyMatch(car -> car.equals(other));
     }
