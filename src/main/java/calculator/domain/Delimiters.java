@@ -9,24 +9,14 @@ import static calculator.constant.MessageConstant.DELIMITER_LENGTH_EXCEPTION;
 import static java.lang.Character.isDigit;
 
 public class Delimiters {
-    private final List<String> delimiters;
+    private final List<Delimiter> delimiters;
 
     public Delimiters() {
-        this.delimiters = new ArrayList<>(Arrays.asList(":", ","));
+        this.delimiters = new ArrayList<>(Arrays.asList(new Delimiter(":"), new Delimiter(",")));
     }
 
-    public void add(String delimiter) {
-        validateDelimiter(delimiter);
+    public void add(Delimiter delimiter) {
         delimiters.add(delimiter);
-    }
-
-    private void validateDelimiter(String delimiter) {
-        if (delimiter.length() > 1) {
-            throw new RuntimeException(DELIMITER_LENGTH_EXCEPTION);
-        }
-        if (isDigit(delimiter.charAt(0))) {
-            throw new RuntimeException(DELIMITER_FORMAT_EXCEPTION);
-        }
     }
 
     public String getRegex() {
