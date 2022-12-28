@@ -26,17 +26,21 @@ public class Car {
     }
 
     private void checkNameLength() {
-        if (name.length() < MIN_CAR_NAME_LENGTH)
+        if (name.length() < MIN_CAR_NAME_LENGTH) {
             throw new RuntimeException("Car name too short.");
-        if (name.length() > MAX_CAR_NAME_LENGTH)
+        }
+        if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new RuntimeException("car name too long.");
+        }
     }
 
     public void moveOrStop() {
-        if (Objects.isNull(engine))
+        if (Objects.isNull(engine)) {
             throw new RuntimeException("Engine is null.");
-        if(engine.moveOrStop())
+        }
+        if (engine.moveOrStop()) {
             position++;
+        }
     }
 
     public CarInfo getCarInfo() {

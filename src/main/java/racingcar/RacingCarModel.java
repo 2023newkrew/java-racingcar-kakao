@@ -53,7 +53,9 @@ public class RacingCarModel {
     }
 
     public List<CarInfo> getCarInfos() {
-        return cars.stream().map(Car::getCarInfo).collect(Collectors.toList());
+        return cars.stream()
+                .map(Car::getCarInfo)
+                .collect(Collectors.toList());
     }
 
     public List<CarInfo> getWinners() {
@@ -74,5 +76,4 @@ public class RacingCarModel {
     private boolean isWinnerCar(CarInfo carInfo, int maxPosition) {
         return carInfo.getPosition() == maxPosition;
     }
-
 }
