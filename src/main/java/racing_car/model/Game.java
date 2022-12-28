@@ -1,6 +1,8 @@
 package racing_car.model;
 
+import java.util.Collections;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -40,6 +42,13 @@ public class Game {
     }
 
     public Cars getWinners() {
-        return cars.getWinners();
+        Car farthestCar = findFarthestCar();
+        return Cars.of(cars.getCars().stream()
+                .filter(car -> car.compareTo(farthestCar) == 0)
+                .collect(Collectors.toList()));
+    }
+
+    private Car findFarthestCar() {
+        return Collections.max(cars.getCars());
     }
 }

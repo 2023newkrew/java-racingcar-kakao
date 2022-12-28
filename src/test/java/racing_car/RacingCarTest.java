@@ -8,7 +8,8 @@ import racing_car.model.Car;
 import racing_car.model.Cars;
 import racing_car.model.Game;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 public class RacingCarTest {
 
@@ -80,10 +81,10 @@ public class RacingCarTest {
             cars[i].move(distances[i]);
         }
 
-        Cars cars1 = Cars.of(cars);
+        Game game = new Game(Cars.of(cars));
 
         assertEquals(Cars.of(new Car[]{
                 cars[1], cars[3], cars[5]
-        }), cars1.getWinners());
+        }), game.getWinners());
     }
 }

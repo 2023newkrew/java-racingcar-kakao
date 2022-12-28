@@ -49,23 +49,12 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public void moveCar(int index, int step) {
-        get(index).move(1);
+    private void moveCar(int index, int step) {
+        get(index).move(step);
     }
 
     public void moveCar(int index) {
         moveCar(index, 1);
-    }
-
-    public Cars getWinners() {
-        Car farthestCar = findFarthestCar();
-        return Cars.of(cars.stream()
-                .filter(car -> car.compareTo(farthestCar) == 0)
-                .collect(Collectors.toList()));
-    }
-
-    private Car findFarthestCar() {
-        return Collections.max(cars);
     }
 
     @Override
