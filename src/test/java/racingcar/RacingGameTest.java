@@ -43,19 +43,19 @@ public class RacingGameTest {
 
         //when
         racingGame.playGame();
-        List<RacingCar> winners = racingGame.judgeWinners();
+        List<Car> winners = racingGame.judgeWinners();
 
         // then
         // 위너끼리 pos가 같은지 확인
-        int winnerPos = winners.get(0).getPos();
-        for(RacingCar rc : winners) {
-            assertEquals(winnerPos, rc.getPos());
+        int winnerPos = winners.get(0).getPosition();
+        for(Car rc : winners) {
+            assertEquals(winnerPos, rc.getPosition());
         }
 
         // 위너가 아닌 차들의 pos가 위너의 pos보다 작은지 확인
-        for(RacingCar rc : racingGame.getCars()) {
+        for(Car rc : racingGame.getCars()) {
             if(winners.contains(rc)) continue;
-            assertTrue(rc.getPos() < winnerPos);
+            assertTrue(rc.getPosition() < winnerPos);
         }
     }
 }

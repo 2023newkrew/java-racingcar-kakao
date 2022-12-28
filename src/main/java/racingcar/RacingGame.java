@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    private List<RacingCar> cars;
+    private List<Car> cars;
     private int finalTurn;
     private int turnCount;
     private IOView ioView;
 
-    public List<RacingCar> getCars() {
+    public List<Car> getCars() {
         return this.cars;
     }
 
@@ -24,7 +24,7 @@ public class RacingGame {
     public RacingGame(List<String> names, int finalTurn) {
         this();
         for (String name : names) {
-            cars.add(new RacingCar(name));
+            cars.add(new Car(name));
         }
         this.finalTurn = finalTurn;
     }
@@ -34,7 +34,7 @@ public class RacingGame {
     }
 
     public void proceedTurn() {
-        for(RacingCar rc : cars) {
+        for(Car rc : cars) {
             rc.accelerate(this.generateRandomNumber());
         }
         this.turnCount++;
@@ -49,21 +49,21 @@ public class RacingGame {
         ioView.printWinners(judgeWinners());
     }
 
-    public List<RacingCar> judgeWinners() {
+    public List<Car> judgeWinners() {
         int maxPos = -1;
 
-        for(RacingCar rc : this.cars) {
-            maxPos = Math.max(maxPos,rc.getPos());
+        for(Car rc : this.cars) {
+            maxPos = Math.max(maxPos,rc.getPosition());
         }
-        List<RacingCar> winners = new ArrayList<>();
-        for(RacingCar rc : this.cars) {
+        List<Car> winners = new ArrayList<>();
+        for(Car rc : this.cars) {
             appendWinner(winners, rc, maxPos);
         }
         return winners;
     }
 
-    public void appendWinner(List<RacingCar> winners, RacingCar racingCar, int maxPos) {
-        if(racingCar.getPos()==maxPos) {
+    public void appendWinner(List<Car> winners, Car racingCar, int maxPos) {
+        if(racingCar.getPosition()==maxPos) {
             winners.add(racingCar);
         }
     }

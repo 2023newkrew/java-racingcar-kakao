@@ -34,18 +34,18 @@ public class IOView {
         return Integer.parseInt(input);
     }
 
-    public String carPosToOutputText(RacingCar racingCar) {
+    public String carPosToOutputText(Car racingCar) {
         StringBuilder sb = new StringBuilder();
         sb.append(racingCar.getName()).append(" : ");
-        for(int i=0; i<=racingCar.getPos(); i++) {
+        for(int i = 0; i<=racingCar.getPosition(); i++) {
             sb.append("-");
         }
         return sb.append("\n").toString();
     }
 
-    public void printTurnResult(List<RacingCar> cars) {
+    public void printTurnResult(List<Car> cars) {
         StringBuilder sb = new StringBuilder();
-        for(RacingCar rc : cars) {
+        for(Car rc : cars) {
             sb.append(carPosToOutputText(rc));
         }
         System.out.println(sb);
@@ -55,11 +55,11 @@ public class IOView {
         System.out.println("실행 결과");
     }
 
-    public void printWinners(List<RacingCar> winners) {
+    public void printWinners(List<Car> winners) {
         // pobi, honux가 최종 우승했습니다.
         StringBuilder sb = new StringBuilder();
         List<String> winnerNames = new ArrayList<>();
-        for(RacingCar winner : winners) {
+        for(Car winner : winners) {
             winnerNames.add(winner.getName());
         }
         sb.append(String.join(", ",winnerNames));
