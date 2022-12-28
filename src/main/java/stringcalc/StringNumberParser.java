@@ -27,7 +27,7 @@ public class StringNumberParser {
             numbers.add(convertToNumber(stringNumber));
         }
         if (numbers.stream().anyMatch(num -> num < 0)) {
-            throw new RuntimeException();
+            throw new RuntimeException("잘못된 입력: 음수");
         }
         return numbers;
     }
