@@ -20,15 +20,23 @@ public class InputParserTest {
     @ParameterizedTest
     @CsvSource(value = {"1:1", "12:12", "500:500"}, delimiter = ':')
     public void 실행횟수_파싱(String input, int expected) {
-        int answer = inputParser.parseToInt(input);
+        int answer = inputParser.parseStringToPositiveInt(input);
         Assertions.assertThat(answer).isEqualTo(expected);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"asd", "0", "-12", "", "   "})
-    public void 실행횟수_검증(String input) {
+    @ValueSource(strings = {"asd", "", "   "})
+    public void 실행횟수_포맷_검증(String input) {
         Assertions.assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-            inputParser.parseToInt(input);
+            inputParser.parseStringToPositiveInt(input);
         }).withMessage("1 이상의 숫자만 입력해야합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-12", "-2321312"})
+    public void 실행횟수_양수_검증(String input) {
+        Assertions.assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
+            inputParser.parseStringToPositiveInt(input);
+        }).withMessage("음수는 입력할 수 없습니다.");
     }
 }

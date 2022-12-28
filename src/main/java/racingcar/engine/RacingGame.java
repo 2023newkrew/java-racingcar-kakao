@@ -47,7 +47,7 @@ public class RacingGame implements Runnable {
     private Supplier<Integer> getCount() {
         return () -> {
             String countInput = console.input("시도할 회수는 몇회인가요?");
-            return inputParser.parseToInt(countInput);
+            return inputParser.parseStringToPositiveInt(countInput);
         };
     }
 

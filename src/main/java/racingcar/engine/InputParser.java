@@ -10,19 +10,20 @@ public class InputParser {
         return input.split(",");
     }
 
-    public int parseToInt(String input) {
+    public int parseStringToPositiveInt(String input) {
         try {
-            int number = Integer.parseInt(input);
-            checkPositive(number);
-            return number;
+            return checkPositive(Integer.parseInt(input));
         } catch (NumberFormatException e) {
             throw new RuntimeException("1 이상의 숫자만 입력해야합니다.");
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("음수는 입력할 수 없습니다.");
         }
     }
 
-    private void checkPositive(int number) {
+    private int checkPositive(int number) {
         if (number <= 0) {
-            throw new NumberFormatException();
+            throw new IllegalArgumentException();
         }
+        return number;
     }
 }
