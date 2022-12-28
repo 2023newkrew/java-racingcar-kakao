@@ -2,23 +2,34 @@ package str_calc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
-    private List<String> seperators;
+    static final List<String> defaultDelimiters = List.of(",", ":");
+    static final String REGEX_DELIMITER = "//(.)\n(.*)";
+    private final List<String> delimiters;
 
     public StringCalculator() {
-        this.seperators = new ArrayList<>();
-        this.seperators.add(",");
-        this.seperators.add(":");
+        this.delimiters = new ArrayList<>(StringCalculator.defaultDelimiters);
+    }
+
+    public void addDelimiter(String delimiter) {
+        this.delimiters.add(delimiter);
+    }
+
+    public String extractDelimiter(String text) {
+        Matcher m = Pattern.compile(StringCalculator.REGEX_DELIMITER).matcher(text);
+        if (m.find()) {
+            this.addDelimiter(m.group(1));
+            return m.group(2);
+        }
+        return text;
     }
 
     public List<String> splitText(String text) {
-        return Arrays.asList(text.split(String.join("|",seperators)));
+        return Arrays.asList(text.split(String.join("|",delimiters)));
     }
 
     public int toInt(String token) {
@@ -48,18 +59,5 @@ public class StringCalculator {
 
     public int sumText(String text) {
         return this.sumIntList(this.toIntList(text));
-    }
-
-    public void addSeperator(String seperator) {
-        this.seperators.add(seperator);
-    }
-
-    public String extractSeperator(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-        if (m.find()) {
-            this.addSeperator(m.group(1));
-            return m.group(2);
-        }
-        return text;
     }
 }
