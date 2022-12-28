@@ -60,6 +60,7 @@
 
 ### DTO
 - CarDTO
+- CarDtoDistanceComparator
 
 ### Service
 - Game 
@@ -84,5 +85,5 @@
   - isMoving()
 - RandomlyMovable
   - isMoving()
-  - RandomGenerator
+  - RandomNumberGenerator
 
