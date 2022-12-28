@@ -1,9 +1,9 @@
 package racing.domain;
 
 public class Car implements Comparable<Object> {
-    private final int MOVING_LOWER_BOUND = 4;
-    private final String MOVING_SYMBOL = "-";
-    private final String STATUS_STRING_FORMAT = "%s : %s";
+    private static final int MOVING_LOWER_BOUND = 4;
+    private static final String MOVING_SYMBOL = "-";
+    private static final String STATUS_STRING_FORMAT = "%s : %s";
     private final String name;
     private int distance = 0;
 

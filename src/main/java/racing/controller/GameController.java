@@ -6,7 +6,7 @@ import racing.view.InputView;
 import racing.view.OutputView;
 
 public class GameController {
-    private final String RESULT_MESSAGE = "실행 결과";
+    private static final String RESULT_MESSAGE = "실행 결과";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private Game game;

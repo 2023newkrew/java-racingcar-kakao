@@ -3,8 +3,8 @@ package racing.view;
 import java.util.List;
 
 public class OutputView {
-    private final String WINNER_DELIMITER = ", ";
-    private final String WINNER_MESSAGE_FORMAT = "%s가 최종 우승했습니다.";
+    private static final String WINNER_DELIMITER = ", ";
+    private static final String WINNER_MESSAGE_FORMAT = "%s가 최종 우승했습니다.";
 
     public void printResult(List<String> status) {
         status.forEach(System.out::println);
