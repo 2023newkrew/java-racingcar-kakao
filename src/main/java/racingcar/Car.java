@@ -3,8 +3,8 @@ package racingcar;
 import java.util.Random;
 
 public class Car {
-    String name;
-    int cnt;
+    private final String name;
+    private int cnt;
 
     public Car(String name) {
         this.name = name;
@@ -24,9 +24,7 @@ public class Car {
     }
 
     public void race() {
-        Random random = new Random();
-
-        if (random.nextInt(9) > 3) {
+        if (new Random().nextInt(9) > 3) {
             move();
         }
     }
