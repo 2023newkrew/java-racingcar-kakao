@@ -81,7 +81,7 @@ public class RacingCarGameTest {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
         Car car3 = new RacingCar("honux");
-        Car car4 = new RacingCar("russell");
+        Car car4 = new RacingCar("soony");
         racingCarGame.add(car1, car2, car3, car4);
         racingCarGame.run(5);
         Assertions.assertThat(racingCarGame.getWinner().size()).isEqualTo(2);

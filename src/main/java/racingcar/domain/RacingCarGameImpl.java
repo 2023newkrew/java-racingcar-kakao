@@ -61,11 +61,9 @@ public class RacingCarGameImpl implements RacingCarGame {
     @Override
     public void play() {
         outputView.printStartMessage();
-        String[] names = inputView.inputName();
-        Arrays.stream(names).forEach(this::add);
+        Arrays.stream(inputView.inputName()).forEach(this::add);
         outputView.printAskRunCount();
-        int times = inputView.inputRunCount();
-        run(times);
+        run(inputView.inputRunCount());
         outputView.printFinalResult(getWinnerNames());
     }
 
