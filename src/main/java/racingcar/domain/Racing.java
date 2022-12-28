@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.*;
 
@@ -41,11 +42,9 @@ public class Racing {
         sort(cars);
         final int maxDist = cars.get(0).getDistance();
 
-        List<String> result = new ArrayList<>();
-        cars.stream()
+        return cars.stream()
                 .filter(car -> car.getDistance() == maxDist)
-                .forEach(car -> result.add(car.getName()));
-
-        return result;
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
