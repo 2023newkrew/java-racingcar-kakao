@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarTest {
     @ParameterizedTest
-    @CsvSource(value = {"Pobi;Pobi : "}, delimiter = ';')
+    @CsvSource(value = {"Pobi;Pobi : -"}, delimiter = ';')
     void carNameIo(String input, String expected) {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -23,7 +23,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"Pobi;Pobi : -"}, delimiter = ';')
+    @CsvSource(value = {"Pobi;Pobi : --"}, delimiter = ';')
     void carMoveO(String input, String expected) {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
