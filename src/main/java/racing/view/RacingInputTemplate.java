@@ -1,16 +1,14 @@
 package racing.view;
 
-import racing.model.Car;
-import racing.repository.RacingCarRepository;
 import racing.service.RacingValidator;
 
 import java.util.Scanner;
 
-public class RacingTemplate {
+public class RacingInputTemplate {
     private final Scanner scanner;
     private final RacingValidator racingValidator;
 
-    public RacingTemplate(){
+    public RacingInputTemplate(){
         scanner = new Scanner(System.in);
         racingValidator = new RacingValidator();
     }
@@ -27,21 +25,5 @@ public class RacingTemplate {
 
         racingValidator.attemptValidate(attempt);
         return attempt;
-    }
-
-    public void printResultString() {
-        System.out.println("\n실행 결과");
-    }
-
-    public void printCurrentStatus(){
-        for(Car car : RacingCarRepository.getCars()){
-            System.out.println(car);
-        }
-        System.out.println();
-    }
-
-    public void printWinners() {
-        String winners = String.join(", ", RacingCarRepository.getWinners());
-        System.out.println(winners + "가 최종 우승했습니다.");
     }
 }

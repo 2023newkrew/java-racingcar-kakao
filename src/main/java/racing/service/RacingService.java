@@ -4,8 +4,13 @@ import racing.model.Car;
 import racing.repository.RacingCarRepository;
 
 public class RacingService {
+    private final RacingCarRepository racingCarRepository;
+
+    public RacingService(RacingCarRepository racingCarRepository){
+        this.racingCarRepository = racingCarRepository;
+    }
     public void turn() {
-        for (Car car : RacingCarRepository.getCars()) {
+        for (Car car : racingCarRepository.getCars()) {
             car.tryMove();
         }
     }
