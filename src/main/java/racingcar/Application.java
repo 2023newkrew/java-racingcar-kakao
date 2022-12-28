@@ -20,15 +20,5 @@ public class Application {
                 .collect(Collectors.toList());
 
         RacingSimulator racingSimulator = new RacingSimulator(maxTryCount, new Cars(() -> 4, cars));
-
-        while (!racingSimulator.isFinished()) {
-            racingSimulator.move();
-            Cars result = racingSimulator.getCars();
-
-            if (racingSimulator.isFinished()) {
-                result.getWinners()
-                        .forEach(car -> System.out.println(car.getName() + " " + car.getPosition()));
-            }
-        }
     }
 }

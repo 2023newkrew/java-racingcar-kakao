@@ -25,7 +25,11 @@ public class RacingSimulator {
         return tryCount >= maxTryCount;
     }
 
-    public Cars getCars() {
-        return cars;
+    public Winners getWinners() {
+        return cars.getWinners();
+    }
+
+    public Positions getPositions() {
+        return cars.getPositions();
     }
 }

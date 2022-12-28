@@ -32,10 +32,11 @@ class RacingSimulatorTest {
 
         move(simulator, 1);
 
-        Cars result = simulator.getCars();
-        assertThat(result.getPositionByName("a")).isEqualTo(1);
-        assertThat(result.getPositionByName("b")).isEqualTo(1);
-        assertThat(result.getPositionByName("c")).isEqualTo(0);
+        Positions positions = simulator.getPositions();
+
+        assertThat(positions.getPositionByName("a")).isEqualTo(1);
+        assertThat(positions.getPositionByName("b")).isEqualTo(1);
+        assertThat(positions.getPositionByName("c")).isEqualTo(0);
     }
 
     @Test
@@ -49,9 +50,9 @@ class RacingSimulatorTest {
         RacingSimulator simulator = createRacingSimulator(3, cars);
 
         move(simulator, 3);
+        Winners winners = simulator.getWinners();
 
-        List<Car> winners = simulator.getCars().getWinners();
-        assertThat(winners)
+        assertThat(winners.getWinnerCars())
                 .extracting(Car::getName)
                 .hasSize(1)
                 .contains("a");
@@ -69,8 +70,8 @@ class RacingSimulatorTest {
 
         move(simulator, 3);
 
-        List<Car> winners = simulator.getCars().getWinners();
-        assertThat(winners)
+        Winners winners = simulator.getWinners();
+        assertThat(winners.getWinnerCars())
                 .hasSize(2)
                 .extracting(Car::getName)
                 .contains("a", "b");

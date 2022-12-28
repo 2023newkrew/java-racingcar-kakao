@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -19,29 +18,11 @@ public class Cars {
         }
     }
 
-    public int getPositionByName(String name) {
-        return cars.stream()
-                .filter(car -> car.getName().equals(name))
-                .mapToInt(Car::getPosition)
-                .findFirst()
-                .orElseThrow();
+    public Positions getPositions() {
+        return new Positions(cars);
     }
 
-    public List<Car> getWinners() {
-        int farDistancePosition = getFarDistancePosition();
-        return getCarsByPosition(farDistancePosition);
-    }
-
-    private int getFarDistancePosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow();
-    }
-
-    private List<Car> getCarsByPosition(int position) {
-        return cars.stream()
-                .filter(car -> car.getPosition() == position)
-                .collect(Collectors.toList());
+    public Winners getWinners() {
+        return new Winners(cars);
     }
 }
