@@ -3,18 +3,17 @@ package racingcar;
 import java.util.Random;
 
 public class Engine {
-    public static final Engine defaultEngine = new Engine();
+    public static final Engine defaultEngine = new Engine(10);
 
     private static final Random RANDOM = new Random();
 
-    private static final int MAX_RANDOM = 10;
+    private final int maxPower;
 
-    private static final int THRESHOLD = 4;
-
-    private Engine() {
+    private Engine(int maxPower) {
+        this.maxPower = maxPower;
     }
 
-    public boolean moveOrStop() {
-        return RANDOM.nextInt(MAX_RANDOM) >= THRESHOLD;
+    public int getPower() {
+        return RANDOM.nextInt(maxPower);
     }
 }

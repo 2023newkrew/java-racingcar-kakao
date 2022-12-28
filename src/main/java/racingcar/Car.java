@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Car {
     public static final int MIN_CAR_NAME_LENGTH = 1;
     public static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int POWER_THRESHOLD = 4;
 
     private final String name;
     private int position;
@@ -41,7 +42,7 @@ public class Car {
 
     public void moveOrStop() {
         checkEngineExists();
-        if (engine.moveOrStop()) {
+        if (engine.getPower() >= POWER_THRESHOLD) {
             position++;
         }
     }
