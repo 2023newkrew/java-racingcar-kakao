@@ -1,9 +1,11 @@
 package racingcar.domain;
 
-public class RacingCar implements Car {
-    private static final int BOUND = 3;
-    private final String name;
+import static racingcar.domain.RacingCarConstant.*;
 
+import java.util.Objects;
+
+public class RacingCar implements Car {
+    private final String name;
 
     private int distance;
 
@@ -12,6 +14,7 @@ public class RacingCar implements Car {
         this.distance = 0;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -21,14 +24,39 @@ public class RacingCar implements Car {
         return this.distance;
     }
 
-    public void move(int seed) {
-        if (seed > BOUND) {
+    public void move(int condition) {
+        if (outOfBound(condition)) {
+            throw new IllegalArgumentException("move함수에는 0 ~ 9 사이의 값이 주어져야 합니다.");
+        }
+        if (condition >= MOVE_LOWER_BOUND) {
             distance++;
         }
     }
 
     @Override
+    public boolean outOfBound(int condition) {
+        return condition < CONDITION_LOWER_BOUND || condition > CONDITION_UPPER_BOUND;
+    }
+
+    @Override
     public String toString() {
         return name + " : " + "-".repeat(distance);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        RacingCar racingCar = (RacingCar) o;
+        return distance == racingCar.distance && Objects.equals(name, racingCar.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, distance);
     }
 }

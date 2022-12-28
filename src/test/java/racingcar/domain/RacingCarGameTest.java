@@ -20,8 +20,7 @@ public class RacingCarGameTest {
     static RacingCarGame racingCarGame;
 
     /**
-     * RandomNumberGeneratorTest를 위해 구현한 FakeRandomNumberGenerator
-     * generator 실행 횟수가 짝수 일 경우 4 그외 3
+     * RandomNumberGeneratorTest를 위해 구현한 FakeRandomNumberGenerator generator 실행 횟수가 짝수 일 경우 4 그외 3
      */
     static class FakeRandomNumberGenerator implements RandomNumberGenerator {
         int seed = 0;
@@ -43,13 +42,12 @@ public class RacingCarGameTest {
         randomNumberGenerator = AppConfigImpl.class.getDeclaredField("randomNumberGenerator");
         randomNumberGenerator.setAccessible(true);
     }
+
     @BeforeEach
     void init() throws IllegalAccessException {
         randomNumberGenerator.set(appConfig, new FakeRandomNumberGenerator());
-
         racingCarGame = new RacingCarGameImpl(appConfig);
     }
-
 
 
     @Test
@@ -77,6 +75,7 @@ public class RacingCarGameTest {
         assertThat(racingCarGame.getWinner().size()).isEqualTo(1);
         assertThat(racingCarGame.getWinner().get(0)).isEqualTo(car2);
     }
+
     @Test
     public void getMultiWinner() {
         Car car1 = new RacingCar("pobi");
@@ -90,7 +89,7 @@ public class RacingCarGameTest {
     }
 
     @Test
-    public void getCarResultsTest(){
+    public void getCarResultsTest() {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
 
