@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Race {
     String nameStr;
-    ArrayList<Car> cars = new ArrayList<>();
+    List<Car> cars = new ArrayList<>();
 
     public Race(String nameStr) {
         this.nameStr = nameStr;
@@ -39,7 +40,7 @@ public class Race {
         System.out.println();
     }
 
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
