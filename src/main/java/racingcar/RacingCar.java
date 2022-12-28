@@ -46,12 +46,8 @@ public class RacingCar implements Comparable<RacingCar> {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(name).append(" : ");
-        for (int step = 0; step < distance; step++) {
-            stringBuilder.append('-');
-        }
-        return stringBuilder.toString();
+        return name + " : " +
+                "-".repeat(Math.max(0, distance));
     }
 
     @Override
