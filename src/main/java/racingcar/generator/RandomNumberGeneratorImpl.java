@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomNumberGeneratorImpl implements RandomNumberGenerator {
 
-    private final int RANGE = 9;
+    private static final int RANGE = 9;
 
     @Override
     public int generator() {
