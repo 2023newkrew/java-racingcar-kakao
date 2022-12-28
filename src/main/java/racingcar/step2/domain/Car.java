@@ -1,5 +1,7 @@
 package racingcar.step2.domain;
 
+import java.util.Random;
+
 public class Car {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -24,6 +26,9 @@ public class Car {
         }
     }
 
+    public void move(){
+        move(getRandomNumber());
+    }
 
     public void move(final int condition){
         if (condition >= MOVE_THRESHOLD){
@@ -31,6 +36,9 @@ public class Car {
         }
     }
 
+    protected int getRandomNumber(){
+        return new Random().nextInt(10);
+    }
 
     public int getPosition() {
         return position;
