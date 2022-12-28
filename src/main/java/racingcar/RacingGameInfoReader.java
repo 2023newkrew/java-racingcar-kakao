@@ -22,9 +22,7 @@ public class RacingGameInfoReader {
     }
 
     public void close() {
-        if (scanner != null) {
-            scanner.close();
-        }
+        scanner.close();
     }
 
     private void validateRacingCarNames(String[] racingCarNames) {
