@@ -8,37 +8,20 @@ import java.util.List;
  */
 public class RacingCarGame {
 
-    IOSystem ioSystem;
-    CarList carList;
+    Service service;
 
     public RacingCarGame() {
-        ioSystem = new IOSystem();
-        carList = new CarList();
+        service = new Service();
     }
 
     public void start() {
-        List<String> carNamesInput = ioSystem.getCarNamesInput();
-        int trialNumber = ioSystem.getTrialNumber();
+        List<String> carNamesInput = service.carNameUserInputService();
+        int trialNumber = service.trialUserInputService();
 
-        setUpCarList(carNamesInput);
+        service.addCarsInCarListService(carNamesInput);
 
-        playRacingGameAndResult(trialNumber);
+        service.playRacingGameAndResultService(trialNumber);
 
-        ioSystem.printWinners(carList.getWinners());
-    }
-
-    private void playRacingGameAndResult(int trialNumber) {
-        System.out.println("실행 결과");
-        ioSystem.printGameResult(carList);
-        for (int i = 0; i < trialNumber; i++) {
-            carList.moveAll();
-            ioSystem.printGameResult(carList);
-        }
-    }
-
-    private void setUpCarList(List<String> carNamesInput) {
-        for (String carName : carNamesInput) {
-            carList.add(new Car(carName));
-        }
+        service.printWinnersService();
     }
 }

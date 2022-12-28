@@ -10,16 +10,6 @@ public class CarListTest {
     private final static String CAR_DUMMY_STRING = "dummy";
 
     @Test
-    void duplicatedNameException() {
-        CarList carList = new CarList();
-        Assertions.assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> {
-                    carList.add(new Car(CAR_DUMMY_STRING));
-                    carList.add(new Car(CAR_DUMMY_STRING));
-                });
-    }
-
-    @Test
     void selectWinners() {
         CarList carList = new CarList();
         Car car1 = new Car("car1");

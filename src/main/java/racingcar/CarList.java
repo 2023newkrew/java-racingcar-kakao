@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * Racing Game에 참가하는 Car객체들을 관리하는 클래스입니다.
- * 구현한 모든 클래스가 조합되어 사용되는 부분
  */
 public class CarList {
     private final List<Car> cars;
@@ -18,15 +17,7 @@ public class CarList {
     }
 
     public void add(Car newCar) {
-        if (hasDuplicatedName(newCar)) {
-            throw new RuntimeException();
-        }
         cars.add(newCar);
-    }
-
-    private boolean hasDuplicatedName(Car other) {
-        return cars.stream()
-                .anyMatch(car -> car.equals(other));
     }
 
     public void moveAll() {
