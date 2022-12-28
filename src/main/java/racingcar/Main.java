@@ -1,6 +1,5 @@
 package racingcar;
 
-
 public class Main {
     public static void main(String[] args) {
         Input input = new Input();
@@ -10,6 +9,6 @@ public class Main {
         racing.proceedRounds(input.scanTrialNumber());
 
         System.out.println("최종결과");
-        System.out.println(racing.joinWinners() + "가 최종 우승했습니다.");
+        System.out.println(String.join(", ", racing.getTotalWinnersNames()) + "가 최종 우승했습니다.");
     }
 }

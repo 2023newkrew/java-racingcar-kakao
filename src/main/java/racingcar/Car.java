@@ -21,6 +21,10 @@ public class Car {
         return rg.generate(MAX_BOUND) >= MOVE_BOUND;
     }
 
+    public String name() {
+        return name;
+    }
+
     public int position() {
         return position;
     }
@@ -48,5 +52,12 @@ public class Car {
 
     private boolean equalsPositionTo(int otherPosition) {
         return this.position == otherPosition;
+    }
+
+    public Car determineWinner(Car otherCar) {
+        if(comparePositionToOtherCar(otherCar) >= 0) {
+            return this;
+        }
+        return otherCar;
     }
 }
