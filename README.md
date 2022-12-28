@@ -53,7 +53,7 @@
 ### 리팩터링 중점 사안
 - [x] 생성 조건에 대한 validation을 더 추가하기
 - [ ] 리턴 타입을 예상할 수 있는 메서드 네이밍을 작성하기
-- [ ] 불필요한 인스턴스 변수를 제거하기 (RandomNumberSelector)
+- [x] 불필요한 인스턴스 변수를 제거하기 (RandomNumberSelector)
 - [ ] 아무런 행위를 하지 않는 메서드 제거
 - [ ] Map<Key, Value\> 사용에 대한 재고
 - [ ] Optional.isPresent() / Optional.isEmpty() => boolean으로 리팩터링

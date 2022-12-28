@@ -15,7 +15,7 @@ public class RacingGameTest {
         String carNames = "pobi,crong,honux";
         int roundToPlay = 5;
 
-        assertDoesNotThrow(() -> new RacingGame(carNames, roundToPlay, new RandomNumberSelector(0, 10)));
+        assertDoesNotThrow(() -> new RacingGame(carNames, roundToPlay, new RandomNumberSelector()));
     }
 
     @Test

@@ -16,7 +16,7 @@ public class RefereeTest {
         Car car3 = new Car("car3");
         List<Car> registeredCars = List.of(car1, car2, car3);
 
-        Referee referee = new Referee(5, registeredCars, new RandomNumberSelector(0, 10));
+        Referee referee = new Referee(5, registeredCars, new RandomNumberSelector());
 
         int roundToPlay = referee.getRoundToPlay();
         int currentRound = referee.getCurrentRound();
@@ -36,7 +36,7 @@ public class RefereeTest {
         int invalidRoundToPlay = -2;
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Referee(invalidRoundToPlay, registeredCars, new RandomNumberSelector(0, 10)))
+                .isThrownBy(() -> new Referee(invalidRoundToPlay, registeredCars, new RandomNumberSelector()))
                 .withMessage("라운드는 양수여야 합니다.");
     }
 
