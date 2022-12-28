@@ -5,6 +5,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RacingCarController {
+    private static final int MAX_COUNT = 100;
+    private static final int MIN_COUNT = 0;
+
     private RacingCarModel model;
     private final RacingCarView view;
 
@@ -81,8 +84,7 @@ public class RacingCarController {
     Integer tryInputCount() {
         try {
             int count = view.inputCount();
-            checkCountIsTooSmall(count);
-            checkCountIsTooBig(count);
+            checkCountIsInRange(count);
             return count;
         } catch (RuntimeException e) {
             view.printError(e.getMessage());
@@ -90,17 +92,12 @@ public class RacingCarController {
         }
     }
 
-    private static void checkCountIsTooBig(int count) {
-        int maxCount = 100;
-        if (maxCount < count) {
-            throw new RuntimeException(String.format("count is too big. must be less than %d. your count: %s", maxCount, count));
+    private static void checkCountIsInRange(int count) {
+        if (MAX_COUNT < count) {
+            throw new RuntimeException(String.format("count is too big. must be less than %d. your count: %s", MAX_COUNT, count));
         }
-    }
-
-    private static void checkCountIsTooSmall(int count) {
-        int minCount = 0;
-        if (minCount > count) {
-            throw new RuntimeException(String.format("count is too small. must be less than %d. your count: %s", minCount, count));
+        if (MIN_COUNT > count) {
+            throw new RuntimeException(String.format("count is too small. must be less than %d. your count: %s", MIN_COUNT, count));
         }
     }
 
