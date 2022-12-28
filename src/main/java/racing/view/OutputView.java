@@ -17,12 +17,12 @@ public class OutputView {
     }
 
     public void printSingleResult(final CarDTO carDTO){
-        System.out.printf(STATUS_STRING_FORMAT, carDTO.getName().getName(),MOVING_SYMBOL.repeat(carDTO.getDistance()));
+        System.out.printf(STATUS_STRING_FORMAT, carDTO.getName().toString(),MOVING_SYMBOL.repeat(carDTO.getDistance()));
     }
 
     public void printWinner(final List<CarName> winners) {
         List<String> winnerNames = winners.stream()
-                .map(CarName::getName)
+                .map(CarName::toString)
                 .collect(Collectors.toList());
         String winnerString = String.join(WINNER_DELIMITER, winnerNames);
         System.out.printf(WINNER_MESSAGE_FORMAT, winnerString);

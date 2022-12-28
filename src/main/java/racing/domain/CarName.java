@@ -16,10 +16,6 @@ public class CarName {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void validate(String name) {
         if (name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(TOO_SHORT_NAME_EXCEPTION_MESSAGE);
@@ -27,6 +23,11 @@ public class CarName {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(TOO_LONG_NAME_EXCEPTION_MESSAGE);
         }
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override
