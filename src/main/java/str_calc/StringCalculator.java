@@ -19,7 +19,7 @@ public class StringCalculator {
         this.delimiters.add(delimiter);
     }
 
-    public String extractDelimiter(String text) {
+    public String getTextThatDelimiterIsExtracted(String text) {
         Matcher m = Pattern.compile(StringCalculator.REGEX_DELIMITER).matcher(text);
         if (m.find()) {
             this.addDelimiter(m.group(1));

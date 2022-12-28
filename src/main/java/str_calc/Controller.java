@@ -10,7 +10,7 @@ public class Controller {
     }
     public void start() {
         String text = io.inputText();
-        text = stringCalculator.extractDelimiter(text);
+        text = stringCalculator.getTextThatDelimiterIsExtracted(text);
         io.printSum(stringCalculator.sum(text));
     }
 }

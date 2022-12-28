@@ -20,7 +20,7 @@ public class StringCalculatorTest {
     @DisplayName("can extract a custom delimiter from text")
     public void can_extract_a_custom_delimiter_from_text() {
         StringCalculator stringCalculator = new StringCalculator();
-        String text = stringCalculator.extractDelimiter("//;\n1,2:3;4");
+        String text = stringCalculator.getTextThatDelimiterIsExtracted("//;\n1,2:3;4");
         assertEquals("1,2:3;4", text);
         assertEquals(10, stringCalculator.sum(text));
     }
