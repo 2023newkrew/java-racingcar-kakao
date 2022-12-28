@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StringNumberParser {
     public List<Long> parse(String input, String separator) {
-        if (input.isBlank()) {
+        if (input == null || input.isBlank()) {
             return new ArrayList<>();
         }
         if (separator == null) {
