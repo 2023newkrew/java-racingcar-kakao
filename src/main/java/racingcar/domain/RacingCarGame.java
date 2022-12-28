@@ -7,7 +7,6 @@ public interface RacingCarGame {
 
     void run();
 
-    void add(String carName);
     void add(String... carNames);
 
     void add(Car... cars);

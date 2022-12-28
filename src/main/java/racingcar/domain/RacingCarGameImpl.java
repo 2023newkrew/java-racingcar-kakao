@@ -20,10 +20,6 @@ public class RacingCarGameImpl implements RacingCarGame {
         cars.forEach(car -> car.move(randomNumberGenerator.generator()));
     }
 
-    @Override
-    public void add(String carName) {
-        cars.add(new RacingCar(carName));
-    }
 
     @Override
     public void add(String... carNames) {
