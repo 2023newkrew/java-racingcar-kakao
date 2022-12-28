@@ -30,18 +30,16 @@ public class Referee {
 
     public void moveCars() {
         for (Car car : registeredCars) {
-            int selectedNumber = numberSelector.selectNumber();
-            moveOrStay(car, selectedNumber);
+            int number = numberSelector.selectNumber();
+            moveCar(car, number);
         }
         currentRound++;
     }
 
-    private void moveOrStay(Car car, int selectedNumber) {
-        if (selectedNumber >= MOVE_THRESHOLD) {
+    private void moveCar(Car car, int number) {
+        if (number >= MOVE_THRESHOLD) {
             car.move();
-            return;
         }
-        car.stay();
     }
 
     public boolean isGameEnd() {
