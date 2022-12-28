@@ -39,6 +39,18 @@ class CustomSeparatorParserTest {
     }
 
     @Test
+    void parseCustomSeparator_noCustomSeparator() {
+        //given
+        String input = "1,2,3";
+
+        //when
+        String result = customSeparatorParser.parse(input);
+
+        //then
+        assertThat(result).isNull();
+    }
+
+    @Test
     void parseCustomSeparator_Empty() {
         //given
         String input = "";
