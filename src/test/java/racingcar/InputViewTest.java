@@ -5,12 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.view.InputView;
+import racingcar.view.InvalidInputException;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class InputTest {
-    Input input = new Input();
+public class InputViewTest {
 
     @DisplayName("자동차 이름의 길이는 0이상 5이하 여야 함 (예외발생)")
     @ParameterizedTest
@@ -18,7 +19,7 @@ public class InputTest {
     void inputLengthException(String inputStr) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    input.validateLength(inputStr);
+                    InputView.validateLength(inputStr);
                 });
     }
 
@@ -27,7 +28,7 @@ public class InputTest {
     void inputLengthNotException() {
         String inputStr = "dan";
         assertThatCode(()->{
-            input.validateLength(inputStr);
+            InputView.validateLength(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -37,9 +38,8 @@ public class InputTest {
         String[] inputStr = {"kim"};
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    input.validateArrayLength(inputStr);
+                    InputView.validateArrayLength(inputStr);
                 });
-
     }
 
     @DisplayName("자동차의 대수는 2대 이상이어야 함 (통과)")
@@ -47,7 +47,7 @@ public class InputTest {
     void arrayLengthNotException() {
         String[] inputStr = {"kim", "lee"};
         assertThatCode(()->{
-            input.validateArrayLength(inputStr);
+            InputView.validateArrayLength(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -56,7 +56,7 @@ public class InputTest {
     void EachStringNotException(){
         String[] inputStr = {"kim", "lee", "han"};
         assertThatCode(()->{
-            input.validateEachString(inputStr);
+            InputView.validateEachString(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -67,7 +67,7 @@ public class InputTest {
         String[] inputStr = {"kim", "lee", abnormal};
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    input.validateEachString(inputStr);
+                    InputView.validateEachString(inputStr);
                 });
     }
 
@@ -76,7 +76,7 @@ public class InputTest {
     void duplicatedCarNameNotExceptionTest() {
         String[] inputStr = {"kim", "lee", "park"};
         assertThatCode(()->{
-            input.validateDuplication(inputStr);
+            InputView.validateDuplication(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -86,26 +86,26 @@ public class InputTest {
         String[] inputStr = {"kim", "lee", "kim"};
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
-                    input.validateDuplication(inputStr);
+                    InputView.validateDuplication(inputStr);
                 });
     }
 
-    @DisplayName("시도 회수는 숫자여야 하며 1 이상이어야 함 (통과)")
+    @DisplayName("시도 회수는 정수여야 하며 1 이상이어야 함 (통과)")
     @Test
     void trialCountNotExceptionTest() {
         String trialCount = "3";
-        Assertions.assertThat(input.validateTrialCount(trialCount)).isEqualTo(3);
-
+        Assertions.assertThatCode(()->{
+            InputView.validateTrialCount(trialCount);
+        }).doesNotThrowAnyException();
     }
 
-    @DisplayName("시도 회수는 숫자여야 하며 1 이상이어야 함 (예외발생)")
+    @DisplayName("시도 회수는 정수여야 하며 1 이상이어야 함 (예외발생)")
     @ParameterizedTest
     @ValueSource(strings = {"3d", "xx", "-1", "0"})
     void trialCountExceptionTest(String trialCount) {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(()->{
-                    input.validateTrialCount(trialCount);
+                    InputView.validateTrialCount(trialCount);
                 });
     }
-
 }

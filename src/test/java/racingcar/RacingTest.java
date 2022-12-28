@@ -3,6 +3,8 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.Racing;
 
 public class RacingTest {
     @DisplayName("주어진 이름에 따라 Cars 가 잘 생성되는가")
