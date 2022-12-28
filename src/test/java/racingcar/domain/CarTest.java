@@ -29,8 +29,8 @@ public class CarTest {
     @ParameterizedTest
     @NullAndEmptySource
     void 이름이_Null_또는_Empty_라면_NPE_발생(String name) {
-        Assertions.assertThatThrownBy(() -> new RacingCar(name))
-                .isInstanceOf(NullPointerException.class);
+        Assertions.assertThatNullPointerException()
+                .isThrownBy(() -> new RacingCar(name));
     }
 
     @ParameterizedTest
