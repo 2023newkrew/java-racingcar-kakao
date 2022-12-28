@@ -1,7 +1,6 @@
 package stringcalculator;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +22,9 @@ public class StringCalculator {
     }
 
     public int[] cast(String[] strings) {
-        return Arrays.stream(strings).mapToInt(Integer::parseInt).toArray();
+        return Arrays.stream(strings)
+                .mapToInt(Integer::parseInt)
+                .toArray();
     }
 
     public boolean hasNegative(int[] ints) {
