@@ -3,25 +3,25 @@ package calculator;
 import java.util.List;
 
 public class NumberParser {
-    private final String input;
+    private final String numbersStr;
     private final List<String> defaultDelimiters;
-    private String[] stringArray;
+    private String[] parsedNumbers;
 
     public NumberParser(String input, List<String> defaultDelimiters) {
         this.defaultDelimiters = defaultDelimiters;
         if (input == null || input.equals("")) {
-            this.input = "0";
+            this.numbersStr = "0";
             return;
         }
-        this.input = input;
+        this.numbersStr = input;
     }
 
     public String[] inputToStringArray() {
-        DelimiterParser delimiterParser = new DelimiterParser(input, defaultDelimiters);
+        DelimiterParser delimiterParser = new DelimiterParser(numbersStr, defaultDelimiters);
         delimiterParser.checkCustomDelimiter();
         String delimiter = delimiterParser.getDelimiter();
-        this.stringArray = delimiterParser.getPurifiedInput().split(delimiter);
-        return this.stringArray;
+        this.parsedNumbers = delimiterParser.getPurifiedInput().split(delimiter);
+        return this.parsedNumbers;
     }
 
     private void checkNegativeValue(int val) throws NegativeValueException {
@@ -30,9 +30,9 @@ public class NumberParser {
         }
     }
     public int[] stringArrayToIntArray() throws NumberFormatException, NegativeValueException {
-        int[] result = new int[stringArray.length];
-        for (int i = 0; i < stringArray.length; i++) {
-            result[i] = Integer.parseInt(stringArray[i]);
+        int[] result = new int[parsedNumbers.length];
+        for (int i = 0; i < parsedNumbers.length; i++) {
+            result[i] = Integer.parseInt(parsedNumbers[i]);
             checkNegativeValue(result[i]);
         }
 

@@ -9,10 +9,10 @@ public class DelimiterParser {
     private String delimiter;
     private String purifiedInput;
 
-    public DelimiterParser(String input, List<String> defaultDelimiters) {
+    public DelimiterParser(String numbersStr, List<String> defaultDelimiters) {
         this.delimiter = String.join("|",defaultDelimiters);
-        this.matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
-        this.purifiedInput = input;
+        this.matcher = Pattern.compile("//(.)\n(.*)").matcher(numbersStr);
+        this.purifiedInput = numbersStr;
     }
 
     public boolean hasCustomMatch() {
