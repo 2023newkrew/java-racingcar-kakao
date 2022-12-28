@@ -30,7 +30,7 @@ public class Calculator {
         if (isEmptyOrNull()) {
             return 0;
         }
-        if (doesEndWithNumber()) {
+        if (!doesEndWithNumber()) {
             throw new RuntimeException();
         }
 
@@ -41,7 +41,8 @@ public class Calculator {
     }
 
     private boolean doesEndWithNumber() {
-        return '0' > text.charAt(text.length() - 1) || text.charAt(text.length() - 1) > '9';
+        char lastChar = text.charAt(text.length() - 1);
+        return lastChar >= '0' && lastChar <= '9';
     }
 
     private int toIntegerIfPositive(String possibleNumber) throws RuntimeException {
