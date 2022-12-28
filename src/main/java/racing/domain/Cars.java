@@ -1,8 +1,9 @@
 package racing.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racing.dto.CarDTO;
+import racing.dto.CarDtoDistanceComparator;
 
 public class Cars {
     private final List<Car> cars;
@@ -25,12 +26,21 @@ public class Cars {
         }
     }
 
+    public List<CarDTO> getCarDtoList() {
+        List<CarDTO> carDtoList = cars.stream()
+                .map(Car::toDTO)
+                .collect(Collectors.toList());
+        return carDtoList;
+    }
+
     public List<String> getWinners() {
-        Collections.sort(cars);
-        Car winnerCar = cars.get(length - 1);
-        List<String> winners = cars.stream()
-                .filter(car -> car.compareTo(winnerCar) == 0) // isEqaulTo() 메서드 오버라이드하여 수정 예정
-                .map(Car::getName)
+        List<CarDTO> carDtoList = getCarDtoList();
+        CarDtoDistanceComparator distanceComparator = new CarDtoDistanceComparator();
+        carDtoList.sort(distanceComparator);
+        CarDTO lastWinner = carDtoList.get(length - 1);
+        List<String> winners = carDtoList.stream()
+                .filter(car -> distanceComparator.compare(lastWinner, car) == 0)
+                .map(CarDTO::getName)
                 .collect(Collectors.toList());
         return winners;
     }

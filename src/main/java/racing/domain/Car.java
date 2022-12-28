@@ -13,10 +13,6 @@ public class Car implements Comparable<Object> {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean move(final int number) {
         boolean isMoving = isMoving(number);
         if (isMoving) {
