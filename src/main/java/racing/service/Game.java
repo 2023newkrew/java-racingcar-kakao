@@ -10,7 +10,7 @@ public class Game {
     private final int length;
     private final RandomNumberGenerator generator = new RandomNumberGenerator();
 
-    public Game(List<String> carNames) {
+    public Game(final List<String> carNames) {
         cars = new Cars(carNames);
         length = carNames.size();
     }

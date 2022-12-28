@@ -9,14 +9,14 @@ public class Cars {
     private final int length;
     private static final String RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 정확히 자동차 개수만큼의 랜덤 값이 필요합니다.";
 
-    public Cars(List<String> carNames) {
+    public Cars(final List<String> carNames) {
         cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
         length = cars.size();
     }
 
-    public void play(List<Integer> randomNumbers) {
+    public void play(final List<Integer> randomNumbers) {
         if (randomNumbers.size() != length) {
             throw new IllegalArgumentException(RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE);
         }

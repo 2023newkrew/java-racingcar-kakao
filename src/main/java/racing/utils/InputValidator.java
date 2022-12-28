@@ -14,14 +14,14 @@ public class InputValidator {
     private static final String INPUT_REPEAT_RANGE_EXCEPTION_MESSAGE = "[ERROR] 반복 횟수는 양수여야 합니다.";
     private Set<String> carNameSet;
 
-    public List<String> validateCarNames(String inputCarNames) {
+    public List<String> validateCarNames(final String inputCarNames) {
         carNameSet = new HashSet<>();
         List<String> carNames = Arrays.asList(inputCarNames.split(DELIMITER));
         carNames.forEach(this::validateSingleCarName);
         return carNames;
     }
 
-    private void validateSingleCarName(String carName) {
+    private void validateSingleCarName(final String carName) {
         if (carNameSet.contains(carName)) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE);
         }

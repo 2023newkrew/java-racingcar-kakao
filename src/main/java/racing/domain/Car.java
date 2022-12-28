@@ -7,7 +7,7 @@ public class Car implements Comparable<Object> {
     private final String name;
     private int distance = 0;
 
-    public Car(String name) {
+    public Car(final String name) {
         this.name = name;
     }
 
@@ -15,7 +15,7 @@ public class Car implements Comparable<Object> {
         return name;
     }
 
-    public boolean move(int number) {
+    public boolean move(final int number) {
         boolean isMoving = isMoving(number);
         if (isMoving) {
             increaseDistance();
