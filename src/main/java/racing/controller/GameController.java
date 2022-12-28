@@ -3,6 +3,8 @@ package racing.controller;
 import racing.view.GameView;
 import racing.domain.Game;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.util.stream.IntStream.*;
@@ -10,22 +12,19 @@ import static java.util.stream.IntStream.*;
 public class GameController {
 
     private final Scanner scanner;
-    private final GameView gameView;
-    private final Game game;
 
     public GameController() {
         this.scanner = new Scanner(System.in);
-        this.game = new Game();
-        this.gameView = new GameView();
     }
 
     public void run() {
+        GameView gameView = new GameView();
         gameView.printCarNamesInputRequestMessage();
-        String[] carNames = scanner.nextLine().split(",");
+        List<String> carNames = Arrays.asList(scanner.nextLine().split(","));
         gameView.printTriesInputRequestMessage();
         int tries = scanner.nextInt();
 
-        game.initialize(carNames);
+        Game game = new Game(carNames);
 
         gameView.printGameStartMessage();
         range(0, tries).forEach(i -> gameView.printResult(game.playTurn()));

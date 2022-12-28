@@ -1,22 +1,21 @@
 package racing.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Game {
     private final Cars cars;
-    public Game() {
-        this.cars = new Cars();
+    public Game(List<String> carNames) {
+        this.cars = new Cars(carNames.stream()
+                    .map(Car::new)
+                    .collect(Collectors.toList()));
     }
 
     public Game(Cars cars) {
         this.cars = cars;
-    }
-
-    public void initialize(String[] carNames) {
-        Arrays.stream(carNames)
-            .forEach(carName -> cars.add(new Car(carName)));
     }
 
     public List<String> getWinnerNames() {
