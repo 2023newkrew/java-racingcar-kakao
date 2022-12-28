@@ -10,6 +10,8 @@ public class Calculator {
 
     private final Pattern pattern = Pattern.compile("//(.)\n(.*)");
 
+    private static final String DEFAULT_DELIMITER = "[,;]";
+
     public int calculate(String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             return 0;
@@ -45,6 +47,6 @@ public class Calculator {
             String customDelimiter = matcher.group(1);
             return matcher.group(2).split(customDelimiter);
         }
-        return input.split("[,;]");
+        return input.split(DEFAULT_DELIMITER);
     }
 }
