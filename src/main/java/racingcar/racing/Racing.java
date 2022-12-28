@@ -34,9 +34,7 @@ public class Racing {
     }
 
     public void init(String nameInput) {
-        List<String> names = StringParser.parse(nameInput);
-        if (isDuplicateNames(names)) throw new IllegalArgumentException("");
-        makeCars(names);
+        makeCars(StringParser.parse(nameInput));
 
         int turn = racingService.validateTurn(racingUi.getTurn());
         setTurn(turn);
@@ -61,6 +59,8 @@ public class Racing {
     }
 
     public void makeCars(List<String> carNames) {
+        if (isDuplicateNames(carNames)) throw new IllegalArgumentException("");
+
         for (String carName : carNames)
             this.cars.add(new Car(carName));
     }
