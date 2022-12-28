@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 public class CarsTest {
 
@@ -27,11 +26,4 @@ public class CarsTest {
         assertThat(cars.isMove(3)).isEqualTo(false);
     }
 
-    @Test
-    public void carNameLengthOutOfRange() {
-        assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> {
-                    new Car("marcus", 0);
-                });
-    }
 }
