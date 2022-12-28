@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.GameSetting;
 import racingcar.service.RacingCarGame;
 import racingcar.utils.RacingCarConverter;
 import racingcar.view.InputView;
@@ -23,7 +24,7 @@ public class RacingCarGameController {
     }
 
     public void run() {
-        String[] carNames = inputView.getCarNames().split(",");
+        String[] carNames = inputView.getCarNames().split(GameSetting.CAR_NAME_DELIMITER);
         racingCarValidator.validateCarNames(carNames);
 
         List<CarDto> carDtos = RacingCarConverter.toCarDtos(carNames);

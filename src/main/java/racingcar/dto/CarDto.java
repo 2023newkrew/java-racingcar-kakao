@@ -1,12 +1,14 @@
 package racingcar.dto;
 
+import racingcar.domain.GameSetting;
+
 public class CarDto {
 
     private String name;
     private int position;
 
     public CarDto(String name) {
-        this(name, 1);
+        this(name, GameSetting.INITIAL_POSITION);
     }
 
     public CarDto(String name, int position) {

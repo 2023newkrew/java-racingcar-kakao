@@ -19,7 +19,7 @@ public class Car {
     }
 
     public boolean isMovable(int randomNumber) {
-        return randomNumber >= 4;
+        return randomNumber >= GameSetting.MOVABLE_MIN_VALUE;
     }
 
     public boolean isSamePosition(Car other) {

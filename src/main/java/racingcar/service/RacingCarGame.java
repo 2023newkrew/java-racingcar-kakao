@@ -25,7 +25,7 @@ public class RacingCarGame {
     }
 
     public GameResult doNextRound() {
-        racingCarValidator.validateRemainingGameRound(round);
+        racingCarValidator.validateGameRound(round);
         for (Car car : cars) {
             car.move(randomNumberGenerator.generateBetweenZeroAndNine());
         }

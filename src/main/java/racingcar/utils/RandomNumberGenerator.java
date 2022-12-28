@@ -3,6 +3,8 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
+
+    private static final int BOUND = 10;
     private Random random;
 
     public RandomNumberGenerator() {
@@ -10,6 +12,6 @@ public class RandomNumberGenerator {
     }
 
     public int generateBetweenZeroAndNine() {
-        return random.nextInt(10);
+        return random.nextInt(BOUND);
     }
 }
