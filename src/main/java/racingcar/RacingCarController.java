@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RacingCarController {
+
+    private static final int MAX_COUNT = 100;
     private RacingCarModel model;
     private final RacingCarView view;
 
@@ -66,9 +68,21 @@ public class RacingCarController {
         }
     }
 
-    //Todo:범위를 벗어날 경우 다시 입력
     private int inputCount() {
-        return view.inputCount();
+        int count = 0;
+        while (count == 0) {
+            count = tryInputCount();
+        }
+        return count;
+    }
+
+    private int tryInputCount() {
+        int count = view.inputCount();
+        if (count > MAX_COUNT) {
+            view.printError("Count too large.");
+            return 0;
+        }
+        return count;
     }
 
     private void printWinner() {
