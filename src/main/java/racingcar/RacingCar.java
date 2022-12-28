@@ -29,8 +29,12 @@ public class RacingCar implements Comparable<RacingCar> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         RacingCar racingCar = (RacingCar) o;
         return distance == racingCar.distance && Objects.equals(name, racingCar.name);
     }
