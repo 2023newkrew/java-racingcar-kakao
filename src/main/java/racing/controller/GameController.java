@@ -11,15 +11,24 @@ public class GameController {
     private final OutputView outputView = new OutputView();
     private Game game;
 
-    public void play() {
-        List<String> carNames = inputView.readCarNames();
+    public void run() {
+        initialize();
         int repeat = inputView.readGameRepeat();
-        game = new Game(carNames);
         System.out.println(RESULT_MESSAGE);
         for (int i = 0; i < repeat; i++) {
             playSingleTurn();
         }
         outputView.printWinner(game.getWinners());
+    }
+
+    private void initialize() {
+        try {
+            List<String> rawCarNames = inputView.readCarNames();
+            game = new Game(rawCarNames);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            initialize();
+        }
     }
 
     private void playSingleTurn() {

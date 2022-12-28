@@ -8,7 +8,7 @@ import racing.dto.CarDtoDistanceComparator;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(final List<String> carNames) {
+    public Cars(final List<CarName> carNames) {
         cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
@@ -25,12 +25,12 @@ public class Cars {
         return carDtoList;
     }
 
-    public List<String> getWinners() {
+    public List<CarName> getWinners() {
         List<CarDTO> carDtoList = getCarDtoList();
         CarDtoDistanceComparator distanceComparator = new CarDtoDistanceComparator();
         carDtoList.sort(distanceComparator);
         CarDTO lastWinner = carDtoList.get(cars.size() - 1);
-        List<String> winners = carDtoList.stream()
+        List<CarName> winners = carDtoList.stream()
                 .filter(car -> distanceComparator.compare(lastWinner, car) == 0)
                 .map(CarDTO::getName)
                 .collect(Collectors.toList());

@@ -1,5 +1,7 @@
 package racing.domain;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CarName {
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
@@ -8,7 +10,8 @@ public class CarName {
 
     private final String name;
 
-    public CarName(final String name) {
+    public CarName(@NotNull final String name) {
+        name.trim();
         validate(name);
         this.name = name;
     }

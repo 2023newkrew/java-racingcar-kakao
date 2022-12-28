@@ -7,16 +7,16 @@ import racing.movable.RandomlyMovable;
 public class Car {
     private static final String MOVING_SYMBOL = "-";
     private static final String STATUS_STRING_FORMAT = "%s : %s";
-    private final String name;
+    private final CarName name;
     private final Movable movable;
     private int distance = 0;
     private static final Movable DEFAULT_MOVABLE = new RandomlyMovable();
 
-    public Car(final String name) {
+    public Car(final CarName name) {
         this(name, DEFAULT_MOVABLE);
     }
 
-    public Car(final String name, final Movable movable){
+    public Car(final CarName name, final Movable movable){
         this.name = name;
         this.movable = movable;
     }

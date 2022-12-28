@@ -1,6 +1,8 @@
 package racing.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import racing.domain.CarName;
 
 public class OutputView {
     private static final String WINNER_DELIMITER = ", ";
@@ -11,8 +13,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinner(final List<String> winners) {
-        String winnerString = String.join(WINNER_DELIMITER, winners);
+    public void printWinner(final List<CarName> winners) {
+        List<String> winnerNames = winners.stream()
+                .map(CarName::getName)
+                .collect(Collectors.toList());
+        String winnerString = String.join(WINNER_DELIMITER, winnerNames);
         System.out.printf(WINNER_MESSAGE_FORMAT, winnerString);
     }
 }
