@@ -7,17 +7,17 @@ import java.util.Random;
 public class Racing {
     private final List<Car> cars = new ArrayList<>();
     private int roundNum;
-    boolean RegisterCarNames(String input) {
+    boolean registerCarNames(String input) {
         String[] temp = input.split(",");
-        if (!LengthCheck(temp)) return false;
+        if (!lengthCheck(temp)) return false;
 
-        for (String name : temp){
+        for (String name : temp) {
             cars.add(new Car(name));
         }
         return true;
     }
 
-    private boolean LengthCheck(String[] nameList) {
+    private boolean lengthCheck(String[] nameList) {
         boolean check = true;
         for (String name : nameList) {
             check &= (name.length() <= 5);
@@ -25,8 +25,8 @@ public class Racing {
         return check;
     }
 
-    boolean RegisterCarRoundNum(String input) {
-        try{
+    boolean registerCarRoundNum(String input) {
+        try {
             roundNum = Integer.parseInt(input);
             return true;
         }
@@ -34,14 +34,14 @@ public class Racing {
             return false;
         }
     }
-    boolean Round() {
+    boolean round() {
         for (Car car : cars) {
             car.move(random());
         }
         return true;
     }
 
-    String RoundResult(){
+    String roundResult() {
         String temp="";
         for (Car car : cars) {
             temp += car.getName()+","+car.getPosition()+",";
@@ -53,18 +53,18 @@ public class Racing {
         return rand.nextInt(10) >= 4;
     }
 
-    String GetWinner(){
+    String getWinner() {
         int maxPosition = 0;
         String winnerList = "";
         for (Car car : cars){
             maxPosition = Math.max(car.getPosition(), maxPosition);
         }
         for (Car car : cars){
-            winnerList += car.MatchPosition(maxPosition);
+            winnerList += car.matchPosition(maxPosition);
         }
         return winnerList;
     }
-    int GetRoundNum(){
+    int getRoundNum(){
         return roundNum;
     }
 }

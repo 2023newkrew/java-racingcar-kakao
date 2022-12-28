@@ -2,7 +2,6 @@ package racingcar;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarTest {

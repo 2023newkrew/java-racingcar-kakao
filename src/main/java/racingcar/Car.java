@@ -22,8 +22,8 @@ public class Car {
         return name;
     }
 
-    String MatchPosition(int maxPosition) {
-        if(maxPosition == position){
+    String matchPosition(int maxPosition) {
+        if(maxPosition == position) {
             return name+",";
         }
         return "";
