@@ -10,13 +10,31 @@ public class InputNumbersInStringAddCalculator {
     private static final String TYPE_EXCEPTION_MESSAGE = "[ERROR] 구분자로 구분되는 것은 정수여야 합니다.";
     private static final String RANGE_EXCEPTION_MESSAGE = "[ERROR] 모든 값은 0 이상이어야 합니다.";
     private static final String DEFAULT_DELIMITERS = ",|:";
-    private String inputString;
-    private String delimiters;
+    private final String inputString;
+    private final String delimiters;
     private final Pattern CUSTOM_PATTERN = Pattern.compile("//(.)\n(.*)");
 
     public InputNumbersInStringAddCalculator(String inputString) {
-        this.inputString = inputString;
-        this.delimiters = DEFAULT_DELIMITERS;
+        this.inputString = getInputStringTodAdd(inputString);
+        this.delimiters = DEFAULT_DELIMITERS + getCustomDelimiter(inputString);
+    }
+
+    public String getInputStringTodAdd(String inputString) {
+        if (inputString == null || inputString.isBlank()) return inputString;
+        Matcher m = CUSTOM_PATTERN.matcher(inputString);
+        if (m.find()) {
+            return (m.group(2));
+        }
+        return inputString;
+    }
+    private String getCustomDelimiter(String inputString) {
+        if (inputString == null || inputString.isBlank()) return "";
+        Matcher m = CUSTOM_PATTERN.matcher(inputString);
+        String customDelimiter = "";
+        if (m.find()) {
+            customDelimiter = '|' + m.group(1);
+        }
+        return customDelimiter;
     }
 
     public int calculate() {
@@ -28,19 +46,10 @@ public class InputNumbersInStringAddCalculator {
     }
 
     private List<Integer> splitString() {
-        customizeDelimiter();
-        List<Integer> tokens = Arrays.stream(inputString.split(delimiters)).map(this::validateInt)
+        List<Integer> tokens = Arrays.stream(inputString.split(delimiters))
+                .map(this::validateInt)
                 .collect(Collectors.toList());
         return tokens;
-    }
-
-    private void customizeDelimiter() {
-        Matcher m = CUSTOM_PATTERN.matcher(inputString);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            delimiters += '|' + customDelimiter;
-            inputString = m.group(2);
-        }
     }
 
     private Integer validateInt(String input) {
