@@ -6,6 +6,15 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class IOHelper {
+    private static final String INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String INPUT_GAME_ROUND_COUNT = "시도할 회수는 몇회인가요?";
+    private static final int INPUT_CAR_NAME_MAX_LENGTH = 5;
+
+    private static final String OUTPUT_INITIAL = "실행 결과";
+    private static final String OUTPUT_BAD_INPUT = "잘못된 입력값입니다.";
+    private static final String OUTPUT_CAR_STATUS = "%s + : %s";
+    private static final String OUTPUT_CAR_DISTANCE_UNIT = "-";
+    private static final String OUTPUT_WINNER = "%s가 최종 우승했습니다.";
 
     private Scanner sc;
 
@@ -21,7 +30,7 @@ public class IOHelper {
         List<String> names = new ArrayList<>();
 
         while (names.size()==0 || !validateNames(names)) {
-            System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            System.out.println(INPUT_CAR_NAME);
             String input = sc.nextLine();
             names = getTrimNames(input);
         }
@@ -42,13 +51,13 @@ public class IOHelper {
             flag = validateName(flag, name);
         }
         if (!flag) {
-            System.out.println("잘못된 입력값입니다.");
+            System.out.println(OUTPUT_BAD_INPUT);
         }
         return flag;
     }
 
     private boolean validateName(boolean flag, String name) {
-        if (name.length() > 5) {
+        if (name.length() > INPUT_CAR_NAME_MAX_LENGTH) {
             return false;
         }
         return flag;
@@ -58,7 +67,7 @@ public class IOHelper {
         String roundInput = "";
         boolean flag = true;
         while (flag) {
-            System.out.println("시도할 회수는 몇회인가요?");
+            System.out.println(INPUT_GAME_ROUND_COUNT);
             roundInput = sc.next();
             flag = !validateRound(roundInput);
         }
@@ -69,7 +78,7 @@ public class IOHelper {
         try {
             Integer.parseInt(roundInput);
         } catch (NumberFormatException e) {
-            System.out.println("잘못된 입력값입니다.");
+            System.out.println(OUTPUT_BAD_INPUT);
             return false;
         }
         return true;
@@ -77,7 +86,8 @@ public class IOHelper {
 
     public void printRoundResult(GameInfo gameInfo) {
         for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            System.out.println(carInfo.getName() + " : " + "-".repeat(carInfo.getDistance()));
+            System.out.println(String.format(OUTPUT_CAR_STATUS, carInfo.getName(),
+                    OUTPUT_CAR_DISTANCE_UNIT.repeat(carInfo.getDistance())));
         }
         System.out.println();
     }
@@ -86,12 +96,11 @@ public class IOHelper {
         List<String> winnerNames = winners.stream()
                 .map(CarInfo::getName)
                 .collect(Collectors.toList());
-        String result = String.join(",", winnerNames);
-        System.out.println(result + "가 최종 우승했습니다.");
+        System.out.println(String.format(OUTPUT_WINNER, String.join(",", winnerNames)));
     }
 
     public void printInitialStatus(GameInfo gameInfo) {
-        System.out.println("실행 결과");
+        System.out.println(OUTPUT_INITIAL);
         printRoundResult(gameInfo);
     }
 }
