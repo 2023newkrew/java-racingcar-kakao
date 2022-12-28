@@ -55,12 +55,16 @@ public class RacingGame implements Runnable {
         console.printOutput("\n실행 결과");
         printCurrentStatus(cars);
         for (int i = 0; i < count; i++) {
-            console.printOutput("\n");
-            moveAllCars(cars);
-            printCurrentStatus(cars);
+            runSingleRound(cars);
         }
         List<String> winners = referee.judgeWinner(cars);
         console.printOutput(String.join(", ", winners) + "(이)가 최종 우승했습니다.");
+    }
+
+    private void runSingleRound(List<Car> cars) {
+        console.printOutput("\n");
+        moveAllCars(cars);
+        printCurrentStatus(cars);
     }
 
     private <T> T requestUntilSuccess(Supplier<T> getT) {
