@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +29,15 @@ public class Calculator {
         return addNum();
     }
 
+    private void checkDelimiter() {
+        Parser parser = new Parser(input);
+        Optional<String> customDelimiter = parser.getCustomDelimiter();
+        customDelimiter.ifPresent(cd -> {
+            delimiters += cd;
+            input = parser.getContent();
+        });
+    }
+
     private void splitString() {
         splitedNum = this.input.split(String.format("[%s]", delimiters));
         for (String s : splitedNum) {
@@ -39,15 +49,6 @@ public class Calculator {
         Matcher m = Pattern.compile("(\\d*)").matcher(s);
         if (!m.matches()) {
             throw new RuntimeException("0부터 9 사이의 수만 입력할 수 있습니다.");
-        }
-    }
-
-    private void checkDelimiter() {
-        input = input.replace("\\n", "\n");
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
-        if (m.find()) {
-            delimiters += m.group(1);
-            input = m.group(2);
         }
     }
 
