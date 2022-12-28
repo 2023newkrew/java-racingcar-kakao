@@ -25,4 +25,8 @@ public class Cars {
     public Winners getWinners() {
         return new Winners(cars);
     }
+
+    public int size() {
+        return cars.size();
+    }
 }

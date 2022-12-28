@@ -19,6 +19,5 @@ public class Application {
                 .map(Car::new)
                 .collect(Collectors.toList());
 
-        RacingSimulator racingSimulator = new RacingSimulator(maxTryCount, new Cars(() -> 4, cars));
     }
 }
