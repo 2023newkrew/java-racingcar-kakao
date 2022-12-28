@@ -4,12 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static stringcalculator.ErrorMessage.INPUT_ERROR_MESSAGE;
+
 public class PositiveIntegerList {
 
     private List<Integer> list;
 
-    public PositiveIntegerList(String[] arr) {
-        list = Arrays.stream(arr)
+    public PositiveIntegerList(String[] values) {
+        validate(values);
+        list = Arrays.stream(values)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
@@ -20,10 +23,11 @@ public class PositiveIntegerList {
                 .sum();
     }
 
-    public void validate() {
-        list.stream()
+    public void validate(String[] values) {
+        Arrays.stream(values)
+                .map(Integer::parseInt)
                 .filter(value -> value < 0)
                 .findAny()
-                .ifPresent(value -> { throw new RuntimeException(); });
+                .ifPresent(value -> { throw new RuntimeException(INPUT_ERROR_MESSAGE); });
     }
 }
