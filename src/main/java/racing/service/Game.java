@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racing.domain.CarName;
 import racing.domain.Cars;
+import racing.domain.GameRepeat;
 import racing.dto.CarDTO;
 
 public class Game {
     private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름이 중복될 수 없습니다.";
     private final Cars cars;
-    private int gameRepeat;
+    private GameRepeat gameRepeat;
 
     public Game(final List<String> rawCarNames) {
         validateUniqueness(rawCarNames);
@@ -17,10 +18,6 @@ public class Game {
                 .map(CarName::new)
                 .collect(Collectors.toList());
         cars = new Cars(carNames);
-    }
-
-    public void setRepeat(int repeat) {
-        this.gameRepeat = repeat;
     }
 
     private void validateUniqueness(List<String> rawCarNames) {
@@ -33,8 +30,16 @@ public class Game {
         }
     }
 
+    public void setRepeat(int repeat) {
+        this.gameRepeat = new GameRepeat(repeat);
+    }
+
+    public boolean isOver() {
+        return !(gameRepeat.hasRemaining());
+    }
+
     public void play() {
-        gameRepeat--;
+        gameRepeat.reduce();
         cars.play();
     }
 
@@ -44,9 +49,5 @@ public class Game {
 
     public List<CarName> getWinners() {
         return cars.getWinners();
-    }
-
-    public boolean isOver() {
-        return gameRepeat <= 0;
     }
 }
