@@ -1,9 +1,6 @@
 package racing_car.model;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class Game {
 
@@ -11,13 +8,13 @@ public class Game {
 
     private static final int END_THRESHOLD = 10;
 
-    private final Car[] cars;
+    private final Cars cars;
 
-    public Game(Car[] cars) {
+    public Game(Cars cars) {
         this.cars = cars;
     }
 
-    public Car[] getCars() {
+    public Cars getCars() {
         return cars;
     }
 
@@ -27,7 +24,7 @@ public class Game {
 
     private void moveCar(int carIndex, int number) {
         if (number > START_THRESHOLD) {
-            cars[carIndex].move(1);
+            cars.moveCar(carIndex);
         }
     }
 
@@ -37,16 +34,12 @@ public class Game {
     }
 
     public void moveAllCars() {
-        for (int i = 0; i < cars.length; i++) {
+        for (int i = 0; i < cars.length(); i++) {
             moveCar(i);
         }
     }
 
-    public Car[] getWinners() {
-        Car maxDistance = Collections.max(Arrays.asList(cars));
-        return Arrays.stream(cars)
-                .filter(car -> car.compareTo(maxDistance) == 0)
-                .collect(Collectors.toList())
-                .toArray(Car[]::new);
+    public Cars getWinners() {
+        return cars.getWinners();
     }
 }
