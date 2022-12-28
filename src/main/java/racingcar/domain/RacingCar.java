@@ -12,6 +12,9 @@ public class RacingCar implements Car {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
+        if (StringUtils.isEmpty(name) || StringUtils.isBlank(name)) {
+            throw new NullPointerException();
+        }
         this.name = name;
         this.distance = 0;
     }

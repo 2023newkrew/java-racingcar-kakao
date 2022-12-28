@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,10 +20,17 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"long_name","more_than_five"})
+    @ValueSource(strings = {"long_name", "more_than_five"})
     void 이름이_다섯자_초과라면_IllegalArgException_발생(String name) {
         Assertions.assertThatIllegalArgumentException()
                 .isThrownBy(() -> new RacingCar(name));
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 이름이_Null_또는_Empty_라면_NPE_발생(String name) {
+        Assertions.assertThatThrownBy(() -> new RacingCar(name))
+                .isInstanceOf(NullPointerException.class);
     }
 
     @ParameterizedTest
