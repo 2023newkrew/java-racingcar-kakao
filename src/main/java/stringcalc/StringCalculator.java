@@ -12,13 +12,13 @@ public class StringCalculator {
         customSeparatorParser = new CustomSeparatorParser();
     }
 
-    private Long sum(List<Long> numbers) {
-        return numbers.stream().reduce(0L, Long::sum);
-    }
-
     public Long calculate(String input) {
         String customSeparator = customSeparatorParser.parse(input);
         List<Long> numbers = stringNumberParser.parse(input, customSeparator);
         return sum(numbers);
+    }
+
+    private Long sum(List<Long> numbers) {
+        return numbers.stream().reduce(0L, Long::sum);
     }
 }
