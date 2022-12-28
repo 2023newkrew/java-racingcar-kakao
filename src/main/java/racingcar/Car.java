@@ -24,7 +24,7 @@ public class Car implements Comparable{
     }
 
     public boolean movable() {
-        return randomGenerator.generate(MAX_BOUND+1) >= MOVE_BOUND;
+        return randomGenerator.generate(MAX_BOUND) >= MOVE_BOUND;
     }
 
     @Override
