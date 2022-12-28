@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
+
+    private String delimiters = ",:";
     private String input;
     private String[] splitedNum;
 
@@ -30,7 +32,7 @@ public class Calculator {
     }
 
     private void splitString() {
-        splitedNum = this.input.split("[,:]");
+        splitedNum = this.input.split(String.format("[%s]", delimiters));
         for (String s : splitedNum) {
             checkInvalidInput(s);
         }
@@ -47,14 +49,9 @@ public class Calculator {
         input = input.replace("\\n", "\n");
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
         if (m.find()) {
-            String customDelimiter = m.group(1);
+            delimiters += m.group(1);
             input = m.group(2);
-            replaceDelimiter(customDelimiter);
         }
-    }
-
-    private void replaceDelimiter(String delimiter) {
-        input = input.replace(delimiter, ",");
     }
 
     private int addNum() {
