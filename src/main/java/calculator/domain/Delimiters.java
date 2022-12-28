@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static calculator.constant.MessageConstant.DELIMITER_FORMAT_EXCEPTION;
-import static calculator.constant.MessageConstant.DELIMITER_LENGTH_EXCEPTION;
-import static java.lang.Character.isDigit;
-
 public class Delimiters {
+    private static final List<Delimiter> DEFAULT_DELIMITER = new ArrayList<>(Arrays.asList(new Delimiter(":"), new Delimiter(",")));
     private final List<Delimiter> delimiters;
 
     public Delimiters() {
-        this.delimiters = new ArrayList<>(Arrays.asList(new Delimiter(":"), new Delimiter(",")));
+        this.delimiters = DEFAULT_DELIMITER;
     }
 
     public void add(Delimiter delimiter) {
@@ -20,10 +17,12 @@ public class Delimiters {
     }
 
     public String getRegex() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
-        delimiters.forEach(sb::append);
-        sb.append(']');
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append('[');
+        delimiters.forEach((delimiter)-> {
+            delimiter.appendDelimiter(stringBuilder);
+        });
+        stringBuilder.append(']');
+        return stringBuilder.toString();
     }
 }

@@ -19,4 +19,8 @@ public class Delimiter {
             throw new RuntimeException(DELIMITER_FORMAT_EXCEPTION);
         }
     }
+
+    public void appendDelimiter(StringBuilder stringBuilder) {
+        stringBuilder.append(delimiter);
+    }
 }
