@@ -19,24 +19,37 @@ public class Car {
     }
 
     private Car(CarInfo carInfo, Engine engine) {
-        this.name = carInfo.getName().trim();
-        checkNameLength();
+        this.name = getValidName(carInfo.getName());
         this.position = carInfo.getPosition();
         this.engine = engine;
     }
 
-    private void checkNameLength() {
-        if (name.length() < MIN_CAR_NAME_LENGTH)
+    private static String getValidName(String name) {
+        String validName = name.trim();
+        checkNameLength(validName);
+        return validName;
+    }
+
+    private static void checkNameLength(String name) {
+        if (name.length() < MIN_CAR_NAME_LENGTH) {
             throw new RuntimeException("Car name too short.");
-        if (name.length() > MAX_CAR_NAME_LENGTH)
+        }
+        if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new RuntimeException("car name too long.");
+        }
     }
 
     public void moveOrStop() {
-        if (Objects.isNull(engine))
-            throw new RuntimeException("Engine is null.");
-        if(engine.moveOrStop())
+        checkEngineExists();
+        if (engine.moveOrStop()) {
             position++;
+        }
+    }
+
+    private void checkEngineExists() {
+        if (Objects.isNull(engine)) {
+            throw new RuntimeException("Engine is null.");
+        }
     }
 
     public CarInfo getCarInfo() {
