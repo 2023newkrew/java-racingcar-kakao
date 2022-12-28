@@ -20,8 +20,8 @@ public class Car {
         return !name.contains(" ");
     }
 
-    public void move(CarAction carAction) {
-        if (carAction == CarAction.FORWARD) position++;
+    public void move(MovingAction movingAction) {
+        if (movingAction.getAction() == CarAction.FORWARD) position++;
     }
 
     public CarDTO toDTO() {

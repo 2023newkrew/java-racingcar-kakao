@@ -1,9 +1,8 @@
 package racingcar.racing;
 
 import racingcar.car.Car;
-import racingcar.car.CarAction;
 import racingcar.car.CarDTO;
-import racingcar.util.RandomGenerator;
+import racingcar.car.RandomMovingAction;
 import racingcar.util.StringParser;
 
 import java.util.ArrayList;
@@ -12,8 +11,6 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class Racing {
-    private static final int THRESHOLD = 4;
-
     private final List<Car> cars = new ArrayList<>();
     StringJoiner joiner = new StringJoiner(System.getProperty("line.separator"));
     private int turn = 0;
@@ -62,19 +59,10 @@ public class Racing {
     }
 
     private void proceedTurn() {
-        this.cars.forEach(car -> {
-            CarAction carAction = getActionResult(RandomGenerator.generateOneDigit());
-            car.move(carAction);
-        });
+        this.cars.forEach(car -> car.move(new RandomMovingAction()));
 
         getCarDTOs().forEach(car -> joiner.add(car.toString()));
         joiner.add("");
-    }
-
-    public static CarAction getActionResult(int no) {
-        if (no < THRESHOLD) return CarAction.STAY;
-
-        return CarAction.FORWARD;
     }
 
     public static List<String> getWinners(List<CarDTO> cars) {
