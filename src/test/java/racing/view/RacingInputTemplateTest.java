@@ -16,20 +16,27 @@ public class RacingInputTemplateTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "1", "99", "  8"})
     public void 시도횟수로_0이상인_수의_문자열이_입력되면_값_반환(String attempt){
+        //given
+        RacingInputTemplate racingInputTemplate = createRacingInputTemplate(attempt);
+
+        //when & then
+        assertThat(racingInputTemplate.inputAttempt()).isEqualTo(Integer.parseInt(attempt.trim()));
+    }
+
+    private RacingInputTemplate createRacingInputTemplate(String attempt){
         InputStream inputStream = new ByteArrayInputStream(attempt.getBytes());
         System.setIn(inputStream);
-        RacingInputTemplate racingInputTemplate = new RacingInputTemplate(new Scanner(System.in));
 
-        assertThat(racingInputTemplate.inputAttempt()).isEqualTo(Integer.parseInt(attempt.trim()));
+        return new RacingInputTemplate(new Scanner(System.in));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"-1", "-99"})
     public void 시도횟수로_음수문자열이_입력되면_예외를_반환(String attempt){
-        InputStream inputStream = new ByteArrayInputStream(attempt.getBytes());
-        System.setIn(inputStream);
-        RacingInputTemplate racingInputTemplate = new RacingInputTemplate(new Scanner(System.in));
+        //given
+        RacingInputTemplate racingInputTemplate = createRacingInputTemplate(attempt);
 
+        //when & then
         assertThatThrownBy(racingInputTemplate::inputAttempt)
                 .isInstanceOf(RacingException.class)
                 .hasMessage(ErrorCode.NEGATIVE_ATTEMPT.getMessage());
@@ -38,10 +45,10 @@ public class RacingInputTemplateTest {
     @ParameterizedTest
     @ValueSource(strings = {"a", "-1a"})
     public void 시도횟수로_숫자형식이_아닌_문자열이_입력되면_예외를_반환(String attempt){
-        InputStream inputStream = new ByteArrayInputStream(attempt.getBytes());
-        System.setIn(inputStream);
-        RacingInputTemplate racingInputTemplate = new RacingInputTemplate(new Scanner(System.in));
+        //given
+        RacingInputTemplate racingInputTemplate = createRacingInputTemplate(attempt);
 
+        //when & then
         assertThatThrownBy(racingInputTemplate::inputAttempt)
                 .isInstanceOf(RacingException.class)
                 .hasMessage(ErrorCode.NOT_IN_NUMBER_FORMAT.getMessage());

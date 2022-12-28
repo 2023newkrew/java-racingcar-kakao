@@ -15,9 +15,13 @@ public class SplitterTest {
     @ParameterizedTest
     @MethodSource("stringWithCommaDelimiterGenerator")
     void 컴마로만_구분된_문자열_입력시_정수리스트_반환(String input, List<Integer> expected){
+        //given
         Splitter splitter = new Splitter();
+
+        //when
         List<Integer> result = splitter.split(input);
 
+        //then
         assertThat(result).isEqualTo(expected);
     }
     private static Stream<Arguments> stringWithCommaDelimiterGenerator(){
@@ -32,9 +36,13 @@ public class SplitterTest {
     @ParameterizedTest
     @MethodSource("stringWithCommaAndSemiColonDelimiterGenerator")
     void 컴마_및_세미콜론으로_구분된_문자열입력시_정수리스트_반환(String input, List<Integer> expected){
+        //given
         Splitter splitter = new Splitter();
+
+        //when
         List<Integer> result = splitter.split(input);
 
+        //then
         assertThat(result).isEqualTo(expected);
     }
     private static Stream<Arguments> stringWithCommaAndSemiColonDelimiterGenerator(){
@@ -47,9 +55,13 @@ public class SplitterTest {
     @ParameterizedTest
     @MethodSource("stringWithCustomDelimiterGenerator")
     void 커스텀구분자가_사용된_문자열입력시_정수리스트_반환(String input, List<Integer> expected){
+        //given
         Splitter splitter = new Splitter();
+
+        //when
         List<Integer> result = splitter.split(input);
 
+        //then
         assertThat(result).isEqualTo(expected);
     }
     private static Stream<Arguments> stringWithCustomDelimiterGenerator(){

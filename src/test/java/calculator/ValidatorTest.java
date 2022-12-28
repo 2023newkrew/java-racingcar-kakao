@@ -15,8 +15,10 @@ public class ValidatorTest {
     @ParameterizedTest
     @MethodSource("negativeIntContainedListGenerator")
     void 리스트에_음수가_포함되어_있을시_예외반환(List<Integer> numbers){
+        //given
         Validator validator = new Validator();
 
+        //when & then
         assertThatThrownBy(() -> validator.hasNegative(numbers))
                 .isInstanceOf(RuntimeException.class);
     }
