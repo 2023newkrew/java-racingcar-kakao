@@ -42,15 +42,15 @@ class CarTest {
 
     public static Stream<Arguments> provideMovingCountWithMovableNumber() {
         return Stream.of(
-                Arguments.of("avante", 1, 4),
-                Arguments.of("sonata", 2, 9)
+                Arguments.of("car1", 1, 4),
+                Arguments.of("car2", 2, 9)
         );
     }
 
     public static Stream<Arguments> provideMovingCountWithUnMovableNumber() {
         return Stream.of(
-                Arguments.of("grandeur", 2, 1),
-                Arguments.of("genesis", 2, 3)
+                Arguments.of("car1", 2, 1),
+                Arguments.of("car2", 2, 3)
         );
     }
 

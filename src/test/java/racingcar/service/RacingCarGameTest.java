@@ -19,7 +19,7 @@ class RacingCarGameTest {
     @BeforeEach
     void setUp() {
         int round = 5;
-        inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        inputCars = List.of(new CarDto("car1"), new CarDto("car2"));
         racingCarGame = new RacingCarGame(inputCars, round);
     }
 
