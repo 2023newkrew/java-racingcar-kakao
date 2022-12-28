@@ -9,7 +9,7 @@ public class ExceptionTest {
     void exceptionTest() {
         Calculator calculator = new Calculator(new String[] {"-1", "2", "3"});
 
-        assertThatThrownBy(() -> calculator.isInteger())
+        assertThatThrownBy(() -> calculator.verifyAllNumeric())
                 .isInstanceOf(RuntimeException.class);
     }
 }

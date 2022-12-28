@@ -10,7 +10,7 @@ import static java.lang.Integer.parseInt;
 
 public class Calculator {
 
-    String[] tokens;
+    private final String[] tokens;
 
     public Calculator(String[] tokens) {
         this.tokens = tokens;
@@ -19,7 +19,7 @@ public class Calculator {
     public int cal() {
         int sum = 0;
 
-        isInteger();
+        verifyAllNumeric();
 
         for (String token : tokens) {
             sum += parseInt(token);
@@ -28,7 +28,7 @@ public class Calculator {
         return sum;
     }
 
-    public void isInteger() {
+    public void verifyAllNumeric() {
         for (String token : tokens) {
             isNumeric(token);
         }
