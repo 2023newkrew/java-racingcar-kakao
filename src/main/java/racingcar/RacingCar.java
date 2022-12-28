@@ -16,6 +16,10 @@ public class RacingCar implements Comparable<RacingCar> {
         return name;
     }
 
+    public int getDistance() {
+        return distance;
+    }
+
     public void move(boolean isMove) {
         if (!isMove) {
             return;
