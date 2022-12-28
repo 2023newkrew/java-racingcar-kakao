@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -38,7 +36,7 @@ public class RacingCarGameTest {
     }
 
     @BeforeAll
-    static void setUp() throws NoSuchFieldException, IllegalAccessException {
+    static void setUp() throws NoSuchFieldException {
         appConfig = new AppConfigImpl();
         randomNumberGenerator = AppConfigImpl.class.getDeclaredField("randomNumberGenerator");
         randomNumberGenerator.setAccessible(true);
