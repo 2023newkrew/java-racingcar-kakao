@@ -16,10 +16,6 @@ public class Racing {
     private final List<Car> cars = new ArrayList<>();
     private int turn = 0;
 
-    public int getCarNo() {
-        return cars.size();
-    }
-
     public List<CarDTO> getCarDTOs() {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }

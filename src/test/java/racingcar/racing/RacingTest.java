@@ -25,7 +25,7 @@ public class RacingTest {
     @Test
     void checkCarNos() {
         this.racing.makeCars(Arrays.asList("aa", "bbb", "ccc"));
-        assertThat(this.racing.getCarNo()).isEqualTo(3);
+        assertThat(this.racing.getCarDTOs().size()).isEqualTo(3);
     }
 
     @Test
