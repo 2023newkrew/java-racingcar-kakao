@@ -1,11 +1,13 @@
 package racingcar;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RacingTest {
+    @DisplayName("주어진 이름에 따라 Cars 가 잘 생성되는가")
     @Test
-    void generateCarsArray() {
+    void 주어진_이름에_따라_Cars_생성() {
         Racing racing = new Racing();
         String[] names = new String[]{"aaa","bbb","ccc"};
 
@@ -15,12 +17,13 @@ public class RacingTest {
 
         for(int i =0; i<3; i++) {
             Assertions.assertThat(cars[i].toString()).isEqualTo(names[i]);
-            Assertions.assertThat(cars[i].toStringWithPosition()).isEqualTo(names[i]+" : -");
+            Assertions.assertThat(cars[i].displayCurrentPosition()).isEqualTo(names[i]+" : -");
         }
     }
 
+    @DisplayName("한 명의 승자가 의도한대로 결정되는가")
     @Test
-    void winnerTest() {
+    void 무조건_이기는_한_명의_우승자() {
         String[] names = new String[] {"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;
@@ -35,11 +38,12 @@ public class RacingTest {
             cars[4].move(bound -> 2);
         }
 
-        Assertions.assertThat(racing.getOneWinner().toStringWithPosition()).isEqualTo("c : ------");
+        Assertions.assertThat(racing.getOneWinner().displayCurrentPosition()).isEqualTo("c : ------");
     }
 
+    @DisplayName("여러 명의 승자가 의도한대로 결정되는가")
     @Test
-    void winnersTest(){
+    void 무조건_이기는_최종_우승자들(){
         String[] names = new String[] {"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;

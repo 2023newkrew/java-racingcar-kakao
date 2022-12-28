@@ -20,7 +20,7 @@ public class Racing {
     public void proceedRound() {
         for (Car car : cars) {
             car.move(new RandomGeneratorImpl());
-            System.out.println(car.toStringWithPosition());
+            System.out.println(car.displayCurrentPosition());
         }
         System.out.println();
     }

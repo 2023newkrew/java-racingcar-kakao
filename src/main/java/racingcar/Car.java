@@ -34,7 +34,7 @@ public class Car {
         return name;
     }
 
-    public String toStringWithPosition(){
+    public String displayCurrentPosition(){
         return name + " : " + "-".repeat(position+1);
     }
 
