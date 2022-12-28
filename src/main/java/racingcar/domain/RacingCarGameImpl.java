@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import racingcar.AppConfig;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.InputView;
@@ -44,33 +45,41 @@ public class RacingCarGameImpl implements RacingCarGame {
     @Override
     public List<Car> getWinner() {
         int maxDistance = getMaxDistance();
-        return cars.stream().filter(car -> maxDistance == car.getDistance()).collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> maxDistance == car.getDistance())
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<String> getWinnerNames() {
-        return getWinner().stream().map(Car::getName).collect(Collectors.toList());
+        return getWinner().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
-
 
     @Override
     public List<String> getCarResults() {
-        return cars.stream().map(Car::toString).collect(Collectors.toList());
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void play() {
         outputView.printStartMessage();
         String[] names = inputView.inputName();
-        Arrays.stream(names).forEach(this::add);
+        Arrays.stream(names)
+                .forEach(this::add);
         outputView.printAskRunCount();
         int times = inputView.inputRunCount();
         run(times);
         outputView.printFinalResult(getWinnerNames());
     }
 
-
     private int getMaxDistance() {
-        return cars.stream().max(Comparator.comparingInt(Car::getDistance)).orElseThrow().getDistance();
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getDistance))
+                .orElseThrow()
+                .getDistance();
     }
 }

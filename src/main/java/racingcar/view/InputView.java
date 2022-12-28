@@ -9,19 +9,23 @@ public class InputView {
 
     public InputView() {
     }
+
     public String[] inputName() {
-        String[] names = scanner.nextLine().split(",");
+        String[] names = scanner.nextLine()
+                .split(",");
         for (String name : names) {
             validate(name);
         }
         return names;
     }
 
-    public int inputRunCount(){
+    public int inputRunCount() {
         return scanner.nextInt();
     }
+
     private void validate(String name) {
-        if(name.length() > MAXIMUM_LENGTH)
+        if (name.length() > MAXIMUM_LENGTH) {
             throw new RuntimeException();
+        }
     }
 }

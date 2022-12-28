@@ -5,14 +5,13 @@ import racingcar.generator.RandomNumberGeneratorImpl;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class AppConfigImpl implements AppConfig{
+public class AppConfigImpl implements AppConfig {
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public RandomNumberGenerator getRandomNumberGenerator() {
         return randomNumberGenerator;
-
     }
 
     @Override

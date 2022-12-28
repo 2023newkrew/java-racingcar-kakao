@@ -1,4 +1,6 @@
-package string_adder;
+package stringadder;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -19,7 +21,7 @@ public class StringAdder {
     }
 
     public boolean isNullOrBlank(String text) {
-        return text == null || text.isBlank();
+        return StringUtils.isEmpty(text) || StringUtils.isBlank(text);
     }
 
     public String[] split(String text) {

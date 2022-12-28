@@ -7,13 +7,12 @@ public class RacingCarApp {
 
     private final AppConfig appConfig;
 
-    public RacingCarApp(AppConfig appConfig){
+    public RacingCarApp(AppConfig appConfig) {
         this.appConfig = appConfig;
     }
 
-    public void run(){
+    public void run() {
         RacingCarGame racingCarGame = new RacingCarGameImpl(appConfig);
         racingCarGame.play();
-
     }
 }

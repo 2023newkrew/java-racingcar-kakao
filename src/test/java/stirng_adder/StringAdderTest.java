@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import string_adder.StringAdder;
-import string_adder.StringAdderConstant;
+import stringadder.StringAdder;
+import stringadder.StringAdderConstant;
 
 public class StringAdderTest {
 
@@ -86,12 +86,12 @@ public class StringAdderTest {
         }).isInstanceOf(RuntimeException.class);
     }
     @Test
-    public void summationTest(){
+    public void sumTest(){
         String [] numbers = {"1","2","3"};
         String [] numbers2 = {"1","2","3","4"};
-        int result = stringAdder.summation(numbers);
+        int result = stringAdder.sum(numbers);
         assertThat(result).isEqualTo(6);
-        result = stringAdder.summation(numbers2);
+        result = stringAdder.sum(numbers2);
         assertThat(result).isEqualTo(10);
     }
     @Test

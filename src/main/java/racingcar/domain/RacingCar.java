@@ -1,10 +1,8 @@
 package racingcar.domain;
 
 public class RacingCar implements Car {
-    private final int BOUND = 3;
+    private static final int BOUND = 3;
     private final String name;
-
-
     private int distance;
 
     public RacingCar(String name) {
