@@ -12,7 +12,7 @@ public class IOViewTest {
     @DisplayName("자동차들의 이름을 입력받고 리스트를 반환하는 기능")
     public void inputCarsName() {
         //given
-        IOView ioView = new IOView();
+        IO ioView = new IO();
 
         //when
         List<String> carNames = ioView.parseCarNames("oscar,gene,longwrongname");

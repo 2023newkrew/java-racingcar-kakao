@@ -2,14 +2,14 @@ package racingcar;
 
 public class RacingGameController {
 
-    private IOView ioView;
+    private IO ioView;
 
     public RacingGameController() {
-        this.ioView = new IOView();
+        this.ioView = new IO();
     }
 
     public void start() {
-        RacingGame racingGame = new RacingGame(ioView.inputCarNames(),ioView.inputFinalTurn());
+        RacingGame racingGame = new RacingGame(ioView.inputCarNames(),ioView.inputTurnIteration());
         racingGame.playGame();
     }
 }

@@ -7,7 +7,7 @@ public class RacingGame {
     private List<Car> cars;
     private int finalTurn;
     private int turnCount;
-    private IOView ioView;
+    private IO ioView;
 
     public List<Car> getCars() {
         return this.cars;
@@ -19,7 +19,7 @@ public class RacingGame {
 
     public RacingGame() {
         this.cars = new ArrayList<>();
-        this.ioView = new IOView();
+        this.ioView = new IO();
     }
     public RacingGame(List<String> names, int finalTurn) {
         this();
@@ -38,15 +38,15 @@ public class RacingGame {
             rc.accelerate(this.generateRandomNumber());
         }
         this.turnCount++;
-        ioView.printTurnResult(this.cars);
+        ioView.outputTurnResult(this.cars);
     }
 
     public void playGame() {
-        ioView.printGameResultMessage();
+        ioView.outputGameResultMessage();
         while(this.turnCount<this.finalTurn) {
             this.proceedTurn();
         }
-        ioView.printWinners(judgeWinners());
+        ioView.outputWinners(judgeWinners());
     }
 
     public List<Car> judgeWinners() {
