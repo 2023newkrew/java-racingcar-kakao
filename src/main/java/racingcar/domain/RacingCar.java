@@ -38,6 +38,7 @@ public class RacingCar implements Car {
         return this.distance;
     }
 
+    @Override
     public void move(int condition) {
         if (outOfBound(condition)) {
             throw new IllegalArgumentException(MOVE_INPUT_EXCEPTION_MESSAGE);
