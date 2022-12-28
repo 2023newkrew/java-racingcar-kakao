@@ -1,9 +1,11 @@
 package racingcar.service.stratedy;
 
+import java.util.Random;
+
 public class RandomStratedy implements MovableStrategy {
     private final int FORWARD_NUM = 4;
 
     public boolean isMove() {
-        return (int) (Math.random() * 10) >= FORWARD_NUM;
+        return new Random().nextInt(10) >= FORWARD_NUM;
     }
 }

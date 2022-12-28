@@ -1,7 +1,5 @@
 package racingcar.service;
 
-import racingcar.service.stratedy.RandomStratedy;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,6 @@ public class Racing {
     public void addCars(List<String> names) {
         for (String name : names) {
             Car car = new Car(name);
-            car.setMovableStrategy(new RandomStratedy());
             cars.add(car);
         }
     }

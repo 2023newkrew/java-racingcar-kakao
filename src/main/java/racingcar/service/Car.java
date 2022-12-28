@@ -5,15 +5,17 @@ import racingcar.service.stratedy.RandomStratedy;
 
 public class Car implements Comparable<Car> {
     private final String name;
-    private int distance = 0;
+    private int distance;
     private MovableStrategy movableStrategy = new RandomStratedy();
 
     public Car(String name) {
+        validateName(name);
         this.name = name;
         this.distance = 0;
     }
 
-    public void setMovableStrategy(MovableStrategy movableStrategy) {
+    public Car(String name, MovableStrategy movableStrategy) {
+        this(name);
         this.movableStrategy = movableStrategy;
     }
 
@@ -40,6 +42,6 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        return Integer.compare(((Car)car).distance, distance);
+        return Integer.compare(car.distance, distance);
     }
 }
