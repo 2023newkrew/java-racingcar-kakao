@@ -7,7 +7,7 @@ public class Winners {
 
     private final List<Car> cars;
 
-    public Winners(List<Car> cars){
+    public Winners(List<Car> cars) {
         this.cars = cars;
     }
 

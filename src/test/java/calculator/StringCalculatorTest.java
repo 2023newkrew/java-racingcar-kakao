@@ -27,14 +27,14 @@ class StringCalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"-1,2,3", "1,2,a", "//@\n1!2!3", "//!\n1!2! ", "//!\n1!!2!3!"})
-    void invalidInput(String text){
+    void invalidInput(String text) {
         assertThatThrownBy(() -> StringCalculator.calculate(text))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"'//@\n1@2@3', 6", "'//!@\n11!@22!@33', 66"})
-    void customDelimiter(String text, int expected){
+    void customDelimiter(String text, int expected) {
         int actual = StringCalculator.calculate(text);
 
         assertThat(actual).isEqualTo(expected);

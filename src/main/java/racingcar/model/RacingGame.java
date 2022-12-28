@@ -28,7 +28,7 @@ public class RacingGame {
     }
 
     public void move() {
-        if(isFinished()){
+        if (isFinished()) {
             throw new IllegalStateException();
         }
 
