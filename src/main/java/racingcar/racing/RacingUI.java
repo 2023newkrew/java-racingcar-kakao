@@ -18,12 +18,12 @@ public class RacingUI {
         return sc.next();
     }
 
-    public void displayPosition(List<CarDTO> cars) {
+    public static void displayPosition(List<CarDTO> cars) {
         cars.forEach(System.out::println);
         System.out.println();
     }
 
-    public void displayWinner(List<String> names) {
+    public static void displayWinner(List<String> names) {
         names.forEach(e -> System.out.print(e + " "));
         System.out.println();
     }

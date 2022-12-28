@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class Racing {
     private final List<Car> cars = new ArrayList<>();
     private int turn = 0;
-    private final RacingUI racingUi = new RacingUI();
     private final RacingService racingService = new RacingService();
 
     public int getCarNo() {
@@ -21,7 +20,7 @@ public class Racing {
     }
 
     public void printTurn() {
-        racingUi.displayPosition(getCarDTOs());
+        RacingUI.displayPosition(getCarDTOs());
     }
 
     public List<CarDTO> getCarDTOs() {
@@ -30,7 +29,7 @@ public class Racing {
 
     public void printResult() {
         List<String> result = racingService.getWinners(getCarDTOs());
-        racingUi.displayWinner(result);
+        RacingUI.displayWinner(result);
     }
 
     public void init(String nameInput, String turn) {
