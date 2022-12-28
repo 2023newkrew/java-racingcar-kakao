@@ -8,7 +8,7 @@ public class Validator {
     public static boolean isValidNames(List<String> names) {
         if (names.size() != names.stream().distinct().count()) return false;
 
-        return names.stream().allMatch(Car::isValidSingleName);
+        return names.stream().allMatch(Car::isValidName);
     }
 
     public static boolean isValidTurn(String turn) {

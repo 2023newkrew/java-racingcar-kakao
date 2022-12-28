@@ -8,12 +8,12 @@ public class Car {
     private final String name;
 
     public Car(String name) {
-        if (!isValidSingleName(name)) throw new IllegalArgumentException("Invalid Name");
+        if (!isValidName(name)) throw new IllegalArgumentException("Invalid Name");
 
         this.name = name;
     }
 
-    public static boolean isValidSingleName(String name) {
+    public static boolean isValidName(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.length() <= MIN_NAME_LENGTH) {
             return false;
         }

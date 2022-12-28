@@ -3,25 +3,12 @@ package racingcar.racing;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.car.Car;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ValidatorTest {
-    @ParameterizedTest
-    @ValueSource(strings = {"aasd", "asssz", "zzz"})
-    void validName(String name) {
-        assertThat(Car.isValidSingleName(name)).isTrue();
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"asdasdasd", "azx1@!$", "afxvcx@3", "", " ", "ass "})
-    void invalidName(String name) {
-        assertThat(Car.isValidSingleName(name)).isFalse();
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"-1", "0", "z"})
     void invalidTurn(String turn) {
