@@ -2,39 +2,38 @@ package racing.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import racing.dto.CarDTO;
+import racing.dto.CarDtoDistanceComparator;
 
 public class CarTest {
     private Car car;
+    private CarDTO carDTO;
 
-    @BeforeEach
-    void init() {
-        car = new Car("");
+    @RepeatedTest(100)
+    void moveFalseTest() {
+        car = new Car("123", () -> false);
+        car.move();
+        assertThat(CarDTO.from(car).getDistance()).isEqualTo(0);
     }
 
-    @ValueSource(ints = {0, 3, 2, 1})
-    @ParameterizedTest
-    void moveFalseTest(int number) {
-        assertThat(car.move(number)).isEqualTo(false);
-    }
-
-    @ValueSource(ints = {4, 5, 8, 9})
-    @ParameterizedTest
-    void moveTrueTest(int number) {
-        assertThat(car.move(number)).isEqualTo(true);
+    @RepeatedTest(100)
+    void moveTrueTest() {
+        car = new Car("123", () -> true);
+        car.move();
+        assertThat(CarDTO.from(car).getDistance()).isEqualTo(1);
     }
 
     @Test
-    void compareDistanceTest(){
-        Car opponent = new Car("123");
-        assertThat(opponent.compareTo(car)).isEqualTo(0);
-        assertThat(car.compareTo(opponent)).isEqualTo(0);
+    void compareDistanceTest() {
+        carDTO = new CarDTO("12324", 1);
+        CarDtoDistanceComparator distanceComparator = new CarDtoDistanceComparator();
+        CarDTO opponentCarDTO = new CarDTO("123", 1);
+        assertThat(distanceComparator.compare(opponentCarDTO, carDTO)).isEqualTo(0);
 
-        opponent.move(5);
-        assertThat(opponent.compareTo(car)).isGreaterThan(0);
-        assertThat(car.compareTo(opponent)).isLessThan(0);
+        opponentCarDTO = new CarDTO("123", 3);
+        assertThat(distanceComparator.compare(opponentCarDTO, carDTO)).isGreaterThan(0);
+        assertThat(distanceComparator.compare(carDTO, opponentCarDTO)).isLessThan(0);
     }
 }
