@@ -24,7 +24,6 @@ public class SumHelper {
         return result;
     }
 
-    // TODO: private으로 해도 될 것 같은데? 근데 테스트가 안돌아감.
     public boolean isValidNumber(String input) {
         int number;
         try {
@@ -32,17 +31,12 @@ public class SumHelper {
         } catch (NumberFormatException e) {
             return false;
         }
-        if (number<0) {
-            return false;
-        }
-        return true;
+        return number>=0;
     }
 
     private void validateInput(String s) {
         if (!isValidNumber(s)) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("유효하지 않은 문자열이 포함되었습니다.");
         }
     }
-
-
 }
