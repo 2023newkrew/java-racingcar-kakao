@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class IOHelper {
 
+    public static final int MAX_NAME_LENGTH = 5;
     private Scanner sc;
 
     public IOHelper() {
@@ -29,11 +30,11 @@ public class IOHelper {
     }
 
     public List<String> getTrimNames(String input) {
-        String[] names = input.split(",");
-        for (int i = 0; i<names.length; i++) {
-            names[i] = names[i].trim();
-        }
-        return List.of(names);
+        List<String> names = List.of(input.split(","));
+        List<String> trimNames = names.stream()
+                .map(name -> name.trim())
+                .collect(Collectors.toList());
+        return trimNames;
     }
 
     public boolean validateNames(List<String> names) {
@@ -49,7 +50,7 @@ public class IOHelper {
     }
 
     private boolean validateName(boolean flag, String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             return false;
         }
         return flag;
@@ -60,7 +61,7 @@ public class IOHelper {
         boolean flag = true;
         while (flag) {
             System.out.println("시도할 회수는 몇회인가요?");
-            roundInput = sc.next();
+            roundInput = sc.nextLine();
             flag = !validateRound(roundInput);
         }
         return Integer.parseInt(roundInput);
@@ -85,7 +86,7 @@ public class IOHelper {
 
     public void printGameResult(List<CarInfo> winners) {
         List<String> winnerNames = winners.stream()
-                .map(CarInfo::getName)
+                .map(winner -> winner.getName())
                 .collect(Collectors.toList());
         String result = String.join(",", winnerNames);
         System.out.println(result + "가 최종 우승했습니다.");
