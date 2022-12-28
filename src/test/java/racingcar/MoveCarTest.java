@@ -16,6 +16,16 @@ public class MoveCarTest {
         car.moveOne(canMove);
         Assertions.assertThat(car.getPosition()).isEqualTo(1);
     }
+
+    @RepeatedTest(10)
+    public void multiCarsMove(){
+        List<String> carNames = Arrays.asList("Car1", "Car2", "Car3");
+        Cars cars = new Cars(carNames);
+        cars.move();
+        for (Car car: cars.getCarList()){
+            Assertions.assertThat(car.getPosition()).isBetween(0, 1);
+        }
+    }
 }
 
 
