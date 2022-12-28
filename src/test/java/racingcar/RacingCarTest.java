@@ -1,36 +1,43 @@
 package racingcar;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingCarTest {
+class RacingCarTest {
+
+    RacingCar racingCar;
+
+    @BeforeEach
+    void setUp() {
+        racingCar = new RacingCar("name");
+    }
 
     @Test
     void moveTest_move(){
         // given
-        RacingCar racingCar = new RacingCar("name");
-        String prevStatus = racingCar.toString();
+        int prevDist = racingCar.getDistance();
 
         // when
         racingCar.move(true);
-        String curStatus = racingCar.toString();
+        int curDist = racingCar.getDistance();
 
         // then
-        assertThat(prevStatus + '-').isEqualTo(curStatus);
+        assertThat(curDist).isEqualTo(prevDist + 1);
     }
 
     @Test
     void moveTest_stop(){
         // given
         RacingCar racingCar = new RacingCar("name");
-        String prevStatus = racingCar.toString();
+        int prevDist = racingCar.getDistance();
 
         // when
         racingCar.move(false);
-        String curStatus = racingCar.toString();
+        int curDist = racingCar.getDistance();
 
         // then
-        assertThat(prevStatus).isEqualTo(curStatus);
+        assertThat(curDist).isEqualTo(prevDist);
     }
 }
