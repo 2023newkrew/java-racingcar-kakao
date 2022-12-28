@@ -17,7 +17,7 @@ public class RacingTest {
     @CsvSource(value = {"Pobi;true",
                         "Ppoobbii;false"}, delimiter = ';')
     void verifyNameTest(String input, String expected) {
-        Race race = new Race();
+        Race race = new Race("");
         String result = "false";
         try {
             race.verifyName(input);
@@ -43,9 +43,9 @@ public class RacingTest {
         race.carInput(race.nameSplit());
         race.printRace();
         String actual = out.toString();
-        assertEquals(actual,"pobi : \n" +
-                "crong : \n" +
-                "honux : \n");
+        assertEquals(actual,"pobi : -\n" +
+                "crong : -\n" +
+                "honux : -\n\n");
     }
 
     @Test
@@ -55,7 +55,7 @@ public class RacingTest {
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
-        assertEquals(race.raceMaxPosition(), 3);
+        assertEquals(race.raceMaxPosition(), 4);
     }
 
     @Test

@@ -9,10 +9,6 @@ public class Race {
     String nameStr;
     ArrayList<Car> cars = new ArrayList<>();
 
-    public Race() {
-        this.nameStr = "pobi,crong,honux";
-    }
-
     public Race(String nameStr) {
         this.nameStr = nameStr;
     }
