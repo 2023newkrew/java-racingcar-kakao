@@ -15,7 +15,7 @@ public class RacingGame {
     }
 
     public void play(List<RacingCar> racingCars, int rounds) {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
         racingScoreboard.printScore(racingCars);
         for (int round = 0; round < rounds; round++) {
             playRound(racingCars);
