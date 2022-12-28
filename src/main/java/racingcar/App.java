@@ -3,12 +3,11 @@ package racingcar;
 public class App {
     public static void main(String[] args) {
         Console console = new Console();
-        InputParser inputParser = new InputParser();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        InputHandler inputHandler = new InputHandler();
         Referee referee = new Referee();
 
-        RacingCar racingCar = new RacingCar(inputParser, randomNumberGenerator, referee, console);
+        RacingCarService racingCarService = new RacingCarService(inputHandler, referee, console);
 
-        racingCar.run();
+        racingCarService.run();
     }
 }

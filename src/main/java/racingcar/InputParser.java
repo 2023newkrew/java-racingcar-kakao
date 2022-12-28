@@ -3,10 +3,6 @@ package racingcar;
 public class InputParser {
 
     public String[] splitByComma(String input) {
-        String[] result = input.split(",");
-        if (result.length < 2) {
-            throw new RuntimeException("경주에는 최소 2대 이상의 자동차가 필요합니다.");
-        }
         return input.split(",");
     }
 
