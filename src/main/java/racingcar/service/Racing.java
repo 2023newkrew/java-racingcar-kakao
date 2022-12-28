@@ -4,10 +4,11 @@ import racingcar.service.stratedy.RandomStratedy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+
+import static java.util.Collections.*;
 
 public class Racing {
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
     private int count;
 
     public void setCount(int count) {
@@ -40,14 +41,14 @@ public class Racing {
     }
 
     public List<String> winner() {
-        int maxDist = 0;
-        for (Car car : cars)
-            maxDist = Math.max(maxDist, car.getDistance());
+        sort(cars);
+        final int maxDist = cars.get(0).getDistance();
 
         List<String> result = new ArrayList<>();
-        final int finalMaxDist = maxDist;
-        Stream<Car> filtered = cars.stream().filter(car -> car.getDistance() == finalMaxDist);
-        filtered.forEach(car -> result.add(car.getName()));
+        cars.stream()
+                .filter(car -> car.getDistance() == maxDist)
+                .forEach(car -> result.add(car.getName()));
+
         return result;
     }
 }
