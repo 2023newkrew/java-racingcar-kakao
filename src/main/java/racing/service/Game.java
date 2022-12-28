@@ -8,7 +8,6 @@ import racing.utils.RandomNumberGenerator;
 public class Game {
     private final Cars cars;
     private final int length;
-    private final RandomNumberGenerator generator = new RandomNumberGenerator();
 
     public Game(final List<String> carNames) {
         cars = new Cars(carNames);
@@ -18,7 +17,7 @@ public class Game {
     public void play() {
         List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < length; i++) {
-            randomNumbers.add(generator.generate());
+            randomNumbers.add(RandomNumberGenerator.generate());
         }
         cars.play(randomNumbers);
     }
