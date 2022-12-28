@@ -3,6 +3,7 @@ package stirngadder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import stringadder.StringAdder;
@@ -81,16 +82,18 @@ public class StringAdderTest {
     public void ifNegativeThrowRuntimeException(){
         String text = "-1,2,3";
         String[] numbers = stringAdder.split(text);
-        assertThatThrownBy(() -> {
-            stringAdder.isValid(numbers);
-        }).isInstanceOf(RuntimeException.class);
+
+        Assertions.assertThatRuntimeException()
+                .isThrownBy(()->stringAdder.isValid(numbers));
     }
     @Test
     public void sumTest(){
         String [] numbers = {"1","2","3"};
         String [] numbers2 = {"1","2","3","4"};
+
         int result = stringAdder.sum(numbers);
         assertThat(result).isEqualTo(6);
+
         result = stringAdder.sum(numbers2);
         assertThat(result).isEqualTo(10);
     }
@@ -99,6 +102,10 @@ public class StringAdderTest {
         String text = "1,0,3";
         int result = stringAdder.add(text);
         assertThat(result).isEqualTo(4);
+
+        String text2 = "1,0,-3";
+        Assertions.assertThatRuntimeException()
+                .isThrownBy(()->stringAdder.add(text2));
 
     }
 }
