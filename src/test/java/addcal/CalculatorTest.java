@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculatorTest {
     @Test
-    void CalculatorInputTest(){
+    void CalculatorInputTest() {
         Calculator cal = new Calculator();
         String input = "//a\n1a2a3a4a5";
         cal.Run(input);

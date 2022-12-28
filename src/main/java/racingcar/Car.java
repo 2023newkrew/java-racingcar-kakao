@@ -14,7 +14,7 @@ public class Car {
         return position;
     }
 
-    int getPosition(){
+    int getPosition() {
         return position;
     }
 
@@ -23,8 +23,8 @@ public class Car {
     }
 
     String matchPosition(int maxPosition) {
-        if(maxPosition == position) {
-            return name+",";
+        if (maxPosition == position) {
+            return name + ",";
         }
         return "";
     }

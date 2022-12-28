@@ -1,8 +1,10 @@
 package racingcar;
+
 import java.util.Scanner;
 
 public class View {
     Racing racing = new Racing();
+
     public void input() {
         Scanner sc = new Scanner(System.in);
         String carNames;
@@ -17,22 +19,25 @@ public class View {
             roundNum = sc.nextLine();
         } while (!racing.registerCarRoundNum(roundNum));
     }
-    void runRound(){
+
+    void runRound() {
         for (int i = 0; i < racing.getRoundNum(); i++) {
             racing.round();
             String result = racing.roundResult();
             printRoundResult(result);
         }
     }
+
     void printRoundResult(String result) {
         String[] temp = result.split(",");
-        for(int i = 0 ; i < temp.length ; i+=2){
-            System.out.print(temp[i] +" : ");
-            System.out.println("-".repeat(Integer.parseInt(temp[i+1])));
+        for (int i = 0; i < temp.length; i += 2) {
+            System.out.print(temp[i] + " : ");
+            System.out.println("-".repeat(Integer.parseInt(temp[i + 1])));
         }
         System.out.println();
     }
-    void printWinner(){
+
+    void printWinner() {
         System.out.print(String.join(", ", racing.getWinner().split(",")));
         System.out.println("가 최종 우승했습니다.");
     }
