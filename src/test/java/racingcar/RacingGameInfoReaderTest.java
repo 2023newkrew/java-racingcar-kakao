@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -7,7 +8,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class RacingGameInfoReaderTest {
+class RacingGameInfoReaderTest {
+
+    RacingGameInfoReader racingGameInfoReader;
+
+    @BeforeEach
+    void setUp() {
+        racingGameInfoReader = new RacingGameInfoReader();
+    }
 
     @Test
     void readRacingCars(){
@@ -16,14 +24,12 @@ public class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
-
         // when
         List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
 
         // then
-        assertThat(racingCars).hasSize(3);
-        assertThat(racingCars).contains(new RacingCar("car1"), new RacingCar("car2"), new RacingCar("car3"));
+        assertThat(racingCars).hasSize(3)
+                        .contains(new RacingCar("car1"), new RacingCar("car2"), new RacingCar("car3"));
     }
 
     @Test
@@ -33,14 +39,12 @@ public class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
-
         // when
         List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
 
         // then
-        assertThat(racingCars).hasSize(1);
-        assertThat(racingCars).contains(new RacingCar("car1"));
+        assertThat(racingCars).hasSize(1)
+                .contains(new RacingCar("car1"));
     }
 
     @Test
@@ -50,10 +54,9 @@ public class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
-
         // then
-        assertThatThrownBy(() -> racingGameInfoReader.readRacingCars()).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> racingGameInfoReader.readRacingCars())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -63,10 +66,9 @@ public class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
-
         // then
-        assertThatThrownBy(() -> racingGameInfoReader.readRacingCars()).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> racingGameInfoReader.readRacingCars())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -75,7 +77,6 @@ public class RacingGameInfoReaderTest {
         String input = "5";
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
 
         // when
         int round = racingGameInfoReader.readRound();
