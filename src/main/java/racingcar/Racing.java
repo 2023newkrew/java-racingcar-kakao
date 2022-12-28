@@ -38,7 +38,7 @@ public class Racing {
     }
 
     private Car max(Car car1, Car car2) {
-        if(car1.compareTo(car2) >= 0) {
+        if(car1.comparePositionToOtherCar(car2) >= 0) {
             return car1;
         }
         return car2;
@@ -63,7 +63,7 @@ public class Racing {
     }
 
     private void addWinner(Car car, Car winner, ArrayList<Car> result) {
-        if (car.equalsPosition(winner)) {
+        if (car.equalsPositionToOtherCar(winner)) {
             result.add(car);
         }
     }

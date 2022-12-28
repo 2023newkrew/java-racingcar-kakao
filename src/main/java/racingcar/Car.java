@@ -1,23 +1,21 @@
 package racingcar;
 
-import java.util.Objects;
-
-public class Car implements Comparable{
+public class Car {
     private final String name;
     private final RandomGenerator randomGenerator;
-    private final Position position;
+    private int position;
     private static final int MOVE_BOUND = 4;
     private static final int MAX_BOUND = 9;
 
     public Car(String name, RandomGenerator rg) {
         this.name = name;
         this.randomGenerator = rg;
-        this.position = new Position();
+        this.position = 0;
     }
 
     public boolean move() {
         if (movable()) {
-            this.position.move();
+            this.position++;
             return true;
         }
         return false;
@@ -33,30 +31,22 @@ public class Car implements Comparable{
     }
 
     public String toStringWithPosition(){
-        return name + " : " + position;
+        return name + " : " + "-".repeat(position+1);
     }
 
-    @Override
-    public int compareTo(Object o) {
-        if (!(o instanceof Car)) {
-            throw new RuntimeException();
-        }
-        return this.position.compareTo(((Car) o).position);
+    public int comparePositionToOtherCar(Car otherCar) {
+        return otherCar.comparePositionTo(position);
     }
 
-    public boolean equalsPosition(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
-        Car car = (Car) o;
-        return Objects.equals(position, car.position);
+    private int comparePositionTo(int otherPosition) {
+        return otherPosition - this.position;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, randomGenerator, position);
+    public boolean equalsPositionToOtherCar(Car otherCar) {
+        return otherCar.equalsPositionTo(position);
+    }
+
+    private boolean equalsPositionTo(int otherPosition) {
+        return this.position == otherPosition;
     }
 }
