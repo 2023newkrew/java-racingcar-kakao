@@ -10,8 +10,19 @@ public class RacingCar implements Car {
     private int distance;
 
     public RacingCar(String name) {
+        isNameValid(name);
         this.name = name;
         this.distance = 0;
+    }
+
+    private void isNameValid(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("자동차 이름은 널이거나 공백이 불가능합니다.");
+        }
+        if (name.length() > MAXIMUM_CAR_NAME) {
+            throw new IllegalArgumentException("자동차 이름은 1자이상 5자이하 여야합니다.");
+        }
+
     }
 
     @Override
@@ -59,4 +70,6 @@ public class RacingCar implements Car {
     public int hashCode() {
         return Objects.hash(name, distance);
     }
+
+
 }

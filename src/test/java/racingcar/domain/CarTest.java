@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.lang.reflect.Field;
 import org.assertj.core.api.Assertions;
@@ -13,6 +14,16 @@ import racingcar.domain.RacingCar;
 
 public class CarTest {
 
+
+    @ParameterizedTest
+    @ValueSource(strings = {"","russell"})
+    public void 자동차이름이_공백이거나_6자이상이면_예외가_발생한다(String input){
+        assertThatThrownBy(()->new RacingCar(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    public void 자동차이름이_널이면_예외가_발생한다(){
+        assertThatThrownBy(()->new RacingCar(null)).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
