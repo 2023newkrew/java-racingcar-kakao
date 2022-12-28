@@ -9,11 +9,12 @@ public class NumberParser {
 
     public NumberParser(String input, List<String> defaultDelimiters) {
         this.defaultDelimiters = defaultDelimiters;
-        if (input == null || input.equals("")) {
-            this.numbersStr = "0";
-            return;
-        }
-        this.numbersStr = input;
+//        if (input == null || input.equals("")) {
+//            this.numbersStr = "0";
+//            return;
+//        }
+//        this.numbersStr = input;
+        this.numbersStr = (input == null || input.equals("")) ? "0" : input;
     }
 
     public String[] inputToStringArray() {
