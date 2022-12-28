@@ -34,11 +34,10 @@ public class Cars {
     }
 
     public int getMaxPosition() {
-        int maxPosition = -1;
-        for (Car car : cars) {
-            maxPosition = max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 
     public List<String> getWinnerNamesWithSamePosition(int maxPosition) {

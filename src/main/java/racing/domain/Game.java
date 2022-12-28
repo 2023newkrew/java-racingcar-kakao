@@ -16,11 +16,9 @@ public class Game {
     }
 
     public void initialize(String input) {
-        String[] carNames = input.split(",");
-        Arrays.stream(carNames)
-            .forEach(carName -> {
-                cars.add(new Car(carName));
-        });
+        for (String carName : input.split(",")){
+            cars.add(new Car(carName));
+        }
     }
 
     public List<String> decideWinners() {

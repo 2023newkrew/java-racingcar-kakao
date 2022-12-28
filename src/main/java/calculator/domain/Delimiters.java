@@ -18,10 +18,7 @@ public class Delimiters {
     public String getRegex() {
         StringBuilder sb = new StringBuilder();
         sb.append('[');
-        delimiters.stream()
-                .forEach(str -> {
-                    sb.append(str);
-                });
+        delimiters.forEach(sb::append);
         sb.append(']');
         return sb.toString();
     }
