@@ -12,7 +12,7 @@ public class App {
         racing.setCount(racingCarView.inputCount());
         racingCarView.resultMessage();
         while (!racing.isFinished()) {
-            racing.doStep();
+            racing.tryForward();
             racingCarView.printResultOfCars(racing.getCarList());
         }
         racingCarView.printWinners(racing.winner());

@@ -26,7 +26,7 @@ public class Racing {
         return cars;
     }
 
-    public void doStep() {
+    public void tryForward() {
         cars.forEach(Car::forward);
         count--;
     }
