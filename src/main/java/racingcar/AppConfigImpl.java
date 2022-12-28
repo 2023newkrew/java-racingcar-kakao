@@ -10,6 +10,7 @@ public class AppConfigImpl implements AppConfig {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
+    @Override
     public RandomNumberGenerator getRandomNumberGenerator() {
         return randomNumberGenerator;
     }
