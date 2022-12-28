@@ -1,10 +1,12 @@
 package racingcar;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RacingTest {
     @Test
+    @DisplayName("Racing에서 Car 객체를 생성")
     void generateCarsArray() {
         Racing racing = new Racing(new RandomGeneratorImpl());
         String[] names = new String[]{"aaa", "bbb", "ccc"};
@@ -18,6 +20,7 @@ public class RacingTest {
     }
 
     @Test
+    @DisplayName("경기 종료후 우승자 판정 - 단일 우승자")
     void winnerTest() {
         Car[] cars = new Car[5];
         cars[0] = new Car("a", 2);
@@ -32,6 +35,7 @@ public class RacingTest {
     }
 
     @Test
+    @DisplayName("경기 종료후 우승자 판정 - 복수 우승자")
     void winnersTest() {
         Car[] cars = new Car[5];
         cars[0] = new Car("a", 2);
