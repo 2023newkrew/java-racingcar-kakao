@@ -22,8 +22,7 @@ public class StringNumberParserTest {
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
-        assertThat(numbers).hasSize(4);
-        assertThat(numbers).containsExactly(1L, 2L, 3L, 4L);
+        assertThat(numbers).hasSize(4).containsExactly(1L, 2L, 3L, 4L);
     }
 
     @Test
@@ -37,8 +36,7 @@ public class StringNumberParserTest {
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
-        assertThat(numbers).hasSize(1);
-        assertThat(numbers).containsExactly(1L);
+        assertThat(numbers).hasSize(1).containsExactly(1L);
     }
 
     @Test
@@ -66,8 +64,7 @@ public class StringNumberParserTest {
         List<Long> numbers = stringNumberParser.parse(input, separator);
 
         // then
-        assertThat(numbers).hasSize(4);
-        assertThat(numbers).containsExactly(1L, 2L, 3L, 4L);
+        assertThat(numbers).hasSize(4).containsExactly(1L, 2L, 3L, 4L);
     }
 
     @ParameterizedTest
