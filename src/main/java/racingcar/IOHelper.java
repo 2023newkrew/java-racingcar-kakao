@@ -35,6 +35,7 @@ public class IOHelper {
         }
         return List.of(names);
     }
+
     public boolean validateNames(List<String> names) {
         boolean flag = true;
 
@@ -77,7 +78,7 @@ public class IOHelper {
 
     public void printRoundResult(GameInfo gameInfo) {
         for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            System.out.println(carInfo.getName() + " : " + "-".repeat(carInfo.getDistance()));
+            System.out.println(carInfo.getName() + " : " + "-".repeat(carInfo.getPosition()));
         }
         System.out.println();
     }
