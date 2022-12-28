@@ -40,7 +40,7 @@ public class RacingCar implements Car {
 
     @Override
     public String toString() {
-        return name + " : " + "-".repeat(distance);
+        return String.format("%s : %s", name, "-".repeat(distance));
     }
 
     @Override
