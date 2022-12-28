@@ -5,10 +5,15 @@ import java.util.Random;
 public class Car {
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_THRESHOLD = 4;
+    private static final int DEFAULT_POSITION = 1;
     private int position;
     private String name;
 
-    public Car(int position, String name) {
+    public Car(String name) {
+        this(name, DEFAULT_POSITION);
+    }
+
+    public Car(String name, int position) {
         this.position = position;
         this.name = name;
     }

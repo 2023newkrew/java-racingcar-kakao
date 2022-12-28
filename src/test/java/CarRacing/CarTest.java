@@ -12,8 +12,8 @@ public class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new CarBuilder().name("test").buildCar();
-        positionCar = new CarBuilder().name("test").position(5).buildCar();
+        car = new Car("test");
+        positionCar = new Car("test", 5);
     }
 
     @Test
