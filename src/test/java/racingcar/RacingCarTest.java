@@ -2,6 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.GameResult;
 import racingcar.domain.RacingCarGame;
@@ -20,44 +22,39 @@ public class RacingCarTest {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
         assertThat(randomNumberGenerator.generateBetweenZeroAndNine())
-                .isGreaterThanOrEqualTo(0)
-                .isLessThan(10);
+                .isBetween(0, 9);
     }
 
-    @Test
+    private static Car getMockCar(String name, int number) {
+        Car avante = new Car("avante") {
+            @Override
+            public boolean isMovable() {
+                return number >= 4;
+            }
+        };
+        return avante;
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @DisplayName("자동차는 random값이 4 이상일 경우 전진한다.")
-    void moveIfRandomNumberIsGreaterThanEqualFour() {
-        Car avante = new Car("avante");
-        Car sonata = new Car("sonata");
-        int randomNumber = 4;
+    void moveIfRandomNumberIsGreaterThanEqualFour(int number) {
+        Car avante = getMockCar("avante", number);
 
-        avante.move(randomNumber);
-        sonata.move(randomNumber);
-        sonata.move(randomNumber);
+        avante.move();
 
-        CarDto avanteDto = avante.toDto();
-        CarDto sonataDto = sonata.toDto();
-
-        assertThat(avanteDto.getPosition()).isEqualTo(2);
-        assertThat(sonataDto.getPosition()).isEqualTo(3);
+        assertThat(avante.toDto().getPosition()).isEqualTo(2);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
     @DisplayName("자동차는 random값이 3 이하의 값일 경우 멈춘다.")
-    void stopIfRandomNumberIsLessThanEqualThree() {
-        Car avante = new Car("avante");
-        Car sonata = new Car("sonata");
-        int randomNumber = 3;
+    void stopIfRandomNumberIsLessThanEqualThree(int number) {
+        Car avante = getMockCar("avante", number);
 
-        avante.move(randomNumber);
-        sonata.move(randomNumber);
-        sonata.move(randomNumber);
+        avante.move();
 
-        CarDto avanteDto = avante.toDto();
-        CarDto sonataDto = sonata.toDto();
-
-        assertThat(avanteDto.getPosition()).isOne();
-        assertThat(sonataDto.getPosition()).isOne();
+        assertThat(avante.toDto().getPosition()).isOne();
     }
 
     @Test

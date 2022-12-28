@@ -11,17 +11,15 @@ public class RacingCarGame {
 
     private List<Car> cars;
     private int round;
-    private RandomNumberGenerator randomNumberGenerator;
 
     public RacingCarGame(List<CarDto> carDtos, int gameRound) {
         this.cars = RacingCarConverter.toCars(carDtos);
         this.round = gameRound;
-        this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
     public GameResult doNextRound() {
         for (Car car : cars) {
-            car.move(randomNumberGenerator.generateBetweenZeroAndNine());
+            car.move();
         }
         round--;
 

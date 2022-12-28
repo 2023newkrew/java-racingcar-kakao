@@ -1,25 +1,28 @@
 package racingcar.domain;
 
 import racingcar.dto.CarDto;
+import racingcar.utils.RandomNumberGenerator;
 
-public class Car {
+public class Car implements MovableStrategy{
 
     private String name;
-    private int position;
+    private int position = 1;
 
-    public Car(String carName) {
-        name = carName;
-        position = 1;
+    public Car(final String name) {
+        this.name = name;
     }
 
-    public void move(int randomNumber) {
-        if (isMovable(randomNumber)) {
+    public void move() {
+        if (isMovable()) {
             position += 1;
         }
     }
 
-    public boolean isMovable(int randomNumber) {
-        return randomNumber >= 4;
+    @Override
+    public boolean isMovable() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
+        return randomNumberGenerator.generateBetweenZeroAndNine() >= 4;
     }
 
     public boolean isSamePosition(Car other) {
