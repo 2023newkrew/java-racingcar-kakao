@@ -12,13 +12,13 @@ public class Racing {
 
     private final List<Car> cars;
     private int turn;
-    private final RacingUI racingUi;
+    private final RacingUI racingUI;
     private final RacingService racingService;
 
     public Racing() {
         cars = new ArrayList<>();
         turn = 0;
-        racingUi = new RacingUI();
+        racingUI = new RacingUI();
         racingService = new RacingService();
     }
 
@@ -27,7 +27,7 @@ public class Racing {
     }
 
     public void printTurn() {
-        racingUi.displayPosition(getCarDTOs());
+        racingUI.displayPosition(getCarDTOs());
     }
 
     public List<CarDTO> getCarDTOs() {
@@ -36,14 +36,14 @@ public class Racing {
 
     public void printResult() {
         List<String> result = racingService.getWinners(getCarDTOs());
-        racingUi.displayWinner(result);
+        racingUI.displayWinner(result);
     }
 
     public void init() {
-        List<String> names = racingService.validateName(racingUi.getNames());
-        makeCars(names);
+        List<String> names = racingService.validateName(racingUI.getNames());
+        setCars(names);
 
-        int turn = racingService.validateTurn(racingUi.getTurn());
+        int turn = racingService.validateTurn(racingUI.getTurn());
         setTurn(turn);
 
         startRace();
@@ -65,7 +65,7 @@ public class Racing {
         printTurn();
     }
 
-    public void makeCars(List<String> carNames) {
+    public void setCars(List<String> carNames) {
         for (String carName : carNames) {
             this.cars.add(new Car(carName));
         }

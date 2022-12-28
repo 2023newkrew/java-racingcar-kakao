@@ -11,7 +11,7 @@ public class Validator {
         if (name.length() > MAX_NAME_LENGTH || name.length() <= MIN_NAME_LENGTH) {
             return false;
         }
-        return !name.contains(" ");
+        return !name.isBlank();
     }
 
     public static boolean isValidNames(List<String> names) {

@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
+
     public List<Integer> numbers;
     private String text;
     private String delimiters;
-
 
     public Calculator(String text) {
         this.numbers = new ArrayList<>();
@@ -27,8 +27,10 @@ public class Calculator {
     }
 
     public int run() throws RuntimeException {
-        if (isEmptyOrNull()) return 0;
-        if (isEndsWithNumber()) {
+        if (isEmptyOrNull()) {
+            return 0;
+        }
+        if (doesEndWithNumber()) {
             throw new RuntimeException();
         }
 
@@ -38,7 +40,7 @@ public class Calculator {
         return addIntegerElements();
     }
 
-    private boolean isEndsWithNumber() {
+    private boolean doesEndWithNumber() {
         return '0' > text.charAt(text.length() - 1) || text.charAt(text.length() - 1) > '9';
     }
 
@@ -65,7 +67,9 @@ public class Calculator {
     public Matcher checkCustomDelimiter() {
         Matcher m = Pattern.compile("^//(.)\n(.*)").matcher(text);
 
-        if (!m.find()) return null;
+        if (!m.find()) {
+            return null;
+        }
         return m;
     }
 

@@ -22,8 +22,8 @@ public class RacingService {
                 .collect(Collectors.toList());
     }
 
-    public CarAction getActionResult(int no) {
-        if (no < THRESHOLD) {
+    public CarAction getActionResult(int num) {
+        if (num < THRESHOLD) {
             return CarAction.STAY;
         }
 
