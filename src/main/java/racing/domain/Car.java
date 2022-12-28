@@ -1,7 +1,7 @@
 package racing.domain;
 
 public class Car implements Comparable {
-    private final double MOVE_LOWER_BOUND = 4.0;
+    private final int MOVE_LOWER_BOUND = 4;
     private final String name;
     private final String PROGRESS_INNER_STRING = " : ";
     private final String PROGRESS_SYMBOL = "-";
@@ -15,7 +15,7 @@ public class Car implements Comparable {
         return name;
     }
 
-    public boolean move(double number) {
+    public boolean move(int number) {
         boolean isMoving = isMoving(number);
         if (isMoving) {
             increaseDistance();
@@ -27,7 +27,7 @@ public class Car implements Comparable {
         distance++;
     }
 
-    private boolean isMoving(double number) {
+    private boolean isMoving(int number) {
         return number >= MOVE_LOWER_BOUND;
     }
 

@@ -16,7 +16,7 @@ public class Game {
     }
 
     public void play() {
-        List<Double> randomNumbers = new ArrayList<>();
+        List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             randomNumbers.add(generator.generate());
         }

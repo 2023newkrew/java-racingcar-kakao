@@ -16,7 +16,7 @@ public class Cars {
         length = cars.size();
     }
 
-    public void play(List<Double> randomNumbers) {
+    public void play(List<Integer> randomNumbers) {
         if (randomNumbers.size() != length) {
             throw new IllegalArgumentException(RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE);
         }

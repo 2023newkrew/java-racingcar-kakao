@@ -15,15 +15,15 @@ public class CarTest {
         car = new Car("");
     }
 
-    @ValueSource(doubles = {0.1, 3.9, 2.2, 3.999})
+    @ValueSource(ints = {0, 3, 2, 1})
     @ParameterizedTest
-    void moveFalseTest(double number) {
+    void moveFalseTest(int number) {
         assertThat(car.move(number)).isEqualTo(false);
     }
 
-    @ValueSource(doubles = {4.0, 5.0, 8.999})
+    @ValueSource(ints = {4, 5, 8, 9})
     @ParameterizedTest
-    void moveTrueTest(double number) {
+    void moveTrueTest(int number) {
         assertThat(car.move(number)).isEqualTo(true);
     }
 
