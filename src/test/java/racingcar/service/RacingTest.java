@@ -28,7 +28,7 @@ public class RacingTest {
 
     @Test
     void racingProgress() {
-        racing.doStep();
+        racing.tryForward();
         racing.getCarList().forEach((car) -> assertThat(car.getDistance()).isGreaterThanOrEqualTo(0));
         assertThat(racing.getCount()).isEqualTo(4);
     }
@@ -36,7 +36,7 @@ public class RacingTest {
     @Test
     void racingIsFinished() {
         while (!racing.isFinished()) {
-            racing.doStep();
+            racing.tryForward();
         }
 
         assertThat(racing.getCount()).isEqualTo(0);
@@ -45,7 +45,7 @@ public class RacingTest {
     @Test
     void racingResult() {
         while (!racing.isFinished()) {
-            racing.doStep();
+            racing.tryForward();
         }
         assertThat(racing.winner()).containsAnyOf("davi", "sean");
     }
