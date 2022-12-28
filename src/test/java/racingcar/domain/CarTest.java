@@ -27,7 +27,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    public void moveTest(int input) throws IllegalAccessException {
+    public void moveTest(int input) {
         Car racingCar = new RacingCar("abc");
         racingCar.move(input);
         int dist = racingCar.getDistance();
@@ -36,7 +36,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    public void doNotMoveTest(int input) throws IllegalAccessException {
+    public void doNotMoveTest(int input) {
         Car racingCar = new RacingCar("abc");
         racingCar.move(input);
         int dist = racingCar.getDistance();

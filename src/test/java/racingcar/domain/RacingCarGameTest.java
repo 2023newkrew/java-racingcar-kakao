@@ -36,17 +36,14 @@ public class RacingCarGameTest {
     }
 
     @BeforeEach
-    void init() throws IllegalAccessException {
+    void init() {
         racingCarGame = new RacingCarGameImpl(new FakeRandomNumberGenerator());
     }
 
 
     @Test
     public void runTest() throws NoSuchFieldException, IllegalAccessException {
-        Car car1 = new RacingCar("pobi");
-        Car car2 = new RacingCar("crong");
-        Car car3 = new RacingCar("honux");
-        racingCarGame.add(car1, car2, car3);
+        racingCarGame.add("pobi", "crong", "honux");
         run(5);
         Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
         cars.setAccessible(true);
