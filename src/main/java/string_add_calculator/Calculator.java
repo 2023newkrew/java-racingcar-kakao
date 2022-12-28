@@ -56,7 +56,7 @@ public class Calculator {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         text = reader.readLine().replace("\\n","\n");
 
-        str_arr = text.split(",|;");
+        str_arr = text.split(",|:");
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
