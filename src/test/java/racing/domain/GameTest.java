@@ -3,10 +3,6 @@ package racing.domain;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racing.domain.Car;
-import racing.domain.Cars;
-import racing.domain.Game;
-
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,8 +24,14 @@ public class GameTest {
         Car loser2 = new Car("go", 3);
 
         return Stream.of(
-                Arguments.arguments(new Game(new Cars(Arrays.asList(winner1, loser1, loser2))), Arrays.asList(winner1)),
-                Arguments.arguments(new Game(new Cars(Arrays.asList(winner1, winner2, loser2))), Arrays.asList(winner1, winner2))
+                Arguments.arguments(
+                        new Game(new Cars(Arrays.asList(winner1, loser1, loser2))),
+                        Arrays.asList(winner1.getName())
+                ),
+                Arguments.arguments(
+                        new Game(new Cars(Arrays.asList(winner1, winner2, loser2))),
+                        Arrays.asList(winner1.getName(), winner2.getName())
+                )
         );
     }
 }

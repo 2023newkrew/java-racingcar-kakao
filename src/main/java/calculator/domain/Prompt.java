@@ -1,7 +1,5 @@
 package calculator.domain;
 
-import calculator.constant.MessageConstant;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
