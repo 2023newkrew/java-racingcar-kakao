@@ -8,12 +8,14 @@ import racingcar.util.StringParser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class Racing {
     private static final int THRESHOLD = 4;
 
     private final List<Car> cars = new ArrayList<>();
+    StringJoiner joiner = new StringJoiner(System.getProperty("line.separator"));
     private int turn = 0;
 
     public List<CarDTO> getCarDTOs() {
@@ -24,8 +26,6 @@ public class Racing {
         makeCars(StringParser.parse(nameInput));
 
         setTurn(turn);
-
-        startRace();
     }
 
     public void makeCars(List<String> carNames) {
@@ -51,11 +51,14 @@ public class Racing {
         return turn > 0;
     }
 
-    private void startRace() {
+    public String startRace() {
         for (int i = 0; i < turn; i++) {
             proceedTurn();
         }
-        printResult();
+
+        joiner.add(String.join(" ", getWinners(getCarDTOs())));
+
+        return joiner.toString();
     }
 
     private void proceedTurn() {
@@ -63,26 +66,18 @@ public class Racing {
             CarAction carAction = getActionResult(RandomGenerator.generateOneDigit());
             car.move(carAction);
         });
-        printTurn();
+
+        getCarDTOs().forEach(car -> joiner.add(car.toString()));
+        joiner.add("");
     }
 
-    public CarAction getActionResult(int no) {
+    public static CarAction getActionResult(int no) {
         if (no < THRESHOLD) return CarAction.STAY;
 
         return CarAction.FORWARD;
     }
 
-    public void printTurn() {
-        RacingUI.displayPosition(getCarDTOs());
-    }
-
-
-    public void printResult() {
-        List<String> result = getWinners(getCarDTOs());
-        RacingUI.displayWinner(result);
-    }
-
-    public List<String> getWinners(List<CarDTO> cars) {
+    public static List<String> getWinners(List<CarDTO> cars) {
         int maxPosition = cars.stream()
                 .mapToInt(CarDTO::getPosition)
                 .max()

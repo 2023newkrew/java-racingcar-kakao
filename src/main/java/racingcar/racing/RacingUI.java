@@ -1,8 +1,5 @@
 package racingcar.racing;
 
-import racingcar.car.CarDTO;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class RacingUI {
@@ -18,13 +15,7 @@ public class RacingUI {
         return sc.next();
     }
 
-    public static void displayPosition(List<CarDTO> cars) {
-        cars.forEach(System.out::println);
-        System.out.println();
-    }
-
-    public static void displayWinner(List<String> names) {
-        names.forEach(e -> System.out.print(e + " "));
-        System.out.println();
+    public static void printResult(String result) {
+        System.out.println(result);
     }
 }
