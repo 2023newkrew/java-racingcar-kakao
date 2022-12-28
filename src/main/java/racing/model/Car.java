@@ -7,7 +7,7 @@ public class Car implements Comparable<Car>{
     private Integer position;
 
     private static final Integer MOVE_THRESHOLD = 4;
-    private static final Integer RANGE_OF_RANDOM_NUMBER = 10;
+    private static final Integer UPPER_BOUND_OF_RANDOM = 10;
 
     public Car(String name, Integer position) {
         this.name = name;
@@ -15,7 +15,7 @@ public class Car implements Comparable<Car>{
     }
 
     public void tryMove() {
-        if (RandomUtil.getRandomInteger(RANGE_OF_RANDOM_NUMBER) >= MOVE_THRESHOLD) {
+        if (RandomUtil.getRandomInteger(UPPER_BOUND_OF_RANDOM) >= MOVE_THRESHOLD) {
             position++;
         }
     }
