@@ -5,8 +5,6 @@ import racing.movable.Movable;
 import racing.movable.RandomlyMovable;
 
 public class Car {
-    private static final String MOVING_SYMBOL = "-";
-    private static final String STATUS_STRING_FORMAT = "%s : %s";
     private final CarName name;
     private final Movable movable;
     private int distance = 0;
@@ -29,11 +27,6 @@ public class Car {
 
     private void increaseDistance() {
         distance++;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(STATUS_STRING_FORMAT, name, MOVING_SYMBOL.repeat(distance));
     }
 
     public CarDTO toDTO() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racing.domain.CarName;
 import racing.domain.Cars;
+import racing.dto.CarDTO;
 
 public class Game {
     private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름이 중복될 수 없습니다.";
@@ -31,7 +32,7 @@ public class Game {
         cars.play();
     }
 
-    public List<String> getStatus() {
+    public List<CarDTO> getStatus() {
         return cars.getStatus();
     }
 

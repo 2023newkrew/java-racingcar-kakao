@@ -37,9 +37,9 @@ public class Cars {
         return winners;
     }
 
-    public List<String> getStatus() {
-        List<String> status = cars.stream()
-                .map(Car::toString)
+    public List<CarDTO> getStatus() {
+        List<CarDTO> status = cars.stream()
+                .map(Car::toDTO)
                 .collect(Collectors.toList());
         return status;
     }
