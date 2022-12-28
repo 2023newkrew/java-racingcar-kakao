@@ -1,7 +1,7 @@
 package racing.util;
 
 public class PrintUtils {
-    public static String toHyphenString(int position) {
-        return "-".repeat(position);
+    public static String getRepeatedString(String target, int count) {
+        return target.repeat(count);
     }
 }
