@@ -1,4 +1,4 @@
-package calculator.domain;
+package calculator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,19 +6,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class TargetString {
-    public static final String TYPE_EXCEPTION_MESSAGE = "[ERROR] 구분자로 구분되는 것은 정수여야 합니다.";
-    public static final String RANGE_EXCEPTION_MESSAGE = "[ERROR] 모든 값은 0 이상이어야 합니다.";
-    public static final String DEFAULT_DELIMITERS = ",|:";
+public class InputNumbersInStringAddCalculator {
+    private static final String TYPE_EXCEPTION_MESSAGE = "[ERROR] 구분자로 구분되는 것은 정수여야 합니다.";
+    private static final String RANGE_EXCEPTION_MESSAGE = "[ERROR] 모든 값은 0 이상이어야 합니다.";
+    private static final String DEFAULT_DELIMITERS = ",|:";
     private String inputString;
     private String delimiters;
     private final Pattern CUSTOM_PATTERN = Pattern.compile("//(.)\n(.*)");
 
-    public TargetString() {
-        this("");
-    }
-
-    public TargetString(String inputString) {
+    public InputNumbersInStringAddCalculator(String inputString) {
         this.inputString = inputString;
         this.delimiters = DEFAULT_DELIMITERS;
     }
