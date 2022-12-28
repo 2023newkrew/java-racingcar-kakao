@@ -11,7 +11,7 @@ public class Calculator {
     }
 
     public Integer calc(String inputstring) {
-        if (Objects.equals(inputstring, "") || inputstring == null) {
+        if (Objects.equals("", inputstring) || Objects.isNull(inputstring)) {
             return 0;
         }
 

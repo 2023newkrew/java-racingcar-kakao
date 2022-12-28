@@ -23,7 +23,7 @@ public class CarTest {
     @Test
     void moveCar() {
         car.move(4);
-        assertEquals(car.getPosition(), prevPosition + 1);
+        assertEquals(car.getPosition(), ++prevPosition);
     }
 
     @Test

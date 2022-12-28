@@ -30,7 +30,7 @@ public class CarListTest {
         carList.add(car1);
         carList.add(car2);
         carList.add(car3);
-        List<Car> winner = carList.selectWinners();
+        List<Car> winner = carList.getWinners();
         Assertions.assertThat(winner)
                 .containsOnly(car1, car2);
     }

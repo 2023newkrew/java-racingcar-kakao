@@ -2,11 +2,11 @@ package racingcar;
 
 import java.util.Objects;
 
+/**
+ * Racing Game에 참가하는 Car 각각의 정보를 담는 클래스입니다.
+ * Car Name의 Validation check를 여기서도 진행합니다(Double Check).
+ */
 public class Car {
-    /**
-     * Racing Game에 참가하는 Car 각각의 정보를 담는 클래스입니다.
-     * Car Name의 Validation check를 여기서도 진행합니다(Double Check).
-     */
 
     private static final int THRESHOLD = 4;
 
@@ -23,14 +23,14 @@ public class Car {
     }
 
     public boolean isInvalidName(String name) {
-        return name == null || name.equals("") || name.length() > 5;
+        return name == null || "".equals(name) || name.length() > 5;
     }
 
     public void move(int random) {
         if (random < THRESHOLD) {
             return;
         }
-        position += 1;
+        position++;
     }
 
     public String getName() {
