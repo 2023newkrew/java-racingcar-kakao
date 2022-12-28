@@ -12,8 +12,8 @@ public class IOHelper {
     private static final int INPUT_CAR_NAME_MAX_LENGTH = 5;
 
     private static final String OUTPUT_INITIAL = "실행 결과";
-    private static final String OUTPUT_BAD_INPUT = "잘못된 입력값입니다.";
-    private static final String OUTPUT_CAR_STATUS = "%s + : %s";
+    private static final String OUTPUT_INVALID_INPUT = "잘못된 입력값입니다.";
+    private static final String OUTPUT_CAR_STATUS = "%s : %s";
     private static final String OUTPUT_CAR_DISTANCE_UNIT = "-";
     private static final String OUTPUT_WINNER = "%s가 최종 우승했습니다.";
 
@@ -53,7 +53,7 @@ public class IOHelper {
         }
 
         if (!flag) {
-            System.out.println(OUTPUT_BAD_INPUT);
+            System.out.println(OUTPUT_INVALID_INPUT);
         }
         return flag;
     }
@@ -80,7 +80,7 @@ public class IOHelper {
         try {
             Integer.parseInt(roundInput);
         } catch (NumberFormatException e) {
-            System.out.println(OUTPUT_BAD_INPUT);
+            System.out.println(OUTPUT_INVALID_INPUT);
             return false;
         }
         return true;

@@ -14,15 +14,16 @@ public class Car {
         this.distance = INITIAL_DISTANCE;
     }
 
-    public int pickNumber() {
-        return (int) (Math.random() * RANDOM_BOUND);
-    }
-
     public void move() {
         if (pickNumber() >= MOVE_STANDARD) {
             distance++;
         }
     }
+
+    public int pickNumber() {
+        return (int) (Math.random() * RANDOM_BOUND);
+    }
+
 
     @Override
     public String toString() {

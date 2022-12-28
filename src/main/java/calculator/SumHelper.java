@@ -1,7 +1,8 @@
 package calculator;
 
 public class SumHelper {
-    String[] data;
+    private static final String OUTPUT_INVALID_INPUT = "유효하지 않은 문자열이 포함되었습니다.";
+    private String[] data;
 
     public SumHelper() {
     }
@@ -36,7 +37,7 @@ public class SumHelper {
 
     private void validateInput(String s) {
         if (!isValidNumber(s)) {
-            throw new IllegalArgumentException("유효하지 않은 문자열이 포함되었습니다.");
+            throw new IllegalArgumentException(OUTPUT_INVALID_INPUT);
         }
     }
 }

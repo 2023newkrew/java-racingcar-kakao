@@ -7,6 +7,21 @@ public class Game {
     private List<Car> cars;
     private int leftRoundCnt;
 
+    public void run(IOHelper ioHelper) {
+        List<String> names = ioHelper.getNamesInput();
+        int roundCnt = ioHelper.getRoundInput();
+
+        GameInfo gameInfo = init(names, roundCnt);
+        ioHelper.printInitialStatus(gameInfo);
+
+        while (gameInfo.getLeftRoundCnt()!=0) {
+            gameInfo = runRound();
+            ioHelper.printRoundResult(gameInfo);
+        }
+
+        ioHelper.printGameResult(findWinners(gameInfo));
+    }
+
     public GameInfo init(List<String> names, int roundInput) {
         this.cars = names
                 .stream()
@@ -40,20 +55,5 @@ public class Game {
             maxDistance = Math.max(maxDistance, carInfo.getDistance());
         }
         return maxDistance;
-    }
-
-    public void run(IOHelper ioHelper) {
-        List<String> names = ioHelper.getNamesInput();
-        int roundCnt = ioHelper.getRoundInput();
-
-        GameInfo gameInfo = init(names, roundCnt);
-        ioHelper.printInitialStatus(gameInfo);
-
-        while (gameInfo.getLeftRoundCnt()!=0) {
-            gameInfo = runRound();
-            ioHelper.printRoundResult(gameInfo);
-        }
-
-        ioHelper.printGameResult(findWinners(gameInfo));
     }
 }
