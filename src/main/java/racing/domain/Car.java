@@ -1,10 +1,10 @@
 package racing.domain;
 
-public class Car implements Comparable {
-    private final int MOVE_LOWER_BOUND = 4;
+public class Car implements Comparable<Object> {
+    private final int MOVING_LOWER_BOUND = 4;
+    private final String MOVING_SYMBOL = "-";
+    private final String STATUS_STRING_FORMAT = "%s : %s";
     private final String name;
-    private final String PROGRESS_INNER_STRING = " : ";
-    private final String PROGRESS_SYMBOL = "-";
     private int distance = 0;
 
     public Car(String name) {
@@ -28,7 +28,7 @@ public class Car implements Comparable {
     }
 
     private boolean isMoving(int number) {
-        return number >= MOVE_LOWER_BOUND;
+        return number >= MOVING_LOWER_BOUND;
     }
 
     private int getDifference(int opponentDistance) {
@@ -43,6 +43,6 @@ public class Car implements Comparable {
 
     @Override
     public String toString() {
-        return name + PROGRESS_INNER_STRING + PROGRESS_SYMBOL.repeat(distance);
+        return String.format(STATUS_STRING_FORMAT, name, MOVING_SYMBOL.repeat(distance));
     }
 }
