@@ -15,9 +15,15 @@ public class Simulator {
         }
     }
 
+    public void move(Car car, int random) {
+        if (random > 3) {
+            car.move();
+        }
+    }
+
     public void run(Random random) {
         for (Car car : cars) {
-            car.move(random.nextInt(9));
+            move(car, random.nextInt(9));
         }
     }
 
