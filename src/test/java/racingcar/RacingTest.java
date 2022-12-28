@@ -55,7 +55,7 @@ public class RacingTest {
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
-        assertEquals(race.raceMaxCnt(), 3);
+        assertEquals(race.raceMaxPosition(), 3);
     }
 
     @Test

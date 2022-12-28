@@ -47,7 +47,7 @@ public class Race {
         return cars;
     }
 
-    public int raceMaxCnt() {
+    public int raceMaxPosition() {
         int max = -1;
 
         for (Car car: cars) {
@@ -58,7 +58,7 @@ public class Race {
     }
 
     public void raceWinner() {
-        int max = raceMaxCnt();
+        int max = raceMaxPosition();
         StringBuilder sb = new StringBuilder();
         for (Car car : cars) {
             sb.append(raceWinnerCheck(car, max));
