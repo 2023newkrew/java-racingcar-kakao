@@ -20,38 +20,50 @@
 8. 게임 진행 횟수 입력이 0 이하인 경우 IllegalArgumentException 예외가 발생해야 한다.
 
 
-## 프로그래밍 요구사항
-- 규칙 1: 한 메서드에 오직 한 단계의 들여쓰기(indent)만 한다.
-  - depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
-- 규칙 2: else 예약어를 쓰지 않는다.
-- 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다. 
-  - method가 한 가지 일만 하도록 최대한 작게 만들어라.
+## step2 주요 변경 계획
+1. random 값을 정수로 변경 
+   1. 기능 요구 사항의 `3 이하면 멈춘다`를 고려하여 double이 아닌 int로 변경 
+   2. Math.Random() -> Random.nextInt()
+2. static, final 추가
+   1. static, final 각각을 붙여야 할 곳에 누락된 것들을 수정
+3. Functional Interface인 Movable 추가
+   1. 이동 여부는 Movable을 통해 결정
+   2. 게임 규칙을 반영한 RandomlyMovable 구현
+4. Car의 toString() 메서드 오버라이딩, getName() 메서드 제거
+   1. DTO로 전달하도록 수정
+5. Validation의 위치 변경 및 일급 클래스 생성
+   1. CarName, GameRepeat 클래스 생성, 생성 시 바로 검증
+   2. Validator 클래스 삭제
+   
 
 ## 프로그램 설계
 - Application
   - gameController
 
 ### Utils
-- InputValidator
-  - validateCarNames()
-  - validateSingleCarName()
-  - validateGameRepeat()
-  - validatePositive()
+- ~~InputValidator~~
+  - ~~validateCarNames()~~
+  - ~~validateSingleCarName()~~
+  - ~~validateGameRepeat()~~
+  - ~~validatePositive()~~
 - RandomNumberGenerator
   - generate()
 
 ### Domain
 - Car (implements Comparable)
   - 속성: name, distance
-  - 메서드: toString(), compareTo(), move(), increaseDistance(), getDifference(), isMoving()
+  - 메서드: ~~toString()~~, compareTo(), move(), increaseDistance(), getDifference(), ~~isMoving()~~
 
 - Cars
   - 속성: cars, length
   - 메서드: play(), getWinners(), getStatus()
 
+### DTO
+- CarDTO
+
 ### Service
 - Game 
-  - 속성: cars, length, generator
+  - 속성: cars, length, ~~generator~~
   - 메서드: play(), getStatus(), getWinners()
 
 ### View
@@ -66,3 +78,11 @@
 - GameController
   - inputView, outputView, game
   - play()
+
+### Movable
+- Movable
+  - isMoving()
+- RandomlyMovable
+  - isMoving()
+  - RandomGenerator
+
