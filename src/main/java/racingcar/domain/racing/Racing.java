@@ -1,8 +1,8 @@
-package racingcar.racing;
+package racingcar.domain.racing;
 
-import racingcar.car.Car;
-import racingcar.car.CarDTO;
-import racingcar.car.RandomMovingAction;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.CarDTO;
+import racingcar.domain.car.RandomMovingAction;
 import racingcar.util.StringParser;
 
 import java.util.ArrayList;
