@@ -3,6 +3,7 @@ package str_calc;
 import java.util.Scanner;
 
 public class IO {
+    static final String REGEX_DELIMITER = "//.";
     private Scanner scanner;
 
     public IO() {
@@ -10,10 +11,9 @@ public class IO {
     }
 
     public String inputText() {
-        final String REGEX_DELIMITER = "//.";
         System.out.print("텍스트를 입력해주세요 : ");
         String text = scanner.nextLine();
-        if(text.matches(REGEX_DELIMITER)) {
+        if(text.matches(IO.REGEX_DELIMITER)) {
             text += "\n";
             text += scanner.nextLine();
         }
