@@ -11,6 +11,6 @@ public class Controller {
     public void start() {
         String text = io.inputText();
         text = stringCalculator.extractDelimiter(text);
-        io.printSum(stringCalculator.sumText(text));
+        io.printSum(stringCalculator.sum(text));
     }
 }

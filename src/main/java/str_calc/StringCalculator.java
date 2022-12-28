@@ -49,7 +49,7 @@ public class StringCalculator {
         return intList;
     }
 
-    public int sumIntList(List<Integer> intList) {
+    public int sum(List<Integer> intList) {
         int sum = 0;
         for (int elem : intList) {
             sum += elem;
@@ -57,7 +57,7 @@ public class StringCalculator {
         return sum;
     }
 
-    public int sumText(String text) {
-        return this.sumIntList(this.toIntList(text));
+    public int sum(String text) {
+        return this.sum(this.toIntList(text));
     }
 }
