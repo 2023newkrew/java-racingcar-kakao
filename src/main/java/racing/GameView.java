@@ -47,11 +47,10 @@ public class GameView {
                 .forEach(i -> gamePlay());
     }
 
-
     public void gamePlay() {
         game.play();
         Map<String, Integer> status = game.getStatus();
-        for (Map.Entry<String, Integer> entry  : status.entrySet()) {
+        for (Map.Entry<String, Integer> entry : status.entrySet()) {
             System.out.println(entry.getKey() + " : " + getHyphen(entry.getValue()));
         }
         System.out.println();
