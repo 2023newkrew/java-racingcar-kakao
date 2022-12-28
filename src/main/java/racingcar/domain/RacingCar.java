@@ -1,6 +1,9 @@
 package racingcar.domain;
 
 import static racingcar.domain.RacingCarConstant.*;
+import static racingcar.domain.RacingCarExceptionMessage.CAR_NAME_BOUND_EXCEPTION_MESSAGE;
+import static racingcar.domain.RacingCarExceptionMessage.CAR_NAME_NOT_OR_BLANK_EXCEPTION_MESSAGE;
+import static racingcar.domain.RacingCarExceptionMessage.MOVE_INPUT_EXCEPTION_MESSAGE;
 
 import java.util.Objects;
 
@@ -17,10 +20,10 @@ public class RacingCar implements Car {
 
     private void isNameValid(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("자동차 이름은 널이거나 공백이 불가능합니다.");
+            throw new IllegalArgumentException(CAR_NAME_NOT_OR_BLANK_EXCEPTION_MESSAGE);
         }
         if (name.length() > MAXIMUM_CAR_NAME) {
-            throw new IllegalArgumentException("자동차 이름은 1자이상 5자이하 여야합니다.");
+            throw new IllegalArgumentException(CAR_NAME_BOUND_EXCEPTION_MESSAGE);
         }
 
     }
@@ -37,7 +40,7 @@ public class RacingCar implements Car {
 
     public void move(int condition) {
         if (outOfBound(condition)) {
-            throw new IllegalArgumentException("move함수에는 0 ~ 9 사이의 값이 주어져야 합니다.");
+            throw new IllegalArgumentException(MOVE_INPUT_EXCEPTION_MESSAGE);
         }
         if (condition >= MOVE_LOWER_BOUND) {
             distance++;
