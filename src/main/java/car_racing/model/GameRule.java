@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 public class GameRule {
     private static final Integer STANDARD_SCORE = 4;
 
-    private static final GamePlayerStrategy gp = new RandomPlayerStrategy();
+    private static final GamePlayerStrategy GAME_PLAYER_STRATEGY = new RandomPlayerStrategy();
 
     public static Boolean isAbleToProceed() {
-        return gp.generateScore() >= STANDARD_SCORE;
+        return GAME_PLAYER_STRATEGY.generateScore() >= STANDARD_SCORE;
     }
 
     public static List<RacingPlayer> getWinners(List<RacingPlayer> players) {
