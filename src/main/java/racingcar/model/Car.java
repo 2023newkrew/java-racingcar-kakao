@@ -5,12 +5,12 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    Car(String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public void move(int number) {
+    void move(int number) {
         if (isMovable(number)) {
             position++;
         }

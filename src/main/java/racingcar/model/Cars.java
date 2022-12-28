@@ -2,12 +2,12 @@ package racingcar.model;
 
 import java.util.List;
 
-public class Cars {
+class Cars {
 
     private final NumberGenerator numberGenerator;
     private final List<Car> cars;
 
-    public Cars(NumberGenerator numberGenerator, List<Car> cars) {
+    Cars(NumberGenerator numberGenerator, List<Car> cars) {
         this.numberGenerator = numberGenerator;
         this.cars = cars;
     }
@@ -18,11 +18,11 @@ public class Cars {
         }
     }
 
-    public Positions getPositions() {
+    Positions getPositions() {
         return new Positions(cars);
     }
 
-    public Winners getWinners() {
+    Winners getWinners() {
         return new Winners(cars);
     }
 
