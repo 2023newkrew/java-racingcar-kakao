@@ -1,18 +1,16 @@
 package racingcar;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingScoreboardTest {
+class RacingScoreboardTest {
 
     List<RacingCar> racingCars;
     ByteArrayOutputStream out;
@@ -64,7 +62,7 @@ public class RacingScoreboardTest {
         String expected = "car1가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(Arrays.asList(new RacingCar("car1")));
+        racingScoreboard.printWinners(List.of(new RacingCar("car1")));
 
         //then
         assertThat(out.toString()).hasToString(expected);
