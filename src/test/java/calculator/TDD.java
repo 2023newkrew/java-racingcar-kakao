@@ -57,10 +57,17 @@ public class TDD {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,-2,3", "1,,3", "1,a,b", "a,b;c", "1, 2, 3", "1,  ,3"})
+    @ValueSource(strings = {"1,,3", "1,a,b", "a,b;c", "1, 2, 3", "1,  ,3"})
     public void testInvalidNumberString(String input) {
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.calculate(input))
-                .withMessage("잘못된 숫자가 입력되었습니다.");
+                .withMessage("0 이상의 숫자만 입력해야합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,-2,3", "-3", "-533,32,32", "7,77,-777"})
+    public void testNegativeNumberString(String input) {
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> calculator.calculate(input))
+                .withMessage("음수는 입력할 수 없습니다.");
     }
 
     @ParameterizedTest
