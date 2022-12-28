@@ -1,8 +1,8 @@
-package racingcar.racing;
+package racingcar.view;
 
 import java.util.Scanner;
 
-public class RacingUI {
+public class InputView {
     private final Scanner sc = new Scanner(System.in);
 
     public String getNames() {
@@ -13,9 +13,5 @@ public class RacingUI {
     public String getTurn() {
         System.out.println("시도할 횟수는 몇 회인가요?");
         return sc.next();
-    }
-
-    public static void printResult(String result) {
-        System.out.println(result);
     }
 }
