@@ -7,26 +7,23 @@ import java.util.stream.Collectors;
 import static java.util.Collections.*;
 
 public class Racing {
-    private final List<Car> cars = new ArrayList<>();
+    private Cars cars;
     private int count;
 
     public void setCount(int count) {
         this.count = count;
     }
 
-    public void addCars(List<String> names) {
-        for (String name : names) {
-            Car car = new Car(name);
-            cars.add(car);
-        }
+    public void addCars(List<Car> names) {
+        this.cars = new Cars(names);
     }
 
     public List<Car> getCarList() {
-        return cars;
+        return cars.toList();
     }
 
     public void tryForward() {
-        cars.forEach(Car::forward);
+        cars.tryForward();
         count--;
     }
 
@@ -39,12 +36,6 @@ public class Racing {
     }
 
     public List<String> winner() {
-        sort(cars);
-        final int maxDist = cars.get(0).getDistance();
-
-        return cars.stream()
-                .filter(car -> car.getDistance() == maxDist)
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        return cars.winner();
     }
 }
