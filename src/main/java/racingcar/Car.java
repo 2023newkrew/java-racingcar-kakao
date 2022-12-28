@@ -3,7 +3,7 @@ package racingcar;
 public class Car {
     private static final int INITIAL_DISTANCE = 1;
     private static final int MOVE_STANDARD = 4;
-    private static final int RANDOM_RANGE = 10;
+    private static final int RANDOM_BOUND = 10;
     private static final String TO_STRING_FORMAT = "차 이름: %s, 거리: %d";
 
     private String name;
@@ -15,11 +15,7 @@ public class Car {
     }
 
     public int pickNumber() {
-        return (int) (Math.random() * RANDOM_RANGE);
-    }
-
-    public int getDistance() {
-        return distance;
+        return (int) (Math.random() * RANDOM_BOUND);
     }
 
     public void move() {
@@ -31,6 +27,10 @@ public class Car {
     @Override
     public String toString() {
         return String.format(TO_STRING_FORMAT, name, distance);
+    }
+
+    public int getDistance() {
+        return distance;
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -39,17 +40,18 @@ public class IOHelper {
 
     public List<String> getTrimNames(String input) {
         String[] names = input.split(",");
-        for (int i = 0; i<names.length; i++) {
-            names[i] = names[i].trim();
-        }
-        return List.of(names);
+
+        return Arrays.stream(names)
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
+
     public boolean validateNames(List<String> names) {
         boolean flag = true;
-
         for (String name : names) {
             flag = validateName(flag, name);
         }
+
         if (!flag) {
             System.out.println(OUTPUT_BAD_INPUT);
         }
@@ -84,10 +86,15 @@ public class IOHelper {
         return true;
     }
 
+    public void printInitialStatus(GameInfo gameInfo) {
+        System.out.println(OUTPUT_INITIAL);
+        printRoundResult(gameInfo);
+    }
+
     public void printRoundResult(GameInfo gameInfo) {
         for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            System.out.println(String.format(OUTPUT_CAR_STATUS, carInfo.getName(),
-                    OUTPUT_CAR_DISTANCE_UNIT.repeat(carInfo.getDistance())));
+            System.out.println(String.format(OUTPUT_CAR_STATUS,
+                    carInfo.getName(), OUTPUT_CAR_DISTANCE_UNIT.repeat(carInfo.getDistance())));
         }
         System.out.println();
     }
@@ -96,11 +103,7 @@ public class IOHelper {
         List<String> winnerNames = winners.stream()
                 .map(CarInfo::getName)
                 .collect(Collectors.toList());
-        System.out.println(String.format(OUTPUT_WINNER, String.join(",", winnerNames)));
-    }
-
-    public void printInitialStatus(GameInfo gameInfo) {
-        System.out.println(OUTPUT_INITIAL);
-        printRoundResult(gameInfo);
+        System.out.println(String.format(OUTPUT_WINNER,
+                String.join(",", winnerNames)));
     }
 }

@@ -26,32 +26,31 @@ public class Game {
     }
 
     public List<CarInfo> findWinners(GameInfo gameInfo) {
-        int maxDistance = 0;
-        for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            maxDistance = Math.max(maxDistance, carInfo.getDistance());
-        }
-        List<CarInfo> winners = new ArrayList<>();
-        for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            addWinnerByDistance(winners, carInfo, maxDistance);
-        }
+        int maxDistance = getMaxDistance(gameInfo.getCarInfos());
+
+        List<CarInfo> winners = gameInfo.getCarInfos()
+                .stream()
+                .filter(carInfo -> carInfo.getDistance()==maxDistance)
+                .collect(Collectors.toList());
         return winners;
     }
 
-    private void addWinnerByDistance(List<CarInfo> winners,
-                                     CarInfo carInfo,
-                                     int distance) {
-        if (carInfo.getDistance() == distance) {
-            winners.add(carInfo);
+    private int getMaxDistance(List<CarInfo> carInfos) {
+        int maxDistance = 0;
+        for (CarInfo carInfo : carInfos) {
+            maxDistance = Math.max(maxDistance, carInfo.getDistance());
         }
+        return maxDistance;
     }
 
     public void run(IOHelper ioHelper) {
-        List<String> namesInput = ioHelper.getNamesInput();
-        int roundInput = ioHelper.getRoundInput();
+        List<String> names = ioHelper.getNamesInput();
+        int roundCnt = ioHelper.getRoundInput();
 
-        GameInfo gameInfo = init(namesInput, roundInput);
+        GameInfo gameInfo = init(names, roundCnt);
         ioHelper.printInitialStatus(gameInfo);
-        while(gameInfo.getLeftRoundCnt()!=0) {
+
+        while (gameInfo.getLeftRoundCnt()!=0) {
             gameInfo = runRound();
             ioHelper.printRoundResult(gameInfo);
         }

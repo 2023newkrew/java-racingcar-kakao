@@ -14,9 +14,9 @@ public class CarInfo {
     }
 
     public static List<CarInfo> of(List<Car> cars) {
-        return cars.stream().map(car -> {
-            return new CarInfo(car.getName(), car.getDistance());
-        }).collect(Collectors.toList());
+        return cars.stream()
+                .map(car -> new CarInfo(car.getName(), car.getDistance()))
+                .collect(Collectors.toList());
     }
 
     public String getName() {
