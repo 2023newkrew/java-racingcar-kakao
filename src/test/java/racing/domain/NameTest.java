@@ -20,7 +20,7 @@ class NameTest {
     }
 
     @Test
-    public void 이름의_길이는_5글자를_넘어갈_수_없다() {
+    void 이름의_길이는_5글자를_넘어갈_수_없다() {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> new Name("marcus"));
         assertEquals(INVALID_NAME_LENGTH_EXCEPTION, exception.getMessage());
     }

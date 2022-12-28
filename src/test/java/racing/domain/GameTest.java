@@ -29,7 +29,7 @@ public class GameTest {
 
     @ParameterizedTest
     @MethodSource("decideWinnerArgument")
-    public void 한명_이상의_유저들이_승리했을때_정상적으로_판별합니다(Game game, List<Car> expected) {
+    void 한명_이상의_유저들이_승리했을때_정상적으로_판별합니다(Game game, List<Car> expected) {
         assertThat(game.decideWinners()).isEqualTo(expected);
     }
 
