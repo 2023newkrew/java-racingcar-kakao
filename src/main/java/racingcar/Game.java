@@ -9,9 +9,8 @@ public class Game {
     private int leftRoundCnt;
 
     public GameInfo init(List<String> names, int roundInput) {
-        this.cars = names
-                .stream()
-                .map(Car::new)
+        this.cars = names.stream()
+                .map(name -> new Car(name))
                 .collect(Collectors.toList());
         this.leftRoundCnt = roundInput;
         return new GameInfo(cars, leftRoundCnt);
@@ -26,23 +25,27 @@ public class Game {
     }
 
     public List<CarInfo> findWinners(GameInfo gameInfo) {
-        int maxDistance = 0;
-        for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            maxDistance = Math.max(maxDistance, carInfo.getDistance());
-        }
         List<CarInfo> winners = new ArrayList<>();
         for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            addWinnerByDistance(winners, carInfo, maxDistance);
+            addWinnerByPosition(winners, carInfo, getMaxPosition(gameInfo));
         }
         return winners;
     }
 
-    private void addWinnerByDistance(List<CarInfo> winners,
+    private void addWinnerByPosition(List<CarInfo> winners,
                                      CarInfo carInfo,
-                                     int distance) {
-        if (carInfo.getDistance() == distance) {
+                                     int maxPosition) {
+        if (carInfo.getPosition() == maxPosition) {
             winners.add(carInfo);
         }
+    }
+
+    public int getMaxPosition(GameInfo gameInfo) {
+        int maxPosition = 0;
+        for (CarInfo carInfo : gameInfo.getCarInfos()) {
+            maxPosition = Math.max(maxPosition, carInfo.getPosition());
+        }
+        return maxPosition;
     }
 
     public void run(IOHelper ioHelper) {
@@ -51,7 +54,7 @@ public class Game {
 
         GameInfo gameInfo = init(namesInput, roundInput);
         ioHelper.printInitialStatus(gameInfo);
-        while(gameInfo.getLeftRoundCnt()!=0) {
+        while(gameInfo.getLeftRoundCnt() != 0) {
             gameInfo = runRound();
             ioHelper.printRoundResult(gameInfo);
         }
