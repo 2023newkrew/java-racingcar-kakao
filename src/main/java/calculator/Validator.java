@@ -10,7 +10,9 @@ public class Validator {
                         .filter(num -> num < 0)
                         .collect(Collectors.toList());
 
-        if(list.size() > 0) throw new RuntimeException("음수가 포함되어 있습니다.");
+        if(list.size() > 0){
+            throw new RuntimeException("음수가 포함되어 있습니다.");
+        }
     }
 
     public boolean isOneNumber(String expression) {

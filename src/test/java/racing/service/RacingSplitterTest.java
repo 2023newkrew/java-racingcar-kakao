@@ -16,7 +16,7 @@ public class RacingSplitterTest {
     }
 
     @Test
-    void givenRacingCarString_whenRacingCarSplit_thenReturnCarList(){
+    void Car_이름이_컴마로_구분된_문자열이_입력될_때_Car_리스트를_반환(){
         String input = "aaa,bbb,ccc";
         List<Car> expected = new ArrayList<>();
         expected.add(new Car("aaa", 0));
