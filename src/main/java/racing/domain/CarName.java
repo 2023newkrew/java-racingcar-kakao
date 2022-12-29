@@ -11,7 +11,7 @@ public class CarName {
     private final String name;
 
     public CarName(String name) {
-        if (Objects.isNull(name) || name.isBlank()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 이름은 공백으로만 이루어질 수 없습니다.");
         }
         validate(name);

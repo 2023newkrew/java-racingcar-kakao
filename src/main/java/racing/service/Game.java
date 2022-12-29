@@ -19,7 +19,7 @@ public class Game {
 
 
     public Game(final List<String> rawCarNames) {
-        if (Objects.isNull(rawCarNames) || rawCarNames.isEmpty()) {
+        if (rawCarNames == null || rawCarNames.isEmpty()) {
             throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE);
         }
         validateUniqueness(rawCarNames);

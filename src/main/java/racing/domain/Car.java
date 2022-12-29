@@ -19,7 +19,7 @@ public class Car {
     }
 
     public Car(final CarName name, final Movable movable) {
-        if (Objects.isNull(name) || Objects.isNull(movable)) {
+        if (name == null || Objects.isNull(movable)) {
             throw new IllegalArgumentException(NULL_INPUT_EXCEPTION_MESSAGE);
         }
         this.name = name;

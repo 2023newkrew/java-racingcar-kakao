@@ -11,7 +11,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<CarName> carNames) {
-        if (Objects.isNull(carNames) || carNames.isEmpty()) {
+        if (carNames == null || carNames.isEmpty()) {
             throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE);
         }
         cars = carNames.stream()
