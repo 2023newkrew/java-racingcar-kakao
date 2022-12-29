@@ -1,17 +1,24 @@
 package racing;
 
-import java.util.Scanner;
+import java.util.Random;
+import racing.domain.RacingGame;
+import racing.view.InputView;
+import racing.view.ResultView;
 
 public class Application {
-    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String names = scanner.nextLine();
+        String carNames = InputView.getCarNames();
+        int tryNo = InputView.getTryNo();
 
-        System.out.println("시도할 회수는 몇회인가요?");
-        int times = Integer.parseInt(scanner.nextLine());
+        RacingGame racingGame = new RacingGame();
+        racingGame.create(carNames);
 
-        Runner runner = new Runner();
-        runner.run(names, times);
+        ResultView.printSetup(racingGame);
+        for (int i = 0; i < tryNo; i++) {
+            racingGame.race(new Random());
+            ResultView.printCars(racingGame);
+        }
+        ResultView.printWinners(racingGame);
     }
 }

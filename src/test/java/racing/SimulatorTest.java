@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racing.domain.RacingGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +14,7 @@ public class SimulatorTest {
     @ParameterizedTest
     @MethodSource("getCreateData")
     void create(String input, String expected) {
-        Simulator simulator = new Simulator();
+        RacingGame simulator = new RacingGame();
         simulator.create(input);
         assertThat(simulator.toString()).isEqualTo(expected);
     }
@@ -29,9 +30,9 @@ public class SimulatorTest {
     @ParameterizedTest
     @MethodSource("getRunData")
     void run(String names, List<Integer> randoms, String expected) {
-        Simulator simulator = new Simulator();
+        RacingGame simulator = new RacingGame();
         simulator.create(names);
-        simulator.run(createRandoms(randoms));
+        simulator.race(createRandoms(randoms));
         assertThat(simulator.toString()).isEqualTo(expected);
     }
 
@@ -56,11 +57,11 @@ public class SimulatorTest {
     @ParameterizedTest
     @MethodSource("getSimulateData")
     void runManyTimes(String names, List<Integer> randoms, int times, String expected) {
-        Simulator simulator = new Simulator();
+        RacingGame simulator = new RacingGame();
         Random random = createRandoms(randoms);
         simulator.create(names);
         for (int i = 0; i < times; i++) {
-            simulator.run(random);
+            simulator.race(random);
         }
         assertThat(simulator.toString()).isEqualTo(expected);
     }
@@ -74,12 +75,12 @@ public class SimulatorTest {
 
     @ParameterizedTest
     @MethodSource("getWinnersData")
-    void winners(String names, List<Integer> randoms, int times, String winners) {
-        Simulator simulator = new Simulator();
+    void getWinners(String names, List<Integer> randoms, int times, String winners) {
+        RacingGame simulator = new RacingGame();
         Random random = createRandoms(randoms);
         simulator.create(names);
         for (int i = 0; i < times; i++) {
-            simulator.run(random);
+            simulator.race(random);
         }
         assertThat(simulator.getWinners()).isEqualTo(winners);
     }

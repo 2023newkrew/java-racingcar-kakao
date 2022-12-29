@@ -1,4 +1,4 @@
-package racing;
+package racing.domain;
 
 public class Car implements Comparable<Car> {
     public static final int MOVE_THRESHOLD = 3;

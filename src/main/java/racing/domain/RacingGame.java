@@ -1,4 +1,4 @@
-package racing;
+package racing.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class Simulator {
-    List<Car> cars = new ArrayList<>();
+public class RacingGame {
+    private final List<Car> cars = new ArrayList<>();
 
     public void create(String names) {
         for (String name : names.split(",")) {
@@ -15,7 +15,7 @@ public class Simulator {
         }
     }
 
-    public void run(Random random) {
+    public void race(Random random) {
         for (Car car : cars) {
             car.moveByCondition(random.nextInt(9));
         }
