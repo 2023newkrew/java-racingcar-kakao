@@ -30,6 +30,10 @@ public class Cars {
 
     public List<CarName> getWinners(Comparator<CarDTO> comparator) {
         List<CarDTO> carDtoList = getCarDtoList();
+        return selectWinners(carDtoList, comparator);
+    }
+
+    private List<CarName> selectWinners(List<CarDTO> carDtoList, Comparator<CarDTO> comparator) {
         carDtoList.sort(comparator);
         CarDTO lastWinner = carDtoList.get(cars.size() - 1);
         List<CarName> winners = carDtoList.stream()

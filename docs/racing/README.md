@@ -68,7 +68,7 @@
 
 - Cars
   - 객체 변수: List<Car> cars, ~~length~~
-  - 메서드: play(), getWinners(), ~~getStatus()~~, getCarDtoList()
+  - 메서드: play(), getWinners(), ~~getStatus()~~, getCarDtoList(), selectWinners()
 
 - CarName
   - 객체 변수: String name
