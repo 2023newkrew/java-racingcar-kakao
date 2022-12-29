@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringNumberParser {
+
+    public static final String DEFAULT_SEPARATOR = "[,:]";
+
     public List<Long> parse(String input, String separator) {
         if (input == null || input.isBlank()) {
             return new ArrayList<>();
         }
         if (separator == null) {
-            String[] stringNumbers = input.split("[,:]");
+            String[] stringNumbers = input.split(DEFAULT_SEPARATOR);
             return convertToNumbers(stringNumbers);
         }
         return separateWithCustomSeparator(input, separator);
