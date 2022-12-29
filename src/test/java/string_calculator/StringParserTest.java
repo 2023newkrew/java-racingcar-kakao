@@ -8,7 +8,7 @@ public class StringParserTest {
 
     @Test
     void parseSplitter_properInputWithSplitter() {
-        String s = "//;\nteststring";
+        String s = "//;\\nteststring";
         StringParser sp = new StringParser();
         Assertions.assertThat(sp.parseSplitter(s)).isEqualTo(';');
     }
@@ -27,13 +27,13 @@ public class StringParserTest {
         String s = "//teststring";
         Assertions.assertThat(sp.parseSplitter(s)).isNull();
 
-        String s1 = "\ntestString";
+        String s1 = "\\ntestString";
         Assertions.assertThat(sp.parseSplitter(s1)).isNull();
     }
 
     @Test
     void parseTargetString_properInputWithSplitter() {
-        String s = "//;\ntest,string:test;";
+        String s = "//;\\ntest,string:test;";
         StringParser sp = new StringParser();
 
         Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s), sp.parseSplitter(s))).isEqualTo(new String[]{"test", "string", "test", ""});
@@ -53,8 +53,8 @@ public class StringParserTest {
         String s = "//test,string";
         Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s), sp.parseSplitter(s))).isEqualTo(new String[]{"//test", "string"});
 
-        String s1 = "\ntest:String";
-        Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s1), sp.parseSplitter(s1))).isEqualTo(new String[]{"\ntest", "String"});
+        String s1 = "\\ntest:String";
+        Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s1), sp.parseSplitter(s1))).isEqualTo(new String[]{"\\ntest", "String"});
     }
 
     @Test
