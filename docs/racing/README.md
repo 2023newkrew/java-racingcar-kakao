@@ -15,11 +15,12 @@
 3. 값이 4 이상이면 자동차의 이동 거리를 1 증가시킨다.
 4. 두 자동차의 이동 거리를 비교한다.
 5. 게임 종료 시 누가 우승했는지 판단한다.
-6. 이름이 __1자 미만이거나__ 6자 이상인 경우 IllegalArgumentException 예외가 발생해야 한다.
-7. 이름이 중복되는 경우 IllegalArgumentException 예외가 발생해야 한다.
-8. 게임 진행 횟수 입력이 정수가 아닌 경우 IllegalArgumentException 예외가 발생해야 한다. 
-9. 게임 진행 횟수 입력이 1 미만인 경우 IllegalArgumentException 예외가 발생해야 한다. 
-10. __게임 진행 횟수 입력이 100 초과인 경우 IllegalArgumentException 예외가 발생해야 한다.__
+6. __이름의 앞 뒤 공백은 제거한다.__
+7. 이름이 __1자 미만이거나__ 6자 이상인 경우 IllegalArgumentException 예외가 발생해야 한다.
+8. 이름이 중복되는 경우 IllegalArgumentException 예외가 발생해야 한다.
+9. 게임 진행 횟수 입력이 정수가 아닌 경우 IllegalArgumentException 예외가 발생해야 한다. 
+10. 게임 진행 횟수 입력이 1 미만인 경우 IllegalArgumentException 예외가 발생해야 한다. 
+11. __게임 진행 횟수 입력이 100 초과인 경우 IllegalArgumentException 예외가 발생해야 한다.__
 
 <br>
 
