@@ -44,7 +44,7 @@ public class Car {
      * 자동차의 현재 위치를 형식에 맞게 출력
      * @return 자동차의 location 출력
      */
-    public String printLocation() {
+    public String toStringLocation() {
         return String.format(
                 "%s : %s",
                 this.carName,

@@ -3,7 +3,7 @@ package com.racing;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Game {
     private List<Car> cars;
@@ -39,14 +39,21 @@ public class Game {
     }
 
     /**
+     * run 함수 내부 실행 메소드들
+     */
+    private void runProgress(){
+        moveCars();
+        printCarsLocation();
+        this.runCount++;
+    }
+
+    /**
      * 사용자가 지정한 turn 만큼 게임 실행
      * @param turn
      */
     public void run(int turn) {
         for(int i=0; i<turn; i++){
-            moveCars();
-            printCarsLocation();
-            this.runCount++;
+            runProgress();
         }
     }
 
@@ -55,7 +62,7 @@ public class Game {
      */
     public void printCarsLocation(){
         for(Car car : this.cars){
-            System.out.println(car.printLocation());
+            System.out.println(car.toStringLocation());
         }
         System.out.println();
     }
@@ -65,14 +72,11 @@ public class Game {
      * maxLocation과 비교해 모두 반환
      * @return
      */
-    public ArrayList<Car> getWinner() {
+    public List<Car> getWinner() {
         int maxLoc = maxLocation();
-        ArrayList<Car> ret = new ArrayList<>();
-        for (Car car : this.cars) {
-            ret.add(maxLoc == car.getLocation() ? car : null);
-        }
-        ret.removeIf(Objects::isNull);
-        return ret;
+        return cars.stream()
+                .filter(car -> car.getLocation() == maxLoc)
+                .collect(Collectors.toList());
     }
 
     /**

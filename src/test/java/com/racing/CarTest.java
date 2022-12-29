@@ -44,6 +44,6 @@ public class CarTest {
         Car car1 = new Car("car1");
         // 한 칸 이동
         car1.move(9);
-        assertThat(car1.printLocation()).isEqualTo("car1 : -");
+        assertThat(car1.toStringLocation()).isEqualTo("car1 : -");
     }
 }
