@@ -44,7 +44,7 @@ public class Racing {
     }
 
     private Car max(Car car1, Car car2) {
-        if(car1.compareTo(car2) >= 0) {
+        if(car1.comparePosition(car2) >= 0) {
             return car1;
         }
         return car2;
