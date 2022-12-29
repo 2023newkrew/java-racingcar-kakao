@@ -39,8 +39,7 @@ public class Parser {
     }
     public Expression parsing(String text) {
 
-        Expression nullCheck = checkNull(text);
-        if (nullCheck != null) return nullCheck;
+        checkNull(text);
 
         // //;\n 1:2:3 -> 헤더 분리
         String header = separateHeader(text);

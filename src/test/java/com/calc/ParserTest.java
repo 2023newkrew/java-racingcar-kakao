@@ -8,14 +8,14 @@ public class ParserTest {
     void parseNullTest(){
         // null, 빈문자열
         Parser parser = new Parser();
-        Expression expression = parser.parsing("");
+        Expression expression = parser.checkNull(null);
         assertThat(expression.sumValues()).isEqualTo(0);
     }
     @Test
     void parseEmptyTest(){
         // null, 빈문자열
         Parser parser = new Parser();
-        Expression expression = parser.parsing("");
+        Expression expression = parser.checkNull("");
         assertThat(expression.sumValues()).isEqualTo(0);
     }
     @Test
