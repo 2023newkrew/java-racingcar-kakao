@@ -2,10 +2,6 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.CarInfo;
-import racingcar.domain.Game;
-import racingcar.domain.GameInfo;
 
 import java.util.List;
 
@@ -61,7 +57,7 @@ public class GameTest {
         }
         GameInfo gameInfo = new GameInfo(cars, 0);
 
-        List<CarInfo> winners = game.findWinners(gameInfo);
+        List<CarInfo> winners = game.getWinners(gameInfo);
 
         assertThat(winners.size()).isEqualTo(1);
         assertThat(winners.get(0).getName()).isEqualTo("car1");
@@ -79,7 +75,7 @@ public class GameTest {
         }
         GameInfo gameInfo = new GameInfo(cars, 0);
 
-        List<CarInfo> winners = game.findWinners(gameInfo);
+        List<CarInfo> winners = game.getWinners(gameInfo);
 
         assertThat(winners.size()).isEqualTo(2);
         assertThat(winners.get(0).getName()).isEqualTo("car1");

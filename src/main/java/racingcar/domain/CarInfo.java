@@ -13,16 +13,19 @@ public class CarInfo {
         this.distance = distance;
     }
 
+    public static CarInfo of(Car car) {
+        return new CarInfo(car.getName(), car.getDistance());
+    }
+
     public static List<CarInfo> of(List<Car> cars) {
         return cars.stream()
-                .map(car -> new CarInfo(car.getName(), car.getDistance()))
+                .map(CarInfo::of)
                 .collect(Collectors.toList());
     }
 
     public String getName() {
         return name;
     }
-
     public int getDistance() {
         return distance;
     }

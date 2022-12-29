@@ -7,12 +7,12 @@ public class Game {
     private List<Car> cars;
     private int leftRoundCnt;
 
-    public GameInfo init(List<String> names, int roundInput) {
+    public GameInfo init(List<String> names, int roundCnt) {
         this.cars = names
                 .stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-        this.leftRoundCnt = roundInput;
+        this.leftRoundCnt = roundCnt;
         return new GameInfo(cars, leftRoundCnt);
     }
 
@@ -24,7 +24,7 @@ public class Game {
         return new GameInfo(cars, leftRoundCnt);
     }
 
-    public List<CarInfo> findWinners(GameInfo gameInfo) {
+    public List<CarInfo> getWinners(GameInfo gameInfo) {
         int maxDistance = getMaxDistance(gameInfo.getCarInfos());
 
         List<CarInfo> winners = gameInfo.getCarInfos()
@@ -35,10 +35,9 @@ public class Game {
     }
 
     private int getMaxDistance(List<CarInfo> carInfos) {
-        int maxDistance = 0;
-        for (CarInfo carInfo : carInfos) {
-            maxDistance = Math.max(maxDistance, carInfo.getDistance());
-        }
-        return maxDistance;
+        return carInfos.stream()
+                .mapToInt(CarInfo::getDistance)
+                .max()
+                .orElseGet(()->-1);
     }
 }

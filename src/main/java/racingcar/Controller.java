@@ -27,6 +27,7 @@ public class Controller {
             view.printRoundResult(gameInfo);
         }
 
-        view.printGameResult(game.findWinners(gameInfo));
+        view.printGameResult(game.getWinners(gameInfo));
+        view.close();
     }
 }
