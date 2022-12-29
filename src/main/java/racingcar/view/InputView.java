@@ -11,7 +11,7 @@ public class InputView {
 
     public static List<String> inputCarNames() {
         List<String> carNames = null;
-        while (carNames==null) {
+        while (carNames == null) {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             carNames = tryInputCarNames();
         }
@@ -27,12 +27,31 @@ public class InputView {
         }
     }
 
-    public static int inputFinalTurn() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        String input = "a";
-        while (!input.matches("[0-9]+")) {
-            input = scanner.nextLine();
+    public static Integer inputFinalTurn() {
+        Integer finalTurn = null;
+        while (finalTurn == null) {
+            System.out.println("시도할 회수는 몇회인가요?");
+            finalTurn = tryInputFinalTurn();
         }
-        return Integer.parseInt(input);
+        return finalTurn;
+    }
+
+    private static Integer tryInputFinalTurn() {
+        try {
+            Integer finalTurn = Integer.parseInt(scanner.nextLine());
+            validatePositiveNumber(finalTurn);
+            return finalTurn;
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private static void validatePositiveNumber(Integer number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException("0보다 큰 수를 입력해주세요.");
+        }
     }
 }

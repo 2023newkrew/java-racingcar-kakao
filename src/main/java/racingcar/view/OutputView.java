@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public static void printGameResultMessage() {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public static void printWinners(List<RacingCar> winners) {
@@ -35,7 +35,7 @@ public class OutputView {
             winnerNames.add(winner.getCarName().getName());
         }
         sb.append(String.join(", ", winnerNames));
-        System.out.println(sb + "가 최종 우승했습니다.");
+        System.out.println(sb + " 가 최종 우승했습니다.");
     }
 
 }
