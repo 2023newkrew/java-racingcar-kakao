@@ -26,6 +26,9 @@ public class RacingGame {
     }
 
     public List<CarWinnerResponse> announceWinners() {
+        if (isGamePlaying()) {
+            throw new IllegalArgumentException("아직 게임이 종료되지 않았습니다.");
+        }
         List<Car> winners = referee.announceWinners();
         return CarWinnerResponse.toList(winners);
     }

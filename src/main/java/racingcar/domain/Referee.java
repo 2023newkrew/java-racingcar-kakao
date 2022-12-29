@@ -25,6 +25,9 @@ public class Referee {
     }
 
     public void moveCars() {
+        if (isGameEnded()) {
+            throw new IllegalArgumentException("게임이 종료되었습니다.");
+        }
         for (Car car : registeredCars) {
             int number = numberSelector.selectNumber();
             car.move(number);
@@ -57,13 +60,5 @@ public class Referee {
 
     public List<Car> announceRoundResult() {
         return registeredCars;
-    }
-
-    public int getRoundToPlay() {
-        return roundToPlay;
-    }
-
-    public int getCurrentRound() {
-        return currentRound;
     }
 }
