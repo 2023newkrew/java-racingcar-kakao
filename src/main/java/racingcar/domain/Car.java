@@ -31,15 +31,6 @@ public class Car {
         return position;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    public String displayCurrentPosition(){
-        return name + " : " + "-".repeat(position+1);
-    }
-
     public int comparePositionToOtherCar(Car otherCar) {
         return otherCar.comparePositionTo(position);
     }

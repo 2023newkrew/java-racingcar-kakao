@@ -8,8 +8,12 @@ public class ResultView {
     }
     public static void printCars(Car[] cars) {
         for (Car car: cars) {
-            System.out.println(car.displayCurrentPosition());
+            printCarNameAndPosition(car);
         }
         System.out.println();
+    }
+
+    private static void printCarNameAndPosition(Car car) {
+        System.out.println(car.name() + " : -" + "-".repeat(car.position()));
     }
 }
