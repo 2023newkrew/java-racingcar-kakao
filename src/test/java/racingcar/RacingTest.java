@@ -14,9 +14,15 @@ public class RacingTest {
 
     @BeforeEach
     void setUp() {
-        racing = new Racing();
-        racing.setCount(5);
-        racing.addCars(Arrays.asList("davi", "sean"));
+        racing = new Racing(Arrays.asList("davi", "sean"), 5);
+    }
+
+    @Test
+    @DisplayName("자동차 이름 목록과 시뮬레이션 횟수를 인자로 레이싱을 생성한다.")
+    void CreateRacing() {
+        Racing racing = new Racing(Arrays.asList("davi", "sean"), 5);
+        assertThat(racing.getCarList().size()).isEqualTo(2);
+        assertThat(racing.getCount()).isEqualTo(5);
     }
 
     @Test

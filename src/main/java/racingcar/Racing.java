@@ -8,11 +8,12 @@ public class Racing {
     private List<Car> cars = new ArrayList<>();
     private int count;
 
-    public void setCount(int count) {
+    public Racing(List<String> carNames, int count) {
+        this.addCars(carNames);
         this.count = count;
     }
 
-    public void addCars(List<String> names) {
+    private void addCars(List<String> names) {
         for (String name: names)
             cars.add(new Car(name));
     }
