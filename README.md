@@ -16,8 +16,7 @@
 class Application {
     static void main() {
       StringCalculator stringCalculator = new StringCalculator();
-      String[] result = stringCalculator.split("10,20"); 
-      System.out.println(result);//["10", "20"]
+      String[] result = stringCalculator.split("10,20"); //["10", "20"]
     }
 }
 ```
@@ -25,8 +24,7 @@ class Application {
 class Application {
   static void main() {
     StringCalculator stringCalculator = new StringCalculator();
-    String[] result = stringCalculator.split("//;\n30;40");
-    System.out.println(result); //["30", "40"]
+    String[] result = stringCalculator.split("//;\n30;40"); //["30", "40"]
   }
 }
 ```
@@ -37,8 +35,7 @@ class Application {
 class Application {
   static void main() {
     StringCalculator stringCalculator = new StringCalculator();
-    int result = stringCalculator.sumOf(List);
-    System.out.println(result); //30
+    int result = stringCalculator.sumOf(List); //30
   }
 }
 ```
@@ -49,8 +46,7 @@ class Application {
 class Application {
   static void main() {
     StringCalculator stringCalculator = new StringCalculator();
-    int result = stringCalculator.calculate("10,20");
-    System.out.println(result); //30
+    int result = stringCalculator.calculate("10,20"); //30
   }
 }
 ```
@@ -58,8 +54,7 @@ class Application {
 class Application {
   static void main() {
     StringCalculator stringCalculator = new StringCalculator();
-    int result = stringCalculator.calculate("//;\n30;40");
-    System.out.println(result); //70
+    int result = stringCalculator.calculate("//;\n30;40"); //70
   }
 }
 ```
@@ -68,7 +63,6 @@ class Application {
   static void main() {
     StringCalculator stringCalculator = new StringCalculator();
     int result = stringCalculator.calculate("//;\n30,40"); //Not work (Exception)
-    System.out.println(result);
   }
 }
 ```
@@ -174,8 +168,7 @@ class Application {
     Car car1 = new Car("1");
     Car car2 = new Car("2");
     car2.moveByCondition(4); //Move
-    int result = car1.compareTo(car2);
-    System.out.println(result); //-1 
+    int result = car1.compareTo(car2); //-1 
   }
 }
   
@@ -186,8 +179,7 @@ class Application {
     Car car1 = new Car("1");
     Car car2 = new Car("2");
     car1.moveByCondition(4); //Move
-    int result = car1.compareTo(car2);
-    System.out.println(result); //1 
+    int result = car1.compareTo(car2); //1 
   }
 }
 ```
@@ -196,8 +188,7 @@ class Application {
   static void main() {
     Car car1 = new Car("1");
     Car car2 = new Car("2");
-    int result = car1.compareTo(car2);
-    System.out.println(result); //0 
+    int result = car1.compareTo(car2); //0 
   }
 }
 ```
@@ -238,8 +229,7 @@ class Application {
     Simulator simulator = new Simulator();
     simulator.create("A,B");
     simulator.run(new Random());
-    String result = simulator.getWinners();
-    System.out.println(result); //"A" or "B" or "A, B"
+    String result = simulator.getWinners(); //"A" or "B" or "A, B"
   }
 }
 ```
