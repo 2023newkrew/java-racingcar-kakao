@@ -1,77 +1,45 @@
 package racing_car;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
-import racing_car.model.GameControl;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
+    /*
+    # Car 클래스가 갖춰야 할 요소
+    - 전진할수 있다. -> 위치를 가지고 있음.
+    - 4 이상의 값이면 전진, 3 이하의 값이면 멈춤
+    - 이름을 부여하여 생성할수 있다. -> 이름을 가지고 있음.
+    - 이름은 5자 이하만 가능하다.
+    */
 
     @Test
-    @DisplayName("제공된 문자열로 자동차 배열 생성")
-    void separateByComma() {
-        String testNames = "pobi,crong,honux";
-        Car[] cars = Car.from(testNames);
-        assertArrayEquals(cars, new Car[] {
-                new Car("pobi"),
-                new Car("crong"),
-                new Car("honux")
-        });
-    }
-
-    @Test
-    @DisplayName("빈 문자열 테스트")
-    void emptyName() {
-        String testNames = "";
-        Car[] cars = Car.from(testNames);
-        assertArrayEquals(cars, new Car[] {
-                new Car("")
-        });
-    }
-
-    @Test
-    @DisplayName("차량 전진 제어")
-    void carControl(){
-        GameControl gameControl = new GameControl();
+    @DisplayName("이름을 부여하여 생성")
+    void createWithName() {
         Car car = new Car("pobi");
-
-        gameControl.carControl(car);
-
-        String output = car.showDistance();
-        assertTrue(output.equals("-") || output.equals(""));
+        assertThat(car.name()).isEqualTo("pobi");
     }
 
     @Test
-    @DisplayName("차량간 거리 비교")
-    void compareCars() {
-        Car a = new Car("pobi");
-        Car b = new Car("crong");
-
-        a.move(4);
-        b.move(2);
-
-        assertEquals(-1, b.compareTo(a));
+    @DisplayName("이름은 한글자 이상")
+    void emptyName() {
+        Car car = new Car("");
+        assertThatThrownBy(()->new Car(""))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("이름의 길이가 너무 적습니다.");
     }
 
     @Test
-    @DisplayName("우승자 구하기")
-    void getWinner() {
-        String testNames = "pobi,crong,honux,ryan,chunsik,jordy";
-        Car[] cars = Car.from(testNames);
-
-        int[] distances = new int[] {1, 5, 2, 5, 4, 5};
-        for (int i = 0; i < distances.length; i++) {
-            cars[i].move(distances[i]);
-        }
-
-        GameControl gameControl = new GameControl();
-        Car[] winners = gameControl.getWinners(cars);
-
-        assertArrayEquals(new Car[] {
-                cars[1], cars[3], cars[5]
-        }, winners);
+    @DisplayName("차량 전진")
+    void proceed(){
+        Car car = new Car("pobi");
+        int start = car.distance();
+        car.proceed(5);
+        assertThat(car.distance()).isEqualTo(start + 1);
     }
 
 }
