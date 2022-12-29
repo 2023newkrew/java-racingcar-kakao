@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class RacingCarModel {
 
     private static final int MAX_CAR_COUNT = 100;
+
     private final List<Car> cars;
 
     public static List<String> parseNames(String nameLine) {
