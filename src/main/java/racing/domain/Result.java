@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Result {
 
-    public List<String> getCarsWithPosition(Car[] cars, int position) {
+    private List<String> getCarsWithPosition(Car[] cars, int position) {
         List<String> winners = Arrays.stream(cars)
                 .filter(car -> car.getPosition() == position)
                 .map(s -> s.getName()).collect(Collectors.toList());

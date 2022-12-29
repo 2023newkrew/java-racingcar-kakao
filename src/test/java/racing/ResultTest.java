@@ -1,13 +1,11 @@
 package racing;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing.domain.Car;
 import racing.domain.Result;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,6 +18,7 @@ public class ResultTest {
         result = new Result();
     }
 
+    @DisplayName("우승자 테스트")
     @Test
     public void getWinnerTest() {
         Car carA = new Car(5, "pobi");
@@ -28,6 +27,5 @@ public class ResultTest {
         Car[] cars = new Car[] {carA, carB, carC};
         assertThat(result.getWinner(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
     }
-
 
 }
