@@ -7,8 +7,8 @@ import java.util.List;
 public class ResultView {
     public static void printResult(Car[] cars) {
         System.out.println("실행 결과");
-        for (int index = 0; index < cars.length; index++) {
-            System.out.println(cars[index]);
+        for (Car car : cars) {
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
         System.out.println();
     }

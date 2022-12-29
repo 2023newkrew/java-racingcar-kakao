@@ -7,8 +7,8 @@ public class Car {
     private static final int MOVE_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 1;
     private static final int CAR_VELOCITY = 1;
-    private int position;
     private String name;
+    private int position;
 
     public Car(String name) {
         this(name, DEFAULT_POSITION);
@@ -38,10 +38,6 @@ public class Car {
         moveCar(isMove(createRandomNumber()));
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public int getMaxPosition(int maxPosition) {
         return Math.max(maxPosition, position);
     }
@@ -53,8 +49,11 @@ public class Car {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + "-".repeat(position);
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
