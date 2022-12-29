@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.model.RacingGame;
+import racingcar.view.IO;
+
 public class Controller {
 
     private IO io;

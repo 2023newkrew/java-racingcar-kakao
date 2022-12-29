@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 public class RacingGame {
     private List<Car> cars;
     private int turn;
+    private PowerGenerator powerGenerator;
 
     public RacingGame(List<String> carNames) {
         this.cars = new ArrayList<>();
@@ -13,19 +14,16 @@ public class RacingGame {
             cars.add(new Car(name));
         }
         this.turn = 0;
+        this.powerGenerator = new PowerGenerator();
     }
 
     public List<Car> getCars() {
         return this.cars;
     }
 
-    public int generateRandomNumber() {
-        return (int)(Math.random()*10) %10;
-    }
-
     public void proceedTurn() {
         for(Car car : cars) {
-            car.accelerate(this.generateRandomNumber());
+            car.accelerate(this.powerGenerator.getRandomPower());
         }
         this.turn += 1;
     }

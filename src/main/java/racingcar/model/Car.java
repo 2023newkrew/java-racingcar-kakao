@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.model;
 
 public class Car {
     public final static int POWER_THRESHOLD = 4;
