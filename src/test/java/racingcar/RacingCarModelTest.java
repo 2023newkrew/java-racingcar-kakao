@@ -47,20 +47,19 @@ class RacingCarModelTest {
 
         @ParameterizedTest
         @MethodSource
-        void should_throwException_when_givenCars(List<Car> cars) {
+        void should_throwException_when_givenInvalidCars(List<Car> cars) {
             assertThatThrownBy(() -> RacingCarModel.from(cars))
                     .isInstanceOf(RuntimeException.class);
         }
 
-        Stream<Arguments> should_throwException_when_givenCars() {
+        Stream<Arguments> should_throwException_when_givenInvalidCars() {
             Engine engine = Engine.getDefaultEngine();
+            List<Car> emptyCars = List.of();
+            List<Car> duplicateCars = List.of(Car.of("abc", engine), Car.of("abc", engine));
             return Stream.of(
                     Arguments.of((Object) null),
-                    Arguments.of(List.of()),
-                    Arguments.of(
-                            List.of(Car.of("abc", engine),
-                                    Car.of("abc", engine))
-                    ));
+                    Arguments.of(emptyCars),
+                    Arguments.of(duplicateCars));
         }
 
         @Test
