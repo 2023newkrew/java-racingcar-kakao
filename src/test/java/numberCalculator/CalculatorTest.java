@@ -58,7 +58,7 @@ public class CalculatorTest {
     public void splitNonStringFormat() {
         assertThrows(InvalidFormatException.class, (() -> {
             String originStr = "1,1,e";
-            List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, "!!");
+            List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, DEFAULT_STRING_SEPARATOR);
         }));
     }
 

@@ -27,6 +27,7 @@ public class NamingAssignmentTest {
         String testString = "Car1,Car1,Car2";
         Set<String> splittedNames = inputParser.splitNames(testString);
         Assertions.assertThat(splittedNames.size()).isEqualTo(2);
+
     }
 
     @ParameterizedTest
@@ -46,5 +47,4 @@ public class NamingAssignmentTest {
         boolean result = inputParser.checkCarNameLength(testString);
         Assertions.assertThat(result).isFalse();
     }
-
 }
