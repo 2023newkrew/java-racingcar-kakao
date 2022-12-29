@@ -1,18 +1,20 @@
-package racingcar;
+package racingcar.service;
+
+import racingcar.model.Car;
 
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * 프로그램의 UI로직을 담당하는 클래스입니다.
- * UI로직과 validation로직이 모두 들어가 있습니다.
+ * 사용자 input도 여기에서 담당합니다.
  */
-public class IOSystem {
+public class IOService {
     private final Scanner sc;
     final static String COMMA = ",";
     final static String SPACE = " ";
 
-    public IOSystem() {
+    public IOService() {
         sc = new Scanner(System.in);
     }
 
@@ -24,8 +26,24 @@ public class IOSystem {
         return carNameList;
     }
 
-    private static List<String> SplitCarNames(String carNames) {
+    private List<String> SplitCarNames(String carNames) {
         return List.of(carNames.split(COMMA));
+    }
+
+    public int trialNumberUserInput() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        int trialNumber = Integer.parseInt(sc.next());
+
+        return trialNumber;
+    }
+
+    public void printInitialGameStatus(CarService carService) {
+        System.out.println("실행 결과");
+        printGameResult(carService);
+    }
+
+    public void printGameResult(CarService carService) {
+        System.out.println(carService);
     }
 
     public void printWinners(List<Car> winners) {
@@ -36,16 +54,5 @@ public class IOSystem {
         stringBuilder.setLength(stringBuilder.length() - 2);
         stringBuilder.append("가 최종 우승했습니다.");
         System.out.println(stringBuilder.toString());
-    }
-
-    public void printGameResult(CarList carList) {
-        System.out.println(carList);
-    }
-
-    public int trialNumberUserInput() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        int trialNumber = Integer.parseInt(sc.next());
-
-        return trialNumber;
     }
 }

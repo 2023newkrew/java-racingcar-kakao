@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CalculatorTest {
@@ -16,11 +15,14 @@ public class CalculatorTest {
         calculator = new Calculator(new StringParser());
     }
 
-    @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = {""})
-    void emptyOrNullString(String input) {
-        assertThatCalcResultEqualTo(input, 0);
+    @Test
+    void nullString() {
+        assertThatCalcResultEqualTo(null, 0);
+    }
+
+    @Test
+    void emptyString() {
+        assertThatCalcResultEqualTo("", 0);
     }
 
     @Test

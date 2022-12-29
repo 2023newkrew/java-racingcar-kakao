@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.service;
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,20 +8,13 @@ import java.util.Set;
  * IOSystem과 CarList를 합쳐 Service로 구현
  * IOSystem에 있는 validation logic을 여기에서 진행합니다.
  */
-public class Service {
-    private final IOSystem ioSystem;
-    private final CarList carList;
-    private final static String COMMA = ",";
+public class ValidationService {
+    private final IOService ioService;
+    private final CarService carService;
 
-    public Service() {
-        ioSystem = new IOSystem();
-        carList = new CarList();
-    }
-
-    public List<String> carNameUserInputService() {
-        List<String> carNameList = ioSystem.carNamesUserInput();
-        validateInputCarNames(carNameList);
-        return carNameList;
+    public ValidationService() {
+        ioService = new IOService();
+        carService = new CarService();
     }
 
     public void validateInputCarNames(List<String> carNameList) {
@@ -54,8 +47,7 @@ public class Service {
         return carNameSet.size() < carNameList.size();
     }
 
-    public int trialUserInputService() {
-        int trialNumber = ioSystem.trialNumberUserInput();
+    public int validateTrialUserInput(int trialNumber) {
         checkNegative(trialNumber);
         return trialNumber;
     }
@@ -64,24 +56,5 @@ public class Service {
         if (trialNumber < 0) {
             throw new RuntimeException();
         }
-    }
-
-    public void addCarsInCarListService(List<String> carNamesInput) {
-        for (String carName : carNamesInput) {
-            carList.add(new Car(carName));
-        }
-    }
-
-    public void playRacingGameAndResultService(int trialNumber) {
-        System.out.println("실행 결과");
-        ioSystem.printGameResult(carList);
-        for (int i = 0; i < trialNumber; i++) {
-            carList.moveAll();
-            ioSystem.printGameResult(carList);
-        }
-    }
-
-    public void printWinnersService() {
-        ioSystem.printWinners(carList.getWinners());
     }
 }

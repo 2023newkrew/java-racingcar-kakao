@@ -1,5 +1,6 @@
-package racingcar;
+package racingcar.service;
 
+import racingcar.model.Car;
 import racingcar.util.RandomUtil;
 
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import java.util.List;
 /**
  * Racing Game에 참가하는 Car객체들을 관리하는 클래스입니다.
  */
-public class CarList {
+public class CarService {
     private final List<Car> cars;
     final static String NEW_LINE = "\n";
 
-    public CarList() {
+    public CarService() {
         cars = new ArrayList<>();
     }
 
@@ -26,6 +27,11 @@ public class CarList {
         }
     }
 
+    /**
+     * 게임이 끝난 후 max position을 확인하고 그 max position에 있는 car들을 List로 반환
+     *
+     * @return max position에 있는 car들이 들어있는 리스트
+     */
     public List<Car> getWinners() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxPosition();
