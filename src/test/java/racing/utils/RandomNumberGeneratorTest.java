@@ -5,7 +5,7 @@ import org.junit.jupiter.api.RepeatedTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UtilTest {
+public class RandomNumberGeneratorTest {
     private RandomNumberGenerator generator;
     @BeforeEach
     void init() {
