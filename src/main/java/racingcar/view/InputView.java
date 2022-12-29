@@ -16,8 +16,8 @@ public class InputView {
         return parseCarNames(scanner.nextLine());
     }
 
-    public List<String> parseCarNames(String s) {
-        List<String> carNames = Arrays.asList(s.split(","));
+    public List<String> parseCarNames(String carNamesInput) {
+        List<String> carNames = Arrays.asList(carNamesInput.split(","));
         for (int i = 0; i < carNames.size(); i++) {
             carNames.set(i, (carNames.get(i) + "     ").substring(0, 5));
         }
