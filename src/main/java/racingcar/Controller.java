@@ -1,7 +1,6 @@
 package racingcar;
 
 import racingcar.model.RacingGame;
-import racingcar.view.IO;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
