@@ -1,19 +1,22 @@
 package racingcar;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarTest {
-    @Test
-    public void 자동차가_움직인다() {
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    public void 랜덤_값이_4_이상일_경우_한_칸_전진한다(final int condition) {
         Car car = new Car("aaaa");
-        assertEquals(car.move(true), 1);
+        assertEquals(car.move(condition), 1);
     }
 
-    @Test
-    public void 자동차가_정지한다() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    public void 랜덤_값이_3_이하일_경우_정지한다(final int condition) {
         Car car = new Car("aaaa");
-        assertEquals(car.move(false), 0);
+        assertEquals(car.move(condition), 0);
     }
 }
