@@ -13,6 +13,12 @@ public class Racing {
     private final List<Car> cars = new ArrayList<>();
     private int turn = 0;
 
+    public Racing(String nameInput, String turn) {
+        makeCars(StringParser.parse(nameInput));
+
+        setTurn(turn);
+    }
+    
     public static boolean isValidTurn(int turn) {
         return turn > 0;
     }
@@ -23,12 +29,6 @@ public class Racing {
 
     public List<CarDTO> getCarDTOs() {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
-    }
-
-    public void init(String nameInput, String turn) {
-        makeCars(StringParser.parse(nameInput));
-
-        setTurn(turn);
     }
 
     public void makeCars(List<String> carNames) {
