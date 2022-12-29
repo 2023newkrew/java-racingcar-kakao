@@ -1,8 +1,10 @@
 /**
- * 레이싱 객체:
- * 자동차들의 정보를 가지고 있음
- * 라운드를 진행함
- * 다른거X 입력은 신경 안써야함 그냥 게임 돌리기만함
+ * - 여러대의 자동차 정보를 가지고 있다
+ * - 각 라운드마다 자동차를 전진하거나 정지한다
+ *  - 랜덤 값이 4 이상일 경우 자동차를 전진한다
+ *  - 랜덤 값이 3 이하일 경우 자동차를 정지한다
+ * - 라운드가 종료될 때 마다 결과를 확인할 수 있다
+ * - 게임이 종료된 후 우승자를 확인할 수 있다
  */
 package racingcar;
 
@@ -13,20 +15,22 @@ public class Racing {
     private List<Car> cars;
     private int roundNum;
 
-    Racing(List<Car> cars, int roundNum) { // 인풋은 이미 정상인걸 확인했다 치고 (뷰에서 확인한다함)
+    Racing(List<String> carNames, int roundNum) {
         this.cars = new ArrayList<>();
-        this.cars = cars;
+        for (String carName: carNames) {
+            cars.add(new Car(carName));
+        }
         this.roundNum = roundNum;
     }
 
-    private void round() {
+    public void round() {
         for (Car car : cars) {
             int random = Utils.getRandomNumber();
             car.move(random);
         }
     }
 
-    public List<Car> roundResult() {
+    public List<Car> getRoundResult() { //정보를 보내는 부분
         List<Car> result = new ArrayList<>();
         for (Car car : cars) {
             result.add(car);
@@ -34,29 +38,22 @@ public class Racing {
         return result;
     }
 
-    List<String> getWinner() {
+    public List<String> getWinner() { //정보를 보내는 부분
         List<String> winners = new ArrayList<>();
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(car.getPosition(), maxPosition);
         }
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) winners.add(car.getName());
+            if (car.getPosition() == maxPosition) {
+                winners.add(car.getName());
+            }
         }
         return winners;
     }
 
-    int getRoundNum() {
-        return roundNum;
+    public List<Car> getCars() {
+        return cars;
     }
-/*
-    Car getCar(int index) {
-        try {
-            return cars.get(index);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            ex.printStackTrace();
-            throw ex;
-        }
-    }
-*/
+
 }
