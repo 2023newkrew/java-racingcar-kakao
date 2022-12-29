@@ -3,21 +3,21 @@ package racingcar.view;
 import racingcar.domain.InvalidInputException;
 
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.io.PrintStream;
+import java.util.*;
 
 public class InputViewKorean implements InputView{
     private static final String DELIMITER = ",";
 
     private final Scanner scanner;
+    private final PrintStream printStream;
 
-    public InputViewKorean(InputStream inputStream){
+    public InputViewKorean(InputStream inputStream, PrintStream printStream){
         scanner = new Scanner(inputStream);
+        this.printStream = printStream;
     }
     public String[] scanNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        printStream.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         return scanNames(scanner.nextLine());
     }
     public String[] scanNames(String names){ // inputStream을 거치지 않고 직접 입력
@@ -29,7 +29,7 @@ public class InputViewKorean implements InputView{
     }
 
     public int scanTrialCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        printStream.println("시도할 회수는 몇회인가요?");
         return validateTrialCount(scanner.nextLine());
     }
 

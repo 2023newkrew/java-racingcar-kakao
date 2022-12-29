@@ -19,13 +19,11 @@ public class ExceptionViewKorean implements ExceptionView {
             "이미 경기가 끝났습니다.",
             "경기가 아직 끝나지 않았습니다.",
             "라운드 횟수는 1 이상이어야 합니다.",
-            "경기에 참여하는 차의 개수는 2개 이상이어야 합니다."
-            },
+            "경기에 참여하는 차의 개수는 2개 이상이어야 합니다."},
+
             {"올바른 형식으로 입력하세요."},
 
-            {
-                "알 수 없는 오류가 발생했습니다."
-            }
+            {"알 수 없는 오류가 발생했습니다."} // not found
     };
     private final PrintStream errorStream;
 

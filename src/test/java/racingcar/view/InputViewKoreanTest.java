@@ -15,7 +15,7 @@ public class InputViewKoreanTest {
 
     @BeforeEach
     void initialization(){
-        inputViewKorean = new InputViewKorean(System.in);
+        inputViewKorean = new InputViewKorean(System.in, System.out);
     }
     @ParameterizedTest
     @ValueSource(strings={"daniel",""})

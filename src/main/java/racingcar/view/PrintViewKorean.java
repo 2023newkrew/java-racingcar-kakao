@@ -3,7 +3,6 @@ package racingcar.view;
 import racingcar.domain.Car;
 
 import java.io.PrintStream;
-import java.util.List;
 
 public class PrintViewKorean implements PrintView {
 
