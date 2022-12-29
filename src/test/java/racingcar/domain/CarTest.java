@@ -35,7 +35,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {0,1, 2, 3})
     public void doNotMoveTest(int input) {
         Car racingCar = new RacingCar("abc");
         racingCar.move(input);
