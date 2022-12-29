@@ -38,9 +38,8 @@ public class RacingGameTest {
     @Test
     void countTurnTest() {
         RacingGame racingGame = new RacingGame(List.of("car1", "car2", "car3"), 5);
-        racingGame.play();
 
-        assertThat(racingGame.getTurn()).isEqualTo(0);
+        assertThat(racingGame.getTurn()).isEqualTo(5);
     }
 
     @Test
@@ -70,6 +69,7 @@ public class RacingGameTest {
         carList.set(racingGame, testCarList);
 
         assertThat(getWinners.invoke(racingGame)).isEqualTo(List.of("car1", "car3"));
-
     }
+
+
 }
