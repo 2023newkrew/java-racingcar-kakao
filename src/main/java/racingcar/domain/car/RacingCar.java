@@ -2,6 +2,7 @@ package racingcar.domain.car;
 
 import racingcar.exception.BusinessException;
 import racingcar.exception.ErrorCode;
+import racingcar.util.StringUtil;
 
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public abstract class RacingCar {
     }
 
     private void checkEmptyOrNull(String name) {
-        if (name == null || "".equals(name)) {
+        if (StringUtil.isEmpty(name)) {
             throw new BusinessException(ErrorCode.EMPTY_CAR_NAME_EXCEPTION);
         }
     }
