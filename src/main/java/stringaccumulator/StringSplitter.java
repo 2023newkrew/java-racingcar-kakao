@@ -1,72 +1,45 @@
 package stringaccumulator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class StringSplitter {
 
+    private static final StringSplitter defaultSplitter = new StringSplitter(null);
+
     private static final List<String> DEFAULT_SEPARATORS = List.of(",", ":");
 
-    private static final String PREFIX = "//";
+    private static final String DELIMITER = "|";
 
-    private static final String SUFFIX = "\n";
+    private final String customSeparator;
 
-    private static final int PREFIX_LENGTH = PREFIX.length();
+    public static StringSplitter getDefaultSplitter() {
+        return defaultSplitter;
+    }
 
-    private static final int SUFFIX_LENGTH = SUFFIX.length();
-
-    private final List<String> separators;
-
-    public static StringSplitter from(String separatorFormat) {
-        if (isNullOrBlank(separatorFormat)) {
-            return new StringSplitter(DEFAULT_SEPARATORS);
+    public static StringSplitter from(String customSeparator) {
+        if (isNullOrEmpty(customSeparator)) {
+            return getDefaultSplitter();
         }
-        checkFormatValidation(separatorFormat);
-        String customSeparator = parseCustomSeparator(separatorFormat);
-        List<String> separators = gerSeparatorsWith(customSeparator);
-        return new StringSplitter(separators);
+        return new StringSplitter(customSeparator);
     }
 
-    private static boolean isNullOrBlank(String separatorFormat) {
-        return Objects.isNull(separatorFormat) || separatorFormat.isBlank();
+    private static boolean isNullOrEmpty(String customSeparator) {
+        return Objects.isNull(customSeparator) || customSeparator.isEmpty();
     }
 
-    private static void checkFormatValidation(String separatorFormat) {
-        if (isInvalidFormat(separatorFormat)) {
-            throw new RuntimeException("Invalid separator format.");
-        }
-    }
-
-    private static boolean isInvalidFormat(String separatorFormat) {
-        return !separatorFormat.startsWith(PREFIX) || !separatorFormat.endsWith(SUFFIX);
-    }
-
-    private static String parseCustomSeparator(String separatorFormat) {
-        checkFormatValidation(separatorFormat);
-        int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
-        return separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
-    }
-
-    private static List<String> gerSeparatorsWith(String customSeparator) {
-        List<String> separators = new ArrayList<>(DEFAULT_SEPARATORS);
-        if (!customSeparator.isBlank()) {
-            separators.add(customSeparator);
-        }
-        return separators;
-    }
-
-    private StringSplitter(List<String> separators) {
-        this.separators = separators;
-    }
-
-    //Todo: 테스트에서만 사용하는 메소드 제거
-    public boolean contains(String separator) {
-        return separators.contains(separator);
+    private StringSplitter(String customSeparator) {
+        this.customSeparator = customSeparator;
     }
 
     public List<String> split(String content) {
-        String splitRegex = String.join("|", separators);
+        if (Objects.isNull(content)) {
+            return List.of("");
+        }
+        String splitRegex = String.join(DELIMITER, DEFAULT_SEPARATORS);
+        if (!isNullOrEmpty(customSeparator)) {
+            splitRegex = customSeparator + DELIMITER + splitRegex;
+        }
         return List.of(content.split(splitRegex));
     }
 }

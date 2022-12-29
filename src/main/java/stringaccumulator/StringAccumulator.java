@@ -1,48 +1,29 @@
 package stringaccumulator;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class StringAccumulator {
 
-    String separator;
-    String content;
+    private final StringSplitter stringSplitter;
 
-    private StringAccumulator(String str) {
-        content = str;
-        if (hasSeparator(str)) {
-            int newlineNextIndex = getNewlineIndex(str) + 1;
-            separator = str.substring(0, newlineNextIndex);
-            content = str.substring(newlineNextIndex);
+    public static StringAccumulator from(StringSplitter stringSplitter) {
+        if (Objects.isNull(stringSplitter)) {
+            throw new RuntimeException("StringSplitter should be not null.");
         }
+        return new StringAccumulator(stringSplitter);
     }
 
-    private static boolean hasSeparator(String str) {
-        return str.startsWith("//");
+    private StringAccumulator(StringSplitter stringSplitter) {
+        this.stringSplitter = stringSplitter;
     }
 
-    private static int getNewlineIndex(String str) {
-        int newlineIndex = str.indexOf("\n");
-        if (newlineIndex == -1)
-            throw new RuntimeException("Invalid string.");
-        return newlineIndex;
-    }
-
-    public static StringAccumulator from(String str) {
-        return new StringAccumulator(str);
-    }
-
-    public long accumulate() {
-        return StringSplitter.from(separator)
-                .split(content)
+    public long accumulate(String content) {
+        return stringSplitter.split(content)
                 .stream()
                 .map(String::trim)
-                .filter(token -> !token.isBlank())
+                .filter(Predicate.not(String::isBlank))
                 .mapToLong(Long::parseUnsignedLong)
                 .sum();
-    }
-
-    public boolean equalsTo(String separator, String content) {
-        return Objects.equals(this.separator, separator) &&
-                Objects.equals(this.content, content);
     }
 }

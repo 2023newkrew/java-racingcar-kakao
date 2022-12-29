@@ -20,52 +20,17 @@ class StringSplitterTest {
     class from {
         @ParameterizedTest
         @MethodSource
-        void should_returnStringSplitter_when_validString(String input, String customSeparator) {
-            StringSplitter splitter = StringSplitter.from(input);
-            assertThat(splitter.contains(customSeparator)).isTrue();
+        void should_returnDefaultIsResult_when_givenCustomSeparator(String customSeparator, boolean result) {
+            StringSplitter splitter = StringSplitter.from(customSeparator);
+            assertThat(splitter == StringSplitter.getDefaultSplitter()).isEqualTo(result);
         }
 
-        Stream<Arguments> should_returnStringSplitter_when_validString() {
+        Stream<Arguments> should_returnDefaultIsResult_when_givenCustomSeparator() {
             return Stream.of(
-                    Arguments.of("//.\n", "."),
-                    Arguments.of("//. \n", ". "),
-                    Arguments.of("///.\n", "/."),
-                    Arguments.of("//.\n\n", ".\n"),
-                    Arguments.of("//123\n", "123")
+                    Arguments.of(null, true),
+                    Arguments.of("", true),
+                    Arguments.of(" ", false)
             );
-        }
-
-        @Nested
-        class should_throwException {
-            @ParameterizedTest
-            @ValueSource(strings = {"/.\n", "", " "})
-            void when_invalidPrefix(String input) {
-                assertThatThrownBy(() -> {
-                    StringSplitter.from(input);
-                }).isInstanceOf(RuntimeException.class);
-            }
-
-            @Test
-            void when_invalidSuffix() {
-                assertThatThrownBy(() -> {
-                    StringSplitter.from("//.\\");
-                }).isInstanceOf(RuntimeException.class);
-            }
-        }
-
-        @Nested
-        class should_has_NotEmptyString {
-            @Test
-            void when_givenEmptySeparator() {
-                StringSplitter splitter = StringSplitter.from("//\n");
-                assertThat(splitter.contains("")).isFalse();
-            }
-
-            @Test
-            void when_givenNull() {
-                StringSplitter splitter = StringSplitter.from(null);
-                assertThat(splitter.contains("")).isFalse();
-            }
         }
     }
 
@@ -81,17 +46,18 @@ class StringSplitterTest {
 
         Stream<Arguments> should_returnTokens_when_givenSplitter() {
             StringSplitter nullSplitter = StringSplitter.from(null);
-            StringSplitter blank1Splitter = StringSplitter.from("// \n");
-            StringSplitter blank2Splitter = StringSplitter.from("//  \n");
-            StringSplitter splitter = StringSplitter.from("//11\n");
+            StringSplitter blank1Splitter = StringSplitter.from(" ");
+            StringSplitter blank2Splitter = StringSplitter.from("  ");
+            StringSplitter splitter = StringSplitter.from("11");
             return Stream.of(
+                    Arguments.of(nullSplitter, null, List.of("")),
                     Arguments.of(nullSplitter, "", List.of("")),
                     Arguments.of(nullSplitter, "1,2,3", List.of("1", "2", "3")),
                     Arguments.of(nullSplitter, "1, 2, 3", List.of("1", " 2", " 3")),
                     Arguments.of(blank1Splitter, "1, 2, 3", List.of("1", "", "2", "", "3")),
                     Arguments.of(blank2Splitter, "1,  2, 3", List.of("1", "", "2", " 3")),
                     Arguments.of(splitter, "1112111", List.of("", "12", "1")),
-                    Arguments.of(StringSplitter.from("//,1\n"), "2,1,3", List.of("2", "", "3"))
+                    Arguments.of(StringSplitter.from(",1"), "2,1,3", List.of("2", "", "3"))
             );
         }
 
