@@ -2,6 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.RacingCarName;
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class IOViewTest {
         InputView inputView = new InputView();
 
         //when
-        List<String> carNames = inputView.parseCarNames("oscar,gene,longwrongname");
+        List<String> carNames = RacingCarName.parseCarNames("oscar,gene,longwrongname");
 
         //then
         assertEquals("oscar",carNames.get(0));

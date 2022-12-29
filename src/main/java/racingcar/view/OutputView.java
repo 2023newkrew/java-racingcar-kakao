@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printTurnResult(List<RacingCar> cars) {
+    public static void printTurnResult(List<RacingCar> cars) {
         StringBuilder sb = new StringBuilder();
         for (RacingCar rc : cars) {
             sb.append(carPosToOutputText(rc));
@@ -15,25 +15,24 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    private String carPosToOutputText(RacingCar racingCar) {
+    private static String carPosToOutputText(RacingCar racingCar) {
         StringBuilder sb = new StringBuilder();
-        sb.append(racingCar.getName()).append(" : ");
+        sb.append(racingCar.getCarName().getName()).append(" : ");
         for (int i = 0; i <= racingCar.getPos(); i++) {
             sb.append("-");
         }
         return sb.append("\n").toString();
     }
 
-    public void printGameResultMessage() {
+    public static void printGameResultMessage() {
         System.out.println("실행 결과");
     }
 
-    public void printWinners(List<RacingCar> winners) {
-        // pobi, honux가 최종 우승했습니다.
+    public static void printWinners(List<RacingCar> winners) {
         StringBuilder sb = new StringBuilder();
         List<String> winnerNames = new ArrayList<>();
         for (RacingCar winner : winners) {
-            winnerNames.add(winner.getName());
+            winnerNames.add(winner.getCarName().getName());
         }
         sb.append(String.join(", ", winnerNames));
         System.out.println(sb + "가 최종 우승했습니다.");
