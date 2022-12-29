@@ -1,8 +1,5 @@
 package calculator;
 
-import static org.assertj.core.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,12 +7,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-public class CalculatorTest {
-    private Calculator calculator;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-    @BeforeEach
-    void setUp() {
-        this.calculator = new Calculator();
+public class CalculatorTest {
+    private final Calculator calculator;
+
+    CalculatorTest(){
+        calculator = new Calculator();
     }
 
     @ParameterizedTest
@@ -27,8 +26,6 @@ public class CalculatorTest {
 
         //then
         assertThat(result).isEqualTo(0);
-
-
     }
 
     @ParameterizedTest
