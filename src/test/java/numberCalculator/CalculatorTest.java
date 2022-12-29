@@ -1,6 +1,5 @@
 package numberCalculator;
 
-import numberCalculator.Calculator;
 import numberCalculator.exceptions.InvalidFormatException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static numberCalculator.SeparatorParser.DEFAULT_STRING_SEPARATOR;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
@@ -22,35 +22,35 @@ public class CalculatorTest {
 
     @Test
     public void stringSplitComma(){
-        String origin_str = "0,1,2";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Arrays.asList(0, 1, 2));
+        String originStr = "0,1,2";
+        List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, DEFAULT_STRING_SEPARATOR);
+        Assertions.assertThat(splitNumbersBySeparator).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
     public void stringSplitColon(){
-        String origin_str = "0:1:2";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Arrays.asList(0, 1, 2));
+        String originStr = "0:1:2";
+        List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, DEFAULT_STRING_SEPARATOR);
+        Assertions.assertThat(splitNumbersBySeparator).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
-    public void stringSplitClonAndComma(){
-        String origin_str = "0,1:2";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Arrays.asList(0, 1, 2));
+    public void stringSplitColonAndComma(){
+        String originStr = "0,1:2";
+        List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, DEFAULT_STRING_SEPARATOR);
+        Assertions.assertThat(splitNumbersBySeparator).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
     public void stringEmptyString() {
-        String origin_str = "";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Collections.emptyList());
+        String originStr = "";
+        List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, DEFAULT_STRING_SEPARATOR);
+        Assertions.assertThat(splitNumbersBySeparator).isEqualTo(Collections.emptyList());
     }
 
     @Test
     public void sumList(){
-        Integer result = calculator.summarizeNumbers("0,1,2", ",|:");
+        Integer result = calculator.summarizeNumbers("0,1,2", DEFAULT_STRING_SEPARATOR);
         Assertions.assertThat(result).isEqualTo(3);
     }
 
@@ -58,7 +58,7 @@ public class CalculatorTest {
     public void splitNonStringFormat() {
         assertThrows(InvalidFormatException.class, (() -> {
             String originStr = "1,1,e";
-            List<Integer> splitted_numberes = calculator.splitNumbers(originStr, ",|:");
+            List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, "!!");
         }));
     }
 
@@ -66,20 +66,20 @@ public class CalculatorTest {
     public void negativeNumberFormat(){
         assertThrows(InvalidFormatException.class, (() -> {
             String originStr = "1,1,-2";
-            List<Integer> splitted_numberes = calculator.splitNumbers(originStr, ",|:");
+            List<Integer> splitNumbersBySeparator = calculator.splitNumbers(originStr, DEFAULT_STRING_SEPARATOR);
         }));
     }
 
     @Test
-    public void nonExistSeperator() {
+    public void nonExistSeparator() {
         assertThrows(InvalidFormatException.class, () -> {
-            String originStr = "1!23";
-            calculator.summarizeNumbers(originStr);
+            String originStr1 = "1!23";
+            calculator.summarizeNumbers(originStr1);
         });
     }
 
     @Test
-    public void splitWithCustomSeperator() {
+    public void splitWithCustomSeparator() {
         Integer summary = calculator.summarizeNumbers("//.\n1.2.3");
         Assertions.assertThat(summary).isEqualTo(6);
     }
