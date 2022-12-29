@@ -6,8 +6,8 @@ import java.util.List;
 public class StringSplitter {
 
     private static final List<String> DEFAULT_SEPARATORS = List.of(",", ":");
-    private static final String PREFIX = "//";
-    private static final String SUFFIX = "\n";
+    static final String PREFIX = "//";
+    static final String SUFFIX = "\n";
     private static final int PREFIX_LENGTH = PREFIX.length();
     private static final int SUFFIX_LENGTH = SUFFIX.length();
 

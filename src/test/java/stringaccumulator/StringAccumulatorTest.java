@@ -10,8 +10,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
+import static stringaccumulator.StringSplitter.PREFIX;
+import static stringaccumulator.StringSplitter.SUFFIX;
 
 class StringAccumulatorTest {
 
@@ -74,6 +75,26 @@ class StringAccumulatorTest {
                     Arguments.of(StringAccumulator.from(String.join(",", List.of("1 2", "3")))),
                     Arguments.of(StringAccumulator.from(String.join(",", List.of("asd")))),
                     Arguments.of(StringAccumulator.from(String.join(",", List.of(String.valueOf(Long.MAX_VALUE)) + "123")))
+            );
+        }
+    }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    class parseContentBySeparator {
+        @ParameterizedTest
+        @MethodSource
+        void should_returnSplitTokens_when_validSeparator(String separator, String content, List<String> expected) {
+            List<String> result = StringAccumulator.parseContentBySeparator(separator, content);
+            assertThatList(result).isEqualTo(expected);
+        }
+
+        Stream<Arguments> should_returnSplitTokens_when_validSeparator() {
+            return Stream.of(
+                    Arguments.of(PREFIX + "." + SUFFIX, String.join(".", List.of("1", "2", "3")), List.of("1", "2", "3")),
+                    Arguments.of(PREFIX + "$" + SUFFIX, String.join("$", List.of("1", " 2", " 3")), List.of("1", "2", "3")),
+                    Arguments.of(PREFIX + "|" + SUFFIX, String.join("|", List.of("1", "2 ", "3 ")), List.of("1", "2", "3")),
+                    Arguments.of(PREFIX + "?" + SUFFIX, String.join("?", List.of("1", " ", "2", "3")), List.of("1", "2", "3"))
             );
         }
     }

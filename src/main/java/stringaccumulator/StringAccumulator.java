@@ -39,7 +39,7 @@ public class StringAccumulator {
         return getSum(splitTokens);
     }
 
-    private static List<String> parseContentBySeparator(String separator, String content) {
+    static List<String> parseContentBySeparator(String separator, String content) {
         return StringSplitter.from(separator)
                 .split(content)
                 .stream()
