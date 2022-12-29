@@ -6,6 +6,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.Car;
+import racingcar.domain.CarDto;
+import racingcar.domain.RacingCars;
+import racingcar.domain.engine.Engine;
+import racingcar.domain.engine.EngineImpl;
 
 import java.util.ArrayList;
 import java.util.List;

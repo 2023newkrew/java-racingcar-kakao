@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain.engine;
 
 public interface Engine {
 

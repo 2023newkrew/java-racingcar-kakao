@@ -1,4 +1,7 @@
-package racingcar;
+package racingcar.domain.engine;
+
+import racingcar.domain.engine.powerstrategy.PowerStrategy;
+import racingcar.domain.engine.powerstrategy.RandomPowerStrategy;
 
 import java.util.Objects;
 

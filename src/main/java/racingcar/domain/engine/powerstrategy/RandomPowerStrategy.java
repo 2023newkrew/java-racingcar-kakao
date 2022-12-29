@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain.engine.powerstrategy;
 
 import java.util.Random;
 

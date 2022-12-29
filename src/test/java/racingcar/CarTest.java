@@ -9,6 +9,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import racingcar.domain.Car;
+import racingcar.domain.CarDto;
+import racingcar.domain.engine.Engine;
 
 import java.util.stream.Stream;
 
