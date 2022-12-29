@@ -18,10 +18,6 @@ public class Cars {
         }
     }
 
-    public List<Car> getCarList() {
-        return carList;
-    }
-
     public List<Car> findWinners(){
         Position maxPosition = carList.stream()
                 .map(Car::getPosition)
@@ -35,7 +31,7 @@ public class Cars {
 
     @Override
     public String toString() {
-        return getCarList().stream()
+        return carList.stream()
                 .map(Car::toString)
                 .collect(Collectors.joining("\n"));
     }
