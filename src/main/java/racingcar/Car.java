@@ -45,12 +45,6 @@ public class Car {
         }
     }
 
-
-    @Override
-    public String toString() {
-        return name + " : " + "-".repeat(position);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

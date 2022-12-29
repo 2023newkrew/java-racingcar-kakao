@@ -7,6 +7,10 @@ import java.util.OptionalInt;
 public class CarListManager {
     private final List<Car> cars = new ArrayList<>();
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public void add(Car other) {
         if (hasDuplicatedCar(other)) {
             throw new RuntimeException();
@@ -38,14 +42,5 @@ public class CarListManager {
     private boolean hasDuplicatedCar(Car other) {
         return cars.stream()
                 .anyMatch(car -> car.equals(other));
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.toString() + "\n");
-        }
-        return stringBuilder.toString();
     }
 }

@@ -24,15 +24,31 @@ public class RacingCarView {
 
     public void printWinners(List<Car> winners) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Car winner : winners) {
-            stringBuilder.append(winner.getName() + ", ");
-        }
+        winners.forEach(winner -> {
+            stringBuilder.append(winner.getName());
+            stringBuilder.append(", ");
+        });
         stringBuilder.setLength(stringBuilder.length() - 2);
         stringBuilder.append("가 최종 우승했습니다.");
         System.out.println(stringBuilder);
     }
 
-    public void printGameResult(CarListManager carListManager) {
-        System.out.println(carListManager);
+    public void printGameResult(GameResult gameResult) {
+        System.out.println("실행 결과");
+        gameResult.getRoundRecords()
+                .forEach(this::printRoundRecord);
+    }
+
+    private void printCarStatus(CarStatusDto carStatusDto) {
+        String carStatusMessage = carStatusDto.getCarName() +
+                " : " +
+                "-".repeat(carStatusDto.getCarPosition());
+        System.out.println(carStatusMessage);
+    }
+
+    private void printRoundRecord(RoundRecord roundRecord) {
+        roundRecord.getCarStatusList()
+                .forEach(this::printCarStatus);
+        System.out.println();
     }
 }
