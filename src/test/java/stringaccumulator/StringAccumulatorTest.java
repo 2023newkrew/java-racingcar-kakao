@@ -50,20 +50,21 @@ class StringAccumulatorTest {
 
         @ParameterizedTest
         @MethodSource
-        void should_throwException_when_invalidTokens(List<String> tokens) {
+        void should_throwException_when_invalidTokens(List<String> tokens, String message) {
             String content = String.join(",", tokens);
             when(stringSplitter.split(content)).thenReturn(tokens);
             StringAccumulator stringAccumulator = StringAccumulator.from(stringSplitter);
             assertThatThrownBy(() -> stringAccumulator.accumulate(content))
-                    .isInstanceOf(RuntimeException.class);
+                    .isInstanceOf(RuntimeException.class)
+                    .hasMessage(message);
         }
 
         Stream<Arguments> should_throwException_when_invalidTokens() {
             return Stream.of(
-                    Arguments.of(List.of("-1", "1")),
-                    Arguments.of(List.of("1 2", "3")),
-                    Arguments.of(List.of("asd")),
-                    Arguments.of(List.of(Long.MAX_VALUE + "123"))
+                    Arguments.of(List.of("-1", "1"), "Illegal leading minus sign on unsigned string -1."),
+                    Arguments.of(List.of("1 2", "3"), "For input string: \"1 2\""),
+                    Arguments.of(List.of("asd"), "For input string: \"asd\""),
+                    Arguments.of(List.of(Long.MAX_VALUE + "123"), "Error at index 19 in: \"922337203685477580712\"")
             );
         }
     }

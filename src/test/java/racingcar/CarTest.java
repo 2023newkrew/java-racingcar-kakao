@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
-import static racingcar.TestUtil.throwRuntimeExceptionBy;
 
 @ExtendWith(MockitoExtension.class)
 class CarTest {
@@ -30,9 +29,18 @@ class CarTest {
     class from {
 
         @ParameterizedTest
-        @ValueSource(strings = {"", "123456"})
-        void should_throwException_when_invalidCarName(String carName) {
-            throwRuntimeExceptionBy(() -> Car.from(carName, engine));
+        @MethodSource
+        void should_throwException_when_invalidCarName(String carName, String message) {
+            assertThatThrownBy(() -> Car.from(carName, engine))
+                    .isInstanceOf(RuntimeException.class)
+                    .hasMessage(message);
+        }
+
+        Stream<Arguments> should_throwException_when_invalidCarName() {
+            return Stream.of(
+                    Arguments.of("", "Car name too short."),
+                    Arguments.of("123456", "car name too long.")
+            );
         }
 
         @ParameterizedTest
@@ -57,7 +65,9 @@ class CarTest {
 
         @Test
         void should_throwException_when_engineIsNull() {
-            throwRuntimeExceptionBy(() -> Car.from("test", null));
+            assertThatThrownBy(() -> Car.from("test", null))
+                    .isInstanceOf(RuntimeException.class)
+                    .hasMessage("Engine is null.");
         }
     }
 

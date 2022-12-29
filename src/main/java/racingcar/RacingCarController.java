@@ -9,7 +9,9 @@ public class RacingCarController {
     private static final String SEPARATOR = ",";
 
     private static final int MAX_COUNT = 100;
-    private RacingCarModel model;
+
+    private RacingCars racingCars;
+
     private final RacingCarView view;
 
     public static RacingCarController create() {
@@ -21,29 +23,29 @@ public class RacingCarController {
     }
 
     public void start() {
-        createModel();
+        createRacingCars();
         simulate();
         printWinner();
     }
 
-    private void createModel() {
-        while (Objects.isNull(model)) {
-            tryCreateModel();
+    private void createRacingCars() {
+        while (Objects.isNull(racingCars)) {
+            tryCreateRacingCars();
         }
     }
 
-    private void tryCreateModel() {
+    private void tryCreateRacingCars() {
         try {
-            createModelByInput();
+            createRacingCarsByInput();
         } catch (RuntimeException ex) {
             view.printError(ex.getMessage());
         }
     }
 
-    private void createModelByInput() {
+    private void createRacingCarsByInput() {
         List<String> names = inputNames();
         List<Car> cars = createCarsFromNames(names);
-        model = RacingCarModel.from(cars);
+        racingCars = RacingCars.from(cars);
     }
 
     private List<String> inputNames() {
@@ -65,8 +67,8 @@ public class RacingCarController {
         int count = inputCount();
         view.printResultText();
         for (int i = 0; i < count; ++i) {
-            model.progress();
-            view.printProgressResult(model.getCarDtos());
+            racingCars.progress();
+            view.printProgressResult(racingCars.getCarDtos());
         }
     }
 
@@ -88,6 +90,6 @@ public class RacingCarController {
     }
 
     private void printWinner() {
-        view.printWinners(model.getWinners());
+        view.printWinners(racingCars.getWinners());
     }
 }

@@ -5,15 +5,15 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class RacingCarModel {
+public class RacingCars {
 
     private static final int MAX_CAR_COUNT = 100;
 
     private final List<Car> cars;
 
-    public static RacingCarModel from(List<Car> cars) {
+    public static RacingCars from(List<Car> cars) {
         checkCarsValidation(cars);
-        return new RacingCarModel(cars);
+        return new RacingCars(cars);
     }
 
     private static void checkCarsValidation(List<Car> cars) {
@@ -53,7 +53,7 @@ public class RacingCarModel {
                 .count();
     }
 
-    private RacingCarModel(List<Car> cars) {
+    private RacingCars(List<Car> cars) {
         this.cars = cars;
     }
 
