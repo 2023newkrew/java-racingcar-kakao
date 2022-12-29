@@ -8,24 +8,24 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class ExprTest {
+public class ExpressionTest {
     @Test
     void checkSeparatorsTest() {
         // "//;\n1;2:3,4"
         List<Integer> values = Arrays.asList(1, 2, 3, 4);
         List<Separator> separators = Arrays.asList(new Separator(";"), new Separator(":"), new Separator(","));
-        Expr expr = new Expr(values, separators, ";");
+        Expression expression = new Expression(values, separators, ";");
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> expr.checkSeparators());
+                .isThrownBy(() -> expression.checkSeparators());
     }
     @Test
     void checkValueTest() {
         // "//;\n1;2:3,-4"
         List<Integer> values = Arrays.asList(1, 2, 3, -4);
         List<Separator> separators = Arrays.asList(new Separator(";"), new Separator(":"), new Separator(","));
-        Expr expr = new Expr(values, separators, ";");
+        Expression expression = new Expression(values, separators, ";");
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> expr.checkValues());
+                .isThrownBy(() -> expression.checkValues());
     }
 
 
@@ -34,7 +34,7 @@ public class ExprTest {
         // "1,2,3,4"
         List<Integer> values = Arrays.asList(1, 2, 3, 4);
         List<Separator> separators = Arrays.asList(new Separator(","), new Separator(","), new Separator(","));
-        Expr expr = new Expr(values, separators, "");
-        assertThat(expr.sumValues()).isEqualTo(10);
+        Expression expression = new Expression(values, separators, "");
+        assertThat(expression.sumValues()).isEqualTo(10);
     }
 }

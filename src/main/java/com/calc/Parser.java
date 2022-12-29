@@ -14,12 +14,12 @@ public class Parser {
         this.text = text;
     }
 
-    public Expr checkNull() {
+    public Expression checkNull() {
         if (this.text == null) {
-            return new Expr(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
+            return new Expression(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
         }
         if (this.text.isEmpty()) {
-            return new Expr(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
+            return new Expression(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
         }
         return null;
     }
@@ -41,9 +41,9 @@ public class Parser {
         }
         return this.text;
     }
-    public Expr parsing() {
+    public Expression parsing() {
 
-        Expr nullCheck = checkNull();
+        Expression nullCheck = checkNull();
         if (nullCheck != null) return nullCheck;
 
         // //;\n 1:2:3 -> 헤더 분리
@@ -57,7 +57,7 @@ public class Parser {
         ArrayList<Integer> splitValues = getSplitValues(body, arrSep);
 
 
-        return new Expr(splitValues, arrSep, header);
+        return new Expression(splitValues, arrSep, header);
     }
 
     private ArrayList<Integer> getSplitValues(String body, ArrayList<Separator> arrSep) {
