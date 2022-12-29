@@ -69,10 +69,15 @@ public class InputView {
         return Integer.parseInt(roundInput);
     }
 
+    // TODO: 음수 입력 처리
     private boolean isValidRoundCount(String roundInput) {
         try {
             Integer.parseInt(roundInput);
         } catch (NumberFormatException e) {
+            System.err.println(NOTICE_INVALID_INPUT);
+            return false;
+        }
+        if (Integer.parseInt(roundInput)<0) {
             System.err.println(NOTICE_INVALID_INPUT);
             return false;
         }
