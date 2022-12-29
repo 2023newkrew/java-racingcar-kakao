@@ -10,15 +10,15 @@ public class Car {
     private static final int MAX_RANDOM = 10;
 
     public Car(String carName) {
-        this.checkName();
+        this.checkName(carName);
         this.carName = carName;
     }
 
     /**
      * 차 이름이 5글자 초과라면 RuntimeError
      */
-    public void checkName() {
-        if(this.carName.length() > MAX_CAR_NAME){
+    public void checkName(String carName) {
+        if(carName.length() > MAX_CAR_NAME){
             throw new IllegalArgumentException("차 이름은 5글자 이하여야 합니다.");
         }
     }

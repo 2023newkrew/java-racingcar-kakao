@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class CarTest {
-
-    // 차 이름이 5글자 이하인지에 대한 테스트
-    @Test
-    void checkNameTest(){
-        Car car = new Car("carName");
+    @ParameterizedTest
+    @ValueSource(strings = {"carName", "over5word"})
+    @DisplayName("자동차 이름은 5글자 이하여야 한다.")
+    void checkNameTest(String carName){
+        Car car = new Car(carName);
         // RuntimeException 발생 시 종료
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> car.checkName());
+                .isThrownBy(() -> car.checkName(carName));
     }
 
 
