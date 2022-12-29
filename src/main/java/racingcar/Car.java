@@ -8,15 +8,13 @@ public class Car {
 
     private static final int CAR_NAME_LIMIT = 5;
 
-    private int position;
+    private int position = 1;
 
     private final String name;
 
     public Car(String name) {
-        if (isInvalidName(name)) {
-            throw new RuntimeException();
-        }
-        position = 1;
+        checkCarNameLength(name);
+        checkEmptyOrNull(name);
         this.name = name;
     }
 
@@ -35,9 +33,18 @@ public class Car {
         position += 1;
     }
 
-    private boolean isInvalidName(String name) {
-        return name == null || name.equals("") || name.length() > CAR_NAME_LIMIT;
+    private void checkEmptyOrNull(String name) {
+        if (name == null || "".equals(name)) {
+            throw new RuntimeException();
+        }
     }
+
+    private void checkCarNameLength(String name) {
+        if (name.length() > CAR_NAME_LIMIT) {
+            throw new RuntimeException();
+        }
+    }
+
 
     @Override
     public String toString() {
