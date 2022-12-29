@@ -6,6 +6,9 @@ import racingcar.domain.racing.RacingWinner;
 import java.util.List;
 
 public class OutputView {
+    private OutputView() {
+    }
+
     public static void printResult(RacingWinner winners) {
         System.out.println(winners);
     }
