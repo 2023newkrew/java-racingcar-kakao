@@ -18,16 +18,16 @@ public class Car {
         position = 0;
     }
 
-    int move(int condition) {
+    public int move(int condition) {
         if (condition >= MOVE_THRESHOLD) position++;
         return position;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 }
