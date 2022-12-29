@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    public static void printInitialStatus(List<RacingPlayer> racingPlayers) {
+        System.out.println("\n실행 결과");
+        printCurrentStatus(racingPlayers);
+    }
+
     public static void printCurrentStatus(List<RacingPlayer> racingPlayers) {
         for (RacingPlayer racingPlayer : racingPlayers) {
             System.out.println(racingPlayer.toString());
