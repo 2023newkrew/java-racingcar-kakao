@@ -11,11 +11,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RacingScoreboardTest {
+class RacingGameScoreViewTest {
 
     List<RacingCar> racingCars;
     ByteArrayOutputStream out;
-    RacingScoreboard racingScoreboard;
+    RacingGameScoreView racingGameScoreView;
 
     @BeforeEach
     void setUp() {
@@ -24,7 +24,7 @@ class RacingScoreboardTest {
         racingCars.add(new RacingCar("car2"));
         racingCars.add(new RacingCar("car3"));
 
-        racingScoreboard = new RacingScoreboard();
+        racingGameScoreView = new RacingGameScoreView();
 
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -40,7 +40,7 @@ class RacingScoreboardTest {
                 "\n";
 
         //when
-        racingScoreboard.printScore(racingCars);
+        racingGameScoreView.printScore(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);
@@ -53,7 +53,7 @@ class RacingScoreboardTest {
         String expected = "car1, car2, car3가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(racingCars);
+        racingGameScoreView.printWinners(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);
@@ -66,7 +66,7 @@ class RacingScoreboardTest {
         String expected = "car1가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(List.of(new RacingCar("car1")));
+        racingGameScoreView.printWinners(List.of(new RacingCar("car1")));
 
         //then
         assertThat(out.toString()).hasToString(expected);
