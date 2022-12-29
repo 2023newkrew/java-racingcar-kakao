@@ -1,4 +1,4 @@
-package racingcar.engine.model;
+package racingcar.engine.domain;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,6 +6,8 @@ import java.util.Objects;
 public class Car {
     private String name;
     private int position = 1;
+
+    private final static int MAX_NAME_LENGTH = 5;
 
     public Car(String name, int position) {
         setName(name);
@@ -16,8 +18,12 @@ public class Car {
         this(name, 1);
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     private void setName(String name) {
-        if (Objects.isNull(name) || name.isBlank() || name.length() > 5) {
+        if (Objects.isNull(name) || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException("잘못된 자동차 이름입니다.");
         }
         this.name = name;
