@@ -2,32 +2,34 @@ package racingcar;
 
 import racingcar.domain.Game;
 import racingcar.domain.GameInfo;
-import racingcar.view.IOHelper;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 
 public class Controller {
-    private IOHelper view;
+    private InputView inputView;
+    private OutputView outputView;
     private Game game;
 
     public Controller() {
-        view = new IOHelper();
+        inputView = new InputView();
+        outputView = new OutputView();
         game = new Game();
     }
 
     public void playGame() {
-        List<String> names = view.getNamesInput();
-        int roundCnt = view.getRoundInput();
+        List<String> names = inputView.getNamesInput();
+        int roundCnt = inputView.getRoundInput();
+        inputView.close();
 
         GameInfo gameInfo = game.init(names, roundCnt);
-        view.printInitialStatus(gameInfo);
+        outputView.printInitialStatus(gameInfo);
 
         while (gameInfo.getLeftRoundCnt()!=0) {
             gameInfo = game.runRound();
-            view.printRoundResult(gameInfo);
+            outputView.printRoundResult(gameInfo);
         }
-
-        view.printGameResult(game.getWinners(gameInfo));
-        view.close();
+        outputView.printGameResult(game.getWinners(gameInfo));
     }
 }
