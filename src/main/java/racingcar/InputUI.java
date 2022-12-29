@@ -12,7 +12,7 @@ public class InputUI {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = sc.nextLine();
         List<String> carNameList = List.of(input.split(","));
-        while (!validation(carNameList)) {
+        while (!validateCarNames(carNameList)) {
             System.out.println("5글자 이하의 이름만 가능합니다.");
             input = sc.nextLine();
             carNameList = List.of(input.split(","));
@@ -21,13 +21,22 @@ public class InputUI {
         return carNameList;
     }
 
-    private static boolean validation(List<String> cars) {
+    private static boolean validateCarNames(List<String> cars) {
         boolean isValid = true;
         for (String car : cars) {
-            isValid = isValid && car.length() <= 5;
+            isValid = isValid && validateMaxLength(car);
+            checkNullAndEmpty(car);
         }
 
         return isValid;
+    }
+
+    private static void checkNullAndEmpty(String car) {
+        if(car == null || car.isEmpty()) throw new IllegalArgumentException("차 이름은 한 글자 이상이어야 합니다.");
+    }
+
+    private static boolean validateMaxLength(String car) {
+        return car.length() <= 5;
     }
 
     public static int inputTurn() {
