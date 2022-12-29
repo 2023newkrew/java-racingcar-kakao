@@ -18,8 +18,8 @@ public class Car {
         position = 0;
     }
 
-    int move(int threshold) {
-        if (threshold >= MOVE_THRESHOLD) position++;
+    int move(int condition) {
+        if (condition >= MOVE_THRESHOLD) position++;
         return position;
     }
 
