@@ -2,6 +2,8 @@ package racingcar.step2.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RacingGame {
     private final ArrayList<Car> cars;
@@ -19,7 +21,15 @@ public class RacingGame {
     }
 
     public int getMaxPosition(){
-        int max = Collections.max(cars).getPosition();
-        return max;
+        return Collections.max(cars).getPosition();
+    }
+
+    public String getWinners(){
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(p -> Objects.equals(p.getPosition(), maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
     }
 }

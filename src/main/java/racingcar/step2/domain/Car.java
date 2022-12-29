@@ -7,7 +7,6 @@ public class Car implements Comparable<Car>{
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MOVE_THRESHOLD = 4;
     private int position;
-
     private final String name;
 
 
@@ -45,6 +44,10 @@ public class Car implements Comparable<Car>{
 
     public int getPosition() {
         return position;
+    }
+
+    public String getName() {
+        return name;
     }
 
 

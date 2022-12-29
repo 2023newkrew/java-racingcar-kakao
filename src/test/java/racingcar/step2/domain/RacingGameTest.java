@@ -21,4 +21,18 @@ class RacingGameTest {
         assertEquals(racingGame.getMaxPosition(),4);
     }
 
+    @Test
+    void 우승자_판별(){
+        RacingGame racingGame = new RacingGame("pobi,crong,honux");
+        racingGame.getCars().get(0).move(4);
+        racingGame.getCars().get(0).move(4);
+        racingGame.getCars().get(0).move(4);
+
+        racingGame.getCars().get(2).move(4);
+        racingGame.getCars().get(2).move(4);
+        racingGame.getCars().get(2).move(4);
+
+        assertEquals(racingGame.getWinners(),"pobi, honux");
+    }
+
 }
