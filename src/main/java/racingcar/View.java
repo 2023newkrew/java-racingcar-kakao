@@ -1,14 +1,13 @@
-//사용자에게 보여지는 부분을 적자
+/**
+ * 사용자의 입력을 받아 검증하고, 형태를 바꿔서 반환한다
+ * 게임의 결과를 출력한다
+ */
 package racingcar;
 
 import java.util.Scanner;
 import java.util.List;
 
 public class View {
-    //private Racing racing;
-    //View(Racing racing) {
-    //    this.racing = racing;
-    //}
 
     public static List<String> inputCarNames() {
         Scanner sc = new Scanner(System.in);

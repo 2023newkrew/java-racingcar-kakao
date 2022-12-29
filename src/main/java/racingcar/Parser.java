@@ -16,7 +16,6 @@ public class Parser {
     }
 
     public static int stringToInt(String input) { //문자열을 숫자로 바꿔 반환한다.
-        //숫자 형식이 아니거나, 1 미만이면 에러 발생시키고 메시지를 출력하자
         return Integer.parseInt(input);
     }
 }
