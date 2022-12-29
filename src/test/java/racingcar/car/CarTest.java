@@ -1,8 +1,6 @@
 package racingcar.car;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarAction;
 import racingcar.domain.car.CarDTO;
@@ -31,17 +29,5 @@ public class CarTest {
         CarDTO afterMoveCarDto = car.toDTO();
 
         assertThat(afterMoveCarDto.getPosition()).isEqualTo(beforeMoveCarDto.getPosition());
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"aasd", "asssz", "zzz"})
-    void validName(String name) {
-        assertThat(Car.isValidName(name)).isTrue();
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"asdasdasd", "azx1@!$", "afxvcx@3", "", " ", "ass "})
-    void invalidName(String name) {
-        assertThat(Car.isValidName(name)).isFalse();
     }
 }

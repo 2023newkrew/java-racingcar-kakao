@@ -1,23 +1,11 @@
 package racingcar.domain.car;
 
 public class Car {
-    private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_NAME_LENGTH = 0;
-
     private int position = 0;
-    private final String name;
+    private final CarName name;
 
     public Car(String name) {
-        if (!isValidName(name)) throw new IllegalArgumentException("Invalid Name");
-
-        this.name = name;
-    }
-
-    public static boolean isValidName(String name) {
-        if (name.length() > MAX_NAME_LENGTH || name.length() <= MIN_NAME_LENGTH) {
-            return false;
-        }
-        return !name.contains(" ");
+        this.name = new CarName(name);
     }
 
     public void move(MovingAction movingAction) {
@@ -25,6 +13,6 @@ public class Car {
     }
 
     public CarDTO toDTO() {
-        return new CarDTO(this.name, this.position);
+        return new CarDTO(this.name.toString(), this.position);
     }
 }
