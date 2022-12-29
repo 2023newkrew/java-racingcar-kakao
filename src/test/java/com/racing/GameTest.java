@@ -1,5 +1,7 @@
 package com.racing;
 
+import com.racing.model.Car;
+import com.racing.model.Game;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
