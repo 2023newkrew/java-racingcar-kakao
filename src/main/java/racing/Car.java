@@ -5,10 +5,14 @@ public class Car implements Comparable<Car> {
     private int position = 1;
 
     public Car(String name) {
-        if (name.isEmpty() || name.length() > 5) {
+        validateName(name);
+        this.name = name;
+    }
+
+    private static void validateName(String name) {
+        if (name == null || name.isBlank() || name.length() > 5) {
             throw new IllegalArgumentException();
         }
-        this.name = name;
     }
 
     public void move() {
