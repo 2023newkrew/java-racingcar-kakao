@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-public class CalculatorTest {
+class CalculatorTest {
     private Calculator calculator;
 
     @BeforeEach
@@ -23,7 +23,7 @@ public class CalculatorTest {
     void givenEmptyOrNullString_thenReturnZero(String input){
         int result = calculator.calculate(input);
 
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isZero();
     }
 
     @ParameterizedTest

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ValidatorTest {
+class ValidatorTest {
 
     @ParameterizedTest
     @MethodSource("generator")

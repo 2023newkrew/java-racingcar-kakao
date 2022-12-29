@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingCarRepositoryTest {
+class RacingCarRepositoryTest {
     @ParameterizedTest
     @MethodSource("generator")
     void givenCars_whenGetWinners_thenReturnCarNameList(List<Car> cars, List<String> expected){

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class SplitterTest {
+class SplitterTest {
 
     @ParameterizedTest
     @MethodSource("generator1")
