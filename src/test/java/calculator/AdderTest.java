@@ -18,8 +18,8 @@ public class AdderTest {
     void addNormalTest() {
         String input = "1:2:3";
         NumberParser numberParser = new NumberParser(input, defaultDelimiters);
-        numberParser.inputToStringArray();
-        int[] intArr = numberParser.stringArrayToIntArray();
+        numberParser.parseNumbersStr();
+        int[] intArr = numberParser.convertParsedNumbersToIntArr();
         int result = Adder.run(intArr);
         Assertions.assertThat(result).isEqualTo(6);
     }
@@ -29,8 +29,8 @@ public class AdderTest {
     void addCustomTest() {
         String input = "//;\n4;6;9";
         NumberParser numberParser = new NumberParser(input, defaultDelimiters);
-        numberParser.inputToStringArray();
-        int[] intArr = numberParser.stringArrayToIntArray();
+        numberParser.parseNumbersStr();
+        int[] intArr = numberParser.convertParsedNumbersToIntArr();
         int result = Adder.run(intArr);
         Assertions.assertThat(result).isEqualTo(19);
     }
@@ -40,9 +40,9 @@ public class AdderTest {
     void addWrongTest() {
         String input = "//;\n4;w;9";
         NumberParser numberParser = new NumberParser(input, defaultDelimiters);
-        numberParser.inputToStringArray();
+        numberParser.parseNumbersStr();
         Assertions.assertThatExceptionOfType(NumberFormatException.class)
-                .isThrownBy(numberParser::stringArrayToIntArray);
+                .isThrownBy(numberParser::convertParsedNumbersToIntArr);
     }
 
     @Test
@@ -50,9 +50,9 @@ public class AdderTest {
     void addNegativeTest() {
         String input = "//;\n4;-10;9";
         NumberParser numberParser = new NumberParser(input, defaultDelimiters);
-        numberParser.inputToStringArray();
+        numberParser.parseNumbersStr();
         Assertions.assertThatExceptionOfType(NegativeValueException.class)
-                .isThrownBy(numberParser::stringArrayToIntArray);
+                .isThrownBy(numberParser::convertParsedNumbersToIntArr);
     }
 
     @ParameterizedTest
@@ -61,8 +61,8 @@ public class AdderTest {
     @ValueSource(strings = {""})
     void emptyTest(String input) {
         NumberParser numberParser = new NumberParser(input, defaultDelimiters);
-        numberParser.inputToStringArray();
-        int[] intArr = numberParser.stringArrayToIntArray();
+        numberParser.parseNumbersStr();
+        int[] intArr = numberParser.convertParsedNumbersToIntArr();
         int result = Adder.run(intArr);
         Assertions.assertThat(result).isEqualTo(0);
     }

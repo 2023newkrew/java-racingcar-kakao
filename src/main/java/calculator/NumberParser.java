@@ -12,23 +12,23 @@ public class NumberParser {
         this.numbersStr = (input == null || input.equals("")) ? "0" : input;
     }
 
-    public String[] inputToStringArray() {
+    public String[] parseNumbersStr() {
         DelimiterParser delimiterParser = new DelimiterParser(numbersStr, defaultDelimiters);
         String delimiter = delimiterParser.getDelimiter();
         this.parsedNumbers = delimiterParser.getProcessedInput().split(delimiter);
         return this.parsedNumbers;
     }
 
-    private void checkNegativeValue(int val) throws NegativeValueException {
+    private void checkNegativeNumber(int val) throws NegativeValueException {
         if (val < 0){
             throw new NegativeValueException();
         }
     }
-    public int[] stringArrayToIntArray() throws NumberFormatException, NegativeValueException {
+    public int[] convertParsedNumbersToIntArr() throws NumberFormatException, NegativeValueException {
         int[] result = new int[parsedNumbers.length];
         for (int i = 0; i < parsedNumbers.length; i++) {
             result[i] = Integer.parseInt(parsedNumbers[i]);
-            checkNegativeValue(result[i]);
+            checkNegativeNumber(result[i]);
         }
 
         return result;
