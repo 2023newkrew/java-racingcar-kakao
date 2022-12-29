@@ -1,6 +1,9 @@
 package racingcar;
 
 public class Car {
+
+    private static final int MOVE_THRESHOLD = 4;
+
     private final String name;
     private int position;
 
@@ -17,16 +20,11 @@ public class Car {
         return position;
     }
 
-    public void moveCar() {
-        determineToMove(makeRandomNumber());
-    }
-
-    private void determineToMove(int random) {
-        if (random >= 4)
+    public int moveCar(int random) {
+        if (random >= MOVE_THRESHOLD) {
             position += 1;
-    }
+        }
 
-    private int makeRandomNumber() {
-        return (int) (Math.random() * 10);
+        return position;
     }
 }

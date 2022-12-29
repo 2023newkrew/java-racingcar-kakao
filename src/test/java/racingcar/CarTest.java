@@ -1,37 +1,28 @@
 package racingcar;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
-    private Method determineToMove;
 
-    @BeforeEach
-    void setUp() throws NoSuchMethodException {
-        determineToMove = Car.class.getDeclaredMethod("determineToMove", int.class);
-
-        determineToMove.setAccessible(true);
-    }
-
-    @Test
-    void stopTest() throws InvocationTargetException, IllegalAccessException {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void stopTest(int condition) {
         Car car = new Car("test", 0);
 
-        determineToMove.invoke(car, 3);
+        car.moveCar(condition);
 
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
-    @Test
-    void moveTest() throws InvocationTargetException, IllegalAccessException {
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void moveTest(int condition) {
         Car car = new Car("test", 0);
 
-        determineToMove.invoke(car, 4);
+        car.moveCar(condition);
 
         assertThat(car.getPosition()).isEqualTo(1);
     }

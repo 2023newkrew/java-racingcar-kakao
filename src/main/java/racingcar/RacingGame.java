@@ -6,12 +6,14 @@ import java.util.List;
 public class RacingGame {
     private final List<Car> carList = new ArrayList<>();
     private int turn;
+    private int maxPosition;
 
     public RacingGame(List<String> carNameList, int turn) {
         for (String carName : carNameList) {
             this.carList.add(new Car(carName, 0));
         }
         this.turn = turn;
+        this.maxPosition = 0;
     }
 
     public List<Car> getCarList() {
@@ -42,20 +44,15 @@ public class RacingGame {
         return winnerList;
     }
 
-    private int checkIs1st(Car car, int maxPosition, List<String> winnerList) {
-        if (car.getPosition() < maxPosition) return maxPosition;
-
-        if (car.getPosition() > maxPosition) {
-            winnerList.clear();
-        }
-        winnerList.add(car.getName());
-
-        return car.getPosition();
+    private void checkIs1st(Car car, List<String> winnerList) {
+        if (car.getPosition() == maxPosition)
+            winnerList.add(car.getName());
     }
 
     private void playTurn() {
         for (Car car : carList) {
-            car.moveCar();
+            maxPosition = Math.max(maxPosition,
+                    car.moveCar(RandomNumGenerator.makeRandomNumber(10)));
         }
     }
 }
