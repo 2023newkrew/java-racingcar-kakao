@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class RacingTest {
     @Test
-    @DisplayName("Racing에서 Car 객체를 생성")
+    @DisplayName("Racing에서 Car 객체를 생성하고 Car를 print하면 문제 요구조건대로 출력된다.")
     void generateCarsArray() {
         Racing racing = new Racing(new RandomMovable(10,4));
         String[] names = new String[]{"aaa", "bbb", "ccc"};
@@ -20,7 +20,7 @@ public class RacingTest {
     }
 
     @Test
-    @DisplayName("경기 종료후 우승자 판정 - 단일 우승자")
+    @DisplayName("경기 종료후 단일 우승자일 때 우승자를 찾을 수 있다.")
     void winnerTest() {
         Car[] cars = new Car[5];
         cars[0] = new Car("a", 2);
@@ -35,7 +35,7 @@ public class RacingTest {
     }
 
     @Test
-    @DisplayName("경기 종료후 우승자 판정 - 복수 우승자")
+    @DisplayName("경기 종료후 복수 우승자일 때 우승자들을 찾을 수 있다.")
     void winnersTest() {
         Car[] cars = new Car[5];
         cars[0] = new Car("a", 2);

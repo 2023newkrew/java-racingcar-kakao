@@ -9,7 +9,7 @@ public class CarTest {
     private final int BOUND = 4;
 
     @Test
-    @DisplayName("Car가 이동할 때")
+    @DisplayName("Car가 이동하면 true를 반환한다.")
     void moveSuccess() {
         Car car = new Car("J");
         boolean isMove = car.move(new RandomMovable(THRESHOLD, BOUND) {
@@ -22,7 +22,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("Car가 이동하지 않을 때")
+    @DisplayName("Car가 이동하지 않으면 false를 반환한다")
     void moveFail() {
         Car car = new Car("J");
         boolean isMove = car.move(new RandomMovable(THRESHOLD, BOUND) {
