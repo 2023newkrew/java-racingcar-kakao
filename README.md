@@ -63,5 +63,8 @@
 
 ## 리펙터링 목록
 [x] 핵심 비지니스 로직을 domain 패키지, UI를 view 패키지로 분리
-[ ] domain 내에 UI에 해당하는 부분들을 view 패키지의 별도 클래스로 분리
+[x] 입력 및 입력 검증 UI 를 InputView 로 분리
+[x] 출력 UI 인 ResultView 생성
+[ ] ResultView 에 중간 결과 출력을 위한 메서드 생성
+[ ] ResultView 에 최종 결과 출력을 위한 메서드 생성
 

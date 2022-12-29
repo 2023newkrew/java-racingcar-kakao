@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.exception;
 
 public class InvalidInputException extends RuntimeException {
     public InvalidInputException(String message) {

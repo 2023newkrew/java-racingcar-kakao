@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.RandomGeneratorImpl;
+
 import java.util.Arrays;
 
 
