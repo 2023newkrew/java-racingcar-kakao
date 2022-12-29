@@ -3,6 +3,9 @@ package racingcar;
 import java.util.Random;
 
 public class Car {
+    public static final int MAXIMUM_POWER = 10;
+    public static final int FORWARD_THRESHOLD = 4;
+
     private final String name;
     private int distance;
 
@@ -12,11 +15,11 @@ public class Car {
     }
 
     public void forward() {
-        forward(new Random().nextInt(10));
+        forward(new Random().nextInt(MAXIMUM_POWER));
     }
 
     public void forward(int power) {
-        if(power >= 4)
+        if(power >= FORWARD_THRESHOLD)
             distance++;
     }
 
