@@ -20,13 +20,11 @@ public class StringSplitter {
     }
 
     public static StringSplitter from(String separatorFormat) {
-        List<String> separators = new ArrayList<>(DEFAULT_SEPARATORS);
         if (separatorFormat == null) {
-            return new StringSplitter(separators);
+            return new StringSplitter(DEFAULT_SEPARATORS);
         }
         checkFormatValidation(separatorFormat);
-        addCustomSeparator(separatorFormat, separators);
-        return new StringSplitter(separators);
+        return new StringSplitter(addCustomSeparator(separatorFormat));
     }
 
 
@@ -40,12 +38,19 @@ public class StringSplitter {
         return !separatorFormat.startsWith(PREFIX) || !separatorFormat.endsWith(SUFFIX);
     }
 
-    private static void addCustomSeparator(String separatorFormat, List<String> separators) {
+    private static List<String> addCustomSeparator(String separatorFormat) {
         int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
         String customSeparator = separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
         if (!customSeparator.isEmpty()) {
-            separators.add(0, customSeparator);
+            return getSeparatorsWithCustom(customSeparator);
         }
+        return DEFAULT_SEPARATORS;
+    }
+
+    private static List<String> getSeparatorsWithCustom(String customSeparator) {
+        List<String> separatorsWithCustomSeparator = new ArrayList<>(DEFAULT_SEPARATORS);
+        separatorsWithCustomSeparator.add(0, customSeparator);
+        return List.copyOf(separatorsWithCustomSeparator);
     }
 
     public boolean contains(String separator) {
