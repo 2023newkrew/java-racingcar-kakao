@@ -25,7 +25,6 @@ public class Game {
 
         for(String carName : carNames){
             Car car = new Car(carName);
-            car.checkName();
             this.cars.add(car);
         }
     }

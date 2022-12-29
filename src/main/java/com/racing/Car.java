@@ -10,6 +10,7 @@ public class Car {
     private static final int MAX_RANDOM = 10;
 
     public Car(String carName) {
+        this.checkName();
         this.carName = carName;
     }
 
