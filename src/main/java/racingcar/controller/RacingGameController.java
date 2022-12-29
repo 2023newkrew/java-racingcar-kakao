@@ -28,6 +28,6 @@ public class RacingGameController {
             racingGameOutputView.printCars(racingGame.getCars());
         }
 
-        racingGameOutputView.printWinners(racingGame.getCars().findWinners());
+        racingGameOutputView.printWinners(racingGame.findWinners());
     }
 }

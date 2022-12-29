@@ -18,15 +18,17 @@ public class Cars {
         }
     }
 
-    public List<Car> findWinners(){
+    public Winners findWinners(){
         Position maxPosition = carList.stream()
                 .map(Car::getPosition)
                 .max(Position::compareTo)
                 .orElse(new Position(0));
 
-        return carList.stream()
+        List<Car> winnerCars = carList.stream()
                 .filter(car -> car.isAtPosition(maxPosition))
                 .collect(Collectors.toList());
+
+        return new Winners(winnerCars);
     }
 
     @Override

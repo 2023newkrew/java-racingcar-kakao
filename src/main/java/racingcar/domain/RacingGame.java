@@ -24,4 +24,7 @@ public class RacingGame {
         return cars;
     }
 
+    public Winners findWinners() {
+        return cars.findWinners();
+    }
 }
