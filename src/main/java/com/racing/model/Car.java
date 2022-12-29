@@ -34,6 +34,13 @@ public class Car {
     }
 
     /**
+     * Random 값에 맞춰 차 이동
+     */
+    public void moveCar(){
+        this.move(makeRandom());
+    }
+
+    /**
      * random number가 4 이상이라면 한 칸 전진
      * @param rand
      */

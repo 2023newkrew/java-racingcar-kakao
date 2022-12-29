@@ -3,34 +3,32 @@ package com.racing.model;
 import com.racing.model.Car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Game {
     private List<Car> cars;
-    private int runCount;
 
     public Game(){
         this.cars = new ArrayList<>();
-        this.runCount = 0;
     }
 
     /**
      * random 값을 통해 모든 차에 대해 movement() 실행
      */
     private void moveCars() {
-        for (Car car : this.cars) {
-            car.move(car.makeRandom());
-        }
+        cars.forEach(Car::moveCar);
     }
 
     /**
      * 자동차들의 현재 위치를 출력
      */
     private void printCarsLocation(){
-        for(Car car : this.cars){
-            System.out.println(car.toStringLocation());
-        }
+        cars.forEach(car -> System.out.println(car.toStringLocation()));
         System.out.println();
     }
 
@@ -40,7 +38,6 @@ public class Game {
     private void runProgress(){
         moveCars();
         printCarsLocation();
-        this.runCount++;
     }
 
     /**
@@ -60,12 +57,9 @@ public class Game {
      */
     public void init(String text) {
         // text(사용자 입력)을 차 이름으로 분리
-        String[] carNames = text.split(",");
-
-        for(String carName : carNames){
-            Car car = new Car(carName);
-            this.cars.add(car);
-        }
+        this.cars.addAll(Arrays.stream(text.split(","))
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -85,11 +79,10 @@ public class Game {
      * @return
      */
     public int maxLocation() {
-        int tmpMax = 0;
-        for (Car car : this.cars) {
-            tmpMax = Math.max(tmpMax, car.getLocation());
-        }
-        return tmpMax;
+        return this.cars.stream()
+                .max(Comparator.comparingInt(Car::getLocation))
+                .get()
+                .getLocation();
     }
 
     public List<Car> getCars() {
