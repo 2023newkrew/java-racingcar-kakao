@@ -57,9 +57,10 @@ public class SimulatorTest {
     @MethodSource("getSimulateData")
     void runManyTimes(String names, List<Integer> randoms, int times, String expected) {
         Simulator simulator = new Simulator();
+        Random random = createRandoms(randoms);
         simulator.create(names);
         for (int i = 0; i < times; i++) {
-            simulator.run(createRandoms(randoms));
+            simulator.run(random);
         }
         assertThat(simulator.toString()).isEqualTo(expected);
     }
@@ -75,9 +76,10 @@ public class SimulatorTest {
     @MethodSource("getWinnersData")
     void winners(String names, List<Integer> randoms, int times, String winners) {
         Simulator simulator = new Simulator();
+        Random random = createRandoms(randoms);
         simulator.create(names);
         for (int i = 0; i < times; i++) {
-            simulator.run(createRandoms(randoms));
+            simulator.run(random);
         }
         assertThat(simulator.getWinners()).isEqualTo(winners);
     }
