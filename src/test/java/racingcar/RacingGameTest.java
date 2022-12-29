@@ -52,4 +52,12 @@ class RacingGameTest {
         assertThat(racingGame.isFinished()).isTrue();
         assertThat(roundCnt).isEqualTo(rounds);
     }
+
+    @DisplayName("남은 라운드가 없는데 라운드를 진행하면 예외 발생")
+    @Test
+    void playRound_throwEx() {
+        RacingGame racingGame = new RacingGame(new ArrayList<>(), 0);
+
+        assertThatThrownBy(racingGame::playRound).isInstanceOf(IllegalStateException.class);
+    }
 }
