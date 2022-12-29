@@ -55,10 +55,12 @@ public class SimulatorTest {
 
     @ParameterizedTest
     @MethodSource("getSimulateData")
-    void simulate(String names, List<Integer> randoms, int times, String expected) {
+    void runManyTimes(String names, List<Integer> randoms, int times, String expected) {
         Simulator simulator = new Simulator();
         simulator.create(names);
-        simulator.simulate(createRandoms(randoms), times);
+        for (int i = 0; i < times; i++) {
+            simulator.run(createRandoms(randoms));
+        }
         assertThat(simulator.toString()).isEqualTo(expected);
     }
 
@@ -74,7 +76,9 @@ public class SimulatorTest {
     void winners(String names, List<Integer> randoms, int times, String winners) {
         Simulator simulator = new Simulator();
         simulator.create(names);
-        simulator.simulate(createRandoms(randoms), times);
+        for (int i = 0; i < times; i++) {
+            simulator.run(createRandoms(randoms));
+        }
         assertThat(simulator.winners()).isEqualTo(winners);
     }
 

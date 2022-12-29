@@ -21,12 +21,6 @@ public class Simulator {
         }
     }
 
-    public void simulate(Random random, int times) {
-        for (int i = 0; i < times; i++) {
-            run(random);
-        }
-    }
-
     public String winners() {
         Car maxCar = Collections.max(cars);
         return cars.stream()
