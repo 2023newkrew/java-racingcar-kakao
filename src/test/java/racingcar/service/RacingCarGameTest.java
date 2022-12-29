@@ -40,7 +40,7 @@ class RacingCarGameTest {
             GameResult gameResult = racingCarGame.doNextRound();
 
             assertThat(gameResult).isNotNull();
-            assertThat(gameResult.getCarStatusList()).hasSize(inputCars.size());
+            assertThat(gameResult.getIntermediateResult()).isNotBlank();
         }
     }
 
@@ -64,7 +64,7 @@ class RacingCarGameTest {
         GameResult gameResult = racingCarGame.selectWinners();
 
         assertThat(gameResult).isNotNull();
-        assertThat(gameResult.getCarStatusList()).isNotEmpty();
+        assertThat(gameResult.getFinalResult()).isNotBlank();
     }
 
 }

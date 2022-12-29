@@ -2,11 +2,8 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.dto.CarDto;
-
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +11,7 @@ class CarTest {
 
     @DisplayName("자동차는 random값이 4 이상일 경우 전진한다.")
     @ParameterizedTest
-    @MethodSource("provideMovingCountWithMovableNumber")
+    @CsvSource({"'car1', 1, 4", "'car2', 2, 9"})
     void moveIfRandomNumberIsGreaterThanEqualFour(String carName, int movingCount, int randomNumber) {
         Car car = new Car(carName);
 
@@ -28,7 +25,7 @@ class CarTest {
 
     @DisplayName("자동차는 random값이 3 이하의 값일 경우 멈춘다.")
     @ParameterizedTest
-    @MethodSource("provideMovingCountWithUnMovableNumber")
+    @CsvSource({"'car1', 2, 1", "'car2', 2, 3"})
     void stopIfRandomNumberIsLessThanEqualThree(String carName, int movingCount, int randomNumber) {
         Car car = new Car(carName);
 
@@ -38,20 +35,6 @@ class CarTest {
 
         CarDto carDto = car.toDto();
         assertThat(carDto.getPosition()).isZero();
-    }
-
-    public static Stream<Arguments> provideMovingCountWithMovableNumber() {
-        return Stream.of(
-                Arguments.of("car1", 1, 4),
-                Arguments.of("car2", 2, 9)
-        );
-    }
-
-    public static Stream<Arguments> provideMovingCountWithUnMovableNumber() {
-        return Stream.of(
-                Arguments.of("car1", 2, 1),
-                Arguments.of("car2", 2, 3)
-        );
     }
 
 }

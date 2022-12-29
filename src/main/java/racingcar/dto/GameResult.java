@@ -13,10 +13,6 @@ public class GameResult {
         this.carStatusList = carStatusList;
     }
 
-    public List<CarDto> getCarStatusList() {
-        return carStatusList;
-    }
-
     public String getIntermediateResult() {
         StringBuilder result = new StringBuilder();
 
