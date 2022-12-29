@@ -30,6 +30,10 @@ public class Car extends MovableStrategy {
         moveOne(canMove(randomNumber));
     }
 
+    public boolean isAtPosition(Position position) {
+        return this.position.equals(position);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

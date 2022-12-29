@@ -25,7 +25,7 @@ public class Cars {
                 .orElse(new Position(0));
 
         return carList.stream()
-                .filter(car -> maxPosition.equals(car.getPosition()))
+                .filter(car -> car.isAtPosition(maxPosition))
                 .collect(Collectors.toList());
     }
 

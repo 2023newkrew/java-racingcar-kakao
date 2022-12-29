@@ -21,7 +21,7 @@ public class RacingGameInputView {
         return List.of(carNames.split(","));
     }
 
-    public Integer getNumberOfGames() {
+    public int getNumberOfGames() {
         System.out.println("시도할 회수는 몇회인가요?");
         return scanner.nextInt();
     }

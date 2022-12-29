@@ -1,6 +1,8 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.domain.NumberOfGames;
+import racingcar.domain.RacingGame;
 import racingcar.view.RacingGameInputView;
 import racingcar.view.RacingGameOutputView;
 
@@ -17,15 +19,15 @@ public class RacingGameController {
 
     public void run() {
         List<String> carNames = racingGameInputView.getCarNames();
-        Integer numberOfGames = racingGameInputView.getNumberOfGames();
+        int numberOfGames = racingGameInputView.getNumberOfGames();
 
-        Cars cars = new Cars(carNames);
+        RacingGame racingGame = new RacingGame(carNames, numberOfGames);
 
-        for (int i = 0; i < numberOfGames; i++) {
-            cars.move();
-            racingGameOutputView.printCars(cars);
+        while(!racingGame.isGameEnd()) {
+            racingGame.move();
+            racingGameOutputView.printCars(racingGame.getCars());
         }
 
-        racingGameOutputView.printWinners(cars.findWinners());
+        racingGameOutputView.printWinners(racingGame.getCars().findWinners());
     }
 }
