@@ -29,12 +29,14 @@ public class Car extends MovableStrategy{
         moveOne(canMove(randomNumber));
     }
 
-    public void print() {
-        System.out.print(name + " : ");
-        for (int i = 0; i < position; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
-    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
 
+        sb.append(name);
+        sb.append(" : ");
+        sb.append("-".repeat(position));
+
+        return sb.toString();
+    }
 }

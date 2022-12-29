@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.view.RacingGameOutputView;
+
 public class RacingGameRunner {
     private final String carNames;
     private final int numberOfGames;
@@ -10,14 +12,14 @@ public class RacingGameRunner {
     }
 
     public void run() {
+        RacingGameOutputView racingGameOutputView = new RacingGameOutputView();
         InputParser inputParser = new InputParser();
 
         Cars cars = new Cars(inputParser.splitNames(carNames));
         for (int i = 0; i < numberOfGames; i++) {
             cars.move();
-            cars.printCars();
-            System.out.println();
+            racingGameOutputView.printCars(cars);
         }
-        cars.printWinners();
+        racingGameOutputView.printWinners(cars.findWinners());
     }
 }
