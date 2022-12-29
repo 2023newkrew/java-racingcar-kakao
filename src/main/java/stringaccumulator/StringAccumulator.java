@@ -31,8 +31,9 @@ public class StringAccumulator {
 
     private static int getNewlineIndex(String str) {
         int newlineIndex = str.indexOf("\n");
-        if (newlineIndex == -1)
+        if (newlineIndex == -1) {
             throw new RuntimeException("Invalid string.");
+        }
         return newlineIndex;
     }
 

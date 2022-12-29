@@ -21,8 +21,9 @@ public class StringSplitter {
 
     public static StringSplitter from(String separatorFormat) {
         List<String> separators = new ArrayList<>(DEFAULT_SEPARATORS);
-        if (separatorFormat == null)
+        if (separatorFormat == null) {
             return new StringSplitter(separators);
+        }
         checkFormatValidation(separatorFormat);
         addCustomSeparator(separatorFormat, separators);
         return new StringSplitter(separators);
@@ -42,8 +43,9 @@ public class StringSplitter {
     private static void addCustomSeparator(String separatorFormat, List<String> separators) {
         int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
         String customSeparator = separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
-        if (!customSeparator.isEmpty())
+        if (!customSeparator.isEmpty()) {
             separators.add(0, customSeparator);
+        }
     }
 
     public boolean contains(String separator) {
