@@ -8,7 +8,7 @@ import racing.domain.GameRepeat;
 import racing.dto.CarDTO;
 
 public class Game {
-    private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름이 중복될 수 없습니다.";
+    private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름은 중복될 수 없습니다.";
     private final Cars cars;
     private GameRepeat gameRepeat;
 

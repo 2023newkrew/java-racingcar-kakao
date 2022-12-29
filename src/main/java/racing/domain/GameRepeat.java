@@ -7,6 +7,7 @@ public class GameRepeat {
     public static final String TOO_MANY_REPEAT_EXCEPTION_MESSAGE = "[ERROR] 시도 횟수는 최대 100회까지만 가능합니다.";
 
     private int remaining;
+
     public GameRepeat(int repeat) {
         validate(repeat);
         this.remaining = repeat;

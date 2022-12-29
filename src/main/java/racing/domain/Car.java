@@ -14,7 +14,7 @@ public class Car {
         this(name, DEFAULT_MOVABLE);
     }
 
-    public Car(final CarName name, final Movable movable){
+    public Car(final CarName name, final Movable movable) {
         this.name = name;
         this.movable = movable;
     }
