@@ -31,17 +31,11 @@ public class Game {
 
     /**
      * random 값을 통해 모든 차에 대해 movement() 실행
-     * @return 각각의 random값
      */
-    public ArrayList<Integer> moveCars() {
-        Random random = new Random();
-        ArrayList<Integer> result = new ArrayList<>();
+    public void moveCars() {
         for (Car car : this.cars) {
-            int rand = random.nextInt(10);
-            result.add(rand);
-            car.movement(rand);
+            car.move(car.makeRandom());
         }
-        return result;
     }
 
     /**

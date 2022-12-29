@@ -1,6 +1,9 @@
 package com.racing;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -11,25 +14,27 @@ public class CarTest {
     @Test
     void checkNameTest(){
         Car car = new Car("carName");
-
         // RuntimeException 발생 시 종료
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> car.checkName());
     }
 
-    @Test
-    void movementTest(){
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 3})
+    @DisplayName("자동차는 3 이하의 값이면 이동하지 못한다.")
+    void notMoveTest(int rand){
         Car car1 = new Car("car1");
-        // 기본 상태 0이여야 함
+        car1.move(rand);
         assertThat(car1.location).isEqualTo(0);
-        // 이동하지 못함(사유 : 입력이 0 임) 위치는 0임
-        car1.movement(0);
-        assertThat(car1.location).isEqualTo(0);
-        // 이동하지 못함(사유 : 입력이 3 임) 위치는 0임
-        car1.movement(3);
-        assertThat(car1.location).isEqualTo(0);
-        // 1만큼 이동함(사유 : 입력이 4 임) 위치는 1임
-        car1.movement(4);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 9})
+    @DisplayName("자동차는 4 이상의 값이면 이동한다.")
+    void moveTest(int rand){
+        Car car1 = new Car("car1");
+        car1.move(rand);
         assertThat(car1.location).isEqualTo(1);
     }
 
@@ -38,7 +43,7 @@ public class CarTest {
     void printLocationTest(){
         Car car1 = new Car("car1");
         // 한 칸 이동
-        car1.movement(9);
+        car1.move(9);
         assertThat(car1.printLocation()).isEqualTo("car1 : -");
     }
 }

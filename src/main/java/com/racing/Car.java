@@ -1,10 +1,19 @@
 package com.racing;
 
+import java.util.Random;
+
 public class Car {
     public int location;
     private String carName;
     public Car(String carName) {
         this.carName = carName;
+    }
+
+
+
+    public int makeRandom(){
+        Random random = new Random();
+        return random.nextInt(10);
     }
 
     /**
@@ -16,11 +25,16 @@ public class Car {
         }
     }
 
+
+    public void carMove(){
+        move(makeRandom());
+    }
+
     /**
      * random number가 4 이상이라면 한 칸 전진
      * @param rand
      */
-    public void movement(int rand) {
+    public void move(int rand) {
         if(rand >= 4) this.location++;
     }
 

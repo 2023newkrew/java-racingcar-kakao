@@ -21,20 +21,6 @@ public class GameTest {
         assertThat(game.cars.get(2).printLocation()).isEqualTo("car3 : ");
     }
 
-    // 모든 차 이동 (1턴)
-    @Test
-    void moveCarsTest(){
-        Game game = new Game();
-        game.init("car1,car2,car3");
-
-        ArrayList<Integer> rands = game.moveCars();
-
-        for(int i=0; i<3; i++){
-            String move = rands.get(i) < 4 ? "" : "-";
-            assertThat(game.cars.get(i).printLocation()).isEqualTo("car" + (i + 1) + " : " + move);
-        }
-    }
-
     @Test
     void runTest(){
         Game game = new Game();
