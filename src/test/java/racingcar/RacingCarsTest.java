@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -29,7 +28,7 @@ class RacingCarsTest {
         }
 
         Stream<Arguments> should_throwException_when_givenCars() {
-            Engine engine = Engine.getDefaultEngine();
+            Engine engine = EngineImpl.getRandomEngine();
             List<Car> cars = new ArrayList<>();
             for (int i = 0; i < 101; ++i) {
                 cars.add(Car.from("c" + i, engine));
@@ -46,7 +45,7 @@ class RacingCarsTest {
 
         @Test
         void should_returnRacingCars_when_givenValidCars() {
-            Engine engine = Engine.getDefaultEngine();
+            Engine engine = EngineImpl.getRandomEngine();
             List<Car> cars = List.of(
                     Car.from("abc", engine),
                     Car.from("abcd", engine)
@@ -69,7 +68,7 @@ class RacingCarsTest {
         }
 
         Stream<Arguments> should_returnCarDtos_when_givenCars() {
-            Engine engine = Engine.getDefaultEngine();
+            Engine engine = EngineImpl.getRandomEngine();
             return Stream.of(
                     Arguments.of(
                             List.of(

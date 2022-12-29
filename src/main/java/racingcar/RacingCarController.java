@@ -61,7 +61,7 @@ public class RacingCarController {
     }
 
     private static Car createCar(String name) {
-        return Car.from(name, Engine.getDefaultEngine());
+        return Car.from(name, EngineImpl.getRandomEngine());
     }
 
     private void simulate(RacingCars racingCars) {
