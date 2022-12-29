@@ -19,7 +19,7 @@ public class Car {
      */
     public void checkName() {
         if(this.carName.length() > MAX_CAR_NAME){
-            throw new RuntimeException("car name length over 5");
+            throw new IllegalArgumentException("차 이름은 5글자 이하여야 합니다.");
         }
     }
 
