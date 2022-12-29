@@ -15,7 +15,7 @@ public class RacingCarGame {
 
     public void start() {
         ArrayList<RoundRecord> roundRecords = new ArrayList<>();
-        List<String> carNamesInput = racingCarView.receiveCarNamesInput();
+        List<String> carNamesInput = racingCarView.receiveCarNamesCsv();
         int runNumber = racingCarView.receiveRunNumber();
         for (String carName : carNamesInput) {
             carListManager.add(new Car(carName));
