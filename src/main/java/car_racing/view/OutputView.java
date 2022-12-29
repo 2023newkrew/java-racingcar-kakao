@@ -14,9 +14,13 @@ public class OutputView {
 
     public static void printCurrentStatus(List<RacingPlayer> racingPlayers) {
         for (RacingPlayer racingPlayer : racingPlayers) {
-            System.out.println(racingPlayer.toString());
+            printRacingPlayerStatus(racingPlayer);
         }
         System.out.println();
+    }
+
+    private static void printRacingPlayerStatus(RacingPlayer racingPlayer) {
+        System.out.println(racingPlayer.getName() + " : " + "-".repeat(racingPlayer.getPosition()));
     }
 
     public static void printWinners(RacingPlayer[] winners) {
