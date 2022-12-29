@@ -1,60 +1,37 @@
 package calculator;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Calculator {
 
+    private final Parser parser;
+
     private String delimiters = ",:";
-    private String input;
-    private String[] splitedNum;
+    private List<Number> numbers;
 
     public Calculator(String input) {
-        this.input = input;
-    }
-
-    public String getInput() {
-        return input;
-    }
-
-    public String[] getSplitedNum() {
-        return splitedNum;
+        this.parser = new Parser(input);
     }
 
     public int run() {
-        checkDelimiter();
-        splitString();
+        numbers = getNumbersToAdd();
         return addNum();
     }
 
+    private List<Number> getNumbersToAdd() {
+        checkDelimiter();
+        return parser.splitContent(delimiters);
+    }
+
     private void checkDelimiter() {
-        Parser parser = new Parser(input);
         Optional<String> customDelimiter = parser.getCustomDelimiter();
-        customDelimiter.ifPresent(cd -> {
-            delimiters += cd;
-            input = parser.getContent();
-        });
-    }
-
-    private void splitString() {
-        splitedNum = this.input.split(String.format("[%s]", delimiters));
-        for (String s : splitedNum) {
-            checkInvalidInput(s);
-        }
-    }
-
-    private void checkInvalidInput(String s) {
-        Matcher m = Pattern.compile("(\\d*)").matcher(s);
-        if (!m.matches()) {
-            throw new RuntimeException("0부터 9 사이의 수만 입력할 수 있습니다.");
-        }
+        customDelimiter.ifPresent(cd -> delimiters += cd);
     }
 
     private int addNum() {
-        return Arrays.stream(splitedNum)
-                .map(Integer::parseInt)
+        return numbers.stream()
+                .map(Number::getValue)
                 .mapToInt(Integer::intValue)
                 .sum();
     }

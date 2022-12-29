@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,5 +28,15 @@ public class Parser {
             return Optional.of(m.group(1));
         }
         return Optional.empty();
+    }
+
+    public List<Number> splitContent(String delimiters) {
+        List<String> splitedNum = List.of(this.content.split(String.format("[%s]", delimiters)));
+        List<Number> numbers = new ArrayList<>();
+        for (String s : splitedNum) {
+            numbers.add(new Number(s));
+        }
+
+        return numbers;
     }
 }

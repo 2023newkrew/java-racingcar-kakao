@@ -2,8 +2,10 @@ package calculator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class ParserTest {
 
@@ -23,5 +25,15 @@ public class ParserTest {
         parser.getCustomDelimiter();
 
         assertThat(parser.getContent()).isEqualTo("1,2+3");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1,2:3", "a,2:3"})
+    @DisplayName("양수가 입력되지 않을 경우 예외가 발생한다.")
+    void splitContent_NegativeInputTest(String input) {
+        Parser parser = new Parser(input);
+
+        assertThatThrownBy(() -> parser.splitContent(",:"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
