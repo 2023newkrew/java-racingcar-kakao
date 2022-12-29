@@ -53,7 +53,7 @@ public class StringSplitter {
         return List.copyOf(separatorsWithCustomSeparator);
     }
 
-    public boolean contains(String separator) {
+    boolean contains(String separator) {
         return separators.contains(separator);
     }
 
