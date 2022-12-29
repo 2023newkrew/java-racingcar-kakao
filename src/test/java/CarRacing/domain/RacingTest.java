@@ -1,5 +1,7 @@
-package CarRacing;
+package CarRacing.domain;
 
+import CarRacing.domain.Car;
+import CarRacing.domain.Racing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
