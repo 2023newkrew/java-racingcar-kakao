@@ -1,7 +1,7 @@
 package racing.domain;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -26,13 +26,19 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        Collections.sort(cars);
-        Car winnerCar = cars.get(length - 1);
+        Integer maxDistance = getMaxDistance();
         List<String> winners = cars.stream()
-                .filter(car -> car.compareTo(winnerCar) == 0)
-                .map(Car::getName)
-                .collect(Collectors.toList());
+                .filter(car -> car.equalsDistance(maxDistance))
+                .map(Car::getName).collect(Collectors.toList());
         return winners;
+    }
+
+    private Integer getMaxDistance() {
+        Integer maxDistance = cars.stream()
+                .map(Car::getDistance)
+                .max(Integer::compareTo)
+                .orElseThrow(NoSuchElementException::new);
+        return maxDistance;
     }
 
     public List<String> getStatus() {

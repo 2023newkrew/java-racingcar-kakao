@@ -1,6 +1,8 @@
 package racing.domain;
 
-public class Car implements Comparable {
+import java.util.Optional;
+
+public class Car {
     private static final double MOVE_LOWER_BOUND = 4.0;
     private static final String PROGRESS_INNER_STRING = " : ";
     private static final String PROGRESS_SYMBOL = "-";
@@ -14,6 +16,10 @@ public class Car implements Comparable {
 
     public String getName() {
         return name;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 
     public boolean move(double number) {
@@ -32,14 +38,8 @@ public class Car implements Comparable {
         return number >= MOVE_LOWER_BOUND;
     }
 
-    private int getDifference(int opponentDistance) {
-        return opponentDistance - distance;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Car car = (Car) o;
-        return car.getDifference(distance);
+    public boolean equalsDistance(int distance) {
+        return this.distance == distance;
     }
 
     @Override
