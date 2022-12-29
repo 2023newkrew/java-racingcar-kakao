@@ -10,7 +10,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class InputTest {
-
     @DisplayName("null & empty 입력 예외 테스트")
     @NullAndEmptySource
     @ParameterizedTest
@@ -20,5 +19,12 @@ public class InputTest {
         });
     }
 
-
+    @DisplayName("턴 입력 예외 테스트")
+    @ValueSource(strings = {"abc", "1a", ""})
+    @ParameterizedTest
+    void inputTurnExceptionTest(String input){
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            InputUI.validationTurn(input);
+        });
+    }
 }
