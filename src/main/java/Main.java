@@ -1,5 +1,5 @@
-import racingcar.Game;
-import racingcar.IOHelper;
+import racingcar.domain.Game;
+import racingcar.view.IOHelper;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.view.IOHelper;
 
 import java.util.List;
 import java.util.stream.Collectors;
