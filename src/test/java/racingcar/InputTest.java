@@ -9,10 +9,19 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.*;
 
 public class InputTest {
-    @DisplayName("null & empty 입력 예외 테스트")
+    @DisplayName("차량 이름 null & empty 입력 예외 테스트")
     @NullAndEmptySource
     @ParameterizedTest
     void nullAndEmptyExceptionTest(String input){
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            InputUI.validateCarList(Arrays.asList("123", "345", input));
+        });
+    }
+
+    @DisplayName("차량 이름 입력 글자 수 예외 테스트")
+    @ValueSource(strings = {"글자수제한넘음", "다섯글자넘음", "aaaaaaa"})
+    @ParameterizedTest
+    void maxLengthExceptionTest(String input){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             InputUI.validateCarList(Arrays.asList("123", "345", input));
         });
