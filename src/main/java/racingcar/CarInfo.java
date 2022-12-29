@@ -6,7 +6,7 @@ public class CarInfo {
     private final String name;
     private final int position;
 
-    public static CarInfo from(String name, int position) {
+    public static CarInfo of(String name, int position) {
         return new CarInfo(name, position);
     }
 

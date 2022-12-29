@@ -30,14 +30,14 @@ class CarTest {
         @ParameterizedTest
         @ValueSource(strings = {"", "123456"})
         void should_throwException_when_invalidCarName(String carName) {
-            assertThatThrownBy(() -> Car.from(carName, engine))
+            assertThatThrownBy(() -> Car.of(carName, engine))
                     .isInstanceOf(RuntimeException.class);
         }
 
         @ParameterizedTest
         @MethodSource
         void should_createSuccess_when_validCarName(String carName, String expectedCarName) {
-            Car car = Car.from(carName, engine);
+            Car car = Car.of(carName, engine);
             CarInfo carInfo = car.getCarInfo();
             assertThat(carInfo.getName()).isEqualTo(expectedCarName);
             assertThat(carInfo.getPosition()).isEqualTo(0);
@@ -63,7 +63,7 @@ class CarTest {
         @MethodSource
         void should_returnPosition_when_moveOrStop(int returnPower, int position) {
             when(engine.getPower()).thenReturn(returnPower);
-            Car car = Car.from("test", engine);
+            Car car = Car.of("test", engine);
             car.moveOrStop();
             CarInfo carInfo = car.getCarInfo();
             assertThat(carInfo.getPosition()).isEqualTo(position);
@@ -86,7 +86,7 @@ class CarTest {
 
         @Test
         void should_throwException_when_engineIsNull() {
-            Car car = Car.from("test", null);
+            Car car = Car.of("test", null);
             assertThatThrownBy(car::moveOrStop).isInstanceOf(RuntimeException.class);
         }
     }

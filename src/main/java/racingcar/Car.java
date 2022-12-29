@@ -12,11 +12,11 @@ public class Car {
     private int position;
     private final Engine engine;
 
-    public static Car from(String name, Engine engine) {
-        return Car.from(CarInfo.from(name, 0), engine);
+    public static Car of(String name, Engine engine) {
+        return Car.of(CarInfo.of(name, 0), engine);
     }
 
-    public static Car from(CarInfo info, Engine engine) {
+    public static Car of(CarInfo info, Engine engine) {
         return new Car(info, engine);
     }
 
@@ -51,6 +51,6 @@ public class Car {
     }
 
     public CarInfo getCarInfo() {
-        return CarInfo.from(name, position);
+        return CarInfo.of(name, position);
     }
 }
