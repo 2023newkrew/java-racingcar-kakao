@@ -27,7 +27,7 @@ public class StringAdderCalculatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName(" 숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
+    @DisplayName("숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
     @ValueSource(strings = {"1", "24"})
     public void singleInteger(String input) {
         assertThat(calculator.calculate(new Prompt(input))).isEqualTo(Integer.parseInt(input));
