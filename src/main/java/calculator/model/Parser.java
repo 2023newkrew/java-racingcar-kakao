@@ -9,11 +9,11 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private static final String DELIMITER_REGEX = "//(.)\n(.*)";
-
     private final List<String> delimiters = new ArrayList<>(Arrays.asList(",", ":"));
 
     private final String equation;
+
+    private static final Pattern DELIMITER_REGEX_PATTERN = Pattern.compile("//(.)\n(.*)");
 
     public Parser(String inputString) {
         inputString = checkNullOrEmpty(inputString);
@@ -38,13 +38,13 @@ public class Parser {
     }
 
     private String extractCustomDelimiter(String inputString) {
-        Matcher m = Pattern.compile(DELIMITER_REGEX).matcher(inputString);
+        Matcher m = DELIMITER_REGEX_PATTERN.matcher(inputString);
 
         return m.find() ? m.group(1) : null;
     }
 
     private String extractPureEquation(String inputString) {
-        Matcher m = Pattern.compile(DELIMITER_REGEX).matcher(inputString);
+        Matcher m = DELIMITER_REGEX_PATTERN.matcher(inputString);
 
         return m.find() ? m.group(2) : inputString;
     }

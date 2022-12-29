@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    private static final int START_THRESHOLD = 3;
-
-    private static final int END_THRESHOLD = 10;
-
     private final Cars cars;
+
+    private static final int MIN_RANGE_FOR_MOVE = 4;
+
+    private static final int MAX_RANGE_FOR_MOVE = 9;
+
+    private final Random random = new Random();
 
     public Game(Cars cars) {
         this.cars = cars;
@@ -21,16 +23,16 @@ public class Game {
     }
 
     private int generateRandomNumber() {
-        return new Random().nextInt(END_THRESHOLD);
+        return random.nextInt(MAX_RANGE_FOR_MOVE + 1);
     }
 
     private void moveCar(int carIndex, int number) {
-        if (number > START_THRESHOLD) {
+        if (number >= MIN_RANGE_FOR_MOVE) {
             cars.moveCar(carIndex);
         }
     }
 
-    public void moveCar(int carIndex) {
+    private void moveCar(int carIndex) {
         int randomNumber = generateRandomNumber();
         moveCar(carIndex, randomNumber);
     }

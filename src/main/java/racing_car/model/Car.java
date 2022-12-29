@@ -16,8 +16,8 @@ public class Car implements Comparable<Car> {
         return racer;
     }
 
-    public String displayDistance() {
-        return "-".repeat(this.distance);
+    public int getDistance() {
+        return distance;
     }
 
     public void move(int step) {

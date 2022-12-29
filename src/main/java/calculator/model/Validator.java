@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class Validator {
 
+    private Validator() {
+    }
+
     public static void validate(String[] numbers) throws RuntimeException {
         Arrays.stream(numbers).forEach(number -> {
             int converted = convertToNumber(number);

@@ -53,7 +53,7 @@ public class RacingCarTest {
         Car car = new Car("pobi");
         car.move(step);
 
-        String output = car.displayDistance();
+        String output = "-".repeat(car.getDistance());
         assertEquals("-".repeat(step), output);
     }
 

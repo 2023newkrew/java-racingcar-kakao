@@ -8,7 +8,8 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        this.cars = cars == null ? new ArrayList<>() : new ArrayList<>(cars);
+        this.cars = Optional.ofNullable(cars)
+                .orElse(new ArrayList<>());
     }
 
     private Cars(Car[] cars) {

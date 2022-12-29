@@ -24,9 +24,12 @@ public class GameView {
     }
 
     public void printGameProcess(Cars all) {
-        all.getCars()
-                .forEach(car -> System.out.println(car.getRacer().getName() + " : " + car.displayDistance()));
+        all.getCars().forEach(car -> System.out.printf("%s : %s", car.getRacer().getName(), displayDistance(car)));
         System.out.println();
+    }
+
+    private String displayDistance(Car car) {
+        return "-".repeat(car.getDistance());
     }
 
     public void printGameResult(Cars winners) {
