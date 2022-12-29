@@ -33,10 +33,6 @@ public class StringNumberParser {
     }
 
     private Long convertToNumber(String stringNumber) {
-        try {
-            return Long.parseLong(stringNumber);
-        }catch (NumberFormatException ex) {
-            throw new RuntimeException(ex);
-        }
+        return Long.parseLong(stringNumber);
     }
 }
