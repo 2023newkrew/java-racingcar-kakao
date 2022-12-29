@@ -2,14 +2,11 @@ package racingcar.controller.domain;
 
 public class RacingCar {
     public final static int POWER_THRESHOLD = 4;
-    private String name;
+    private final String name;
     private int pos;
 
-    public RacingCar() {
-        this.pos = 0;
-    }
     public RacingCar(String name) {
-        this();
+        this.pos = 0;
         this.name = name;
     }
     public String getName() {
