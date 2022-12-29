@@ -8,6 +8,12 @@ public class RacingGame {
     private List<RacingCar> cars;
     private final int finalTurn;
     private int turnCount;
+    public RacingGame(List<String> names, int finalTurn) {
+        this.cars = names.stream()
+                .map(RacingCar::new)
+                .collect(Collectors.toList());
+        this.finalTurn = finalTurn;
+    }
 
     public List<RacingCar> getCars() {
         return this.cars;
@@ -17,20 +23,11 @@ public class RacingGame {
         return this.turnCount;
     }
 
-
-    public RacingGame(List<String> names, int finalTurn) {
-        this.cars = names.stream()
-                .map(RacingCar::new)
-                .collect(Collectors.toList());
-        this.finalTurn = finalTurn;
-    }
-
-
     public boolean isFinished() {
         return this.turnCount >= this.finalTurn;
     }
 
-    public int generateRandomNumber() {
+    private int generateRandomNumber() {
         return (int)(Math.random()*1000) %10;
     }
 
@@ -47,19 +44,10 @@ public class RacingGame {
                 .mapToInt(RacingCar::getPos)
                 .max()
                 .getAsInt();
-
         List<RacingCar> winners = this.cars.stream()
                 .filter(car->car.getPos()==maxPos)
                 .collect(Collectors.toList());
-
         return winners;
     }
-
-    public void appendWinner(List<RacingCar> winners, RacingCar racingCar, int maxPos) {
-        if(racingCar.getPos()==maxPos) {
-            winners.add(racingCar);
-        }
-    }
-
 
 }

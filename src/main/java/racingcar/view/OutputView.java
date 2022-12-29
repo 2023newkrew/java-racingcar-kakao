@@ -7,21 +7,21 @@ import java.util.List;
 
 public class OutputView {
 
-    public String carPosToOutputText(RacingCar racingCar) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(racingCar.getName()).append(" : ");
-        for (int i = 0; i <= racingCar.getPos(); i++) {
-            sb.append("-");
-        }
-        return sb.append("\n").toString();
-    }
-
     public void printTurnResult(List<RacingCar> cars) {
         StringBuilder sb = new StringBuilder();
         for (RacingCar rc : cars) {
             sb.append(carPosToOutputText(rc));
         }
         System.out.println(sb);
+    }
+
+    private String carPosToOutputText(RacingCar racingCar) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(racingCar.getName()).append(" : ");
+        for (int i = 0; i <= racingCar.getPos(); i++) {
+            sb.append("-");
+        }
+        return sb.append("\n").toString();
     }
 
     public void printGameResultMessage() {
