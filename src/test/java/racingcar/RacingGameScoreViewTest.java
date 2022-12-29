@@ -40,7 +40,7 @@ class RacingGameScoreViewTest {
                 "\n";
 
         //when
-        racingGameScoreView.printScore(racingCars);
+        racingGameScoreView.printRacingCarDist(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);

@@ -16,10 +16,10 @@ public class RacingGame {
 
     public void play(List<RacingCar> racingCars, int rounds) {
         System.out.println("\n실행 결과");
-        racingGameScoreView.printScore(racingCars);
+        racingGameScoreView.printRacingCarDist(racingCars);
         for (int round = 0; round < rounds; round++) {
             playRound(racingCars);
-            racingGameScoreView.printScore(racingCars);
+            racingGameScoreView.printRacingCarDist(racingCars);
         }
         racingGameScoreView.printWinners(racingGameReferee.findWinners(racingCars));
     }

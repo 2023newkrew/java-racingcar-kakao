@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameScoreView {
-    public void printScore(List<RacingCar> racingCars) {
+    public void printRacingCarDist(List<RacingCar> racingCars) {
         for (RacingCar car : racingCars) {
             System.out.println(car.toString());
         }
