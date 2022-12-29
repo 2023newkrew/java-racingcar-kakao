@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 import racingcar.domain.model.RacingCar;
+import racingcar.exception.BusinessException;
+import racingcar.exception.ErrorCode;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +40,7 @@ public class CarContainer {
 
     private void checkEmptyOrNull() {
         if (cars == null || cars.isEmpty()) {
-            throw new RuntimeException();
+            throw new BusinessException(ErrorCode.EMPTY_CAR_LIST_EXCEPTION);
         }
     }
 
@@ -47,7 +49,7 @@ public class CarContainer {
                 .distinct()
                 .count();
         if (distinctCount < cars.size()) {
-            throw new RuntimeException();
+            throw new BusinessException(ErrorCode.DUPLICATE_CAR_NAME_EXCEPTION);
         }
     }
 }

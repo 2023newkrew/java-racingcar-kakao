@@ -1,6 +1,8 @@
 package racingcar.domain.model.impl;
 
 import racingcar.domain.model.RacingCar;
+import racingcar.exception.BusinessException;
+import racingcar.exception.ErrorCode;
 import racingcar.util.RandomUtil;
 
 public class RacingCarImpl extends RacingCar {
@@ -29,7 +31,7 @@ public class RacingCarImpl extends RacingCar {
 
     private void checkCarNameLength(String name) {
         if (name.length() > CAR_NAME_LIMIT) {
-            throw new RuntimeException();
+            throw new BusinessException(ErrorCode.TOO_LONG_CAR_NAME_EXCEPTION);
         }
     }
 }

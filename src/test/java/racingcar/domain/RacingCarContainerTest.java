@@ -3,6 +3,8 @@ package racingcar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.model.RacingCar;
+import racingcar.exception.BusinessException;
+import racingcar.exception.ErrorCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +16,9 @@ public class RacingCarContainerTest {
         ArrayList<RacingCar> cars = new ArrayList<>();
         cars.add(new MockRacingCarImpl("lion"));
         cars.add(new MockRacingCarImpl("lion"));
-        Assertions.assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> new CarContainer(cars));
+        Assertions.assertThatExceptionOfType(BusinessException.class)
+                .isThrownBy(() -> new CarContainer(cars))
+                .withMessage(ErrorCode.DUPLICATE_CAR_NAME_EXCEPTION.getMessage());
     }
 
     @Test

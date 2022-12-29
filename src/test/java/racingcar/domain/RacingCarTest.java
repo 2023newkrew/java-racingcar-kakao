@@ -5,9 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.model.RacingCar;
 import racingcar.domain.model.impl.RacingCarImpl;
+import racingcar.exception.BusinessException;
+import racingcar.exception.ErrorCode;
 
 public class RacingCarTest {
 
@@ -30,9 +31,17 @@ public class RacingCarTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = {"too_long_name"})
-    void invalidName(String name) {
-        Assertions.assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> new RacingCarImpl(name));
+    void emptyOrNullCarName(String name) {
+        Assertions.assertThatExceptionOfType(BusinessException.class)
+                .isThrownBy(() -> new RacingCarImpl(name))
+                .withMessage(ErrorCode.EMPTY_CAR_NAME_EXCEPTION.getMessage());
+    }
+
+    @Test
+    void tooLongCarName() {
+        String tooLongCarName = "too_long_car";
+        Assertions.assertThatExceptionOfType(BusinessException.class)
+                .isThrownBy(() -> new RacingCarImpl(tooLongCarName))
+                .withMessage(ErrorCode.TOO_LONG_CAR_NAME_EXCEPTION.getMessage());
     }
 }
