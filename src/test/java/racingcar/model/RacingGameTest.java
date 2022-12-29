@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Collections;
 import java.util.List;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +17,14 @@ class RacingGameTest {
 
     private static final int MOVE = 4;
     private static final int STOP = 3;
+
+    @DisplayName("자동차 이름은 공백을 제거하고 6글자 이상일 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"ethaan   ", "veruasds   ", "   pasdobi\t\t\t"})
+    void inputUnderFiveLength(String carName) {
+        Assertions.assertThatThrownBy(() -> new Car(carName))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("1대 이상의 자동차가 경주에 참가해야한다.")
     @Test
