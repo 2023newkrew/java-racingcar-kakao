@@ -43,18 +43,21 @@ public class StringCalculator {
     public boolean registerDelimiterIfNotExist(String input) {
         Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
-        if (m.find()) {
+        if (hasCustomDelimiter(m)) {
             delimiters.add(m.group(1));
             return true;
         }
-
         return false;
+    }
+
+    private boolean hasCustomDelimiter(final Matcher m) {
+        return m.find();
     }
 
     public Optional<String> parseNumberContainingString(String input) {
         Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
-        if (m.find()) {
+        if (hasCustomDelimiter(m)) {
             return Optional.of(m.group(2));
         }
 
