@@ -21,8 +21,9 @@ public class RacingCarGameControllerImpl implements RacingCarGameController {
         outputView.printStartMessage();
         racingCarGame.add(inputView.inputName());
         outputView.printAskRunCount();
+        int runCount = inputView.inputRunCount();
         outputView.printRunResult();
-        runAndPrint(inputView.inputRunCount());
+        runAndPrint(runCount);
         outputView.printFinalResult(racingCarGame.getWinnerNames());
     }
 
