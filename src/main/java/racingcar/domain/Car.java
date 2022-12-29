@@ -1,6 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-public class Car extends MovableStrategy{
+public class Car extends MovableStrategy {
     private final String name;
     private int position;
 
