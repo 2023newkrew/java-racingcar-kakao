@@ -9,7 +9,8 @@ public class RacingService {
     public RacingService(RacingCarRepository racingCarRepository){
         this.racingCarRepository = racingCarRepository;
     }
-    public void turn() {
+
+    public void cycleProgress() {
         for (Car car : racingCarRepository.getCars()) {
             car.tryMove();
         }

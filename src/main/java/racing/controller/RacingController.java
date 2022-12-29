@@ -26,7 +26,7 @@ public class RacingController {
         racingOutputTemplate.printCurrentStatus();
 
         for (int i = 0; i < attempt; i++) {
-            racingService.turn();
+            racingService.cycleProgress();
             racingOutputTemplate.printCurrentStatus();
         }
 
