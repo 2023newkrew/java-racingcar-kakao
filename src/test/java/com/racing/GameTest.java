@@ -1,100 +1,161 @@
 package com.racing;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
+import java.security.InvalidParameterException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class GameTest {
 
-    @Test
-    void initNormalTest(){
-        Game game = new Game();
-        game.init("car1,car2,car3");
-        // init에서 3개의 자동차를 선언했으므로 길이가 3이여야 함
-        assertThat(game.cars).hasSize(3);
-        // 각 자동차는 이동거리가 0인 자동차이고 각각의 이름은 car1, car2, car3 이므로 아래와 같은 출력값을 가져야 한다.
-        assertThat(game.cars.get(0).formatLocation()).isEqualTo("car1 : ");
-        assertThat(game.cars.get(1).formatLocation()).isEqualTo("car2 : ");
-        assertThat(game.cars.get(2).formatLocation()).isEqualTo("car3 : ");
+    static Stream<Arguments> winnerParams() {
+        return Stream.of(
+                Arguments.of(
+                        Map.of(
+                                "a", 1,
+                                "b", 2,
+                                "c", 3
+                        ),
+                        List.of("c")
+                ),
+                Arguments.of(
+                        Map.of(
+                                "a", 1,
+                                "b", 3,
+                                "c", 3
+                        ),
+                        List.of("b", "c")
+                ),
+                Arguments.of(
+                        Map.of(
+                                "a", 3,
+                                "b", 3,
+                                "c", 3
+                        ),
+                        List.of("a", "b", "c")
+                )
+        );
     }
 
-    @Test
-    void initTooLongNameTest(){
-        Game game = new Game();
-        // 길이가 5 보다 큰 자동차 이름
-        assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(()-> game.init("abcdef"));
+
+    static Stream<Arguments> maxLocationParams() {
+        return Stream.of(
+                Arguments.of(
+                        Map.of(
+                                "a", 1,
+                                "b", 2,
+                                "c", 3
+                        ),
+                        3
+                ),
+                Arguments.of(
+                        Map.of(
+                                "a", 2,
+                                "b", 3,
+                                "c", 4
+                        ),
+                        4
+                )
+        );
     }
 
-    @Test
-    void initEmptyTest(){
-        Game game = new Game();
-        game.init("");
-        // 특수한 경우 init에 빈 문자열을 넣은 경우
-        assertThat(game.cars).hasSize(0);
+    @DisplayName("올바르지 않은 게임 생성을 시도하는 경우")
+    @ParameterizedTest
+    @CsvSource(delimiter = '|' , value = {
+            "|",
+            "'abcdef'|",
+            "'a,abcdef'|",
+    })
+    void invalidNamesTest(String invalidName) {
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> Game.factory()
+                        .withCarsRawString(invalidName)
+                        .build());
+    }
+
+    @DisplayName("올바른 게임을 생성하는 경우")
+    @ParameterizedTest
+    @CsvSource(delimiter = '|' , value = {
+            "''                         |0",
+            "'a'                        |1",
+            "'a,ab'                     |2",
+            "'a,ab,abc'                 |3",
+            "'a,ab,abc,abcd'            |4",
+            "'a,ab,abc,abcd,abcde'      |5",
+    })
+    void validNamesTest(String validName, int length) {
+        List<String> names = Arrays.stream(validName.split(","))
+                .limit(length)
+                .collect(Collectors.toList());
+        Game game = Game.factory()
+                .withCarsRawString(validName)
+                .build();
+        assertThat(game.carStream()
+                .map(Car::name)
+                .collect(Collectors.toList()))
+                .isEqualTo(names);
+
+    }
+
+    @DisplayName("1단계를 진행하는 메서드")
+    @ParameterizedTest
+    @CsvSource(delimiter = '|' , value = {
+            "0 | 0",
+            "1 | 0",
+            "2 | 0",
+            "3 | 0",
+            "4 | 1",
+            "5 | 1",
+            "6 | 1",
+            "7 | 1",
+            "8 | 1",
+            "9 | 1",
+    })
+    void runEachStepTest(int userIn, int expectLocation) {
+        Game game = Game.factory()
+                .withCarsRawString("a,b,c")
+                .build();
+        game.run(car -> userIn);
+        game.carStream()
+                .forEach(car -> assertThat(car.location()).isEqualTo(expectLocation));
+    }
+
+    @DisplayName("승리자를 판단")
+    @ParameterizedTest
+    @MethodSource("winnerParams")
+    void winnerTest(Map<String, Integer> carLocations, List<String> expectWinners) {
+        Game game = Game.factory()
+                .withCarsRawString(String.join(",", carLocations.keySet()))
+                .build();
+        game.carStream()
+                .forEach(car -> car.setLocation(carLocations.get(car.name())));
+        List<String> actualWinners = game.winners()
+                .stream()
+                .map(Car::name)
+                .collect(Collectors.toList());
+        assertThat(actualWinners).hasSameElementsAs(expectWinners);
     }
 
 
-    // 모든 차 이동 (1턴)
-    @Test
-    void moveCarsTest(){
-        Game game = new Game();
-        game.init("car1,car2,car3");
-
-        ArrayList<Integer> rands = game.moveCars();
-
-        for(int i=0; i<3; i++){
-            String move = rands.get(i) < 4 ? "" : "-";
-            assertThat(game.cars.get(i).formatLocation()).isEqualTo("car" + (i + 1) + " : " + move);
-        }
-    }
-
-    @Test
-    void runTest(){
-        Game game = new Game();
-        game.init("car1,car2,car3");
-        // runCount는 처음에는 0이다
-        assertThat(game.runCount).isEqualTo(0);
-        game.run(5);
-        // runCount는 run 메서드가 호출될때 사용된 n 횟수를 다 더한 값이다.
-        assertThat(game.runCount).isEqualTo(5);
-    }
-
-    @Test
-    void maxLocationTest(){
-        Game game = new Game();
-        game.init("car1,car2");
-        game.run(5);
-
-        // 자동차 location의 max 값 직접 구함
-        int findMax = Math.max(game.cars.get(0).location, game.cars.get(1).location);
-        assertThat(findMax).isEqualTo(game.getMaxLocation());
-    }
-
-    @Test
-    void getWinnerTest(){
-        Game game = new Game();
-        game.init("car1,car2");
-        game.run(5);
-
-        ArrayList<Car> actualWinners = game.getWinners();
-        ArrayList<Car> expectWinners = makeExpectWinners(game);
-
-        assertThat(actualWinners).isEqualTo(expectWinners);
-    }
-
-    public ArrayList<Car> makeExpectWinners(Game game){
-        ArrayList<Car> expectWinners = new ArrayList<>();
-        int maxLocation = game.getMaxLocation();
-        if(game.cars.get(0).location == maxLocation){
-            expectWinners.add(game.cars.get(0));
-        }
-        if(game.cars.get(1).location == maxLocation){
-            expectWinners.add(game.cars.get(1));
-        }
-        return expectWinners;
+    @DisplayName("가장 멀리 간 자동자를 확인")
+    @ParameterizedTest
+    @MethodSource("maxLocationParams")
+    void maxLocationTest(Map<String, Integer> carLocations, int expectMaxLocation) {
+        Game game = Game.factory()
+                .withCarsRawString(String.join(",", carLocations.keySet()))
+                .build();
+        game.carStream()
+                .forEach(car -> car.setLocation(carLocations.get(car.name())));
+        assertThat(game.maxLocation()).isEqualTo(expectMaxLocation);
     }
 }
