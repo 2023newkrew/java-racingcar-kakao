@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 class RacingGameTest {
 
     @DisplayName("한 라운드를 진행하고 진행 결과로 RacingCar 리스트를 반환")
@@ -25,7 +27,29 @@ class RacingGameTest {
         List<RacingCar> roundResult = racingGame.playRound();
 
         //then
-        Assertions.assertThat(roundResult).hasSize(3);
+        assertThat(roundResult).hasSize(3);
     }
 
+    @DisplayName("입력받은 라운드만큼 라운드를 진행")
+    @Test
+    void playRound_finish() {
+        //given
+        List<RacingCar> racingCars = Arrays.asList(
+                new RacingCar("car1"),
+                new RacingCar("car2"),
+                new RacingCar("car3"));
+        int rounds = 5;
+        RacingGame racingGame = new RacingGame(racingCars, rounds);
+
+        //when
+        int roundCnt = 0;
+        while (!racingGame.isFinished()) {
+            racingGame.playRound();
+            roundCnt++;
+        }
+
+        //then
+        assertThat(racingGame.isFinished()).isTrue();
+        assertThat(roundCnt).isEqualTo(rounds);
+    }
 }
