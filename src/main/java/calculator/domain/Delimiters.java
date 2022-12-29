@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Delimiters {
-    private static final List<Delimiter> DEFAULT_DELIMITER = new ArrayList<>(Arrays.asList(new Delimiter(":"), new Delimiter(",")));
     private final List<Delimiter> delimiters;
+
+    private static final List<Delimiter> DEFAULT_DELIMITER = new ArrayList<>(Arrays.asList(new Delimiter(":"), new Delimiter(",")));
 
     public Delimiters() {
         this.delimiters = DEFAULT_DELIMITER;
