@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.domain.Racing;
+import racingcar.view.RacingCarView;
+
 import java.util.List;
 
 public class App {
