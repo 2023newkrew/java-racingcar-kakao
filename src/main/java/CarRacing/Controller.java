@@ -2,6 +2,7 @@ package CarRacing;
 
 import CarRacing.domain.Car;
 import CarRacing.domain.Racing;
+import CarRacing.domain.RacingLog;
 import CarRacing.view.InputView;
 import CarRacing.view.ResultView;
 
@@ -13,16 +14,14 @@ public class Controller {
     public static void handleNames(Racing racing) {
         String inputNames = InputView.inputNames();
         String[] names = racing.handleNames(inputNames);
-        carList =  racing.makeCarList(names);
+        carList = racing.makeCarList(names);
     }
 
     public static void playRacing(Racing racing) {
         int inputCount = InputView.inputCount();
-        ResultView.printResult(carList);
-        for (int count = 0; count < inputCount; count++) {
-            carList = racing.oneCycle(carList);
-            ResultView.printResult(carList);
-        }
+        racing.playRacing(carList, inputCount);
+        List<RacingLog[]> racingLogs = racing.getRacingLogs();
+        ResultView.printRacingLogs(racingLogs);
     }
 
     public static void winnerResult(Racing racing) {

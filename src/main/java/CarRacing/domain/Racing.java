@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Racing {
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    List<RacingLog[]> racingLogs = new ArrayList<>();
+
     public String[] splitInputString(String inputString) {
         return inputString.split(",");
     }
@@ -60,5 +62,27 @@ public class Racing {
         String[] names = splitInputString(inputNames);
         checkCarsNameLength(names);
         return names;
+    }
+
+    public void writeRacingLog(Car[] cars) {
+        RacingLog[] racingLog = new RacingLog[cars.length];
+        for (int carIndex = 0; carIndex < cars.length; carIndex++) {
+            racingLog[carIndex] = new RacingLog(cars[carIndex].getName(), cars[carIndex].getPosition());
+        }
+        racingLogs.add(racingLog);
+    }
+
+    public List<RacingLog[]> getRacingLogs() {
+        return racingLogs;
+    }
+
+    public Car[] playRacing(Car[] cars, int tryCount) {
+        writeRacingLog(cars);
+        while (tryCount > 0) {
+            cars = oneCycle(cars);
+            writeRacingLog(cars);
+            tryCount--;
+        }
+        return cars;
     }
 }

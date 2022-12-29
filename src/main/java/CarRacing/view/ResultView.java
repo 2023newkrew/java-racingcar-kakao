@@ -1,16 +1,22 @@
 package CarRacing.view;
 
 import CarRacing.domain.Car;
+import CarRacing.domain.RacingLog;
 
 import java.util.List;
 
 public class ResultView {
-    public static void printResult(Car[] cars) {
-        System.out.println("실행 결과");
-        for (Car car : cars) {
+    private static void printRacingLog(RacingLog[] racingLog) {
+        for(RacingLog car : racingLog) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
         System.out.println();
+    }
+    public static void printRacingLogs(List<RacingLog[]> RacingLogs) {
+        System.out.println("실행 결과");
+        for(RacingLog[] racingLog : RacingLogs) {
+            printRacingLog(racingLog);
+        }
     }
 
     public static void printWinners(List<String> winners) {
