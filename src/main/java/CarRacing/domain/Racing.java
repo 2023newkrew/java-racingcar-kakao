@@ -54,7 +54,7 @@ public class Racing {
     }
 
     public List<String> addWinner(List<String> winners, String name) {
-        if(name != null) {
+        if (name != null) {
             winners.add(name);
         }
         return winners;

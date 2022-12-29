@@ -29,7 +29,7 @@ public class Car {
     }
 
     public void moveCar(boolean move) {
-        if(move) {
+        if (move) {
             position += CAR_VELOCITY;
         }
     }
@@ -43,7 +43,7 @@ public class Car {
     }
 
     public String getWinnerName(int maxPosition) {
-        if(maxPosition == position) {
+        if (maxPosition == position) {
             return name;
         }
         return null;
