@@ -1,4 +1,7 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.dto.CarInfo;
+import racingcar.dto.GameInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,19 +49,5 @@ public class Game {
             maxPosition = Math.max(maxPosition, carInfo.getPosition());
         }
         return maxPosition;
-    }
-
-    public void run(IOHelper ioHelper) {
-        List<String> namesInput = ioHelper.getNamesInput();
-        int roundInput = ioHelper.getRoundInput();
-
-        GameInfo gameInfo = init(namesInput, roundInput);
-        ioHelper.printInitialStatus(gameInfo);
-        while(gameInfo.getLeftRoundCnt() != 0) {
-            gameInfo = runRound();
-            ioHelper.printRoundResult(gameInfo);
-        }
-
-        ioHelper.printGameResult(findWinners(gameInfo));
     }
 }

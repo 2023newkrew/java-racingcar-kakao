@@ -3,6 +3,10 @@ package racingcar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.dto.CarInfo;
+import racingcar.domain.Game;
+import racingcar.dto.GameInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +55,7 @@ public class GameTest {
 
     @Test
     @DisplayName("최대 위치는 모든 차들의 위치값 중 최대값이다")
-    void getWinPosition() {
+    void getMaxPosition() {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("car1"));
         cars.add(new Car("car2"));
