@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,13 +7,15 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class CarTest {
 
 
     @ParameterizedTest
     @ValueSource(strings = {"soony", "five"})
     void 이름이_다섯자_이하이면_정상적으로_차_생성(String name) {
-        Assertions.assertThatCode(() -> new RacingCar("name"))
+        Assertions.assertThatCode(() -> new RacingCar(name))
                 .doesNotThrowAnyException();
     }
 
@@ -40,6 +40,12 @@ public class CarTest {
         racingCar.move(input);
         int dist = racingCar.getDistance();
         assertThat(dist).isEqualTo(1);
+    }
+
+    @Test
+    void 초기_distance를_갖는_Car_생성() {
+        assertThatCode(() -> new RacingCar("abc", 5)).doesNotThrowAnyException();
+        assertThat(new RacingCar("soony", 6).getDistance()).isEqualTo(6);
     }
 
     @ParameterizedTest

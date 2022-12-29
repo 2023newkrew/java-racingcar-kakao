@@ -19,6 +19,11 @@ public class RacingCar implements Car {
         this.distance = 0;
     }
 
+    public RacingCar(String name, int distance) {
+        this(name);
+        this.distance = distance;
+    }
+
     public String getName() {
         return name;
     }
