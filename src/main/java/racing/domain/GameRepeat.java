@@ -1,10 +1,10 @@
 package racing.domain;
 
 public class GameRepeat {
-    public static final int MIN_REPEAT = 1;
-    public static final int MAX_REPEAT = 100;
-    public static final String NOT_ENOUGH_REPEAT_EXCEPTION_MESSAGE = "[ERROR] 최소 1회는 시도해야 합니다.";
-    public static final String TOO_MANY_REPEAT_EXCEPTION_MESSAGE = "[ERROR] 시도 횟수는 최대 100회까지만 가능합니다.";
+    private static final int MIN_REPEAT = 1;
+    private static final int MAX_REPEAT = 100;
+    private static final String NOT_ENOUGH_REPEAT_EXCEPTION_MESSAGE = "[ERROR] 최소 1회는 시도해야 합니다.";
+    private static final String TOO_MANY_REPEAT_EXCEPTION_MESSAGE = "[ERROR] 시도 횟수는 최대 100회까지만 가능합니다.";
 
     private int remaining;
 

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import racing.dto.CarDTO;
 
 public class Cars {
-    public static final String NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private static final String NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
     private final List<Car> cars;
 
     public Cars(final List<CarName> carNames) {

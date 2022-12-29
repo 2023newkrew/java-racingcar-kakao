@@ -8,7 +8,7 @@ import racing.movable.RandomlyMovable;
 public class Car {
     private static final int DEFAULT_DISTANCE = 0;
     private static final Movable DEFAULT_MOVABLE = new RandomlyMovable();
-    public static final String NULL_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private static final String NULL_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
 
     private final CarName name;
     private final Movable movable;

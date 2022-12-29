@@ -12,7 +12,7 @@ import racing.dto.CarDtoDistanceComparator;
 
 public class Game {
     private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름은 중복될 수 없습니다.";
-    public static final String NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private static final String NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
     private final Comparator<CarDTO> distanceComparator = new CarDtoDistanceComparator();
     private final Cars cars;
     private GameRepeat gameRepeat;

@@ -3,7 +3,7 @@ package racing.movable;
 import racing.utils.RandomNumberGenerator;
 
 public class RandomlyMovable implements Movable {
-    public static final int MOVING_LOWER_BOUND = 4;
+    private static final int MOVING_LOWER_BOUND = 4;
 
     @Override
     public boolean isMoving() {
