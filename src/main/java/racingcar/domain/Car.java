@@ -3,8 +3,6 @@ package racingcar.domain;
 import racingcar.domain.stratedy.MovableStrategy;
 import racingcar.domain.stratedy.RandomStratedy;
 
-import java.util.Objects;
-
 public class Car implements Comparable<Car> {
     private final String name;
     private int distance;

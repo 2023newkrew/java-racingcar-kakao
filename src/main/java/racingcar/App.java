@@ -14,7 +14,7 @@ public class App {
         racing.addCars(racingCarView.inputCarNames().stream().map(Car::new).collect(Collectors.toList()));
         racing.setCount(racingCarView.inputCount());
         racingCarView.resultMessage();
-        while (!racing.isFinished()) {
+        while (racing.isNotFinished()) {
             racing.tryForward();
             racingCarView.printResultOfCars(racing.getCarList());
         }

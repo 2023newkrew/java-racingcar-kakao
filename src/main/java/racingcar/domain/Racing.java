@@ -1,10 +1,6 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.Collections.*;
 
 public class Racing {
     private Cars cars;
@@ -31,8 +27,8 @@ public class Racing {
         return count;
     }
 
-    public boolean isFinished() {
-        return count == 0;
+    public boolean isNotFinished() {
+        return count != 0;
     }
 
     public List<String> winner() {
