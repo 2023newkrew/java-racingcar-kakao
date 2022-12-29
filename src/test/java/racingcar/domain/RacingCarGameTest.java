@@ -52,9 +52,9 @@ public class RacingCarGameTest {
 
     @Test
     public void runTest() throws NoSuchFieldException, IllegalAccessException {
-        Car car1 = new RacingCar("pobi");
-        Car car2 = new RacingCar("crong");
-        Car car3 = new RacingCar("honux");
+        Car car1 = CarFactory.createCar("pobi");
+        Car car2 = CarFactory.createCar("crong");
+        Car car3 = CarFactory.createCar("honux");
 
         racingCarGame.add(car1, car2, car3);
         racingCarGame.run(5);
@@ -71,23 +71,9 @@ public class RacingCarGameTest {
                 .getDistance()).isEqualTo(2);
     }
 
-    @Test
-    public void getSingleWinner() {
-        Car car1 = new RacingCar("pobi");
-        Car car2 = new RacingCar("crong");
-        Car car3 = new RacingCar("honux");
-
-        racingCarGame.add(car1, car2, car3);
-        racingCarGame.run(5);
-
-        assertThat(racingCarGame.getWinner()
-                .size()).isEqualTo(1);
-        assertThat(racingCarGame.getWinner()
-                .get(0)).isEqualTo(car2);
-    }
 
     @Test
-    public void getSingleWinnerUsingFactoryPattern(){
+    public void getSingleWinner(){
         Car car1 = CarFactory.createCar("pobi");
         Car car2 = CarFactory.createCar("crong");
         Car car3 = CarFactory.createCar("honux");
@@ -103,10 +89,10 @@ public class RacingCarGameTest {
 
     @Test
     public void getMultiWinner() {
-        Car car1 = new RacingCar("pobi");
-        Car car2 = new RacingCar("crong");
-        Car car3 = new RacingCar("honux");
-        Car car4 = new RacingCar("russell");
+        Car car1 = CarFactory.createCar("pobi");
+        Car car2 = CarFactory.createCar("crong");
+        Car car3 = CarFactory.createCar("honux");
+        Car car4 = CarFactory.createCar("soony");
 
         racingCarGame.add(car1, car2, car3, car4);
         racingCarGame.run(5);
@@ -120,8 +106,8 @@ public class RacingCarGameTest {
 
     @Test
     public void getCarResultsTest() {
-        Car car1 = new RacingCar("pobi");
-        Car car2 = new RacingCar("crong");
+        Car car1 = CarFactory.createCar("pobi");
+        Car car2 = CarFactory.createCar("crong");
 
         racingCarGame.add(car1, car2);
         racingCarGame.run(5);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.AppConfig;
+import racingcar.factory.CarFactory;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -34,7 +35,7 @@ public class RacingCarGameImpl implements RacingCarGame {
 
     @Override
     public void add(String carName) {
-        cars.add(new RacingCar(carName));
+        cars.add(CarFactory.createCar(carName));
     }
 
     @Override
