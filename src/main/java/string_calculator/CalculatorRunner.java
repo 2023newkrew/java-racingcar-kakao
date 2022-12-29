@@ -11,8 +11,7 @@ public class CalculatorRunner {
 
     public void run() {
         String input = receiveInput();
-        Integer result;
-        result = calculate(input);
+        Integer result = calculate(input);
         printResult(result);
     }
 
@@ -20,7 +19,7 @@ public class CalculatorRunner {
         Scanner sc = new Scanner(System.in);
         String retString = "";
         System.out.print("문자열을 입력해주세요: ");
-        retString = sc.next();
+        retString = sc.nextLine();
         return retString;
     }
 
