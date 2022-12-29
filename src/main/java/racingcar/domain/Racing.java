@@ -22,15 +22,6 @@ public class Racing {
     public void proceedRound() {
         for (Car car : cars) {
             car.move(new RandomGeneratorImpl());
-            System.out.println(car.displayCurrentPosition());
-        }
-        System.out.println();
-    }
-
-    public void proceedRounds(int counts) {
-        System.out.println("*** 실행결과 ***");
-        for (int i = 0; i < counts; i++) {
-            proceedRound();
         }
     }
 
