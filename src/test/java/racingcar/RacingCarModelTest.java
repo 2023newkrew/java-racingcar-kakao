@@ -53,7 +53,7 @@ class RacingCarModelTest {
         }
 
         Stream<Arguments> should_throwException_when_givenCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             return Stream.of(
                     Arguments.of((Object) null),
                     Arguments.of(List.of()),
@@ -65,7 +65,7 @@ class RacingCarModelTest {
 
         @Test
         void should_returnRacingCarModel_when_givenValidCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             List<Car> cars = List.of(
                     Car.of("abc", engine),
                     Car.of("abcd", engine)
@@ -101,7 +101,7 @@ class RacingCarModelTest {
         }
 
         Stream<Arguments> should_returnCarInfos_when_givenCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             return Stream.of(
                     Arguments.of(
                             List.of(
