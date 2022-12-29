@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.dto.CarDto;
 import racingcar.utils.RacingCarConverter;
+import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,14 +12,18 @@ public class RacingCarGame {
     private final List<Car> cars;
     private int round;
 
+    private final RandomNumberGenerator randomNumberGenerator;
+
     public RacingCarGame(List<CarDto> carDtos, int gameRound) {
         this.cars = RacingCarConverter.toCars(carDtos);
         this.round = gameRound;
+        this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
     public GameResult doNextRound() {
         for (Car car : cars) {
-            car.move();
+            int randomNumber = randomNumberGenerator.generateBetweenZeroAndNine();
+            car.move(() ->  randomNumber >= Threshold.NORMAL_THRESHOLD.getNumber());
         }
         round--;
 

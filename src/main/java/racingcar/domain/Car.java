@@ -3,7 +3,7 @@ package racingcar.domain;
 import racingcar.dto.CarDto;
 import racingcar.utils.RandomNumberGenerator;
 
-public class Car implements MovableStrategy{
+public class Car{
     private final String name;
     private int position = 1;
 
@@ -11,17 +11,10 @@ public class Car implements MovableStrategy{
         this.name = name;
     }
 
-    public void move() {
-        if (isMovable()) {
+    public void move(final MovableStrategy movableStrategy) {
+        if (movableStrategy.isMovable()) {
             position += 1;
         }
-    }
-
-    @Override
-    public boolean isMovable() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-
-        return randomNumberGenerator.generateBetweenZeroAndNine() >= Threshold.NORMAL_THRESHOLD.getNumber();
     }
 
     public boolean isSamePosition(Car other) {

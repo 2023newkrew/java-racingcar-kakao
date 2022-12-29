@@ -27,6 +27,7 @@ public class StringCalculator {
             str = parseNumberContainingString(input);
         }
 
+
         PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitByDelimiter(str));
         positiveIntegerList.validate();
         return positiveIntegerList.calculateSum();
