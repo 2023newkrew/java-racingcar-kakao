@@ -23,14 +23,10 @@ public class Calculator {
     }
 
     private int parseIntOnlyPositiveStringNumber(String stringNumber) {
-        try {
-            int number = Integer.parseInt(stringNumber);
-            if (number < 0) {
-                throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
-            }
-            return number;
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(INVALID_INPUT_EXCEPTION);
+        int number = Integer.parseInt(stringNumber);
+        if (number < 0) {
+            throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
         }
+        return number;
     }
 }

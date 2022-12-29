@@ -8,7 +8,6 @@ import racing.domain.car.Name;
 import static org.assertj.core.api.Assertions.*;
 
 public class NameTest {
-
     @ParameterizedTest
     @DisplayName("5글자 이하의 이름만 사용 가능하다.")
     @ValueSource(strings = {"java", "clang", "swift", "ruby", "mysql"})
