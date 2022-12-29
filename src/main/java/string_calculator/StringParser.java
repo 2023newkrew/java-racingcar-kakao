@@ -6,12 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringParser {
-
-    private static final String SPLITTER_REGEX = "//(.)\\\\n(.*)";
     private static final Character[] BASIC_SPLITTER = new Character[]{',', ':'};
+    private static final Pattern PATTERN = Pattern.compile("//(.)\\\\n(.*)");
 
     public Character parseSplitter(String s) {
-        Matcher m = Pattern.compile(SPLITTER_REGEX).matcher(s);
+        Matcher m = PATTERN.matcher(s);
         if (m.find()) {
             return m.group(1).charAt(0);
         }
@@ -41,7 +40,7 @@ public class StringParser {
     }
 
     public String parseTargetString(String s) {
-        Matcher m = Pattern.compile(SPLITTER_REGEX).matcher(s);
+        Matcher m = PATTERN.matcher(s);
 
         if (m.find()) {
             return m.group(2);
