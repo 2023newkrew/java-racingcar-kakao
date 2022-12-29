@@ -13,18 +13,16 @@ import java.util.stream.Collectors;
 
 public class RacingCarGame {
 
-    RacingCarView racingCarView;
     CarContainer carContainer;
 
-    public RacingCarGame(RacingCarView racingCarView, CarContainer carContainer) {
-        this.racingCarView = racingCarView;
+    public RacingCarGame(CarContainer carContainer) {
         this.carContainer = carContainer;
     }
 
     public void start() {
         ArrayList<RoundRecord> roundRecords = new ArrayList<>();
-        List<String> carNamesInput = racingCarView.receiveCarNamesCsv();
-        int runNumber = racingCarView.receiveRunNumber();
+        List<String> carNamesInput = RacingCarView.receiveCarNamesCsv();
+        int runNumber = RacingCarView.receiveRunNumber();
         for (int i = 0; i < runNumber; i++) {
             ArrayList<CarStatusDto> carStatusList = new ArrayList<>();
             carContainer.moveAll();
@@ -34,8 +32,8 @@ public class RacingCarGame {
                     .forEach(carStatusList::add);
             roundRecords.add(new RoundRecord(carStatusList));
         }
-        racingCarView.printGameResult(new GameResult(roundRecords));
-        racingCarView.printWinners(
+        RacingCarView.printGameResult(new GameResult(roundRecords));
+        RacingCarView.printWinners(
                 carContainer.selectWinners()
                         .stream()
                         .map(CarWinnerDto::toDto)

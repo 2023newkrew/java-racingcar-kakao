@@ -10,24 +10,23 @@ import java.util.Scanner;
 
 public class RacingCarView {
 
-    private final Scanner sc;
+    private static final Scanner sc = new Scanner(System.in);
 
-    public RacingCarView() {
-        sc = new Scanner(System.in);
+    private RacingCarView() {
     }
 
-    public List<String> receiveCarNamesCsv() {
+    public static List<String> receiveCarNamesCsv() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNames = sc.next();
         return List.of(carNames.split(","));
     }
 
-    public int receiveRunNumber() {
+    public static int receiveRunNumber() {
         System.out.println("시도할 회수는 몇회인가요?");
         return Integer.parseInt(sc.next());
     }
 
-    public void printWinners(List<CarWinnerDto> winners) {
+    public static void printWinners(List<CarWinnerDto> winners) {
         StringBuilder stringBuilder = new StringBuilder();
         winners.forEach(winner -> {
             stringBuilder.append(winner.getName());
@@ -38,22 +37,22 @@ public class RacingCarView {
         System.out.println(stringBuilder);
     }
 
-    public void printGameResult(GameResult gameResult) {
+    public static void printGameResult(GameResult gameResult) {
         System.out.println("실행 결과");
         gameResult.getRoundRecords()
-                .forEach(this::printRoundRecord);
+                .forEach(RacingCarView::printRoundRecord);
     }
 
-    private void printCarStatus(CarStatusDto carStatusDto) {
+    private static void printCarStatus(CarStatusDto carStatusDto) {
         String carStatusMessage = carStatusDto.getCarName() +
                 " : " +
                 "-".repeat(carStatusDto.getCarPosition());
         System.out.println(carStatusMessage);
     }
 
-    private void printRoundRecord(RoundRecord roundRecord) {
+    private static void printRoundRecord(RoundRecord roundRecord) {
         roundRecord.getCarStatusList()
-                .forEach(this::printCarStatus);
+                .forEach(RacingCarView::printCarStatus);
         System.out.println();
     }
 }
