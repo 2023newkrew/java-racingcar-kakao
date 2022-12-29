@@ -5,18 +5,32 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String DEFAULT_DELIMITER = ",|:";
 
-    public String[] split(String s) {
-        if (s == null || s.isEmpty()) {
-            return new String[]{};
-        }
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(s);
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+
+    private static String[] splitByCustomDelimiter(String string) {
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(string);
         if (m.find()) {
             String delimiter = m.group(1);
             return m.group(2).split(Pattern.quote(delimiter));
         }
-        return s.split(DEFAULT_DELIMITER);
+        return null;
+    }
+
+    private static boolean isValidString(String string) {
+        return string == null || string.isEmpty();
+    }
+
+    public String[] split(String string) {
+        if (isValidString(string)) {
+            return new String[]{};
+        }
+        String[] customStrings = splitByCustomDelimiter(string);
+        if (customStrings != null) {
+            return customStrings;
+        }
+        return string.split(DEFAULT_DELIMITER);
     }
 
     public int sumOf(String[] input) {
@@ -32,8 +46,8 @@ public class StringCalculator {
         return result;
     }
 
-    public int calculate(String s) {
-        String[] splitString = split(s);
+    public int calculate(String string) {
+        String[] splitString = split(string);
         return sumOf(splitString);
     }
 }
