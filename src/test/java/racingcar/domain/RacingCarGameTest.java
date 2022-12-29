@@ -20,7 +20,7 @@ public class RacingCarGameTest {
         int seed = 0;
 
         @Override
-        public int generator() {
+        public int generate() {
             seed++;
             if (seed % 2 == 0) {
                 return 4;

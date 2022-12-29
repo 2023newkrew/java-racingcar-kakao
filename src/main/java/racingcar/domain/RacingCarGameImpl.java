@@ -17,7 +17,7 @@ public class RacingCarGameImpl implements RacingCarGame {
 
     @Override
     public void run() {
-        cars.forEach(car -> car.move(randomNumberGenerator.generator()));
+        cars.forEach(car -> car.move(randomNumberGenerator.generate()));
     }
 
 

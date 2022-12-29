@@ -7,7 +7,7 @@ public class RandomNumberGeneratorImpl implements RandomNumberGenerator {
     private static final int RANGE = 9;
 
     @Override
-    public int generator() {
+    public int generate() {
         Random random = new Random();
         return random.nextInt(RANGE + 1);
     }
