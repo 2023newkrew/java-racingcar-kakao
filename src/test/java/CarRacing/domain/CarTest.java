@@ -3,6 +3,9 @@ package CarRacing.domain;
 import CarRacing.domain.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,32 +25,34 @@ public class CarTest {
         assertThat(car.createRandomNumber()).isBetween(0, 9);
     }
 
-    @Test
-    public void isMoveTest() {
-        assertThat(car.isMove(3)).isEqualTo(false);
-        assertThat(car.isMove(4)).isEqualTo(true);
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    public void isNotMoveTest(int randomNumber) {
+        assertThat(car.isMove(randomNumber)).isEqualTo(false);
+    }
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    public void isMoveTest(int randomNumber) {
+        assertThat(car.isMove(randomNumber)).isEqualTo(true);
     }
 
-    @Test
-    public void moveCarTest() {
-        car.moveCar(true);
-        assertThat(car.getPosition()).isEqualTo(2);
-
-        car.moveCar(false);
-        assertThat(car.getPosition()).isEqualTo(2);
+    @ParameterizedTest
+    @CsvSource({"true, 6", "false, 5"})
+    public void moveCarTest(boolean move, int position) {
+        positionCar.moveCar(move);
+        assertThat(positionCar.getPosition()).isEqualTo(position);
     }
 
-    @Test
-    public void getMaxPositionTest() {
-        assertThat(positionCar.getMaxPosition(6)).isEqualTo(6);
-        assertThat(positionCar.getMaxPosition(4)).isEqualTo(5);
-        assertThat(positionCar.getMaxPosition(5)).isEqualTo(5);
+    @ParameterizedTest
+    @CsvSource({"6, 6", "4, 5", "5, 5"})
+    public void getMaxPositionTest(int maxPosition, int newMaxPosition) {
+        assertThat(positionCar.getMaxPosition(maxPosition)).isEqualTo(newMaxPosition);
     }
 
-    @Test
-    public void getWinnerNameTest() {
-        assertThat(positionCar.getWinnerName(5)).isEqualTo("test");
-        assertThat(positionCar.getWinnerName(6)).isEqualTo(null);
+    @ParameterizedTest
+    @CsvSource({"5, test", "6,"})
+    public void getWinnerNameTest(int maxPosition, String winnerName) {
+        assertThat(positionCar.getWinnerName(maxPosition)).isEqualTo(winnerName);
     }
 
     @Test
