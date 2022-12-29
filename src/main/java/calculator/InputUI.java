@@ -12,11 +12,15 @@ public class InputUI {
         if (input == null || input.isBlank()) {
             return "0";
         }
+        input = handleEscapeCharacter(input);
 
-        if(input.startsWith("//")) {
+        return input;
+    }
+
+    private static String handleEscapeCharacter(String input) {
+        if (input.startsWith("//")) {
             input = input.replace("\\n", "\n");
         }
-
         return input;
     }
 }
