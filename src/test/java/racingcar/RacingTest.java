@@ -1,14 +1,5 @@
 package racingcar;
-/**
- * - 여러대의 자동차 정보를 가지고 있다
- * - 각 라운드마다 자동차를 전진하거나 정지한다
- *  - 랜덤 값이 4 이상일 경우 자동차를 전진한다
- *  - 랜덤 값이 3 이하일 경우 자동차를 정지한다
- * - 라운드가 종료될 때 마다 결과를 확인할 수 있다
- * - 게임이 종료된 후 우승자를 확인할 수 있다
- */
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -37,6 +28,7 @@ public class RacingTest {
         assertThat(racing.getCars().get(0).getPosition()).isEqualTo(1);
         assertThat(racing.getCars().get(1).getPosition()).isEqualTo(1);
     }
+
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
     public void 랜덤값이_3_이하일_경우_자동차를_정지한다(final int condition) {
