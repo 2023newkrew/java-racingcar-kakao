@@ -1,11 +1,8 @@
-package racingcar.racing;
+package racingcar.view;
 
-import racingcar.car.CarDTO;
-
-import java.util.List;
 import java.util.Scanner;
 
-public class RacingUI {
+public class InputView {
     private final Scanner sc = new Scanner(System.in);
 
     public String getNames() {
@@ -16,15 +13,5 @@ public class RacingUI {
     public String getTurn() {
         System.out.println("시도할 횟수는 몇 회인가요?");
         return sc.next();
-    }
-
-    public void displayPosition(List<CarDTO> cars) {
-        cars.forEach(System.out::println);
-        System.out.println();
-    }
-
-    public void displayWinner(List<String> names) {
-        names.forEach(e -> System.out.print(e + " "));
-        System.out.println();
     }
 }

@@ -4,11 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParserTest {
     @Test
     void parse() {
         assertThat(StringParser.parse("pobi,crong,honux")).isEqualTo(Arrays.asList("pobi", "crong", "honux"));
+    }
+
+    @Test
+    void parseTurn() {
+        assertThat(StringParser.parseTurn("1")).isEqualTo(1);
     }
 }
