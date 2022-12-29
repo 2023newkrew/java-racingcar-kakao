@@ -3,25 +3,28 @@ package racing_car.controller;
 import racing_car.model.Cars;
 import racing_car.model.Game;
 import racing_car.strategy.MoveByRandom;
-import racing_car.view.GameView;
+import racing_car.view.InputView;
+import racing_car.view.OutputView;
 
 public class GameController {
 
-    private final GameView gameView = new GameView();
+    private final InputView inputView = new InputView();
+
+    private final OutputView outputView = new OutputView();
 
     public void initGame() {
-        Cars cars = Cars.of(separateCarNamesByDelimiter(gameView.getCarNamesWithDelimiter()));
+        Cars cars = Cars.of(separateCarNamesByDelimiter(inputView.getCarNamesWithDelimiter()));
 
         Game game = new Game(cars, new MoveByRandom());
-        int playCount = gameView.getPlayCount();
+        int playCount = inputView.getPlayCount();
 
         System.out.println("실행결과");
         for (; playCount > 0; --playCount) {
             game.moveAllCars();
-            gameView.printGameProcess(game.getCars());
+            outputView.printGameProcess(game.getCars());
         }
 
-        gameView.printGameResult(game.getWinners());
+        outputView.printGameResult(game.getWinners());
     }
 
     private String[] separateCarNamesByDelimiter(String target) {
