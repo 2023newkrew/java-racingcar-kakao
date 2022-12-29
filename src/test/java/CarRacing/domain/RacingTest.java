@@ -45,7 +45,7 @@ public class RacingTest {
         Car carB = new Car("crong", 4);
         Car carC = new Car("honux", 5);
         Car[] cars = new Car[] {carA, carB, carC};
-        assertThat(racing.getWinner(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
+        assertThat(racing.getWinners(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
     }
 
     @Test

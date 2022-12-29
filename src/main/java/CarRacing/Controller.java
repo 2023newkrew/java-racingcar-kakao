@@ -25,7 +25,7 @@ public class Controller {
     }
 
     public static void winnerResult(Racing racing) {
-        List<String> winners = racing.getWinner(carList);
+        List<String> winners = racing.getWinners(carList);
         ResultView.printWinners(winners);
     }
 

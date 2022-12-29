@@ -31,14 +31,19 @@ public class Racing {
         return cars;
     }
 
-    public List<String> getWinner(Car[] cars) {
-        List<String> winners = new ArrayList<>();
+    public int getMaxPosition(Car[] cars) {
         int maxPosition = 0;
-        for (int index = 0; index < cars.length; index++) {
-            maxPosition = cars[index].getMaxPosition(maxPosition);
+        for (Car car : cars) {
+            maxPosition = car.getMaxPosition(maxPosition);
         }
-        for (int index = 0; index < cars.length; index++) {
-            String winnerName = cars[index].getWinnerName(maxPosition);
+        return maxPosition;
+    }
+
+    public List<String> getWinners(Car[] cars) {
+        List<String> winners = new ArrayList<>();
+        int maxPosition = getMaxPosition(cars);
+        for (Car car : cars) {
+            String winnerName = car.getWinnerName(maxPosition);
             winners = addWinner(winners, winnerName);
         }
         return winners;
