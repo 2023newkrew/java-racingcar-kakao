@@ -7,24 +7,24 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Splitter {
-    public List<Integer> split(String input){
-        Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
+    public List<Integer> split(String expression){
+        Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(expression);
         String customDelimiter = "";
         String delimiters;
 
         if (m.find()) {
-            input = input.split("\n")[1];
+            expression = expression.split("\n")[1];
             customDelimiter = m.group(1);
         }
 
         delimiters = "[,;" + customDelimiter + "]";
 
-        return arrayToList(input, delimiters);
+        return expressionToNumbers(expression, delimiters);
     }
 
-    private List<Integer> arrayToList(String input, String delimiters){
+    private List<Integer> expressionToNumbers(String expression, String delimiters){
         try{
-            return Arrays.stream(input.split(delimiters))
+            return Arrays.stream(expression.split(delimiters))
                     .mapToInt(e -> Integer.parseInt(e.trim()))
                     .boxed()
                     .collect(Collectors.toList());
