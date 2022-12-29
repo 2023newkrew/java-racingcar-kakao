@@ -23,9 +23,7 @@ public class RacingCarGame {
     }
 
     public RoundResult doNextRound() {
-        for (Car car : cars) {
-            car.move(randomNumberGenerator.generateBetweenZeroAndNine());
-        }
+        cars.forEach(car -> car.move(randomNumberGenerator.generateBetweenZeroAndNine()));
         round -= 1;
 
         List<CarResponse> carResponses = RacingCarConverter.toCarResponses(cars);
