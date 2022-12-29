@@ -21,7 +21,7 @@ public class Splitter {
     }
 
     public String[] splitByDelimiters(String input) {
-        return input.split(delimiters.toString());
+        return input.split(delimiterToString());
     }
 
     private void validateDelimiter(String delimiter) {
@@ -34,8 +34,7 @@ public class Splitter {
         baseDelimiters.forEach(this::validateDelimiter);
     }
 
-    @Override
-    public String toString() {
+    private String delimiterToString() {
         return String.join("|", delimiters);
     }
 
