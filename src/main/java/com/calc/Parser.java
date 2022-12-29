@@ -10,48 +10,41 @@ import java.util.stream.Collectors;
 
 public class Parser {
 
-
-    private final String text;
-
-    public Parser(String text) {
-        this.text = text;
-    }
-
-    public Expression checkNull() {
-        if (this.text == null) {
+    public Expression checkNull(String text) {
+        if (text == null) {
             return new Expression(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
         }
-        if (this.text.isEmpty()) {
+        if (text.isEmpty()) {
             return new Expression(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
         }
         return null;
     }
 
-    public String separateHeader() {
+    public String separateHeader(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)")
-                .matcher(this.text);
+                .matcher(text);
         if (m.find()) {
             return m.group(1);
         }
         return "";
     }
 
-    public String separateBody() {
+    public String separateBody(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)")
-                .matcher(this.text);
+                .matcher(text);
         if (m.find()) {
             return m.group(2);
         }
-        return this.text;
+        return text;
     }
-    public Expression parsing() {
+    public Expression parsing(String text) {
 
-        Expression nullCheck = checkNull();
+        Expression nullCheck = checkNull(text);
         if (nullCheck != null) return nullCheck;
 
         // //;\n 1:2:3 -> 헤더 분리
-        String header = separateHeader();
-        String body = separateBody();
+        String header = separateHeader(text);
+        String body = separateBody(text);
 
         // method
         List<Separator> arrSep = getSeparators(body);
