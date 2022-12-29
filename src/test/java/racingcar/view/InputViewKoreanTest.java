@@ -10,26 +10,26 @@ import racingcar.domain.InvalidInputException;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class InputTest {
-    Input input;
+public class InputViewKoreanTest {
+    InputViewKorean inputViewKorean;
 
     @BeforeEach
     void initialization(){
-        input = new Input();
+        inputViewKorean = new InputViewKorean(System.in);
     }
     @ParameterizedTest
     @ValueSource(strings={"daniel",""})
     void inputLengthException(String inputStr) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    input.scanNames(inputStr+",han");
+                    inputViewKorean.scanNames(inputStr+",han");
                 }).withMessage("자동차의 길이는 1~5 사이어야 합니다.");
     }
     @Test
     void inputLengthNotException() {
         String inputStr = "dan";
         assertThatCode(()->{
-            input.scanNames(inputStr+",han");
+            inputViewKorean.scanNames(inputStr+",han");
         }).doesNotThrowAnyException();
     }
 
@@ -38,7 +38,7 @@ public class InputTest {
         String inputStr = "kim";
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    input.scanNames(inputStr);
+                    inputViewKorean.scanNames(inputStr);
                 }).withMessage("두 개 이상의 자동차를 입력해 주세요");
 
     }
@@ -46,7 +46,7 @@ public class InputTest {
     void arrayLengthNotException() {
         String inputStr = "kim,lee";
         assertThatCode(()->{
-            input.scanNames(inputStr);
+            inputViewKorean.scanNames(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -54,7 +54,7 @@ public class InputTest {
     void EachStringNotException(){
         String inputStr = "kim,lee,han";
         assertThatCode(()->{
-            input.scanNames(inputStr);
+            inputViewKorean.scanNames(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -64,7 +64,7 @@ public class InputTest {
         String inputStr = "kim,lee,abnormal";
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    input.scanNames(inputStr);
+                    inputViewKorean.scanNames(inputStr);
                 }).withMessage("자동차의 길이는 1~5 사이어야 합니다.");
     }
 
@@ -73,14 +73,14 @@ public class InputTest {
         String inputStr = "kim,lee,kim";
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
-                    input.scanNames(inputStr);
+                    inputViewKorean.scanNames(inputStr);
                 }).withMessage("중복된 이름의 자동차를 입력하지 마세요.");
     }
 
     @Test
     void trialCountNotExceptionTest() {
         String trialCount = "3";
-        Assertions.assertThat(input.scanTrialCount(trialCount)).isEqualTo(3);
+        Assertions.assertThat(inputViewKorean.scanTrialCount(trialCount)).isEqualTo(3);
 
     }
 
@@ -89,7 +89,7 @@ public class InputTest {
     void trialCountNotNumber(String trialCount) {
         assertThatExceptionOfType(NumberFormatException.class)
                 .isThrownBy(()->{
-                    input.scanTrialCount(trialCount);
+                    inputViewKorean.scanTrialCount(trialCount);
                 });
     }
     @ParameterizedTest
@@ -97,7 +97,7 @@ public class InputTest {
     void trialCountNotPositive(String trialCount) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
-                    input.scanTrialCount(trialCount);
+                    inputViewKorean.scanTrialCount(trialCount);
                 }).withMessage("시도 회수는 1 이상이여야 합니다.");
     }
 

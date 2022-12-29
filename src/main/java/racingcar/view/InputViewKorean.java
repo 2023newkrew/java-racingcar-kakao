@@ -2,25 +2,25 @@ package racingcar.view;
 
 import racingcar.domain.InvalidInputException;
 
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Input {
+public class InputViewKorean implements InputView{
     private static final String DELIMITER = ",";
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
+    public InputViewKorean(InputStream inputStream){
+        scanner = new Scanner(inputStream);
+    }
     public String[] scanNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] stringArray = split(scanner.nextLine());
-        validateDuplication(stringArray);
-        validateArrayLength(stringArray);
-        validateEachString(stringArray);
-        return stringArray;
+        return scanNames(scanner.nextLine());
     }
-    public String[] scanNames(String names){
+    public String[] scanNames(String names){ // inputStream을 거치지 않고 직접 입력
         String[] stringArray = split(names);
         validateDuplication(stringArray);
         validateArrayLength(stringArray);
@@ -33,7 +33,7 @@ public class Input {
         return validateTrialCount(scanner.nextLine());
     }
 
-    public int scanTrialCount(String input) {
+    public int scanTrialCount(String input) { // inputStream을 거치지 않고 직접 입력
         return validateTrialCount(input);
     }
 
