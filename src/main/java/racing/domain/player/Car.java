@@ -2,7 +2,7 @@ package racing.domain.player;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Car implements RacingPlayer {
+public final class Car implements RacingPlayer {
     private final String name;
 
     private Integer position;

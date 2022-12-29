@@ -1,6 +1,6 @@
 package racing.common.exception;
 
-public class InvalidInputFormatException extends RuntimeException {
+public final class InvalidInputFormatException extends RuntimeException {
 
     public InvalidInputFormatException() {
 

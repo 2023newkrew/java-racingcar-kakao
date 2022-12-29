@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class GameRule {
+public final class GameRule {
     private static final Integer STANDARD_SCORE = 4;
 
     private static final GameTacticStrategy GAME_PLAYER_STRATEGY = new RandomTacticStrategy();

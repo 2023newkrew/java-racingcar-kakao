@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingController implements GameController {
+public final class RacingController implements GameController {
     private final InputView inputView = new InputView();
     private List<RacingPlayer> racingPlayers;
     private Integer numberOfTurns;

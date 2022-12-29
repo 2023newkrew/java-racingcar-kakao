@@ -1,6 +1,6 @@
 package racing.domain.tactic;
 
-public class RandomTacticStrategy implements GameTacticStrategy {
+public final class RandomTacticStrategy implements GameTacticStrategy {
 
     @Override
     public Integer generateScore() {

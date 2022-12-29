@@ -4,7 +4,7 @@ import racing.common.exception.InvalidInputFormatException;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputView {
+public final class InputView {
     Scanner scanner = new Scanner(System.in);
 
     public List<String> getPlayerNames() {
