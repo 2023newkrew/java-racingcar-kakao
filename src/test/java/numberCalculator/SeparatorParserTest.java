@@ -24,7 +24,7 @@ public class SeparatorParserTest {
     @Test
     public void extractCustomSeparatorNotMatch() {
         String separator = separatorParser.extract("/.232\n1");
-        Assertions.assertThat(separator).isEqualTo(",|:");
+        Assertions.assertThat(separator).isEqualTo(SeparatorParser.DEFAULT_SEPARATORS);
     }
 
 
