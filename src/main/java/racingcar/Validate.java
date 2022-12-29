@@ -8,7 +8,7 @@ public class Validate {
     public static boolean validateCarNames(String nameInput) {
         boolean flag = lengthLessThan5(nameInput);
         if (!flag) {
-            System.out.println("자동차의 이름은 길이 5 이하여야 합니다");
+            System.out.println("자동차의 이름은 길이 1 이상 5 이하여야 합니다");
         }
         return flag;
     }
@@ -25,7 +25,7 @@ public class Validate {
         String[] nameArr = input.split(",");
         boolean flag = true;
         for (String name : nameArr) {
-            flag &= (name.length() <= 5);
+            flag &= (name.length() <= 5 && name.length() > 0);
         }
         return flag;
     }
