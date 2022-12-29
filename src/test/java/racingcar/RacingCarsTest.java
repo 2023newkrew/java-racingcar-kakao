@@ -62,13 +62,13 @@ class RacingCarsTest {
 
         @ParameterizedTest
         @MethodSource
-        void should_returnCarInfos_when_givenCars(List<Car> cars, List<CarDto> carDtos) {
+        void should_returnCarDtos_when_givenCars(List<Car> cars, List<CarDto> carDtos) {
             RacingCars racingCars = RacingCars.from(cars);
             List<CarDto> winners = racingCars.getWinners();
             assertThatList(winners).isEqualTo(carDtos);
         }
 
-        Stream<Arguments> should_returnCarInfos_when_givenCars() {
+        Stream<Arguments> should_returnCarDtos_when_givenCars() {
             Engine engine = Engine.getDefaultEngine();
             return Stream.of(
                     Arguments.of(

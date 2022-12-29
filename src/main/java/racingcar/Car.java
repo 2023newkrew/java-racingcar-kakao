@@ -46,14 +46,18 @@ public class Car {
         this.engine = engine;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public int getPosition(){
+        return position;
+    }
+
     public void moveOrStop() {
         if (engine.movable()) {
             position++;
         }
-    }
-
-    public CarDto getCarInfo() {
-        return CarDto.from(name, position);
     }
 
     @Override

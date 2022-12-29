@@ -8,6 +8,10 @@ public class CarDto {
 
     private final int position;
 
+    public static CarDto from(Car car) {
+        return from(car.getName(), car.getPosition());
+    }
+
     public static CarDto from(String name, int position) {
         return new CarDto(name, position);
     }

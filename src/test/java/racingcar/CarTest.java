@@ -46,7 +46,7 @@ class CarTest {
         @MethodSource
         void should_createSuccess_when_validCarName(String carName, String expectedCarName) {
             Car car = Car.from(carName, engine);
-            CarDto carDto = car.getCarInfo();
+            CarDto carDto = CarDto.from(car);
             assertThat(carDto.getName()).isEqualTo(expectedCarName);
             assertThat(carDto.getPosition()).isEqualTo(0);
         }
@@ -80,7 +80,7 @@ class CarTest {
             when(engine.movable()).thenReturn(move);
             Car car = Car.from("test", engine);
             car.moveOrStop();
-            CarDto carDto = car.getCarInfo();
+            CarDto carDto = CarDto.from(car);
             assertThat(carDto.getPosition()).isEqualTo(position);
         }
 
