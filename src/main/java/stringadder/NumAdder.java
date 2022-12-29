@@ -1,4 +1,4 @@
-package stringAdder;
+package stringadder;
 
 public class NumAdder {
     public static int add(int[] numArr) {
