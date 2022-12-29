@@ -8,35 +8,33 @@ import java.util.regex.Pattern;
 public class InputUI {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static List<String> inputCarNameList() {
+    public static List<String> inputCarNameList(){
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = sc.nextLine();
+        checkNullAndEmpty(input);
         List<String> carNameList = List.of(input.split(","));
-        while (!validateCarNames(carNameList)) {
-            System.out.println("5글자 이하의 이름만 가능합니다.");
-            input = sc.nextLine();
-            carNameList = List.of(input.split(","));
+        return validateCarList(carNameList);
+    }
+
+    public static List<String> validateCarList(List<String> carNameList) {
+        if(carNameList==null || carNameList.isEmpty()) throw new IllegalArgumentException("입력이 잘못 되었습니다.");
+
+        for (String carName : carNameList) {
+            checkNullAndEmpty(carName);
+            validateMaxLength(carName);
         }
 
         return carNameList;
     }
 
-    private static boolean validateCarNames(List<String> cars) {
-        boolean isValid = true;
-        for (String car : cars) {
-            isValid = isValid && validateMaxLength(car);
-            checkNullAndEmpty(car);
-        }
-
-        return isValid;
-    }
-
     private static void checkNullAndEmpty(String car) {
-        if(car == null || car.isEmpty()) throw new IllegalArgumentException("차 이름은 한 글자 이상이어야 합니다.");
+        if(car==null || car.isBlank()) throw new IllegalArgumentException("차 이름은 한 글자 이상이어야 합니다.");
     }
 
-    private static boolean validateMaxLength(String car) {
-        return car.length() <= 5;
+    private static void validateMaxLength(String car) {
+        if(car.length() > 5){
+            throw new IllegalArgumentException("차 이름은 5글자 이하여야 합니다.");
+        }
     }
 
     public static int inputTurn() {
