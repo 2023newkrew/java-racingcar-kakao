@@ -24,8 +24,8 @@ public class NamingAssignmentTest {
     public void validateCarNameLengthSuccess(String testString){
         InputParser inputParser = new InputParser();
 
-        boolean result = inputParser.checkCarNameLength(testString);
-        Assertions.assertThat(result).isTrue();
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> inputParser.checkCarNameLength(testString));
     }
 
     @ParameterizedTest
@@ -33,7 +33,8 @@ public class NamingAssignmentTest {
     public void validateCarNameLengthFail(String testString){
         InputParser inputParser = new InputParser();
 
-        boolean result = inputParser.checkCarNameLength(testString);
-        Assertions.assertThat(result).isFalse();
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> inputParser.checkCarNameLength(testString));
+
     }
 }
