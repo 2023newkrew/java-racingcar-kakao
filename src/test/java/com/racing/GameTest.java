@@ -18,7 +18,7 @@ public class GameTest {
     @DisplayName("게임 시작시 자동차는 전부 시작 위치에 있어야 한다.")
     void initTest(){
         Game game = new Game();
-        game.init("car1,car2,car3");
+        game.gameInit("car1,car2,car3");
         List<Car> cars = game.getCars();
         // init에서 3개의 자동차를 선언했으므로 길이가 3이여야 함
         assertThat(cars).hasSize(3);
@@ -33,13 +33,13 @@ public class GameTest {
     @DisplayName("자동차들이 이동한 위치의 최대값은 자동차들의 위치를 비교하여 알 수 있다.")
     void maxLocationTest(int turn){
         Game game = new Game();
-        game.init("car1,car2");
+        game.gameInit("car1,car2");
         game.run(turn);
         List<Car> cars = game.getCars();
 
         // 자동차 location의 max 값 직접 구함
         int findMax = Math.max(cars.get(0).getLocation(), cars.get(1).getLocation());
-        assertThat(findMax).isEqualTo(game.maxLocation());
+        assertThat(findMax).isEqualTo(game.getMaxLocation());
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ public class GameTest {
     @DisplayName("이번 게임의 승자를 알 수 있다.")
     void getWinnerTest(int turn){
         Game game = new Game();
-        game.init("car1,car2");
+        game.gameInit("car1,car2");
         game.run(turn);
 
         List<Car> winners = game.getWinner();
@@ -59,7 +59,7 @@ public class GameTest {
 
     public List<Car> makeCmpWinners(Game game){
         List<Car> cmpWinners = new ArrayList<>();
-        int maxLocation = game.maxLocation();
+        int maxLocation = game.getMaxLocation();
         List<Car> cars = game.getCars();
         if(cars.get(0).getLocation() == maxLocation){
             cmpWinners.add(cars.get(0));

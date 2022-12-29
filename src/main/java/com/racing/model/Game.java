@@ -1,14 +1,10 @@
 package com.racing.model;
 
-import com.racing.model.Car;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Game {
     private List<Car> cars;
@@ -55,7 +51,7 @@ public class Game {
      * cars 생성
      * @param text
      */
-    public void init(String text) {
+    public void gameInit(String text) {
         // text(사용자 입력)을 차 이름으로 분리
         this.cars.addAll(Arrays.stream(text.split(","))
                 .map(carName -> new Car(carName))
@@ -68,7 +64,7 @@ public class Game {
      * @return
      */
     public List<Car> getWinner() {
-        int maxLoc = maxLocation();
+        int maxLoc = getMaxLocation();
         return cars.stream()
                 .filter(car -> car.getLocation() == maxLoc)
                 .collect(Collectors.toList());
@@ -78,7 +74,7 @@ public class Game {
      * 자동차가 간 거리 중 가장 최대값
      * @return
      */
-    public int maxLocation() {
+    public int getMaxLocation() {
         return this.cars.stream()
                 .max(Comparator.comparingInt(Car::getLocation))
                 .get()

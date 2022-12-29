@@ -14,7 +14,7 @@ public class GameController {
         InputView inputView = new InputView();
         // 자동차들의 이름 목록을 사용자 입력으로 받고 game을 초기화함
         String inputInitNames = inputView.inputInitNames();
-        game.init(inputInitNames);
+        game.gameInit(inputInitNames);
 
         // 게임의 진행횟수를 받고 game을 횟수만큼 진행시킴
         int runCount = inputView.runCount();
