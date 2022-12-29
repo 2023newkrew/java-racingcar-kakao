@@ -1,7 +1,8 @@
-package str_calc;
+package racingcar.model.str_calc;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import str_calc.StringCalculator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
