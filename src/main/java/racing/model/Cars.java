@@ -57,4 +57,8 @@ public class Cars {
         validateCarName(cars);
         this.cars.addAll(cars);
     }
+
+    public void deleteAllCars(){
+        cars.clear();
+    }
 }

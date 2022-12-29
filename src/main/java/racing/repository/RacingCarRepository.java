@@ -15,4 +15,8 @@ public class RacingCarRepository {
     public static Cars getCars(){
         return cars;
     }
+
+    public static void deleteAll(){
+        cars.deleteAllCars();
+    }
 }
