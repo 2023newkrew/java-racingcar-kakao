@@ -8,6 +8,7 @@ public class Controller {
         this.stringCalculator = new StringCalculator();
         this.io = new IO();
     }
+
     public void start() {
         String text = io.inputText();
         text = stringCalculator.getTextThatDelimiterIsExtracted(text);

@@ -2,9 +2,9 @@ package racingcar.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.PowerGenerator;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 public class PowerGeneratorTest {
 
     @Test

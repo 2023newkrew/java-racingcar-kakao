@@ -22,7 +22,7 @@ public class RacingGame {
     }
 
     public void proceedTurn() {
-        for(Car car : cars) {
+        for (Car car : cars) {
             car.accelerate(this.powerGenerator.getRandomPower());
         }
         this.turn += 1;
@@ -30,7 +30,7 @@ public class RacingGame {
 
     private int getMaxPosition() {
         int maxPosition = -1;
-        for(Car car : this.cars) {
+        for (Car car : this.cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
         }
         return maxPosition;
@@ -39,14 +39,14 @@ public class RacingGame {
     public List<Car> getFarthestCars() {
         int maxPosition = this.getMaxPosition();
         List<Car> farthestCars = new ArrayList<>();
-        for(Car car : this.cars) {
+        for (Car car : this.cars) {
             this.collectFarthest(farthestCars, car, maxPosition);
         }
         return farthestCars;
     }
 
     public void collectFarthest(List<Car> farthestCars, Car racingCar, int maxPosition) {
-        if(racingCar.getPosition() == maxPosition) {
+        if (racingCar.getPosition() == maxPosition) {
             farthestCars.add(racingCar);
         }
     }

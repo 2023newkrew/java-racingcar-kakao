@@ -29,16 +29,16 @@ public class StringCalculator {
     }
 
     public List<String> splitText(String text) {
-        return Arrays.asList(text.split(String.join("|",delimiters)));
+        return Arrays.asList(text.split(String.join("|", delimiters)));
     }
 
     public int toInt(String token) {
-        if("".equals(token) || token==null){
+        if ("".equals(token) || token == null) {
             return 0;
         }
         int intValue = Integer.parseInt(token);
-        if(intValue<0) throw new RuntimeException("음수를 입력할 수 없습니다.");
-        return  intValue;
+        if (intValue < 0) throw new RuntimeException("음수를 입력할 수 없습니다.");
+        return intValue;
     }
 
     public List<Integer> toIntList(String text) {

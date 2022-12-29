@@ -17,12 +17,12 @@ public class IO {
     }
 
     public String validateCarName(String name) {
-        return (name + "     ").substring(0,5);
+        return (name + "     ").substring(0, 5);
     }
 
     public List<String> parseCarNames(String names) {
         List<String> carNames = Arrays.asList(names.split(","));
-        for(int i = 0; i < carNames.size(); i++) {
+        for (int i = 0; i < carNames.size(); i++) {
             carNames.set(i, this.validateCarName(carNames.get(i)));
         }
         return carNames;
@@ -35,7 +35,7 @@ public class IO {
 
     public int inputTurnIteration() {
         String turnIteration = "";
-        while(turnIteration.isEmpty() || !turnIteration.matches(IO.REGEX_INTEGER)) {
+        while (turnIteration.isEmpty() || !turnIteration.matches(IO.REGEX_INTEGER)) {
             System.out.println("시도할 회수는 몇회인가요?");
             turnIteration = scanner.nextLine();
         }
@@ -45,7 +45,7 @@ public class IO {
     public String generateCarPositionText(Car car) {
         StringBuilder sb = new StringBuilder();
         sb.append(car.getName()).append(" : ");
-        for(int i = 0; i <= car.getPosition(); i++) {
+        for (int i = 0; i <= car.getPosition(); i++) {
             sb.append("-");
         }
         return sb.append("\n").toString();
@@ -53,7 +53,7 @@ public class IO {
 
     public void outputTurnResult(List<Car> cars) {
         StringBuilder sb = new StringBuilder();
-        for(Car car : cars) {
+        for (Car car : cars) {
             sb.append(this.generateCarPositionText(car));
         }
         System.out.println(sb);
@@ -66,10 +66,10 @@ public class IO {
     public void outputWinners(List<Car> winners) {
         StringBuilder sb = new StringBuilder();
         List<String> winnerNames = new ArrayList<>();
-        for(Car winner : winners) {
+        for (Car winner : winners) {
             winnerNames.add(winner.getName());
         }
-        sb.append(String.join(", ",winnerNames));
+        sb.append(String.join(", ", winnerNames));
         System.out.println(sb.append("가 최종 우승했습니다."));
     }
 

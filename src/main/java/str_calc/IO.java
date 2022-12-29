@@ -13,7 +13,7 @@ public class IO {
     public String inputText() {
         System.out.print("텍스트를 입력해주세요 : ");
         String text = scanner.nextLine();
-        if(text.matches(IO.REGEX_DELIMITER)) {
+        if (text.matches(IO.REGEX_DELIMITER)) {
             text += "\n";
             text += scanner.nextLine();
         }
