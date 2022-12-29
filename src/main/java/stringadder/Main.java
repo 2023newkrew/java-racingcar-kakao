@@ -8,7 +8,7 @@ public class Main {
         System.out.print("계산식을 입력하세요: ");
         String input = sc.nextLine();
         StringProcessor stringProcessor = new StringProcessor(input);
-        int[] numbers = stringProcessor.getStringProcessResult().split();
+        int[] numbers = stringProcessor.getStringProcessResult().splitNumStrToIntArr();
         System.out.printf("결과: %d\n", NumAdder.add(numbers));
     }
 }

@@ -33,7 +33,7 @@ public class StringProcessResult {
         }
     }
 
-    public int[] split() {
+    public int[] splitNumStrToIntArr() {
         String[] splitNumStrings = numString.split(getDelimiterPattern());
         int[] numbers = new int[splitNumStrings.length];
         for (int i = 0; i < splitNumStrings.length; i++) {
