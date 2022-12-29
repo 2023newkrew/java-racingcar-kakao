@@ -1,6 +1,4 @@
-package racingcar;
-
-import java.util.Objects;
+package racingcar.domain;
 
 public class Car implements Comparable{
     private final String name;

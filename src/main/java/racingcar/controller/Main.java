@@ -1,5 +1,8 @@
-package racingcar;
+package racingcar.controller;
 
+
+import racingcar.domain.Racing;
+import racingcar.view.Input;
 
 public class Main {
     public static void main(String[] args) {

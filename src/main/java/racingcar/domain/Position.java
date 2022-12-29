@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
@@ -6,7 +6,10 @@ public class Position implements Comparable{
     private int val;
 
     public Position() {
-        this.val = 1;
+        this(1);
+    }
+    public Position(int val){
+        this.val = val;
     }
 
     public void move() {
