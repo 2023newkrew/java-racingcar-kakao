@@ -21,15 +21,8 @@ class GameRuleTest {
         };
 
         for(int i = 0; i < carPositions.length ; i++) {
-            Car newCar = new Car("testPlayer" + String.valueOf(i));
-            setPlayerPosition(newCar, carPositions[i]);
+            Car newCar = new Car("testPlayer" + String.valueOf(i), carPositions[i]);
             players.add(newCar);
-        }
-    }
-
-    private void setPlayerPosition(RacingPlayer player, int position) {
-        for (int i = 0; i < position; i++) {
-            player.proceedNextTurn(true);
         }
     }
 

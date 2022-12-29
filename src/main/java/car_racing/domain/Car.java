@@ -5,8 +5,12 @@ public class Car implements RacingPlayer {
     private Integer position;
 
     public Car(String name) {
+        this(name, 1);
+    }
+
+    public Car(String name, int position) {
         this.name = name;
-        this.position = 1;
+        this.position = position;
     }
 
     @Override
