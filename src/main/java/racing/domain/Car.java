@@ -27,16 +27,16 @@ public class Car {
         this(INITIAL_POSITION, name);
     }
 
-    public int createRandomNumber() {
+    protected int createRandomNumber() {
         Random random = new Random();
         return random.nextInt(MAX_VALUE);
     }
 
-    public boolean isMove(int randomNumber) {
+    private boolean isMove(int randomNumber) {
         return randomNumber >= THRESHOLD;
     }
 
-    public void moveCar(boolean move) {
+    private void moveCar(boolean move) {
         if(move) {
             position++;
         }
@@ -52,13 +52,6 @@ public class Car {
 
     public String getName() {
         return name;
-    }
-
-    public String getWinnerName(int maxPosition) {
-        if(maxPosition == position) {
-            return name;
-        }
-        return null;
     }
 
     public String getLog() {
