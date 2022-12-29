@@ -2,10 +2,11 @@ package racing.model;
 
 import racing.util.RandomUtil;
 
+
 public class Car implements Comparable<Car>{
     private final String name;
     private Integer position;
-
+    
     private static final Integer MOVE_THRESHOLD = 4;
     private static final Integer UPPER_BOUND_OF_RANDOM = 10;
     private static final Integer INITIAL_POSITION = 1;

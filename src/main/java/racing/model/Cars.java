@@ -18,7 +18,7 @@ public class Cars {
         cars = new ArrayList<>();
     }
 
-    public void tryMove(){
+    public void tryMoveAll(){
         for (Car car : cars) {
             car.tryMove();
         }

@@ -13,7 +13,7 @@ public class RacingService {
 
     public void cycleProgress() {
         RacingCarRepository.getCars()
-                .tryMove();
+                .tryMoveAll();
     }
 
     public void insertCars(String carString){
