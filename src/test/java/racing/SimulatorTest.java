@@ -79,7 +79,7 @@ public class SimulatorTest {
         for (int i = 0; i < times; i++) {
             simulator.run(createRandoms(randoms));
         }
-        assertThat(simulator.winners()).isEqualTo(winners);
+        assertThat(simulator.getWinners()).isEqualTo(winners);
     }
 
     private static Stream<Arguments> getWinnersData() {

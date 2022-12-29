@@ -21,7 +21,7 @@ public class Simulator {
         }
     }
 
-    public String winners() {
+    public String getWinners() {
         Car maxCar = Collections.max(cars);
         return cars.stream()
                 .filter(c -> c.compareTo(maxCar) == 0)

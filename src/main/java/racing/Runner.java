@@ -14,6 +14,6 @@ public class Runner {
             System.out.println(simulator + "\n");
         }
 
-        System.out.println(simulator.winners() + "가 최종 우승했습니다.");
+        System.out.println(simulator.getWinners() + "가 최종 우승했습니다.");
     }
 }
