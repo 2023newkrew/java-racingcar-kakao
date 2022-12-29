@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class IOHelper {
 
-    public static final int MAX_NAME_LENGTH = 5;
     public static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     public static final String INPUT_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
     public static final String INITIAL_STATUS_HEADER_MESSAGE = "실행 결과";
@@ -22,10 +21,14 @@ public class IOHelper {
     public static List<String> getNamesInput() {
         List<String> names = new ArrayList<>();
 
-        while (names.size()==0 || !validateNames(names)) {
+        while (true) {
             System.out.println(INPUT_CAR_NAMES_MESSAGE);
             String input = sc.nextLine();
-            names = getTrimNames(input);
+            if (Validator.isValidNamesInput(input)) {
+                names = getTrimNames(input);
+                break;
+            }
+            System.out.println(WRONG_INPUT_MESSAGE);
         }
         return names;
     }
@@ -39,61 +42,18 @@ public class IOHelper {
         return trimNames;
     }
 
-    // 이름들이 담긴 문자열 리스트의 유효성 검증
-    public static boolean validateNames(List<String> names) {
-        boolean flag = true;
-
-        for (String name : names) {
-            flag = validateName(flag, name);
-        }
-        if (!flag) {
-            System.out.println(WRONG_INPUT_MESSAGE);
-        }
-        return flag;
-    }
-
-    // 이름의 유효성 검증
-    private static boolean validateName(boolean flag, String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            return false;
-        }
-        return flag;
-    }
-
     // 사용자로부터 이동 시도 횟수를 입력 받아 정수로 반환
     public static int getRoundInput() {
-        String roundInput = "";
-        boolean flag = true;
-        while (flag) {
+        String input = "";
+        while (true) {
             System.out.println(INPUT_TRY_COUNT_MESSAGE);
-            roundInput = sc.nextLine();
-            flag = !validateRound(roundInput);
-        }
-        return Integer.parseInt(roundInput);
-    }
-
-    // 입력 받은 시도 횟수의 유효성 검증
-    private static boolean validateRound(String roundInput) {
-        if (!isInteger(roundInput)) {
+            input = sc.nextLine();
+            if (Validator.isValidRoundInput(input)) {
+                break;
+            }
             System.out.println(WRONG_INPUT_MESSAGE);
-            return false;
         }
-        if (Integer.parseInt(roundInput) < 0) {
-            System.out.println(WRONG_INPUT_MESSAGE);
-            return false;
-        }
-
-        return true;
-    }
-
-    // 문자열에 대한 정수형 변경 가능 여부 반환
-    private static boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
+        return Integer.parseInt(input);
     }
 
     // 각 자동차의 이름과 위치를 출력
