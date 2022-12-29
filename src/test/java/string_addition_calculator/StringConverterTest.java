@@ -1,6 +1,5 @@
 package string_addition_calculator;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,34 +10,24 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 // "-1" -> -1
 
 public class StringConverterTest {
-    StringConverter converter;
-
-    @BeforeEach
-    void setUp() {
-        converter = new StringConverter();
-    }
-
     @Test
     void convert_single_digit() {
-        converter.convertString("1");
-        assertThat(converter.getResult()).isEqualTo(1);
+        assertThat(StringConverter.convertString("1")).isEqualTo(1);
     }
 
     @Test
     void convert_multiple_digits() {
-        converter.convertString("12");
-        assertThat(converter.getResult()).isEqualTo(12);
+        assertThat(StringConverter.convertString("12")).isEqualTo(12);
     }
 
     @Test
     void convert_negative() {
-        converter.convertString("-1");
-        assertThat(converter.getResult()).isEqualTo(-1);
+        assertThat(StringConverter.convertString("-1")).isEqualTo(-1);
     }
 
     @Test
     void convert_not_integer() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> converter.convertString("hello")).withMessage("정수로 변환할 수 없는 문자열입니다.");
+                .isThrownBy(() -> StringConverter.convertString("hello")).withMessage("정수로 변환할 수 없는 문자열입니다.");
     }
 }

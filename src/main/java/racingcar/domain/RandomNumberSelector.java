@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class RandomNumberSelector implements NumberSelector {
 
@@ -11,9 +12,7 @@ public class RandomNumberSelector implements NumberSelector {
 
     public RandomNumberSelector(int startNumber, int endNumber) {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = startNumber; i < endNumber; i++) {
-            numbers.add(i);
-        }
+        IntStream.range(startNumber, endNumber).forEach(numbers::add);
         this.numbers = numbers;
         this.rand = new Random();
     }

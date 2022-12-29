@@ -5,6 +5,8 @@ public class Car {
     private final String carName;
     private int position;
 
+    public static final int CAR_NAME_LENGTH_LIMIT = 5;
+
     public Car(String carName) {
         validateCarName(carName);
         this.carName = carName;
@@ -12,8 +14,8 @@ public class Car {
     }
 
     private void validateCarName(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
+        if (carName.length() > CAR_NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException("자동차 이름은 " + CAR_NAME_LENGTH_LIMIT + "자 이하여야 합니다.");
         }
     }
 
@@ -24,7 +26,7 @@ public class Car {
     public void stay() {
     }
 
-    public boolean isSamePosition(int position) {
+    public boolean isAt(int position) {
         return this.position == position;
     }
 

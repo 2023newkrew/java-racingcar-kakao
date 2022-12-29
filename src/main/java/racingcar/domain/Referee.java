@@ -51,13 +51,13 @@ public class Referee {
     public List<String> announceWinners() {
         int maxPosition = calculateMaxCarPosition();
         return this.registeredCars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
+                .filter(car -> car.isAt(maxPosition))
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
 
     private int calculateMaxCarPosition() {
-        int maxPosition = 0;
+        int maxPosition = registeredCars.get(0).getPosition();
         for (Car car : registeredCars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
         }

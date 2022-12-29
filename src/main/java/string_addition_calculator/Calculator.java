@@ -12,14 +12,12 @@ public class Calculator {
     private final NonNegativeValidator nonNegativeValidator;
     private final Addition addition;
     private final Splitter splitter;
-    private final StringConverter stringConverter;
 
     public Calculator() {
         prefixValidator = new PrefixValidator();
         nonNegativeValidator = new NonNegativeValidator();
         addition = new Addition();
         splitter = new Splitter();
-        stringConverter = new StringConverter();
     }
 
     public int calculate(String input) {
@@ -41,7 +39,6 @@ public class Calculator {
     }
 
     private int convertTokenToInteger(String token) {
-        stringConverter.convertString(token);
-        return stringConverter.getResult();
+        return StringConverter.convertString(token);
     }
 }
