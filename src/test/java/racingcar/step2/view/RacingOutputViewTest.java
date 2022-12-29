@@ -29,4 +29,29 @@ class RacingOutputViewTest {
         assertEquals(actual, expect);
     }
 
+    @Test
+    void 최종우승자_출력(){
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        RacingGame racingGame = new RacingGame("pobi,crong,honux");
+        RacingOutputView racingOutputView = new RacingOutputView();
+
+
+        racingGame.getCars().get(0).move(4);
+        racingGame.getCars().get(0).move(4);
+        racingGame.getCars().get(0).move(4);
+
+        racingGame.getCars().get(2).move(4);
+        racingGame.getCars().get(2).move(4);
+        racingGame.getCars().get(2).move(4);
+
+        racingOutputView.printWinners(racingGame.getWinners());
+        String actual = out.toString();
+
+        String expect = "pobi, honux가 최종 우승했습니다.\n";
+
+        assertEquals(actual, expect);
+    }
+
 }
