@@ -1,4 +1,4 @@
-package car_racing;
+package car_racing.domain;
 
 public class RandomScoreStrategy implements ScoreStrategy {
     @Override

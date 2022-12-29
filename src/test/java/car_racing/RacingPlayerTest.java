@@ -1,5 +1,7 @@
 package car_racing;
 
+import car_racing.domain.Car;
+import car_racing.domain.RacingPlayer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

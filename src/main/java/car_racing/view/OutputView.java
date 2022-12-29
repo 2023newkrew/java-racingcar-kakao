@@ -1,4 +1,6 @@
-package car_racing;
+package car_racing.view;
+
+import car_racing.domain.RacingPlayer;
 
 import java.util.Arrays;
 import java.util.List;

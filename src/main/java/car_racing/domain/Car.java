@@ -1,4 +1,4 @@
-package car_racing;
+package car_racing.domain;
 
 public class Car implements RacingPlayer {
     private final String name;

@@ -1,6 +1,4 @@
-import car_racing.RacingController;
-import string_calculator.CalculatorRunner;
-import string_calculator.StringParser;
+import car_racing.domain.RacingController;
 
 public class Application {
     public static void main(String[] args) {

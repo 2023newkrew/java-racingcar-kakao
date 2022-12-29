@@ -1,4 +1,7 @@
-package car_racing;
+package car_racing.domain;
+
+import car_racing.view.InputView;
+import car_racing.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
