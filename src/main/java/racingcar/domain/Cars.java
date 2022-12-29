@@ -23,13 +23,13 @@ public class Cars {
     }
 
     public List<Car> findWinners(){
-        int maxPosition = carList.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+        Position maxPosition = carList.stream()
+                .map(Car::getPosition)
+                .max(Position::compareTo)
+                .orElse(new Position(0));
 
         return carList.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> maxPosition.equals(car.getPosition()))
                 .collect(Collectors.toList());
     }
 

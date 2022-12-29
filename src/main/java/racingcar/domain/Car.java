@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class Car extends MovableStrategy {
     private final CarName carName;
-    private int position;
+    private Position position;
 
     public Car() {
         this("car");
@@ -10,15 +10,16 @@ public class Car extends MovableStrategy {
 
     public Car(final String name) {
         this.carName = new CarName(name);
+        this.position = new Position(0);
     }
 
     public void moveOne(boolean canMove) {
         if (canMove) {
-            position++;
+            position.moveOne();
         }
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
     }
 
@@ -35,7 +36,7 @@ public class Car extends MovableStrategy {
 
         sb.append(carName);
         sb.append(" : ");
-        sb.append("-".repeat(position));
+        sb.append(position.repeat("-"));
 
         return sb.toString();
     }
