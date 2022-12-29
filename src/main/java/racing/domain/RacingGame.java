@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
-    public static final int BOUND = 10;
     public static final String DELIMITER = ",";
 
     private final List<Car> cars = new ArrayList<>();
@@ -31,7 +30,7 @@ public class RacingGame {
 
     public void race() {
         for (Car car : cars) {
-            car.moveByCondition(random.nextInt(BOUND));
+            car.moveByCondition(new RandomMovable(random));
         }
         no++;
     }

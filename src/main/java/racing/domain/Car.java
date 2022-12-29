@@ -1,7 +1,6 @@
 package racing.domain;
 
 public class Car implements Comparable<Car> {
-    public static final int MOVE_THRESHOLD = 3;
 
     private final String name;
     private int position = 1;
@@ -21,8 +20,8 @@ public class Car implements Comparable<Car> {
         this.position += 1;
     }
 
-    public void moveByCondition(int value) {
-        if (value > MOVE_THRESHOLD) {
+    public void moveByCondition(Movable movable) {
+        if (movable.isMove()) {
             move();
         }
     }
