@@ -42,9 +42,9 @@ public class RacingGame {
         return tryCount >= maxTryCount;
     }
 
-    public Winners getWinners() {
+    public List<Car> getWinners() {
         if (isFinished()) {
-            return cars.getWinners();
+            return cars.getWinnerCars();
         }
         throw new IllegalStateException("자동차 경주가 끝나지 않았습니다.");
     }

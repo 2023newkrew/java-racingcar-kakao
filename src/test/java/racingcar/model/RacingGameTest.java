@@ -91,9 +91,9 @@ class RacingGameTest {
         racingGame.moveCars();
         racingGame.moveCars();
         racingGame.moveCars();
-        Winners winners = racingGame.getWinners();
 
-        assertThat(winners.getWinnerCars())
+        List<Car> winners = racingGame.getWinners();
+        assertThat(winners)
                 .extracting(Car::getName)
                 .hasSize(1)
                 .contains("a");
@@ -113,8 +113,8 @@ class RacingGameTest {
         racingGame.moveCars();
         racingGame.moveCars();
 
-        Winners winners = racingGame.getWinners();
-        assertThat(winners.getWinnerCars())
+        List<Car> winners = racingGame.getWinners();
+        assertThat(winners)
                 .hasSize(2)
                 .extracting(Car::getName)
                 .contains("a", "b");

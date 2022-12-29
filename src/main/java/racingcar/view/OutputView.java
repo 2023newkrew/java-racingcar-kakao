@@ -1,10 +1,10 @@
 package racingcar.view;
 
 import java.io.PrintStream;
+import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.Car;
 import racingcar.model.Positions;
-import racingcar.model.Winners;
 
 public class OutputView {
 
@@ -31,8 +31,8 @@ public class OutputView {
         return "-".repeat(positions.getPositionByName(name));
     }
 
-    public void printWinners(Winners winners) {
-        String winnersName = winners.getWinnerCars().stream()
+    public void printWinners(List<Car> winners) {
+        String winnersName = winners.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
 
