@@ -1,6 +1,7 @@
 package racingcar;
 
 public class Car {
+    private static final int THRESHOLD = 4;
     private final String name;
     private int position;
 
@@ -9,8 +10,8 @@ public class Car {
         position = 0;
     }
 
-    int move(boolean flag) { //flag = 1이면 포지션을 증가시키고, 포지션을 반환, 0이면 포지션을 반환
-        if (flag) position++;
+    int move(int threshold) { //flag = 1이면 포지션을 증가시키고, 포지션을 반환, 0이면 포지션을 반환
+        if (threshold >= THRESHOLD) position++;
         return position;
     }
 
@@ -21,11 +22,13 @@ public class Car {
     String getName() {
         return name;
     }
-
+/*
     String matchPosition(int maxPosition) {
         if (maxPosition == position) {
             return name + ",";
         }
         return "";
     }
+
+ */
 }
