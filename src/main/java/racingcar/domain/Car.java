@@ -15,12 +15,16 @@ public class Car {
     }
 
     public void forward() {
-        forward(new Random().nextInt(MAXIMUM_POWER));
+        forward(getRandomNumber());
     }
 
     public void forward(int power) {
         if(power >= FORWARD_THRESHOLD)
             distance++;
+    }
+
+    protected int getRandomNumber(){
+        return new Random().nextInt(MAXIMUM_POWER);
     }
 
     public int getDistance(){
