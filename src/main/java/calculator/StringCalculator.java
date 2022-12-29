@@ -38,7 +38,15 @@ public class StringCalculator {
     }
 
     private static boolean isPositiveNumber(String value) {
-        return !(value == null || value.matches("\\D") || value.contains("-") || value.isBlank());
+        return isNotBlank(value) && isNumeric(value);
+    }
+
+    private static boolean isNotBlank(String value) {
+        return value != null && !value.isBlank();
+    }
+
+    private static boolean isNumeric(String value) {
+        return value.matches("\\d+");
     }
 
     private static int reduceBySum(String text) {
