@@ -6,7 +6,7 @@ public class RacingCar implements Car {
     private static final int BOUND = 3;
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
-    private int distance;
+    private int position;
 
     public RacingCar(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
@@ -16,12 +16,12 @@ public class RacingCar implements Car {
             throw new NullPointerException();
         }
         this.name = name;
-        this.distance = 0;
+        this.position = 0;
     }
 
-    public RacingCar(String name, int distance) {
+    public RacingCar(String name, int position) {
         this(name);
-        this.distance = distance;
+        this.position = position;
     }
 
     public String getName() {
@@ -29,18 +29,18 @@ public class RacingCar implements Car {
     }
 
     @Override
-    public int getDistance() {
-        return this.distance;
+    public int getPosition() {
+        return this.position;
     }
 
     public void move(int seed) {
         if (seed > BOUND) {
-            distance++;
+            position++;
         }
     }
 
     @Override
     public String toString() {
-        return String.format("%s : %s", name, "-".repeat(distance));
+        return String.format("%s : %s", name, "-".repeat(position));
     }
 }

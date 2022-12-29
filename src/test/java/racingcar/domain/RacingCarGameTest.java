@@ -64,11 +64,11 @@ public class RacingCarGameTest {
         ArrayList<Car> racingCars = (ArrayList<Car>) cars.get(racingCarGame);
 
         assertThat(racingCars.get(0)
-                .getDistance()).isEqualTo(2);
+                .getPosition()).isEqualTo(2);
         assertThat(racingCars.get(1)
-                .getDistance()).isEqualTo(3);
+                .getPosition()).isEqualTo(3);
         assertThat(racingCars.get(2)
-                .getDistance()).isEqualTo(2);
+                .getPosition()).isEqualTo(2);
     }
 
 

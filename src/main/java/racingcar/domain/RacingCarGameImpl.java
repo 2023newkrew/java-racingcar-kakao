@@ -47,7 +47,7 @@ public class RacingCarGameImpl implements RacingCarGame {
     public List<Car> getWinner() {
         int maxDistance = getMaxDistance();
         return cars.stream()
-                .filter(car -> maxDistance == car.getDistance())
+                .filter(car -> maxDistance == car.getPosition())
                 .collect(Collectors.toList());
     }
 
@@ -79,8 +79,8 @@ public class RacingCarGameImpl implements RacingCarGame {
 
     private int getMaxDistance() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getDistance))
+                .max(Comparator.comparingInt(Car::getPosition))
                 .orElseThrow()
-                .getDistance();
+                .getPosition();
     }
 }

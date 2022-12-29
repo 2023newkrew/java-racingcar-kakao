@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -38,14 +37,14 @@ public class CarTest {
     public void moveTest(int input) {
         Car racingCar = new RacingCar("abc");
         racingCar.move(input);
-        int dist = racingCar.getDistance();
+        int dist = racingCar.getPosition();
         assertThat(dist).isEqualTo(1);
     }
 
     @Test
     void 초기_distance를_갖는_Car_생성() {
         assertThatCode(() -> new RacingCar("abc", 5)).doesNotThrowAnyException();
-        assertThat(new RacingCar("soony", 6).getDistance()).isEqualTo(6);
+        assertThat(new RacingCar("soony", 6).getPosition()).isEqualTo(6);
     }
 
     @ParameterizedTest
@@ -53,7 +52,7 @@ public class CarTest {
     public void doNotMoveTest(int input) {
         Car racingCar = new RacingCar("abc");
         racingCar.move(input);
-        int dist = racingCar.getDistance();
+        int dist = racingCar.getPosition();
         assertThat(dist).isEqualTo(0);
     }
 
