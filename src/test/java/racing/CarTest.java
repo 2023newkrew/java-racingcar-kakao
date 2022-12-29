@@ -15,41 +15,45 @@ public class CarTest {
     @DisplayName("다섯 글자 이하 이름 예외 처리 테스트")
     @Test
     public void nameExceptionNotThrowTest() {
-        assertDoesNotThrow(() -> new Car("choi"));
+        String shortName = "choi";
+        assertDoesNotThrow(() -> new Car(shortName));
     }
 
     @DisplayName("다섯 글자 초과 이름 예외 처리 테스트")
     @Test
     public void nameExceptionThrowTest() {
-        assertThrows(RuntimeException.class, () -> new Car("jerrie"));
+        String longName = "jerrie";
+        assertThrows(RuntimeException.class, () -> new Car(longName));
     }
 
     @DisplayName("랜덤 숫자가 4 미만일 때 자동차 정지 테스트")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
-    public void carStopTest(int number) {
-        Car car = new Car(5, "test") {
+    public void carStopTest(int numberUnderFour) {
+        int nowPosition = 5;
+        Car car = new Car(nowPosition, "test") {
             @Override
             protected int createRandomNumber() {
-                return number;
+                return numberUnderFour;
             }
         };
         car.carEvent();
-        assertThat(car.getPosition()).isEqualTo(5);
+        assertThat(car.getPosition()).isEqualTo(nowPosition);
     }
 
     @DisplayName("랜덤 숫자가 4 이상일 때 자동차 전진 테스트")
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    public void carForwardTest(int number) {
-        Car car = new Car(5, "test") {
+    public void carForwardTest(int numberOverThree) {
+        int nowPosition = 5;
+        Car car = new Car(nowPosition, "test") {
             @Override
             protected int createRandomNumber() {
-                return number;
+                return numberOverThree;
             }
         };
         car.carEvent();
-        assertThat(car.getPosition()).isEqualTo(6);
+        assertThat(car.getPosition()).isEqualTo(nowPosition + 1);
     }
 
     @DisplayName("자동차 로그 출력 테스트")
