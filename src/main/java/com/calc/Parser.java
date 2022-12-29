@@ -1,9 +1,12 @@
 package com.calc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Parser {
 
@@ -51,49 +54,44 @@ public class Parser {
         String body = separateBody();
 
         // method
-        ArrayList<Separator> arrSep = getSeparators(body);
+        List<Separator> arrSep = getSeparators(body);
 
         // method
-        ArrayList<Integer> splitValues = getSplitValues(body, arrSep);
+        List<Integer> splitValues = getSplitValues(body, arrSep);
 
 
         return new Expression(splitValues, arrSep, header);
     }
 
-    private ArrayList<Integer> getSplitValues(String body, ArrayList<Separator> arrSep) {
+    private List<Integer> getSplitValues(String body, List<Separator> arrSep) {
         String sepRegex = changeToString(arrSep);
 
         String[] splitValues = body.split(sepRegex);
         return changeToArray(splitValues);
     }
 
-    private ArrayList<Separator> getSeparators(String body) {
-        ArrayList<Separator> arrSep = new ArrayList<>(); // arrSep = 사용한 구분자들
-        for(int i = 0; i< body.length(); i++){
-            arrSep.add(checkNumber(body.charAt(i)));
-        }
-        arrSep.removeIf(Objects::isNull);
-        return arrSep;
+    private List<Separator> getSeparators(String body) {
+        return body.chars()
+                .mapToObj(this::checkNumber)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
-    public Separator checkNumber(char c){
+    public Separator checkNumber(int c){
         if(Character.isDigit(c)) return null;
         return new Separator(String.valueOf(c));
     }
 
-    public String changeToString(ArrayList<Separator> separators){
-        String sep = "";
-        for(Separator separator : separators){
-            sep += separator.toString() + "|";
-        }
-        return sep.equals("") ? sep : sep.substring(0, sep.length() - 1);
+    public String changeToString(List<Separator> separators){
+        return separators.stream()
+                .map(Separator::toString)
+                .collect(Collectors.joining("|"));
     }
 
-    public ArrayList<Integer> changeToArray(String[] arr){
-        ArrayList<Integer> ret = new ArrayList<>();
-        for(String str : arr){
-            ret.add(Integer.parseInt(str));
-        }
-        return ret;
+    public List<Integer> changeToArray(String[] arr){
+        return Arrays.stream(arr)
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }

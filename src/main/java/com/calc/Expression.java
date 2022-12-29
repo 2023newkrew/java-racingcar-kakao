@@ -22,9 +22,7 @@ public class Expression {
     }
 
     public void checkValues() {
-        for(Integer value : values){
-            checkPositiveInteger(value);
-        }
+        values.forEach(this::checkPositiveInteger);
     }
 
     public void checkPositiveInteger(int value){
@@ -34,10 +32,8 @@ public class Expression {
     }
 
     public int sumValues(){
-        int sum = 0;
-        for(int value: this.values){
-            sum += value;
-        }
-        return sum;
+        return this.values.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
