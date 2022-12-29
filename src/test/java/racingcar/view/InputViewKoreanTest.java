@@ -23,7 +23,7 @@ public class InputViewKoreanTest {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
                     inputViewKorean.scanNames(inputStr+",han");
-                }).withMessage("자동차의 길이는 1~5 사이어야 합니다.");
+                }).withMessageStartingWith("1");
     }
     @Test
     void inputLengthNotException() {
@@ -39,7 +39,7 @@ public class InputViewKoreanTest {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
                     inputViewKorean.scanNames(inputStr);
-                }).withMessage("두 개 이상의 자동차를 입력해 주세요");
+                }).withMessageStartingWith("2");
 
     }
     @Test
@@ -65,7 +65,7 @@ public class InputViewKoreanTest {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
                     inputViewKorean.scanNames(inputStr);
-                }).withMessage("자동차의 길이는 1~5 사이어야 합니다.");
+                }).withMessageStartingWith("1");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class InputViewKoreanTest {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
                     inputViewKorean.scanNames(inputStr);
-                }).withMessage("중복된 이름의 자동차를 입력하지 마세요.");
+                }).withMessageStartingWith("3");
     }
 
     @Test
@@ -98,7 +98,7 @@ public class InputViewKoreanTest {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
                     inputViewKorean.scanTrialCount(trialCount);
-                }).withMessage("시도 회수는 1 이상이여야 합니다.");
+                }).withMessageStartingWith("4");
     }
 
 }

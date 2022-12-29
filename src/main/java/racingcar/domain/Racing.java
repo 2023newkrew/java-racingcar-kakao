@@ -17,7 +17,7 @@ public class Racing {
     }
     public void proceedRound() {
         if (remainingRound <= 0){
-            throw new InvalidRacingConditionException("이미 경기가 끝났습니다.");
+            throw new InvalidRacingConditionException("1 : racing is already over");
         }
         remainingRound--;
         for (Car car: cars) {
@@ -37,7 +37,7 @@ public class Racing {
     }
     public Car[] getWinners(Car[] cars) {
         if (remainingRound > 0){
-            throw new InvalidRacingConditionException("아직 경기가 끝나지 않았습니다.");
+            throw new InvalidRacingConditionException("2 : Not yet race ended.");
         }
         Stream<Car> stream = Arrays.stream(cars);
         Car winner = getWinner(cars);
@@ -64,7 +64,7 @@ public class Racing {
 
     public static class Builder{
         private List<Car> cars = new ArrayList<>();
-        private int remainingRounds;
+        private int remainingRounds = 0;
 
         public Builder addCars(String[] carNames){
             for (String carName : carNames){
@@ -94,10 +94,10 @@ public class Racing {
 
         public Racing build(){
             if (remainingRounds <= 0){
-                throw new InvalidRacingConditionException("라운드 횟수는 1 이상이어야 합니다.");
+                throw new InvalidRacingConditionException("3 : Round should be positive");
             }
             if (cars.size() <= 1){
-                throw new InvalidRacingConditionException("차는 2대 이상이어야 합니다.");
+                throw new InvalidRacingConditionException("4 : Too few Cars(need 2)");
             }
             return new Racing(this);
         }

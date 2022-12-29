@@ -43,14 +43,14 @@ public class InputViewKorean implements InputView{
 
     private void validateLength(String inputStr) {
         if (inputStr.length() > 5 || inputStr.length() == 0) {
-            throw new InvalidInputException("자동차의 길이는 1~5 사이어야 합니다.");
+            throw new InvalidInputException("1 : Name should be between 1 and 5.");
         }
     }
 
 
     private void validateArrayLength(String[] inputStr) {
         if (inputStr.length<=1){
-            throw new InvalidInputException("두 개 이상의 자동차를 입력해 주세요");
+            throw new InvalidInputException("2 : Cars must be over 2");
         }
     }
 
@@ -63,14 +63,14 @@ public class InputViewKorean implements InputView{
     private void validateDuplication(String[] inputStr) {
         Set<String> carNames = new HashSet<>(Arrays.asList(inputStr));
         if (carNames.size() != inputStr.length) {
-            throw new InvalidInputException("중복된 이름의 자동차를 입력하지 마세요.");
+            throw new InvalidInputException("3 : Duplicated car names.");
         }
     }
 
     private int validateTrialCount(String trialCount) {
         int result = Integer.parseInt(trialCount);
         if (result < 1) {
-            throw new InvalidInputException("시도 회수는 1 이상이여야 합니다.");
+            throw new InvalidInputException("4 : Trial should be positive number.");
         }
         return result;
     }

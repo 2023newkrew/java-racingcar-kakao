@@ -48,6 +48,20 @@ public class RacingTest {
     }
 
     @Test
+    void exceptionWhenProceedRoundNotRemainingRound(){
+        Racing racing = new Racing.Builder()
+                .addCars(new String[]{"a", "b", "c", "d", "e"})
+                .setRounds(5)
+                .build();
+        assertThatThrownBy(()->{
+            for (int i=1;i<=6;i++){
+                racing.proceedRound();
+            }
+        }).isInstanceOf(InvalidRacingConditionException.class)
+                .hasMessageStartingWith("1");
+    }
+
+    @Test
     void exceptionWhenGetWinnersRemainingRound(){
         Racing racing = new Racing.Builder()
                 .addCars(new String[]{"a", "b", "c", "d", "e"})
@@ -59,20 +73,29 @@ public class RacingTest {
         assertThatThrownBy(()->{
             Car[] winners = racing.getWinners();
         }).isInstanceOf(InvalidRacingConditionException.class)
-                .hasMessage("아직 경기가 끝나지 않았습니다.");
+                .hasMessageStartingWith("2");
     }
+
     @Test
-    void exceptionWhenProceedRoundNotRemainingRound(){
-        Racing racing = new Racing.Builder()
-                .addCars(new String[]{"a", "b", "c", "d", "e"})
-                .setRounds(5)
-                .build();
+    void exceptionWhenNoRounds(){
         assertThatThrownBy(()->{
-            for (int i=1;i<=6;i++){
-                racing.proceedRound();
-            }
+            Racing racing = new Racing.Builder()
+                    .addCars(new String[]{"a", "b", "c", "d", "e"})
+                    .setRounds(0)
+                    .build();
         }).isInstanceOf(InvalidRacingConditionException.class)
-                .hasMessage("이미 경기가 끝났습니다.");
+                .hasMessageStartingWith("3");
+    }
+
+    @Test
+    void exceptionTooFewCars(){
+        assertThatThrownBy(()->{
+            Racing racing = new Racing.Builder()
+                    .addCars(new String[]{"a"})
+                    .setRounds(5)
+                    .build();
+        }).isInstanceOf(InvalidRacingConditionException.class)
+                .hasMessageStartingWith("4");
     }
 
 }
