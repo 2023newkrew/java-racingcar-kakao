@@ -25,7 +25,7 @@ public class InputView {
             throw new IllegalArgumentException("이름은 널이거나, 공백일수 없습니다.");
         }
         if (name.length() > MAXIMUM_LENGTH) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("이름은 5글자가 넘을 수 없습니다.");
         }
     }
 }
