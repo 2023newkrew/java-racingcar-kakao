@@ -5,8 +5,6 @@ import java.util.Objects;
 public class Car implements Comparable{
     private final String name;
     private final Position position;
-    private static final int MOVE_BOUND = 4;
-    private static final int MAX_BOUND = 9;
 
     public Car(String name) {
         this(name, 1);
@@ -17,8 +15,8 @@ public class Car implements Comparable{
         this.position = new Position(defaultPosition);
     }
 
-    public boolean move(RandomGenerator randomGenerator) {
-        if (randomGenerator.generate(MAX_BOUND+1) >= MOVE_BOUND) {
+    public boolean move(Movable movable) {
+        if (movable.canMove()) {
             this.position.move();
             return true;
         }

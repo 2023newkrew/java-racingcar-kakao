@@ -8,7 +8,7 @@ public class RacingTest {
     @Test
     @DisplayName("Racing에서 Car 객체를 생성")
     void generateCarsArray() {
-        Racing racing = new Racing(new RandomGeneratorImpl());
+        Racing racing = new Racing(new RandomMovable(10,4));
         String[] names = new String[]{"aaa", "bbb", "ccc"};
         Car[] cars = racing.generateCars(names);
         Assertions.assertThat(cars.length).isEqualTo(3);
@@ -29,7 +29,7 @@ public class RacingTest {
         cars[3] = new Car("d", 2);
         cars[4] = new Car("e", 2);
 
-        Racing racing = new Racing(new RandomGeneratorImpl());
+        Racing racing = new Racing(new RandomMovable(10, 4));
 
         Assertions.assertThat(racing.getWinner(cars).toStringWithPosition()).isEqualTo("c : ------");
     }
@@ -44,7 +44,7 @@ public class RacingTest {
         cars[3] = new Car("d", 2);
         cars[4] = new Car("e", 6);
 
-        Racing racing = new Racing(new RandomGeneratorImpl());
+        Racing racing = new Racing(new RandomMovable(10, 4));
 
         Assertions.assertThat(racing.getWinners(cars)).containsExactly(cars[1], cars[2], cars[4]);
     }
