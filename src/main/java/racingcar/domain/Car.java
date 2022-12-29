@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.dto.CarDto;
-import racingcar.utils.RandomNumberGenerator;
 
 public class Car{
     private final String name;
