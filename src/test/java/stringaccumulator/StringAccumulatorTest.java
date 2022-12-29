@@ -28,9 +28,9 @@ class StringAccumulatorTest {
 
         Stream<Arguments> should_returnStringAccumulator_when_validString() {
             return Stream.of(
-                    Arguments.of("//.\n123", new StringAccumulator("//.\n", "123")),
-                    Arguments.of("//\n//\n", new StringAccumulator("//\n", "//\n")),
-                    Arguments.of("////\n\n", new StringAccumulator("////\n", "\n"))
+                    Arguments.of("//.\n123", new StringAccumulator("//.\n", "123", StringSplitter.from("//.\n"))),
+                    Arguments.of("//\n//\n", new StringAccumulator("//\n", "//\n", StringSplitter.from("//\n"))),
+                    Arguments.of("////\n\n", new StringAccumulator("////\n", "\n", StringSplitter.from("////\n")))
             );
         }
 
@@ -85,7 +85,7 @@ class StringAccumulatorTest {
         @ParameterizedTest
         @MethodSource
         void should_returnSplitTokens_when_validSeparator(String separator, String content, List<String> expected) {
-            List<String> result = StringAccumulator.parseContentBySeparator(separator, content);
+            List<String> result = StringAccumulator.parseContentBySplitter(StringSplitter.from(separator), content);
             assertThatList(result).isEqualTo(expected);
         }
 

@@ -8,10 +8,12 @@ public class StringAccumulator {
 
     private final String separator;
     private final String content;
+    private final StringSplitter stringSplitter;
 
-    StringAccumulator(String separator, String content) {
+    StringAccumulator(String separator, String content, StringSplitter stringSplitter) {
         this.separator = separator;
         this.content = content;
+        this.stringSplitter = stringSplitter;
     }
 
     public static StringAccumulator from(String str) {
@@ -22,7 +24,7 @@ public class StringAccumulator {
             separator = str.substring(0, newlineNextIndex);
             content = str.substring(newlineNextIndex);
         }
-        return new StringAccumulator(separator, content);
+        return new StringAccumulator(separator, content, StringSplitter.from(separator));
     }
 
     private static boolean hasSeparator(String str) {
@@ -38,13 +40,13 @@ public class StringAccumulator {
     }
 
     public long accumulate() {
-        List<String> splitTokens = parseContentBySeparator(separator, content);
+        List<String> splitTokens = parseContentBySplitter(stringSplitter, content);
         checkIsPositiveNumber(splitTokens);
         return getSum(splitTokens);
     }
 
-    static List<String> parseContentBySeparator(String separator, String content) {
-        return StringSplitter.from(separator)
+    static List<String> parseContentBySplitter(StringSplitter splitter, String content) {
+        return splitter
                 .split(content)
                 .stream()
                 .map(String::trim)
