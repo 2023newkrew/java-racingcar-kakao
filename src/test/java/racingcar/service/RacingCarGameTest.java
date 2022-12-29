@@ -4,12 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.CarDto;
-import racingcar.dto.GameResult;
+import racingcar.dto.FinalResult;
+import racingcar.dto.RoundResult;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingCarGameTest {
 
@@ -35,24 +35,13 @@ class RacingCarGameTest {
 
     @Test
     @DisplayName("입력한 시도 횟수만큼 게임 진행 시 매 시도마다 결과가 반환된다.")
-    void returnIntermediateGameResult() {
+    void returnRoundResult() {
         while (!racingCarGame.isFinish()) {
-            GameResult gameResult = racingCarGame.doNextRound();
+            RoundResult roundResult = racingCarGame.doNextRound();
 
-            assertThat(gameResult).isNotNull();
-            assertThat(gameResult.getIntermediateResult()).isNotBlank();
+            assertThat(roundResult).isNotNull();
+            assertThat(roundResult.toString()).isNotBlank();
         }
-    }
-
-    @Test
-    @DisplayName("주어진 횟수를 넘어서 게임이 실행되면 예외가 발생한다.")
-    void exceedGameRound() {
-        while (!racingCarGame.isFinish()) {
-            racingCarGame.doNextRound();
-        }
-
-        assertThatThrownBy(() -> racingCarGame.doNextRound())
-                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -61,10 +50,10 @@ class RacingCarGameTest {
         while (!racingCarGame.isFinish()) {
             racingCarGame.doNextRound();
         }
-        GameResult gameResult = racingCarGame.selectWinners();
+        FinalResult finalResult = racingCarGame.selectWinners();
 
-        assertThat(gameResult).isNotNull();
-        assertThat(gameResult.getFinalResult()).isNotBlank();
+        assertThat(finalResult).isNotNull();
+        assertThat(finalResult.toString()).isNotBlank();
     }
 
 }

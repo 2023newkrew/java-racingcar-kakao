@@ -1,11 +1,11 @@
 package racingcar.controller;
 
 import racingcar.domain.GameSetting;
+import racingcar.dto.RoundResult;
 import racingcar.service.RacingCarGame;
 import racingcar.utils.RacingCarConverter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.dto.GameResult;
 import racingcar.dto.CarDto;
 import racingcar.utils.RacingCarValidator;
 
@@ -39,14 +39,14 @@ public class RacingCarGameController {
         outputView.printInitialStatus(createInitialStatus(carDtos));
 
         while (!racingCarGame.isFinish()) {
-            GameResult gameResult = racingCarGame.doNextRound();
-            outputView.print(gameResult.getIntermediateResult());
+            RoundResult roundResult = racingCarGame.doNextRound();
+            outputView.print(roundResult.toString());
         }
-        outputView.print(racingCarGame.selectWinners().getFinalResult());
+        outputView.print(racingCarGame.selectWinners().toString());
     }
 
     public String createInitialStatus(List<CarDto> carDtos) {
-        return new GameResult(carDtos).getIntermediateResult();
+        return new RoundResult(carDtos).toString();
     }
 
 }
