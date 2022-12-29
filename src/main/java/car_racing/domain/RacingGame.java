@@ -1,74 +1,25 @@
 package car_racing.domain;
 
-import car_racing.view.InputView;
-import car_racing.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    private final InputView inputView;
-    private final List<RacingPlayer> racingPlayers;
-    private String[] playerNames;
-    private Integer numberOfTurns;
+    private final List<RacingPlayer> racingPlayers = new ArrayList<>();
 
-    public RacingGame() {
-        racingPlayers = new ArrayList<>();
-        inputView = new InputView();
+    public RacingGame(String[] playerNames) {
+        createPlayers(playerNames);
     }
 
-    public void run() {
-        try {
-            getNamesFromUser();
-            getNumberOfTurnsFromUser();
-        } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
-            return;
-        }
-        createPlayers();
-        printResult();
-    }
-
-    private void getNamesFromUser() {
-        OutputView.askForNames();
-        playerNames = inputView.getPlayerNames();
-    }
-
-    private void getNumberOfTurnsFromUser() {
-        OutputView.askForNumberOfTurns();
-        numberOfTurns = inputView.getNumberOfTurns();
-    }
-
-    private void printResult() {
-        System.out.println();
-        System.out.println("실행결과");
-        OutputView.printCurrentStatus(racingPlayers);
-        for (int i = 0; i < numberOfTurns; i++) {
-            sleep();
-            runSingleTurn();
-            OutputView.printCurrentStatus(racingPlayers);
-        }
-        OutputView.printWinners(GameRule.getWinners(racingPlayers));
-    }
-
-    private void createPlayers() {
+    private void createPlayers(String[] playerNames) {
         for (String playerName : playerNames) {
             racingPlayers.add(new Car(playerName));
         }
     }
 
-    private void runSingleTurn() {
+    public void runSingleTurn() {
         for (RacingPlayer player : racingPlayers) {
             boolean proceed = GameRule.isAbleToProceed();
             player.proceedNextTurn(proceed);
-        }
-    }
-    
-    private void sleep() {
-        try {
-            Thread.sleep(500);
-        } catch(InterruptedException e) {
-            System.out.println(e.getLocalizedMessage());
         }
     }
 }
