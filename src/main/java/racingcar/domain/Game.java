@@ -1,11 +1,14 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Game {
     private List<Car> cars;
     private int leftRoundCnt;
+
+    private static final int RANDOM_BOUND = 10;
 
     public GameInfo init(List<String> names, int roundCnt) {
         this.cars = names
@@ -18,7 +21,7 @@ public class Game {
 
     public GameInfo runRound() {
         for (Car car : cars) {
-            car.move();
+            car.move(new Random().nextInt(RANDOM_BOUND));
         }
         leftRoundCnt--;
         return new GameInfo(cars, leftRoundCnt);

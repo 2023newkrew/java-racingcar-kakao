@@ -15,6 +15,7 @@ public class GameInfo {
     public List<CarInfo> getCarInfos() {
         return carInfos;
     }
+
     public int getLeftRoundCnt() {
         return leftRoundCnt;
     }
