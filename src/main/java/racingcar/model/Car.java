@@ -17,8 +17,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int number) {
-        if (isMovable(number)) {
+    public void move(int moveValue) {
+        if (isMovable(moveValue)) {
             position++;
         }
     }

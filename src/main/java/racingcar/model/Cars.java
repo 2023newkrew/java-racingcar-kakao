@@ -3,16 +3,13 @@ package racingcar.model;
 import java.util.List;
 
 public class Cars {
-
-    private final NumberGenerator numberGenerator;
     private final List<Car> cars;
 
-    public Cars(NumberGenerator numberGenerator, List<Car> cars) {
-        this.numberGenerator = numberGenerator;
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    void move() {
+    void move(NumberGenerator numberGenerator) {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
         }
@@ -24,9 +21,5 @@ public class Cars {
 
     public Winners getWinners() {
         return new Winners(cars);
-    }
-
-    public int size() {
-        return cars.size();
     }
 }

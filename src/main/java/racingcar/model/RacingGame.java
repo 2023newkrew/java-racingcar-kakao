@@ -5,17 +5,19 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
+    private final NumberGenerator numberGenerator;
     private final int maxTryCount;
     private final Cars cars;
     private int tryCount;
 
     public RacingGame(int maxTryCount, NumberGenerator numberGenerator, List<String> names) {
-        this.cars = createCars(numberGenerator, names);
+        this.numberGenerator = numberGenerator;
+        this.cars = createCars(names);
         this.maxTryCount = maxTryCount;
         this.tryCount = 0;
     }
 
-    private Cars createCars(NumberGenerator numberGenerator, List<String> names) {
+    private Cars createCars(List<String> names) {
         if (names.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -24,7 +26,7 @@ public class RacingGame {
                 .map(Car::new)
                 .collect(Collectors.toList());
 
-        return new Cars(numberGenerator, cars);
+        return new Cars(cars);
     }
 
     public void moveCars() {
@@ -32,7 +34,7 @@ public class RacingGame {
             throw new IllegalStateException();
         }
 
-        cars.move();
+        cars.move(numberGenerator);
         tryCount++;
     }
 
