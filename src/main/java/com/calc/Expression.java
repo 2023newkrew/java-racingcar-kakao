@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Expression {
 
-    public final List<Integer> values;
-    public final List<Separator> separators;
-    public final String allowSep;
+    private final List<Integer> values;
+    private final List<Separator> separators;
+    private final String allowSep;
 
     public Expression(List<Integer> values, List<Separator> separators, String allowSep) {
         this.values = values;// separators; // Parser 만들어서 넘기는걸로

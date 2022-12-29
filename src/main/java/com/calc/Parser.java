@@ -20,7 +20,7 @@ public class Parser {
         return null;
     }
 
-    public String separateHeader(String text) {
+    private String separateHeader(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)")
                 .matcher(text);
         if (m.find()) {
@@ -29,7 +29,7 @@ public class Parser {
         return "";
     }
 
-    public String separateBody(String text) {
+    private String separateBody(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)")
                 .matcher(text);
         if (m.find()) {
@@ -70,18 +70,18 @@ public class Parser {
                 .collect(Collectors.toList());
     }
 
-    public Separator checkNumber(int c){
+    private Separator checkNumber(int c){
         if(Character.isDigit(c)) return null;
         return new Separator(String.valueOf(c));
     }
 
-    public String changeToString(List<Separator> separators){
+    private String changeToString(List<Separator> separators){
         return separators.stream()
                 .map(Separator::toString)
                 .collect(Collectors.joining("|"));
     }
 
-    public List<Integer> changeToArray(String[] arr){
+    private List<Integer> changeToArray(String[] arr){
         return Arrays.stream(arr)
                 .mapToInt(Integer::parseInt)
                 .boxed()
