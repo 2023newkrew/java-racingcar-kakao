@@ -33,7 +33,7 @@ public class RacingTest {
             }
         }
 
-        Assertions.assertThat(racing.getWinner(cars).toString()).isEqualTo("c : ------");
+        Assertions.assertThat(racing.getWinners(cars)).containsExactly(cars[2]);
     }
 
     @Test
