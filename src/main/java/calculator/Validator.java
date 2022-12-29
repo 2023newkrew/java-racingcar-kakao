@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Validator {
-    public void hasNegative(List<Integer> numbers){
+    public void nonNegativeOrThrow(List<Integer> numbers){
         List<Integer> list =
                 numbers.stream()
                         .filter(num -> num < 0)

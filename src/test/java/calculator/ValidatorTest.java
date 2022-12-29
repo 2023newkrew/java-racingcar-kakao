@@ -17,7 +17,7 @@ public class ValidatorTest {
     void givenNegativeNumber_thenThrowException(List<Integer> numbers){
         Validator validator = new Validator();
 
-        assertThatThrownBy(() -> validator.hasNegative(numbers))
+        assertThatThrownBy(() -> validator.nonNegativeOrThrow(numbers))
                 .isInstanceOf(RuntimeException.class);
     }
 
