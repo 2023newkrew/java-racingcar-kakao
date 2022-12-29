@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Splitter {
-
     public List<Integer> split(String input){
         Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
         String customDelimiter = "";

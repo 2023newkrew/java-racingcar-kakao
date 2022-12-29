@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class RacingCarRepository {
     private static List<Car> cars = new ArrayList<>();
 
-    public static void init(List<Car> init){
-        cars = init;
+    public static void init(List<Car> newCars){
+        cars = newCars;
     }
 
     public static List<Car> getCars(){

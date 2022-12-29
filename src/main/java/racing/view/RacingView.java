@@ -6,11 +6,11 @@ import racing.service.RacingValidator;
 
 import java.util.Scanner;
 
-public class RacingTemplate {
+public class RacingView {
     private final Scanner scanner;
     private final RacingValidator racingValidator;
 
-    public RacingTemplate(){
+    public RacingView(){
         scanner = new Scanner(System.in);
         racingValidator = new RacingValidator();
     }

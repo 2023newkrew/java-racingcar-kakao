@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String expression;
+        Integer result;
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
 
@@ -15,6 +16,7 @@ public class Main {
             expression += "\n" + scanner.nextLine();
         }
 
-        System.out.println(calculator.calculate(expression.trim()));
+        result = calculator.calculate(expression.trim());
+        System.out.println(result);
     }
 }

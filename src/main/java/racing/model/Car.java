@@ -42,7 +42,7 @@ public class Car implements Comparable<Car>{
     }
 
     @Override
-    public int compareTo(Car other) {
-        return Integer.compare(this.position, other.position);
+    public int compareTo(Car otherCar) {
+        return Integer.compare(this.position, otherCar.position);
     }
 }
