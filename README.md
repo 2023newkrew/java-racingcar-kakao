@@ -59,6 +59,6 @@
 - [x] Optional.isPresent() / Optional.isEmpty() => boolean으로 리팩터링
 - [ ] 유지 보수에 용이한 테스트 코드를 고민해보기
 - [ ] 유지 보수에 용이한 테스트 코드로 변경해보기
-- [ ] View에 알맞지 않은 Input에 대해 다시 입력받는 로직 구현
+- [x] View에 알맞지 않은 Input에 대해 다시 입력받는 로직 구현
 - [ ] Controller에 DTO를 도입하여 도메인 보호
 - [ ] 생성자 주입을 통해 final 처리할 수 있는 인스턴스 변수라면 리팩터링하기

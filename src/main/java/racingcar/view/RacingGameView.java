@@ -19,8 +19,14 @@ public class RacingGameView {
     }
 
     public int receiveRoundToPlay(){
-        System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        try {
+            System.out.println("시도할 회수는 몇회인가요?");
+            String userInput = scanner.nextLine();
+            return Integer.valueOf(userInput);
+        } catch (NumberFormatException exception) {
+            System.out.println("숫자를 입력해주세요");
+            return receiveRoundToPlay();
+        }
     }
 
     public void printRoundResultMessage() {
@@ -48,5 +54,9 @@ public class RacingGameView {
             System.out.print(winners.get(i) + ", ");
         }
         System.out.print(winners.get(winners.size() - 1) + "가 최종 우승했습니다.");
+    }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 }

@@ -28,9 +28,14 @@ public class RacingGameController {
     }
 
     private void initializeGame() {
-        String carNames = racingGameView.receiveCarNames();
-        int roundToPlay = racingGameView.receiveRoundToPlay();
-        this.racingGame = new RacingGame(carNames, roundToPlay, new RandomNumberSelector());
+        try {
+            String carNames = racingGameView.receiveCarNames();
+            int roundToPlay = racingGameView.receiveRoundToPlay();
+            racingGame = new RacingGame(carNames, roundToPlay, new RandomNumberSelector());
+        } catch (IllegalArgumentException exception) {
+            racingGameView.printExceptionMessage(exception.getMessage());
+            initializeGame();
+        }
     }
 
     private void announceWinner() {
