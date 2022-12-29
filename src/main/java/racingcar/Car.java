@@ -6,6 +6,8 @@ public class Car {
 
     private static final int THRESHOLD = 4;
 
+    private static final int CAR_NAME_LIMIT = 5;
+
     private int position;
 
     private final String name;
@@ -34,7 +36,7 @@ public class Car {
     }
 
     private boolean isInvalidName(String name) {
-        return name == null || name.equals("") || name.length() > 5;
+        return name == null || name.equals("") || name.length() > CAR_NAME_LIMIT;
     }
 
     @Override
