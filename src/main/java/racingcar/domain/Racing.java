@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Racing {
     private Car[] cars;
 
-    public void generateCars(String[] carNames) {
+    public Racing(String[] carNames) {
         cars = new Car[carNames.length];
         for (int i = 0; i < carNames.length; i++) {
             cars[i] = new Car(carNames[i]);

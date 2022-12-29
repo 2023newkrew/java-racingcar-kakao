@@ -9,8 +9,7 @@ public class Main {
         String[] carNames = InputView.scanCarNames();
         int trialCount = InputView.scanTrialCount();
 
-        Racing racing = new Racing();
-        racing.generateCars(carNames);
+        Racing racing = new Racing(carNames);
 
         ResultView.printRacingStart();
         for (int i = 0; i < trialCount; i++) {

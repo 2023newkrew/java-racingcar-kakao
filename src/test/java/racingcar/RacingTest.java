@@ -10,10 +10,9 @@ public class RacingTest {
     @DisplayName("주어진 이름에 따라 Cars 가 잘 생성되는가")
     @Test
     void 주어진_이름에_따라_Cars_생성() {
-        Racing racing = new Racing();
         String[] names = new String[]{"aaa","bbb","ccc"};
 
-        racing.generateCars(names);
+        Racing racing = new Racing(names);
         Car[] cars = racing.cars();
         Assertions.assertThat(cars.length).isEqualTo(3);
 
@@ -29,8 +28,7 @@ public class RacingTest {
         String[] names = new String[] {"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;
-        Racing racing = new Racing();
-        racing.generateCars(names);
+        Racing racing = new Racing(names);
         Car[] cars = racing.cars();
         for (int i = 0; i < ROUND; i++) {
             cars[0].move(bound -> 2);
@@ -49,8 +47,7 @@ public class RacingTest {
         String[] names = new String[] {"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;
-        Racing racing = new Racing();
-        racing.generateCars(names);
+        Racing racing = new Racing(names);
         Car[] cars = racing.cars();
         for (int i = 0; i < ROUND; i++) {
             cars[0].move(bound -> 2);
