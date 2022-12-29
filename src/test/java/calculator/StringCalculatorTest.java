@@ -3,6 +3,7 @@ package calculator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,20 +23,22 @@ public class StringCalculatorTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,2:3|6", "22,33,11:1:3|70", "3:1|4"}, delimiter = '|')
-    void 기본적인_문자열_입력_테스트(String str, int answer) {
+    void 기본적인_문자열_입력_테스트(String str, int expected) {
         StringCalculator basic = new StringCalculator(str);
-        assertThat(basic.calculate()).isEqualTo(answer);
+        assertThat(basic.calculate()).isEqualTo(expected);
     }
 
-    @Test
-    void 숫자만_있는_문자열_입력_테스트() {
-        StringCalculator number = new StringCalculator("123123");
-        assertThat(number.calculate()).isEqualTo(123123);
+    @ParameterizedTest
+    @CsvSource(value = {"123123|123123", "2413|2413", "99|99"}, delimiter = '|')
+    void 숫자만_있는_문자열_입력_테스트(String str, int expected) {
+        StringCalculator number = new StringCalculator(str);
+        assertThat(number.calculate()).isEqualTo(expected);
     }
 
-    @Test
-    void 사용_불가능한_문자열_입력_테스트() {
-        StringCalculator invalid = new StringCalculator("1[2,3:4");
+    @ParameterizedTest
+    @ValueSource(strings = {"1[2,3:4", "39:2:1m3"})
+    void 사용_불가능한_문자열_입력_테스트(String str) {
+        StringCalculator invalid = new StringCalculator(str);
         assertThatThrownBy(invalid::calculate).isInstanceOf(RuntimeException.class);
     }
 
