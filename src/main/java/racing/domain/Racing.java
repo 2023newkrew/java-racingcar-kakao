@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 
 public class Racing {
 
+    private final static String NAME_DELIMITER = ",";
+
     public String[] splitName(String names) {
-        return names.split(",");
+        return names.split(NAME_DELIMITER);
     }
 
     public Car[] makeCarList(String[] names) {

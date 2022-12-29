@@ -12,6 +12,7 @@ public class Game {
 
     private final static String INPUT_NAMES_REQUEST = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private final static String INPUT_COUNT_REQUEST = "시도할 회수는 몇회인가요?";
+    private final static String RESULT_START_SENTENCE = "실행 결과";
     static Racing racing = new Racing();
     static Result result = new Result();
     static Car[] carList;
@@ -25,7 +26,7 @@ public class Game {
     public static void playRacing() {
         Out.printText(INPUT_COUNT_REQUEST);
         int inputCount = In.inputCount();
-        Out.printText("실행 결과");
+        Out.printText(RESULT_START_SENTENCE);
         Out.printResult(carList);
         for (int count = 0; count < inputCount; count++) {
             carList = racing.oneCycle(carList);
