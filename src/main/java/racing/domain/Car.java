@@ -1,10 +1,10 @@
 package racing.domain;
 
 public class Car implements Comparable {
-    private final double MOVE_LOWER_BOUND = 4.0;
+    private static final double MOVE_LOWER_BOUND = 4.0;
+    private static final String PROGRESS_INNER_STRING = " : ";
+    private static final String PROGRESS_SYMBOL = "-";
     private final String name;
-    private final String PROGRESS_INNER_STRING = " : ";
-    private final String PROGRESS_SYMBOL = "-";
     private int distance;
 
     public Car(String name) {
