@@ -3,6 +3,7 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import racingcar.model.strategy.MovableStrategy;
 
 public class MovableStrategyTest {
 

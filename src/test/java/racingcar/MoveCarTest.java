@@ -3,9 +3,8 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
+import racingcar.model.Car;
+import racingcar.view.RacingGameRunner;
 
 public class MoveCarTest {
 
@@ -20,7 +19,8 @@ public class MoveCarTest {
     @RepeatedTest(10)
     public void multiCarsMove(){
         String carNames = "Car1,Car2,Car3";
-        RacingGameRunner racingGameRunner = new RacingGameRunner(carNames,1);
+        RacingGameRunner racingGameRunner = new RacingGameRunner();
+        racingGameRunner.registeredData(carNames, 1);
         racingGameRunner.move();
         for (Car car: racingGameRunner.getCarList()){
             Assertions.assertThat(car.getPosition()).isBetween(0, 1);
