@@ -74,13 +74,25 @@ public class IOHelper {
 
     // 입력 받은 시도 횟수의 유효성 검증
     private static boolean validateRound(String roundInput) {
-        try {
-            Integer.parseInt(roundInput);
-        } catch (NumberFormatException e) {
+        if (!isInteger(roundInput)) {
+            System.out.println(WRONG_INPUT_MESSAGE);
+            return false;
+        }
+        if (Integer.parseInt(roundInput) < 0) {
             System.out.println(WRONG_INPUT_MESSAGE);
             return false;
         }
 
+        return true;
+    }
+
+    // 문자열에 대한 정수형 변경 가능 여부 반환
+    private static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            return false;
+        }
         return true;
     }
 
