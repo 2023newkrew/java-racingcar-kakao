@@ -33,6 +33,14 @@ public class CarTest {
     }
 
     @Test
+    @DisplayName("이름은 다섯글자 이하")
+    void longName() {
+        assertThatThrownBy(()->new Car("eugene"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("이름은 다섯글자 이하여야 합니다.");
+    }
+
+    @Test
     @DisplayName("차량 전진")
     void proceed(){
         Car car = new Car("pobi");
