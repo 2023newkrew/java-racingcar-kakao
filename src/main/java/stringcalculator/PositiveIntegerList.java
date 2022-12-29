@@ -11,7 +11,7 @@ public class PositiveIntegerList {
     private List<Integer> list;
 
     public PositiveIntegerList(String[] values) {
-        validate(values);
+        validateValues(values);
         list = Arrays.stream(values)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -23,11 +23,12 @@ public class PositiveIntegerList {
                 .sum();
     }
 
-    private void validate(String[] values) {
+    private void validateValues(String[] values) {
         Arrays.stream(values)
-                .map(Integer::parseInt)
+                .map(StringUtils::convertToInt)
                 .filter(value -> value < 0)
                 .findAny()
                 .ifPresent(value -> { throw new RuntimeException(INPUT_ERROR_MESSAGE); });
     }
+
 }
