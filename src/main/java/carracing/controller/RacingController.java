@@ -6,6 +6,8 @@ import carracing.model.GameRule;
 import carracing.model.RacingPlayer;
 import carracing.view.InputView;
 import carracing.view.OutputView;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,7 +61,7 @@ public class RacingController implements GameController {
         OutputView.printWinners(winners);
     }
 
-    private void createPlayers(List<String> playerNames) {
+    private void createPlayers(@NotNull List<String> playerNames) {
         racingPlayers = playerNames.stream()
             .map(Car::new)
             .collect(Collectors.toList());
