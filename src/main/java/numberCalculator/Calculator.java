@@ -1,6 +1,7 @@
 package numberCalculator;
 
-import numberCalculator.exceptions.InvalidFormatException;
+import numberCalculator.exceptions.NegativeArgumentException;
+import numberCalculator.exceptions.NonIntegerArgumentException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,15 +18,27 @@ public class Calculator {
     public List<Integer> splitNumbers(String originalString, String seperator) {
         if (originalString.isEmpty()) return Collections.emptyList();
         String[] splitStr = originalString.split(seperator);
-        return Arrays.stream(splitStr).map(str -> {
-            try {
-                Integer res = Integer.parseInt(str);
-                if (res < 0) throw new InvalidFormatException();
-                return res;
-            } catch (NumberFormatException e) {
-                throw new InvalidFormatException();
-            }
-        }).collect(Collectors.toList());
+
+        return Arrays.stream(splitStr)
+                .map(this::validateInputNumber)
+                .collect(Collectors.toList());
+    }
+
+    private Integer validateInputNumber(String inputString)
+            throws NonIntegerArgumentException, NegativeArgumentException {
+        Integer inputNumber;
+
+        try {
+            inputNumber = Integer.parseInt(inputString);
+        } catch (NumberFormatException e) {
+            throw new NonIntegerArgumentException();
+        }
+
+        if (inputNumber < 0) {
+            throw new NegativeArgumentException();
+        }
+
+        return inputNumber;
     }
 
     public Integer summarizeNumbers(String s, String separator) {

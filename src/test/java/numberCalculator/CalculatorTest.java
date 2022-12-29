@@ -1,7 +1,7 @@
 package numberCalculator;
 
-import numberCalculator.Calculator;
-import numberCalculator.exceptions.InvalidFormatException;
+import numberCalculator.exceptions.NegativeArgumentException;
+import numberCalculator.exceptions.NonIntegerArgumentException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ public class CalculatorTest {
 
     @Test
     public void splitNonStringFormat() {
-        assertThrows(InvalidFormatException.class, (() -> {
+        assertThrows(NonIntegerArgumentException.class, (() -> {
             String originStr = "1,1,e";
             List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
         }));
@@ -64,7 +64,7 @@ public class CalculatorTest {
 
     @Test
     public void negativeNumberFormat(){
-        assertThrows(InvalidFormatException.class, (() -> {
+        assertThrows(NegativeArgumentException.class, (() -> {
             String originStr = "1,1,-2";
             List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
         }));
@@ -72,7 +72,7 @@ public class CalculatorTest {
 
     @Test
     public void nonExistSeparator() {
-        assertThrows(InvalidFormatException.class, () -> {
+        assertThrows(NonIntegerArgumentException.class, () -> {
             String originStr = "1!23";
             calculator.summarizeNumbers(originStr);
         });
