@@ -1,7 +1,8 @@
 package racingcar.utils;
 
+import racingcar.controller.dto.CarRequest;
+import racingcar.service.dto.CarResponse;
 import racingcar.domain.Car;
-import racingcar.dto.CarDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,25 +10,25 @@ import java.util.stream.Collectors;
 
 public class RacingCarConverter {
 
-    public static Car toCar(CarDto carDto) {
-        return new Car(carDto.getName());
+    public static Car toCar(CarRequest carRequests) {
+        return new Car(carRequests.getName());
     }
 
-    public static List<Car> toCars(List<CarDto> carDtos) {
-        return carDtos.stream()
+    public static List<Car> toCars(List<CarRequest> carRequests) {
+        return carRequests.stream()
                 .map(RacingCarConverter::toCar)
                 .collect(Collectors.toList());
     }
 
-    public static List<CarDto> toCarDtos(List<Car> cars) {
+    public static List<CarResponse> toCarResponses(List<Car> cars) {
         return cars.stream()
-                .map(Car::toDto)
+                .map(Car::toResponse)
                 .collect(Collectors.toList());
     }
 
-    public static List<CarDto> toCarDtos(String[] carNames) {
+    public static List<CarRequest> toCarRequests(String[] carNames) {
         return Arrays.stream(carNames)
-                .map(CarDto::new)
+                .map(CarRequest::new)
                 .collect(Collectors.toList());
     }
 

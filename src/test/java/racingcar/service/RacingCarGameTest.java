@@ -3,9 +3,10 @@ package racingcar.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.CarDto;
-import racingcar.dto.FinalResult;
-import racingcar.dto.RoundResult;
+import racingcar.controller.dto.CarRequest;
+import racingcar.service.dto.FinalResult;
+import racingcar.service.dto.RoundResult;
+import racingcar.utils.RacingCarConverter;
 
 import java.util.List;
 
@@ -13,14 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingCarGameTest {
 
-    private List<CarDto> inputCars;
+    private List<CarRequest> inputCars;
     private RacingCarGame racingCarGame;
 
     @BeforeEach
     void setUp() {
         int round = 5;
-        inputCars = List.of(new CarDto("car1"), new CarDto("car2"));
-        racingCarGame = new RacingCarGame(inputCars, round);
+        inputCars = List.of(new CarRequest("car1"), new CarRequest("car2"));
+        racingCarGame = new RacingCarGame(RacingCarConverter.toCars(inputCars), round);
     }
 
     @Test

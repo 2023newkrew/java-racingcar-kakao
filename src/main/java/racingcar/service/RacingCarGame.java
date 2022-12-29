@@ -1,9 +1,9 @@
 package racingcar.service;
 
 import racingcar.domain.Car;
-import racingcar.dto.CarDto;
-import racingcar.dto.RoundResult;
-import racingcar.dto.FinalResult;
+import racingcar.service.dto.CarResponse;
+import racingcar.service.dto.RoundResult;
+import racingcar.service.dto.FinalResult;
 import racingcar.utils.RacingCarConverter;
 import racingcar.utils.RandomNumberGenerator;
 
@@ -16,10 +16,10 @@ public class RacingCarGame {
     private int round;
     private RandomNumberGenerator randomNumberGenerator;
 
-    public RacingCarGame(List<CarDto> carDtos, int gameRound) {
-        cars = RacingCarConverter.toCars(carDtos);
-        round = gameRound;
-        randomNumberGenerator = new RandomNumberGenerator();
+    public RacingCarGame(List<Car> cars, int gameRound) {
+        this.cars = cars;
+        this.round = gameRound;
+        this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
     public RoundResult doNextRound() {
@@ -28,18 +28,18 @@ public class RacingCarGame {
         }
         round -= 1;
 
-        List<CarDto> carStatusList = RacingCarConverter.toCarDtos(cars);
-        return new RoundResult(carStatusList);
+        List<CarResponse> carResponses = RacingCarConverter.toCarResponses(cars);
+        return new RoundResult(carResponses);
     }
 
     public FinalResult selectWinners() {
         Car maxPositionCar = calculateMaxPositionCar();
-        List<CarDto> carStatusList = cars.stream()
+        List<CarResponse> carResponses = cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
-                .map(Car::toDto)
+                .map(Car::toResponse)
                 .collect(Collectors.toList());
 
-        return new FinalResult(carStatusList);
+        return new FinalResult(carResponses);
     }
 
     public Car calculateMaxPositionCar() {

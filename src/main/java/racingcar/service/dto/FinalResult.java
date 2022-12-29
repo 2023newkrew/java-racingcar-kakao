@@ -1,19 +1,19 @@
-package racingcar.dto;
+package racingcar.service.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FinalResult {
 
-    private List<CarDto> carStatusList;
+    private List<CarResponse> carResponses;
 
-    public FinalResult(List<CarDto> carStatusList) {
-        this.carStatusList = carStatusList;
+    public FinalResult(List<CarResponse> carResponses) {
+        this.carResponses = carResponses;
     }
 
     public String toString() {
-        String winners = carStatusList.stream()
-                .map(CarDto::getName)
+        String winners = carResponses.stream()
+                .map(CarResponse::getName)
                 .collect(Collectors.joining(", "));
 
         return String.format("%s가 최종 우승했습니다.", winners);

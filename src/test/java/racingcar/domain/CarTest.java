@@ -3,7 +3,7 @@ package racingcar.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.dto.CarDto;
+import racingcar.service.dto.CarResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,8 +19,8 @@ class CarTest {
             car.move(randomNumber);
         }
 
-        CarDto carDto = car.toDto();
-        assertThat(carDto.getPosition()).isEqualTo(movingCount);
+        CarResponse carResponse = car.toResponse();
+        assertThat(carResponse.getPosition()).isEqualTo(movingCount);
     }
 
     @DisplayName("자동차는 random값이 3 이하의 값일 경우 멈춘다.")
@@ -33,8 +33,8 @@ class CarTest {
             car.move(randomNumber);
         }
 
-        CarDto carDto = car.toDto();
-        assertThat(carDto.getPosition()).isZero();
+        CarResponse carResponse = car.toResponse();
+        assertThat(carResponse.getPosition()).isZero();
     }
 
 }
