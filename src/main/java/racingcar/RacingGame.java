@@ -26,7 +26,7 @@ public class RacingGame {
     }
 
     public void play() {
-        for(int now_turn = 0; now_turn < turn; now_turn++){
+        for(int i = 0; i < turn; i++){
             playTurn();
             OutputUI.printTurnResult(carList);
         }
