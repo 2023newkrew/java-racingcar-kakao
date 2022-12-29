@@ -36,6 +36,12 @@ public class RacingGame {
         return maxPosition;
     }
 
+    private void collectFarthest(List<Car> farthestCars, Car racingCar, int maxPosition) {
+        if (racingCar.getPosition() == maxPosition) {
+            farthestCars.add(racingCar);
+        }
+    }
+
     public List<Car> getFarthestCars() {
         int maxPosition = this.getMaxPosition();
         List<Car> farthestCars = new ArrayList<>();
@@ -43,11 +49,5 @@ public class RacingGame {
             this.collectFarthest(farthestCars, car, maxPosition);
         }
         return farthestCars;
-    }
-
-    public void collectFarthest(List<Car> farthestCars, Car racingCar, int maxPosition) {
-        if (racingCar.getPosition() == maxPosition) {
-            farthestCars.add(racingCar);
-        }
     }
 }
