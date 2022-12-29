@@ -8,7 +8,10 @@ public class RacingInputView {
         return scanner.nextLine();
     }
 
-
+    public int getTryNo(){
+        Scanner scanner = new Scanner(System.in);
+        return isNumeric(scanner.nextLine());
+    }
 
 
     public int isNumeric(String turn) {

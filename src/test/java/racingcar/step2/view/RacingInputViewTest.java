@@ -34,6 +34,14 @@ class RacingInputViewTest {
     void 턴_횟수가_양의_정수면_숫자로_변환(){
         assertEquals(new RacingInputView().isNumeric("5"), 5);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"4;4", "6;6", "5;5"}, delimiter = ';')
+    void 턴_횟수를_입력_받는_기능(String input, int expect){
+        systemIn(input);
+        assertTrue(() -> new RacingInputView().getTryNo() == expect);
+    }
+
     protected void systemIn(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
