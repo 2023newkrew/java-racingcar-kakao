@@ -14,24 +14,30 @@ public class Expression {
         this.allowSep = allowSep; // Parser
     }
 
-    public void checkSeparators(){
+    private void checkSeparators(){
         for(Separator sep : separators){
             sep.checkDefaultSep();
             sep.checkCustomSep(this.allowSep);
         }
     }
 
-    public void checkValues() {
+    private void checkValues() {
         values.forEach(this::checkPositiveInteger);
     }
 
-    public void checkPositiveInteger(int value){
+    private void checkPositiveInteger(int value){
         if(value < 0){
             throw new RuntimeException("positive integer");
         }
     }
 
+    private void checkCondition(){
+        checkSeparators();
+        checkValues();
+    }
+
     public int sumValues(){
+        checkCondition();
         return this.values.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
