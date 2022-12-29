@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.controller.response.CarWinnerResponse;
 
 import java.util.List;
 
@@ -30,10 +31,10 @@ class RacingGameTest {
             racingGame.proceedRound();
         }
 
-        List<String> gameWinnersResult = racingGame.announceWinners();
-        assertThat(gameWinnersResult.get(0)).isEqualTo("pobi");
-        assertThat(gameWinnersResult.get(1)).isEqualTo("crong");
-        assertThat(gameWinnersResult.get(2)).isEqualTo("honux");
+        List<CarWinnerResponse> gameWinnersResult = racingGame.announceWinners();
+        assertThat(gameWinnersResult.get(0).getCarName()).isEqualTo("pobi");
+        assertThat(gameWinnersResult.get(1).getCarName()).isEqualTo("crong");
+        assertThat(gameWinnersResult.get(2).getCarName()).isEqualTo("honux");
     }
 
     @DisplayName("게임이 진행중이라면, 진행중인 상태임을 확인할 수 있다.")

@@ -1,12 +1,15 @@
 package racingcar.domain;
 
 import racingcar.controller.response.CarRoundResultResponse;
+import racingcar.controller.response.CarWinnerResponse;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+
+    private static final String CAR_NAME_DELIMITER = ",";
 
     private final Referee referee;
 
@@ -16,19 +19,15 @@ public class RacingGame {
     }
 
     private List<Car> registerCars(String inputCarNames) {
-        String[] carNames = inputCarNames.split(",");
-        List<Car> registeredCars = new ArrayList<>();
-        for (String carName : carNames) {
-            registeredCars.add(new Car(carName));
-        }
-        return registeredCars;
+        String[] carNames = inputCarNames.split(CAR_NAME_DELIMITER);
+        return Arrays.stream(carNames)
+            .map(Car::new)
+            .collect(Collectors.toList());
     }
 
-    public List<String> announceWinners() {
+    public List<CarWinnerResponse> announceWinners() {
         List<Car> winners = referee.announceWinners();
-        return winners.stream()
-            .map(Car::getCarName)
-            .collect(Collectors.toList());
+        return CarWinnerResponse.toList(winners);
     }
 
     public boolean isGameEnded() {

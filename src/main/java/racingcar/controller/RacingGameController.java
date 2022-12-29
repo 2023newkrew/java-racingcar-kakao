@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.controller.response.CarRoundResultResponse;
+import racingcar.controller.response.CarWinnerResponse;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberSelector;
 import racingcar.view.RacingGameView;
@@ -20,9 +21,7 @@ public class RacingGameController {
         initializeGame();
         racingGameView.printRoundResultMessage();
         while (racingGame.isGamePlaying()) {
-            racingGame.proceedRound();
-            List<CarRoundResultResponse> carRoundResults = racingGame.announceRoundResult();
-            racingGameView.printRoundResult(carRoundResults);
+            proceedSingleRound();
         }
         announceWinner();
     }
@@ -38,8 +37,14 @@ public class RacingGameController {
         }
     }
 
+    private void proceedSingleRound() {
+        racingGame.proceedRound();
+        List<CarRoundResultResponse> carRoundResults = racingGame.announceRoundResult();
+        racingGameView.printRoundResult(carRoundResults);
+    }
+
     private void announceWinner() {
-        List<String> winners = racingGame.announceWinners();
+        List<CarWinnerResponse> winners = racingGame.announceWinners();
         racingGameView.printWinners(winners);
     }
 }

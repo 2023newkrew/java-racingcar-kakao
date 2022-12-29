@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.controller.response.CarRoundResultResponse;
+import racingcar.controller.response.CarWinnerResponse;
 
 import java.util.List;
 import java.util.Scanner;
@@ -49,11 +50,11 @@ public class RacingGameView {
         }
     }
 
-    public void printWinners(List<String> winners) {
+    public void printWinners(List<CarWinnerResponse> winners) {
         for (int i = 0; i < winners.size() - 1; i++) {
-            System.out.print(winners.get(i) + ", ");
+            System.out.print(winners.get(i).getCarName() + ", ");
         }
-        System.out.print(winners.get(winners.size() - 1) + "가 최종 우승했습니다.");
+        System.out.print(winners.get(winners.size() - 1).getCarName() + "가 최종 우승했습니다.");
     }
 
     public void printExceptionMessage(String message) {
