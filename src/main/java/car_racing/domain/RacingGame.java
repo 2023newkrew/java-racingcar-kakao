@@ -10,8 +10,10 @@ public class RacingGame {
     private int curTurn = 0;
     private final int numberOfTurns;
 
-    public RacingGame(String[] playerNames, int numberOfTurns) {
+    public RacingGame(String stringOfNames, int numberOfTurns) {
+        String[] playerNames = StringParser.parse(stringOfNames);
         createPlayers(playerNames);
+        InputVerifier.verifyNumberIsPos(numberOfTurns);
         this.numberOfTurns = numberOfTurns;
     }
 

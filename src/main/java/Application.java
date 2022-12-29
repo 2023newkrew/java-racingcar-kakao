@@ -10,10 +10,10 @@ public class Application {
 //
 //        runner.run();
 
-        String[] playerNames = InputView.getPlayerNames();
+        String inputString = InputView.getPlayerNames();
         Integer numberOfTurns = InputView.getNumberOfTurns();
 
-        RacingGame racingGame = new RacingGame(playerNames, numberOfTurns);
+        RacingGame racingGame = new RacingGame(inputString, numberOfTurns);
 
         OutputView.printInitialStatus(racingGame.getRacingPlayers());
         while (!racingGame.isFinished()) {
