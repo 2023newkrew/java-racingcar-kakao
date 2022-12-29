@@ -2,14 +2,13 @@ package racingcar.domain;
 
 import racingcar.dto.CarDto;
 import racingcar.utils.RacingCarConverter;
-import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCarGame {
 
-    private List<Car> cars;
+    private final List<Car> cars;
     private int round;
 
     public RacingCarGame(List<CarDto> carDtos, int gameRound) {

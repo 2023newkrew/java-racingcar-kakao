@@ -26,7 +26,7 @@ public class RacingCarTest {
     }
 
     private static Car getMockCar(String name, int number) {
-        Car avante = new Car("avante") {
+        Car avante = new Car(name) {
             @Override
             public boolean isMovable() {
                 return number >= 4;

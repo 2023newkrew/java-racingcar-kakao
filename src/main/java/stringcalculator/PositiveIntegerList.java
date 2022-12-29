@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class PositiveIntegerList {
 
-    private List<Integer> list;
+    private final List<Integer> list;
 
     public PositiveIntegerList(String[] arr) {
         list = Arrays.stream(arr)

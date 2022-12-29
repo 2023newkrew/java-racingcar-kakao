@@ -8,7 +8,7 @@ public class GameView {
     private static final String COUNT_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String RESULT_TITLE = "\n실행 결과";
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public GameView() {
         scanner = new Scanner(System.in);

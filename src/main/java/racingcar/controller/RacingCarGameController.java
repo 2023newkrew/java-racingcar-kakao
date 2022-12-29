@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class RacingCarGameController {
 
-    private GameView gameView;
-    private RacingCarValidator racingCarValidator;
+    private final GameView gameView;
+    private final RacingCarValidator racingCarValidator;
 
     public RacingCarGameController() {
         gameView = new GameView();

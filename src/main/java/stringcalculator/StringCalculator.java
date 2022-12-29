@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private Set<String> delimiters;
+    private final Set<String> delimiters;
 
     public StringCalculator(Set<String> baseDelimiters) {
         delimiters = baseDelimiters;

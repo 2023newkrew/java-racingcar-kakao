@@ -5,7 +5,7 @@ import racingcar.utils.RandomNumberGenerator;
 
 public class Car implements MovableStrategy{
 
-    private String name;
+    private final String name;
     private int position = 1;
 
     public Car(final String name) {

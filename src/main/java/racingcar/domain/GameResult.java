@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class GameResult {
 
-    private List<CarDto> carStatusList;
+    private final List<CarDto> carStatusList;
 
     public GameResult(List<CarDto> carStatusList) {
         this.carStatusList = carStatusList;
