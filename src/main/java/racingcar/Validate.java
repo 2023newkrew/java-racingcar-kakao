@@ -4,7 +4,7 @@
  */
 package racingcar;
 
-public class ValidateInput {
+public class Validate {
     public static boolean validateCarNames(String nameInput) {
         boolean flag = lengthLessThan5(nameInput);
         if (!flag) {
