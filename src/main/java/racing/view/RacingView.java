@@ -1,8 +1,5 @@
 package racing.view;
 
-import racing.domain.Simulator;
-
-import java.util.Random;
 import java.util.Scanner;
 
 public class RacingView {

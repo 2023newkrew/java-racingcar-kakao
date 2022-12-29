@@ -4,8 +4,10 @@ import racing.domain.Simulator;
 import racing.view.RacingView;
 
 import java.util.Random;
+
 public class RacingController {
     private final RacingView racingView = new RacingView();
+
     public void run() {
         String names = racingView.inputCarNames();
         int times = racingView.inputTimes();
