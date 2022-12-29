@@ -29,14 +29,5 @@ public class ResultTest {
         assertThat(result.getWinner(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
     }
 
-    @Test
-    public void addWinnerTest() {
-        List<String> winners = new ArrayList<>();
-
-        winners = result.addWinner(winners, "honux");
-        assertThat(winners.size()).isEqualTo(1);
-        winners = result.addWinner(winners, null);
-        assertThat(winners.size()).isEqualTo(1);
-    }
 
 }

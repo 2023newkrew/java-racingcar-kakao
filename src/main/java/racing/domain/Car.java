@@ -50,6 +50,10 @@ public class Car {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getWinnerName(int maxPosition) {
         if(maxPosition == position) {
             return name;
