@@ -116,7 +116,7 @@ public class StringCalculatorTest {
 
     @Test
     @DisplayName("양의 정수가 들어가야 할 자리에 특수 문자 입력")
-    void playStringCalculatorWithInvalidInput1() {
+    void playStringCalculatorWithNotPositiveIntegerButSpecialCharacter() {
         String input = "//;\n_:2;9";
 
         assertThatThrownBy(() -> stringCalculator.run(input))
@@ -125,7 +125,7 @@ public class StringCalculatorTest {
 
     @Test
     @DisplayName("양의 정수가 들어가야 할 자리에 음수 입력")
-    void playStringCalculatorWithInvalidInput2() {
+    void playStringCalculatorWithNotPositiveIntegerButNegativeInteger() {
         String input = "//;\n-1:2;9";
 
         assertThatThrownBy(() -> stringCalculator.run(input))
@@ -134,7 +134,7 @@ public class StringCalculatorTest {
 
     @Test
     @DisplayName("음수만 입력")
-    void playStringCalculatorWithInvalidInput3() {
+    void playStringCalculatorWithOnlyNegativeInteger() {
         String input = "-1";
 
         assertThatThrownBy(() -> stringCalculator.run(input))
@@ -143,7 +143,7 @@ public class StringCalculatorTest {
 
     @Test
     @DisplayName("패턴은 일치하지만, 구분자가 숫자인 경우 예외 발생")
-    void playStringCalculatorWithInvalidInput4() {
+    void playStringCalculatorWithIntegerDelimiter() {
         String input = "//6\n26269";
 
         assertThatThrownBy(() -> stringCalculator.run(input))
@@ -152,7 +152,7 @@ public class StringCalculatorTest {
 
     @Test
     @DisplayName("사용자의 입력값이 커스텀 구분자 패턴과 일치하지 않는 경우 예외 발생")
-    void playStringCalculatorWithInvalidInput5() {
+    void playStringCalculatorWithWrongCustomDelimiter() {
         String input = "//;_\n2;2_9";
 
         assertThatThrownBy(() -> stringCalculator.run(input))
