@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.config.GameSetting;
 import racingcar.dto.CarDto;
 
 public class Car {

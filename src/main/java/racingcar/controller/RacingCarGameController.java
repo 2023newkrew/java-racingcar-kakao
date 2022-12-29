@@ -1,12 +1,12 @@
 package racingcar.controller;
 
-import racingcar.domain.GameSetting;
-import racingcar.dto.RoundResult;
 import racingcar.service.RacingCarGame;
-import racingcar.utils.RacingCarConverter;
+import racingcar.config.GameSetting;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.dto.CarDto;
+import racingcar.dto.RoundResult;
+import racingcar.utils.RacingCarConverter;
 import racingcar.utils.RacingCarValidator;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package racingcar.service;
 
 import racingcar.domain.Car;
-import racingcar.dto.FinalResult;
 import racingcar.dto.CarDto;
 import racingcar.dto.RoundResult;
+import racingcar.dto.FinalResult;
 import racingcar.utils.RacingCarConverter;
 import racingcar.utils.RandomNumberGenerator;
 

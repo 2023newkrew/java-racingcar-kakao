@@ -1,6 +1,6 @@
 package racingcar.dto;
 
-import racingcar.domain.GameSetting;
+import racingcar.config.GameSetting;
 
 public class CarDto {
 

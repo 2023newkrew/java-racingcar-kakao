@@ -1,6 +1,6 @@
 package racingcar.utils;
 
-import racingcar.domain.GameSetting;
+import racingcar.config.GameSetting;
 
 import java.util.Arrays;
 
