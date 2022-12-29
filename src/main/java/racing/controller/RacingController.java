@@ -3,12 +3,13 @@ package racing.controller;
 import racing.service.RacingService;
 import racing.service.CarNameSplitter;
 import racing.view.RacingView;
-import racing.repository.RacingCarRepository;
+import racing.repository.CarRepository;
 
 public class RacingController {
     private final RacingService racingService;
     private final CarNameSplitter carNameSplitter;
     private final RacingView racingView;
+    CarRepository carRepository;
 
     public RacingController() {
         racingService = new RacingService();
@@ -16,19 +17,19 @@ public class RacingController {
         racingView = new RacingView();
     }
 
-    public void raceStart(){
-        String carString = racingView.inputCarName();
-        RacingCarRepository.init(carNameSplitter.split(carString));
+    public void startRace() {
+        String carNames = racingView.inputCarName();
         Integer attempt = racingView.inputAttempt();
+        carRepository = new CarRepository(carNameSplitter.split(carNames));
 
         racingView.printResultString();
-        racingView.printCurrentStatus();
+        racingView.printCurrentStatus(carRepository.getCarsAll());
 
         for (int i = 0; i < attempt; i++) {
-            racingService.turn();
-            racingView.printCurrentStatus();
+            racingService.turn(carRepository.getCarsAll());
+            racingView.printCurrentStatus(carRepository.getCarsAll());
         }
 
-        racingView.printWinners();
+        racingView.printWinners(carRepository.getCarsAll());
     }
 }

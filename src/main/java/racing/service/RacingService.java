@@ -1,11 +1,12 @@
 package racing.service;
 
 import racing.model.Car;
-import racing.repository.RacingCarRepository;
+
+import java.util.List;
 
 public class RacingService {
-    public void turn() {
-        for (Car car : RacingCarRepository.getCars()) {
+    public void turn(List<Car> cars) {
+        for (Car car : cars) {
             car.tryMove();
         }
     }

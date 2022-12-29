@@ -3,9 +3,12 @@ package racing.view;
 import racing.exception.ErrorCode;
 import racing.exception.RacingException;
 import racing.model.Car;
-import racing.repository.RacingCarRepository;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class RacingView {
     private final Scanner scanner;
@@ -34,15 +37,19 @@ public class RacingView {
         System.out.println("\n실행 결과");
     }
 
-    public void printCurrentStatus(){
-        for(Car car : RacingCarRepository.getCars()){
+    public void printCurrentStatus(List<Car> cars){
+        for(Car car : cars){
             System.out.println(car);
         }
         System.out.println();
     }
 
-    public void printWinners() {
-        String winners = String.join(", ", RacingCarRepository.getWinners());
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public void printWinners(List<Car> cars) {
+        int maxPos = Collections.max(cars).getPosition();  // todo Cars 일급컬렉션
+        String winnerCarNames = cars.stream()
+                .filter(car -> Objects.equals(car.getPosition(), maxPos))
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.println(winnerCarNames + "가 최종 우승했습니다.");
     }
 }

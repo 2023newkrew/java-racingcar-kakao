@@ -7,9 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Car implements Comparable<Car>{
     private final String name;
-    private Integer position;
+    private int position;
 
-    public Car(String name, Integer position) {
+    public Car(String name, int position) {
         validateCarName(name);
         this.name = name;
         this.position = position;
@@ -33,6 +33,10 @@ public class Car implements Comparable<Car>{
 
     public Integer getPosition() {
         return this.position;
+    }
+
+    public boolean isSamePos(int pos) {
+        return this.position == pos;
     }
 
     @Override

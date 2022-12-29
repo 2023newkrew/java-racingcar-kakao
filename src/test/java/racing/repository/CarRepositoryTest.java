@@ -10,12 +10,12 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RacingCarRepositoryTest {
+class CarRepositoryTest {
     @ParameterizedTest
     @MethodSource("generator")
     void givenCars_whenGetWinners_thenReturnCarNameList(List<Car> cars, List<String> expected){
-        RacingCarRepository.init(cars);
-        assertThat(RacingCarRepository.getWinners()).hasSameElementsAs(expected);
+        CarRepository.init(cars);
+        assertThat(CarRepository.getWinners()).hasSameElementsAs(expected);
     }
 
     private static Stream<Arguments> generator(){
