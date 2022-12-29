@@ -1,7 +1,10 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class RacingGame {
     private final List<Car> carList = new ArrayList<>();
@@ -32,25 +35,21 @@ public class RacingGame {
     }
 
     private List<String> getWinners() {
-        int maxPosition = 0;
-        List<String> winnerList = new ArrayList<>();
-        for (Car car : carList) {
-            maxPosition = makeWinnerList(car, maxPosition, winnerList);
-        }
+        int maxPosition = getMaxPosition();
 
-        return winnerList;
+        return carList.stream()
+                .filter(x -> x.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
-    private int makeWinnerList(Car car, int maxPosition, List<String> winnerList) {
-        if (car.getPosition() < maxPosition) return maxPosition;
-
-        if (car.getPosition() > maxPosition) {
-            winnerList.clear();
-        }
-        winnerList.add(car.getName());
-
-        return car.getPosition();
+    private int getMaxPosition() {
+        return carList.stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .orElseThrow(NoSuchElementException::new)
+                .getPosition();
     }
+
 
     private void playTurn() {
         for (Car car : carList) {
