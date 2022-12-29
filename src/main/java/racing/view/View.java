@@ -1,4 +1,6 @@
-package CarRacing;
+package racing.view;
+
+import racing.domain.Car;
 
 import java.util.List;
 import java.util.Scanner;

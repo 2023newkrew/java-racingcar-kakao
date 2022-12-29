@@ -1,4 +1,8 @@
-package CarRacing;
+package racing;
+
+import racing.domain.Car;
+import racing.domain.Racing;
+import racing.view.View;
 
 import java.util.List;
 

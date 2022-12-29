@@ -1,4 +1,4 @@
-package CarRacing;
+package racing.domain;
 
 public class CarBuilder {
     private int position = 1;
