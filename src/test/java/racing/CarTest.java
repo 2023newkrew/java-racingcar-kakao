@@ -31,35 +31,17 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @MethodSource("getMoveData")
-    void move(String name, int move, String expected) {
-        Car car = new Car(name);
-        for (int i = 0; i < move; i++) {
-            car.move();
-        }
-        assertThat(car.toString()).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> getMoveData() {
-        return Stream.of(
-                Arguments.of("ABCD", 2, "ABCD : ---"),
-                Arguments.of("ABCD", 3, "ABCD : ----"),
-                Arguments.of("ABCD", 4, "ABCD : -----")
-        );
-    }
-
-    @ParameterizedTest
     @MethodSource("getComparableData")
     void compare(String base, int baseMove, String compare, int compareMove, int expected) {
         Car baseCar = new Car(base);
         Car compareCar = new Car(compare);
 
         for (int i = 0; i < baseMove; i++) {
-            baseCar.move();
+            baseCar.moveByCondition(4);
         }
 
         for (int i = 0; i < compareMove; i++) {
-            compareCar.move();
+            compareCar.moveByCondition(4);
         }
 
         assertThat(baseCar.compareTo(compareCar)).isEqualTo(expected);
@@ -77,7 +59,7 @@ public class CarTest {
     @MethodSource("getRandomMoveData")
     void randomMove(String name, int random, String expected) {
         Car car = new Car(name);
-        car.move(random);
+        car.moveByCondition(random);
         assertThat(car.toString()).isEqualTo(expected);
     }
 

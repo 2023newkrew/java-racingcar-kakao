@@ -17,7 +17,7 @@ public class Simulator {
 
     public void run(Random random) {
         for (Car car : cars) {
-            car.move(random.nextInt(9));
+            car.moveByCondition(random.nextInt(9));
         }
     }
 
