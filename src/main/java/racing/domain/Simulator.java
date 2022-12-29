@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Simulator {
+    private static final int MOVE_THRESHOLD = 3;
     List<Car> cars = new ArrayList<>();
 
     public void create(String names) {
@@ -16,7 +17,7 @@ public class Simulator {
     }
 
     public void move(Car car, int random) {
-        if (random > 3) {
+        if (random > MOVE_THRESHOLD) {
             car.move();
         }
     }
