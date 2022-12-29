@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
-public class CarListManager {
+public class CarContainer {
     private final List<Car> cars = new ArrayList<>();
 
     public List<Car> getCars() {

@@ -2,35 +2,35 @@ package racingcar;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.CarListManager;
+import racingcar.domain.CarContainer;
 import racingcar.domain.model.Car;
 
 import java.util.List;
 
-public class CarListManagerTest {
+public class CarContainerTest {
 
     @Test
     void duplicatedNameException() {
-        CarListManager carListManager = new CarListManager();
+        CarContainer carContainer = new CarContainer();
         Assertions.assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> {
-                    carListManager.add(new Car("lion"));
-                    carListManager.add(new Car("lion"));
+                    carContainer.add(new Car("lion"));
+                    carContainer.add(new Car("lion"));
                 });
     }
 
     @Test
     void selectWinners() {
-        CarListManager carListManager = new CarListManager();
+        CarContainer carContainer = new CarContainer();
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
         Car car3 = new Car("car3");
         car1.move(5);
         car2.move(5);
-        carListManager.add(car1);
-        carListManager.add(car2);
-        carListManager.add(car3);
-        List<Car> winner = carListManager.selectWinners();
+        carContainer.add(car1);
+        carContainer.add(car2);
+        carContainer.add(car3);
+        List<Car> winner = carContainer.selectWinners();
         Assertions.assertThat(winner)
                 .containsOnly(car1, car2);
     }
