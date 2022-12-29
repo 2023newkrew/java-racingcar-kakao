@@ -7,6 +7,8 @@ public class RacingCarImpl extends RacingCar {
 
     private static final int THRESHOLD = 4;
 
+    private static final int RANDOM_NUMBER_MAXIMUM = 10;
+
     private static final int CAR_NAME_LIMIT = 5;
 
     public RacingCarImpl(String name) {
@@ -22,7 +24,7 @@ public class RacingCarImpl extends RacingCar {
     }
 
     private boolean canMove() {
-        return new RandomUtil().generateRandom() < THRESHOLD;
+        return RandomUtil.generateRandomNumber(RANDOM_NUMBER_MAXIMUM) < THRESHOLD;
     }
 
     private void checkCarNameLength(String name) {

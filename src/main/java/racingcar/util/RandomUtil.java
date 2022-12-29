@@ -4,13 +4,12 @@ import java.util.Random;
 
 public class RandomUtil {
 
-    Random rand;
+    private static final Random random = new Random();
 
-    public RandomUtil() {
-        rand = new Random();
+    private RandomUtil() {
     }
 
-    public int generateRandom() {
-        return rand.nextInt(10);
+    public static int generateRandomNumber(int bound) {
+        return random.nextInt(bound);
     }
 }

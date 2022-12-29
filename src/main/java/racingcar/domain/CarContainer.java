@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.domain.model.RacingCar;
-import racingcar.util.RandomUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,6 @@ public class CarContainer {
     }
 
     public void moveAll() {
-        RandomUtil randomUtil = new RandomUtil();
         cars.forEach(RacingCar::move);
     }
 
