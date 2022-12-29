@@ -1,6 +1,7 @@
 package racing.domain;
 
 public class GameRepeat {
+    private static final int EMPTY_REPEAT = 0;
     private static final int MIN_REPEAT = 1;
     private static final int MAX_REPEAT = 100;
     private static final String NOT_ENOUGH_REPEAT_EXCEPTION_MESSAGE = "[ERROR] 최소 1회는 시도해야 합니다.";
@@ -27,6 +28,6 @@ public class GameRepeat {
     }
 
     public boolean hasRemaining() {
-        return remaining > 0;
+        return remaining > EMPTY_REPEAT;
     }
 }

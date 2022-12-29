@@ -12,7 +12,7 @@ public class Car {
 
     private final CarName name;
     private final Movable movable;
-    private int distance = DEFAULT_DISTANCE; //이정도까지 wrapping하는건 과한가 싶습니다ㅎㅎ
+    private int distance = DEFAULT_DISTANCE;
 
     public Car(final CarName name) {
         this(name, DEFAULT_MOVABLE);
