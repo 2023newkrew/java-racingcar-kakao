@@ -20,8 +20,10 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    //TODO validate logic 추가
     private void validate(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("이름은 널이거나, 공백일수 없습니다.");
+        }
         if (name.length() > MAXIMUM_LENGTH) {
             throw new RuntimeException();
         }
