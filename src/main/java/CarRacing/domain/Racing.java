@@ -1,25 +1,23 @@
 package CarRacing.domain;
 
-import CarRacing.domain.Car;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
-    public String[] nameSplit(String inputString) {
+    public String[] splitInputString(String inputString) {
         return inputString.split(",");
     }
 
-    public void nameException(String name) {
+    public void checkCarNameLength(String name) {
         if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
-            throw new RuntimeException("다섯 글자 이상입니다.");
+            throw new RuntimeException("차 이름은 다섯 글자 이하여야 합니다.");
         }
     }
 
-    public void nameExceptions(String[] names) {
-        for (int index = 0; index < names.length; index++) {
-            nameException(names[index]);
+    public void checkCarsNameLength(String[] names) {
+        for (String name : names) {
+            checkCarNameLength(name);
         }
     }
 
@@ -59,8 +57,8 @@ public class Racing {
     }
 
     public String[] handleNames(String inputNames) {
-        String[] names = nameSplit(inputNames);
-        nameExceptions(names);
+        String[] names = splitInputString(inputNames);
+        checkCarsNameLength(names);
         return names;
     }
 }

@@ -1,7 +1,5 @@
 package CarRacing.domain;
 
-import CarRacing.domain.Car;
-import CarRacing.domain.Racing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,17 +19,17 @@ public class RacingTest {
     }
 
     @Test
-    public void nameSplitTest() {
+    public void splitInputStringTest() {
         String inputString = "pobi,crong,honux";
-        assertThat(racing.nameSplit(inputString)).isEqualTo(new String[] {"pobi", "crong", "honux"});
+        assertThat(racing.splitInputString(inputString)).isEqualTo(new String[] {"pobi", "crong", "honux"});
     }
 
     @Test
-    public void nameExceptionTest() {
-        String wrong_name = "leopss";
+    public void checkCarNameLengthTest() {
+        String wrong_name = "pororo";
         String correct_name = "pobi";
-        assertThrows(RuntimeException.class, () -> {racing.nameException(wrong_name);});
-        assertDoesNotThrow(() -> {racing.nameException(correct_name);});
+        assertThrows(RuntimeException.class, () -> {racing.checkCarNameLength(wrong_name);});
+        assertDoesNotThrow(() -> {racing.checkCarNameLength(correct_name);});
     }
 
     @Test
