@@ -9,10 +9,13 @@ import java.util.regex.Pattern;
 public class StringParser {
     private static final Character[] BASIC_SPLITTER = new Character[]{',', ':'};
     private static final Pattern PATTERN = Pattern.compile("//(.)\\\\n(.*)");
-    public static final int CUSTOM_SPLITTER_INDEX = 1;
-    public static final int TARGET_STRING_INDEX = 2;
+    private static final int CUSTOM_SPLITTER_INDEX = 1;
+    private static final int TARGET_STRING_INDEX = 2;
 
     public Integer[] parse(String s) {
+        if (StringVerifier.isNullOrEmpty(s)) {
+            return new Integer[] {0};
+        }
         Character splitter = parseSplitter(s);
         String targetString = parseTargetString(s);
         String[] targetStringArray = splitTargetString(targetString, splitter);
@@ -21,7 +24,7 @@ public class StringParser {
                 .toArray(Integer[]::new);
     }
 
-    public Character parseSplitter(String s) {
+    private Character parseSplitter(String s) {
         Matcher m = PATTERN.matcher(s);
         if (m.find()) {
             return m.group(CUSTOM_SPLITTER_INDEX).charAt(0);
@@ -29,7 +32,7 @@ public class StringParser {
         return null;
     }
 
-    public String[] splitTargetString(String s, Character splitter) {
+    private String[] splitTargetString(String s, Character splitter) {
         ArrayList<Character> splitters = new ArrayList<Character>(List.of(BASIC_SPLITTER));
 
         if (splitter != null) {
@@ -51,7 +54,7 @@ public class StringParser {
         return sb.toString();
     }
 
-    public String parseTargetString(String s) {
+    private String parseTargetString(String s) {
         Matcher m = PATTERN.matcher(s);
 
         if (m.find()) {
@@ -61,7 +64,7 @@ public class StringParser {
         return s;
     }
 
-    public Integer castStringToInteger(String s) {
+    private Integer castStringToInteger(String s) {
         if (StringVerifier.isNullOrEmpty(s)) {
             return 0;
         }

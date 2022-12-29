@@ -1,73 +1,52 @@
 package string_calculator;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import string_calculator.StringParser;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringParserTest {
 
-    @Test
-    void parseSplitter_properInputWithSplitter() {
-        String s = "//;\\nteststring";
-        StringParser sp = new StringParser();
-        Assertions.assertThat(sp.parseSplitter(s)).isEqualTo(';');
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2:3", "1,2,3", "1:2:3"})
+    void parseTest_validInputWithoutCustomSplitter(String input) {
+        //given
+        StringParser stringParser = new StringParser();
+        //when
+        Integer[] output = stringParser.parse(input);
+        //then
+        Assertions.assertThat(output).isEqualTo(new Integer[] {1, 2, 3});
     }
 
-    @Test
-    void parseSplitter_properInputWithoutSplitter() {
-        String s = "teststring";
-        StringParser sp = new StringParser();
-        Assertions.assertThat(sp.parseSplitter(s)).isNull();
+    @ParameterizedTest
+    @ValueSource(strings = {"//;\\n1;2:3", "//-\\n1,2-3", "//!\\n1!2!3"})
+    void parseTest_validInputWithCustomSplitter(String input) {
+        //given
+        StringParser stringParser = new StringParser();
+        //when
+        Integer[] output = stringParser.parse(input);
+        //then
+        Assertions.assertThat(output).isEqualTo(new Integer[] {1, 2, 3});
     }
 
-    @Test
-    void parseSplitter_improperInput() {
-        StringParser sp = new StringParser();
-
-        String s = "//teststring";
-        Assertions.assertThat(sp.parseSplitter(s)).isNull();
-
-        String s1 = "\\ntestString";
-        Assertions.assertThat(sp.parseSplitter(s1)).isNull();
+    @ParameterizedTest
+    @NullAndEmptySource
+    void parseTest_isNullAndEmptyReturnZero(String input) {
+        //given
+        StringParser stringParser = new StringParser();
+        //when
+        Integer[] output = stringParser.parse(input);
+        //then
+        Assertions.assertThat(output).isEqualTo(new Integer[] {0});
     }
 
-    @Test
-    void parseTargetString_properInputWithSplitter() {
-        String s = "//;\\ntest,string:test;";
-        StringParser sp = new StringParser();
-
-        Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s), sp.parseSplitter(s))).isEqualTo(new String[]{"test", "string", "test", ""});
-    }
-
-    @Test
-    void parseTargetString_properInputWithoutSplitter() {
-        String s = ":test,string:test";
-        StringParser sp = new StringParser();
-        Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s), sp.parseSplitter(s))).isEqualTo(new String[]{"", "test", "string", "test"});
-    }
-
-    @Test
-    void parseTargetString_improperInput() {
-        StringParser sp = new StringParser();
-
-        String s = "//test,string";
-        Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s), sp.parseSplitter(s))).isEqualTo(new String[]{"//test", "string"});
-
-        String s1 = "\\ntest:String";
-        Assertions.assertThat(sp.splitTargetString(sp.parseTargetString(s1), sp.parseSplitter(s1))).isEqualTo(new String[]{"\\ntest", "String"});
-    }
-
-    @Test
-    void castStringToInteger() {
-        StringParser sp = new StringParser();
-        String[] s0 = new String[]{"1", "2", "213123123", null, ""};
-        for (String s : s0) {
-            Assertions.assertThatNoException().isThrownBy(() -> sp.castStringToInteger(s));
-        }
-
-        String[] s1 = new String[]{"-1", "!@#", "1e9"};
-        for (String s : s1) {
-            Assertions.assertThatRuntimeException().isThrownBy(() -> sp.castStringToInteger(s));
-        }
+    @ParameterizedTest
+    @ValueSource(strings = {"//a\\n1;2:3", "\\//;\n1,2;3", "a!2!3", "hello", "1;2:3", "-1,2,3"})
+    void parseTest_invalidInput(String input) {
+        //given
+        StringParser stringParser = new StringParser();
+        //when
+        //then
+        Assertions.assertThatRuntimeException().isThrownBy(() -> stringParser.parse(input));
     }
 }
