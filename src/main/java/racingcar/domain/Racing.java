@@ -18,9 +18,10 @@ public class Racing {
         return cars.toList();
     }
 
-    public void tryForward() {
+    public List<Car> tryForward() {
         cars.tryForward();
         count--;
+        return getCarList();
     }
 
     public int getCount() {
