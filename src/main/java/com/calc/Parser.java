@@ -37,22 +37,23 @@ public class Parser {
         }
         return text;
     }
+
+    private List<Separator> parseSeparator(String text){
+        return getSeparators(separateBody(text));
+    }
+
+    private List<Integer> splitValues(String text, List<Separator> arrSep){
+        return getSplitValues(separateBody(text), arrSep);
+    }
+
     public Expression parsing(String text) {
 
         checkNull(text);
 
-        // //;\n 1:2:3 -> 헤더 분리
-        String header = separateHeader(text);
-        String body = separateBody(text);
+        List<Separator> arrSep = parseSeparator(text);
+        List<Integer> splitValues = splitValues(text, arrSep);
 
-        // method
-        List<Separator> arrSep = getSeparators(body);
-
-        // method
-        List<Integer> splitValues = getSplitValues(body, arrSep);
-
-
-        return new Expression(splitValues, arrSep, header);
+        return new Expression(splitValues, arrSep, separateHeader(text));
     }
 
     private List<Integer> getSplitValues(String body, List<Separator> arrSep) {
