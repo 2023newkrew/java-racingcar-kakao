@@ -6,12 +6,18 @@ import racing.domain.CarName;
 import racing.dto.CarDTO;
 
 public class OutputView {
+    private boolean isFirstCall = true;
+    private static final String RESULT_MESSAGE = "실행 결과";
     private static final String MOVING_SYMBOL = "-";
     private static final String STATUS_STRING_FORMAT = "%s : %s";
     private static final String WINNER_DELIMITER = ", ";
     private static final String WINNER_MESSAGE_FORMAT = "%s가 최종 우승했습니다.";
 
     public void printResult(final List<CarDTO> status) {
+        if (isFirstCall) {
+            System.out.println(RESULT_MESSAGE);
+            isFirstCall = false;
+        }
         status.forEach(this::printSingleResult);
         System.out.println();
     }
@@ -23,11 +29,11 @@ public class OutputView {
         System.out.println(singleResult);
     }
 
-    public void printWinner(final List<CarName> winners) {
+    public void printWinners(final List<CarName> winners) {
         List<String> winnerNames = winners.stream()
                 .map(CarName::toString)
                 .collect(Collectors.toList());
-        String winnerString = String.join(WINNER_DELIMITER, winnerNames);
-        System.out.printf(WINNER_MESSAGE_FORMAT, winnerString);
+        String winnersString = String.join(WINNER_DELIMITER, winnerNames);
+        System.out.printf(WINNER_MESSAGE_FORMAT, winnersString);
     }
 }
