@@ -1,6 +1,6 @@
 package racingcar;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +13,13 @@ import static org.assertj.core.api.Assertions.*;
 
 class RacingGameInfoReaderTest {
 
+    RacingGameInfoReader racingGameInfoReader;
+
+    @AfterEach
+    void tearDown() {
+        racingGameInfoReader.close();
+    }
+
     @DisplayName("n개의 레이싱카의 이름을 읽어서 RacingCar List로 반환한다")
     @Test
     void readRacingCars(){
@@ -22,7 +29,7 @@ class RacingGameInfoReaderTest {
         System.setIn(in);
 
         // when
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
+        racingGameInfoReader = new RacingGameInfoReader();
         List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
 
         // then
@@ -38,7 +45,7 @@ class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
+        racingGameInfoReader = new RacingGameInfoReader();
 
         // when
         List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
@@ -56,7 +63,7 @@ class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
+        racingGameInfoReader = new RacingGameInfoReader();
 
         // then
         assertThatThrownBy(racingGameInfoReader::readRacingCars)
@@ -72,7 +79,7 @@ class RacingGameInfoReaderTest {
         System.setIn(in);
 
         // when
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
+        racingGameInfoReader = new RacingGameInfoReader();
         int round = racingGameInfoReader.readRound();
 
         // then
