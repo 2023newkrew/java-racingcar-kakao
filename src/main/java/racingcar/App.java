@@ -1,19 +1,16 @@
 package racingcar;
 
-import racingcar.engine.InputParser;
-import racingcar.engine.RacingGame;
-import racingcar.engine.RandomNumberGenerator;
-import racingcar.engine.Referee;
+import racingcar.engine.RacingMain;
+import racingcar.engine.view.RacingView;
 
 public class App {
     public static void main(String[] args) {
-        Console console = new Console();
-        InputParser inputParser = new InputParser();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        Referee referee = new Referee();
+        Console console = new StandardConsole();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        RacingView racingView = new RacingView(console);
 
-        RacingGame racingGame = new RacingGame(inputParser, randomNumberGenerator, referee, console);
+        RacingMain racingMain = new RacingMain(racingView, numberGenerator);
 
-        racingGame.run();
+        racingMain.run();
     }
 }
