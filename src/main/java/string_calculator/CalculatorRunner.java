@@ -13,12 +13,7 @@ public class CalculatorRunner {
     public void run() {
         String input = receiveInput();
         Integer result;
-        try {
-            result = calculate(input);
-        } catch(RuntimeException e) {
-            System.out.println(e.getLocalizedMessage());
-            return;
-        }
+        result = calculate(input);
         printResult(result);
     }
 
