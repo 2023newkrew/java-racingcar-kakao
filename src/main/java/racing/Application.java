@@ -11,12 +11,10 @@ public class Application {
         String carNames = InputView.getCarNames();
         int tryNo = InputView.getTryNo();
 
-        RacingGame racingGame = new RacingGame();
-        racingGame.create(carNames);
-
+        RacingGame racingGame = new RacingGame(carNames, tryNo, new Random());
         ResultView.printSetup(racingGame);
-        for (int i = 0; i < tryNo; i++) {
-            racingGame.race(new Random());
+        while(racingGame.isEnd()) {
+            racingGame.race();
             ResultView.printCars(racingGame);
         }
         ResultView.printWinners(racingGame);
