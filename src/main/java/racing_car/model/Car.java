@@ -9,10 +9,17 @@ public class Car implements Comparable<Car> {
     private int distance = 0;
 
     public Car(String name) {
+        validateName(name);
         this.name = name;
     }
 
-    public String getName() {
+    private void validateName(String input) {
+        if (input.length() < 1){
+            throw new RuntimeException("이름은 한글자 이상이어야 합니다.");
+        }
+    }
+
+    public String name() {
         return name;
     }
 
@@ -45,5 +52,15 @@ public class Car implements Comparable<Car> {
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
         return distance == car.distance && Objects.equals(name, car.name);
+    }
+
+    public int distance() {
+        return this.distance;
+    }
+
+    public void proceed(int threshold) {
+        if (threshold > 4){
+            this.distance += 1;
+        }
     }
 }

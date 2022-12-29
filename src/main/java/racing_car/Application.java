@@ -36,14 +36,14 @@ public class Application {
 
     private static void printGameResult(GameControl gameControl, Car[] cars) {
         Car[] winner = gameControl.getWinners(cars);
-        String[] winnerNames = Arrays.stream(winner).map(Car::getName).toArray(String[]::new);
+        String[] winnerNames = Arrays.stream(winner).map(Car::name).toArray(String[]::new);
         System.out.println(String.join(", ", winnerNames) +  "가 최종 우승했습니다.");
     }
 
     private static void printGameProcess(GameControl gameControl, Car[] cars) {
         for (Car car: cars) {
             gameControl.carControl(car);
-            System.out.print(car.getName() + " : " + car.showDistance() + "\n");
+            System.out.print(car.name() + " : " + car.showDistance() + "\n");
         }
         System.out.println();
     }

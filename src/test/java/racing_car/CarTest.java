@@ -27,10 +27,9 @@ public class CarTest {
     @Test
     @DisplayName("이름은 한글자 이상")
     void emptyName() {
-        Car car = new Car("");
         assertThatThrownBy(()->new Car(""))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage("이름의 길이가 너무 적습니다.");
+                .hasMessage("이름은 한글자 이상이어야 합니다.");
     }
 
     @Test
