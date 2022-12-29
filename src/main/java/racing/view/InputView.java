@@ -15,12 +15,11 @@ public class InputView {
         validator = new InputValidator();
     }
 
-    public List<String> readCarNames() {
+    public String readCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         try {
-            String input = scanner.nextLine();
-            return validator.validateCarNames(input);
-        } catch (IllegalArgumentException e) {
+            return scanner.nextLine();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return readCarNames();
         }

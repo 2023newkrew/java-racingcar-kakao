@@ -17,14 +17,23 @@ public class GameController {
     }
 
     public void play() {
-        List<String> carNames = inputView.readCarNames();
-        int repeat = inputView.readGameRepeat();
-        game = new Game(carNames);
-        System.out.println(RESULT_MESSAGE);
+        try {
+            String carNames = inputView.readCarNames();
+            int repeat = inputView.readGameRepeat();
+            game = new Game(carNames);
+            System.out.println(RESULT_MESSAGE);
+            playMultipleTurns(repeat);
+            outputView.printWinner(game.getWinners());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            play();
+        }
+    }
+
+    private void playMultipleTurns(int repeat) {
         for (int i = 0; i < repeat; i++) {
             playSingleTurn();
         }
-        outputView.printWinner(game.getWinners());
     }
 
     private void playSingleTurn() {

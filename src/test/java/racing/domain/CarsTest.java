@@ -12,7 +12,7 @@ public class CarsTest {
 
     @BeforeEach
     void init() {
-        cars = new Cars(Arrays.asList("pobi", "crong", "honux", "cosmo", "kyne"));
+        cars = new Cars("pobi,crong,honux,cosmo,kyne");
     }
 
     @Test

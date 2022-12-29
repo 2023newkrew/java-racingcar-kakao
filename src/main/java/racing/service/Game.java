@@ -10,9 +10,9 @@ public class Game {
     private final int length;
     private final RandomNumberGenerator generator;
 
-    public Game(List<String> carNames) {
+    public Game(String carNames) {
         cars = new Cars(carNames);
-        length = carNames.size();
+        length = carNames.split(",").length;
         generator = new RandomNumberGenerator();
     }
 
