@@ -21,16 +21,16 @@ class StringAccumulatorTest {
     class from {
         @ParameterizedTest
         @MethodSource
-        void should_returnStringAccumulator_when_validString(String input, String separator, String content) {
+        void should_returnStringAccumulator_when_validString(String input, StringAccumulator expectedAccumulator) {
             StringAccumulator accumulator = StringAccumulator.from(input);
-            assertThat(accumulator.equalsTo(separator, content)).isTrue();
+            assertThat(accumulator).isEqualTo(expectedAccumulator);
         }
 
         Stream<Arguments> should_returnStringAccumulator_when_validString() {
             return Stream.of(
-                    Arguments.of("//.\n123", "//.\n", "123"),
-                    Arguments.of("//\n//\n", "//\n", "//\n"),
-                    Arguments.of("////\n\n", "////\n", "\n")
+                    Arguments.of("//.\n123", new StringAccumulator("//.\n", "123")),
+                    Arguments.of("//\n//\n", new StringAccumulator("//\n", "//\n")),
+                    Arguments.of("////\n\n", new StringAccumulator("////\n", "\n"))
             );
         }
 

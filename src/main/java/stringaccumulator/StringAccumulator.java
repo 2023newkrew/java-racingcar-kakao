@@ -9,7 +9,7 @@ public class StringAccumulator {
     private final String separator;
     private final String content;
 
-    private StringAccumulator(String separator, String content) {
+    StringAccumulator(String separator, String content) {
         this.separator = separator;
         this.content = content;
     }
@@ -80,8 +80,16 @@ public class StringAccumulator {
         return Long.parseLong(str) < 0;
     }
 
-    public boolean equalsTo(String separator, String content) {
-        return Objects.equals(this.separator, separator) &&
-                Objects.equals(this.content, content);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StringAccumulator that = (StringAccumulator) o;
+        return Objects.equals(separator, that.separator) && Objects.equals(content, that.content);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(separator, content);
     }
 }
