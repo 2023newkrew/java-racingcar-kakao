@@ -5,7 +5,7 @@ import racingcar.domain.Racing;
 import racingcar.view.*;
 
 public class Main {
-    static InputView inputView = new InputViewKorean(System.in);
+    static InputView inputView = new InputViewKorean(System.in, System.out);
     static PrintView printView = new PrintViewKorean(System.out);
     static ExceptionView exceptionView = new ExceptionViewKorean(System.err);
     static Racing racing;
