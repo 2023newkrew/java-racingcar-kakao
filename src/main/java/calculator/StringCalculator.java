@@ -12,7 +12,7 @@ public class StringCalculator {
 
     public static int calculate(String text) {
         if (text == null || !isConsistedByPositiveNumbers(text)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("양의 정수만 입력할 수 있습니다.");
         }
 
         return reduceBySum(text);
