@@ -3,7 +3,6 @@ package racing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racing.domain.Car;
-import racing.domain.CarBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,8 +13,8 @@ public class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new CarBuilder().name("test").buildCar();
-        positionCar = new CarBuilder().name("test").position(5).buildCar();
+        car = new Car("test");
+        positionCar = new Car(5, "test");
     }
 
     @Test

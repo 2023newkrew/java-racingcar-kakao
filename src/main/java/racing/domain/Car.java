@@ -15,6 +15,10 @@ public class Car {
         this.name = name;
     }
 
+    public Car(String name) {
+        this(1, name);
+    }
+
     public int createRandomNumber() {
         Random random = new Random();
         return random.nextInt(MAX_VALUE);

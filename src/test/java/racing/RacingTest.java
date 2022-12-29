@@ -3,7 +3,6 @@ package racing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racing.domain.Car;
-import racing.domain.CarBuilder;
 import racing.domain.Racing;
 
 import java.util.ArrayList;
@@ -44,9 +43,9 @@ public class RacingTest {
 
     @Test
     public void getWinnerTest() {
-        Car carA = new CarBuilder().name("pobi").position(5).buildCar();
-        Car carB = new CarBuilder().name("crong").position(4).buildCar();
-        Car carC = new CarBuilder().name("honux").position(5).buildCar();
+        Car carA = new Car(5, "pobi");
+        Car carB = new Car(4, "crong");
+        Car carC = new Car(5, "honux");
         Car[] cars = new Car[] {carA, carB, carC};
         assertThat(racing.getWinner(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
     }
