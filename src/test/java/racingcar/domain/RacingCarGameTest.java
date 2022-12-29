@@ -73,13 +73,12 @@ public class RacingCarGameTest {
 
 
     @Test
-    public void getSingleWinner(){
-        Car car1 = CarFactory.createCar("pobi");
-        Car car2 = CarFactory.createCar("crong");
-        Car car3 = CarFactory.createCar("honux");
+    public void getSingleWinner() {
+        Car car1 = CarFactory.createCar("pobi", 2);
+        Car car2 = CarFactory.createCar("crong", 3);
+        Car car3 = CarFactory.createCar("honux", 2);
 
         racingCarGame.add(car1, car2, car3);
-        racingCarGame.run(5);
 
         assertThat(racingCarGame.getWinner()
                 .size()).isEqualTo(1);
@@ -89,19 +88,17 @@ public class RacingCarGameTest {
 
     @Test
     public void getMultiWinner() {
-        Car car1 = CarFactory.createCar("pobi");
-        Car car2 = CarFactory.createCar("crong");
-        Car car3 = CarFactory.createCar("honux");
-        Car car4 = CarFactory.createCar("soony");
+        Car car1 = CarFactory.createCar("pobi", 1);
+        Car car2 = CarFactory.createCar("crong", 4);
+        Car car3 = CarFactory.createCar("honux", 4);
 
-        racingCarGame.add(car1, car2, car3, car4);
-        racingCarGame.run(5);
+        racingCarGame.add(car1, car2, car3);
 
         Assertions.assertThat(racingCarGame.getWinner()
                         .size())
                 .isEqualTo(2);
         Assertions.assertThat(racingCarGame.getWinner())
-                .containsExactly(car2, car4);
+                .containsExactly(car2, car3);
     }
 
     @Test

@@ -11,4 +11,8 @@ public class CarFactory {
     public static Car createCar(String name) {
         return new RacingCar(name);
     }
+
+    public static Car createCar(String name, int position) {
+        return new RacingCar(name, position);
+    }
 }
