@@ -5,6 +5,7 @@ import java.util.Random;
 public class Car {
     private int location;
     private String carName;
+
     private static final int MAX_CAR_NAME = 5;
     private static final int MIN_CAR_MOVE = 4;
     private static final int MAX_RANDOM = 10;
@@ -17,7 +18,7 @@ public class Car {
     /**
      * 차 이름이 5글자 초과라면 RuntimeError
      */
-    public void checkName(String carName) {
+    private void checkName(String carName) {
         if(carName.length() > MAX_CAR_NAME){
             throw new IllegalArgumentException("차 이름은 5글자 이하여야 합니다.");
         }

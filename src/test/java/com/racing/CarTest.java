@@ -14,10 +14,9 @@ public class CarTest {
     @ValueSource(strings = {"carName", "over5word"})
     @DisplayName("자동차 이름은 5글자 이하여야 한다.")
     void checkNameTest(String carName){
-        Car car = new Car(carName);
-        // RuntimeException 발생 시 종료
-        assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> car.checkName(carName));
+        // IllegalArgumentException 발생 시 종료
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new Car(carName));
     }
 
 

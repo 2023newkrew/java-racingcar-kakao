@@ -16,27 +16,22 @@ public class Game {
     }
 
     /**
-     * 사용자 입력을 통해 carName 분리
-     * cars 생성
-     * @param text
+     * random 값을 통해 모든 차에 대해 movement() 실행
      */
-    public void init(String text) {
-        // text(사용자 입력)을 차 이름으로 분리
-        String[] carNames = text.split(",");
-
-        for(String carName : carNames){
-            Car car = new Car(carName);
-            this.cars.add(car);
+    private void moveCars() {
+        for (Car car : this.cars) {
+            car.move(car.makeRandom());
         }
     }
 
     /**
-     * random 값을 통해 모든 차에 대해 movement() 실행
+     * 자동차들의 현재 위치를 출력
      */
-    public void moveCars() {
-        for (Car car : this.cars) {
-            car.move(car.makeRandom());
+    private void printCarsLocation(){
+        for(Car car : this.cars){
+            System.out.println(car.toStringLocation());
         }
+        System.out.println();
     }
 
     /**
@@ -59,13 +54,18 @@ public class Game {
     }
 
     /**
-     * 자동차들의 현재 위치를 출력
+     * 사용자 입력을 통해 carName 분리
+     * cars 생성
+     * @param text
      */
-    public void printCarsLocation(){
-        for(Car car : this.cars){
-            System.out.println(car.toStringLocation());
+    public void init(String text) {
+        // text(사용자 입력)을 차 이름으로 분리
+        String[] carNames = text.split(",");
+
+        for(String carName : carNames){
+            Car car = new Car(carName);
+            this.cars.add(car);
         }
-        System.out.println();
     }
 
     /**
