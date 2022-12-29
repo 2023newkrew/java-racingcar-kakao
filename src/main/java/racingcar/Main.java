@@ -7,9 +7,9 @@ public class Main {
         List<String> names = View.inputCarNames();
         int roundNum = View.inputRoundNum();
         Racing racing = new Racing(names, roundNum);
-        for(int i = 0; i<roundNum; i++) {
+        while(!racing.isEnd()) {
             racing.round();
-            View.printRoundResult(racing.roundResult());
+            View.printRoundResult(racing.getRoundResult());
         }
         View.printWinner(racing.getWinner());
     }
