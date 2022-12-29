@@ -8,6 +8,8 @@ import java.util.List;
 public class RacingCarRepository {
     private static final Cars cars = new Cars();
 
+    private RacingCarRepository(){}
+
     public static void saveCars(List<Car> carList){
         cars.addCars(carList);
     }
