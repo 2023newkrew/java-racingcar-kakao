@@ -17,7 +17,7 @@ public class Racing {
 
     Racing(List<String> carNames, int roundNum) {
         this.cars = new ArrayList<>();
-        for (String carName: carNames) {
+        for (String carName : carNames) {
             cars.add(new Car(carName));
         }
         this.roundNum = roundNum;
