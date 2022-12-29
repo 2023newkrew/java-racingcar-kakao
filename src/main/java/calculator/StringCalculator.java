@@ -8,10 +8,11 @@ public class StringCalculator {
 
     private static final String DEFAULT_DELIMITER_REGEX = "[,:]";
     private static final String CUSTOM_DELIMITER_NAME = "delimiter";
-    private static final String CUSTOM_DELIMITER_REGEX = "//(?<" + CUSTOM_DELIMITER_NAME + ">.+)\n";
+    private static final String CUSTOM_DELIMITER_REGEX = String.format("//(?<%s>.+)\n", CUSTOM_DELIMITER_NAME);
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER_REGEX);
 
     public static int calculate(String text) {
-        if (text == null || !isConsistedByPositiveNumbers(text)) {
+        if (isBlank(text) || !isConsistedByPositiveNumbers(text)) {
             throw new IllegalArgumentException();
         }
 
@@ -19,32 +20,36 @@ public class StringCalculator {
     }
 
     private static boolean isConsistedByPositiveNumbers(String text) {
-        String[] values = splitByDelimiter(text);
+        String[] splitValues = splitByDelimiter(text);
 
-        return Stream.of(values)
+        return Stream.of(splitValues)
                 .allMatch(StringCalculator::isPositiveNumber);
     }
 
     private static String[] splitByDelimiter(String text) {
-        Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_REGEX);
-        Matcher matcher = pattern.matcher(text);
+        Matcher customDelimiterMatcher = CUSTOM_DELIMITER_PATTERN.matcher(text);
 
-        if (matcher.find()) {
-            String delimiter = matcher.group(CUSTOM_DELIMITER_NAME);
-            return text.substring(matcher.group().length()).split(delimiter);
+        if (customDelimiterMatcher.find()) {
+            String delimiter = customDelimiterMatcher.group(CUSTOM_DELIMITER_NAME);
+            return text.substring(customDelimiterMatcher.group().length())
+                    .split(delimiter);
         }
 
         return text.split(DEFAULT_DELIMITER_REGEX);
     }
 
+    private static boolean isBlank(String value){
+        return (value == null || value.isEmpty() || value.isBlank());
+    }
+
     private static boolean isPositiveNumber(String value) {
-        return !(value == null || value.matches("\\D") || value.contains("-") || value.isBlank());
+        return !(isBlank(value) || value.matches("\\D") || value.contains("-"));
     }
 
     private static int reduceBySum(String text) {
-        String[] values = splitByDelimiter(text);
+        String[] splitValues = splitByDelimiter(text);
 
-        return Stream.of(values)
+        return Stream.of(splitValues)
                 .mapToInt(Integer::parseInt)
                 .sum();
     }
