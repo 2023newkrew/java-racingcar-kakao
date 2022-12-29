@@ -1,12 +1,12 @@
-package racingcar.engine;
+package racingcar;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
     private final Random random = new Random();
 
-    public int generateRandomNumber() {
+    public int generateNumber() {
         return random.nextInt(10);
     }
 }
