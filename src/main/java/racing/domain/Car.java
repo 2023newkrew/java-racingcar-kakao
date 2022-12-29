@@ -4,19 +4,27 @@ import java.util.Random;
 
 public class Car {
 
-    private final int MAX_VALUE = 10;
-    private final int THRESHOLD = 4;
+    private final static int INITIAL_POSITION = 1;
+    private final int MAX_NAME_LENGTH = 5;
+    private final static int MAX_VALUE = 10;
+    private final static int THRESHOLD = 4;
 
     private int position;
     private String name;
 
     public Car(int position, String name) {
         this.position = position;
+        if (name == null || name.isBlank()) {
+            throw new RuntimeException("빈칸은 입력할 수 없습니다.");
+        }
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new RuntimeException("다섯 글자 이하로 입력해주세요.");
+        }
         this.name = name;
     }
 
     public Car(String name) {
-        this(1, name);
+        this(INITIAL_POSITION, name);
     }
 
     public int createRandomNumber() {

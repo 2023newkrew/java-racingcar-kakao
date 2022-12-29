@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racing.domain.Car;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarTest {
 
@@ -15,6 +17,16 @@ public class CarTest {
     void setUp() {
         car = new Car("test");
         positionCar = new Car(5, "test");
+    }
+
+    @Test
+    public void nameExceptionNotThrowTest() {
+        assertDoesNotThrow(() -> new Car("choi"));
+    }
+
+    @Test
+    public void nameExceptionThrowTest() {
+        assertThrows(RuntimeException.class, () -> new Car("jerrie"));
     }
 
     @Test
