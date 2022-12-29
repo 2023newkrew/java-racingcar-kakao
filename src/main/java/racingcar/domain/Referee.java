@@ -33,16 +33,16 @@ public class Referee {
     }
 
     public boolean isGameEnded() {
-        return this.currentRound == this.roundToPlay;
+        return currentRound == roundToPlay;
     }
 
     public boolean isGamePlaying() {
-        return this.currentRound < this.roundToPlay;
+        return currentRound < roundToPlay;
     }
 
     public List<Car> announceWinners() {
         int maxPosition = calculateMaxCarPosition();
-        return this.registeredCars.stream()
+        return registeredCars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }

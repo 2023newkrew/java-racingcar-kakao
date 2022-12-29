@@ -23,7 +23,7 @@ public class RacingGameController {
         while (racingGame.isGamePlaying()) {
             proceedSingleRound();
         }
-        announceWinner();
+        announceWinners();
     }
 
     private void initializeGame() {
@@ -43,7 +43,7 @@ public class RacingGameController {
         racingGameView.printRoundResult(carRoundResults);
     }
 
-    private void announceWinner() {
+    private void announceWinners() {
         List<CarWinnerResponse> winners = racingGame.announceWinners();
         racingGameView.printWinners(winners);
     }

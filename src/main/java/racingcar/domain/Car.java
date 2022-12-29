@@ -24,7 +24,7 @@ public class Car {
 
     public void move(int number) {
         if (number >= MOVE_THRESHOLD) {
-            this.position++;
+            position++;
         }
     }
 
@@ -33,10 +33,10 @@ public class Car {
     }
 
     public String getCarName() {
-        return this.carName;
+        return carName;
     }
 
     public int getPosition() {
-        return this.position;
+        return position;
     }
 }
