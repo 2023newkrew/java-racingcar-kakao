@@ -1,3 +1,5 @@
+package racing_car;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
@@ -5,7 +7,7 @@ import racing_car.model.GameControl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RacingCarTest {
+public class CarTest {
 
     @Test
     @DisplayName("제공된 문자열로 자동차 배열 생성")
