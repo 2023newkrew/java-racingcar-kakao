@@ -8,11 +8,13 @@ import java.util.regex.Pattern;
 public class StringParser {
     private static final Character[] BASIC_SPLITTER = new Character[]{',', ':'};
     private static final Pattern PATTERN = Pattern.compile("//(.)\\\\n(.*)");
+    public static final int CUSTOM_SPLITTER_INDEX = 1;
+    public static final int TARGET_STRING_INDEX = 2;
 
     public Character parseSplitter(String s) {
         Matcher m = PATTERN.matcher(s);
         if (m.find()) {
-            return m.group(1).charAt(0);
+            return m.group(CUSTOM_SPLITTER_INDEX).charAt(0);
         }
         return null;
     }
@@ -43,7 +45,7 @@ public class StringParser {
         Matcher m = PATTERN.matcher(s);
 
         if (m.find()) {
-            return m.group(2);
+            return m.group(TARGET_STRING_INDEX);
         }
 
         return s;
