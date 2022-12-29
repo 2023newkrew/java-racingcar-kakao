@@ -1,7 +1,5 @@
 package racingcar;
 
-import java.util.Objects;
-
 public class Car {
     private final String name;
     private int position;
@@ -9,7 +7,7 @@ public class Car {
     private static final int INITIAL_POSITION = 1;
 
     public Car(String name, int position) {
-        if (Objects.equals(name, null) || name.isBlank() || name.length() > 5) {
+        if (name == null || name.isBlank() || name.length() > 5) {
             throw new RuntimeException("잘못된 자동차 이름입니다.");
         }
         this.name = name;
@@ -35,7 +33,7 @@ public class Car {
         }
     }
 
-    public String getCurrentStatusString() {
+    public String getCurrentStatus() {
         return this.name + " : "
                 + "-".repeat(this.position);
     }

@@ -17,7 +17,7 @@ public class RefereeTest {
         Car car3 = new Car("jayde", 5);
         List<Car> cars = Arrays.asList(car1, car2, car3);
         List<String> winners = referee.judgeWinners(cars);
-        Assertions.assertThat(winners).containsExactly("jaws", "jayde");
+        Assertions.assertThat(winners).containsOnly("jaws", "jayde");
     }
 
 }

@@ -44,7 +44,7 @@ public class RacingCarService implements Runnable {
 
     private void printRacingStatus(List<Car> cars) {
         for (Car car : cars) {
-            console.printMessage(car.getCurrentStatusString());
+            console.printMessage(car.getCurrentStatus());
         }
     }
 
