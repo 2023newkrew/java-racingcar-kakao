@@ -1,7 +1,6 @@
 package racingcar.utils;
 
 import racingcar.controller.dto.CarRequest;
-import racingcar.service.dto.CarResponse;
 import racingcar.domain.Car;
 
 import java.util.Arrays;
@@ -17,12 +16,6 @@ public class RacingCarConverter {
     public static List<Car> toCars(List<CarRequest> carRequests) {
         return carRequests.stream()
                 .map(RacingCarConverter::toCar)
-                .collect(Collectors.toList());
-    }
-
-    public static List<CarResponse> toCarResponses(List<Car> cars) {
-        return cars.stream()
-                .map(Car::toResponse)
                 .collect(Collectors.toList());
     }
 

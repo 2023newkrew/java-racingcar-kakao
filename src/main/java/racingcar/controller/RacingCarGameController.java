@@ -36,6 +36,7 @@ public class RacingCarGameController {
 
     public void execute(List<CarRequest> carRequests, int round) {
         RacingCarGame racingCarGame = new RacingCarGame(RacingCarConverter.toCars(carRequests), round);
+        outputView.printResultTitle();
 
         while (!racingCarGame.isFinish()) {
             RoundResult roundResult = racingCarGame.doNextRound();
