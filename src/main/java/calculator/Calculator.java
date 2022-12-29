@@ -33,6 +33,16 @@ public class Calculator {
         }
     }
 
+    private void checkDelimiter() {
+        input = input.replace("\\n", "\n");
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            input = m.group(2);
+            replaceDelimiter(customDelimiter);
+        }
+    }
+
     private void splitString() {
         splitedNum = this.input.split("[,:]");
         for (String s : splitedNum) {
@@ -47,15 +57,7 @@ public class Calculator {
         }
     }
 
-    private void checkDelimiter() {
-        input = input.replace("\\n", "\n");
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            input = m.group(2);
-            replaceDelimiter(customDelimiter);
-        }
-    }
+
 
     private void replaceDelimiter(String delimiter) {
         input = input.replace(delimiter, ",");
