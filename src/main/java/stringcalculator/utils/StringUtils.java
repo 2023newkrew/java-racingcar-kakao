@@ -1,6 +1,6 @@
-package stringcalculator;
+package stringcalculator.utils;
 
-import static stringcalculator.ErrorMessage.INPUT_ERROR_MESSAGE;
+import static stringcalculator.config.ErrorMessage.INPUT_ERROR_MESSAGE;
 
 public class StringUtils {
 

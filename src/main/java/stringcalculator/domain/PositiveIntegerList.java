@@ -1,10 +1,12 @@
-package stringcalculator;
+package stringcalculator.domain;
+
+import stringcalculator.utils.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static stringcalculator.ErrorMessage.INPUT_ERROR_MESSAGE;
+import static stringcalculator.config.ErrorMessage.INPUT_ERROR_MESSAGE;
 
 public class PositiveIntegerList {
 

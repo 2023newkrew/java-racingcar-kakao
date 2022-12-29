@@ -1,10 +1,10 @@
-package stringcalculator;
+package stringcalculator.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static stringcalculator.ErrorMessage.INVALID_DELIMITER_ERROR_MESSAGE;
+import static stringcalculator.config.ErrorMessage.INVALID_DELIMITER_ERROR_MESSAGE;
 
 public class Splitter {
 

@@ -1,4 +1,4 @@
-package stringcalculator;
+package stringcalculator.config;
 
 public class ErrorMessage {
 
