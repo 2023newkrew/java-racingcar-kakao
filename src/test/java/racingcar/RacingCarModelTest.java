@@ -80,10 +80,10 @@ class RacingCarModelTest {
 
         @ParameterizedTest
         @MethodSource
-        void should_returnCarInfos_when_givenCars(List<Car> cars, List<CarInfo> carInfos) {
+        void should_returnCarInfos_when_givenCars(List<Car> cars, List<CarDto> carDtos) {
             RacingCarModel model = RacingCarModel.from(cars);
-            List<CarInfo> winners = model.getWinners();
-            assertThatList(winners).isEqualTo(carInfos);
+            List<CarDto> winners = model.getWinners();
+            assertThatList(winners).isEqualTo(carDtos);
         }
 
         Stream<Arguments> should_returnCarInfos_when_givenCars() {
@@ -95,21 +95,21 @@ class RacingCarModelTest {
                                     Car.from("car2", 2, engine),
                                     Car.from("car3", 3, engine)),
                             List.of(
-                                    CarInfo.from("car3", 3))),
+                                    CarDto.from("car3", 3))),
                     Arguments.of(
                             List.of(
                                     Car.from("car1", 1, engine),
                                     Car.from("car2", 1, engine),
                                     Car.from("car3", 1, engine)),
                             List.of(
-                                    CarInfo.from("car1", 1),
-                                    CarInfo.from("car2", 1),
-                                    CarInfo.from("car3", 1))),
+                                    CarDto.from("car1", 1),
+                                    CarDto.from("car2", 1),
+                                    CarDto.from("car3", 1))),
                     Arguments.of(
                             List.of(
                                     Car.from("car1", 1, engine)),
                             List.of(
-                                    CarInfo.from("car1", 1))));
+                                    CarDto.from("car1", 1))));
         }
     }
 }

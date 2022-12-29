@@ -64,7 +64,7 @@ public class RacingCarController {
         view.printResultText();
         for (int i = 0; i < count; ++i) {
             model.progress();
-            view.printProgressResult(model.getCarInfos());
+            view.printProgressResult(model.getCarDtos());
         }
     }
 

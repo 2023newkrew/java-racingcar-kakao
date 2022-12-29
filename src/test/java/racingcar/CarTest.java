@@ -1,6 +1,5 @@
 package racingcar;
 
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -40,9 +39,9 @@ class CarTest {
         @MethodSource
         void should_createSuccess_when_validCarName(String carName, String expectedCarName) {
             Car car = Car.from(carName, engine);
-            CarInfo carInfo = car.getCarInfo();
-            assertThat(carInfo.getName()).isEqualTo(expectedCarName);
-            assertThat(carInfo.getPosition()).isEqualTo(0);
+            CarDto carDto = car.getCarInfo();
+            assertThat(carDto.getName()).isEqualTo(expectedCarName);
+            assertThat(carDto.getPosition()).isEqualTo(0);
         }
 
         Stream<Arguments> should_createSuccess_when_validCarName() {
@@ -72,8 +71,8 @@ class CarTest {
             when(engine.move()).thenReturn(move);
             Car car = Car.from("test", engine);
             car.moveOrStop();
-            CarInfo carInfo = car.getCarInfo();
-            assertThat(carInfo.getPosition()).isEqualTo(position);
+            CarDto carDto = car.getCarInfo();
+            assertThat(carDto.getPosition()).isEqualTo(position);
         }
 
         Stream<Arguments> should_returnPosition_when_moveOrStop() {

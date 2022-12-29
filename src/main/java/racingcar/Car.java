@@ -52,7 +52,7 @@ public class Car {
         }
     }
 
-    public CarInfo getCarInfo() {
-        return CarInfo.from(name, position);
+    public CarDto getCarInfo() {
+        return CarDto.from(name, position);
     }
 }

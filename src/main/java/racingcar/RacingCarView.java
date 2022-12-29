@@ -44,21 +44,21 @@ public class RacingCarView {
         System.out.println("실행 결과");
     }
 
-    public void printProgressResult(List<CarInfo> result) {
-        for (CarInfo carInfo : result) {
-            System.out.printf("%s : %s", carInfo.getName(), "-".repeat(carInfo.getPosition()));
+    public void printProgressResult(List<CarDto> result) {
+        for (CarDto carDto : result) {
+            System.out.printf("%s : %s", carDto.getName(), "-".repeat(carDto.getPosition()));
             System.out.println();
         }
         System.out.println();
     }
 
-    public void printWinners(List<CarInfo> winners) {
+    public void printWinners(List<CarDto> winners) {
         System.out.println(getWinnersName(winners) + "가 최종 우승했습니다.");
     }
 
-    private String getWinnersName(List<CarInfo> winners) {
+    private String getWinnersName(List<CarDto> winners) {
         return winners.stream()
-                .map(CarInfo::getName)
+                .map(CarDto::getName)
                 .collect(Collectors.joining(", "));
     }
 

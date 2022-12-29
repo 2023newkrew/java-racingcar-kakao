@@ -70,31 +70,31 @@ public class RacingCarModel {
         cars.forEach(Car::moveOrStop);
     }
 
-    public List<CarInfo> getCarInfos() {
+    public List<CarDto> getCarInfos() {
         return cars.stream()
                 .map(Car::getCarInfo)
                 .collect(Collectors.toList());
     }
 
-    public List<CarInfo> getWinners() {
-        List<CarInfo> carInfos = getCarInfos();
-        int maxPosition = getMaxPosition(carInfos);
-        return getWinners(carInfos, maxPosition);
+    public List<CarDto> getWinners() {
+        List<CarDto> carDtos = getCarInfos();
+        int maxPosition = getMaxPosition(carDtos);
+        return getWinners(carDtos, maxPosition);
     }
 
-    private int getMaxPosition(List<CarInfo> carInfos) {
-        return carInfos.stream()
-                .mapToInt(CarInfo::getPosition)
+    private int getMaxPosition(List<CarDto> carDtos) {
+        return carDtos.stream()
+                .mapToInt(CarDto::getPosition)
                 .max()
                 .getAsInt();
     }
 
-    private Predicate<CarInfo> getWinnerFilter(int maxPosition) {
+    private Predicate<CarDto> getWinnerFilter(int maxPosition) {
         return carInfo -> carInfo.getPosition() == maxPosition;
     }
 
-    private List<CarInfo> getWinners(List<CarInfo> carInfos, int maxPosition) {
-        return carInfos.stream()
+    private List<CarDto> getWinners(List<CarDto> carDtos, int maxPosition) {
+        return carDtos.stream()
                 .filter(getWinnerFilter(maxPosition))
                 .collect(Collectors.toList());
     }
