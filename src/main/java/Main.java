@@ -6,21 +6,19 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        IOHelper ioHelper = new IOHelper();
-
         Game game = new Game();
 
-        List<String> namesInput = ioHelper.getNamesInput();
-        int roundInput = ioHelper.getRoundInput();
+        List<String> namesInput = IOHelper.getNamesInput();
+        int roundInput = IOHelper.getRoundInput();
 
         GameInfo gameInfo = game.init(namesInput, roundInput);
 
-        ioHelper.printInitialStatus(gameInfo);
+        IOHelper.printInitialStatus(gameInfo);
         while(gameInfo.getLeftRoundCnt() != 0) {
             gameInfo = game.runRound();
-            ioHelper.printRoundResult(gameInfo);
+            IOHelper.printCarStatus(gameInfo);
         }
 
-        ioHelper.printGameResult(game.findWinners(gameInfo));
+        IOHelper.printGameResult(game.findWinners(gameInfo));
     }
 }

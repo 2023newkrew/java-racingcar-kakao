@@ -11,28 +11,27 @@ import java.util.stream.Collectors;
 public class IOHelper {
 
     public static final int MAX_NAME_LENGTH = 5;
-    private Scanner sc;
+    public static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    public static final String INPUT_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
+    public static final String INITIAL_STATUS_HEADER_MESSAGE = "실행 결과";
+    public static final String WRONG_INPUT_MESSAGE = "잘못된 입력값입니다.";
 
-    public IOHelper() {
-        this.sc = new Scanner(System.in);
-    }
+    private static final Scanner sc = new Scanner(System.in);
 
-    public void close() {
-        sc.close();
-    }
-
-    public List<String> getNamesInput() {
+    // 사용자로부터 자동차의 이름 입력 받아 문자열 리스트로 반환
+    public static List<String> getNamesInput() {
         List<String> names = new ArrayList<>();
 
         while (names.size()==0 || !validateNames(names)) {
-            System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            System.out.println(INPUT_CAR_NAMES_MESSAGE);
             String input = sc.nextLine();
             names = getTrimNames(input);
         }
         return names;
     }
 
-    public List<String> getTrimNames(String input) {
+    // 문자열을 쉼표를 기준으로 잘라 리스트로 반환
+    public static List<String> getTrimNames(String input) {
         List<String> names = List.of(input.split(","));
         List<String> trimNames = names.stream()
                 .map(name -> name.trim())
@@ -40,54 +39,61 @@ public class IOHelper {
         return trimNames;
     }
 
-    public boolean validateNames(List<String> names) {
+    // 이름들이 담긴 문자열 리스트의 유효성 검증
+    public static boolean validateNames(List<String> names) {
         boolean flag = true;
 
         for (String name : names) {
             flag = validateName(flag, name);
         }
         if (!flag) {
-            System.out.println("잘못된 입력값입니다.");
+            System.out.println(WRONG_INPUT_MESSAGE);
         }
         return flag;
     }
 
-    private boolean validateName(boolean flag, String name) {
+    // 이름의 유효성 검증
+    private static boolean validateName(boolean flag, String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             return false;
         }
         return flag;
     }
 
-    public int getRoundInput() {
+    // 사용자로부터 이동 시도 횟수를 입력 받아 정수로 반환
+    public static int getRoundInput() {
         String roundInput = "";
         boolean flag = true;
         while (flag) {
-            System.out.println("시도할 회수는 몇회인가요?");
+            System.out.println(INPUT_TRY_COUNT_MESSAGE);
             roundInput = sc.nextLine();
             flag = !validateRound(roundInput);
         }
         return Integer.parseInt(roundInput);
     }
 
-    private boolean validateRound(String roundInput) {
+    // 입력 받은 시도 횟수의 유효성 검증
+    private static boolean validateRound(String roundInput) {
         try {
             Integer.parseInt(roundInput);
         } catch (NumberFormatException e) {
-            System.out.println("잘못된 입력값입니다.");
+            System.out.println(WRONG_INPUT_MESSAGE);
             return false;
         }
+
         return true;
     }
 
-    public void printRoundResult(GameInfo gameInfo) {
+    // 각 자동차의 이름과 위치를 출력
+    public static void printCarStatus(GameInfo gameInfo) {
         for (CarInfo carInfo : gameInfo.getCarInfos()) {
             System.out.println(carInfo.getName() + " : " + "-".repeat(carInfo.getPosition()));
         }
         System.out.println();
     }
 
-    public void printGameResult(List<CarInfo> winners) {
+    // 게임 결과(우승자) 출력
+    public static void printGameResult(List<CarInfo> winners) {
         List<String> winnerNames = winners.stream()
                 .map(winner -> winner.getName())
                 .collect(Collectors.toList());
@@ -95,8 +101,9 @@ public class IOHelper {
         System.out.println(result + "가 최종 우승했습니다.");
     }
 
-    public void printInitialStatus(GameInfo gameInfo) {
-        System.out.println("실행 결과");
-        printRoundResult(gameInfo);
+    // 자동차들의 이름 및 거리 최초 출력(게임 시작시 사용)
+    public static void printInitialStatus(GameInfo gameInfo) {
+        System.out.println(INITIAL_STATUS_HEADER_MESSAGE);
+        printCarStatus(gameInfo);
     }
 }
