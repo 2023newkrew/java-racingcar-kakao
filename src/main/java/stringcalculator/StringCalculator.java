@@ -7,13 +7,13 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static final String CUSTOM_DELIMITER_REGEX = "//([^0-9])\n(.*)";
+    private static final String CUSTOM_DELIMITER_REGEX = "//(.*)\n(.*)";
     private static final Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_REGEX);
 
-    private Set<String> delimiters;
+    private Splitter splitter;
 
-    public StringCalculator(Set<String> baseDelimiters) {
-        delimiters = baseDelimiters;
+    public StringCalculator(List<String> baseDelimiters) {
+        splitter = new Splitter(baseDelimiters);
     }
 
     public int run(String input) {
@@ -30,7 +30,7 @@ public class StringCalculator {
             str = parseNumberContainingString(input);
         }
 
-        PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitByDelimiter(str));
+        PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitter.splitByDelimiters(str));
         return positiveIntegerList.calculateSum();
     }
 
@@ -38,7 +38,7 @@ public class StringCalculator {
         Matcher m = pattern.matcher(input);
 
         if (m.find()) {
-            delimiters.add(m.group(1));
+            splitter.addDelimiter(m.group(1));
             return true;
         }
 
@@ -52,15 +52,4 @@ public class StringCalculator {
         return m.group(2);
     }
 
-    public String[] splitByDelimiter(String input) {
-        return input.split(delimiterToString());
-    }
-
-    private String delimiterToString() {
-        return String.join("|", delimiters);
-    }
-
-    public boolean hasCustomDelimiters() {
-        return delimiters.size() > 2;
-    }
 }

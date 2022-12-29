@@ -23,7 +23,7 @@ public class PositiveIntegerList {
                 .sum();
     }
 
-    public void validate(String[] values) {
+    private void validate(String[] values) {
         Arrays.stream(values)
                 .map(Integer::parseInt)
                 .filter(value -> value < 0)

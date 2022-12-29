@@ -30,7 +30,6 @@ class RacingCarValidatorTest {
     @ParameterizedTest
     @ValueSource(ints = { 0, -1, -2, -3 })
     void validateGameRound(int gameRound) {
-
         assertThatThrownBy(() -> racingCarValidator.validateGameRound(gameRound))
                 .isInstanceOf(RuntimeException.class);
     }

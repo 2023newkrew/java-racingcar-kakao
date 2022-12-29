@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -15,7 +14,7 @@ public class StringCalculatorTest {
 
     @BeforeEach
     void setUp() {
-        stringCalculator = new StringCalculator(new HashSet<>(List.of(",", ":")));
+        stringCalculator = new StringCalculator(List.of(",", ":"));
     }
 
     @Test
@@ -49,38 +48,6 @@ public class StringCalculatorTest {
 
         assertThatThrownBy(() -> stringCalculator.run(input))
                 .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("기본 구분자인 쉼표(,) 또는 콜론(:)을 기준으로 분리한다.")
-    void splitStringByBaseDelimiters() {
-        String input = "1:2,3";
-
-        String[] result = stringCalculator.splitByDelimiter(input);
-
-        assertThat(result.length).isEqualTo(3);
-        assertThat(result).containsExactly("1", "2", "3");
-    }
-
-    @Test
-    @DisplayName("커스텀 구분자를 등록한다.")
-    void registerCustomDelimiter() {
-        String input = "//;\n1;2;3";
-
-        stringCalculator.run(input);
-        assertThat(stringCalculator.hasCustomDelimiters()).isTrue();
-    }
-
-    @Test
-    @DisplayName("커스텀 구분자가 등록되면 이후 해당 구분자를 기준으로 분리가 가능해진다.")
-    void splitStringByCustomDelimiter() {
-        String input = "//_\n6_1:5", str = "8_2:3";
-
-        stringCalculator.run(input);
-        String[] result = stringCalculator.splitByDelimiter(str);
-
-        assertThat(result.length).isEqualTo(3);
-        assertThat(result).containsExactly("8", "2", "3");
     }
 
     @Test
