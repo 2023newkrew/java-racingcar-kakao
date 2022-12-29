@@ -1,42 +1,34 @@
 package racing.domain;
 
-import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racing.domain.Car;
-import racing.domain.Cars;
-import racing.util.RandomNumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
-import static racing.util.RandomNumberGenerator.*;
 public class CarsTest {
-
     private Cars cars;
-
     @BeforeEach
     public void setUp() {
         cars = new Cars();
     }
 
-    @Test
-    @Deprecated
-    @Disabled
-    @DisplayName("랜덤 숫자가 4 이상이면 이동할 수 있다.")
-    public void isMove() {
-        assertThat(cars.isMovable()).isEqualTo(true);
-        assertThat(cars.isMovable()).isEqualTo(true);
+    @ParameterizedTest
+    @DisplayName("숫자가 4 이상이면 이동할 수 있다.")
+    @CsvSource(value = {"4:true", "9:true"}, delimiter = ':')
+    public void isMove(int input, boolean expected) {
+        assertThat(cars.isMovable(input)).isEqualTo(expected);
+        assertThat(cars.isMovable(input)).isEqualTo(expected);
     }
 
-    @Test
-    @Deprecated
-    @Disabled
-    @DisplayName("랜덤 숫자가 4 미만이면 이동할 수 없다.")
-    public void isStop() {
-        assertThat(cars.isMovable()).isEqualTo(false);
-        assertThat(cars.isMovable()).isEqualTo(false);
+    @ParameterizedTest
+    @DisplayName("숫자가 4 미만이면 이동할 수 없다.")
+    @CsvSource(value = {"0:false", "3:false"}, delimiter = ':')
+    public void isStop(int input, boolean expected) {
+        assertThat(cars.isMovable(input)).isEqualTo(expected);
+        assertThat(cars.isMovable(input)).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -48,5 +40,4 @@ public class CarsTest {
                 new Car(input);
             });
     }
-
 }

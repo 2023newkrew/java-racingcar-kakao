@@ -19,7 +19,7 @@ public class Game {
     }
 
     public List<String> getWinnerNames() {
-        return cars.getNamesWithSamePosition(cars.getMaxPosition());
+        return cars.getNamesWithSamePosition(cars.getCarWithMaxPosition());
     }
 
     public Map<String, Integer> playTurn() {
