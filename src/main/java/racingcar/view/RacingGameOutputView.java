@@ -1,11 +1,8 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Winners;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGameOutputView {
 
