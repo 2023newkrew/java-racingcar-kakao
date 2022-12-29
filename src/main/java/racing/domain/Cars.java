@@ -1,8 +1,10 @@
 package racing.domain;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.*;
 import static racing.util.RandomNumberGenerator.generateRandomNumber;
 
 public class Cars {
@@ -24,14 +26,13 @@ public class Cars {
         cars.add(car);
     }
 
-    public int getMaxPosition() {
-        return Collections.max(cars, Comparator.comparing(Car::getPosition))
-                .getPosition();
+    public Car getCarWithMaxPosition() {
+        return max(cars);
     }
 
-    public List<String> getNamesWithSamePosition(int position) {
+    public List<String> getNamesWithSamePosition(Car car) {
         return cars.stream()
-                .filter(car -> car.getPosition() == position)
+                .filter(car::isEqualPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
@@ -46,8 +47,12 @@ public class Cars {
         }
     }
 
+    public boolean isMovable(int input) {
+        return input >= THRESHOLD;
+    }
+
     public boolean isMovable() {
-        return generateRandomNumber(RANDOM_BOUND) >= THRESHOLD;
+        return isMovable(generateRandomNumber(RANDOM_BOUND));
     }
 
     public Map<String, Integer> getStatus() {

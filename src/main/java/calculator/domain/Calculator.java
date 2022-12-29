@@ -15,13 +15,12 @@ public class Calculator {
     }
 
     private int calculateWithDelimiter(Prompt prompt) {
-        String[] stringNumbers = prompt.getParsedStringNumbers();
-        return Arrays.stream(stringNumbers)
+        return Arrays.stream(prompt.getParsedStringNumbers())
                 .mapToInt(this::parseIntOnlyPositiveStringNumber)
                 .sum();
     }
 
-    public int parseIntOnlyPositiveStringNumber(String stringNumber) {
+    private int parseIntOnlyPositiveStringNumber(String stringNumber) {
         try {
             int number = Integer.parseInt(stringNumber);
             if (number < 0) {
