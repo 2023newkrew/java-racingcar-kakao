@@ -39,14 +39,7 @@ public class Car implements Comparable{
         return this.position.compareTo(((Car) o).position);
     }
 
-    public boolean equalsPosition(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
-        Car car = (Car) o;
-        return Objects.equals(position, car.position);
+    public boolean equalsPosition(Car otherCar) {
+        return this.position.equals(otherCar.position);
     }
 }
