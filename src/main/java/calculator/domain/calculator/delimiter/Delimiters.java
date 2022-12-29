@@ -10,7 +10,11 @@ public class Delimiters {
     private static final List<Delimiter> DEFAULT_DELIMITER = new ArrayList<>(Arrays.asList(new Delimiter(":"), new Delimiter(",")));
 
     public Delimiters() {
-        this.delimiters = DEFAULT_DELIMITER;
+        this(new ArrayList<>(DEFAULT_DELIMITER));
+    }
+
+    public Delimiters(List<Delimiter> delimiters) {
+        this.delimiters = delimiters;
     }
 
     public void add(Delimiter delimiter) {
@@ -26,4 +30,5 @@ public class Delimiters {
         stringBuilder.append(']');
         return stringBuilder.toString();
     }
+
 }
