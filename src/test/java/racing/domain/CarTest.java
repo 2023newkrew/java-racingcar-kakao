@@ -26,6 +26,12 @@ public class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 이름은_5글자_이하여야_한다() {
+        assertThatThrownBy(() -> new Car("123456"))
+                .isInstanceOf((IllegalArgumentException.class));
+    }
+
     @ValueSource(doubles = {0.1, 3.9, 2.2, 3.999})
     @ParameterizedTest
     void 자동차가_움직이지_않는다(double number) {
