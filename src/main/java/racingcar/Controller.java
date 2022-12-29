@@ -9,12 +9,10 @@ import java.util.List;
 
 public class Controller {
     private InputView inputView;
-    private OutputView outputView;
     private Game game;
 
     public Controller() {
         inputView = new InputView();
-        outputView = new OutputView();
         game = new Game();
     }
 
@@ -24,12 +22,12 @@ public class Controller {
         inputView.close();
 
         GameInfo gameInfo = game.init(names, roundCnt);
-        outputView.printInitialStatus(gameInfo);
+        OutputView.printInitialStatus(gameInfo);
 
         while (gameInfo.getLeftRoundCnt()!=0) {
             gameInfo = game.runRound();
-            outputView.printRoundResult(gameInfo);
+            OutputView.printRoundResult(gameInfo);
         }
-        outputView.printGameResult(game.getWinners(gameInfo));
+        OutputView.printGameResult(game.getWinners(gameInfo));
     }
 }
