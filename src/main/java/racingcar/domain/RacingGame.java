@@ -43,15 +43,15 @@ public class RacingGame {
     }
 
     public List<RacingCar> judgeWinners() {
-        int maxPos = -1;
+        int maxPos = this.cars.stream()
+                .mapToInt(RacingCar::getPos)
+                .max()
+                .getAsInt();
 
-        for(RacingCar rc : this.cars) {
-            maxPos = Math.max(maxPos,rc.getPos());
-        }
-        List<RacingCar> winners = new ArrayList<>();
-        for(RacingCar rc : this.cars) {
-            appendWinner(winners, rc, maxPos);
-        }
+        List<RacingCar> winners = this.cars.stream()
+                .filter(car->car.getPos()==maxPos)
+                .collect(Collectors.toList());
+
         return winners;
     }
 
