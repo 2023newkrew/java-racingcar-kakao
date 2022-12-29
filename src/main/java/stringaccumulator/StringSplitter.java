@@ -2,6 +2,8 @@ package stringaccumulator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringSplitter {
 
@@ -47,7 +49,13 @@ public class StringSplitter {
     }
 
     public List<String> split(String content) {
-        String splitRegex = String.join("|", separators);
+        String splitRegex = getSplitRegex();
         return List.of(content.split(splitRegex));
+    }
+
+    private String getSplitRegex() {
+        return separators.stream()
+                .map(Pattern::quote)
+                .collect(Collectors.joining("|"));
     }
 }
