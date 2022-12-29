@@ -1,20 +1,9 @@
 package racingcar;
 
-import java.util.Scanner;
+public interface Console {
+    String input(String message);
 
-public class Console {
-    private final Scanner scanner = new Scanner(System.in);
+    void printOutput(String message);
 
-    public String input(String message) {
-        printOutput(message);
-        return scanner.nextLine();
-    }
-
-    public void printOutput(String message) {
-        System.out.println(message);
-    }
-
-    public void printError(String message) {
-        System.out.println("[ERROR] " + message);
-    }
+    void printError(String message);
 }
