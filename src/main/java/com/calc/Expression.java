@@ -22,8 +22,7 @@ public class Expression {
 
     private void checkSeparators(){
         for(Separator sep : separators){
-            sep.checkDefaultSep();
-            sep.checkCustomSep(this.allowSep);
+            sep.checkSeparator(this.allowSep);
         }
     }
 
