@@ -8,7 +8,7 @@ import racing.movable.RandomlyMovable;
 public class Car {
     private static final int DEFAULT_DISTANCE = 0;
     private static final Movable DEFAULT_MOVABLE = new RandomlyMovable();
-    private static final String NULL_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private static final String NULL_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
 
     private final CarName name;
     private final Movable movable;
@@ -20,7 +20,7 @@ public class Car {
 
     public Car(final CarName name, final Movable movable) {
         if (name == null || Objects.isNull(movable)) {
-            throw new IllegalArgumentException(NULL_INPUT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(NULL_ARGUMENT_EXCEPTION_MESSAGE);
         }
         this.name = name;
         this.movable = movable;
