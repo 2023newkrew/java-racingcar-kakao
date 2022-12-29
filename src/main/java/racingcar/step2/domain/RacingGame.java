@@ -13,7 +13,11 @@ public class RacingGame {
     }
 
 
-    public ArrayList<Car> getCars() {
-        return cars;
+    public ArrayList<Car> getCars() throws CloneNotSupportedException {
+        ArrayList<Car> copyCars = new ArrayList<>();
+        for (Car car : cars){
+            copyCars.add(car.clone());
+        }
+        return copyCars;
     }
 }

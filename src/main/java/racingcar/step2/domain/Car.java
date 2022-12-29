@@ -43,4 +43,9 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    @Override
+    protected Car clone() throws CloneNotSupportedException {
+        return (Car) super.clone();
+    }
 }
