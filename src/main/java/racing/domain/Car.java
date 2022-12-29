@@ -49,8 +49,8 @@ public class Car {
         return null;
     }
 
-    @Override
-    public String toString() {
+    public String getLog() {
         return name + " : " + "-".repeat(position);
     }
+
 }
