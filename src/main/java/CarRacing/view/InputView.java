@@ -16,6 +16,13 @@ public class InputView {
 
     public static int inputCount() {
         System.out.println("시도할 회수는 몇 회인가요?");
-        return Integer.parseInt(getUserInput());
+        int tryCount;
+        try {
+            tryCount = Integer.parseInt(getUserInput());
+        } catch(Exception e) {
+            System.out.println("숫자를 입력하세요");
+            return inputCount();
+        }
+        return tryCount;
     }
 }
