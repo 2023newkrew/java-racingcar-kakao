@@ -18,11 +18,17 @@ public class RacingGameInputView {
         String input = scanner.next();
         String[] racingCarNames = input.split(",");
         validateRacingCarNames(racingCarNames);
-        return Arrays.stream(racingCarNames).map(RacingCar::new).collect(Collectors.toList());
+        return convertToRacingCars(racingCarNames);
     }
 
     public void close() {
         scanner.close();
+    }
+
+    private List<RacingCar> convertToRacingCars(String[] racingCarNames) {
+        return Arrays.stream(racingCarNames)
+                .map(RacingCar::new)
+                .collect(Collectors.toList());
     }
 
     private void validateRacingCarNames(String[] racingCarNames) {
