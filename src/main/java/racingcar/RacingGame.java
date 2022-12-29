@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
@@ -9,6 +11,12 @@ public class RacingGame {
     private final RacingGameReferee racingGameReferee;
 
     public RacingGame() {
+        this.racingGameScoreView = new RacingGameScoreView();
+        this.randomMovementManager = new RandomMovementManager(new RandomNumberGeneratorImpl());
+        this.racingGameReferee = new RacingGameReferee();
+    }
+
+    public RacingGame(List<RacingCar> racingCars, int rounds) {
         this.racingGameScoreView = new RacingGameScoreView();
         this.randomMovementManager = new RandomMovementManager(new RandomNumberGeneratorImpl());
         this.racingGameReferee = new RacingGameReferee();
@@ -28,5 +36,9 @@ public class RacingGame {
         for (RacingCar racingCar : racingCars) {
             racingCar.move(randomMovementManager.makeMovementDecision());
         }
+    }
+
+    public List<RacingCar> playRound() {
+        return Arrays.asList(new RacingCar("1"), new RacingCar("2"), new RacingCar("3"));
     }
 }
