@@ -8,37 +8,43 @@ import java.util.stream.Stream;
 
 public class Racing {
     private Car[] cars;
-    public Car[] generateCars(String[] names) {
-        Car[] result = new Car[names.length];
-        for (int i = 0; i < names.length; i++) {
-            result[i] = new Car(names[i], new RandomGeneratorImpl());
-        }
-        cars = result;
-        return result;
-    }
+    private int remainingRound;
 
-    public void proceedRounds(int counts) {
-        System.out.println("*** 실행결과 ***");
-        for (int i = 0; i < counts; i++) {
-            proceedRound();
-        }
-    }
 
-    private void proceedRound() {
+    private Racing(Builder builder){
+        cars = builder.cars.toArray(new Car[0]);
+        remainingRound = builder.remainingRounds;
+    }
+    public void proceedRound() {
+        if (remainingRound <= 0){
+            throw new InvalidRacingConditionException("이미 경기가 끝났습니다.");
+        }
+        remainingRound--;
         for (Car car: cars) {
             car.move();
-            System.out.println(car);
         }
-        System.out.println();
     }
 
-    public List<Car> getWinners(Car[] cars) {
+    public Car[] getCars(){
+        return cars;
+    }
+
+    public boolean isEnd(){
+        return remainingRound<=0;
+    }
+    public Car[] getWinners(){
+        return getWinners(this.cars);
+    }
+    public Car[] getWinners(Car[] cars) {
+        if (remainingRound > 0){
+            throw new InvalidRacingConditionException("아직 경기가 끝나지 않았습니다.");
+        }
         Stream<Car> stream = Arrays.stream(cars);
         Car winner = getWinner(cars);
         List<Car> result = new ArrayList<>();
         stream.filter(car -> car.equalsPosition(winner))
                 .forEach(car -> result.add(car));
-        return result;
+        return result.toArray(new Car[0]);
     }
 
     private Car getWinner(Car[] cars) {
@@ -56,12 +62,44 @@ public class Racing {
         return car2;
     }
 
-    public String joinWinners() {
-        List<Car> winners = getWinners(this.cars);
-        String[] result = new String[winners.size()];
-        for (int i = 0; i < winners.size(); i++) {
-            result[i] = winners.get(i).toStringOnlyName();
+    public static class Builder{
+        private List<Car> cars = new ArrayList<>();
+        private int remainingRounds;
+
+        public Builder addCars(String[] carNames){
+            for (String carName : carNames){
+                cars.add(new Car(carName, new RandomGeneratorImpl()));
+            }
+            return this;
         }
-        return String.join(", ", result);
+
+        public Builder addCars(String[] carNames, RandomGenerator rg){
+            for (String carName : carNames){
+                cars.add(new Car(carName, rg));
+            }
+            return this;
+        }
+
+        public Builder addCars(Car[] madeCars){
+            for (Car car:madeCars){
+                cars.add(car);
+            }
+            return this;
+        }
+
+        public Builder setRounds(int rounds){
+            this.remainingRounds = rounds;
+            return this;
+        }
+
+        public Racing build(){
+            if (remainingRounds <= 0){
+                throw new InvalidRacingConditionException("라운드 횟수는 1 이상이어야 합니다.");
+            }
+            if (cars.size() <= 1){
+                throw new InvalidRacingConditionException("차는 2대 이상이어야 합니다.");
+            }
+            return new Racing(this);
+        }
     }
 }

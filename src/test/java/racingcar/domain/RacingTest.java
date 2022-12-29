@@ -3,22 +3,13 @@ package racingcar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 public class RacingTest {
     @Test
-    void generateCarsArray() {
-        Racing racing = new Racing();
-        String[] names = new String[]{"aaa","bbb","ccc"};
-        Car[] cars = racing.generateCars(names);
-        Assertions.assertThat(cars.length).isEqualTo(3);
-
-        for(int i =0; i<3; i++) {
-            Assertions.assertThat(cars[i].toStringOnlyName()).isEqualTo(names[i]);
-            Assertions.assertThat(cars[i].toString()).isEqualTo(names[i]+" : -");
-        }
-    }
-
-    @Test
-    void winnerTest() {
+    void oneWinnerTest() {
         Car[] cars = new Car[5];
         cars[0] = new Car("a", (a)->2);
         cars[1] = new Car("b", (a)->2);
@@ -26,18 +17,19 @@ public class RacingTest {
         cars[3] = new Car("d", (a)->2);
         cars[4] = new Car("e", (a)->2);
 
-        Racing racing = new Racing();
-        for (int i=0;i<5;i++) {
-            for (int j = 0; j < 5; j++) {
-                cars[j].move();
-            }
+        Racing racing = new Racing.Builder()
+                .addCars(cars)
+                .setRounds(5)
+                .build();
+        while(!racing.isEnd()){
+            racing.proceedRound();
         }
 
-        Assertions.assertThat(racing.getWinners(cars)).containsExactly(cars[2]);
+        Assertions.assertThat(racing.getWinners()).containsExactly(cars[2]);
     }
 
     @Test
-    void winnersTest(){
+    void pluralWinnersTest(){
         Car[] cars = new Car[5];
         cars[0] = new Car("a", (a)->2);
         cars[1] = new Car("b", (a)->6);
@@ -45,13 +37,42 @@ public class RacingTest {
         cars[3] = new Car("d", (a)->2);
         cars[4] = new Car("e", (a)->6);
 
-        Racing racing = new Racing();
-        for (int i=0;i<5;i++) {
-            for (int j = 0; j < 5; j++) {
-                cars[j].move();
-            }
+        Racing racing = new Racing.Builder()
+                .addCars(cars)
+                .setRounds(5)
+                .build();
+        while(!racing.isEnd()){
+            racing.proceedRound();
         }
-
-        Assertions.assertThat(racing.getWinners(cars)).containsExactly(cars[1], cars[2], cars[4]);
+        Assertions.assertThat(racing.getWinners()).containsExactly(cars[1], cars[2], cars[4]);
     }
+
+    @Test
+    void exceptionWhenGetWinnersRemainingRound(){
+        Racing racing = new Racing.Builder()
+                .addCars(new String[]{"a", "b", "c", "d", "e"})
+                .setRounds(5)
+                .build();
+        for (int i=1;i<=4;i++){
+            racing.proceedRound();
+        }
+        assertThatThrownBy(()->{
+            Car[] winners = racing.getWinners();
+        }).isInstanceOf(InvalidRacingConditionException.class)
+                .hasMessage("아직 경기가 끝나지 않았습니다.");
+    }
+    @Test
+    void exceptionWhenProceedRoundNotRemainingRound(){
+        Racing racing = new Racing.Builder()
+                .addCars(new String[]{"a", "b", "c", "d", "e"})
+                .setRounds(5)
+                .build();
+        assertThatThrownBy(()->{
+            for (int i=1;i<=6;i++){
+                racing.proceedRound();
+            }
+        }).isInstanceOf(InvalidRacingConditionException.class)
+                .hasMessage("이미 경기가 끝났습니다.");
+    }
+
 }
