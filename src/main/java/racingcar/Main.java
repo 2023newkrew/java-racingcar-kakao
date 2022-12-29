@@ -1,20 +1,12 @@
 package racingcar;
 
-import racingcar.domain.racing.Racing;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.controller.RacingController;
 
 
 public class Main {
     public static void main(String[] args) {
-        Racing racingGame = new Racing();
-        InputView inputView = new InputView();
+        RacingController racingController = new RacingController();
 
-        racingGame.init(inputView.getNames(), inputView.getTurn());
-
-        while (!racingGame.isEnd()) {
-            OutputView.printTurnResult(racingGame.proceedTurn());
-        }
-        OutputView.printResult(racingGame.getWinners());
+        racingController.startRace();
     }
 }
