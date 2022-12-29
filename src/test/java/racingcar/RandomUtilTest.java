@@ -2,6 +2,7 @@ package racingcar;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
+import racingcar.util.RandomUtil;
 
 public class RandomUtilTest {
     @RepeatedTest(100)

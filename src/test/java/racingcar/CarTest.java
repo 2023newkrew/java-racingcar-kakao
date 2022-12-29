@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.model.Car;
 
 public class CarTest {
     Car car;
@@ -36,8 +37,6 @@ public class CarTest {
     @ValueSource(strings = {"", "abcdef"})
     void invalidName(String name) {
         Assertions.assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> {
-                    Car car = new Car(name);
-                });
+                .isThrownBy(() -> new Car(name));
     }
 }

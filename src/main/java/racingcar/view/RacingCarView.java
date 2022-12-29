@@ -1,4 +1,9 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.domain.GameResult;
+import racingcar.domain.RoundRecord;
+import racingcar.domain.dto.CarStatusDto;
+import racingcar.domain.model.Car;
 
 import java.util.List;
 import java.util.Scanner;
