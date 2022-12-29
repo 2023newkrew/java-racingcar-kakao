@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RacingOutputViewTest {
 
     @Test
-    void 자동차_이름과_전진횟수_출력() throws CloneNotSupportedException {
+    void 자동차_이름과_전진횟수_출력(){
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 

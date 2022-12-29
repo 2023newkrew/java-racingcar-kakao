@@ -2,7 +2,7 @@ package racingcar.step2.domain;
 
 import java.util.Random;
 
-public class Car implements Cloneable{
+public class Car implements Comparable<Car>{
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MOVE_THRESHOLD = 4;
@@ -47,14 +47,14 @@ public class Car implements Cloneable{
         return position;
     }
 
-    @Override
-    public Car clone() throws CloneNotSupportedException {
-        return (Car) super.clone();
-    }
 
     @Override
     public String toString(){
         return name + " : " + "-".repeat(Math.max(1, position));
     }
 
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(this.position, o.position);
+    }
 }
