@@ -52,7 +52,7 @@ class RacingCarModelTest {
         }
 
         Stream<Arguments> should_throwException_when_givenCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             return Stream.of(
                     Arguments.of((Object) null),
                     Arguments.of(List.of()),
@@ -64,7 +64,7 @@ class RacingCarModelTest {
 
         @Test
         void should_returnRacingCarModel_when_givenValidCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             List<Car> cars = List.of(
                     Car.from("abc", engine),
                     Car.from("abcd", engine)
@@ -87,27 +87,27 @@ class RacingCarModelTest {
         }
 
         Stream<Arguments> should_returnCarInfos_when_givenCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             return Stream.of(
                     Arguments.of(
                             List.of(
-                                    Car.from(CarInfo.from("car1", 1), engine),
-                                    Car.from(CarInfo.from("car2", 2), engine),
-                                    Car.from(CarInfo.from("car3", 3), engine)),
+                                    Car.from("car1", 1, engine),
+                                    Car.from("car2", 2, engine),
+                                    Car.from("car3", 3, engine)),
                             List.of(
                                     CarInfo.from("car3", 3))),
                     Arguments.of(
                             List.of(
-                                    Car.from(CarInfo.from("car1", 1), engine),
-                                    Car.from(CarInfo.from("car2", 1), engine),
-                                    Car.from(CarInfo.from("car3", 1), engine)),
+                                    Car.from("car1", 1, engine),
+                                    Car.from("car2", 1, engine),
+                                    Car.from("car3", 1, engine)),
                             List.of(
                                     CarInfo.from("car1", 1),
                                     CarInfo.from("car2", 1),
                                     CarInfo.from("car3", 1))),
                     Arguments.of(
                             List.of(
-                                    Car.from(CarInfo.from("car1", 1), engine)),
+                                    Car.from("car1", 1, engine)),
                             List.of(
                                     CarInfo.from("car1", 1))));
         }

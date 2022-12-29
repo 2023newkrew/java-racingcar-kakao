@@ -8,8 +8,6 @@ public class Car {
 
     public static final int MAX_CAR_NAME_LENGTH = 5;
 
-    private static final int POWER_THRESHOLD = 4;
-
     private final String name;
 
     private int position;
@@ -49,7 +47,7 @@ public class Car {
     }
 
     public void moveOrStop() {
-        if (engine.getPower() >= POWER_THRESHOLD) {
+        if (engine.move()) {
             position++;
         }
     }
