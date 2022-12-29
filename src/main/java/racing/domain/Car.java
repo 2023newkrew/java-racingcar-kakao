@@ -50,10 +50,6 @@ public class Car {
         return position;
     }
 
-    public int getMaxPosition(int maxPosition) {
-        return Math.max(maxPosition, position);
-    }
-
     public String getWinnerName(int maxPosition) {
         if(maxPosition == position) {
             return name;

@@ -1,16 +1,17 @@
 package racing.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Result {
 
     public List<String> getWinner(Car[] cars) {
         List<String> winners = new ArrayList<>();
-        int maxPosition = 0;
-        for (int index = 0; index < cars.length; index++) {
-            maxPosition = cars[index].getMaxPosition(maxPosition);
-        }
+        int maxPosition = Arrays.stream(cars)
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
         for (int index = 0; index < cars.length; index++) {
             String winnerName = cars[index].getWinnerName(maxPosition);
             winners = addWinner(winners, winnerName);

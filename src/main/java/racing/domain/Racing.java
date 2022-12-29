@@ -12,7 +12,9 @@ public class Racing {
     }
 
     public Car[] makeCarList(String[] names) {
-        return Arrays.stream(names).map(name -> new Car(name)).toArray(Car[]::new);
+        return Arrays.stream(names)
+                .map(name -> new Car(name))
+                .toArray(Car[]::new);
     }
 
     public Car[] createCars(String names) {
