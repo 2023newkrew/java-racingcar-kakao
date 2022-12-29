@@ -27,7 +27,7 @@ public class Command {
     }
 
     private void validateCharNumber(HashSet<Character> delimiterSet, Character charNumber) {
-        if (!delimiterSet.contains(charNumber) & Character.isDigit(charNumber)) {
+        if (!delimiterSet.contains(charNumber) & !Character.isDigit(charNumber)) {
             throw new IllegalArgumentException(INVALID_INPUT_NUMBER_EXCEPTION);
         }
     }

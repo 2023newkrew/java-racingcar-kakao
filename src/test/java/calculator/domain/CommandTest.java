@@ -17,7 +17,7 @@ class CommandTest {
 
         // when
         List<Character> delimiters = new ArrayList<>(Arrays.asList(':', ','));
-        String inputStringNumbers = "1,2,3";
+        String inputStringNumbers = "1,2,3???";
 
         // given & then
         Throwable exception = assertThrows(
