@@ -1,6 +1,5 @@
 package string_calculator;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class CalculatorRunner {
@@ -26,13 +25,7 @@ public class CalculatorRunner {
     }
 
     private Integer calculate(String input) {
-        Character splitter = parser.parseSplitter(input);
-        String targetString = parser.parseTargetString(input);
-        String[] targetStringArray = parser.splitTargetString(targetString, splitter);
-        Integer[] targetIntegerArray = Arrays.stream(targetStringArray)
-                    .map(parser::castStringToInteger)
-                    .toArray(Integer[]::new);
-        return Calculator.add(targetIntegerArray);
+        return Calculator.add(parser.parse(input));
     }
 
     private void printResult(Integer result) {

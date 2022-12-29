@@ -1,6 +1,7 @@
 package string_calculator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +11,15 @@ public class StringParser {
     private static final Pattern PATTERN = Pattern.compile("//(.)\\\\n(.*)");
     public static final int CUSTOM_SPLITTER_INDEX = 1;
     public static final int TARGET_STRING_INDEX = 2;
+
+    public Integer[] parse(String s) {
+        Character splitter = parseSplitter(s);
+        String targetString = parseTargetString(s);
+        String[] targetStringArray = splitTargetString(targetString, splitter);
+        return Arrays.stream(targetStringArray)
+                .map(this::castStringToInteger)
+                .toArray(Integer[]::new);
+    }
 
     public Character parseSplitter(String s) {
         Matcher m = PATTERN.matcher(s);
@@ -29,7 +39,7 @@ public class StringParser {
         return s.split(buildRegexPatternFromSplitterArray(splitters), -1);
     }
 
-    private String  buildRegexPatternFromSplitterArray(ArrayList<Character> splitters) {
+    private String buildRegexPatternFromSplitterArray(ArrayList<Character> splitters) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("[");
