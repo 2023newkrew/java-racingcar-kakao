@@ -39,9 +39,6 @@ public class RacingTest {
     @DisplayName("레이싱이 진행될 때 횟수가 하나 소진된다.")
     void racingProgress() {
         racing.doStep();
-        racing.getCarList().forEach((car)->{
-            assertThat(car.getDistance()).isGreaterThanOrEqualTo(0);
-        });
         assertThat(racing.getCount()).isEqualTo(4);
     }
 
