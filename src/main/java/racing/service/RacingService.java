@@ -5,30 +5,30 @@ import racing.repository.RacingCarRepository;
 import java.util.List;
 
 public class RacingService {
-    private final RacingCarRepository racingCarRepository;
     private final RacingSplitter racingSplitter;
 
     public RacingService(){
         racingSplitter = new RacingSplitter();
-        racingCarRepository = new RacingCarRepository();
     }
 
     public void cycleProgress() {
-        racingCarRepository.getCars()
+        RacingCarRepository.getCars()
                 .tryMove();
     }
 
     public void insertCars(String carString){
-        racingCarRepository.saveCars(
+        RacingCarRepository.saveCars(
                 racingSplitter.split(carString)
         );
     }
     public List<String> getCarStatusStrings(){
-        return racingCarRepository.findAllCarStatus();
+        return RacingCarRepository.getCars()
+                .getAllCarStatusStrings();
     }
 
     public List<String> getWinnerCarNames(){
-        return racingCarRepository.findAllWinnerCarName();
+        return RacingCarRepository.getCars()
+                .getWinnerCarName();
     }
 
 }

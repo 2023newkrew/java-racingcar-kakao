@@ -17,10 +17,6 @@ public class Cars {
     public Cars(){
         cars = new ArrayList<>();
     }
-    public Cars(List<Car> cars){
-        validateCarName(cars);
-        this.cars = cars;
-    }
 
     private void validateCarName(List<Car> cars){
         cars.forEach(car -> {

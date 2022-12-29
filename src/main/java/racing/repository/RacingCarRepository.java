@@ -6,25 +6,13 @@ import racing.model.Cars;
 import java.util.List;
 
 public class RacingCarRepository {
-    private final Cars cars;
+    private static final Cars cars = new Cars();
 
-    public RacingCarRepository(){
-        this.cars = new Cars();
+    public static void saveCars(List<Car> carList){
+        cars.addCars(carList);
     }
 
-    public List<String> findAllWinnerCarName() {
-        return cars.getWinnerCarName();
-    }
-
-    public List<String> findAllCarStatus(){
-        return cars.getAllCarStatusStrings();
-    }
-
-    public void saveCars(List<Car> cars){
-        this.cars.addCars(cars);
-    }
-
-    public Cars getCars(){
+    public static Cars getCars(){
         return cars;
     }
 }
