@@ -1,5 +1,8 @@
 package car_racing.view;
 
+import car_racing.domain.InputVerifier;
+import car_racing.domain.StringParser;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -8,25 +11,13 @@ public class InputView {
     public static String[] getPlayerNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String inputString = sc.nextLine();
-        String[] splitStrings = inputString.split(",", -1);
-        for (String name : splitStrings) {
-            verifyName(name);
-        }
-        return splitStrings;
+        return StringParser.parse(inputString);
     }
 
     public static Integer getNumberOfTurns() {
         System.out.println("시도할 회수는 몇회인가요?");
         int turn = sc.nextInt();
-        if (turn <= 0) {
-            throw new RuntimeException("Invalid number for turns");
-        }
+        InputVerifier.verifyNumberIsPos(turn);
         return turn;
-    }
-
-    private static void verifyName(String name) {
-        if (name.length() == 0 || name.length() > 5) {
-            throw new RuntimeException("Invalid Name");
-        }
     }
 }
