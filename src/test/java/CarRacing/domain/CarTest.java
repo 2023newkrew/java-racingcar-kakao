@@ -1,6 +1,5 @@
 package CarRacing.domain;
 
-import CarRacing.domain.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,10 +52,5 @@ public class CarTest {
     @CsvSource({"5, test", "6,"})
     public void getWinnerNameTest(int maxPosition, String winnerName) {
         assertThat(positionCar.getWinnerName(maxPosition)).isEqualTo(winnerName);
-    }
-
-    @Test
-    public void toStringTest() {
-        assertThat(positionCar.toString()).isEqualTo("test : -----");
     }
 }
