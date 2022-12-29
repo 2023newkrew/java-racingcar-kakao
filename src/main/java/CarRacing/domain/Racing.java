@@ -50,8 +50,8 @@ public class Racing {
     }
 
     public Car[] oneCycle(Car[] cars) {
-        for (int index = 0; index < cars.length; index++) {
-            cars[index].carEvent();
+        for (Car car : cars) {
+            car.carEvent();
         }
         return cars;
     }
