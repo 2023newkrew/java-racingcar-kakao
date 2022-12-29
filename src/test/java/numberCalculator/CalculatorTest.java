@@ -5,6 +5,8 @@ import numberCalculator.exceptions.NonIntegerArgumentException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,29 +22,15 @@ public class CalculatorTest {
         this.calculator = new Calculator();
     }
 
-    @Test
-    public void stringSplitComma(){
-        String originStr = "0,1,2";
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2", "0:1:2", "0,1:2"})
+    public void stringSplitWithDefaultSeparators(String originStr){
         List<Integer> splitNumbers = calculator.splitNumbers(originStr, SeparatorParser.DEFAULT_SEPARATORS);
         Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
-    public void stringSplitColon(){
-        String originStr = "0:1:2";
-        List<Integer> splitNumbers = calculator.splitNumbers(originStr, SeparatorParser.DEFAULT_SEPARATORS);
-        Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
-    }
-
-    @Test
-    public void stringSplitColonAndComma(){
-        String originStr = "0,1:2";
-        List<Integer> splitNumbers = calculator.splitNumbers(originStr, SeparatorParser.DEFAULT_SEPARATORS);
-        Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
-    }
-
-    @Test
-    public void stringEmptyString() {
+    public void splitEmptyString() {
         String originStr = "";
         List<Integer> splitNumbers = calculator.splitNumbers(originStr, SeparatorParser.DEFAULT_SEPARATORS);
         Assertions.assertThat(splitNumbers).isEqualTo(Collections.emptyList());
