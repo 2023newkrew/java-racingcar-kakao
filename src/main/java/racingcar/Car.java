@@ -3,32 +3,28 @@ package racingcar;
 import java.util.Objects;
 
 public class Car {
+
     public static final int MIN_CAR_NAME_LENGTH = 1;
+
     public static final int MAX_CAR_NAME_LENGTH = 5;
+
     private static final int POWER_THRESHOLD = 4;
 
     private final String name;
+
     private int position;
+
     private final Engine engine;
 
     public static Car from(String name, Engine engine) {
-        return Car.from(CarInfo.from(name, 0), engine);
+        return Car.from(name, 0, engine);
     }
 
-    public static Car from(CarInfo info, Engine engine) {
-        return new Car(info, engine);
-    }
-
-    private Car(CarInfo carInfo, Engine engine) {
-        this.name = getValidName(carInfo.getName());
-        this.position = carInfo.getPosition();
-        this.engine = engine;
-    }
-
-    private static String getValidName(String name) {
-        String validName = name.trim();
-        checkNameLength(validName);
-        return validName;
+    public static Car from(String name, int position, Engine engine) {
+        name = name.trim();
+        checkNameLength(name);
+        checkEngineValidation(engine);
+        return new Car(name, position, engine);
     }
 
     private static void checkNameLength(String name) {
@@ -40,16 +36,21 @@ public class Car {
         }
     }
 
-    public void moveOrStop() {
-        checkEngineExists();
-        if (engine.getPower() >= POWER_THRESHOLD) {
-            position++;
+    private static void checkEngineValidation(Engine engine) {
+        if (Objects.isNull(engine)) {
+            throw new RuntimeException("Engine is null.");
         }
     }
 
-    private void checkEngineExists() {
-        if (Objects.isNull(engine)) {
-            throw new RuntimeException("Engine is null.");
+    private Car(String name, int position, Engine engine) {
+        this.name = name;
+        this.position = position;
+        this.engine = engine;
+    }
+
+    public void moveOrStop() {
+        if (engine.getPower() >= POWER_THRESHOLD) {
+            position++;
         }
     }
 
