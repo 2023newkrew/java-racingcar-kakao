@@ -1,4 +1,4 @@
-package racing.Controller;
+package racing.controller;
 
 import racing.domain.Simulator;
 import racing.view.RacingView;
