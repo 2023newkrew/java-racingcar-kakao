@@ -1,7 +1,7 @@
-package carracing;
+package racing;
 
-import carracing.model.Car;
-import carracing.model.RacingPlayer;
+import racing.domain.player.Car;
+import racing.domain.player.RacingPlayer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

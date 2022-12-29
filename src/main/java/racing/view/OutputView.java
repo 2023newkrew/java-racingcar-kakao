@@ -1,6 +1,6 @@
-package carracing.view;
+package racing.view;
 
-import carracing.model.RacingPlayer;
+import racing.domain.player.RacingPlayer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

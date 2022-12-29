@@ -1,6 +1,10 @@
-package carracing.model;
+package racing.domain;
 
-import carracing.common.exception.InvalidInputFormatException;
+import racing.common.exception.InvalidInputFormatException;
+import racing.domain.player.RacingPlayer;
+import racing.domain.tactic.GameTacticStrategy;
+import racing.domain.tactic.RandomTacticStrategy;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -8,7 +12,7 @@ import java.util.stream.Collectors;
 public class GameRule {
     private static final Integer STANDARD_SCORE = 4;
 
-    private static final GamePlayerStrategy GAME_PLAYER_STRATEGY = new RandomPlayerStrategy();
+    private static final GameTacticStrategy GAME_PLAYER_STRATEGY = new RandomTacticStrategy();
 
     public static Boolean isAbleToProceed() {
         return GAME_PLAYER_STRATEGY.generateScore() >= STANDARD_SCORE;

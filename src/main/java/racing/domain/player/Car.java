@@ -1,4 +1,4 @@
-package carracing.model;
+package racing.domain.player;
 
 import org.jetbrains.annotations.NotNull;
 
