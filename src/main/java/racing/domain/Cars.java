@@ -14,7 +14,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void play(List<Double> randomNumbers) {
+    public void play(List<Integer> randomNumbers) {
         int length = cars.size();
         if (randomNumbers.size() != length) {
             throw new IllegalArgumentException(RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE);

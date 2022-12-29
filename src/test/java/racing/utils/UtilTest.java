@@ -13,6 +13,6 @@ public class UtilTest {
     }
     @RepeatedTest(100)
     void randomNumberGenerateTest() {
-        assertThat(generator.generate()).isBetween(0.0, 9.0);
+        assertThat(generator.generate()).isBetween(0, 9);
     }
 }

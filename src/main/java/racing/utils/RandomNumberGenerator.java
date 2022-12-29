@@ -1,10 +1,12 @@
 package racing.utils;
 
+import java.util.Random;
+
 public class RandomNumberGenerator {
-    private final int LOWER_BOUND = 0;
     private final int UPPER_BOUND = 9;
 
-    public double generate() {
-        return Math.random() * (UPPER_BOUND - LOWER_BOUND);
+    public Integer generate() {
+        final Random random = new Random();
+        return random.nextInt(UPPER_BOUND);
     }
 }

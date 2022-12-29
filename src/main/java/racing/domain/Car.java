@@ -33,20 +33,10 @@ public class Car {
         return distance;
     }
 
-    public boolean move(double number) {
-        boolean isMoving = isMoving(number);
-        if (isMoving) {
-            increaseDistance();
+    public void move(Integer number) {
+        if (number >= MOVE_LOWER_BOUND) {
+            distance++;
         }
-        return isMoving;
-    }
-
-    private void increaseDistance() {
-        distance++;
-    }
-
-    private boolean isMoving(double number) {
-        return number >= MOVE_LOWER_BOUND;
     }
 
     public boolean equalsDistance(int distance) {

@@ -17,14 +17,14 @@ public class CarsTest {
 
     @Test
     void 한명의_우승자가_발생하는_경우() {
-        cars.play(List.of(0.1, 0.3, 2.9, 8.8, 1.4));
+        cars.play(List.of(0, 1, 2, 8, 3));
         assertThat(cars.getWinners()).isEqualTo(Arrays.asList("cosmo"));
     }
 
     @Test
     void 두명의_우승자가_발생하는_경우() {
-        cars.play(List.of(0.1, 0.3, 2.9, 8.8, 4.4));
-        cars.play(List.of(0.1, 5.3, 2.9, 7.0, 6.4));
+        cars.play(List.of(0, 1, 2, 8, 4));
+        cars.play(List.of(0, 5, 2, 7, 6));
         assertThat(cars.getWinners()).isEqualTo(Arrays.asList("cosmo", "kyne"));
     }
 }
