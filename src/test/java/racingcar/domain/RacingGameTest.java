@@ -1,15 +1,16 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class RacingGameTest {
+class RacingGameTest {
 
+    @DisplayName("차 이름과 플레이할 라운드를 넘겨 레이싱 게임을 생성할 수 있다.")
     @Test
     void create_racing_game_test() {
         String carNames = "pobi,crong,honux";
@@ -18,25 +19,46 @@ public class RacingGameTest {
         assertDoesNotThrow(() -> new RacingGame(carNames, roundToPlay, new RandomNumberSelector()));
     }
 
+    @DisplayName("게임에 할당된 모든 라운드가 종료되면 우승자를 확인할 수 있다.")
     @Test
     void check_winners_test() {
         String carNames = "pobi,crong,honux";
         int roundToPlay = 2;
 
         RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
+        for (int i = 0; i < roundToPlay; i++) {
+            racingGame.proceedRound();
+        }
 
-        Optional<List<String>> gameWinnersResult0 = racingGame.checkWinners();
-        assertThat(gameWinnersResult0).isEmpty();
+        List<String> gameWinnersResult = racingGame.announceWinners();
+        assertThat(gameWinnersResult.get(0)).isEqualTo("pobi");
+        assertThat(gameWinnersResult.get(1)).isEqualTo("crong");
+        assertThat(gameWinnersResult.get(2)).isEqualTo("honux");
+    }
 
-        racingGame.proceedGame();
-        Optional<List<String>> gameWinnersResult1 = racingGame.checkWinners();
-        assertThat(gameWinnersResult1).isEmpty();
+    @DisplayName("게임이 진행중이라면, 진행중인 상태임을 확인할 수 있다.")
+    @Test
+    void is_game_playing_test() {
+        String carNames = "pobi,crong,honux";
+        int roundToPlay = 2;
 
-        racingGame.proceedGame();
-        Optional<List<String>> gameWinnersResult2 = racingGame.checkWinners();
-        assertThat(gameWinnersResult2).isPresent();
-        assertThat(gameWinnersResult2.get().get(0)).isEqualTo("pobi");
-        assertThat(gameWinnersResult2.get().get(1)).isEqualTo("crong");
-        assertThat(gameWinnersResult2.get().get(2)).isEqualTo("honux");
+        RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
+
+        boolean gamePlaying = racingGame.isGamePlaying();
+        assertThat(gamePlaying).isTrue();
+    }
+
+    @DisplayName("게임이 종료되었다면, 종료된 상태임을 확인할 수 있다.")
+    @Test
+    void is_game_ended_test() {
+        String carNames = "pobi,crong,honux";
+        int roundToPlay = 2;
+
+        RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
+        racingGame.proceedRound();
+        racingGame.proceedRound();
+
+        boolean gameEnded = racingGame.isGameEnded();
+        assertThat(gameEnded).isTrue();
     }
 }

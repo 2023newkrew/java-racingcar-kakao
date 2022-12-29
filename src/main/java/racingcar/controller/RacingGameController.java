@@ -19,8 +19,8 @@ public class RacingGameController {
     public void play() {
         initializeGame();
         racingGameView.printRoundResultMessage();
-        while (racingGame.checkWinners().isEmpty()) {
-            racingGame.proceedGame();
+        while (racingGame.isGamePlaying()) {
+            racingGame.proceedRound();
             Map<String, Integer> roundResult = racingGame.announceRoundResult();
             racingGameView.printRoundResult(roundResult);
         }
@@ -34,7 +34,7 @@ public class RacingGameController {
     }
 
     private void announceWinner() {
-        List<String> winners = racingGame.checkWinners().get();
+        List<String> winners = racingGame.announceWinners();
         racingGameView.printWinners(winners);
     }
 }

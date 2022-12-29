@@ -56,7 +56,7 @@
 - [x] 불필요한 인스턴스 변수를 제거하기 (RandomNumberSelector)
 - [x] 아무런 행위를 하지 않는 메서드 제거
 - [ ] Map<Key, Value\> 사용에 대한 재고
-- [ ] Optional.isPresent() / Optional.isEmpty() => boolean으로 리팩터링
+- [x] Optional.isPresent() / Optional.isEmpty() => boolean으로 리팩터링
 - [ ] 유지 보수에 용이한 테스트 코드를 고민해보기
 - [ ] 유지 보수에 용이한 테스트 코드로 변경해보기
 - [ ] View에 알맞지 않은 Input에 대해 다시 입력받는 로직 구현

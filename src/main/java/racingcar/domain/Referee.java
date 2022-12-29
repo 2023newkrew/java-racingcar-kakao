@@ -42,8 +42,12 @@ public class Referee {
         }
     }
 
-    public boolean isGameEnd() {
+    public boolean isGameEnded() {
         return this.currentRound == this.roundToPlay;
+    }
+
+    public boolean isGamePlaying() {
+        return this.currentRound < this.roundToPlay;
     }
 
     public List<String> announceWinners() {

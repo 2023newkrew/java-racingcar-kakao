@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class RacingGame {
 
@@ -23,14 +22,19 @@ public class RacingGame {
         return registeredCars;
     }
 
-    public Optional<List<String>> checkWinners() {
-        if (referee.isGameEnd()) {
-            return Optional.of(referee.announceWinners());
-        }
-        return Optional.empty();
+    public List<String> announceWinners() {
+        return referee.announceWinners();
     }
 
-    public void proceedGame() {
+    public boolean isGameEnded() {
+        return referee.isGameEnded();
+    }
+
+    public boolean isGamePlaying() {
+        return referee.isGamePlaying();
+    }
+
+    public void proceedRound() {
         referee.moveCars();
     }
 

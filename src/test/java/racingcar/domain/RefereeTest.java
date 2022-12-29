@@ -7,7 +7,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
-public class RefereeTest {
+class RefereeTest {
 
     @Test
     void create_referee_test() {
@@ -85,15 +85,15 @@ public class RefereeTest {
         Referee referee = new Referee(3, registeredCars, moveNumberSelector);
 
         referee.moveCars();
-        boolean isGameEnded1 = referee.isGameEnd();
+        boolean isGameEnded1 = referee.isGameEnded();
         assertThat(isGameEnded1).isFalse();
 
         referee.moveCars();
-        boolean isGameEnded2 = referee.isGameEnd();
+        boolean isGameEnded2 = referee.isGameEnded();
         assertThat(isGameEnded2).isFalse();
 
         referee.moveCars();
-        boolean isGameEnded3 = referee.isGameEnd();
+        boolean isGameEnded3 = referee.isGameEnded();
         assertThat(isGameEnded3).isTrue();
     }
 
