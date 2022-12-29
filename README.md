@@ -62,4 +62,4 @@
 - [x] View에 알맞지 않은 Input에 대해 다시 입력받는 로직 구현
 - [x] Controller에 DTO를 도입하여 도메인 보호
 - [ ] 생성자 주입을 통해 final 처리할 수 있는 인스턴스 변수라면 리팩터링하기
-- [ ] MoveThreshold를 자동차가 자체적으로 가지도록 수정
+- [x] MoveThreshold를 자동차가 자체적으로 가지도록 수정

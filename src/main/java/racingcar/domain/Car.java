@@ -2,6 +2,8 @@ package racingcar.domain;
 
 public class Car {
 
+    private static final int MOVE_THRESHOLD = 4;
+
     private final String carName;
     private int position;
 
@@ -20,8 +22,10 @@ public class Car {
         }
     }
 
-    public void move() {
-        this.position++;
+    public void move(int number) {
+        if (number >= MOVE_THRESHOLD) {
+            this.position++;
+        }
     }
 
     public boolean isSamePosition(int position) {

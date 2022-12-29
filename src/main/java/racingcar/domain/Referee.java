@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 public class Referee {
 
-    public static final int MOVE_THRESHOLD = 4;
-
     private final int roundToPlay;
     private int currentRound;
     private final List<Car> registeredCars;
@@ -29,15 +27,9 @@ public class Referee {
     public void moveCars() {
         for (Car car : registeredCars) {
             int number = numberSelector.selectNumber();
-            moveCar(car, number);
+            car.move(number);
         }
         currentRound++;
-    }
-
-    private void moveCar(Car car, int number) {
-        if (number >= MOVE_THRESHOLD) {
-            car.move();
-        }
     }
 
     public boolean isGameEnded() {
