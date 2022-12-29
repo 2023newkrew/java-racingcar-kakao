@@ -21,7 +21,7 @@ public class RacingSimulator {
 
         outputView.printExecuteResultMessage();
         while (!racingGame.isFinished()) {
-            racingGame.move();
+            racingGame.moveCars();
             outputView.printPositions(racingGame.getPositions());
         }
         outputView.printWinners(racingGame.getWinners());

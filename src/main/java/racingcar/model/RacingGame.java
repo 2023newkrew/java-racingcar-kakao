@@ -16,7 +16,7 @@ public class RacingGame {
     }
 
     private Cars createCars(NumberGenerator numberGenerator, List<String> names) {
-        if (names.size() == 0) {
+        if (names.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
@@ -27,7 +27,7 @@ public class RacingGame {
         return new Cars(numberGenerator, cars);
     }
 
-    public void move() {
+    public void moveCars() {
         if(isFinished()){
             throw new IllegalStateException();
         }

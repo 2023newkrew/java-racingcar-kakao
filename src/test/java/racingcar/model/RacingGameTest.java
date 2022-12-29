@@ -31,10 +31,10 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
         RacingGame racingGame = new RacingGame(2, numberGenerator, List.of("a"));
 
-        racingGame.move();
-        racingGame.move();
+        racingGame.moveCars();
+        racingGame.moveCars();
 
-        assertThatThrownBy(() -> racingGame.move())
+        assertThatThrownBy(() -> racingGame.moveCars())
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -45,7 +45,7 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(value);
         RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         Positions positions = racingGame.getPositions();
         assertThat(positions.getPositionByName("a")).isEqualTo(1);
@@ -58,7 +58,7 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(value);
         RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         Positions positions = racingGame.getPositions();
         assertThat(positions.getPositionByName("a")).isEqualTo(0);
@@ -70,7 +70,7 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
         RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         Positions positions = racingGame.getPositions();
         assertThat(positions.getPositionByName("a")).isEqualTo(1);
@@ -88,9 +88,9 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
-        racingGame.move();
-        racingGame.move();
+        racingGame.moveCars();
+        racingGame.moveCars();
+        racingGame.moveCars();
         Winners winners = racingGame.getWinners();
 
         assertThat(winners.getWinnerCars())
@@ -109,9 +109,9 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
-        racingGame.move();
-        racingGame.move();
+        racingGame.moveCars();
+        racingGame.moveCars();
+        racingGame.moveCars();
 
         Winners winners = racingGame.getWinners();
         assertThat(winners.getWinnerCars())
@@ -130,7 +130,7 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         assertThatThrownBy(() -> racingGame.getWinners())
                 .isInstanceOf(IllegalStateException.class);
