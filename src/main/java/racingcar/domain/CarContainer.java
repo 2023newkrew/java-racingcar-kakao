@@ -3,47 +3,53 @@ package racingcar.domain;
 import racingcar.domain.model.RacingCar;
 import racingcar.util.RandomUtil;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
 public class CarContainer {
-    private final List<RacingCar> racingCars = new ArrayList<>();
+    private final List<RacingCar> cars;
 
-    public List<RacingCar> getCars() {
-        return racingCars;
+    public CarContainer(List<RacingCar> cars) {
+        this.cars = cars;
+        checkEmptyOrNull();
+        checkDuplicates();
     }
 
-    public void add(RacingCar other) {
-        if (hasDuplicatedCar(other)) {
-            throw new RuntimeException();
-        }
-        racingCars.add(other);
+    public List<RacingCar> getCars() {
+        return cars;
     }
 
     public void moveAll() {
         RandomUtil randomUtil = new RandomUtil();
-        for (RacingCar racingCar : racingCars) {
-            racingCar.move(randomUtil.generateRandom());
-        }
+        cars.forEach(RacingCar::move);
     }
 
     public List<RacingCar> selectWinners() {
-        List<RacingCar> winners = new ArrayList<>();
-        OptionalInt maxPosition = racingCars.stream()
-                .mapToInt(RacingCar::getPosition)
-                .max();
-        if (maxPosition.isEmpty()) {
-            return winners;
-        }
-        racingCars.stream()
-                .filter(car -> car.getPosition() == maxPosition.getAsInt())
-                .forEach(winners::add);
-        return winners;
+        return getCarsWithMaxPosition();
     }
 
-    private boolean hasDuplicatedCar(RacingCar other) {
-        return racingCars.stream()
-                .anyMatch(car -> car.equals(other));
+    private List<RacingCar> getCarsWithMaxPosition() {
+        int maxPosition = cars.stream()
+                .mapToInt(RacingCar::getPosition)
+                .max()
+                .getAsInt();
+        return cars.stream()
+                .filter(e -> e.getPosition() == maxPosition)
+                .collect(Collectors.toList());
+    }
+
+    private void checkEmptyOrNull() {
+        if (cars == null || cars.isEmpty()) {
+            throw new RuntimeException();
+        }
+    }
+
+    private void checkDuplicates() {
+        long distinctCount = cars.stream()
+                .distinct()
+                .count();
+        if (distinctCount < cars.size()) {
+            throw new RuntimeException();
+        }
     }
 }

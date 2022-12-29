@@ -3,7 +3,7 @@ package racingcar.view;
 import racingcar.domain.GameResult;
 import racingcar.domain.RoundRecord;
 import racingcar.domain.dto.CarStatusDto;
-import racingcar.domain.model.RacingCar;
+import racingcar.domain.dto.CarWinnerDto;
 
 import java.util.List;
 import java.util.Scanner;
@@ -27,7 +27,7 @@ public class RacingCarView {
         return Integer.parseInt(sc.next());
     }
 
-    public void printWinners(List<RacingCar> winners) {
+    public void printWinners(List<CarWinnerDto> winners) {
         StringBuilder stringBuilder = new StringBuilder();
         winners.forEach(winner -> {
             stringBuilder.append(winner.getName());
