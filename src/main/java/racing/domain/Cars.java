@@ -1,5 +1,6 @@
 package racing.domain;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import racing.dto.CarDTO;
@@ -19,28 +20,19 @@ public class Cars {
     }
 
     public List<CarDTO> getCarDtoList() {
-        List<CarDTO> carDtoList = cars.stream()
+        return cars.stream()
                 .map(Car::toDTO)
                 .collect(Collectors.toList());
-        return carDtoList;
     }
 
-    public List<CarName> getWinners() {
+    public List<CarName> getWinners(Comparator<CarDTO> comparator) {
         List<CarDTO> carDtoList = getCarDtoList();
-        CarDtoDistanceComparator distanceComparator = new CarDtoDistanceComparator();
-        carDtoList.sort(distanceComparator);
+        carDtoList.sort(comparator);
         CarDTO lastWinner = carDtoList.get(cars.size() - 1);
         List<CarName> winners = carDtoList.stream()
-                .filter(car -> distanceComparator.compare(lastWinner, car) == 0)
+                .filter(car -> comparator.compare(lastWinner, car) == 0)
                 .map(CarDTO::getName)
                 .collect(Collectors.toList());
         return winners;
-    }
-
-    public List<CarDTO> getStatus() {
-        List<CarDTO> status = cars.stream()
-                .map(Car::toDTO)
-                .collect(Collectors.toList());
-        return status;
     }
 }

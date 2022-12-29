@@ -2,12 +2,9 @@ package racing.dto;
 
 import java.util.Comparator;
 
-public class CarDtoDistanceComparator implements Comparator<Object> {
+public class CarDtoDistanceComparator implements Comparator<CarDTO> {
     @Override
-    public int compare(Object o1, Object o2) {
-        if (!(o1 instanceof CarDTO) || !(o2 instanceof CarDTO)) {
-            throw new IllegalArgumentException("[ERROR] 인자 타입을 확인해주세요.");
-        }
-        return ((CarDTO) o1).getDistance() - ((CarDTO) o2).getDistance();
+    public int compare(CarDTO o1, CarDTO o2) {
+        return Integer.compare(o1.getDistance(), o2.getDistance());
     }
 }
