@@ -7,7 +7,7 @@ public class Car {
     private static final int MOVE_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 1;
     private static final int CAR_VELOCITY = 1;
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
