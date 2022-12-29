@@ -15,4 +15,9 @@ public class RacingGameScoreView {
         String winners = racingCars.stream().map(RacingCar::getName).collect(Collectors.joining(", "));
         System.out.println(winners + "가 최종 우승했습니다.");
     }
+
+    public void printStartMessage(List<RacingCar> racingCars) {
+        System.out.println("\n실행 결과");
+        printRacingCarDist(racingCars);
+    }
 }
