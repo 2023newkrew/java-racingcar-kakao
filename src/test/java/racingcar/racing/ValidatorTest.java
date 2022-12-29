@@ -16,7 +16,7 @@ public class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"asdasdasd", "azx1@!$", "afxvcx@3", "", " ", "ass "})
+    @ValueSource(strings = {"asdasdasd", "azx1@!$", "afxvcx@3", "", " "})
     void invalidName(String name) {
         assertThat(Validator.isValidSingleName(name)).isFalse();
     }
