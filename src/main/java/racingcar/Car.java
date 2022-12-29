@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Car {
     public static final int MIN_CAR_NAME_LENGTH = 1;
     public static final int MAX_CAR_NAME_LENGTH = 5;
-    
+
     private static final int POWER_THRESHOLD = 4;
 
     private final String name;
@@ -17,11 +17,12 @@ public class Car {
     }
 
     public static Car of(CarInfo info, Engine engine) {
-        return new Car(info, engine);
+        String validCarName = getValidCarName(info.getName());
+        return new Car(CarInfo.of(validCarName, info.getPosition()), engine);
     }
 
     private Car(CarInfo carInfo, Engine engine) {
-        this.name = getValidCarName(carInfo.getName());
+        this.name = carInfo.getName();
         this.position = carInfo.getPosition();
         this.engine = engine;
     }

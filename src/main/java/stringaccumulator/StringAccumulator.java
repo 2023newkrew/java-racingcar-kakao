@@ -9,13 +9,20 @@ public class StringAccumulator {
     String separator;
     String content;
 
-    private StringAccumulator(String str) {
-        content = str;
+    private StringAccumulator(String separator, String content) {
+        this.separator = separator;
+        this.content = content;
+    }
+
+    public static StringAccumulator from(String str) {
+        String content = str;
+        String separator = null;
         if (hasSeparator(str)) {
             int newlineNextIndex = getNewlineIndex(str) + 1;
             separator = str.substring(0, newlineNextIndex);
             content = str.substring(newlineNextIndex);
         }
+        return new StringAccumulator(separator, content);
     }
 
     private static boolean hasSeparator(String str) {
@@ -27,10 +34,6 @@ public class StringAccumulator {
         if (newlineIndex == -1)
             throw new RuntimeException("Invalid string.");
         return newlineIndex;
-    }
-
-    public static StringAccumulator from(String str) {
-        return new StringAccumulator(str);
     }
 
     public long accumulate() {

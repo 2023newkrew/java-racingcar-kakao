@@ -15,17 +15,19 @@ public class StringSplitter {
 
     List<String> separators;
 
-    public static StringSplitter from(String separatorFormat) {
-        return new StringSplitter(separatorFormat);
+    private StringSplitter(List<String> separators) {
+        this.separators = separators;
     }
 
-    private StringSplitter(String separatorFormat) {
-        separators = new ArrayList<>(DEFAULT_SEPARATORS);
+    public static StringSplitter from(String separatorFormat) {
+        List<String> separators = new ArrayList<>(DEFAULT_SEPARATORS);
         if (separatorFormat == null)
-            return;
+            return new StringSplitter(separators);
         checkFormatValidation(separatorFormat);
-        addCustomSeparator(separatorFormat);
+        addCustomSeparator(separatorFormat, separators);
+        return new StringSplitter(separators);
     }
+
 
     private static void checkFormatValidation(String separatorFormat) {
         if (isInvalidFormat(separatorFormat)) {
@@ -37,7 +39,7 @@ public class StringSplitter {
         return !separatorFormat.startsWith(PREFIX) || !separatorFormat.endsWith(SUFFIX);
     }
 
-    private void addCustomSeparator(String separatorFormat) {
+    private static void addCustomSeparator(String separatorFormat, List<String> separators) {
         int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
         String customSeparator = separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
         if (!customSeparator.isEmpty())

@@ -18,29 +18,29 @@ public class RacingCarModel {
     }
 
     public static RacingCarModel from(List<Car> cars) {
+        checkCarsEmpty(cars);
+        checkContainsNull(cars);
+        checkNameDuplication(cars);
         return new RacingCarModel(cars);
     }
 
     private RacingCarModel(List<Car> cars) {
         this.cars = cars;
-        checkCarsEmpty();
-        checkContainsNull();
-        checkNameDuplication();
     }
 
-    private void checkCarsEmpty() {
+    private static void checkCarsEmpty(List<Car> cars) {
         if (Objects.isNull(cars) || cars.isEmpty()) {
             throw new RuntimeException("Cars is Empty.");
         }
     }
 
-    private void checkContainsNull() {
+    private static void checkContainsNull(List<Car> cars) {
         if (cars.stream().anyMatch(Objects::isNull)) {
             throw new RuntimeException("Cars has null.");
         }
     }
 
-    private void checkNameDuplication() {
+    private static void checkNameDuplication(List<Car> cars) {
         if (getDistinctCarsCount(cars) != cars.size()) {
             throw new RuntimeException("Car name Duplicate.");
         }
