@@ -18,8 +18,8 @@ public class RacingTest {
         Assertions.assertThat(cars.length).isEqualTo(3);
 
         for(int i =0; i<3; i++) {
-            Assertions.assertThat(cars[i].toString()).isEqualTo(names[i]);
-            Assertions.assertThat(cars[i].displayCurrentPosition()).isEqualTo(names[i]+" : -");
+            Assertions.assertThat(cars[i].name()).isEqualTo(names[i]);
+            Assertions.assertThat(cars[i].position()).isEqualTo(0);
         }
     }
 
@@ -40,7 +40,7 @@ public class RacingTest {
             cars[4].move(bound -> 2);
         }
 
-        Assertions.assertThat(racing.getOneWinner().displayCurrentPosition()).isEqualTo("c : ------");
+        Assertions.assertThat(racing.getOneWinner().position()).isEqualTo(ROUND);
     }
 
     @DisplayName("여러 명의 승자가 의도한대로 결정되는가")

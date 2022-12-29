@@ -6,10 +6,11 @@ import racingcar.view.ResultView;
 
 public class Main {
     public static void main(String[] args) {
-        Racing racing = new Racing();
-
-        racing.generateCars(InputView.scanCarNames());
+        String[] carNames = InputView.scanCarNames();
         int trialCount = InputView.scanTrialCount();
+
+        Racing racing = new Racing();
+        racing.generateCars(carNames);
 
         ResultView.printRacingStart();
         for (int i = 0; i < trialCount; i++) {
