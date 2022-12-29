@@ -1,9 +1,14 @@
 package calculator.domain;
 
+import calculator.constant.RegexConstant;
+import calculator.util.RegexUtils;
 import calculator.util.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static calculator.constant.RegexConstant.*;
+import static calculator.util.RegexUtils.getMatcherForInput;
 
 public class Input {
     String input;
@@ -18,11 +23,11 @@ public class Input {
         input = newValue;
     }
 
-    public Matcher getMatcher() {
-        return Pattern.compile("//(.)\n(.*)").matcher(input);
-    }
-
     public String[] split(String regex) {
         return input.split(regex);
+    }
+
+    public Matcher getMatcher() {
+        return getMatcherForInput(ADD_CUSTOM_DELIMITER, input);
     }
 }

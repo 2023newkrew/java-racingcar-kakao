@@ -1,5 +1,7 @@
 package calculator.domain;
 
+import calculator.util.RegexUtils;
+
 import java.util.regex.Matcher;
 public class Prompt {
     private final Input input;
