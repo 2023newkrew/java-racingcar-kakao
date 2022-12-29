@@ -30,6 +30,7 @@ public class Racing {
             int random = Utils.getRandomNumber();
             car.move(random);
         }
+        currentRoundNum++;
     }
 
     public List<Car> getRoundResult() { //정보를 보내는 부분
