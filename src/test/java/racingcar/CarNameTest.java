@@ -4,12 +4,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Car;
 
 import java.util.Arrays;
 import java.util.List;
 
 
-public class NamingAssignmentTest {
+public class CarNameTest {
 
     @Test
     public void splitInput(){
@@ -25,7 +26,7 @@ public class NamingAssignmentTest {
         InputParser inputParser = new InputParser();
 
         Assertions.assertThatNoException()
-                .isThrownBy(() -> inputParser.checkCarNameLength(testString));
+                .isThrownBy(() -> new Car(testString));
     }
 
     @ParameterizedTest
@@ -34,7 +35,7 @@ public class NamingAssignmentTest {
         InputParser inputParser = new InputParser();
 
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> inputParser.checkCarNameLength(testString));
+                .isThrownBy(() -> new Car(testString));
 
     }
 }

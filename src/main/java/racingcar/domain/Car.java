@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 public class Car extends MovableStrategy {
-    private final String name;
+    private final CarName carName;
     private int position;
 
     public Car() {
@@ -9,7 +9,7 @@ public class Car extends MovableStrategy {
     }
 
     public Car(final String name) {
-        this.name = name;
+        this.carName = new CarName(name);
     }
 
     public void moveOne(boolean canMove) {
@@ -22,7 +22,7 @@ public class Car extends MovableStrategy {
         return position;
     }
 
-    public String getName() { return name; }
+    public String getName() { return carName.toString(); }
 
     public void move(){
         int randomNumber = generateRandomNumber();
@@ -33,7 +33,7 @@ public class Car extends MovableStrategy {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(name);
+        sb.append(carName);
         sb.append(" : ");
         sb.append("-".repeat(position));
 
