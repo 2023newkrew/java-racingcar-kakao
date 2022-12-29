@@ -22,30 +22,30 @@ public class CalculatorTest {
 
     @Test
     public void stringSplitComma(){
-        String origin_str = "0,1,2";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Arrays.asList(0, 1, 2));
+        String originStr = "0,1,2";
+        List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
+        Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
     public void stringSplitColon(){
-        String origin_str = "0:1:2";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Arrays.asList(0, 1, 2));
+        String originStr = "0:1:2";
+        List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
+        Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
     public void stringSplitClonAndComma(){
-        String origin_str = "0,1:2";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Arrays.asList(0, 1, 2));
+        String originStr = "0,1:2";
+        List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
+        Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
     }
 
     @Test
     public void stringEmptyString() {
-        String origin_str = "";
-        List<Integer> splitted_numberes = calculator.splitNumbers(origin_str, ",|:");
-        Assertions.assertThat(splitted_numberes).isEqualTo(Collections.emptyList());
+        String originStr = "";
+        List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
+        Assertions.assertThat(splitNumbers).isEqualTo(Collections.emptyList());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CalculatorTest {
     public void splitNonStringFormat() {
         assertThrows(InvalidFormatException.class, (() -> {
             String originStr = "1,1,e";
-            List<Integer> splitted_numberes = calculator.splitNumbers(originStr, ",|:");
+            List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
         }));
     }
 
@@ -66,7 +66,7 @@ public class CalculatorTest {
     public void negativeNumberFormat(){
         assertThrows(InvalidFormatException.class, (() -> {
             String originStr = "1,1,-2";
-            List<Integer> splitted_numberes = calculator.splitNumbers(originStr, ",|:");
+            List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
         }));
     }
 
