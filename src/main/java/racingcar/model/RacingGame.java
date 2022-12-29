@@ -28,11 +28,16 @@ public class RacingGame {
         this.turn += 1;
     }
 
-    public List<Car> getFarthestCars() {
+    private int getMaxPosition() {
         int maxPosition = -1;
         for(Car car : this.cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
         }
+        return maxPosition;
+    }
+
+    public List<Car> getFarthestCars() {
+        int maxPosition = this.getMaxPosition();
         List<Car> farthestCars = new ArrayList<>();
         for(Car car : this.cars) {
             this.collectFarthest(farthestCars, car, maxPosition);
