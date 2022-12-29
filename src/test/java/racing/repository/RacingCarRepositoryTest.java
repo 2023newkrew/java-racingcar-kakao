@@ -22,7 +22,7 @@ public class RacingCarRepositoryTest {
         RacingCarRepository racingCarRepository = new RacingCarRepository(cars);
 
         //when & then
-        assertThat(racingCarRepository.getWinners()).hasSameElementsAs(expected);
+        assertThat(racingCarRepository.findAllWinnerCarName()).hasSameElementsAs(expected);
     }
 
     private static Stream<Arguments> carListGenerator(){

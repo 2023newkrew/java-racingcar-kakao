@@ -1,45 +1,33 @@
 package racing.repository;
 
-import racing.exception.ErrorCode;
-import racing.exception.RacingException;
 import racing.model.Car;
+import racing.model.Cars;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class RacingCarRepository {
-    private static final Integer CARNAME_MAX_LENGTH = 5;
+    private final Cars cars;
 
-    private final List<Car> cars;
+    public RacingCarRepository(){
+        this.cars = new Cars();
+    }
 
     public RacingCarRepository(List<Car> cars){
-        validateCarName(cars);
-        this.cars = cars;
+        this.cars = new Cars(cars);
+    }
+    public List<String> findAllWinnerCarName() {
+        return cars.getWinnerCarName();
     }
 
-    private void validateCarName(List<Car> cars){
-        cars.forEach(car -> {
-            if(car.getName().isBlank()){
-                throw new RacingException(ErrorCode.EMPTY_CAR_NAME);
-            }
-            if(car.getName().length() > CARNAME_MAX_LENGTH){
-                throw new RacingException(ErrorCode.TOO_LONG_CAR_NAME);
-            }
-        });
-
+    public List<String> findAllCarStatus(){
+        return cars.getAllCarStatusStrings();
     }
 
-    public List<Car> getCars(){
+    public void saveCars(List<Car> cars){
+        this.cars.addCars(cars);
+    }
+
+    public Cars getCars(){
         return cars;
-    }
-
-    public List<String> getWinners() {
-        Integer max = Collections.max(cars).getPosition();
-        return cars.stream()
-                .filter(car -> Objects.equals(car.getPosition(), max))
-                .map(Car::getName)
-                .collect(Collectors.toList());
     }
 }
