@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -78,7 +77,7 @@ class CarTest {
         @ParameterizedTest
         @MethodSource
         void should_returnPosition_when_moveOrStop(boolean move, int position) {
-            when(engine.move()).thenReturn(move);
+            when(engine.movable()).thenReturn(move);
             Car car = Car.from("test", engine);
             car.moveOrStop();
             CarDto carDto = car.getCarInfo();

@@ -20,7 +20,7 @@ public class Engine {
         this.maxPower = maxPower;
     }
 
-    public boolean move() {
+    public boolean movable() {
         return RANDOM.nextInt(maxPower) >= POWER_THRESHOLD;
     }
 }

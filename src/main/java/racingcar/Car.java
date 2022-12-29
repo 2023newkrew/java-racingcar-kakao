@@ -47,7 +47,7 @@ public class Car {
     }
 
     public void moveOrStop() {
-        if (engine.move()) {
+        if (engine.movable()) {
             position++;
         }
     }
