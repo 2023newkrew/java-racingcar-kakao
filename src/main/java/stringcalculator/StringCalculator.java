@@ -24,12 +24,11 @@ public class StringCalculator {
     private int calculate(String input) {
         String str = input;
         if (registerDelimiterIfNotExist(input)) {
-            str = parseNumberContainingString(input);
+            str = parseNumberContainingString(input).orElseThrow(RuntimeException::new);
         }
 
-
+        PositiveIntegerList.validate(splitByDelimiter(str));
         PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitByDelimiter(str));
-        positiveIntegerList.validate();
         return positiveIntegerList.calculateSum();
     }
 
@@ -52,14 +51,14 @@ public class StringCalculator {
         return false;
     }
 
-    public String parseNumberContainingString(String input) {
+    public Optional<String> parseNumberContainingString(String input) {
         Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
         if (m.find()) {
-            return m.group(2);
+            return Optional.of(m.group(2));
         }
 
-        return null;
+        return Optional.empty();
     }
 
     public String[] splitByDelimiter(String input) {

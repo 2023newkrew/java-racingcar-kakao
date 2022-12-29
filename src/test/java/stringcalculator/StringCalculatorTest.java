@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -79,7 +78,7 @@ public class StringCalculatorTest {
         String input = "//_\n6_1:5";
 
         stringCalculator.registerDelimiterIfNotExist(input);
-        String str = stringCalculator.parseNumberContainingString(input);
+        String str = stringCalculator.parseNumberContainingString(input).orElseThrow(RuntimeException::new);
         String[] result = stringCalculator.splitByDelimiter(str);
 
         assertThat(result.length).isEqualTo(3);

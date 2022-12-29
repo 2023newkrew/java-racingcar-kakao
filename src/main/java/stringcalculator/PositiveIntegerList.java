@@ -20,8 +20,9 @@ public class PositiveIntegerList {
                 .sum();
     }
 
-    public void validate() {
-        list.stream()
+    public static void validate(String[] arr) {
+        Arrays.stream(arr)
+                .map(Integer::parseInt)
                 .filter(value -> value < 0)
                 .findAny()
                 .ifPresent(value -> { throw new RuntimeException(); });
