@@ -1,7 +1,5 @@
 package racing.domain;
 
-import java.util.Objects;
-
 public class CarName {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -14,11 +12,11 @@ public class CarName {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 이름은 공백으로만 이루어질 수 없습니다.");
         }
-        validate(name);
+        validateLength(name);
         this.name = name;
     }
 
-    public void validate(String name) {
+    public void validateLength(String name) {
         if (name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(TOO_SHORT_NAME_EXCEPTION_MESSAGE);
         }

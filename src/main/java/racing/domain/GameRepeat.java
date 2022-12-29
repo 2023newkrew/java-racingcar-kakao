@@ -9,11 +9,11 @@ public class GameRepeat {
     private int remaining;
 
     public GameRepeat(int repeat) {
-        validate(repeat);
+        validateRange(repeat);
         this.remaining = repeat;
     }
 
-    public void validate(int repeat) {
+    public void validateRange(int repeat) {
         if (repeat < MIN_REPEAT) {
             throw new IllegalArgumentException(NOT_ENOUGH_REPEAT_EXCEPTION_MESSAGE);
         }
