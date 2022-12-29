@@ -2,6 +2,7 @@ package racing.service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import racing.domain.CarName;
 import racing.domain.Cars;
@@ -11,12 +12,16 @@ import racing.dto.CarDtoDistanceComparator;
 
 public class Game {
     private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름은 중복될 수 없습니다.";
+    public static final String NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
     private final Comparator<CarDTO> distanceComparator = new CarDtoDistanceComparator();
     private final Cars cars;
     private GameRepeat gameRepeat;
 
 
     public Game(final List<String> rawCarNames) {
+        if (Objects.isNull(rawCarNames) || rawCarNames.isEmpty()) {
+            throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE);
+        }
         validateUniqueness(rawCarNames);
         List<CarName> carNames = wrapCarNames(rawCarNames);
         cars = new Cars(carNames);

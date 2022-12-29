@@ -2,14 +2,18 @@ package racing.domain;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import racing.dto.CarDTO;
-import racing.dto.CarDtoDistanceComparator;
 
 public class Cars {
+    public static final String NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
     private final List<Car> cars;
 
     public Cars(final List<CarName> carNames) {
+        if (Objects.isNull(carNames) || carNames.isEmpty()) {
+            throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT_EXCEPTION_MESSAGE);
+        }
         cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
