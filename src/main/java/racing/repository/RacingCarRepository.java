@@ -12,9 +12,6 @@ public class RacingCarRepository {
         this.cars = new Cars();
     }
 
-    public RacingCarRepository(List<Car> cars){
-        this.cars = new Cars(cars);
-    }
     public List<String> findAllWinnerCarName() {
         return cars.getWinnerCarName();
     }

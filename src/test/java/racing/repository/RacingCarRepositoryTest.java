@@ -19,7 +19,8 @@ public class RacingCarRepositoryTest {
     @MethodSource("carListGenerator")
     void Car_리스트가_주어졌을때_가장_멀리간_Car의_이름을_담은_리스트를_반환(List<Car> cars, List<String> expected){
         //given
-        RacingCarRepository racingCarRepository = new RacingCarRepository(cars);
+        RacingCarRepository racingCarRepository = new RacingCarRepository();
+        racingCarRepository.saveCars(cars);
 
         //when & then
         assertThat(racingCarRepository.findAllWinnerCarName()).hasSameElementsAs(expected);
@@ -40,7 +41,7 @@ public class RacingCarRepositoryTest {
     public void Car_이름으로_빈문자열이_입력되면_예외를_반환(List<Car> input){
         //given
         //when & then
-        assertThatThrownBy(() -> new RacingCarRepository(input))
+        assertThatThrownBy(() -> new RacingCarRepository().saveCars(input))
                 .isInstanceOf(RacingException.class)
                 .hasMessage(ErrorCode.EMPTY_CAR_NAME.getMessage());
     }
@@ -57,7 +58,7 @@ public class RacingCarRepositoryTest {
     public void 다섯자_이상의_Car_이름이_입력되면_예외를_반환(List<Car> input){
         //given
         //when & then
-        assertThatThrownBy(() -> new RacingCarRepository(input))
+        assertThatThrownBy(() -> new RacingCarRepository().saveCars(input))
                 .isInstanceOf(RacingException.class)
                 .hasMessage(ErrorCode.TOO_LONG_CAR_NAME.getMessage());
     }
