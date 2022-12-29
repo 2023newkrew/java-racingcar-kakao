@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -29,6 +30,7 @@ class RacingScoreboardTest {
         System.setOut(new PrintStream(out));
     }
 
+    @DisplayName("자동차들의 이름과 distance를 -로 출력한다")
     @Test
     void printScore() {
         //given
@@ -44,6 +46,7 @@ class RacingScoreboardTest {
         assertThat(out.toString()).hasToString(expected);
     }
 
+    @DisplayName("RacingCar 배열을 받아 우승자 목록을 출력한다")
     @Test
     void printWinners() {
         //given
@@ -56,6 +59,7 @@ class RacingScoreboardTest {
         assertThat(out.toString()).hasToString(expected);
     }
 
+    @DisplayName("RacingCar 배열을 받아 우승자를 출력한다")
     @Test
     void printWinners_singleWinner() {
         //given

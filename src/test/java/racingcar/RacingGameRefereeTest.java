@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -8,6 +9,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class RacingGameRefereeTest {
+
+    @DisplayName("공동 우승자가 발생할 수 있다")
     @Test
     void findWinners1() {
         //given
@@ -25,6 +28,7 @@ class RacingGameRefereeTest {
                 .containsExactly(car2, car3);
     }
 
+    @DisplayName("distance가 가장 큰 RacingCar가 우승자이다")
     @Test
     void findWinners2() {
         //given
@@ -42,6 +46,7 @@ class RacingGameRefereeTest {
                 .containsExactly(car3);
     }
 
+    @DisplayName("RacingCar가 1개인 경우 해당 RacingCar가 우승자이다")
     @Test
     void findWinners3() {
         //given
