@@ -21,7 +21,6 @@ public class Parser {
     }
 
     public Optional<String> getCustomDelimiter() {
-        content = this.content.replace("\\n", "\n");
         Matcher m = pattern.matcher(content);
         if (m.find()) {
             content = m.group(2);

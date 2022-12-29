@@ -13,6 +13,10 @@ public class InputUI {
             return "0";
         }
 
+        if(input.startsWith("//")) {
+            input = input.replace("\\n", "\n");
+        }
+
         return input;
     }
 }
