@@ -1,6 +1,7 @@
 package calculator;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,43 +10,38 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import java.util.Arrays;
 
 public class NumberParserTest {
-    @Test
-    void inputToStringArray() {
-        NumberParser numberParser = new NumberParser("1:2:3");
-        Assertions.assertThat(numberParser.inputToStringArray()).containsExactly("1","2","3");
+    NumberParser numberParser;
+
+    @BeforeEach
+    void initialize(){
+        numberParser = new NumberParser();
     }
     @Test
-    void customInputToStringArray() {
-        NumberParser numberParser = new NumberParser("//s\n1s2s3");
-        Assertions.assertThat(numberParser.inputToStringArray()).containsExactly("1","2","3");
+    void inputToIntArray() {
+        Assertions.assertThat(numberParser.inputToIntArray("1:2:3")).containsExactly(1,2,3);
+    }
+    @Test
+    void customInputToIntArray() {
+        Assertions.assertThat(numberParser.inputToIntArray("//s\n1s2s3")).containsExactly(1,2,3);
     }
 
     @Test
     void stringArrayToIntArray() {
-        NumberParser numberParser = new NumberParser("1:2:3");
-        numberParser.inputToStringArray();
-        Assertions.assertThat(numberParser.stringArrayToIntArray()).containsExactly(1,2,3);
+        Assertions.assertThat(numberParser.inputToIntArray("1:2:3")).containsExactly(1,2,3);
     }
     @Test
-    void stringArrayToIntArrayException() {
-        NumberParser numberParser = new NumberParser("a:2:3");
-        numberParser.inputToStringArray();
-
+    void ThrowIfNonNumberProvided() {
         assertThatExceptionOfType(NumberFormatException.class)
                 .isThrownBy(() -> {
-                    numberParser.stringArrayToIntArray();
+                    numberParser.inputToIntArray("a:2:3");
                 });
     }
 
     @Test
-    void negativeValueException(){
-        NumberParser numberParser = new NumberParser("-1:2:3");
-        numberParser.inputToStringArray();
-
+    void ThrowIfNegativeNumberProvided(){
         assertThatExceptionOfType(NegativeValueException.class)
                 .isThrownBy(() -> {
-                    numberParser.stringArrayToIntArray();
+                    numberParser.inputToIntArray("-1:2:3");
                 });
-
     }
 }
