@@ -1,8 +1,8 @@
-package racingcar.engine;
+package racingcar.engine.view;
 
 public class InputParser {
 
-    public String[] splitByComma(String input) {
+    public static String[] splitByComma(String input) {
         String[] result = input.split(",");
         if (result.length < 2) {
             throw new RuntimeException("경주에는 최소 2대 이상의 자동차가 필요합니다.");
@@ -10,7 +10,7 @@ public class InputParser {
         return input.split(",");
     }
 
-    public int parseStringToPositiveInt(String input) {
+    public static int parseStringToPositiveInt(String input) {
         try {
             return checkZeroOrNegative(Integer.parseInt(input));
         } catch (NumberFormatException e) {
@@ -20,7 +20,7 @@ public class InputParser {
         }
     }
 
-    private int checkZeroOrNegative(int number) {
+    private static int checkZeroOrNegative(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException();
         }
