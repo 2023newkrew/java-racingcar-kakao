@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 public class StringAccumulator {
 
-    String separator;
-    String content;
+    private final String separator;
+    private final String content;
 
     private StringAccumulator(String separator, String content) {
         this.separator = separator;

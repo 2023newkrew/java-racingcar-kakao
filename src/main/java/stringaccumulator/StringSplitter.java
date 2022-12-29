@@ -13,7 +13,7 @@ public class StringSplitter {
     private static final int PREFIX_LENGTH = PREFIX.length();
     private static final int SUFFIX_LENGTH = SUFFIX.length();
 
-    List<String> separators;
+    private final List<String> separators;
 
     private StringSplitter(List<String> separators) {
         this.separators = separators;
