@@ -1,8 +1,6 @@
 package racingcar.domain;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Referee {
@@ -50,11 +48,10 @@ public class Referee {
         return this.currentRound < this.roundToPlay;
     }
 
-    public List<String> announceWinners() {
+    public List<Car> announceWinners() {
         int maxPosition = calculateMaxCarPosition();
         return this.registeredCars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
-                .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
 
@@ -66,12 +63,8 @@ public class Referee {
         return maxPosition;
     }
 
-    public Map<String, Integer> announceRoundResult() {
-        Map<String, Integer> roundResult = new LinkedHashMap<>();
-        for (Car car : registeredCars) {
-            roundResult.put(car.getCarName(), car.getPosition());
-        }
-        return roundResult;
+    public List<Car> announceRoundResult() {
+        return registeredCars;
     }
 
     public int getRoundToPlay() {
@@ -80,9 +73,5 @@ public class Referee {
 
     public int getCurrentRound() {
         return currentRound;
-    }
-
-    public List<Car> getRegisteredCars() {
-        return registeredCars;
     }
 }

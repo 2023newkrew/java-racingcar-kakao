@@ -20,7 +20,7 @@ class RefereeTest {
 
         int roundToPlay = referee.getRoundToPlay();
         int currentRound = referee.getCurrentRound();
-        List<Car> cars = referee.getRegisteredCars();
+        List<Car> cars = referee.announceRoundResult();
 
         assertThat(roundToPlay).isEqualTo(5);
         assertThat(currentRound).isEqualTo(0);
@@ -111,10 +111,10 @@ class RefereeTest {
         referee.moveCars();
         referee.moveCars();
 
-        List<String> winners = referee.announceWinners();
+        List<Car> winners = referee.announceWinners();
 
-        assertThat(winners.get(0)).isEqualTo("car1");
-        assertThat(winners.get(1)).isEqualTo("car2");
-        assertThat(winners.get(2)).isEqualTo("car3");
+        assertThat(winners.get(0)).isEqualTo(car1);
+        assertThat(winners.get(1)).isEqualTo(car2);
+        assertThat(winners.get(2)).isEqualTo(car3);
     }
 }

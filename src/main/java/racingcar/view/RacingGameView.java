@@ -1,7 +1,8 @@
 package racingcar.view;
 
+import racingcar.controller.response.CarRoundResultResponse;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class RacingGameView {
@@ -23,19 +24,20 @@ public class RacingGameView {
     }
 
     public void printRoundResultMessage() {
-        System.out.println("\n실행 결과");
+        System.out.println();
+        System.out.println("실행 결과");
     }
 
-    public void printRoundResult(Map<String, Integer> roundResult) {
-        for (Map.Entry<String, Integer> entry : roundResult.entrySet()) {
-            System.out.print(entry.getKey() + " : ");
-            printMoveStatus(entry.getValue());
+    public void printRoundResult(List<CarRoundResultResponse> carRoundResults) {
+        for (CarRoundResultResponse carRoundResult : carRoundResults) {
+            System.out.print(carRoundResult.getCarName() + " : ");
+            printMoveStatus(carRoundResult.getPosition());
             System.out.println();
         }
         System.out.println();
     }
 
-    private void printMoveStatus(Integer move) {
+    private void printMoveStatus(int move) {
         for (int i = 0; i < move; i++) {
             System.out.print("-");
         }

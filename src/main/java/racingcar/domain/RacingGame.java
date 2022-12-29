@@ -1,8 +1,10 @@
 package racingcar.domain;
 
+import racingcar.controller.response.CarRoundResultResponse;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RacingGame {
 
@@ -23,7 +25,10 @@ public class RacingGame {
     }
 
     public List<String> announceWinners() {
-        return referee.announceWinners();
+        List<Car> winners = referee.announceWinners();
+        return winners.stream()
+            .map(Car::getCarName)
+            .collect(Collectors.toList());
     }
 
     public boolean isGameEnded() {
@@ -38,7 +43,8 @@ public class RacingGame {
         referee.moveCars();
     }
 
-    public Map<String, Integer> announceRoundResult() {
-        return referee.announceRoundResult();
+    public List<CarRoundResultResponse> announceRoundResult() {
+        List<Car> cars = referee.announceRoundResult();
+        return CarRoundResultResponse.toList(cars);
     }
 }

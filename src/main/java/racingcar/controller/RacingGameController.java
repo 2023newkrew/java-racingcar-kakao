@@ -1,11 +1,11 @@
 package racingcar.controller;
 
+import racingcar.controller.response.CarRoundResultResponse;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberSelector;
 import racingcar.view.RacingGameView;
 
 import java.util.List;
-import java.util.Map;
 
 public class RacingGameController {
 
@@ -21,8 +21,8 @@ public class RacingGameController {
         racingGameView.printRoundResultMessage();
         while (racingGame.isGamePlaying()) {
             racingGame.proceedRound();
-            Map<String, Integer> roundResult = racingGame.announceRoundResult();
-            racingGameView.printRoundResult(roundResult);
+            List<CarRoundResultResponse> carRoundResults = racingGame.announceRoundResult();
+            racingGameView.printRoundResult(carRoundResults);
         }
         announceWinner();
     }
