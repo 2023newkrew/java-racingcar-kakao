@@ -11,13 +11,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class RacingGameInfoReaderTest {
+class RacingGameInputViewTest {
 
-    RacingGameInfoReader racingGameInfoReader;
+    RacingGameInputView racingGameInputView;
 
     @AfterEach
     void tearDown() {
-        racingGameInfoReader.close();
+        racingGameInputView.close();
     }
 
     @DisplayName("n개의 레이싱카의 이름을 읽어서 RacingCar List로 반환한다")
@@ -29,8 +29,8 @@ class RacingGameInfoReaderTest {
         System.setIn(in);
 
         // when
-        racingGameInfoReader = new RacingGameInfoReader();
-        List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
+        racingGameInputView = new RacingGameInputView();
+        List<RacingCar> racingCars = racingGameInputView.readRacingCars();
 
         // then
         assertThat(racingCars).hasSize(3)
@@ -45,10 +45,10 @@ class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        racingGameInfoReader = new RacingGameInfoReader();
+        racingGameInputView = new RacingGameInputView();
 
         // when
-        List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
+        List<RacingCar> racingCars = racingGameInputView.readRacingCars();
 
         // then
         assertThat(racingCars).hasSize(1)
@@ -63,10 +63,10 @@ class RacingGameInfoReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        racingGameInfoReader = new RacingGameInfoReader();
+        racingGameInputView = new RacingGameInputView();
 
         // then
-        assertThatThrownBy(racingGameInfoReader::readRacingCars)
+        assertThatThrownBy(racingGameInputView::readRacingCars)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -79,8 +79,8 @@ class RacingGameInfoReaderTest {
         System.setIn(in);
 
         // when
-        racingGameInfoReader = new RacingGameInfoReader();
-        int round = racingGameInfoReader.readRound();
+        racingGameInputView = new RacingGameInputView();
+        int round = racingGameInputView.readRound();
 
         // then
         assertThat(round).isEqualTo(5);

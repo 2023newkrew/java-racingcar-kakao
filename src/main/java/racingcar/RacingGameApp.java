@@ -4,13 +4,13 @@ import java.util.List;
 
 public class RacingGameApp {
     public static void main(String[] args) {
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
-        List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
-        int rounds = racingGameInfoReader.readRound();
+        RacingGameInputView racingGameInputView = new RacingGameInputView();
+        List<RacingCar> racingCars = racingGameInputView.readRacingCars();
+        int rounds = racingGameInputView.readRound();
 
         RacingGame racingGame = new RacingGame();
         racingGame.play(racingCars, rounds);
 
-        racingGameInfoReader.close();
+        racingGameInputView.close();
     }
 }

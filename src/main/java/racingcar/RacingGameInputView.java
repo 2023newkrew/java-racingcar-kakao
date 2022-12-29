@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class RacingGameInfoReader {
+public class RacingGameInputView {
 
     private final Scanner scanner;
 
-    public RacingGameInfoReader() {
+    public RacingGameInputView() {
         this.scanner = new Scanner(System.in);
     }
 
