@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -83,7 +84,20 @@ class RacingCarModelTest {
         void should_returnCarInfos_when_givenCars(List<Car> cars, List<CarInfo> carInfos) {
             RacingCarModel model = RacingCarModel.from(cars);
             List<CarInfo> winners = model.getWinners();
-            assertThatList(winners).isEqualTo(carInfos);
+            assertThatList(getCarNames(winners)).isEqualTo(getCarNames(carInfos));
+            assertThatList(getCarPositions(winners)).isEqualTo(getCarPositions(carInfos));
+        }
+
+        private List<String> getCarNames(List<CarInfo> winners) {
+            return winners.stream()
+                    .map(CarInfo::getName)
+                    .collect(Collectors.toList());
+        }
+
+        private List<Integer> getCarPositions(List<CarInfo> winners) {
+            return winners.stream()
+                    .map(CarInfo::getPosition)
+                    .collect(Collectors.toList());
         }
 
         Stream<Arguments> should_returnCarInfos_when_givenCars() {
