@@ -15,6 +15,9 @@ public class RacingGame {
     }
 
     public List<RacingCar> playRound() {
+        if (isFinished()) {
+            throw new IllegalStateException("모든 라운드가 종료되었습니다.");
+        }
         for (RacingCar racingCar : racingCars) {
             racingCar.move(randomMovementManager.makeMovementDecision());
         }
@@ -23,6 +26,6 @@ public class RacingGame {
     }
 
     public boolean isFinished() {
-        return remainingRounds == 0;
+        return remainingRounds <= 0;
     }
 }
