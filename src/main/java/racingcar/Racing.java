@@ -14,6 +14,7 @@ import java.util.List;
 public class Racing {
     private List<Car> cars;
     private int roundNum;
+    private int currentRoundNum;
 
     Racing(List<String> carNames, int roundNum) {
         this.cars = new ArrayList<>();
@@ -21,6 +22,7 @@ public class Racing {
             cars.add(new Car(carName));
         }
         this.roundNum = roundNum;
+        currentRoundNum = 0;
     }
 
     public void round() {
@@ -54,6 +56,10 @@ public class Racing {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public boolean isEnd() {
+        return currentRoundNum == roundNum;
     }
 
 }
