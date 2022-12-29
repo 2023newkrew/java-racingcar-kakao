@@ -19,7 +19,7 @@ public class InputViewTest {
     void 자동차_이름의_길이_적합성_예외발생(String inputStr) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    InputView.validateLength(inputStr);
+                    InputView.validateCarNameLength(inputStr);
                 });
     }
 
@@ -28,7 +28,7 @@ public class InputViewTest {
     void 자동차_이름의_길이_적합성_통과() {
         String inputStr = "dan";
         assertThatCode(()->{
-            InputView.validateLength(inputStr);
+            InputView.validateCarNameLength(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -38,7 +38,7 @@ public class InputViewTest {
         String[] inputStr = {"kim"};
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    InputView.validateArrayLength(inputStr);
+                    InputView.validateCountOfCars(inputStr);
                 });
     }
 
@@ -47,7 +47,7 @@ public class InputViewTest {
     void 자동차_대수_적합성_통과() {
         String[] inputStr = {"kim", "lee"};
         assertThatCode(()->{
-            InputView.validateArrayLength(inputStr);
+            InputView.validateCountOfCars(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -56,7 +56,7 @@ public class InputViewTest {
     void 여러대의_자동차_이름의_길이_적합성_통과(){
         String[] inputStr = {"kim", "lee", "han"};
         assertThatCode(()->{
-            InputView.validateEachString(inputStr);
+            InputView.validateEachLengthOfCarNames(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -67,7 +67,7 @@ public class InputViewTest {
         String[] inputStr = {"kim", "lee", abnormal};
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    InputView.validateEachString(inputStr);
+                    InputView.validateEachLengthOfCarNames(inputStr);
                 });
     }
 
@@ -76,7 +76,7 @@ public class InputViewTest {
     void 여러대의_자동차_이름의_중복_통과() {
         String[] inputStr = {"kim", "lee", "park"};
         assertThatCode(()->{
-            InputView.validateDuplication(inputStr);
+            InputView.validateDuplicationOfCarNames(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -86,7 +86,7 @@ public class InputViewTest {
         String[] inputStr = {"kim", "lee", "kim"};
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
-                    InputView.validateDuplication(inputStr);
+                    InputView.validateDuplicationOfCarNames(inputStr);
                 });
     }
 

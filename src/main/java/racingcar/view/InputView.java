@@ -30,9 +30,9 @@ public class InputView {
     }
 
     private static void validateCarNames(String[] stringArray) {
-        validateDuplication(stringArray);
-        validateArrayLength(stringArray);
-        validateEachString(stringArray);
+        validateEachLengthOfCarNames(stringArray);
+        validateDuplicationOfCarNames(stringArray);
+        validateCountOfCars(stringArray);
     }
 
     private static int toInt(String string) {
@@ -43,25 +43,25 @@ public class InputView {
         return  stringInput.split(",");
     }
 
-    public static void validateLength(String carName) {
+    public static void validateCarNameLength(String carName) {
         if (carName.length() > NAME_BOUND || carName.length() == 0) {
             throw new InvalidInputException("자동차의 이름의 길이는 1 이상 5 이하여야 합니다.");
         }
     }
 
-    public static void validateArrayLength(String[] inputCarNameArray) {
+    public static void validateCountOfCars(String[] inputCarNameArray) {
         if (inputCarNameArray.length<=1){
             throw new InvalidInputException("자동차는 2대 이상 입력해야 합니다.");
         }
     }
 
-    public static void validateEachString(String[] inputCarNameArray) {
+    public static void validateEachLengthOfCarNames(String[] inputCarNameArray) {
         for (String carName : inputCarNameArray){
-            validateLength(carName);
+            validateCarNameLength(carName);
         }
     }
 
-    public static void validateDuplication(String[] inputCarNameArray) {
+    public static void validateDuplicationOfCarNames(String[] inputCarNameArray) {
         Set<String> carNames = new HashSet<>(Arrays.asList(inputCarNameArray));
         if (carNames.size() != inputCarNameArray.length) {
             throw new InvalidInputException("자동차의 이름은 중복되지 않아야 합니다.");
