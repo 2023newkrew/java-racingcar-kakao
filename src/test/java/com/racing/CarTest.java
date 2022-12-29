@@ -26,7 +26,7 @@ public class CarTest {
     void notMoveTest(int rand){
         Car car1 = new Car("car1");
         car1.move(rand);
-        assertThat(car1.location).isEqualTo(0);
+        assertThat(car1.getLocation()).isEqualTo(0);
     }
 
     @ParameterizedTest
@@ -35,7 +35,7 @@ public class CarTest {
     void moveTest(int rand){
         Car car1 = new Car("car1");
         car1.move(rand);
-        assertThat(car1.location).isEqualTo(1);
+        assertThat(car1.getLocation()).isEqualTo(1);
     }
 
     // 차의 현재 location 출력 테스트

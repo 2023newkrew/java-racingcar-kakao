@@ -3,13 +3,11 @@ package com.racing;
 import java.util.Random;
 
 public class Car {
-    public int location;
+    private int location;
     private String carName;
     public Car(String carName) {
         this.carName = carName;
     }
-
-
 
     public int makeRandom(){
         Random random = new Random();
@@ -23,11 +21,6 @@ public class Car {
         if(this.carName.length() > 5){
             throw new RuntimeException("car name length over 5");
         }
-    }
-
-
-    public void carMove(){
-        move(makeRandom());
     }
 
     /**
@@ -50,7 +43,11 @@ public class Car {
         );
     }
 
-    public void printCarName(){
-        System.out.print(this.carName);
+    public int getLocation() {
+        return location;
+    }
+
+    public String getCarName() {
+        return carName;
     }
 }
