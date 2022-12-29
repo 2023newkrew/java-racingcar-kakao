@@ -12,19 +12,9 @@ import java.util.List;
 
 public class CarNameTest {
 
-    @Test
-    public void splitInput(){
-        InputParser inputParser = new InputParser();
-        String testString = "Car1,Car2,car3";
-        List<String> splittedNames = inputParser.splitNames(testString);
-        Assertions.assertThat(splittedNames).isEqualTo(Arrays.asList("Car1", "Car2", "car3"));
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"Car1", "Car2", "car3"})
     public void validateCarNameLengthSuccess(String testString){
-        InputParser inputParser = new InputParser();
-
         Assertions.assertThatNoException()
                 .isThrownBy(() -> new Car(testString));
     }
@@ -32,8 +22,6 @@ public class CarNameTest {
     @ParameterizedTest
     @ValueSource(strings = {"Car123"})
     public void validateCarNameLengthFail(String testString){
-        InputParser inputParser = new InputParser();
-
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Car(testString));
 

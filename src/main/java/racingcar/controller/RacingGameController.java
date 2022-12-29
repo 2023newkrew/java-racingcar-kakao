@@ -1,9 +1,10 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
-import racingcar.InputParser;
 import racingcar.view.RacingGameInputView;
 import racingcar.view.RacingGameOutputView;
+
+import java.util.List;
 
 public class RacingGameController {
     private final RacingGameInputView racingGameInputView;
@@ -15,16 +16,16 @@ public class RacingGameController {
     }
 
     public void run() {
-        String carNames = racingGameInputView.getCarNames();
+        List<String> carNames = racingGameInputView.getCarNames();
         Integer numberOfGames = racingGameInputView.getNumberOfGames();
 
-        InputParser inputParser = new InputParser();
+        Cars cars = new Cars(carNames);
 
-        Cars cars = new Cars(inputParser.splitNames(carNames));
         for (int i = 0; i < numberOfGames; i++) {
             cars.move();
             racingGameOutputView.printCars(cars);
         }
+
         racingGameOutputView.printWinners(cars.findWinners());
     }
 }
