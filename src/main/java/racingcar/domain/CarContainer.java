@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.domain.model.Car;
+import racingcar.domain.model.RacingCar;
 import racingcar.util.RandomUtil;
 
 import java.util.ArrayList;
@@ -8,42 +8,42 @@ import java.util.List;
 import java.util.OptionalInt;
 
 public class CarContainer {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<RacingCar> racingCars = new ArrayList<>();
 
-    public List<Car> getCars() {
-        return cars;
+    public List<RacingCar> getCars() {
+        return racingCars;
     }
 
-    public void add(Car other) {
+    public void add(RacingCar other) {
         if (hasDuplicatedCar(other)) {
             throw new RuntimeException();
         }
-        cars.add(other);
+        racingCars.add(other);
     }
 
     public void moveAll() {
         RandomUtil randomUtil = new RandomUtil();
-        for (Car car : cars) {
-            car.move(randomUtil.generateRandom());
+        for (RacingCar racingCar : racingCars) {
+            racingCar.move(randomUtil.generateRandom());
         }
     }
 
-    public List<Car> selectWinners() {
-        List<Car> winners = new ArrayList<>();
-        OptionalInt maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
+    public List<RacingCar> selectWinners() {
+        List<RacingCar> winners = new ArrayList<>();
+        OptionalInt maxPosition = racingCars.stream()
+                .mapToInt(RacingCar::getPosition)
                 .max();
         if (maxPosition.isEmpty()) {
             return winners;
         }
-        cars.stream()
+        racingCars.stream()
                 .filter(car -> car.getPosition() == maxPosition.getAsInt())
                 .forEach(winners::add);
         return winners;
     }
 
-    private boolean hasDuplicatedCar(Car other) {
-        return cars.stream()
+    private boolean hasDuplicatedCar(RacingCar other) {
+        return racingCars.stream()
                 .anyMatch(car -> car.equals(other));
     }
 }

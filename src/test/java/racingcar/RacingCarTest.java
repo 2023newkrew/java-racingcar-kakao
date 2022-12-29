@@ -6,29 +6,29 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.model.Car;
+import racingcar.domain.model.RacingCar;
 
-public class CarTest {
-    Car car;
+public class RacingCarTest {
+    RacingCar racingCar;
     int prevPosition;
 
     @BeforeEach
     void setUp() {
-        car = new Car("dummy");
-        prevPosition = car.getPosition();
+        racingCar = new RacingCar("dummy");
+        prevPosition = racingCar.getPosition();
     }
 
     @Test
     void moveCar() {
-        car.move(4);
-        Assertions.assertThat(car.getPosition())
+        racingCar.move(4);
+        Assertions.assertThat(racingCar.getPosition())
                 .isEqualTo(prevPosition + 1);
     }
 
     @Test
     void dontMoveCar() {
-        car.move(3);
-        Assertions.assertThat(car.getPosition())
+        racingCar.move(3);
+        Assertions.assertThat(racingCar.getPosition())
                 .isEqualTo(prevPosition);
     }
 
@@ -37,6 +37,6 @@ public class CarTest {
     @ValueSource(strings = {"", "abcdef"})
     void invalidName(String name) {
         Assertions.assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> new Car(name));
+                .isThrownBy(() -> new RacingCar(name));
     }
 }

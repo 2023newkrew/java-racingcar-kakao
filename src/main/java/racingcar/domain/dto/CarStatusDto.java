@@ -1,6 +1,6 @@
 package racingcar.domain.dto;
 
-import racingcar.domain.model.Car;
+import racingcar.domain.model.RacingCar;
 
 public class CarStatusDto {
 
@@ -21,7 +21,7 @@ public class CarStatusDto {
         return carPosition;
     }
 
-    public static CarStatusDto toDto(Car car) {
-        return new CarStatusDto(car.getName(), car.getPosition());
+    public static CarStatusDto toDto(RacingCar racingCar) {
+        return new CarStatusDto(racingCar.getName(), racingCar.getPosition());
     }
 }

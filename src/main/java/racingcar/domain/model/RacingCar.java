@@ -2,7 +2,7 @@ package racingcar.domain.model;
 
 import java.util.Objects;
 
-public class Car {
+public class RacingCar {
 
     private static final int THRESHOLD = 4;
 
@@ -12,7 +12,7 @@ public class Car {
 
     private final String name;
 
-    public Car(String name) {
+    public RacingCar(String name) {
         checkCarNameLength(name);
         checkEmptyOrNull(name);
         this.name = name;
@@ -49,8 +49,8 @@ public class Car {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
+        RacingCar racingCar = (RacingCar) o;
+        return Objects.equals(name, racingCar.name);
     }
 
     @Override

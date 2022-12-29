@@ -4,7 +4,7 @@ import racingcar.domain.CarContainer;
 import racingcar.domain.GameResult;
 import racingcar.domain.RoundRecord;
 import racingcar.domain.dto.CarStatusDto;
-import racingcar.domain.model.Car;
+import racingcar.domain.model.RacingCar;
 import racingcar.view.RacingCarView;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class RacingCarGame {
         List<String> carNamesInput = racingCarView.receiveCarNamesCsv();
         int runNumber = racingCarView.receiveRunNumber();
         for (String carName : carNamesInput) {
-            carContainer.add(new Car(carName));
+            carContainer.add(new RacingCar(carName));
         }
         for (int i = 0; i < runNumber; i++) {
             ArrayList<CarStatusDto> carStatusList = new ArrayList<>();
