@@ -2,7 +2,7 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.domain.RacingCar;
+import racingcar.domain.RacingCar;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,11 +1,12 @@
-package racingcar.controller.domain;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGame {
     private List<RacingCar> cars;
-    private int finalTurn;
+    private final int finalTurn;
     private int turnCount;
 
     public List<RacingCar> getCars() {
@@ -16,16 +17,14 @@ public class RacingGame {
         return this.turnCount;
     }
 
-    public RacingGame() {
-        this.cars = new ArrayList<>();
-    }
 
-    public void init(List<String> names, int finalTurn) {
-        for (String name : names) {
-            cars.add(new RacingCar(name));
-        }
+    public RacingGame(List<String> names, int finalTurn) {
+        this.cars = names.stream()
+                .map(RacingCar::new)
+                .collect(Collectors.toList());
         this.finalTurn = finalTurn;
     }
+
 
     public boolean isFinished() {
         return this.turnCount >= this.finalTurn;
