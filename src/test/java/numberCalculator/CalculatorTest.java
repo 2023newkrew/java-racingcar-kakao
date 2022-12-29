@@ -35,7 +35,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void stringSplitClonAndComma(){
+    public void stringSplitColonAndComma(){
         String originStr = "0,1:2";
         List<Integer> splitNumbers = calculator.splitNumbers(originStr, ",|:");
         Assertions.assertThat(splitNumbers).isEqualTo(Arrays.asList(0, 1, 2));
@@ -71,7 +71,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void nonExistSeperator() {
+    public void nonExistSeparator() {
         assertThrows(InvalidFormatException.class, () -> {
             String originStr = "1!23";
             calculator.summarizeNumbers(originStr);
@@ -79,7 +79,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void splitWithCustomSeperator() {
+    public void splitWithCustomSeparator() {
         Integer summary = calculator.summarizeNumbers("//.\n1.2.3");
         Assertions.assertThat(summary).isEqualTo(6);
     }
