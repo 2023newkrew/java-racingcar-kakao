@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Car implements Comparable{
     private final String name;
     private final RandomGenerator randomGenerator;
@@ -38,6 +40,21 @@ public class Car implements Comparable{
             throw new RuntimeException();
         }
         return this.position.compareTo(((Car) o).position);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+        Car car = (Car) o;
+        return name.equals(car.name) && position.equals(car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 
     public boolean equalsPosition(Car otherCar) {

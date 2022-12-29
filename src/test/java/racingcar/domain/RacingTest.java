@@ -98,4 +98,15 @@ public class RacingTest {
                 .hasMessageStartingWith("4");
     }
 
+    @Test
+    void exceptionDuplicatedCars(){
+        assertThatThrownBy(()->{
+            Racing racing = new Racing.Builder()
+                    .addCars(new String[]{"a", "a"})
+                    .setRounds(5)
+                    .build();
+        }).isInstanceOf(InvalidRacingConditionException.class)
+                .hasMessageStartingWith("5");
+    }
+
 }

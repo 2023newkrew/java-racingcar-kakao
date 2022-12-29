@@ -1,8 +1,6 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 
@@ -70,6 +68,7 @@ public class Racing {
             for (String carName : carNames){
                 cars.add(new Car(carName, new RandomGeneratorImpl()));
             }
+            checkDuplicatedName();
             return this;
         }
 
@@ -77,6 +76,7 @@ public class Racing {
             for (String carName : carNames){
                 cars.add(new Car(carName, rg));
             }
+            checkDuplicatedName();
             return this;
         }
 
@@ -84,7 +84,18 @@ public class Racing {
             for (Car car:madeCars){
                 cars.add(car);
             }
+            checkDuplicatedName();
             return this;
+        }
+
+        private void checkDuplicatedName(){
+            Set<String> carSet = new HashSet<>();
+            for (Car car:cars){
+                carSet.add(car.toStringOnlyName());
+            }
+            if (carSet.size() != cars.size()){
+                throw new InvalidRacingConditionException("5 : Duplicated car exist!");
+            }
         }
 
         public Builder setRounds(int rounds){
