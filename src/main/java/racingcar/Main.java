@@ -15,6 +15,6 @@ public class Main {
         while (!racingGame.isEnd()) {
             OutputView.printTurnResult(racingGame.proceedTurn());
         }
-        OutputView.printResult(Racing.getWinners(racingGame.getCarDTOs()));
+        OutputView.printResult(racingGame.getWinners());
     }
 }

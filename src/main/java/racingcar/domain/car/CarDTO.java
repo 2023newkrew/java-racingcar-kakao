@@ -21,6 +21,16 @@ public class CarDTO {
                 "-".repeat(Math.max(0, this.position));
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CarDTO))
+            return false;
+
+        CarDTO cp = (CarDTO) obj;
+
+        return name.equals(cp.name) && cp.position == this.position;
+    }
+
     private final String name;
     private final int position;
 }

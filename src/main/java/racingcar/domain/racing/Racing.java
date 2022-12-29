@@ -21,18 +21,6 @@ public class Racing {
         return names.size() != names.stream().distinct().count();
     }
 
-    public static List<String> getWinners(List<CarDTO> cars) {
-        int maxPosition = cars.stream()
-                .mapToInt(CarDTO::getPosition)
-                .max()
-                .orElse(0);
-
-        return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .map(CarDTO::getName)
-                .collect(Collectors.toList());
-    }
-
     public List<CarDTO> getCarDTOs() {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }
@@ -67,5 +55,11 @@ public class Racing {
 
     public boolean isEnd() {
         return turn == 0;
+    }
+
+    public RacingWinner getWinners() {
+        if (!isEnd()) throw new IllegalStateException();
+
+        return new RacingWinner(getCarDTOs());
     }
 }
