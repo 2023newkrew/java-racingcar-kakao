@@ -1,6 +1,6 @@
-package racingcar.domain.model.impl;
+package racingcar.domain.car.impl;
 
-import racingcar.domain.model.RacingCar;
+import racingcar.domain.car.RacingCar;
 import racingcar.exception.BusinessException;
 import racingcar.exception.ErrorCode;
 import racingcar.util.RandomUtil;
@@ -21,7 +21,7 @@ public class RacingCarImpl extends RacingCar {
     @Override
     public void move() {
         if (canMove()) {
-            super.position += 1;
+            super.carPosition += 1;
         }
     }
 

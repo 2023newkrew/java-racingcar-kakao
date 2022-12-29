@@ -1,65 +1,38 @@
 package racingcar.controller;
 
-import racingcar.domain.CarContainer;
-import racingcar.domain.GameResult;
-import racingcar.domain.RoundRecord;
-import racingcar.domain.dto.CarStatusDto;
-import racingcar.domain.dto.CarWinnerDto;
-import racingcar.domain.model.RacingCar;
-import racingcar.domain.model.RacingCarFactory;
+import racingcar.domain.collection.GameResult;
+import racingcar.domain.collection.RaceRecord;
+import racingcar.domain.collection.RacingCarCollection;
 import racingcar.view.RacingCarView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCarGame {
 
     private int remainingRound;
 
-    private CarContainer carContainer;
+    private final RacingCarCollection cars;
 
-    public RacingCarGame() {
-        setCarContainer();
-        setTotalRound();
+    public RacingCarGame(int remainingRound, RacingCarCollection cars) {
+        this.remainingRound = remainingRound;
+        this.cars = cars;
     }
 
     public void start() {
-        ArrayList<RoundRecord> roundRecords = new ArrayList<>();
+        List<RaceRecord> raceRecords = new ArrayList<>();
+        raceRecords.add(RaceRecord.of(cars));
         while (!isGameEnd()) {
-            roundRecords.add(runRound());
+            raceRecords.add(race());
         }
-        RacingCarView.printGameResult(new GameResult(roundRecords));
-        RacingCarView.printWinners(selectWinners());
+        RacingCarView.printGameResult(GameResult.of(raceRecords));
+        RacingCarView.printWinners(cars.selectWinners());
     }
 
-    private void setTotalRound() {
-        remainingRound = RacingCarView.receiveRunNumber();
-    }
-
-    private void setCarContainer() {
-        List<String> carNames = RacingCarView.receiveCarNamesCsv();
-        List<RacingCar> cars = new ArrayList<>();
-        carNames.forEach(carName -> cars.add(RacingCarFactory.createRacingCar(carName)));
-        carContainer = new CarContainer(cars);
-    }
-
-    private RoundRecord runRound() {
-        ArrayList<CarStatusDto> carStatusList = new ArrayList<>();
-        carContainer.moveAll();
-        carContainer.getCars()
-                .stream()
-                .map(CarStatusDto::toDto)
-                .forEach(carStatusList::add);
+    private RaceRecord race() {
+        cars.moveAll();
         remainingRound--;
-        return new RoundRecord(carStatusList);
-    }
-
-    private List<CarWinnerDto> selectWinners() {
-        return carContainer.selectWinners()
-                .stream()
-                .map(CarWinnerDto::toDto)
-                .collect(Collectors.toList());
+        return RaceRecord.of(cars);
     }
 
     private boolean isGameEnd() {

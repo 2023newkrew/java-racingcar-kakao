@@ -1,16 +1,17 @@
-package racingcar.domain;
+package racingcar.domain.collection;
 
-import racingcar.domain.model.RacingCar;
+import racingcar.domain.car.RacingCar;
+import racingcar.domain.dto.RacingCarDto;
 import racingcar.exception.BusinessException;
 import racingcar.exception.ErrorCode;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarContainer {
+public class RacingCarCollection {
     private final List<RacingCar> cars;
 
-    public CarContainer(List<RacingCar> cars) {
+    public RacingCarCollection(List<RacingCar> cars) {
         this.cars = cars;
         checkEmptyOrNull();
         checkDuplicates();
@@ -24,17 +25,19 @@ public class CarContainer {
         cars.forEach(RacingCar::move);
     }
 
-    public List<RacingCar> selectWinners() {
-        return getCarsWithMaxPosition();
+    public List<RacingCarDto> selectWinners() {
+        return getCarsWithMaxPosition().stream()
+                .map(RacingCarDto::toDto)
+                .collect(Collectors.toList());
     }
 
     private List<RacingCar> getCarsWithMaxPosition() {
         int maxPosition = cars.stream()
-                .mapToInt(RacingCar::getPosition)
+                .mapToInt(RacingCar::getCarPosition)
                 .max()
                 .getAsInt();
         return cars.stream()
-                .filter(e -> e.getPosition() == maxPosition)
+                .filter(e -> e.getCarPosition() == maxPosition)
                 .collect(Collectors.toList());
     }
 

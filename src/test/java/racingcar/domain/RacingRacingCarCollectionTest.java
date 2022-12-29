@@ -2,14 +2,16 @@ package racingcar.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.model.RacingCar;
+import racingcar.domain.car.RacingCar;
+import racingcar.domain.collection.RacingCarCollection;
+import racingcar.domain.dto.RacingCarDto;
 import racingcar.exception.BusinessException;
 import racingcar.exception.ErrorCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RacingCarContainerTest {
+public class RacingRacingCarCollectionTest {
 
     @Test
     void duplicatedNameException() {
@@ -17,7 +19,7 @@ public class RacingCarContainerTest {
         cars.add(new MockRacingCarImpl("lion"));
         cars.add(new MockRacingCarImpl("lion"));
         Assertions.assertThatExceptionOfType(BusinessException.class)
-                .isThrownBy(() -> new CarContainer(cars))
+                .isThrownBy(() -> new RacingCarCollection(cars))
                 .withMessage(ErrorCode.DUPLICATE_CAR_NAME_EXCEPTION.getMessage());
     }
 
@@ -28,15 +30,15 @@ public class RacingCarContainerTest {
         cars.add(new MockRacingCarImpl("lion"));
         cars.add(new MockRacingCarImpl("jordy"));
         cars.add(new MockRacingCarImpl("muzi"));
-        CarContainer carContainer = new CarContainer(cars);
+        RacingCarCollection racingCarCollection = new RacingCarCollection(cars);
         cars.get(0)
                 .move();
 
         //when
-        List<RacingCar> winner = carContainer.selectWinners();
+        List<RacingCarDto> winner = racingCarCollection.selectWinners();
 
         //then
         Assertions.assertThat(winner)
-                .containsOnly(cars.get(0));
+                .hasSize(1);
     }
 }

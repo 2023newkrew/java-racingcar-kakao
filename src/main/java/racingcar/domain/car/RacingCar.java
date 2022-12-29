@@ -1,4 +1,4 @@
-package racingcar.domain.model;
+package racingcar.domain.car;
 
 import racingcar.exception.BusinessException;
 import racingcar.exception.ErrorCode;
@@ -7,23 +7,23 @@ import java.util.Objects;
 
 public abstract class RacingCar {
 
-    protected int position = 1;
+    protected int carPosition = 1;
 
-    protected final String name;
+    protected final String carName;
 
-    public RacingCar(String name) {
-        checkEmptyOrNull(name);
-        this.name = name;
+    public RacingCar(String carName) {
+        checkEmptyOrNull(carName);
+        this.carName = carName;
     }
 
     public abstract void move();
 
-    public String getName() {
-        return name;
+    public String getCarName() {
+        return carName;
     }
 
-    public Integer getPosition() {
-        return position;
+    public Integer getCarPosition() {
+        return carPosition;
     }
 
     private void checkEmptyOrNull(String name) {
@@ -37,11 +37,11 @@ public abstract class RacingCar {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RacingCar that = (RacingCar) o;
-        return name.equals(that.name);
+        return carName.equals(that.carName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(carName);
     }
 }

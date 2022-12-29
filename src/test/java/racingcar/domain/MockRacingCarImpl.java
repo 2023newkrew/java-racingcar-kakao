@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.domain.model.RacingCar;
+import racingcar.domain.car.RacingCar;
 
 class MockRacingCarImpl extends RacingCar {
 
@@ -10,6 +10,6 @@ class MockRacingCarImpl extends RacingCar {
 
     @Override
     public void move() {
-        super.position += 1;
+        super.carPosition += 1;
     }
 }

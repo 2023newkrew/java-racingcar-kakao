@@ -1,6 +1,6 @@
-package racingcar.domain.model;
+package racingcar.domain.car;
 
-import racingcar.domain.model.impl.RacingCarImpl;
+import racingcar.domain.car.impl.RacingCarImpl;
 
 public class RacingCarFactory {
 

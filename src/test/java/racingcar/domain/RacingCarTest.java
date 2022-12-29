@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import racingcar.domain.model.RacingCar;
-import racingcar.domain.model.impl.RacingCarImpl;
+import racingcar.domain.car.RacingCar;
+import racingcar.domain.car.impl.RacingCarImpl;
 import racingcar.exception.BusinessException;
 import racingcar.exception.ErrorCode;
 
@@ -19,13 +19,13 @@ public class RacingCarTest {
     @BeforeEach
     void setUp() {
         racingCar = new MockRacingCarImpl("lion");
-        prevPosition = racingCar.getPosition();
+        prevPosition = racingCar.getCarPosition();
     }
 
     @Test
     void moveCar() {
         racingCar.move();
-        Assertions.assertThat(racingCar.getPosition())
+        Assertions.assertThat(racingCar.getCarPosition())
                 .isEqualTo(prevPosition + 1);
     }
 

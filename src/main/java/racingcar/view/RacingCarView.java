@@ -1,9 +1,8 @@
 package racingcar.view;
 
-import racingcar.domain.GameResult;
-import racingcar.domain.RoundRecord;
-import racingcar.domain.dto.CarStatusDto;
-import racingcar.domain.dto.CarWinnerDto;
+import racingcar.domain.collection.GameResult;
+import racingcar.domain.collection.RaceRecord;
+import racingcar.domain.dto.RacingCarDto;
 
 import java.util.List;
 import java.util.Scanner;
@@ -26,10 +25,10 @@ public class RacingCarView {
         return Integer.parseInt(sc.next());
     }
 
-    public static void printWinners(List<CarWinnerDto> winners) {
+    public static void printWinners(List<RacingCarDto> winners) {
         StringBuilder stringBuilder = new StringBuilder();
         winners.forEach(winner -> {
-            stringBuilder.append(winner.getName());
+            stringBuilder.append(winner.getCarName());
             stringBuilder.append(", ");
         });
         stringBuilder.setLength(stringBuilder.length() - 2);
@@ -39,20 +38,20 @@ public class RacingCarView {
 
     public static void printGameResult(GameResult gameResult) {
         System.out.println("실행 결과");
-        gameResult.getRoundRecords()
-                .forEach(RacingCarView::printRoundRecord);
+        gameResult.getRaceRecords()
+                .forEach(RacingCarView::printRaceRecord);
     }
 
-    private static void printCarStatus(CarStatusDto carStatusDto) {
-        String carStatusMessage = carStatusDto.getCarName() +
+    private static void printCar(RacingCarDto racingCar) {
+        String carStatusMessage = racingCar.getCarName() +
                 " : " +
-                "-".repeat(carStatusDto.getCarPosition());
+                "-".repeat(racingCar.getCarPosition());
         System.out.println(carStatusMessage);
     }
 
-    private static void printRoundRecord(RoundRecord roundRecord) {
-        roundRecord.getCarStatusList()
-                .forEach(RacingCarView::printCarStatus);
+    private static void printRaceRecord(RaceRecord raceRecord) {
+        raceRecord.getCars()
+                .forEach(RacingCarView::printCar);
         System.out.println();
     }
 }
