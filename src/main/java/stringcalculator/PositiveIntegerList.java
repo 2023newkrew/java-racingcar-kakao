@@ -21,6 +21,10 @@ public class PositiveIntegerList {
     }
 
     public static void validate(String[] arr) {
+        if (arr.length == 0) {
+            throw new RuntimeException();
+        }
+
         Arrays.stream(arr)
                 .map(Integer::parseInt)
                 .filter(value -> value < 0)

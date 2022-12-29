@@ -49,6 +49,14 @@ public class StringCalculatorTest {
         assertThatThrownBy(() -> stringCalculator.run(input))
                 .isInstanceOf(RuntimeException.class);
     }
+    @Test
+    @DisplayName("입력된 하나의 문자열이 숫자가 아닌 경우 예외가 발생한다.")
+    void throwExceptionIfCharacterIsNotNumberWhenRegistCustomDelimiter() {
+        String input = "//-\n-";
+
+        assertThatThrownBy(() -> stringCalculator.run(input))
+                .isInstanceOf(RuntimeException.class);
+    }
 
     @Test
     @DisplayName("기본 구분자인 쉼표(,) 또는 콜론(:)을 기준으로 분리한다.")
