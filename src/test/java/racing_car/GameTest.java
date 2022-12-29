@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
 import racing_car.model.Cars;
 import racing_car.model.Game;
+import racing_car.strategy.MoveByRandom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,7 +23,7 @@ public class GameTest {
             cars[i].move(distances[i]);
         }
 
-        Game game = new Game(Cars.of(cars));
+        Game game = new Game(Cars.of(cars), new MoveByRandom());
 
         assertEquals(Cars.of(new Car[]{
                 cars[1], cars[3], cars[5]

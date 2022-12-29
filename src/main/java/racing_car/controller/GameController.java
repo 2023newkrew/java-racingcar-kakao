@@ -2,6 +2,7 @@ package racing_car.controller;
 
 import racing_car.model.Cars;
 import racing_car.model.Game;
+import racing_car.strategy.MoveByRandom;
 import racing_car.view.GameView;
 
 public class GameController {
@@ -11,7 +12,7 @@ public class GameController {
     public void initGame() {
         Cars cars = Cars.of(separateCarNamesByDelimiter(gameView.getCarNamesWithDelimiter()));
 
-        Game game = new Game(cars);
+        Game game = new Game(cars, new MoveByRandom());
         int playCount = gameView.getPlayCount();
 
         System.out.println("실행결과");

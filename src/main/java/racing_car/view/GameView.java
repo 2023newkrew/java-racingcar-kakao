@@ -24,7 +24,7 @@ public class GameView {
     }
 
     public void printGameProcess(Cars all) {
-        all.getCars().forEach(car -> System.out.printf("%s : %s", car.getRacer().getName(), displayDistance(car)));
+        all.getCars().forEach(car -> System.out.printf("%s : %s\n", car.getRacer().getName(), displayDistance(car)));
         System.out.println();
     }
 
