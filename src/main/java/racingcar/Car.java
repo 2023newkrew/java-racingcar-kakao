@@ -55,4 +55,19 @@ public class Car {
     public CarDto getCarInfo() {
         return CarDto.from(name, position);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+        return name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

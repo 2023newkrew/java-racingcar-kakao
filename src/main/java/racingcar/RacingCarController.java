@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class RacingCarController {
 
+    private static final String SEPARATOR = ",";
+
     private static final int MAX_COUNT = 100;
     private RacingCarModel model;
     private final RacingCarView view;
@@ -46,7 +48,7 @@ public class RacingCarController {
 
     private List<String> inputNames() {
         String nameLine = view.inputNameLine();
-        return RacingCarModel.parseNames(nameLine);
+        return List.of(nameLine.split(SEPARATOR));
     }
 
     private static List<Car> createCarsFromNames(List<String> names) {
