@@ -2,11 +2,13 @@ package racingcar.step2.domain;
 
 import java.util.Random;
 
-public class Car {
+public class Car implements Cloneable{
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MOVE_THRESHOLD = 4;
     private int position;
+
+    private final String name;
 
 
     public Car(final String name){
@@ -14,6 +16,7 @@ public class Car {
     }
     public Car(final String name, final int position){
         validateName(name);
+        this.name = name;
         this.position = position;
     }
 
@@ -45,7 +48,13 @@ public class Car {
     }
 
     @Override
-    protected Car clone() throws CloneNotSupportedException {
+    public Car clone() throws CloneNotSupportedException {
         return (Car) super.clone();
     }
+
+    @Override
+    public String toString(){
+        return name + " : " + "-".repeat(Math.max(1, position));
+    }
+
 }
