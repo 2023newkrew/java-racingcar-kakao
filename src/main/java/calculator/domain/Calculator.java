@@ -1,33 +1,35 @@
 package calculator.domain;
 
-import static calculator.constant.MessageConstant.NEGATIVE_NUMBER_EXCEPTION;
-
-import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Calculator {
-    public int calculate(Prompt prompt) {
-        if(prompt.isEmptyInput()) {
-            return 0;
-        }
-        prompt.changePromptIfExistCustomDelimiter();
-        return calculateWithDelimiter(prompt);
-    }
-
-    private int calculateWithDelimiter(Prompt prompt) {
-        return Arrays.stream(prompt.getStringNumbers())
-                .mapToInt(this::parseIntOnlyPositiveStringNumber)
+    public int calculate(Command command) {
+        return parsingNumbers(command)
+                .getNumbers()
+                .stream()
+                .mapToInt(Number::getNumber)
                 .sum();
     }
 
-    private int parseIntOnlyPositiveStringNumber(String stringNumber) {
-        try {
-            int number = Integer.parseInt(stringNumber);
-            if (number < 0) {
-                throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
-            }
-            return number;
-        } catch (NumberFormatException e) {
-            throw new RuntimeException();
-        }
+
+    private Numbers parsingNumbers(Command command) {
+        String splitByDelimiterRegex = getSplitByDelimiterRegex(command);
+        String[] splitNumbers = command.getInputStringNumbers()
+                .split(splitByDelimiterRegex);
+        return new Numbers(
+                Stream.of(splitNumbers)
+                        .map(str -> new Number(Integer.parseInt(str)))
+                        .collect(Collectors.toList())
+        );
     }
+
+    private String getSplitByDelimiterRegex(Command command) {
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        command.getDelimiters().forEach(delimiter -> sb.append(delimiter.getDelimiter()));
+        sb.append(']');
+        return sb.toString();
+    }
+
 }
