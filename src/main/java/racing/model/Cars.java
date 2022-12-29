@@ -18,6 +18,17 @@ public class Cars {
         cars = new ArrayList<>();
     }
 
+    public void tryMove(){
+        for (Car car : cars) {
+            car.tryMove();
+        }
+    }
+
+    public void addCars(List<Car> cars){
+        validateCarName(cars);
+        this.cars.addAll(cars);
+    }
+
     private void validateCarName(List<Car> cars){
         cars.forEach(car -> {
             if(car.getName().isBlank()){
@@ -28,12 +39,6 @@ public class Cars {
             }
         });
 
-    }
-
-    public void tryMove(){
-        for (Car car : cars) {
-            car.tryMove();
-        }
     }
 
     public List<String> getWinnerCarName(){
@@ -51,11 +56,6 @@ public class Cars {
         return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.toList());
-    }
-
-    public void addCars(List<Car> cars){
-        validateCarName(cars);
-        this.cars.addAll(cars);
     }
 
     public void deleteAllCars(){
