@@ -2,7 +2,9 @@ package racingcar;
 
 public class Car {
     private final String name;
+    private static final int CONTROL_POINT = 4;
     private int position;
+
 
     public Car(String name, int position) {
         this.name = name;
@@ -22,7 +24,7 @@ public class Car {
     }
 
     private void determineToMove(int random) {
-        if (random >= 4)
+        if (random >= CONTROL_POINT)
             position += 1;
     }
 

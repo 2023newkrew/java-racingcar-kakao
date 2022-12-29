@@ -3,9 +3,11 @@ package racingcar;
 import java.util.List;
 
 public class OutputUI {
+    private static final String HYPHEN = "-";
+
     public static void printTurnResult(List<Car> carList) {
         for (Car car : carList) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+            System.out.println(car.getName() + " : " + HYPHEN.repeat(car.getPosition()));
         }
         System.out.println();
     }
