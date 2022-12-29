@@ -15,13 +15,12 @@ public class RacingController {
         Simulator simulator = new Simulator();
         simulator.create(names);
 
-        System.out.println("\n실행 결과");
-        System.out.println(simulator + "\n");
+        racingView.printStartSimulator(simulator);
         for (int i = 0; i < times; i++) {
             simulator.run(new Random());
-            System.out.println(simulator + "\n");
+            racingView.printSimulator(simulator);
         }
 
-        System.out.println(simulator.winners() + "가 최종 우승했습니다.");
+        racingView.printWinners(simulator);
     }
 }
