@@ -5,22 +5,30 @@ import java.util.Random;
 public class Car {
     private int location;
     private String carName;
+    private static final int MAX_CAR_NAME = 5;
+    private static final int MIN_CAR_MOVE = 4;
+    private static final int MAX_RANDOM = 10;
+
     public Car(String carName) {
         this.carName = carName;
-    }
-
-    public int makeRandom(){
-        Random random = new Random();
-        return random.nextInt(10);
     }
 
     /**
      * 차 이름이 5글자 초과라면 RuntimeError
      */
     public void checkName() {
-        if(this.carName.length() > 5){
+        if(this.carName.length() > MAX_CAR_NAME){
             throw new RuntimeException("car name length over 5");
         }
+    }
+
+    /**
+     * 0 ~ MAX_RANDOM 사이의 랜덤 정수 반환
+     * @return random값
+     */
+    public int makeRandom(){
+        Random random = new Random();
+        return random.nextInt(MAX_RANDOM);
     }
 
     /**
@@ -28,7 +36,7 @@ public class Car {
      * @param rand
      */
     public void move(int rand) {
-        if(rand >= 4) this.location++;
+        if(rand >= MIN_CAR_MOVE) this.location++;
     }
 
     /**
