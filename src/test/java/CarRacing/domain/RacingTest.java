@@ -12,10 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingTest {
     private Racing racing;
+    private Car[] cars;
 
     @BeforeEach
     void setUp() {
         racing = new Racing();
+        cars = new Car[] {new Car("pobi", 5), new Car("crong", 4), new Car("honux", 5)};
     }
 
     @Test
@@ -40,11 +42,12 @@ public class RacingTest {
     }
 
     @Test
-    public void getWinnerTest() {
-        Car carA = new Car("pobi", 5);
-        Car carB = new Car("crong", 4);
-        Car carC = new Car("honux", 5);
-        Car[] cars = new Car[] {carA, carB, carC};
+    public void getMaxPositionTest() {
+        assertThat(racing.getMaxPosition(cars)).isEqualTo(5);
+    }
+
+    @Test
+    public void getWinnersTest() {
         assertThat(racing.getWinners(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
     }
 
