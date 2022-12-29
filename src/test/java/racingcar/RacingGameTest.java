@@ -2,6 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.domian.Car;
+import racingcar.domian.RacingGame;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

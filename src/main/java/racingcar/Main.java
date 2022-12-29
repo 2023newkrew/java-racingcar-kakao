@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.domian.RacingGame;
+import racingcar.ui.InputUI;
+
 import java.util.List;
 
 public class Main {
