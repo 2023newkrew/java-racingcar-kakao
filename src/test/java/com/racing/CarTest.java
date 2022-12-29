@@ -39,7 +39,9 @@ public class CarTest {
     }
 
     // 차의 현재 location 출력 테스트
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {4, 9})
+    @DisplayName("자동차는 출력 format에 맞게 현재 위치를 출력한다")
     void printLocationTest(){
         Car car1 = new Car("car1");
         // 한 칸 이동

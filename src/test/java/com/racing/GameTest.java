@@ -2,7 +2,10 @@ package com.racing;
 
 import com.racing.model.Car;
 import com.racing.model.Game;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameTest {
 
     @Test
+    @DisplayName("게임 시작시 자동차는 전부 시작 위치에 있어야 한다.")
     void initTest(){
         Game game = new Game();
         game.init("car1,car2,car3");
@@ -24,11 +28,13 @@ public class GameTest {
         assertThat(cars.get(2).toStringLocation()).isEqualTo("car3 : ");
     }
 
-    @Test
-    void maxLocationTest(){
+    @ParameterizedTest
+    @ValueSource(ints = {5, 10, 15})
+    @DisplayName("자동차들이 이동한 위치의 최대값은 자동차들의 위치를 비교하여 알 수 있다.")
+    void maxLocationTest(int turn){
         Game game = new Game();
         game.init("car1,car2");
-        game.run(5);
+        game.run(turn);
         List<Car> cars = game.getCars();
 
         // 자동차 location의 max 값 직접 구함
@@ -36,11 +42,13 @@ public class GameTest {
         assertThat(findMax).isEqualTo(game.maxLocation());
     }
 
-    @Test
-    void getWinnerTest(){
+    @ParameterizedTest
+    @ValueSource(ints = {5, 10, 15})
+    @DisplayName("이번 게임의 승자를 알 수 있다.")
+    void getWinnerTest(int turn){
         Game game = new Game();
         game.init("car1,car2");
-        game.run(5);
+        game.run(turn);
 
         List<Car> winners = game.getWinner();
 
