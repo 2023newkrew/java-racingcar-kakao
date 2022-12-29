@@ -64,3 +64,43 @@
     - [x] 자동차의 이름이 5글자를 넘어갈 경우 RuntimeException이 발생한다.
   - [x] 사용자로부터 시도 횟수를 입력받는다.
 - [x] 시도횟수만큼 게임이 진행된 후에 게임 결과를 출력한다.
+
+***** 
+
+### 리팩토링 진행 ( Step2 )
+- [x] 테스트 명세에 맞게 널값 테스트 적용
+- [x] 랜덤넘버 생성 경계 테스트 분리
+- [x] 경주 진행 상황 상수 분리 ("-")
+- [x] PrintUtils 함수 기능 변경 (범용성 확장)
+- [x] Delimiter 원시값 포장
+- [x] 상수 위치 상단으로 이동
+- [x] Input 원시값 포장
+- [x] Initialize 생성자가 하도록 변경
+- [x] Regex 정규식 상수로 변경
+- [x] Matcher 가져오는 행위 분리
+  - RegexUtils에서 진행
+- [x] Matcher 분리
+- [x] 우승자 산출 방식 변경
+  - [x] 최대 위치를 구하는 과정 변경
+    - getPosition()을 사용하여 가져오는 방식 취소
+    - Position이 아닌 객체를 가져오는 방식으로 변경
+    - Comparable 인터페이스 구현 이용
+  - getPosition을 사용하여 비교 x
+  - Comparable 함수를 이용하여 같은 포지션인지 비교
+- [x] isMovable() 테스트 활성화
+  - Random 값 테스트의 경우 함수 오버로딩 통해 진행
+- [x] Car 도메인 단위테스트 추가
+- [x] Cars 테스트 추가
+  - [x] 가장 높은 포지션의 차를 가져오는 테스트
+  - [x] 포지션이 동일한 차를 가져오는 테스트
+- [x] Exception 메시지 상수 처리
+- [x] Delimiter 단위 테스트 구현
+  - 길이가 올바르지 않은 Delimiter
+  - 문자 형태가 아닌 Delimiter (Numeric)
+  - 올바르게 생성되는 Delimiter
+- [x] Delimiters 단위 테스트 구현
+  - Delimiter 추가 테스트
+  - 기본 Regex 생성 테스트
+  - 커스텀 구분자가 추가된 Regex 생성 테스트
+- [x] Calculator 테스트 리팩토링 (CsvSource 사용)
+- [x] Input 도메인 단위 테스트 작성
