@@ -19,70 +19,37 @@ public class Racing {
         this.roundNum = roundNum;
     }
 
-/*
-    boolean registerCarNames(String input) {
-        String[] temp = input.split(",");
-        if (!lengthCheck(temp)) return false;
-
-        for (String name : temp) {
-            cars.add(new Car(name));
-        }
-        return true;
-    }
-
-    private boolean lengthCheck(String[] nameList) {
-        boolean check = true;
-        for (String name : nameList) {
-            check &= (name.length() <= 5);
-        }
-        return check;
-    }
-
-    boolean registerCarRoundNum(String input) {
-        try {
-            roundNum = Integer.parseInt(input);
-            return positiveCheck(roundNum);
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-    }
-
-    private boolean positiveCheck(int roundNum) {
-        return roundNum > 0;
-    }
-*/
-    boolean round() {
+    private void round() {
         for (Car car : cars) {
             int random = Utils.getRandomNumber();
             car.move(random);
         }
-        return true;
-    }
-/*
-    String roundResult() {
-        String temp = "";
-        for (Car car : cars) {
-            temp += car.getName() + "," + car.getPosition() + ",";
-        }
-        return temp;
     }
 
-    String getWinner() {
+    public List<Car> roundResult() {
+        List<Car> result = new ArrayList<>();
+        for (Car car : cars) {
+            result.add(car);
+        }
+        return result;
+    }
+
+    List<String> getWinner() {
+        List<String> winners = new ArrayList<>();
         int maxPosition = 0;
-        String winnerList = "";
         for (Car car : cars) {
             maxPosition = Math.max(car.getPosition(), maxPosition);
         }
         for (Car car : cars) {
-            winnerList += car.matchPosition(maxPosition);
+            if (car.getPosition() == maxPosition) winners.add(car.getName());
         }
-        return winnerList;
+        return winners;
     }
 
     int getRoundNum() {
         return roundNum;
     }
-
+/*
     Car getCar(int index) {
         try {
             return cars.get(index);
@@ -91,6 +58,5 @@ public class Racing {
             throw ex;
         }
     }
-    */
-
+*/
 }
