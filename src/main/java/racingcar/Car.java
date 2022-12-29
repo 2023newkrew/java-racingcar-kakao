@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Random;
+
 public class Car {
     private final String name;
     private int distance;
@@ -10,7 +12,12 @@ public class Car {
     }
 
     public void forward() {
-        distance += (int)(Math.random() * 10) >= 4 ? 1 : 0;
+        forward(new Random().nextInt(10));
+    }
+
+    public void forward(int power) {
+        if(power >= 4)
+            distance++;
     }
 
     public int getDistance(){
