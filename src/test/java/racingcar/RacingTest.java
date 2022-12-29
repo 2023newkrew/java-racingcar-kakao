@@ -1,74 +1,58 @@
 package racingcar;
+/**
+ * - 여러대의 자동차 정보를 가지고 있다
+ * - 각 라운드마다 자동차를 전진하거나 정지한다
+ *  - 랜덤 값이 4 이상일 경우 자동차를 전진한다
+ *  - 랜덤 값이 3 이하일 경우 자동차를 정지한다
+ * - 라운드가 종료될 때 마다 결과를 확인할 수 있다
+ * - 게임이 종료된 후 우승자를 확인할 수 있다
+ */
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class RacingTest {
-    @Test
-    public void 자동차_이름이_정상적으로_입력된다() {
-        Racing racing = new Racing();
-        assertTrue(racing.registerCarNames("pobi,crong,honux"));
-    }
-
-    @Test
-    public void 자동차_중_이름이_5자가_초과된_자동차가_입력된다() {
-        Racing racing = new Racing();
-        assertFalse(racing.registerCarNames("pobi,crong,honux12312"));
-    }
-
-    @Test
-    public void 게임_라운드_횟수가_1이상의_숫자로_입력된다() {
-        Racing racing = new Racing();
-        assertTrue(racing.registerCarRoundNum("123"));
-    }
-
-    @Test
-    public void 게임_라운드_횟수가_1미만의_숫자로_입력된다() {
-        Racing racing = new Racing();
-        assertFalse(racing.registerCarRoundNum("-123"));
-    }
-
-    @Test
-    public void 게임_라운드_횟수가_숫자가_아니도록_입력된다() {
-        Racing racing = new Racing();
-        assertFalse(racing.registerCarRoundNum("abcd"));
-    }
-
-    @Test
-    public void 게임이_잘_종료되었다() {
-        Racing racing = new Racing();
-        racing.registerCarNames("a,b,c");
-        racing.registerCarRoundNum("5");
-        assertTrue(racing.round());
-    }
-
-    @Test
-    public void 랜덤값이_4_이상일_경우_자동차가_전진한다() {
-        Racing racing = new Racing() {
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    public void 랜덤값이_4_이상일_경우_자동차를_전진한다(final int condition) {
+        List<String> carNames = new ArrayList<>();
+        carNames.add("aaa");
+        carNames.add("bbb");
+        Racing racing = new Racing(carNames, 1) {
             @Override
-            protected boolean random() {
-                return true;
+            public void round() {
+                for (Car car : getCars()) {
+                    car.move(condition);
+                }
             }
         };
-        racing.registerCarNames("a, b");
-        racing.registerCarRoundNum("1");
         racing.round();
-        assertThat(racing.getCar(1).getPosition()).isEqualTo(1);
+        assertThat(racing.getCars().get(0).getPosition()).isEqualTo(1);
+        assertThat(racing.getCars().get(1).getPosition()).isEqualTo(1);
     }
-
-    @Test
-    public void 랜덤값이_3_이하일_경우_자동차가_정지한다() {
-        Racing racing = new Racing() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    public void 랜덤값이_3_이하일_경우_자동차를_정지한다(final int condition) {
+        List<String> carNames = new ArrayList<>();
+        carNames.add("aaa");
+        carNames.add("bbb");
+        Racing racing = new Racing(carNames, 1) {
             @Override
-            protected boolean random() {
-                return false;
+            public void round() {
+                for (Car car : getCars()) {
+                    car.move(condition);
+                }
             }
         };
-        racing.registerCarNames("a");
-        racing.registerCarRoundNum("1");
         racing.round();
-        assertThat(racing.getCar(0).getPosition()).isEqualTo(0);
+        assertThat(racing.getCars().get(0).getPosition()).isEqualTo(0);
+        assertThat(racing.getCars().get(1).getPosition()).isEqualTo(0);
     }
 }
