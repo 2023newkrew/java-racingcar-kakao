@@ -1,4 +1,4 @@
-package calculator.domain;
+package calculator.domain.calculator.prompt;
 
 import calculator.constant.RegexConstant;
 import calculator.util.RegexUtils;

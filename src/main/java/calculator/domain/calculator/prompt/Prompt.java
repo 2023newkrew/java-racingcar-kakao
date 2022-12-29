@@ -1,6 +1,7 @@
-package calculator.domain;
+package calculator.domain.calculator.prompt;
 
-import calculator.util.RegexUtils;
+import calculator.domain.calculator.delimiter.Delimiter;
+import calculator.domain.calculator.delimiter.Delimiters;
 
 import java.util.regex.Matcher;
 public class Prompt {
