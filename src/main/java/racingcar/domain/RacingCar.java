@@ -1,7 +1,8 @@
 package racingcar.domain;
 
 public class RacingCar {
-    public final static int POWER_THRESHOLD = 4;
+    private final static int POWER_THRESHOLD = 4;
+    private final static int MOVE_DISTANCE = 1;
     private final String name;
     private int pos;
 
@@ -23,7 +24,7 @@ public class RacingCar {
 
     public void accelerate(int power) {
         if (power >= this.POWER_THRESHOLD) {
-            this.pos += 1;
+            this.pos += MOVE_DISTANCE;
         }
     }
 }
