@@ -1,18 +1,17 @@
 package racing.view;
 
+import racing.exception.ErrorCode;
+import racing.exception.RacingException;
 import racing.model.Car;
 import racing.repository.RacingCarRepository;
-import racing.service.RacingValidator;
 
 import java.util.Scanner;
 
 public class RacingView {
     private final Scanner scanner;
-    private final RacingValidator racingValidator;
 
     public RacingView(){
         scanner = new Scanner(System.in);
-        racingValidator = new RacingValidator();
     }
 
     public String inputCarName(){
@@ -25,7 +24,9 @@ public class RacingView {
         System.out.println("시도할 횟수는 몇회인가요?");
         attempt = scanner.nextInt();
 
-        racingValidator.attemptValidate(attempt);
+        if(attempt < 0) {
+            throw new RacingException(ErrorCode.NEGATIVE_ATTEMPT);
+        }
         return attempt;
     }
 

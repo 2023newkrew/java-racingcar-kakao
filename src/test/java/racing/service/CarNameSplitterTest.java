@@ -9,12 +9,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class RacingSplitterTest {
-    private RacingSplitter racingSplitter;
+public class CarNameSplitterTest {
+    private CarNameSplitter carNameSplitter;
 
     @BeforeEach
     void setUp(){
-        racingSplitter = new RacingSplitter();
+        carNameSplitter = new CarNameSplitter();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class RacingSplitterTest {
         expected.add(new Car("bbb", 0));
         expected.add(new Car("ccc", 0));
 
-        List<Car> result = racingSplitter.split(input);
+        List<Car> result = carNameSplitter.split(input);
 
         assertThat(result).hasSameElementsAs(expected);
     }

@@ -1,24 +1,24 @@
 package racing.controller;
 
 import racing.service.RacingService;
-import racing.service.RacingSplitter;
+import racing.service.CarNameSplitter;
 import racing.view.RacingView;
 import racing.repository.RacingCarRepository;
 
 public class RacingController {
     private final RacingService racingService;
-    private final RacingSplitter racingSplitter;
+    private final CarNameSplitter carNameSplitter;
     private final RacingView racingView;
 
     public RacingController() {
         racingService = new RacingService();
-        racingSplitter = new RacingSplitter();
+        carNameSplitter = new CarNameSplitter();
         racingView = new RacingView();
     }
 
     public void raceStart(){
         String carString = racingView.inputCarName();
-        RacingCarRepository.init(racingSplitter.split(carString));
+        RacingCarRepository.init(carNameSplitter.split(carString));
         Integer attempt = racingView.inputAttempt();
 
         racingView.printResultString();

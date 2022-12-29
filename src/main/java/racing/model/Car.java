@@ -1,20 +1,28 @@
 package racing.model;
 
-import java.util.Random;
+import racing.exception.ErrorCode;
+import racing.exception.RacingException;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Car implements Comparable<Car>{
     private final String name;
     private Integer position;
-    private final Random random;
 
     public Car(String name, Integer position) {
+        validateCarName(name);
         this.name = name;
         this.position = position;
-        this.random = new Random();
+    }
+
+    private void validateCarName(String carName) {
+        if(carName.isBlank()) throw new RacingException(ErrorCode.EMPTY_CAR_NAME);
+        if(carName.length() > 5) throw new RacingException(ErrorCode.TOO_LONG_CAR_NAME);
     }
 
     public void tryMove() {
-        if (random.nextInt(10) >= 4) {
+        int randint = ThreadLocalRandom.current().nextInt(10);
+        if (randint >= 4) {
             position++;
         }
     }
