@@ -12,7 +12,7 @@ public class Calculator {
     }
 
     public Integer calculate(String expression) {
-        if (expression.isBlank()){
+        if (expression == null || expression.isBlank()){
             return 0;
         }
         if (validator.isOneNumber(expression)){
