@@ -4,7 +4,6 @@ import racingcar.dto.CarDto;
 import racingcar.utils.RandomNumberGenerator;
 
 public class Car implements MovableStrategy{
-
     private final String name;
     private int position = 1;
 
@@ -22,7 +21,7 @@ public class Car implements MovableStrategy{
     public boolean isMovable() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-        return randomNumberGenerator.generateBetweenZeroAndNine() >= 4;
+        return randomNumberGenerator.generateBetweenZeroAndNine() >= Threshold.NORMAL_THRESHOLD.getNumber();
     }
 
     public boolean isSamePosition(Car other) {
