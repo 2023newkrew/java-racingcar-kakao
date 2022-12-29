@@ -1,5 +1,6 @@
 package com.calc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Expression {
@@ -12,6 +13,11 @@ public class Expression {
         this.values = values;// separators; // Parser 만들어서 넘기는걸로
         this.separators = separators;// separators; // Parser 만들어서 넘기는걸로
         this.allowSep = allowSep; // Parser
+    }
+
+    // 0이 나오는 값을 생성
+    public static Expression createEmpty() {
+        return new Expression(new ArrayList<>(), new ArrayList<>(), "");
     }
 
     private void checkSeparators(){

@@ -12,10 +12,10 @@ public class Parser {
 
     public Expression checkNull(String text) {
         if (text == null) {
-            return new Expression(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
+            return Expression.createEmpty();
         }
         if (text.isEmpty()) {
-            return new Expression(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
+            return Expression.createEmpty();
         }
         return null;
     }
