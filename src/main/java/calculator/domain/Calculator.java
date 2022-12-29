@@ -2,6 +2,8 @@ package calculator.domain;
 
 import static calculator.constant.MessageConstant.NEGATIVE_NUMBER_EXCEPTION;
 
+import java.util.Arrays;
+
 public class Calculator {
     public int calculate(Prompt prompt) {
         if(prompt.isEmptyInput()) {
@@ -12,15 +14,12 @@ public class Calculator {
     }
 
     private int calculateWithDelimiter(Prompt prompt) {
-        String[] stringNumbers = prompt.getStringNumbers();
-        int ret = 0;
-        for (String stringNumber : stringNumbers) {
-            ret += parseIntOnlyPositiveStringNumber(stringNumber);
-        }
-        return ret;
+        return Arrays.stream(prompt.getStringNumbers())
+                .mapToInt(this::parseIntOnlyPositiveStringNumber)
+                .sum();
     }
 
-    public int parseIntOnlyPositiveStringNumber(String stringNumber) {
+    private int parseIntOnlyPositiveStringNumber(String stringNumber) {
         try {
             int number = Integer.parseInt(stringNumber);
             if (number < 0) {

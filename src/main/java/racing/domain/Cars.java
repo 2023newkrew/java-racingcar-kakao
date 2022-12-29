@@ -60,10 +60,10 @@ public class Cars {
     }
 
     public Map<String, Integer> getStatus() {
-        Map<String, Integer> status = new HashMap<>();
-        for (Car car : cars) {
-            status.put(car.getName(), car.getPosition());
-        }
-        return status;
+        return cars.stream()
+                .collect(Collectors.toMap(
+                        Car::getName,
+                        Car::getPosition
+                ));
     }
 }
