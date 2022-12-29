@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 public class StringCalculatorTest {
 
     private StringCalculator stringCalculator;
+
     @BeforeEach
     void setUp() {
         stringCalculator = new StringCalculator(new HashSet<>(List.of(",", ":")));
@@ -73,7 +74,7 @@ public class StringCalculatorTest {
     @Test
     @DisplayName("커스텀 구분자가 등록되면 이후 해당 구분자를 기준으로 분리가 가능해진다.")
     void splitStringByCustomDelimiter() {
-        String str = "8_2:3", input = "//_\n6_1:5";
+        String input = "//_\n6_1:5", str = "8_2:3";
 
         stringCalculator.run(input);
         String[] result = stringCalculator.splitByDelimiter(str);
@@ -92,7 +93,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("입력된 문자열에 맞게 계산한다.")
+    @DisplayName("커스텀 구분자가 포함된 문자열에 맞게 계산한다.")
     void playStringCalculatorWithCustomDelimiter() {
         String input = "//;\n5:2;9";
 
@@ -101,7 +102,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("양의 정수가 들어가야 할 자리에 특수 문자 입력")
+    @DisplayName("양의 정수가 들어가야 할 자리에 특수 문자를 입력할 경우 예외가 발생한다.")
     void playStringCalculatorWithInvalidInput1() {
         String input = "//;\n_:2;9";
 
@@ -110,7 +111,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("양의 정수가 들어가야 할 자리에 음수 입력")
+    @DisplayName("양의 정수가 들어가야 할 자리에 음수를 입력할 경우 예외가 발생한다.")
     void playStringCalculatorWithInvalidInput2() {
         String input = "//;\n-1:2;9";
 
@@ -119,7 +120,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("음수만 입력")
+    @DisplayName("음수만 입력될 경우 예외가 발생한다.")
     void playStringCalculatorWithInvalidInput3() {
         String input = "-1";
 
@@ -128,7 +129,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("패턴은 일치하지만, 구분자가 숫자인 경우 예외 발생")
+    @DisplayName("패턴은 일치하지만, 구분자가 숫자인 경우 예외가 발생한다.")
     void playStringCalculatorWithInvalidInput4() {
         String input = "//6\n26269";
 
@@ -137,7 +138,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("사용자의 입력값이 커스텀 구분자 패턴과 일치하지 않는 경우 예외 발생")
+    @DisplayName("사용자의 입력값이 커스텀 구분자 패턴과 일치하지 않는 경우 예외가 발생한다.")
     void playStringCalculatorWithInvalidInput5() {
         String input = "//;_\n2;2_9";
 

@@ -48,11 +48,8 @@ public class StringCalculator {
     private String parseNumberContainingString(String input) {
         Matcher m = pattern.matcher(input);
 
-        if (m.find()) {
-            return m.group(2);
-        }
-
-        return null;
+        m.find();
+        return m.group(2);
     }
 
     public String[] splitByDelimiter(String input) {
