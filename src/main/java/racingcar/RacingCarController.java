@@ -10,8 +10,6 @@ public class RacingCarController {
 
     private static final int MAX_COUNT = 100;
 
-    private RacingCars racingCars;
-
     private final RacingCarView view;
 
     public static RacingCarController create() {
@@ -23,29 +21,32 @@ public class RacingCarController {
     }
 
     public void start() {
-        createRacingCars();
-        simulate();
-        printWinner();
+        RacingCars racingCars = createRacingCars();
+        simulate(racingCars);
+        printWinner(racingCars);
     }
 
-    private void createRacingCars() {
+    private RacingCars createRacingCars() {
+        RacingCars racingCars = null;
         while (Objects.isNull(racingCars)) {
-            tryCreateRacingCars();
+            racingCars = tryCreateRacingCars();
         }
+        return racingCars;
     }
 
-    private void tryCreateRacingCars() {
+    private RacingCars tryCreateRacingCars() {
         try {
-            createRacingCarsByInput();
+            return createRacingCarsByInput();
         } catch (RuntimeException ex) {
             view.printError(ex.getMessage());
+            return null;
         }
     }
 
-    private void createRacingCarsByInput() {
+    private RacingCars createRacingCarsByInput() {
         List<String> names = inputNames();
         List<Car> cars = createCarsFromNames(names);
-        racingCars = RacingCars.from(cars);
+        return RacingCars.from(cars);
     }
 
     private List<String> inputNames() {
@@ -63,7 +64,7 @@ public class RacingCarController {
         return Car.from(name, Engine.getDefaultEngine());
     }
 
-    private void simulate() {
+    private void simulate(RacingCars racingCars) {
         int count = inputCount();
         view.printResultText();
         for (int i = 0; i < count; ++i) {
@@ -89,7 +90,7 @@ public class RacingCarController {
         return count;
     }
 
-    private void printWinner() {
+    private void printWinner(RacingCars racingCars) {
         view.printWinners(racingCars.getWinners());
     }
 }
