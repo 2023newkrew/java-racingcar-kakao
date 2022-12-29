@@ -6,13 +6,13 @@ import car_racing.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RacingController {
+public class RacingGame {
     private final InputView inputView;
     private final List<RacingPlayer> racingPlayers;
     private String[] playerNames;
     private Integer numberOfTurns;
 
-    public RacingController() {
+    public RacingGame() {
         racingPlayers = new ArrayList<>();
         inputView = new InputView();
     }

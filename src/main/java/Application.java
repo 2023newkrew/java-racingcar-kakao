@@ -1,4 +1,4 @@
-import car_racing.domain.RacingController;
+import car_racing.domain.RacingGame;
 
 public class Application {
     public static void main(String[] args) {
@@ -8,7 +8,7 @@ public class Application {
 //
 //        runner.run();
 
-        RacingController racingController = new RacingController();
-        racingController.run();
+        RacingGame racingGame = new RacingGame();
+        racingGame.run();
     }
 }
