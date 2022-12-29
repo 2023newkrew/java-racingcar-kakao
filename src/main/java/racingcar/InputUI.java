@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 public class InputUI {
     private static final Scanner sc = new Scanner(System.in);
+    private static final int MAX_CAR_NAME_LENGTH = 5;
 
     public static List<String> inputCarNameList() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -24,7 +25,7 @@ public class InputUI {
     private static boolean validation(List<String> cars) {
         boolean isValid = true;
         for (String car : cars) {
-            isValid = isValid && car.length() <= 5;
+            isValid = isValid && car.length() <= MAX_CAR_NAME_LENGTH;
         }
 
         return isValid;

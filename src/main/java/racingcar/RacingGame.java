@@ -1,44 +1,37 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class RacingGame {
-    private final List<Car> carList = new ArrayList<>();
+    private final List<Car> carList;
     private int turn;
     private int maxPosition;
 
-    public RacingGame(List<String> carNameList, int turn) {
-        for (String carName : carNameList) {
-            this.carList.add(new Car(carName, 0));
-        }
+    public RacingGame(List<Car> carList, int turn) {
+        this.carList = carList;
         this.turn = turn;
-        this.maxPosition = 0;
+        carList.stream()
+                .map(Car::getPosition)
+                .max(Comparator.comparingInt(c -> c))
+                .ifPresent(mp -> this.maxPosition = mp);
     }
 
-    public List<Car> getCarList() {
-        return carList;
-    }
-
-    public int getTurn() {
-        return turn;
-    }
-
-    public void play() {
+    public List<String> play() {
         while (turn > 0) {
             playTurn();
             turn -= 1;
             OutputUI.printTurnResult(carList);
         }
 
-        OutputUI.printGameResult(getWinners());
+        return getWinners();
     }
 
     private List<String> getWinners() {
-        int maxPosition = 0;
         List<String> winnerList = new ArrayList<>();
         for (Car car : carList) {
-            maxPosition = checkIs1st(car, maxPosition, winnerList);
+            checkIs1st(car, winnerList);
         }
 
         return winnerList;
