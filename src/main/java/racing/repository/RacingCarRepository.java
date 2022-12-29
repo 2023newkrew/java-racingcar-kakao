@@ -3,7 +3,6 @@ package racing.repository;
 import racing.exception.ErrorCode;
 import racing.exception.RacingException;
 import racing.model.Car;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;

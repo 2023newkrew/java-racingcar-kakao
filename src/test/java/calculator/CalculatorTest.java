@@ -27,8 +27,6 @@ public class CalculatorTest {
 
         //then
         assertThat(result).isEqualTo(0);
-
-
     }
 
     @ParameterizedTest
