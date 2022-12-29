@@ -17,7 +17,6 @@ public class Main {
             ResultView.printCars(racing.cars());
         }
 
-        System.out.println("최종결과");
-        System.out.println(String.join(", ", racing.getTotalWinnersNames()) + "가 최종 우승했습니다.");
+        ResultView.printWinners(racing.getTotalWinners());
     }
 }

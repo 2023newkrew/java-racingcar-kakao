@@ -39,15 +39,4 @@ public class Racing {
                 .filter(car -> car.equalsPositionToOtherCar(winner))
                 .toArray(Car[]::new);
     }
-
-    public String[] getTotalWinnersNames() {
-        Car[] winners = getTotalWinners();
-        String[] winnersNames = new String[winners.length];
-
-        for (int i = 0; i < winners.length; i++) {
-            winnersNames[i] = winners[i].name();
-        }
-
-        return winnersNames;
-    }
 }
