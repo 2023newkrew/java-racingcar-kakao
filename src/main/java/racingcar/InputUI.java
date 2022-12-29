@@ -40,13 +40,15 @@ public class InputUI {
     public static int inputTurn() {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = sc.nextLine();
-        Matcher matcher = Pattern.compile("(\\d+)").matcher(input);
-        while (!matcher.matches()) {
-            System.out.println("숫자만 입력 가능합니다.");
-            input = sc.nextLine();
-            matcher = Pattern.compile("(\\d+)").matcher(input);
-        }
+        validateTurn(input);
 
         return Integer.parseInt(input);
+    }
+
+    public static void validateTurn(String turn){
+        Matcher matcher = Pattern.compile("(\\d+)").matcher(turn);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("숫자만 입력이 가능합니다.");
+        }
     }
 }
