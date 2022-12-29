@@ -43,7 +43,7 @@ public class Calculator {
     private void checkInvalidInput(String s) {
         Matcher m = Pattern.compile("(\\d*)").matcher(s);
         if (!m.matches()) {
-            throw new RuntimeException("0부터 9 사이의 수만 입력할 수 있습니다.");
+            throw new RuntimeException("숫자만 입력할 수 있습니다.");
         }
     }
 
