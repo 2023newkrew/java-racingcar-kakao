@@ -1,5 +1,9 @@
 package racing.domain;
 
+import calculator.constant.MessageConstant;
+
+import static calculator.constant.MessageConstant.INVALID_INPUT_EXCEPTION;
+
 public class Name {
     private final String name;
 
@@ -11,7 +15,7 @@ public class Name {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new RuntimeException();
+            throw new RuntimeException(INVALID_INPUT_EXCEPTION);
         }
     }
 
