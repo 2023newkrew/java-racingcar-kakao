@@ -15,7 +15,7 @@ public class View {
         do {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             nameInput = sc.nextLine();
-        } while(!Validate.validateCarNames(nameInput));
+        } while (!Validate.validateCarNames(nameInput));
         return Parser.stringArrayToStringList(nameInput.split(","));
     }
 
@@ -34,7 +34,7 @@ public class View {
             System.out.print(car.getName() + " : ");
             System.out.println("-".repeat(car.getPosition()));
         }
-       System.out.println();
+        System.out.println();
     }
 
     public static void printWinner(List<String> winners) {
