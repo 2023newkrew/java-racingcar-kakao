@@ -20,6 +20,11 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printResultTitle() {
+        System.out.println();
+        System.out.println("실행결과");
+    }
+
     public static void printWinners(List<RacingPlayer> winners) {
         String concatenatedName = getConcatenatedNameFromArray(winners);
         System.out.println(concatenatedName + "가 최종 우승했습니다.");

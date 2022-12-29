@@ -36,8 +36,7 @@ public class RacingController implements GameController {
     }
 
     private void runWholeGame() {
-        System.out.println();
-        System.out.println("실행결과");
+        OutputView.printResultTitle();
         OutputView.printCurrentStatus(racingPlayers);
         for (int i = 0; i < numberOfTurns; i++) {
             sleepForMillis(500);
