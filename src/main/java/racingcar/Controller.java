@@ -9,7 +9,7 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    private static Racing settings() {
+    private static Racing settings() { // 게임에 필요한 정보를 받아오고, 레이싱 객체를 생성한다
         InputDto inputDto = InputView.creatInput();
 
         List<String> carNames = inputDto.getCarNames();
@@ -18,12 +18,12 @@ public class Controller {
         return new Racing(carNames, roundNum);
     }
 
-    private static void printRoundResult(Racing racing) {
+    private static void printRoundResult(Racing racing) { //라운드 진행 후, 결과를 출력한다
         RoundResultDto roundResultDto = racing.returnCarState();
         OutputView.printRoundResult(roundResultDto.getCarState());
     }
 
-    private static void printWinnerResult(Racing racing) {
+    private static void printWinnerResult(Racing racing) { //우승자를 출력한다
         OutputView.printWinner(racing.returnWinners().getWinners());
     }
 
