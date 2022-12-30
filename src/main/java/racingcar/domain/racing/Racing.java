@@ -1,20 +1,21 @@
 package racingcar.domain.racing;
 
-import racingcar.domain.car.Car;
 import racingcar.domain.car.CarDTO;
-import racingcar.domain.car.RandomMovingAction;
 import racingcar.util.StringParser;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Racing {
-    private final List<Car> cars = new ArrayList<>();
+    //    private final List<Car> cars = new ArrayList<>();
+    private final RacingCar cars;
     private final RacingTurn turn;
 
     public Racing(String nameInput, String turn) {
-        makeCars(StringParser.parse(nameInput));
+        this(StringParser.parse(nameInput), turn);
+    }
+
+    public Racing(List<String> names, String turn) {
+        this.cars = new RacingCar(names);
         this.turn = new RacingTurn(turn);
     }
 
@@ -22,22 +23,11 @@ public class Racing {
         return names.size() != names.stream().distinct().count();
     }
 
-    public List<CarDTO> getCarDTOs() {
-        return cars.stream().map(Car::toDTO).collect(Collectors.toList());
-    }
-
-    public void makeCars(List<String> carNames) {
-        if (isDuplicateNames(carNames)) throw new IllegalArgumentException("");
-
-        for (String carName : carNames)
-            this.cars.add(new Car(carName));
-    }
-
     public List<CarDTO> proceedTurn() {
-        this.cars.forEach(car -> car.move(new RandomMovingAction()));
+        cars.move();
         turn.proceed();
 
-        return getCarDTOs();
+        return cars.getCarDTOs();
     }
 
     public boolean isEnd() {
@@ -47,6 +37,6 @@ public class Racing {
     public RacingWinner getWinners() {
         if (!isEnd()) throw new IllegalStateException();
 
-        return new RacingWinner(getCarDTOs());
+        return new RacingWinner(cars.getCarDTOs());
     }
 }
