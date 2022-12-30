@@ -31,28 +31,14 @@
 - Application
   - gameController
 
-### Utils
-- InputValidator
-  - validateCarNames()
-  - validateSingleCarName()
-  - validateGameRepeat()
-  - validatePositive()
-- RandomNumberGenerator
-  - generate()
-
 ### Domain
 - Car (implements Comparable)
   - 속성: name, distance
   - 메서드: toString(), compareTo(), move(), increaseDistance(), getDifference(), isMoving()
 
 - Cars
-  - 속성: cars, length
-  - 메서드: play(), getWinners(), getStatus()
-
-### Service
-- Game 
-  - 속성: cars, length, generator
-  - 메서드: play(), getStatus(), getWinners()
+  - 속성: cars
+  - 메서드: validateDuplicateCarNames(), getSplitNames(), play(), getWinners(), getMaxDistance(), getStatus()
 
 ### View
 - OutputView
@@ -61,8 +47,24 @@
 - InputView
   - readCarNames()
   - readGameRepeat()
-  
+
 ### Controller
 - GameController
   - inputView, outputView, game
-  - play()
+  - play(), playMultipleTurns(), playSingleTurn()
+
+### Service
+- Game
+  - 속성: cars, length, generator
+  - 메서드: play(), getStatus(), getWinners()
+
+### Utils
+- InputValidator
+  - validateGameRepeat()
+  - validatePositive()
+- RandomNumberGenerator
+  - generate()
+
+
+  
+
