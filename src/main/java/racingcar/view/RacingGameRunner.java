@@ -42,16 +42,6 @@ public class RacingGameRunner {
         }
     }
 
-    public void registeredData(String carNames, int numberOfGames) {
-        this.carNames = carNames;
-        this.numberOfGames = numberOfGames;
-        this.carSet = registerCars(carNames);
-    }
-
-    public Set<Car> getCarList() {
-        return carSet;
-    }
-
     public void printCars() {
         for (Car car : carSet) {
             car.print();
