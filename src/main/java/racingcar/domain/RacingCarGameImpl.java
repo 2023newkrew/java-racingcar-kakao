@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,8 +37,13 @@ public class RacingCarGameImpl implements RacingCarGame {
     }
 
     @Override
-    public void run(int times) {
+    public void race(int times) {
+        List<Integer> movingNumbers = new ArrayList<>();
+        for(int i=0;i<times;i++){
+            movingNumbers.add(randomNumberGenerator.generator());
+        }
 
+        cars.move(movingNumbers);
     }
 
     @Override

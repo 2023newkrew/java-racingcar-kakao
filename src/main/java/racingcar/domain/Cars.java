@@ -34,10 +34,10 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void move(int[] movingNumbers) {
-        for (int i = 0; i < movingNumbers.length; i++) {
+    public void move(List<Integer> movingNumbers) {
+        for (int i = 0; i < movingNumbers.size(); i++) {
             cars.get(i)
-                    .move(movingNumbers[i]);
+                    .move(movingNumbers.get(i));
         }
     }
 }

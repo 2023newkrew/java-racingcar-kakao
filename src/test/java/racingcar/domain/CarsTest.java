@@ -28,7 +28,7 @@ public class CarsTest {
         Car car3 = CarFactory.createCar("honux", 0);
 
         Cars cars = new Cars(List.of(car1, car2, car3));
-        int[] movingNumbers = {3, 4, 1};
+        List<Integer> movingNumbers = List.of(3, 4, 2);
 
         cars.move(movingNumbers);
 
