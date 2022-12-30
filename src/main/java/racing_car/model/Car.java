@@ -11,6 +11,7 @@ public class Car implements Comparable<Car> {
     public Car(String name, int distance) {
         validateName(name);
         this.name = name;
+        this.distance = distance;
     }
 
     public Car(String name) {

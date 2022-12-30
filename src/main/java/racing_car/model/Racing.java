@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Racing {
     private Car[] cars;
+    private int round;
 
     private int generateRandomNumber() {
         return new Random().nextInt(10);
@@ -32,11 +33,12 @@ public class Racing {
     }
 
     public void createCars(String testNames) {
-        createCars(testNames, new int[testNames.length()]);
+        createCars(testNames, new int[testNames.split(",").length]);
     }
 
     public void createCars(String testNames, int[] distances) {
         String[] names = testNames.split(",");
+        cars = new Car[names.length];
         for (int i = 0; i < names.length; i++) {
             cars[i] = new Car(names[i], distances[i]);
         }
@@ -46,4 +48,27 @@ public class Racing {
         return cars;
     }
 
+    public int generateValue() {
+        return new Random().nextInt(10);
+    }
+
+    public void setRound(int round) {
+        this.round = round;
+    }
+
+    public boolean isEnd() {
+        return this.round == 0;
+    }
+
+    public void race() {
+        if (round == 0){
+            return;
+        }
+
+        for (Car car: cars) {
+            car.proceed(generateValue());
+        }
+
+        round--;
+    }
 }
