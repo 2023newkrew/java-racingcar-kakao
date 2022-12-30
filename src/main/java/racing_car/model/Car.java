@@ -5,18 +5,26 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
 
     private final String name;
-
     private int distance = 0;
+
 
     public Car(String name, int distance) {
         validateName(name);
         this.name = name;
         this.distance = distance;
     }
-
     public Car(String name) {
         this(name, 0);
     }
+
+
+    public int distance() {
+        return this.distance;
+    }
+    public String name() {
+        return this.name;
+    }
+
 
     private void validateName(String input) {
         if (input.length() < 1){
@@ -27,27 +35,11 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public String name() {
-        return name;
-    }
-
-    public static Car[] from(String names){
-        String[] separatedNames = names.split(",");
-        Car[] cars = new Car[separatedNames.length];
-        for (int i = 0; i < separatedNames.length; i++) {
-            cars[i] = new Car(separatedNames[i]);
+    public void proceed(int threshold) {
+        if (threshold > 4){
+            this.distance += 1;
         }
-        return cars;
     }
-
-    public String showDistance() {
-        return "-".repeat(this.distance);
-    }
-
-    public void move(int i) {
-        this.distance += i;
-    }
-
 
     @Override
     public int compareTo(Car o) {
@@ -62,13 +54,4 @@ public class Car implements Comparable<Car> {
         return distance == car.distance && Objects.equals(name, car.name);
     }
 
-    public int distance() {
-        return this.distance;
-    }
-
-    public void proceed(int threshold) {
-        if (threshold > 4){
-            this.distance += 1;
-        }
-    }
 }
