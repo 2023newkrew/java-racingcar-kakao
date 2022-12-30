@@ -1,6 +1,5 @@
 package CarRacing.view;
 
-import CarRacing.domain.Car;
 import CarRacing.domain.RacingLog;
 
 import CarRacing.domain.RacingResult;

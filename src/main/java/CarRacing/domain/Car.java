@@ -1,7 +1,5 @@
 package CarRacing.domain;
 
-import CarRacing.util.RandomUtil;
-
 public class Car {
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
     private static final int MINIMUM_CAR_NAME_LENGTH = 1;
