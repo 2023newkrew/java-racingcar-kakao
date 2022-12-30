@@ -15,4 +15,15 @@ public class Input {
 
         return text;
     }
+
+    public static int turnInput() throws IOException {
+        String text;
+
+        Output.printNoticeTurn();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        text = reader.readLine().replace("\\n","\n");
+
+        return Integer.parseInt(text);
+    }
 }

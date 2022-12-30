@@ -16,4 +16,12 @@ public class InputTest {
 
         assertEquals(Input.nameStringInput(), "test1,test2,test3");
     }
+
+    @DisplayName("Return input turn test")
+    @Test
+    void turnInputTest() throws IOException {
+        System.setIn(new ByteArrayInputStream("5".getBytes()));
+
+        assertEquals(Input.turnInput(), 5);
+    }
 }
