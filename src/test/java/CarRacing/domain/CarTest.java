@@ -20,12 +20,6 @@ public class CarTest {
         positionCar = new Car("test", 5);
     }
 
-    @DisplayName("랜덤한 숫자가 0부터 9사이로 생성되는지 테스트")
-    @Test
-    public void createRandomNumberTest() {
-        assertThat(car.createRandomNumber()).isBetween(0, 9);
-    }
-
     @DisplayName("랜덤 넘버가 0이상 3이하 일때 자동차가 움직이지 않는지 테스트")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})

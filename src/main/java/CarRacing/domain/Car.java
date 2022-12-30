@@ -1,13 +1,12 @@
 package CarRacing.domain;
 
-import java.util.Random;
+import CarRacing.util.RandomUtil;
 
 public class Car {
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 1;
     private static final int CAR_SPEED = 1;
-    private static Random random = new Random();
     private final String name;
     private int position;
 
@@ -18,10 +17,6 @@ public class Car {
     public Car(String name, int position) {
         this.position = position;
         this.name = name;
-    }
-
-    public int createRandomNumber() {
-        return random.nextInt(RANDOM_NUMBER_RANGE);
     }
 
     public boolean isMove(int randomNumber) {
@@ -35,7 +30,7 @@ public class Car {
     }
 
     public void carEvent() {
-        moveCar(isMove(createRandomNumber()));
+        moveCar(isMove(RandomUtil.generateRandomNumber(RANDOM_NUMBER_RANGE)));
     }
 
     public int getMaxPosition(int maxPosition) {
