@@ -18,6 +18,9 @@ public class GameUI {
         this.printer = new PrintStream(outputStream);
     }
 
+    /**
+     * 해당 메서드는 GameUI가 상호작용할 스트림을 통해 사용자로부터 자동차 이름 목록과 게임 진행 횟수를 얻어오는 역활을 한다.
+     */
     public void init() {
         // 초기화 여부를 검증함
         if (game != null) {
@@ -52,6 +55,9 @@ public class GameUI {
         return rawCount;
     }
 
+    /**
+     * 해당 메서드는 초기화 당시에 지정된 횟수만큼 반복적으로 게임을 진행한다.
+     */
     public void run() {
         // 초기화 여부를 검증함
         if (game == null) {

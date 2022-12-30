@@ -17,17 +17,29 @@ public class Game {
         return new Factory();
     }
 
+    /**
+     * 모든 자동차들에 대해 {@link com.racing.Car#move} 메서드를 random 을 이용해 호출한다.
+     */
     public void run() {
         Random randomGenerator = new Random();
         this.run((car) -> randomGenerator.nextInt(10));
     }
 
+    /**
+     * @param func 각 자동차에 어떤 값을 이용해 {@link com.racing.Car#move}를 호출할 지를 결정할 수 있게 해 준다.
+     */
     public void run(RunEachStepCarFunc func) {
         for (Car eachCar : this.innerCars) {
             eachCar.move(func.generateMoveInput(eachCar));
         }
     }
 
+    /**
+     * 스트림으로 자동차를 순회할 수 있도록 제공하는 메서드
+     * 기본 배열에 대해서 외부로부터의 Immutable 을 보장하기 위해서 고안되었다.
+     *
+     * @return 게임이 내부적으로 보유한 모든 자동차를 순회하는 스트림을 내보낸다.
+     */
     public Stream<Car> carStream() {
         return this.innerCars.stream();
     }
@@ -55,11 +67,18 @@ public class Game {
         return tempMaxLocation;
     }
 
+    /**
+     * 이 함수 인터페이스(람다)는 자동차를 이동시키는 메서드에서 값을 입력하기 위해 사용된다.
+     * 기본적으로 람다를 통해 랜덤, 혹은 상황에 따라 특정 자동차에게 특정 값을 사용하게 하는 등의 용도로 사용된다.
+     */
     @FunctionalInterface
     public interface RunEachStepCarFunc {
         int generateMoveInput(Car about);
     }
 
+    /**
+     * 게임을 생성하기 위해서 사용되는 팩토리 클래스로 이를 이용해 객체를 생성하고 사용자가 직접 객체를 만드는 것을 막는다.
+     */
     public static class Factory {
         Game temporary;
 
@@ -89,6 +108,9 @@ public class Game {
             return this;
         }
 
+        /**
+         * 객체를 초기화하기 위한 모든 값을 준비하고 객체를 생성시킨다.
+         */
         public Game build() {
             Game result = temporary;
             this.temporary = null;
