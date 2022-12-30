@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Random;
-
 public class Car {
     private String name;
     private int position;

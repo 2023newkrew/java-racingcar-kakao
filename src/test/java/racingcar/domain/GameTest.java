@@ -1,11 +1,9 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
 import racingcar.dto.CarInfo;
-import racingcar.domain.Game;
 import racingcar.dto.GameInfo;
 
 import java.util.ArrayList;
@@ -27,6 +25,7 @@ public class GameTest {
         carNames = List.of("name1", "name2");
         roundInput = 5;
     }
+
     @Test
     @DisplayName("게임을 초기화하면 차의 이름과 초기 거리, 남은 시도(라운드) 수가 설정된다")
     void init() {
@@ -49,7 +48,7 @@ public class GameTest {
         assertThat(gameInfo.getLeftRoundCnt()).isEqualTo(roundInput - 1);
         for (int i = 0; i < gameInfo.getCarInfos().size(); i++) {
             assertThat(gameInfo.getCarInfos().get(i).getName()).isEqualTo(carNames.get(i));
-            assertThat(gameInfo.getCarInfos().get(i).getPosition()).isBetween(INITIAL_DISTANCE, INITIAL_DISTANCE+1);
+            assertThat(gameInfo.getCarInfos().get(i).getPosition()).isBetween(INITIAL_DISTANCE, INITIAL_DISTANCE + 1);
         }
     }
 
