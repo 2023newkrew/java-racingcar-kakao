@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.car.CarAction;
 import racingcar.car.CarDTO;
-import racingcar.util.StringParser;
 
 public class RacingService {
 
@@ -28,16 +27,6 @@ public class RacingService {
         }
 
         return CarAction.FORWARD;
-    }
-
-    public List<String> validateName(String nameInput) throws IllegalArgumentException {
-        List<String> carNames = StringParser.parse(nameInput);
-
-        if (!Validator.isValidNames(carNames)) {
-            throw new IllegalArgumentException();
-        }
-
-        return carNames;
     }
 
     public int validateTurn(String turnInput) throws IllegalArgumentException {

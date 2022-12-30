@@ -1,6 +1,7 @@
 package racingcar.racing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.car.Car;
@@ -40,8 +41,8 @@ public class Racing {
     }
 
     public void startGame() {
-        List<String> names = racingService.validateName(racingUI.getNames());
-        setCars(names);
+        String[] names = racingUI.getNames().split(",");
+        setCars(Arrays.asList(names));
 
         int turn = racingService.validateTurn(racingUI.getTurn());
         setTurn(turn);
