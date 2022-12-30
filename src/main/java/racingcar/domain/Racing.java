@@ -4,9 +4,8 @@ import java.util.List;
 
 public class Racing {
 
-    private final List<Car> cars;
+    private final Cars cars;
     private int turn;
-    private final RacingService racingService;
     private final MovingStrategy movingStrategy;
 
     public Racing(List<Car> cars, int turn) {
@@ -14,14 +13,13 @@ public class Racing {
     }
 
     public Racing(List<Car> cars, int turn, MovingStrategy movingStrategy) {
-        this.cars = cars;
+        this.cars = new Cars(cars);
         this.turn = turn;
-        racingService = new RacingService();
         this.movingStrategy = movingStrategy;
     }
 
     public List<Car> getWinners() {
-        return racingService.getWinners(cars);
+        return this.cars.findWinners();
     }
 
     private void decreaseTurn() {
@@ -29,7 +27,7 @@ public class Racing {
     }
 
     public void proceedTurn() {
-        this.cars.forEach(car -> car.move(movingStrategy));
+        this.cars.moveAll(movingStrategy);
         decreaseTurn();
     }
 
@@ -38,6 +36,6 @@ public class Racing {
     }
 
     public List<Car> getRaceStatus() {
-        return this.cars;
+        return cars.getList();
     }
 }
