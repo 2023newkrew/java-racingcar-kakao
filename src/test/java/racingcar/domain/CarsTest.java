@@ -47,4 +47,13 @@ public class CarsTest {
         assertThat(cars.getWinner()).isEqualTo(List.of(car2, car3));
     }
 
+    @Test
+    void getEachCarsResultsTest() {
+        Car car1 = CarFactory.createCar("pobi",0);
+        Car car2 = CarFactory.createCar("crong",4);
+
+        Cars cars = new Cars(List.of(car1, car2));
+
+        assertThat(cars.getEachCarResults()).containsExactly("pobi : ", "crong : ----");
+    }
 }

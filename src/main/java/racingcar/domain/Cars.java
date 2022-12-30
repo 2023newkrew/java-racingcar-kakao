@@ -29,4 +29,9 @@ public class Cars {
                 .getPosition();
     }
 
+    public List<String> getEachCarResults() {
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.toList());
+    }
 }
