@@ -74,9 +74,9 @@ public class RacingTest {
         int[] distances = new int[] {1, 5, 2, 5, 4, 5};
         racing.createCars(testNames, distances);
 
-        Car[] cars = racing.getCars();
-        Car[] winners = racing.getWinners(cars);
+        Car[] winners = racing.getWinners();
 
+        Car[] cars = racing.getCars();
         assertArrayEquals(new Car[] {
                 cars[1], cars[3], cars[5]
         }, winners);

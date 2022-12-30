@@ -31,7 +31,7 @@ public class Racing {
         carControl(car, randomNumber);
     }
 
-    public Car[] getWinners(Car[] cars) {
+    public Car[] getWinners() {
         Car maxDistance = Arrays.stream(cars).max(Comparator.naturalOrder()).get();
         return Arrays.stream(cars)
                 .filter(car -> car.compareTo(maxDistance) == 0)
