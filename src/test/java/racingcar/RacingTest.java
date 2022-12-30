@@ -3,6 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Car;
+import racingcar.domain.Racing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,7 @@ public class RacingTest {
         racing.round();
         List<String> winner = new ArrayList<>();
         winner.add("aaa");
-        assertEquals(racing.getWinner(), winner);
+        assertEquals(racing.calculateWinner().getWinners(), winner);
     }
 
     private Racing testRacing(int condition) {
