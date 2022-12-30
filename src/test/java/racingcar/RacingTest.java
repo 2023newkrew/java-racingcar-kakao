@@ -49,7 +49,7 @@ public class RacingTest {
         racing.round();
         List<String> winner = new ArrayList<>();
         winner.add("aaa");
-        assertEquals(racing.calculateWinner().getWinners(), winner);
+        assertEquals(racing.returnWinners().getWinners(), winner);
     }
 
     private Racing testRacing(int condition) {

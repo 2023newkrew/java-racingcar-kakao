@@ -19,12 +19,12 @@ public class Controller {
     }
 
     private static void printRoundResult(Racing racing) {
-        RoundResultDto roundResultDto = racing.calculateRoundResult();
+        RoundResultDto roundResultDto = racing.returnCarState();
         OutputView.printRoundResult(roundResultDto.getCarState());
     }
 
     private static void printWinnerResult(Racing racing) {
-        OutputView.printWinner(racing.calculateWinner().getWinners());
+        OutputView.printWinner(racing.returnWinners().getWinners());
     }
 
     public static void main(String[] args) {
