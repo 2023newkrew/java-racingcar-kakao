@@ -23,7 +23,7 @@ public abstract class OutputView {
     }
 
     private static void printOneCar(Car car) {
-        System.out.print(car.getName() + " : -");
+        System.out.print(car.getName() + " : ");
         for (int i = 0; i < car.getPosition(); i++) {
             System.out.print("-");
         }
