@@ -1,6 +1,8 @@
-package racingcar;
+package racingcar.view;
 
 import org.junit.jupiter.api.Test;
+import racingcar.domain.RacingCar;
+import racingcar.view.RacingGameInfoReader;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;

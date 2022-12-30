@@ -1,8 +1,9 @@
-package racingcar;
+package racingcar.view;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.RacingCar;
+import racingcar.view.RacingScoreboard;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,7 +17,6 @@ public class RacingScoreboardTest {
 
     List<RacingCar> racingCars;
     ByteArrayOutputStream out;
-    RacingScoreboard racingScoreboard;
 
     @BeforeEach
     void setUp() {
@@ -24,8 +24,6 @@ public class RacingScoreboardTest {
         racingCars.add(new RacingCar("car1"));
         racingCars.add(new RacingCar("car2"));
         racingCars.add(new RacingCar("car3"));
-
-        racingScoreboard = new RacingScoreboard();
 
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -40,7 +38,7 @@ public class RacingScoreboardTest {
                 "\n";
 
         //when
-        racingScoreboard.printScore(racingCars);
+        RacingScoreboard.printScore(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);
@@ -52,7 +50,7 @@ public class RacingScoreboardTest {
         String expected = "car1, car2, car3가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(racingCars);
+        RacingScoreboard.printWinners(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);
@@ -64,7 +62,7 @@ public class RacingScoreboardTest {
         String expected = "car1가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(Arrays.asList(new RacingCar("car1")));
+        RacingScoreboard.printWinners(Arrays.asList(new RacingCar("car1")));
 
         //then
         assertThat(out.toString()).hasToString(expected);
