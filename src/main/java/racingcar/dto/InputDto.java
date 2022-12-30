@@ -10,6 +10,7 @@ public class InputDto {
         this.carNames = carNames;
         this.roundNum = roundNum;
     }
+
     public List<String> getCarNames() {
         return carNames;
     }
