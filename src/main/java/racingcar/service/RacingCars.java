@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private final ArrayList<RacingCar> cars;
+    private final List<RacingCar> cars;
 
     public RacingCars(ArrayList<RacingCar> cars) {
         this.cars = cars;
@@ -29,7 +29,7 @@ public class RacingCars {
                 .collect(Collectors.toList());
     }
 
-    public ArrayList<RacingCar> getCarsList() {
-        return cars;
+    public List<RacingCar> getCarsList() {
+        return Collections.unmodifiableList(cars);
     }
 }
