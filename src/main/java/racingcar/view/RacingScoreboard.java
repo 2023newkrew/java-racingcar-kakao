@@ -15,6 +15,6 @@ public class RacingScoreboard {
 
     public static void printWinners(List<RacingCar> racingCars) {
         String winners = racingCars.stream().map(RacingCar::getName).collect(Collectors.joining(", "));
-        System.out.println(winners + "가 최종 우승했습니다.");
+        System.out.println(winners + Message.IS_WINNER_MESSAGE.getMessage());
     }
 }

@@ -8,16 +8,18 @@ import racingcar.view.RacingScoreboard;
 import java.util.List;
 
 public class RacingGameApp {
+
+    private static final RacingGameInfoReader racingGameInfoReader = RacingGameInfoReader.getInstance();
+
     public static void main(String[] args) {
-        List<RacingCar> racingCars = RacingGameInfoReader.readRacingCars();
+        List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
         RacingGame racingGame = new RacingGame(racingCars);
-        int round = RacingGameInfoReader.readRound();
+        int round = racingGameInfoReader.readRound();
         RacingScoreboard.printScore(racingCars);
         for (int roundNum = 0; roundNum < round; roundNum++) {
             racingGame.playRound();
             RacingScoreboard.printScore(racingCars);
         }
         RacingScoreboard.printWinners(racingGame.selectWinners());
-        RacingGameInfoReader.close();
     }
 }
