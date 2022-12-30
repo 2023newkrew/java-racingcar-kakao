@@ -86,3 +86,6 @@ SumHelper
 - 이동시 랜덤 생성 및 판단
 - Dto
   - **CarInfo**
+
+**Movable**
+- Car의 이동 조건 설정을 위한 함수형 인터페이스
