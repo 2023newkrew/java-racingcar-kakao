@@ -4,11 +4,14 @@ import java.util.List;
 
 public interface RacingCarGame {
 
+    public Cars getCars();
     void run(int times);
+
+    public Cars createCars(String[] carNames);
 
     void add(String carName);
 
-    void add(Car... cars);
+    void add(List<Car> cars);
 
     void play();
 }

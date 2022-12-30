@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,29 +48,61 @@ public class RacingCarGameTest {
     @BeforeEach
     void init() throws IllegalAccessException {
         randomNumberGenerator.set(appConfig, new FakeRandomNumberGenerator());
-        racingCarGame = new RacingCarGameImpl(appConfig);
     }
-
 
     @Test
-    public void runTest() throws NoSuchFieldException, IllegalAccessException {
-        Car car1 = CarFactory.createCar("pobi");
-        Car car2 = CarFactory.createCar("crong");
-        Car car3 = CarFactory.createCar("honux");
+    void createCarsWithCarNames() {
+        String[] carNames = new String[]{"pobi", "crong"};
+        racingCarGame = new RacingCarGameImpl(appConfig, carNames);
 
-        racingCarGame.add(car1, car2, car3);
-        racingCarGame.run(5);
+        assertThat(racingCarGame.getCars()
+                .getCars()
+                .size()).isEqualTo(2);
 
-        Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
-        cars.setAccessible(true);
-        ArrayList<Car> racingCars = (ArrayList<Car>) cars.get(racingCarGame);
-
-        assertThat(racingCars.get(0)
-                .getPosition()).isEqualTo(2);
-        assertThat(racingCars.get(1)
-                .getPosition()).isEqualTo(3);
-        assertThat(racingCars.get(2)
-                .getPosition()).isEqualTo(2);
+        assertThat(racingCarGame.getCars()
+                .getCars()
+                .get(0)
+                .getName()).isEqualTo("pobi");
     }
+
+//    @Test
+//    void createCarsTest() throws NoSuchFieldException, IllegalAccessException {
+//        Car car1 = CarFactory.createCar("pobi", 2);
+//        Car car2 = CarFactory.createCar("crong", 3);
+//        Car car3 = CarFactory.createCar("honux", 2);
+//
+//        racingCarGame.add(List.of(car1, car2, car3));
+//
+//        Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
+//        cars.setAccessible(true);
+//
+//        List<Car> racingCars = (List<Car>) cars.get(racingCarGame);
+//
+////        List<Car> racingCars = (List<Car>) cars.get(racingCarGame);
+//
+//        assertThat(racingCars.size()).isEqualTo(3);
+//    }
+
+
+//    @Test
+//    public void runTest() throws NoSuchFieldException, IllegalAccessException {
+//        Car car1 = CarFactory.createCar("pobi");
+//        Car car2 = CarFactory.createCar("crong");
+//        Car car3 = CarFactory.createCar("honux");
+//
+//        racingCarGame.add(car1, car2, car3);
+//        racingCarGame.run(5);
+//
+//        Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
+//        cars.setAccessible(true);
+//        ArrayList<Car> racingCars = (ArrayList<Car>) cars.get(racingCarGame);
+//
+//        assertThat(racingCars.get(0)
+//                .getPosition()).isEqualTo(2);
+//        assertThat(racingCars.get(1)
+//                .getPosition()).isEqualTo(3);
+//        assertThat(racingCars.get(2)
+//                .getPosition()).isEqualTo(2);
+//    }
 
 }

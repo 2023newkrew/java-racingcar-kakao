@@ -1,8 +1,6 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,43 +14,45 @@ public class RacingCarGameImpl implements RacingCarGame {
     private final RandomNumberGenerator randomNumberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
-    private final ArrayList<Car> cars = new ArrayList<>();
+    private Cars cars;
 
-    public RacingCarGameImpl(AppConfig appConfig) {
+    public RacingCarGameImpl(AppConfig appConfig, String[] carNames) {
         randomNumberGenerator = appConfig.getRandomNumberGenerator();
         inputView = appConfig.getInputView();
         outputView = appConfig.getOutputView();
+        this.cars = createCars(carNames);
+    }
+
+    @Override
+    public Cars getCars() {
+        return cars;
+    }
+
+    @Override
+    public Cars createCars(String[] carNames) {
+        return new Cars(Arrays.stream(carNames)
+                .map(CarFactory::createCar)
+                .collect(Collectors.toList()));
     }
 
     @Override
     public void run(int times) {
-        outputView.printRunResult();
-        for (int i = 0; i < times; i++) {
-            cars.forEach(car -> car.move(randomNumberGenerator.generator()));
-            outputView.printEachRunResult(getCarResults());
-        }
+
     }
 
     @Override
     public void add(String carName) {
-        cars.add(CarFactory.createCar(carName));
+
     }
 
     @Override
-    public void add(Car... multipleCar) {
-        cars.addAll(List.of(multipleCar));
+    public void add(List<Car> multipleCar) {
+        cars = new Cars(multipleCar);
     }
 
     @Override
     public void play() {
-        outputView.printStartMessage();
-        String[] names = inputView.inputName();
-        Arrays.stream(names)
-                .forEach(this::add);
-        outputView.printAskRunCount();
-        int times = inputView.inputRunCount();
-        run(times);
-        outputView.printFinalResult(getWinnerNames());
+
     }
 
 }
