@@ -1,11 +1,8 @@
 package racingcar.controller;
 
-import racingcar.domain.RacingCarName;
-import racingcar.domain.RacingGame;
+import racingcar.domain.game.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
 
 public class RacingGameController {
 
@@ -13,7 +10,7 @@ public class RacingGameController {
         RacingGame racingGame = new RacingGame(InputView.inputCarNames(), InputView.inputFinalTurn());
         OutputView.printGameResultMessage();
         OutputView.printTurnResult(racingGame.getCars());
-        while (!racingGame.isFinished()) {
+        while (!racingGame.getTurnInfo().isFinished()) {
             OutputView.printTurnResult(racingGame.proceedTurn());
         }
         OutputView.printWinners(racingGame.judgeWinners());

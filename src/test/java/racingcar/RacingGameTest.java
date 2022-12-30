@@ -3,8 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.RacingCar;
-import racingcar.domain.RacingGame;
+import racingcar.domain.car.RacingCar;
+import racingcar.domain.game.RacingGame;
 
 import java.util.List;
 
@@ -28,26 +28,26 @@ public class RacingGameTest {
         racingGame.proceedTurn();
 
         //then
-        assertEquals(2, racingGame.getTurnCount());
+        assertEquals(2, racingGame.getTurnInfo().getTurnCount());
     }
 
     @Test
     @DisplayName("주어진 수 만큼 턴을 반복하는 기능")
     public void repeatPlayingTurn() {
         //when
-        while (!racingGame.isFinished()) {
+        while (!racingGame.getTurnInfo().isFinished()) {
             racingGame.proceedTurn();
         }
 
         //then
-        assertEquals(5, racingGame.getTurnCount());
+        assertEquals(5, racingGame.getTurnInfo().getTurnCount());
     }
 
     @Test
     @DisplayName("게임 종료 후 우승자들을 판별해서 반환하는 기능")
     public void judgeWinners() {
         //when
-        while (!racingGame.isFinished()) {
+        while (!racingGame.getTurnInfo().isFinished()) {
             racingGame.proceedTurn();
         }
 

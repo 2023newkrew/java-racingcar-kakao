@@ -1,8 +1,8 @@
 package racingcar.view;
 
-import racingcar.domain.RacingCarName;
+import racingcar.domain.car.RacingCarName;
+import racingcar.domain.game.RacingGameTurnInfo;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,7 +39,7 @@ public class InputView {
     private static Integer tryInputFinalTurn() {
         try {
             Integer finalTurn = Integer.parseInt(scanner.nextLine());
-            validatePositiveNumber(finalTurn);
+            RacingGameTurnInfo.validateFinalTurnNumber(finalTurn);
             return finalTurn;
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요.");
@@ -47,11 +47,5 @@ public class InputView {
             System.out.println(e.getMessage());
         }
         return null;
-    }
-
-    private static void validatePositiveNumber(Integer number) {
-        if (number <= 0) {
-            throw new IllegalArgumentException("0보다 큰 수를 입력해주세요.");
-        }
     }
 }
