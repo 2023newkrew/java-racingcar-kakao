@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -22,16 +24,13 @@ public class CarTest {
         assertEquals(actual, expected);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"Pobi;Pobi : --"}, delimiter = ';')
-    void carMove(String input, String expected) {
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
+    @DisplayName("Car move test")
+    @Test
+    void moveTest() {
+        Car car = new Car("test");
 
-        Car car = new Car(input);
         car.move();
-        car.printStatus();
-        String actual = out.toString().trim();
-        assertEquals(actual, expected);
+
+        assertEquals(car.getPosition(), 2);
     }
 }

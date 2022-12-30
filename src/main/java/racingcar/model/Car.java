@@ -1,17 +1,13 @@
 package racingcar.model;
 
-import java.util.Random;
-
 public class Car {
     private final String name;
     private int position;
-    private final Random random = new Random();
 
     public Car(String name) {
         this.name = name;
         this.position = 1;
     }
-
 
     public void printStatus() {
         StringBuilder sb = new StringBuilder();
@@ -24,12 +20,6 @@ public class Car {
 
     public void move() {
         this.position++;
-    }
-
-    public void race() {
-        if (random.nextInt(9) > 3) {
-            move();
-        }
     }
 
     public String getName() {

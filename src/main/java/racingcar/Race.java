@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.model.Car;
+import racingcar.model.RandomMoveNumber;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,7 +79,9 @@ public class Race {
 
     public void playTurn() {
         for (Car car : cars) {
-            car.race();
+            if (RandomMoveNumber.getRandomMoveNumber() >= 4) {
+                car.move();
+            }
         }
     }
 
