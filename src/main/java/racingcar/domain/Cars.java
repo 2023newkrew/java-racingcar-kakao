@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
@@ -14,9 +15,18 @@ public class Cars {
         this.cars = Collections.unmodifiableList(cars);
     }
 
-    public int getMaxPosition(){
+    public List<String> getWinner() {
+        int maxPosition = getMaxPosition();
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition)).orElseThrow(NoSuchElementException::new)
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    public int getMaxPosition() {
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .orElseThrow(NoSuchElementException::new)
                 .getPosition();
     }
 }
