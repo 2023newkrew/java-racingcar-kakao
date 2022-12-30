@@ -11,4 +11,10 @@ public class StringUtilTest {
     public void splitStringTest() {
         assertThat(StringUtil.splitString("pobi,crong,honux", ",")).isEqualTo(new String[]{"pobi", "crong", "honux"});
     }
+
+    @DisplayName("문자열을 숫자로 잘 바꾸는지 테스트")
+    @Test
+    public void convertStringToIntTest() {
+        assertThat(StringUtil.convertStringToInt("5")).isEqualTo(5);
+    }
 }
