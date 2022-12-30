@@ -1,7 +1,7 @@
 package racing;
 
 import racing.domain.player.Car;
-import racing.domain.GameRule;
+import racing.domain.gamerule.GameRule;
 import racing.domain.player.RacingPlayer;
 import java.util.List;
 import org.assertj.core.api.Assertions;

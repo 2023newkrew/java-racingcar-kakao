@@ -2,7 +2,7 @@ package racing.controller;
 
 import racing.common.exception.InvalidInputFormatException;
 import racing.domain.player.Car;
-import racing.domain.GameRule;
+import racing.domain.gamerule.GameRule;
 import racing.domain.player.RacingPlayer;
 import racing.view.InputView;
 import racing.view.OutputView;

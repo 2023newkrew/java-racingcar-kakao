@@ -1,4 +1,4 @@
-package racing.domain;
+package racing.domain.gamerule;
 
 import racing.common.exception.InvalidInputFormatException;
 import racing.domain.player.RacingPlayer;
