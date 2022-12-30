@@ -1,4 +1,4 @@
-package car_racing.domain;
+package carracing.domain;
 
 public class GameRule {
     private static final Integer STANDARD_SCORE = 4;

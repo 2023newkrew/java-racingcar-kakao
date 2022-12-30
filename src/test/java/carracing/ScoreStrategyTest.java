@@ -1,7 +1,7 @@
-package car_racing;
+package carracing;
 
-import car_racing.domain.RandomScoreStrategy;
-import car_racing.domain.ScoreStrategy;
+import carracing.domain.RandomScoreStrategy;
+import carracing.domain.ScoreStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

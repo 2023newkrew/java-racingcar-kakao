@@ -1,6 +1,6 @@
-package car_racing;
+package carracing;
 
-import car_racing.domain.Car;
+import carracing.domain.Car;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

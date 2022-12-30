@@ -1,4 +1,4 @@
-package string_calculator;
+package stringcalculator;
 
 public class StringVerifier {
 

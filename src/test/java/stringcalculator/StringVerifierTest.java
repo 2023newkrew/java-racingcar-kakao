@@ -1,8 +1,7 @@
-package string_calculator;
+package stringcalculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import string_calculator.StringVerifier;
 
 public class StringVerifierTest {
 

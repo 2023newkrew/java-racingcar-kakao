@@ -1,6 +1,6 @@
-package car_racing;
+package carracing;
 
-import car_racing.domain.StringParser;
+import carracing.domain.StringParser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

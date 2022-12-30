@@ -1,4 +1,4 @@
-package car_racing.domain;
+package carracing.domain;
 
 import java.util.ArrayList;
 import java.util.Comparator;

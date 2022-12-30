@@ -1,6 +1,6 @@
-import car_racing.domain.RacingGame;
-import car_racing.view.InputView;
-import car_racing.view.OutputView;
+import carracing.domain.RacingGame;
+import carracing.view.InputView;
+import carracing.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {

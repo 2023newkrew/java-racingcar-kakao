@@ -1,7 +1,7 @@
-import string_calculator.CalculatorRunner;
-import string_calculator.InputView;
-import string_calculator.OutputView;
-import string_calculator.StringParser;
+import stringcalculator.CalculatorRunner;
+import stringcalculator.InputView;
+import stringcalculator.OutputView;
+import stringcalculator.StringParser;
 
 public class CalculatorApplication {
     public static void main(String[] args) {

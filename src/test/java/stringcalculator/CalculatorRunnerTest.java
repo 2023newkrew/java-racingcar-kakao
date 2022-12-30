@@ -1,4 +1,4 @@
-package string_calculator;
+package stringcalculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ class CalculatorRunnerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3", "//;\n1;2,3", "1:2:3"})
+    @ValueSource(strings = {"1,2,3", "//;\\n1;2,3", "1:2:3"})
     void calculateTest_stringAddition(String string) {
         //given
         //when

@@ -1,4 +1,4 @@
-package car_racing.domain;
+package carracing.domain;
 
 public class InputVerifier {
     public static void verifyName(String name) {

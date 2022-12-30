@@ -1,6 +1,6 @@
-package car_racing;
+package carracing;
 
-import car_racing.domain.InputVerifier;
+import carracing.domain.InputVerifier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

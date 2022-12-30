@@ -1,7 +1,4 @@
-package car_racing.view;
-
-import car_racing.domain.InputVerifier;
-import car_racing.domain.StringParser;
+package carracing.view;
 
 import java.util.Scanner;
 
