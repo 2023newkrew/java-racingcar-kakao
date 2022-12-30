@@ -1,6 +1,7 @@
 package racing.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing.domain.Car;
 import racing.domain.Cars;
@@ -19,6 +20,7 @@ class RacingServiceTest {
     }
 
     @Test
+    @DisplayName("Cars 생성 테스트")
     void givenRacingCarString_whenRacingCarSplit_thenReturnCarList(){
         String input = "aaa,bbb,ccc";
         List<Car> carList = List.of(
