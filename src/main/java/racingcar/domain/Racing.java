@@ -46,4 +46,8 @@ public class Racing {
     public boolean isRacing() {
         return this.turn > 0;
     }
+
+    public List<Car> getRaceStatus() {
+        return this.cars;
+    }
 }

@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,5 +44,22 @@ public class RacingTest {
         Racing racing = new Racing(cars, 1);
         racing.proceedTurn();
         assertThat(racing.isRacing()).isFalse();
+    }
+
+    // 새롭게 알게 된 사실
+    // @BeforeEach를 통해 cars 를 초기화시키지 않기 때문에
+    // 참조로 파라미터를 넘겨줄 때 영향으로 바로 위의 테스트의 proceedTurn() 과 꼬여서 position이 이상해질 줄 알았는데
+    // 각 테스트 메소드 마다 멤버 변수를 초기화하는 듯하다.
+    @DisplayName("현재 경주의 상태를 올바르게 반환해야 한다.")
+    @Test
+    void getRaceStatus() {
+        Racing racing = new Racing(cars, 1, () -> true);
+        List<Car> movedCarsByOne = cars.stream()
+                .map(car -> new Car(car.getPosition() + 1, car.getName()))
+                .collect(Collectors.toList());
+
+        racing.proceedTurn();
+
+        assertThat(racing.getRaceStatus()).isEqualTo(movedCarsByOne);
     }
 }
