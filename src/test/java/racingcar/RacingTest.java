@@ -43,13 +43,14 @@ public class RacingTest {
     }
 
     @Test
-    @DisplayName("정해진 횟수가 모두 소진되면 레이싱이 종료된다.")
+    @DisplayName("정해진 횟수 5회가 모두 소진되면 레이싱이 종료된다.")
     void racingIsFinished() {
-        while (!racing.isFinished()) {
-            racing.doStep();
-        }
-
-        assertThat(racing.getCount()).isEqualTo(0);
+        racing.doStep();
+        racing.doStep();
+        racing.doStep();
+        racing.doStep();
+        racing.doStep();
+        assertThat(racing.isFinished()).isTrue();
     }
 
     @Test
