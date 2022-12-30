@@ -8,12 +8,12 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    private InputView inputView;
-    private Game game;
+    private final InputView inputView;
+    private final Game game;
 
-    public Controller() {
-        inputView = new InputView();
-        game = new Game();
+    public Controller(InputView inputView, Game game) {
+        this.inputView = inputView;
+        this.game = game;
     }
 
     public void playGame() {
