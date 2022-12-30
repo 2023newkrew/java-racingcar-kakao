@@ -1,5 +1,7 @@
 package racingcar.dto;
 
+import racingcar.domain.Car;
+
 public class CarDTO {
 
     private final String name;
@@ -16,6 +18,10 @@ public class CarDTO {
 
     public int getPosition() {
         return position;
+    }
+
+    public static CarDTO from(Car car) {
+        return new CarDTO(car.getName(), car.getPosition());
     }
 
     @Override
