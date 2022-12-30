@@ -1,6 +1,5 @@
 package racingcar;
 
-<<<<<<< HEAD
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,22 +18,5 @@ public class CarTest {
     public void 값이_3_이하일_경우_정지한다(final int condition) {
         Car car = new Car("aaaa");
         assertEquals(car.move(condition), 0);
-=======
-import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class CarTest {
-    @Test
-    public void moveTest(){
-        Car car = new Car("aaaa");
-        assertEquals(car.move(true), 1);
-    }
-    @Test
-    public void notMoveTest(){
-        Car car = new Car("aaaa");
-        assertEquals(car.move(false), 0);
->>>>>>> cfa8a91 (feat: Car)
     }
 }

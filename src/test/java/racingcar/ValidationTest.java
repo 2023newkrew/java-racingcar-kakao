@@ -17,6 +17,7 @@ public class ValidationTest {
         boolean flag = Validate.validateCarNames("aaaaa,bbb,ccc,dd12345");
         assertFalse(flag);
     }
+
     @Test
     public void 자동차_이름이_빈문자열일_경우_예외처리한다() {
         boolean flag = Validate.validateCarNames("aaaaa,,ccc,dd");

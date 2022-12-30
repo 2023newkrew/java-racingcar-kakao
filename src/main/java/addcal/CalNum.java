@@ -7,7 +7,6 @@ public class CalNum {
         this.num = num;
     }
 
-<<<<<<< HEAD
     public void printNum() {
         System.out.println(num);
     }
@@ -17,16 +16,6 @@ public class CalNum {
     }
 
     public void add(CalNum operand) {
-=======
-    public void printNum(){
-        System.out.println(num);
-    }
-    public int getNum(){
-        return num;
-    }
-
-    public void add(CalNum operand){
->>>>>>> cfa8a91 (feat: Car)
         num += operand.getNum();
     }
 
