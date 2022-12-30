@@ -11,13 +11,18 @@ public class Racing {
     private int turn;
     private final RacingUI racingUI;
     private final RacingService racingService;
-    private final MovingStrategy movingStrategy = new RandomMovingStrategy();
+    private final MovingStrategy movingStrategy;
 
     public Racing(List<Car> cars, int turn) {
+        this(cars, turn, new RandomMovingStrategy());
+    }
+
+    public Racing(List<Car> cars, int turn, MovingStrategy movingStrategy) {
         this.cars = cars;
         this.turn = turn;
         racingUI = new RacingUI();
         racingService = new RacingService();
+        this.movingStrategy = movingStrategy;
     }
 
     public List<CarDTO> getCarDTOs() {
