@@ -64,12 +64,12 @@
 
 ### Domain
 - Car (implements Comparable)
-  - 객체 변수: CarName name, Movable movable, int distance
-  - 메서드: ~~toString()~~, ~~compareTo()~~, move(), increaseDistance(), ~~getDifference()~~, ~~isMoving()~~, toDTO()
+  - 객체 변수: CarName name, Movable movable, Position position
+  - 메서드: move(), increaseDistance(), toDTO()
 
 - Cars
-  - 객체 변수: List<Car> cars, ~~length~~
-  - 메서드: play(), getWinners(), ~~getStatus()~~, getCarDtoList(), selectWinners()
+  - 객체 변수: List<Car> cars
+  - 메서드: play(), getWinners(), getCarDtoList(), selectWinners()
 
 - CarName
   - 객체 변수: String name
@@ -79,16 +79,20 @@
   - 객체 변수: int remaining
   - 메서드: validateRange(), reduce(), hasRemaining()
 
+- Position
+  - 객체 변수: int position
+  - 메서드: validateNonNegative(), increase(), compareTo(), getPosition()
+
 ### DTO
 - CarDTO
-  - 객체 변수: Carname name, int distance
-  - 메서드: getName(), getDistance()
+  - 객체 변수: Carname name, Position position
+  - 메서드: getName(), getPosition()
 - CarDtoDistanceComparator (implements Comparator<CarDTO>)
   - 메서드: compare()
 
 ### Service
 - Game 
-  - 객체 변수: List<Car> cars, ~~length~~, ~~generator~~, GameRepeat gameRepeat, Comparator<CarDTO> distanceComparator
+  - 객체 변수: List<Car> cars, GameRepeat gameRepeat, Comparator<CarDTO> distanceComparator
   - 메서드: validateUniqueness(), getDistinctNameCount(), wrapCarNames(), setRepeat(), isOver(), play(), getStatus(), getWinners()
 
 ### View

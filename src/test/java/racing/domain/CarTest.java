@@ -49,7 +49,7 @@ public class CarTest {
     void movable의_isMoving_메서드가_false를_반환하면_이동하지_않는다() {
         car = new Car(carName, () -> false);
         car.move();
-        assertThat(car.toDTO().getDistance()).isEqualTo(0);
+        assertThat(car.toDTO().getPosition().getPosition()).isEqualTo(0);
     }
 
     @DisplayName("movable의 isMoving 메서드가 true를 반환하면 거리가 1 증가한다")
@@ -60,6 +60,6 @@ public class CarTest {
         for (int i = 0; i < repeat; i++) {
             car.move();
         }
-        assertThat(car.toDTO().getDistance()).isEqualTo(repeat);
+        assertThat(car.toDTO().getPosition().getPosition()).isEqualTo(repeat);
     }
 }

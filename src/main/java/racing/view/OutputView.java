@@ -25,7 +25,7 @@ public class OutputView {
     public void printSingleResult(final CarDTO carDTO) {
         String singleResult = String.format(STATUS_STRING_FORMAT,
                 carDTO.getName().toString(),
-                MOVING_SYMBOL.repeat(carDTO.getDistance()));
+                MOVING_SYMBOL.repeat(carDTO.getPosition().getPosition()));
         System.out.println(singleResult);
     }
 
