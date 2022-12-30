@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Race {
     private static final int MAX_NAME_LIMIT = 5;
+    private static final int MOVE_BOUNDARY = 4;
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -33,6 +34,14 @@ public class Race {
         for (String name : nameSplit) {
             verifyName(name);
             cars.add(new Car(name));
+        }
+    }
+
+    public void playTurn() {
+        for (Car car : cars) {
+            if (RandomMoveNumber.getRandomMoveNumber() >= MOVE_BOUNDARY) {
+                car.move();
+            }
         }
     }
 
@@ -71,14 +80,6 @@ public class Race {
         }
 
         return "";
-    }
-
-    public void playTurn() {
-        for (Car car : cars) {
-            if (RandomMoveNumber.getRandomMoveNumber() >= 4) {
-                car.move();
-            }
-        }
     }
 
     public void playRace(int turn) {
