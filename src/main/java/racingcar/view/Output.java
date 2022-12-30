@@ -29,6 +29,8 @@ public class Output {
         for (Car car : race.getCars()) {
             Output.printCarStatus(car);
         }
+
+        System.out.println();
     }
 
     public static void printRaceWinner(Race race) {

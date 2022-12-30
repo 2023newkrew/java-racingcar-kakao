@@ -75,7 +75,7 @@ public class OutputTest {
         String actual = out.toString();
         assertEquals(actual, "test1 : -\n" +
                 "test2 : -\n" +
-                "test3 : -\n");
+                "test3 : -\n\n");
     }
 
     @DisplayName("Print winner of race")
