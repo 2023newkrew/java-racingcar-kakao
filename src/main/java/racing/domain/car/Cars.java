@@ -42,9 +42,7 @@ public class Cars {
     }
 
     private void movePositionIfMovable(Car car) {
-        if (isMovable()) {
-            car.move();
-        }
+        car.movePositionIfMovable();
     }
 
     public boolean isMovable(int input) {

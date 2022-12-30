@@ -48,9 +48,17 @@ public class CarsTest {
     @Test
     @DisplayName("같은 포지션을 가진 자동차들의 이름 리스트를 가져온다.")
     public void getSamePositionCar() {
-        Car car1 = new Car("mon", 1);
-        Car car2 = new Car("tue", 2);
-        Car car3 = new Car("wed", 1);
+        Car car1 = new Car.Builder("mon")
+                    .position(1)
+                    .build();
+
+        Car car2 = new Car.Builder("tue")
+                    .position(2)
+                    .build();
+
+        Car car3 = new Car.Builder("wed")
+                    .position(1)
+                    .build();
 
         cars = new Cars(Arrays.asList(car1, car2, car3));
         assertThat(cars.getNamesWithSamePosition(car1))
@@ -61,11 +69,21 @@ public class CarsTest {
     }
 
     static Stream<Arguments> getMaxPositionArgument() {
-        Car car1 = new Car("mon", 1);
-        Car car2 = new Car("tue", 2);
-        Car car3 = new Car("wed", 3);
-        Car car4 = new Car("thu", 4);
-        Car car5 = new Car("fri", 5);
+        Car car1 = new Car.Builder("mon")
+                    .position(1)
+                    .build();
+        Car car2 = new Car.Builder("tue")
+                    .position(2)
+                    .build();
+        Car car3 = new Car.Builder("wed")
+                    .position(3)
+                    .build();
+        Car car4 = new Car.Builder("thu")
+                    .position(4)
+                    .build();
+        Car car5 = new Car.Builder("fri")
+                    .position(5)
+                    .build();
 
         return Stream.of(
                 Arguments.arguments(new Cars(Arrays.asList(car1, car3)), car3),

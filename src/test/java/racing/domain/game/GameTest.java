@@ -24,11 +24,25 @@ public class GameTest {
     }
 
     static Stream<Arguments> decideWinnerArgument() {
-        Car winner1 = new Car("noah", 4);
-        Car winner2 = new Car("go", 4);
-        Car winner3 = new Car("mars", 4);
-        Car loser1 = new Car("java", 2);
-        Car loser2 = new Car("xx", 3);
+        Car winner1 = new Car.Builder("noah")
+                        .position(4)
+                        .build();
+
+        Car winner2 = new Car.Builder("go")
+                .position(4)
+                .build();
+
+        Car winner3 = new Car.Builder("mars")
+                .position(4)
+                .build();
+
+        Car loser1 = new Car.Builder("java")
+                .position(2)
+                .build();
+
+        Car loser2 = new Car.Builder("xx")
+                .position(3)
+                .build();
 
         Game game1 = new Game(new Cars(Arrays.asList(winner1, loser1, loser2)));
         Game game2 = new Game(new Cars(Arrays.asList(winner1, winner2, loser2)));
