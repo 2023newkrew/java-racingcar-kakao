@@ -24,6 +24,8 @@ public class CarsTest {
     @Test
     void 한명의_우승자가_발생하는_경우() {
         cars.play(List.of(0, 1, 2, 8, 3));
+        cars.play(List.of(0, 5, 4, 8, 3));
+        cars.play(List.of(0, 7, 7, 8, 5));
         assertThat(cars.getWinners()).isEqualTo(Arrays.asList("cosmo"));
     }
 
