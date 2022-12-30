@@ -24,6 +24,18 @@ public class OutputTest {
         assertEquals(actual, "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n");
     }
 
+    @DisplayName("Print notice for turn input")
+    @Test
+    void printNoticeTurnTest() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        Output.printNoticeTurn();
+
+        String actual = out.toString();
+        assertEquals(actual, "시도할 회수는 몇회인가요?\n");
+    }
+
     @DisplayName("Print present car status")
     @Test
     void printCarStatusTest() {
