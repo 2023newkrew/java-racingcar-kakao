@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 public class Calculator {
     public AddCal addCal;
+<<<<<<< HEAD
 
+=======
+>>>>>>> cfa8a91 (feat: Car)
     public String CalculatorInput() { //사용자 입력을 받는다
         // 스캐너에서 받기
         System.out.println("입력하세요: ");
@@ -15,6 +18,7 @@ public class Calculator {
             input = sc.nextLine();
             try {
                 Thread.sleep(1000);
+<<<<<<< HEAD
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -27,6 +31,19 @@ public class Calculator {
         System.out.println("End");
     }
 
+=======
+            }
+            catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while(inputValid(input));
+        return input;
+    }
+    public void CalculatorOutput(){
+        addCal.printResult();
+        System.out.println("End");
+    }
+>>>>>>> cfa8a91 (feat: Car)
     public boolean Run(String input) { //addCal객체에 입력을 전달하고, 실행 결과 1, 0 //계산결과도 반환한다.
         //String input = CalculatorInput();
         addCal = new AddCal(input);
@@ -35,8 +52,12 @@ public class Calculator {
         return true; //이따 해야함
         //결과반환해서 리턴해주기
     }
+<<<<<<< HEAD
 
     private Boolean inputValid(String input) {
+=======
+    private Boolean inputValid(String input){
+>>>>>>> cfa8a91 (feat: Car)
         //자세한 구현은 나중에
         return false;
     }

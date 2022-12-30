@@ -6,7 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculatorTest {
     @Test
+<<<<<<< HEAD
     void CalculatorInputTest() {
+=======
+    void CalculatorInputTest(){
+>>>>>>> cfa8a91 (feat: Car)
         Calculator cal = new Calculator();
         String input = "//a\n1a2a3a4a5";
         cal.Run(input);

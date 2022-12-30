@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalNumTest {
     @Test
+<<<<<<< HEAD
     void ValidNumTest() { // CalNum에 들어온 값이 유효한지.
         CalNum num1 = new CalNum(30);
         assertEquals(num1.Valid(), true);
@@ -14,6 +15,15 @@ public class CalNumTest {
 
     @Test
     void AddTest() {
+=======
+    void ValidNumTest(){ // CalNum에 들어온 값이 유효한지.
+        CalNum num1 = new CalNum(30);
+        assertEquals(num1.Valid(),true);
+    }
+
+    @Test
+    void AddTest(){
+>>>>>>> cfa8a91 (feat: Car)
         CalNum num1 = new CalNum(10);
         CalNum num2 = new CalNum(20);
         num1.add(num2);
