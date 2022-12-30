@@ -42,6 +42,8 @@ public class Race {
                 car.move();
             }
         }
+
+        turn--;
     }
 
     public int raceMaxPosition() {
@@ -74,12 +76,7 @@ public class Race {
     }
 
     public boolean isEnd() {
-        if (turn == 0) {
-            return false;
-        }
-
-        turn--;
-        return true;
+        return turn != 0;
     }
 
     public List<Car> getCars() {
