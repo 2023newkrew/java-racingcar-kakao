@@ -13,14 +13,10 @@ import racingcar.view.OutputView;
 
 public class RacingCarGameImpl implements RacingCarGame {
     private final RandomNumberGenerator randomNumberGenerator;
-    private final InputView inputView;
-    private final OutputView outputView;
     private Cars cars;
 
     public RacingCarGameImpl(AppConfig appConfig, String[] carNames) {
         randomNumberGenerator = appConfig.getRandomNumberGenerator();
-        inputView = appConfig.getInputView();
-        outputView = appConfig.getOutputView();
         this.cars = createCars(carNames);
     }
 
