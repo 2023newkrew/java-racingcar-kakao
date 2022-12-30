@@ -1,7 +1,6 @@
 package racingcar;
 
 import racingcar.engine.RacingMain;
-import racingcar.engine.view.RacingView;
 
 public class App {
     public static void main(String[] args) {

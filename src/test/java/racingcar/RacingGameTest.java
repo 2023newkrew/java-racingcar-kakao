@@ -11,10 +11,16 @@ import racingcar.engine.domain.RacingGame;
 public class RacingGameTest {
 
     List<Car> cars;
+    Car car1;
+    Car car2;
+    Car car3;
 
     @BeforeEach
     public void setUp() {
-        cars = Arrays.asList(new Car("first", 2), new Car("sec"), new Car("third"));
+        car1 = new Car("first", 2);
+        car2 = new Car("sec");
+        car3 = new Car("third");
+        cars = Arrays.asList(car1, car2, car3);
     }
 
     @Test
@@ -40,12 +46,7 @@ public class RacingGameTest {
     public void testRaceWhenCarsAlwaysMove() {
         final int COUNT = 5;
         cars = Arrays.asList(new Car("first"), new Car("sec"), new Car("third"));
-        RacingGame racingGame = new RacingGame(cars, COUNT, new NumberGenerator() {
-            @Override
-            public int generateNumber() {
-                return 5;
-            }
-        });
+        RacingGame racingGame = new RacingGame(cars, COUNT, () -> 5);
         for (int i = 0; i < COUNT; i++) {
             racingGame.race();
             for (Car car : cars) {
@@ -58,12 +59,7 @@ public class RacingGameTest {
     public void testRaceWhenCarsAlwaysStop() {
         final int COUNT = 5;
         cars = Arrays.asList(new Car("first"), new Car("sec"), new Car("third"));
-        RacingGame racingGame = new RacingGame(cars, COUNT, new NumberGenerator() {
-            @Override
-            public int generateNumber() {
-                return 0;
-            }
-        });
+        RacingGame racingGame = new RacingGame(cars, COUNT, () -> 0);
         for (int i = 0; i < COUNT; i++) {
             racingGame.race();
             for (Car car : cars) {
@@ -74,30 +70,20 @@ public class RacingGameTest {
     @Test
     public void testGetWinnersWhenCarsAlwaysMove() {
         final int COUNT = 5;
-        RacingGame racingGame = new RacingGame(cars, COUNT, new NumberGenerator() {
-            @Override
-            public int generateNumber() {
-                return 5;
-            }
-        });
+        RacingGame racingGame = new RacingGame(cars, COUNT, () -> 5);
         for (int i = 0; i < COUNT; i++) {
             racingGame.race();
         }
-        Assertions.assertThat(racingGame.getWinners()).containsExactly("first");
+        Assertions.assertThat(racingGame.getWinners()).containsExactly(car1);
     }
 
     @Test
     public void testGetWinnersWhenCarsAlwaysStop() {
         final int COUNT = 5;
-        RacingGame racingGame = new RacingGame(cars, COUNT, new NumberGenerator() {
-            @Override
-            public int generateNumber() {
-                return 0;
-            }
-        });
+        RacingGame racingGame = new RacingGame(cars, COUNT, () -> 0);
         for (int i = 0; i < COUNT; i++) {
             racingGame.race();
         }
-        Assertions.assertThat(racingGame.getWinners()).containsExactly("first");
+        Assertions.assertThat(racingGame.getWinners()).containsExactly(car1);
     }
 }

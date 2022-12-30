@@ -2,6 +2,7 @@ package racingcar.engine.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.NumberGenerator;
 
 public class RacingGame {
@@ -18,13 +19,8 @@ public class RacingGame {
         this.currentCount = 0;
     }
 
-    public List<String> getWinners() {
-        int max = 0;
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            max = car.renewWinners(max, winners);
-        }
-        return winners;
+    public List<Car> getWinners() {
+        return cars.stream().filter((car) -> car.throughSpecificPoint(getMaxPosition())).collect(Collectors.toList());
     }
 
     public boolean isEnd() {
@@ -37,5 +33,9 @@ public class RacingGame {
         }
         cars.forEach((car) -> car.moveWithPower(numberGenerator.generateNumber()));
         currentCount++;
+    }
+
+    private int getMaxPosition() {
+        return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
     }
 }

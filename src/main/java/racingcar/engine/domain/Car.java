@@ -18,6 +18,9 @@ public class Car {
         this(name, 1);
     }
 
+    public String getName() {
+        return name;
+    }
     public int getPosition() {
         return position;
     }
@@ -42,19 +45,12 @@ public class Car {
         }
     }
 
-    public int renewWinners(int max, List<String> result) {
-        if (position < max) {
-            return max;
-        }
-        if (position > max) {
-            result.clear();
-        }
-        result.add(name);
-        return position;
-    }
-
     public String getCurrentPosition() {
         return this.name + " : "
                 + "-".repeat(Math.max(0, this.position));
+    }
+
+    public boolean throughSpecificPoint(int point) {
+        return position >= point;
     }
 }

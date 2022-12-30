@@ -27,8 +27,8 @@ public class RacingView {
         cars.forEach((car) -> console.printOutput(car.getCurrentPosition()));
     }
 
-    public void showResult(List<String> winners) {
-        console.printOutput(String.join(", ", winners) + "(이)가 최종 우승했습니다.");
+    public void showResult(List<Car> winners) {
+        console.printOutput(String.join(", ", winners.stream().map(Car::getName) + "(이)가 최종 우승했습니다."));
     }
 
     private Supplier<List<Car>> getCarsSupplier() {
