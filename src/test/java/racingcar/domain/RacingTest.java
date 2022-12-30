@@ -41,14 +41,6 @@ public class RacingTest {
     @DisplayName("Racing의 현재 턴이 남아있지 않으면 false를 반환한다.")
     @Test
     void isNotRacing() {
-        Racing racing = new Racing(cars, 0);
-
-        assertThat(racing.isRacing()).isFalse();
-    }
-
-    @DisplayName("Racing의 proceedTurn이 실행되면 turn이 하나 줄어든다.")
-    @Test
-    void proceedTurn() {
         Racing racing = new Racing(cars, 1);
         racing.proceedTurn();
         assertThat(racing.isRacing()).isFalse();
