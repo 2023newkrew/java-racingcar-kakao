@@ -13,7 +13,7 @@ public class Output {
     }
 
     public static void printNoticeResult() {
-        System.out.println("실행결과");
+        System.out.println("\n실행결과");
     }
 
     public static void printCarStatus(Car car) {

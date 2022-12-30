@@ -45,7 +45,7 @@ public class OutputTest {
         Output.printNoticeResult();
 
         String actual = out.toString();
-        assertEquals(actual, "실행결과\n");
+        assertEquals(actual, "\n실행결과\n");
     }
 
     @DisplayName("Print present car status")
