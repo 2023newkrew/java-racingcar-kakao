@@ -13,8 +13,8 @@ public class Racing {
     private final RacingService racingService;
     private final MovingStrategy movingStrategy = new RandomMovingStrategy();
 
-    public Racing(List<String> names, int turn) {
-        this.cars = names.stream().map(Car::new).collect(Collectors.toList());
+    public Racing(List<Car> cars, int turn) {
+        this.cars = cars;
         this.turn = turn;
         racingUI = new RacingUI();
         racingService = new RacingService();

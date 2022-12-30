@@ -12,19 +12,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class RacingTest {
 
-    private final List<String> names = Arrays.asList("aa", "bb", "cc");
+    private final List<Car> cars = Arrays.asList(new Car("aa"), new Car(1, "bb"), new Car(1, "cc"));
 
-    @DisplayName("생성자로 차 이름 리스트와 턴 수를 받는다.")
+    @DisplayName("생성자로 차 리스트와 턴 수를 받는다.")
     @Test
     void constructRacingWithCarNamesAndTurn() {
-        assertThatCode(() -> new Racing(names, 2)).doesNotThrowAnyException();
+        assertThatCode(() -> new Racing(cars, 2)).doesNotThrowAnyException();
     }
 
     @DisplayName("Racing의 현재 턴이 남아있으면 true를 반환한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4})
     void isRacing(int turn) {
-        Racing racing = new Racing(names, turn);
+        Racing racing = new Racing(cars, turn);
 
         assertThat(racing.isRacing()).isTrue();
     }
@@ -32,7 +32,7 @@ public class RacingTest {
     @DisplayName("Racing의 현재 턴이 남아있지 않으면 false를 반환한다.")
     @Test
     void isNotRacing() {
-        Racing racing = new Racing(names, 0);
+        Racing racing = new Racing(cars, 0);
 
         assertThat(racing.isRacing()).isFalse();
     }
@@ -40,7 +40,7 @@ public class RacingTest {
     @DisplayName("Racing의 proceedTurn이 실행되면 turn이 하나 줄어든다.")
     @Test
     void proceedTurn() {
-        Racing racing = new Racing(names, 1);
+        Racing racing = new Racing(cars, 1);
         racing.proceedTurn();
         assertThat(racing.isRacing()).isFalse();
     }
