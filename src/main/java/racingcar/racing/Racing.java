@@ -39,7 +39,7 @@ public class Racing {
         racingUI.displayWinner(result);
     }
 
-    public void init() {
+    public void startGame() {
         List<String> names = racingService.validateName(racingUI.getNames());
         setCars(names);
 
