@@ -1,8 +1,5 @@
 package racingcar.domain;
 
-import racingcar.controller.response.CarRoundResultResponse;
-import racingcar.controller.response.CarWinnerResponse;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,12 +22,11 @@ public class RacingGame {
             .collect(Collectors.toList());
     }
 
-    public List<CarWinnerResponse> announceWinners() {
+    public List<Car> announceWinners() {
         if (isGamePlaying()) {
             throw new IllegalArgumentException("아직 게임이 종료되지 않았습니다.");
         }
-        List<Car> winners = referee.announceWinners();
-        return CarWinnerResponse.toList(winners);
+        return referee.announceWinners();
     }
 
     public boolean isGameEnded() {
@@ -45,8 +41,7 @@ public class RacingGame {
         referee.moveCars();
     }
 
-    public List<CarRoundResultResponse> announceRoundResult() {
-        List<Car> cars = referee.announceRoundResult();
-        return CarRoundResultResponse.toList(cars);
+    public List<Car> announceRoundResult() {
+        return referee.announceRoundResult();
     }
 }

@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.response.CarRoundResultResponse;
-import racingcar.controller.response.CarWinnerResponse;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ class RacingGameTest {
         }
 
         // then
-        List<CarWinnerResponse> gameWinnersResult = racingGame.announceWinners();
+        List<Car> gameWinnersResult = racingGame.announceWinners();
         assertThat(gameWinnersResult.get(0).getCarName()).isEqualTo("pobi");
         assertThat(gameWinnersResult.get(1).getCarName()).isEqualTo("crong");
         assertThat(gameWinnersResult.get(2).getCarName()).isEqualTo("honux");
@@ -101,7 +99,7 @@ class RacingGameTest {
         racingGame.proceedRound();
 
         // then
-        List<CarRoundResultResponse> secondRoundResult = racingGame.announceRoundResult();
+        List<Car> secondRoundResult = racingGame.announceRoundResult();
         assertThat(secondRoundResult.get(0).getCarName()).isEqualTo("pobi");
         assertThat(secondRoundResult.get(0).getPosition()).isEqualTo(2);
         assertThat(secondRoundResult.get(1).getCarName()).isEqualTo("crong");

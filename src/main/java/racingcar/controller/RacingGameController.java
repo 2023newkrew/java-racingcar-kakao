@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.controller.response.CarRoundResultResponse;
 import racingcar.controller.response.CarWinnerResponse;
+import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberSelector;
 import racingcar.view.RacingGameView;
@@ -39,12 +40,14 @@ public class RacingGameController {
 
     private void proceedSingleRound() {
         racingGame.proceedRound();
-        List<CarRoundResultResponse> carRoundResults = racingGame.announceRoundResult();
-        racingGameView.printRoundResult(carRoundResults);
+        List<Car> carRoundResults = racingGame.announceRoundResult();
+        List<CarRoundResultResponse> carRoundResultResponses = CarRoundResultResponse.toList(carRoundResults);
+        racingGameView.printRoundResult(carRoundResultResponses);
     }
 
     private void announceWinners() {
-        List<CarWinnerResponse> winners = racingGame.announceWinners();
-        racingGameView.printWinners(winners);
+        List<Car> winners = racingGame.announceWinners();
+        List<CarWinnerResponse> winnerResponses = CarWinnerResponse.toList(winners);
+        racingGameView.printWinners(winnerResponses);
     }
 }
