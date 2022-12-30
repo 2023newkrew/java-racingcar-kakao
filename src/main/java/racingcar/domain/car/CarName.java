@@ -7,7 +7,7 @@ public class CarName {
 
     private final String name;
 
-    CarName(String name) {
+    public CarName(String name) {
         if (!isValidName(name)) throw new IllegalArgumentException("Invalid Name");
         this.name = name;
     }
@@ -22,5 +22,14 @@ public class CarName {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CarName)) return false;
+
+        CarName cp = (CarName) obj;
+
+        return name.equals(cp.name);
     }
 }

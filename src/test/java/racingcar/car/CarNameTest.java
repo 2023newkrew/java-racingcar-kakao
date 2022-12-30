@@ -10,7 +10,7 @@ public class CarNameTest {
     @ParameterizedTest
     @ValueSource(strings = {"aasd", "asssz", "zzz"})
     void validName(String name) {
-        assertThat(CarName.isValidName(name)).isTrue();
+        assertThat(new CarName(name)).isEqualTo(new CarName(name));
     }
 
     @ParameterizedTest
