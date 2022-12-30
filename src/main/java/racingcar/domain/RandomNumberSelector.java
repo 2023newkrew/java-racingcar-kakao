@@ -17,6 +17,13 @@ public class RandomNumberSelector implements NumberSelector {
         this.rand = new Random();
     }
 
+    public RandomNumberSelector() {
+        List<Integer> numbers = new ArrayList<>();
+        IntStream.range(0, 10).forEach(numbers::add);
+        this.numbers = numbers;
+        this.rand = new Random();
+    }
+
     public int selectNumber() {
         int index = rand.nextInt(numbers.size());
         return numbers.get(index);

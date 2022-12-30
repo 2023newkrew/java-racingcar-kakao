@@ -30,7 +30,7 @@ public class RacingGameController {
     private void initializeGame() {
         String carNames = racingGameView.receiveCarNames();
         int roundToPlay = racingGameView.receiveRoundToPlay();
-        this.racingGame = new RacingGame(carNames, roundToPlay, new RandomNumberSelector(0, 10));
+        this.racingGame = new RacingGame(carNames, roundToPlay, new RandomNumberSelector());
     }
 
     private void announceWinner() {
