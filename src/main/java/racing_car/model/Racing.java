@@ -5,7 +5,8 @@ import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GameControl {
+public class Racing {
+    private Car[] cars;
 
     private int generateRandomNumber() {
         return new Random().nextInt(10);
@@ -29,4 +30,20 @@ public class GameControl {
                 .collect(Collectors.toList())
                 .toArray(Car[]::new);
     }
+
+    public void createCars(String testNames) {
+        createCars(testNames, new int[testNames.length()]);
+    }
+
+    public void createCars(String testNames, int[] distances) {
+        String[] names = testNames.split(",");
+        for (int i = 0; i < names.length; i++) {
+            cars[i] = new Car(names[i], distances[i]);
+        }
+    }
+
+    public Car[] getCars() {
+        return cars;
+    }
+
 }

@@ -8,9 +8,13 @@ public class Car implements Comparable<Car> {
 
     private int distance = 0;
 
-    public Car(String name) {
+    public Car(String name, int distance) {
         validateName(name);
         this.name = name;
+    }
+
+    public Car(String name) {
+        this(name, 0);
     }
 
     private void validateName(String input) {
