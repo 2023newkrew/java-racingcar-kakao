@@ -3,6 +3,7 @@ package calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator {
 
@@ -42,7 +43,7 @@ public class StringCalculator {
     }
 
     private static boolean isNotBlank(String value) {
-        return value != null && !value.isBlank();
+        return StringUtils.isNotBlank(value);
     }
 
     private static boolean isNumeric(String value) {
