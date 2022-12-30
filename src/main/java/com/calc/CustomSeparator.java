@@ -32,8 +32,8 @@ public class CustomSeparator implements Expression {
     }
 
     @Override
-    public ExprKind kind() {
-        return ExprKind.CustomSeparator;
+    public Kind kind() {
+        return Kind.CustomSeparator;
     }
 
     @Override

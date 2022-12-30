@@ -29,8 +29,8 @@ public class Separator implements Expression {
     }
 
     @Override
-    public ExprKind kind() {
-        return ExprKind.Separator;
+    public Kind kind() {
+        return Kind.Separator;
     }
 
     @Override

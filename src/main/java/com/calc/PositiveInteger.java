@@ -21,8 +21,8 @@ public class PositiveInteger implements Expression {
     }
 
     @Override
-    public ExprKind kind() {
-        return ExprKind.PositiveInteger;
+    public Kind kind() {
+        return Kind.PositiveInteger;
     }
 
     @Override
