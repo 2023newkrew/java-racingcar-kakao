@@ -62,4 +62,13 @@ public class RacingTest {
 
         assertThat(racing.getRaceStatus()).isEqualTo(movedCarsByOne);
     }
+
+    @DisplayName("우승자의 리스트를 반환해야 한다.")
+    @Test
+    void getWinners() {
+        Racing racing = new Racing(cars, 2);
+        List<Car> expectedWinners = Arrays.asList(new Car(1, "bb"), new Car(1, "cc"));
+
+        assertThat(racing.getWinners()).isEqualTo(expectedWinners);
+    }
 }
