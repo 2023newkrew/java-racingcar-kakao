@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import racingcar.config.AppConfig;
 import racingcar.factory.CarFactory;
 import racingcar.generator.RandomNumberGenerator;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 public class RacingCarGameImpl implements RacingCarGame {
     private final RandomNumberGenerator randomNumberGenerator;

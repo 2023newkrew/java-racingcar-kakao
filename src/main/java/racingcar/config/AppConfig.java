@@ -1,8 +1,6 @@
 package racingcar.config;
 
 import racingcar.generator.RandomNumberGenerator;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 public interface AppConfig {
 
