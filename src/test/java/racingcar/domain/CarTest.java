@@ -65,6 +65,4 @@ public class CarTest {
             assertThat(racingCar.toString()).isEqualTo(input + " : " + "-".repeat(i + 1));
         }
     }
-
-
 }
