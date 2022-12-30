@@ -38,23 +38,6 @@ public class RaceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Add car to list of car")
-    @ValueSource(strings = {"pobi,crong,honux", "test1,test2,test3", "hello,this,is,test"})
-    @ParameterizedTest
-    void carInputTest() {
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
-        Race race = new Race("pobi,crong,honux");
-
-        race.printRace();
-
-        String actual = out.toString();
-        assertEquals(actual,"pobi : -\n" +
-                "crong : -\n" +
-                "honux : -\n\n");
-    }
-
     @Test
     void raceMaxCntTest() {
         Race race = new Race("pobi,crong,honux");
