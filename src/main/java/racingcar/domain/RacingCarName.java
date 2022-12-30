@@ -12,6 +12,10 @@ public class RacingCarName {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private static boolean isInvalid(String name) {
         return name == null || name.isBlank() || name.length() > 5;
     }
@@ -31,5 +35,10 @@ public class RacingCarName {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
