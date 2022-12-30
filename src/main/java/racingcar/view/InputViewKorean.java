@@ -70,7 +70,7 @@ public class InputViewKorean implements InputView{
     private int validateTrialCount(String trialCount) {
         int result = Integer.parseInt(trialCount);
         if (result < 1) {
-            throw new InvalidInputException("4 : Trial should be positive number.");
+            throw new InvalidInputException("4 : Trial count must be over 0.");
         }
         return result;
     }

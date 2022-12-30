@@ -31,9 +31,6 @@ public class Racing {
         return remainingRound<=0;
     }
     public Car[] getWinners(){
-        return getWinners(this.cars);
-    }
-    public Car[] getWinners(Car[] cars) {
         if (remainingRound > 0){
             throw new InvalidRacingConditionException("2 : Not yet race ended.");
         }

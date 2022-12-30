@@ -9,13 +9,13 @@ public class ExceptionViewKorean implements ExceptionView {
     private static final String[] EXCEPTION_NAME
             = {"InvalidInputException", "InvalidRacingConditionException", "NumberFormatException"};
     private static final String[][] ERROR_MESSAGE = {
-            {"알 수 없는 오류가 발생했습니다.",
+            {"입력 관련 오류가 발생했습니다.",
             "이름의 길이는 1 이상 5 이하여야 합니다.",
             "차는 두 대 이상이어야 합니다.",
             "차의 이름은 중복될 수 없습니다.",
             "시도 횟수는 양의 정수여야 합니다."},
 
-            {"알 수 없는 오류가 발생했습니다.",
+            {"경기 진행 관련 오류가 발생했습니다.",
             "이미 경기가 끝났습니다.",
             "경기가 아직 끝나지 않았습니다.",
             "라운드 횟수는 1 이상이어야 합니다.",
