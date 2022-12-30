@@ -19,10 +19,6 @@ public class Racing {
         this.turn = new RacingTurn(turn);
     }
 
-    public static boolean isDuplicateNames(List<String> names) {
-        return names.size() != names.stream().distinct().count();
-    }
-
     public List<CarDTO> proceedTurn() {
         cars.move();
         turn.proceed();
@@ -38,5 +34,14 @@ public class Racing {
         if (!isEnd()) throw new IllegalStateException();
 
         return new RacingWinner(cars.getCarDTOs());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Racing)) return false;
+
+        Racing cp = (Racing) obj;
+
+        return cars.equals(cp.cars) && turn.equals(cp.turn);
     }
 }

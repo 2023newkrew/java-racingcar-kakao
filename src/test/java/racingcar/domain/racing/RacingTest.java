@@ -8,15 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class RacingTest {
-
     @Test
-    void duplicateNames() {
-        assertThat(Racing.isDuplicateNames(Arrays.asList("aaa", "aaa"))).isTrue();
-    }
-
-    @Test
-    void uniqueValidNames() {
-        assertThat(Racing.isDuplicateNames(Arrays.asList("aaa", "aab"))).isFalse();
+    void validRace() {
+        assertThat(new Racing("aa,bb,cc", "10"))
+                .isEqualTo(new Racing(Arrays.asList("aa", "bb", "cc"), "10"));
     }
 
     @Test
