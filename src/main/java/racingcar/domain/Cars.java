@@ -1,11 +1,6 @@
 package racingcar.domain;
 
-import racingcar.factory.CarFactory;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -13,6 +8,10 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         this.cars = Collections.unmodifiableList(cars);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     public List<Car> getWinner() {
@@ -33,5 +32,12 @@ public class Cars {
         return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.toList());
+    }
+
+    public void move(int[] movingNumbers) {
+        for (int i = 0; i < movingNumbers.length; i++) {
+            cars.get(i)
+                    .move(movingNumbers[i]);
+        }
     }
 }

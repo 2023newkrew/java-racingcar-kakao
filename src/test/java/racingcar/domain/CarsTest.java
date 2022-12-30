@@ -22,6 +22,27 @@ public class CarsTest {
     }
 
     @Test
+    void moveTest() {
+        Car car1 = CarFactory.createCar("pobi", 0);
+        Car car2 = CarFactory.createCar("crong", 0);
+        Car car3 = CarFactory.createCar("honux", 0);
+
+        Cars cars = new Cars(List.of(car1, car2, car3));
+        int[] movingNumbers = {3, 4, 1};
+
+        cars.move(movingNumbers);
+
+        List<Car> resultCars = cars.getCars();
+        assertThat(resultCars.get((0))
+                .getPosition()).isEqualTo(0);
+        assertThat(resultCars.get((1))
+                .getPosition()).isEqualTo(1);
+        assertThat(resultCars.get((2))
+                .getPosition()).isEqualTo(0);
+
+    }
+
+    @Test
     void getSingleWinnerTest() {
         Car car1 = CarFactory.createCar("pobi", 2);
         Car car2 = CarFactory.createCar("crong", 3);
