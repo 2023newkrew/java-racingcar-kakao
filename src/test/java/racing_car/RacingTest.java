@@ -7,6 +7,7 @@ import racing_car.model.Car;
 import racing_car.model.Racing;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class RacingTest {
     /*
@@ -37,9 +38,39 @@ public class RacingTest {
     }
 
     @Test
+    @DisplayName("0부터 9사이의 random 값 생성")
+    void randomValue() {
+        for (int i = 0; i < 1000; i++) {
+            int value = racing.generateValue();
+            assertThat(value<=9 && value>=0).isTrue();
+        }
+    }
+
+    @Test
+    @DisplayName("입력 횟수 만큼 자동차를 움직이려 시도")
+    void race() {
+        racing = new Racing(){
+            @Override
+            public int generateValue() {
+                return 5;
+            }
+        };
+        String testNames = "pobi,crong";
+        int round = 3;
+        racing.createCars(testNames);
+        racing.setRound(round);
+
+        while(!racing.isEnd()){
+            racing.race();
+        }
+
+        assertThat(racing.getCars()[0].distance()).isEqualTo(round);
+    }
+
+    @Test
     @DisplayName("우승자 구하기")
     void getWinner() {
-        String testNames = "pobi,crong,honux,ryan,chunsik,jordy";
+        String testNames = "pobi,crong,honux,ryan,chun,jordy";
         int[] distances = new int[] {1, 5, 2, 5, 4, 5};
         racing.createCars(testNames, distances);
 
