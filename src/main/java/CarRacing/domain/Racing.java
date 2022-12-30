@@ -8,7 +8,6 @@ import java.util.List;
 public class Racing {
     private int racingCount;
     private Car[] cars;
-
     private List<RacingLog[]> racingLogs = new ArrayList<>();
     private List<String> winners = new ArrayList<>();
 
@@ -18,6 +17,11 @@ public class Racing {
         this.racingCount = StringUtil.convertStringToInt(racingCount);
 
         makeCarList(splitInputNames(inputNames));
+    }
+
+    public Racing(Car[] cars, int racingCount) {
+        this.cars = cars;
+        this.racingCount = racingCount;
     }
 
     public void validateRacingCount(String racingCount) {
@@ -67,17 +71,12 @@ public class Racing {
         }
     }
 
-
     public void writeRacingLog() {
         RacingLog[] racingLog = new RacingLog[cars.length];
         for (int carIndex = 0; carIndex < cars.length; carIndex++) {
             racingLog[carIndex] = new RacingLog(cars[carIndex].getName(), cars[carIndex].getPosition());
         }
         racingLogs.add(racingLog);
-    }
-
-    public List<RacingLog[]> getRacingLogs() {
-        return racingLogs;
     }
 
     public RacingResult playRacing() {
@@ -89,5 +88,13 @@ public class Racing {
         }
         decideWinners();
         return new RacingResult(racingLogs, winners);
+    }
+
+    public Car[] getCarList() {
+        return cars;
+    }
+
+    public List<String> getWinners() {
+        return winners;
     }
 }
