@@ -8,14 +8,19 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    public static void main(String[] args) {
+    private static Racing settings() {
         InputView inputView = new InputView();
         InputDto inputDto = inputView.creatInput();
 
         List<String> carNames = inputDto.getCarNames();
         int roundNum = inputDto.getRoundNum();
 
-        Racing racing = new Racing(carNames, roundNum);
+        return new Racing(carNames, roundNum);
+    }
+    public static void main(String[] args) {
+
+        Racing racing = settings();
+
         while (!racing.isEnd()) {
             racing.round();
             OutputView.printRoundResult(racing.getRoundResult());
