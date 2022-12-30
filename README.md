@@ -71,6 +71,7 @@ SumHelper
 **Validator**
 - 차 이름 입력 유효성 검증
 - 시도 횟수 입력 유효성 검증
+- 구현체: **BasicValidator**
 
 **Game**
 - 차 목록 / 남은 라운드 횟수
