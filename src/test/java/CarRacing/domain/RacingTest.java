@@ -21,13 +21,6 @@ public class RacingTest {
         cars = new Car[]{new Car("pobi", 5), new Car("crong", 4), new Car("honux", 5)};
     }
 
-    @DisplayName("입력 문자열을 잘 스플릿하는지 테스트")
-    @Test
-    public void splitInputStringTest() {
-        String inputString = "pobi,crong,honux";
-        assertThat(racing.splitInputString(inputString)).isEqualTo(new String[]{"pobi", "crong", "honux"});
-    }
-
     @DisplayName("적절한 길이(1이상 5이하)의 자동차 이름 예외 처리 테스트")
     @Test
     public void checkCorrectCarNameLengthTest() {
