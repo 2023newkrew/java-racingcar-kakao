@@ -21,14 +21,13 @@ public class GameView {
 
     public static void printGameProcess(Car[] cars) {
         for (Car car: cars) {
-            System.out.print(car.name() + " : " + car.showDistance() + "\n");
+            System.out.print(car.name() + " : " + "-".repeat(car.distance()) + "\n");
         }
         System.out.println();
     }
 
     public static void printGameResult(Car[] cars) {
         String[] winnerNames = Arrays.stream(cars).map(Car::name).toArray(String[]::new);
-        System.out.println("실행결과");
         System.out.println(String.join(", ", winnerNames) +  "가 최종 우승했습니다.");
     }
 }
