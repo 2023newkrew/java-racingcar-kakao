@@ -40,8 +40,16 @@ public class Racing {
         printResult();
     }
 
+    private void decreaseTurn() {
+        this.turn--;
+    }
+
     private void proceedTurn() {
         this.cars.forEach(car -> car.move(movingStrategy));
         printTurn();
+    }
+
+    public boolean isRacing() {
+        return this.turn > 0;
     }
 }
