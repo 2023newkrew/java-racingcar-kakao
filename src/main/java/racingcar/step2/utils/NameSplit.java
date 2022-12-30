@@ -1,4 +1,4 @@
-package racingcar.step2.domain;
+package racingcar.step2.utils;
 
 public class NameSplit {
     public String[] NameCsvToArray(String nameCsv){

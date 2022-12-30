@@ -1,5 +1,7 @@
 package racingcar.step2.domain;
 
+import racingcar.step2.utils.NameSplit;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
