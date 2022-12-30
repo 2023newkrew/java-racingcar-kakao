@@ -1,7 +1,6 @@
 package racing;
 
 import racing.domain.Game;
-import racing.util.PrintUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,13 @@ public class GameView {
         this.scanner = new Scanner(System.in);
     }
 
-    public void init() {
+    public void start() {
+        init();
+        gameStart();
+        gameFinish();
+    }
+
+    private void init() {
         receiveCarNamesFromUser();
         receiveTryNumFromUser();
     }
@@ -41,13 +46,13 @@ public class GameView {
         tryNum = scanner.nextInt();
     }
 
-    public void gameStart() {
+    private void gameStart() {
         System.out.println("실행 결과");
         IntStream.range(0, tryNum)
                 .forEach(i -> gamePlay());
     }
 
-    public void gamePlay() {
+    private void gamePlay() {
         game.play();
         Map<String, Integer> status = game.getStatus();
         for (Map.Entry<String, Integer> entry : status.entrySet()) {
@@ -56,8 +61,8 @@ public class GameView {
         System.out.println();
     }
 
-    public void gameFinish() {
-        List<String> winners = game.decideWinners();
+    private void gameFinish() {
+        List<String> winners = game.getWinnerNames();
         System.out.println(String.join(", ", winners) + " 가 최종 우승했습니다.");
     }
 }

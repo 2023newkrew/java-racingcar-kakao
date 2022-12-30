@@ -1,6 +1,5 @@
 package racing.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -30,7 +29,7 @@ public class GameTest {
     @ParameterizedTest
     @MethodSource("decideWinnerArgument")
     void 한명_이상의_유저들이_승리했을때_정상적으로_판별합니다(Game game, List<Car> expected) {
-        assertThat(game.decideWinners()).isEqualTo(expected);
+        assertThat(game.getWinnerNames()).isEqualTo(expected);
     }
 
     static Stream<Arguments> decideWinnerArgument() {

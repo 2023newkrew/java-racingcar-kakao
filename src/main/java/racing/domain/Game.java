@@ -20,7 +20,7 @@ public class Game {
         }
     }
 
-    public List<String> decideWinners() {
+    public List<String> getWinnerNames() {
         return cars.getWinnerNamesWithSamePosition(cars.getMaxPosition());
     }
 
