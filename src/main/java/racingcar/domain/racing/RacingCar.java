@@ -29,4 +29,13 @@ public class RacingCar {
     public static boolean isDuplicateNames(List<String> names) {
         return names.size() != names.stream().distinct().count();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof RacingCar)) return false;
+
+        RacingCar cp = (RacingCar) obj;
+
+        return racingCar.equals(cp.racingCar);
+    }
 }

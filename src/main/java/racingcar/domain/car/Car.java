@@ -15,4 +15,13 @@ public class Car {
     public CarDTO toDTO() {
         return new CarDTO(this.name.toString(), this.position);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Car)) return false;
+
+        Car cp = (Car) obj;
+
+        return name.equals(cp.name) && position == cp.position;
+    }
 }

@@ -22,6 +22,6 @@ public class RacingCarTest {
 
     @Test
     void uniqueValidNames() {
-        assertThat(RacingCar.isDuplicateNames(Arrays.asList("aaa", "aab"))).isFalse();
+        assertThat(new RacingCar(Arrays.asList("aa", "bb"))).isEqualTo(new RacingCar(Arrays.asList("aa", "bb")));
     }
 }
