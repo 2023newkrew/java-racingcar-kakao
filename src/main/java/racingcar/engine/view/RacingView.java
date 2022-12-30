@@ -24,7 +24,7 @@ public class RacingView {
 
     public void showCurrentStatus(List<Car> cars) {
         console.printOutput("\n");
-        cars.forEach((car) -> console.printOutput(car.toString()));
+        cars.forEach((car) -> console.printOutput(car.getCurrentPosition()));
     }
 
     public void showResult(List<String> winners) {

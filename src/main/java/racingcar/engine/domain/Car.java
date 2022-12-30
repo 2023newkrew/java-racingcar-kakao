@@ -53,8 +53,7 @@ public class Car {
         return position;
     }
 
-    @Override
-    public String toString() {
+    public String getCurrentPosition() {
         return this.name + " : "
                 + "-".repeat(Math.max(0, this.position));
     }

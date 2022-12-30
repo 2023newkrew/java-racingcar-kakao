@@ -14,7 +14,7 @@ public class CarTest {
     @ValueSource(strings = {"pobi", "jaws", "jayde"})
     public void 자동차_생성(String input) {
         Car newCar = new Car(input);
-        Assertions.assertThat(newCar.toString()).isEqualTo(input + " : -");
+        Assertions.assertThat(newCar.getCurrentPosition()).isEqualTo(input + " : -");
     }
 
     @ParameterizedTest
@@ -28,12 +28,12 @@ public class CarTest {
     @Test
     public void 랜덤값이_4이상이면_전진() {
         car.moveWithPower(4);
-        Assertions.assertThat(car.toString()).isEqualTo("pobi : --");
+        Assertions.assertThat(car.getCurrentPosition()).isEqualTo("pobi : --");
     }
 
     @Test
     public void 랜덤값이_3이하면_정지() {
         car.moveWithPower(3);
-        Assertions.assertThat(car.toString()).isEqualTo("pobi : -");
+        Assertions.assertThat(car.getCurrentPosition()).isEqualTo("pobi : -");
     }
 }
