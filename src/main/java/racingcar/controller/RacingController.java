@@ -2,9 +2,7 @@ package racingcar.controller;
 
 import racingcar.model.RacingCar;
 import racingcar.service.RacingService;
-import racingcar.util.Movable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
@@ -17,18 +15,17 @@ public class RacingController {
         return racingService.getWinners();
     }
 
-    public void inputNames(String names) {
+    public void processCarNames(String names) {
         RacingService.validateCarNames(names);
         this.names = names;
     }
 
-    public void inputTrialNumber(String trialNumber) {
+    public void processTrialNumber(String trialNumber) {
         RacingService.validateTrialNumber(trialNumber);
         this.trialNumber = Integer.parseInt(trialNumber);
     }
-
-    public void startRacing(Movable movable) {
-        this.racingService = new RacingService(names, trialNumber, movable);
+    public void startRacing() {
+        this.racingService = new RacingService(names, trialNumber);
     }
 
     public boolean isRacingEnd() {
@@ -39,7 +36,7 @@ public class RacingController {
         racingService.proceedRound();
     }
 
-    public ArrayList<RacingCar> getCarsForPrintRoundResult() {
+    public List<RacingCar> getCarsForPrintRoundResult() {
         return racingService.getCarsForPrintRoundResult();
     }
 

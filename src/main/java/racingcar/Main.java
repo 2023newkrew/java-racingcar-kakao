@@ -2,7 +2,6 @@ package racingcar;
 
 
 import racingcar.controller.RacingController;
-import racingcar.util.RandomMovable;
 import racingcar.view.RacingView;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
 
         rv.inputNames();
         rv.inputTrialNumber();
-        rc.startRacing(new RandomMovable(10, 4));
+        rc.startRacing();
         while (!rc.isRacingEnd()) {
             rc.proceedRound();
             rv.printRoundResult();

@@ -1,4 +1,4 @@
-package racingcar.repository;
+package racingcar.service;
 
 import racingcar.model.Car;
 import racingcar.model.RacingCar;
@@ -12,15 +12,8 @@ import java.util.stream.Collectors;
 public class RacingCars {
     private final ArrayList<RacingCar> cars;
 
-    public RacingCars(String[] cars) {
-        this.cars = generateCarsListFromCarNames(cars);
-    }
-    private ArrayList<RacingCar> generateCarsListFromCarNames(String[] cars) {
-        ArrayList<RacingCar> temp = new ArrayList<>();
-        for (String carName : cars) {
-            temp.add(new RacingCar(carName));
-        }
-        return temp;
+    public RacingCars(ArrayList<RacingCar> cars) {
+        this.cars = cars;
     }
 
     public void moveCars(Movable movable) {
@@ -36,7 +29,7 @@ public class RacingCars {
                 .collect(Collectors.toList());
     }
 
-    public ArrayList<RacingCar> getCars() {
+    public ArrayList<RacingCar> getCarsList() {
         return cars;
     }
 }
