@@ -9,13 +9,26 @@ import racingcar.domain.Car;
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
-    @ParameterizedTest
-    @ValueSource(ints = {4,5,6,7,8,9})
-    @DisplayName("랜덤 숫자가 4 이상이면 자동차가 전진한다.")
-    void carForwarding(int power) {
-        Car car = new Car("davi");
-        car.forward(power);
-        assertThat(car.getDistance()).isEqualTo(1);
+    @Test
+    @DisplayName("자동차의 이름은 1~5자 사이어야 한다.")
+    void carNameLength() {
+        assertThatCode(()->{
+            new Car("davi");
+        }).doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("자동차의 이름이 없거나 5자 초과인 경우 에러를 던진다")
+    void carNameLengthMoreThan5() {
+        assertThatThrownBy(()->{
+            new Car("asdfasdf");
+        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(()->{
+            new Car("");
+        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(()->{
+            new Car(null);
+        }).isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest
