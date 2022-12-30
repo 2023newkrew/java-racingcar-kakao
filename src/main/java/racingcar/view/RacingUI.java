@@ -1,8 +1,8 @@
-package racingcar.racing;
+package racingcar.view;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.car.CarDTO;
+import racingcar.dto.CarDTO;
 
 public class RacingUI {
 

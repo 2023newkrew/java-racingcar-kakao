@@ -1,4 +1,4 @@
-package racingcar.racing;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,8 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.car.CarAction;
-import racingcar.car.CarDTO;
+import racingcar.dto.CarDTO;
 
 public class RacingServiceTest {
 

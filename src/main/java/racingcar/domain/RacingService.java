@@ -1,9 +1,9 @@
-package racingcar.racing;
+package racingcar.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.car.CarAction;
-import racingcar.car.CarDTO;
+import racingcar.dto.CarDTO;
+import racingcar.util.Validator;
 
 public class RacingService {
 

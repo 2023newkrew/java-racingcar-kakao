@@ -1,13 +1,11 @@
-package racingcar.racing;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.car.Car;
-import racingcar.car.CarDTO;
-import racingcar.car.MovingStrategy;
-import racingcar.car.RandomMovingStrategy;
+import racingcar.dto.CarDTO;
+import racingcar.view.RacingUI;
 
 public class Racing {
 

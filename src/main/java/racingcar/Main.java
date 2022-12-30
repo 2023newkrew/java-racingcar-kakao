@@ -1,6 +1,6 @@
 package racingcar;
 
-import racingcar.racing.Racing;
+import racingcar.domain.Racing;
 
 public class Main {
 

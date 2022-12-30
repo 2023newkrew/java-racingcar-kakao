@@ -1,4 +1,4 @@
-package racingcar.car;
+package racingcar.dto;
 
 public class CarDTO {
 
