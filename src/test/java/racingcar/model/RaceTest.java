@@ -6,10 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,7 +35,7 @@ public class RaceTest {
     }
 
     @Test
-    void raceMaxCntTest() {
+    void raceMaxPositionTest() {
         Race race = new Race("pobi,crong,honux");
 
         race.getCars().get(0).move();
@@ -51,9 +47,6 @@ public class RaceTest {
 
     @Test
     void raceWinnerTest(){
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
         Race race = new Race("pobi,crong,honux");
 
         race.getCars().get(0).move();
@@ -64,9 +57,6 @@ public class RaceTest {
         race.getCars().get(2).move();
         race.getCars().get(2).move();
 
-        race.raceWinner();
-
-        String actual = out.toString();
-        assertEquals(actual, "pobi, honux가 최종 우승했습니다.\n");
+        assertEquals(race.raceWinner(), "pobi, honux");
     }
 }

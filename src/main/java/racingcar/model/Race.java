@@ -54,7 +54,7 @@ public class Race {
     }
 
     public int raceMaxPosition() {
-        int max = -1;
+        int max = 0;
 
         for (Car car: cars) {
             max = Math.max(max, car.getPosition());
@@ -63,7 +63,15 @@ public class Race {
         return max;
     }
 
-    public void raceWinner() {
+    public String raceWinnerCheck(Car car, int max){
+        if (car.getPosition() == max) {
+            return car.getName() + ", ";
+        }
+
+        return "";
+    }
+
+    public String raceWinner() {
         int max = raceMaxPosition();
         StringBuilder sb = new StringBuilder();
 
@@ -71,15 +79,7 @@ public class Race {
             sb.append(raceWinnerCheck(car, max));
         }
 
-        System.out.println(sb.substring(0, sb.length()-2) + "가 최종 우승했습니다.");
-    }
-
-    public String raceWinnerCheck(Car car, int max){
-        if (car.getPosition() == max) {
-            return car.getName() + ", ";
-        }
-
-        return "";
+        return sb.substring(0, sb.length() - 2);
     }
 
     public void playRace(int turn) {
