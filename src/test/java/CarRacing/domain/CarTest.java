@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarTest {
 
@@ -18,6 +20,23 @@ public class CarTest {
     void setUp() {
         car = new Car("test");
         positionCar = new Car("test", 5);
+    }
+    @DisplayName("적절한 길이(1이상 5이하)의 자동차 이름 예외 처리 테스트")
+    @Test
+    public void validateCorrectCarNameTest() {
+        String correct_name = "pobi";
+        assertDoesNotThrow(() -> {
+            car.validateName(correct_name);
+        });
+    }
+
+    @DisplayName("적절하지 않은 길이(0, 6이상)의 자동차 이름 예외 처리 테스트")
+    @Test
+    public void validateWrongCarNameTest() {
+        String wrong_name = "pororo";
+        assertThrows(RuntimeException.class, () -> {
+            car.validateName(wrong_name);
+        });
     }
 
     @DisplayName("랜덤 넘버가 0이상 3이하 일때 자동차가 움직이지 않는지 테스트")

@@ -5,24 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
-    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
-    private static final int MINIMUM_CAR_NAME_LENGTH = 1;
     List<RacingLog[]> racingLogs = new ArrayList<>();
-
-    public void checkCarNameLength(String name) {
-        if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
-            throw new RuntimeException("차 이름은 다섯 글자 이하여야 합니다.");
-        }
-        if (name.length() < MINIMUM_CAR_NAME_LENGTH) {
-            throw new RuntimeException("차 이름은 한 글자 이상이어야 합니다.");
-        }
-    }
-
-    public void checkCarsNameLength(String[] names) {
-        for (String name : names) {
-            checkCarNameLength(name);
-        }
-    }
 
     public Car[] makeCarList(String[] names) {
         Car[] cars = new Car[names.length];

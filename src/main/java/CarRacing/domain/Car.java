@@ -3,6 +3,8 @@ package CarRacing.domain;
 import CarRacing.util.RandomUtil;
 
 public class Car {
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    private static final int MINIMUM_CAR_NAME_LENGTH = 1;
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 1;
@@ -15,8 +17,18 @@ public class Car {
     }
 
     public Car(String name, int position) {
+        validateName(name);
         this.position = position;
         this.name = name;
+    }
+
+    public void validateName(String name) {
+        if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
+            throw new RuntimeException("차 이름은 다섯 글자 이하여야 합니다.");
+        }
+        if (name.length() < MINIMUM_CAR_NAME_LENGTH) {
+            throw new RuntimeException("차 이름은 한 글자 이상이어야 합니다.");
+        }
     }
 
     public boolean isMove(int randomNumber) {
