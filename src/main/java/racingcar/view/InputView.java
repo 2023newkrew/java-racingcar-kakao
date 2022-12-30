@@ -43,7 +43,7 @@ public class InputView {
         return stringInput.split(",");
     }
 
-    public static void validateCarNameLength(String carName) {
+    private static void validateCarNameLength(String carName) {
         if (carName.length() > NAME_BOUND || carName.length() == 0) {
             throw new InvalidInputException("자동차의 이름의 길이는 1 이상 5 이하여야 합니다.");
         }

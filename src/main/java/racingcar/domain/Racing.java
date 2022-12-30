@@ -25,7 +25,7 @@ public class Racing {
         }
     }
 
-    public Car getOneWinner() {
+    private Car getOneWinner() {
         Car candidate = cars[0];
         for (Car car : cars) {
             candidate = candidate.determineWinner(car);

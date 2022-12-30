@@ -8,6 +8,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.InputView;
 import racingcar.exception.InvalidInputException;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -16,19 +19,28 @@ public class InputViewTest {
     @DisplayName("자동차 이름의 길이가 1~5사이 범위가 아닌 경우 예외가 발생해야함")
     @ParameterizedTest
     @ValueSource(strings = {"daniel", ""})
-    void 자동차_이름의_길이_적합성_예외발생(String inputStr) {
-        assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(() -> {
-                    InputView.validateCarNameLength(inputStr);
-                });
+    void 자동차_이름의_길이_적합성_예외발생(String inputStr) throws NoSuchMethodException {
+        InputView inputView = new InputView();
+
+        Method validateCarNameLengthMethod = InputView.class.getDeclaredMethod("validateCarNameLength", String.class);
+        validateCarNameLengthMethod.setAccessible(true);
+
+        assertThatCode(() -> {
+            validateCarNameLengthMethod.invoke(inputView, inputStr);
+        }).isInstanceOf(InvocationTargetException.class);
     }
 
     @DisplayName("자동차 이름의 길이가 1~5사이 범위에 있는 경우 예외가 발생하지 않아야함")
     @Test
-    void 자동차_이름의_길이_적합성_통과() {
+    void 자동차_이름의_길이_적합성_통과() throws NoSuchMethodException {
         String inputStr = "dan";
+        InputView inputView = new InputView();
+
+        Method validateCarNameLengthMethod = InputView.class.getDeclaredMethod("validateCarNameLength", String.class);
+        validateCarNameLengthMethod.setAccessible(true);
+
         assertThatCode(() -> {
-            InputView.validateCarNameLength(inputStr);
+            validateCarNameLengthMethod.invoke(inputView, inputStr);
         }).doesNotThrowAnyException();
     }
 

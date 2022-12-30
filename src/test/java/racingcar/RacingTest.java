@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Racing;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class RacingTest {
     @DisplayName("주어진 이름에 따라 Cars 가 잘 생성되어야함")
     @Test
@@ -24,11 +27,15 @@ public class RacingTest {
 
     @DisplayName("가장 많이 전진한 자동차가 우승자가 되어야함")
     @Test
-    void 무조건_이기는_한_명의_우승자() {
+    void 무조건_이기는_한_명의_우승자() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String[] names = new String[]{"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;
         Racing racing = new Racing(names);
+
+        Method getOneWinnerMethod = Racing.class.getDeclaredMethod("getOneWinner");
+        getOneWinnerMethod.setAccessible(true);
+
         Car[] cars = racing.cars();
         for (int i = 0; i < ROUND; i++) {
             cars[0].move(bound -> 2);
@@ -38,7 +45,7 @@ public class RacingTest {
             cars[4].move(bound -> 2);
         }
 
-        Assertions.assertThat(racing.getOneWinner()).isEqualTo(cars[2]);
+        Assertions.assertThat((Car)getOneWinnerMethod.invoke(racing)).isEqualTo(cars[2]);
     }
 
     @DisplayName("여러 명의 우승자가 발생한 경우 '결과 배열'에는 모든 우승자가 포함되어야만함")
