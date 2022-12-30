@@ -8,7 +8,7 @@ import CarRacing.view.ResultView;
 
 public class Controller {
     public static void main(String[] args) {
-        while(true) {
+        while (true) {
             String inputNames = InputView.inputNames();
             String inputCount = InputView.inputCount();
             Racing racing;

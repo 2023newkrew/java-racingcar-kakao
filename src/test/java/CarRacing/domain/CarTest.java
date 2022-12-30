@@ -20,6 +20,7 @@ public class CarTest {
         car = new Car("test");
         positionCar = new Car("test", 5);
     }
+
     @DisplayName("적절한 길이(1이상 5이하)의 자동차 이름 예외 처리 테스트")
     @Test
     public void validateCorrectCarNameTest() {

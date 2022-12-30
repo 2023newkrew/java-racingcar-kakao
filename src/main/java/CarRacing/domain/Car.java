@@ -30,7 +30,7 @@ public class Car {
     }
 
     public void moveCar(MovingStrategy movingStrategy) {
-        if(movingStrategy.movable()) {
+        if (movingStrategy.movable()) {
             position += CAR_SPEED;
         }
     }

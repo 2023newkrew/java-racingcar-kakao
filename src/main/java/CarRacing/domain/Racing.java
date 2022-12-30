@@ -81,7 +81,7 @@ public class Racing {
 
     public RacingResult playRacing() {
         writeRacingLog();
-        while (racingCount> 0) {
+        while (racingCount > 0) {
             oneCycle();
             writeRacingLog();
             racingCount--;
