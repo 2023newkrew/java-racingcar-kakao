@@ -9,6 +9,7 @@ import java.util.Set;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.generator.RandomNumberGenerator;
 
@@ -44,6 +45,7 @@ public class RacingCarGameTest {
 
 
     @Test
+    @DisplayName("run을 실행하면 자동차들이 FakeRandomNumberGenerator에 의해 이동한다.")
     public void runTest() throws NoSuchFieldException, IllegalAccessException {
         racingCarGame.add(Set.of("pobi","crong","honux"));
         run(5);
@@ -56,6 +58,7 @@ public class RacingCarGameTest {
     }
 
     @Test
+    @DisplayName("승자가 1명일 때 리스트의 길이는 1이고, 해당 객체를 반환해야 한다.")
     public void getSingleWinner() {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
@@ -67,6 +70,7 @@ public class RacingCarGameTest {
     }
 
     @Test
+    @DisplayName("승자가 여러명일 때 리스트의 길이는 해당 승자수와 같고, 해당 객체들을 입력된 순서대로 반환해야 한다.")
     public void getMultiWinner() {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
@@ -79,6 +83,7 @@ public class RacingCarGameTest {
     }
 
     @Test
+    @DisplayName("진행한 run에 따른 적절한 toString 결과를 반환해야 한다.")
     public void getCarResultsTest() {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");

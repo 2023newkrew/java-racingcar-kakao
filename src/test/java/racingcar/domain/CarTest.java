@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.lang.reflect.Field;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,6 +18,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"","russell"})
+    @DisplayName("자동차이름이_공백이거나_6자이상이면_예외가_발생한다")
     public void 자동차이름이_공백이거나_6자이상이면_예외가_발생한다(String input){
         assertThatThrownBy(()->new RacingCar(input)).isInstanceOf(IllegalArgumentException.class);
     }
@@ -26,6 +28,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
+    @DisplayName("move에 condition이 4 이상 9 이하이면 이동해야 한다.")
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     public void moveTest(int input) {
         Car racingCar = new RacingCar("abc");
@@ -35,6 +38,7 @@ public class CarTest {
     }
 
     @ParameterizedTest
+    @DisplayName("move에 condition이 0이상 3 이하이면 이동해야 한다.")
     @ValueSource(ints = {0,1, 2, 3})
     public void doNotMoveTest(int input) {
         Car racingCar = new RacingCar("abc");
@@ -45,6 +49,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {10, -1})
+    @DisplayName("move함수에_범위외_값이_주어지면_예외가_발생한다")
     public void move함수에_범위외_값이_주어지면_예외가_발생한다(int input) {
         Car racingCar = new RacingCar("abc");
         Assertions.assertThatThrownBy(() -> racingCar.move(input)).isInstanceOf(IllegalArgumentException.class);
@@ -52,6 +57,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"abc", "def"})
+    @DisplayName("toString의 결과가 name : ----(이동한 distance 만큼 -)여야 한다.")
     public void toStringTest(String input) {
         Car racingCar = new RacingCar(input);
         for (int i = 0; i < 3; i++) {
