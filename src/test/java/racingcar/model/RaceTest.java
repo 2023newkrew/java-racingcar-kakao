@@ -25,12 +25,22 @@ public class RaceTest {
     @DisplayName("Throw exception when car name is longer than 5")
     @ValueSource(strings = {"testtt", "testttt", "testtttt", "testttttt"})
     @ParameterizedTest
-    void verifyNameTest(final String name) {
+    void longNameTest(final String name) {
         assertThatThrownBy(() -> new Race("test").verifyName(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @DisplayName("Throw exception when car name is blank")
+    @NullAndEmptySource
+    @ParameterizedTest
+    void blankNameTest(final String name) {
+        assertThatThrownBy(() -> new Race("test").verifyName(name))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("Add car to list of car")
+    @ValueSource(strings = {"pobi,crong,honux", "test1,test2,test3", "hello,this,is,test"})
+    @ParameterizedTest
     void carInputTest() {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
