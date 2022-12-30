@@ -11,10 +11,7 @@ import java.util.stream.Collectors;
 public class Parser {
 
     public Expression checkNull(String text) {
-        if (text == null) {
-            return Expression.createEmpty();
-        }
-        if (text.isEmpty()) {
+        if (text == null || text.isEmpty()) { // null 이거나 빈 문자열이라면
             return Expression.createEmpty();
         }
         return null;
