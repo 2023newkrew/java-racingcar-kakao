@@ -1,10 +1,45 @@
 package racingcar.domain;
 
-public interface Car {
+import static racingcar.domain.RacingCarExceptionMessage.CAR_NAME_NOT_OR_BLANK_EXCEPTION_MESSAGE;
 
-    public int getDistance();
-    public String getName();
-    public void move(int seed);
+import java.util.Objects;
+import stringutils.StringUtils;
 
-    public String toString();
+public abstract class Car {
+
+    private final String name;
+
+    protected Car(String name) {
+        StringUtils.checkNullOrBlank(name, CAR_NAME_NOT_OR_BLANK_EXCEPTION_MESSAGE);
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public abstract int getDistance();
+
+    public abstract void move(int condition);
+
+    public abstract boolean outOfBound(int condition);
+
+    public abstract String toString();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

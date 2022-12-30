@@ -2,12 +2,13 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public interface RacingCarGame {
 
-    void run(int times);
+    void run();
 
-    void add(String carName);
+    void add(Set<String> names);
 
     void add(Car... cars);
 
@@ -17,5 +18,4 @@ public interface RacingCarGame {
 
     List<String> getCarResults();
 
-    void play();
 }

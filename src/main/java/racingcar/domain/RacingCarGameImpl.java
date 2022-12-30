@@ -4,37 +4,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.AppConfig;
 import racingcar.generator.RandomNumberGenerator;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 public class RacingCarGameImpl implements RacingCarGame {
     private final RandomNumberGenerator randomNumberGenerator;
-    private final InputView inputView;
-    private final OutputView outputView;
     private final ArrayList<Car> cars = new ArrayList<>();
 
-    public RacingCarGameImpl(AppConfig appConfig) {
-        randomNumberGenerator = appConfig.getRandomNumberGenerator();
-        inputView = appConfig.getInputView();
-        outputView = appConfig.getOutputView();
+    public RacingCarGameImpl(RandomNumberGenerator randomNumberGenerator) {
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
     @Override
-    public void run(int times) {
-        outputView.printRunResult();
-        for (int i = 0; i < times; i++) {
-            cars.forEach(car -> car.move(randomNumberGenerator.generator()));
-            outputView.printEachRunResult(getCarResults());
-        }
+    public void run() {
+        cars.forEach(car -> car.move(randomNumberGenerator.generate()));
     }
 
     @Override
-    public void add(String carName) {
-        cars.add(new RacingCar(carName));
+    public void add(Set<String> names) {
+        names.forEach(name -> this.cars.add(new RacingCar(name)));
     }
+
 
     @Override
     public void add(Car... multipleCar) {
@@ -56,17 +47,6 @@ public class RacingCarGameImpl implements RacingCarGame {
     @Override
     public List<String> getCarResults() {
         return cars.stream().map(Car::toString).collect(Collectors.toList());
-    }
-
-    @Override
-    public void play() {
-        outputView.printStartMessage();
-        String[] names = inputView.inputName();
-        Arrays.stream(names).forEach(this::add);
-        outputView.printAskRunCount();
-        int times = inputView.inputRunCount();
-        run(times);
-        outputView.printFinalResult(getWinnerNames());
     }
 
 

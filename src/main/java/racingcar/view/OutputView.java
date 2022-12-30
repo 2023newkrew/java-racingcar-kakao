@@ -1,21 +1,25 @@
 package racingcar.view;
 
+import static racingcar.view.OutputViewMessage.ASK_COUNT_MESSAGE;
+import static racingcar.view.OutputViewMessage.RUN_RESULT_MESSAGE;
+import static racingcar.view.OutputViewMessage.START_MESSAGE;
+import static racingcar.view.OutputViewMessage.getResultMessage;
+
 import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.RacingCarGame;
 
 public class OutputView {
-    public void printStartMessage(){
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+    public void printStartMessage() {
+        System.out.println(START_MESSAGE);
     }
 
-    public void printAskRunCount(){
-        System.out.println("시도할 회수는 몇회인가요?");
+    public void printAskRunCount() {
+        System.out.println(ASK_COUNT_MESSAGE);
     }
 
     public void printRunResult() {
-
-        System.out.println("\n실행 결과");
+        System.out.println(RUN_RESULT_MESSAGE);
     }
 
     public void printEachRunResult(List<String> carResults) {
@@ -23,7 +27,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printFinalResult(List<String> winnerNames){
-        System.out.println(String.join(" ,",winnerNames)+"가 최종 우승했습니다.");
+    public void printFinalResult(List<String> winnerNames) {
+        System.out.println(getResultMessage(winnerNames));
     }
 }

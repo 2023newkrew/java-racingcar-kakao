@@ -1,7 +1,6 @@
 package racingcar;
 
-import racingcar.domain.RacingCarGame;
-import racingcar.domain.RacingCarGameImpl;
+import racingcar.config.AppConfig;
 
 public class RacingCarApp {
 
@@ -12,8 +11,6 @@ public class RacingCarApp {
     }
 
     public void run(){
-        RacingCarGame racingCarGame = new RacingCarGameImpl(appConfig);
-        racingCarGame.play();
-
+        appConfig.getRacingCarGameController().play();
     }
 }
