@@ -16,7 +16,7 @@ public class InputView {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             nameInput = sc.nextLine();
         } while (!Validate.validateCarNames(nameInput));
-        return Utils.stringArrayToStringList(nameInput.split(","));
+        return Utils.stringToStringList(nameInput);
     }
 
     private static int inputRoundNum() { //사용자의 입력을 받는다(라운드 횟수)
