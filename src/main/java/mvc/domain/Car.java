@@ -3,13 +3,11 @@ package mvc.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int MOVE_THRESHOLD = 4;
-
     private final String name;
     private int position;
 
     public Car(String name) {
-        this(name, 0);
+        this(name, 1);
     }
 
     public Car(String name, int position) {
@@ -21,7 +19,7 @@ public class Car {
     }
 
     public void move() {
-        if (moveVal() >= MOVE_THRESHOLD)
+        if (moveVal() >= 4)
             position++;
     }
 
@@ -31,6 +29,10 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

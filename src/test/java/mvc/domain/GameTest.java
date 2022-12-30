@@ -25,7 +25,7 @@ class GameTest {
     @Test
     @DisplayName("가장 멀리 이동한 자동차 위치 추출")
     void extractWinnerScore() {
-        assertThat(game.extractWinnerScore()).isEqualTo(3);
+        assertThat(game.extractWinnerPosition()).isEqualTo(3);
     }
 
     @Test
