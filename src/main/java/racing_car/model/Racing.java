@@ -9,6 +9,7 @@ public class Racing {
     private Car[] cars;
     private int round;
 
+    public Racing(){}
 
     public Racing(String names, int round) {
         createCars(names);
