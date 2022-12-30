@@ -1,11 +1,19 @@
 package racingcar.view;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ValidatorTest {
+class BasicValidatorTest {
+
+    BasicValidator validator;
+
+    @BeforeEach
+    void setup() {
+        validator = new BasicValidator();
+    }
 
     @Test
     @DisplayName("정수로 변환 가능한 문자열은 true를 반환한다")
@@ -15,10 +23,10 @@ class ValidatorTest {
         String minusOne = "-1";
         String bryan = "bryan";
 
-        assertThat(Validator.isInteger(one)).isEqualTo(true);
-        assertThat(Validator.isInteger(oneWithBlank)).isEqualTo(false);
-        assertThat(Validator.isInteger(minusOne)).isEqualTo(true);
-        assertThat(Validator.isInteger(bryan)).isEqualTo(false);
+        assertThat(validator.isInteger(one)).isEqualTo(true);
+        assertThat(validator.isInteger(oneWithBlank)).isEqualTo(false);
+        assertThat(validator.isInteger(minusOne)).isEqualTo(true);
+        assertThat(validator.isInteger(bryan)).isEqualTo(false);
 
     }
 
@@ -30,10 +38,10 @@ class ValidatorTest {
         String minusOne = "-1";
         String bryan = "bryan";
 
-        assertThat(Validator.isValidRoundInput(one)).isEqualTo(true);
-        assertThat(Validator.isInteger(oneWithBlank)).isEqualTo(false);
-        assertThat(Validator.isValidRoundInput(minusOne)).isEqualTo(false);
-        assertThat(Validator.isValidRoundInput(bryan)).isEqualTo(false);
+        assertThat(validator.isValidRoundInput(one)).isEqualTo(true);
+        assertThat(validator.isInteger(oneWithBlank)).isEqualTo(false);
+        assertThat(validator.isValidRoundInput(minusOne)).isEqualTo(false);
+        assertThat(validator.isValidRoundInput(bryan)).isEqualTo(false);
     }
 
     @Test
@@ -42,8 +50,8 @@ class ValidatorTest {
         String name1 = "name";
         String name2 = "more than 5 letters";
 
-        assertThat(Validator.isLengthLessThanLimit(name1)).isEqualTo(true);
-        assertThat(Validator.isLengthLessThanLimit(name2)).isEqualTo(false);
+        assertThat(validator.isLengthLessThanLimit(name1)).isEqualTo(true);
+        assertThat(validator.isLengthLessThanLimit(name2)).isEqualTo(false);
     }
 
     @Test
@@ -53,8 +61,8 @@ class ValidatorTest {
         String namesInput2 = "longName, a, b";
         String blankInput = " ";
 
-        assertThat(Validator.isValidNamesInput(namesInput)).isEqualTo(true);
-        assertThat(Validator.isValidNamesInput(namesInput2)).isEqualTo(false);
-        assertThat(Validator.isValidNamesInput(blankInput)).isEqualTo(false);
+        assertThat(validator.isValidNamesInput(namesInput)).isEqualTo(true);
+        assertThat(validator.isValidNamesInput(namesInput2)).isEqualTo(false);
+        assertThat(validator.isValidNamesInput(blankInput)).isEqualTo(false);
     }
 }

@@ -16,15 +16,20 @@ public class IOHelper {
     public static final String WRONG_INPUT_MESSAGE = "잘못된 입력값입니다.";
 
     private static final Scanner sc = new Scanner(System.in);
+    private final Validator validator;
+
+    public IOHelper(Validator validator) {
+        this.validator = validator;
+    }
 
     // 사용자로부터 자동차의 이름 입력 받아 문자열 리스트로 반환
-    public static List<String> getNamesInput() {
+    public List<String> getNamesInput() {
         List<String> names = new ArrayList<>();
 
         while (true) {
             System.out.println(INPUT_CAR_NAMES_MESSAGE);
             String input = sc.nextLine();
-            if (Validator.isValidNamesInput(input)) {
+            if (validator.isValidNamesInput(input)) {
                 names = getTrimNames(input);
                 break;
             }
@@ -34,7 +39,7 @@ public class IOHelper {
     }
 
     // 문자열을 쉼표를 기준으로 잘라 리스트로 반환
-    public static List<String> getTrimNames(String input) {
+    public List<String> getTrimNames(String input) {
         List<String> names = List.of(input.split(","));
         List<String> trimNames = names.stream()
                 .map(name -> name.trim())
@@ -43,12 +48,12 @@ public class IOHelper {
     }
 
     // 사용자로부터 이동 시도 횟수를 입력 받아 정수로 반환
-    public static int getRoundInput() {
+    public int getRoundInput() {
         String input = "";
         while (true) {
             System.out.println(INPUT_TRY_COUNT_MESSAGE);
             input = sc.nextLine();
-            if (Validator.isValidRoundInput(input)) {
+            if (validator.isValidRoundInput(input)) {
                 break;
             }
             System.out.println(WRONG_INPUT_MESSAGE);
@@ -57,7 +62,7 @@ public class IOHelper {
     }
 
     // 각 자동차의 이름과 위치를 출력
-    public static void printCarStatus(GameInfo gameInfo) {
+    public void printCarStatus(GameInfo gameInfo) {
         for (CarInfo carInfo : gameInfo.getCarInfos()) {
             System.out.println(carInfo.getName() + " : " + "-".repeat(carInfo.getPosition()));
         }
@@ -65,7 +70,7 @@ public class IOHelper {
     }
 
     // 게임 결과(우승자) 출력
-    public static void printGameResult(List<CarInfo> winners) {
+    public void printGameResult(List<CarInfo> winners) {
         List<String> winnerNames = winners.stream()
                 .map(winner -> winner.getName())
                 .collect(Collectors.toList());
@@ -74,8 +79,13 @@ public class IOHelper {
     }
 
     // 자동차들의 이름 및 거리 최초 출력(게임 시작시 사용)
-    public static void printInitialStatus(GameInfo gameInfo) {
+    public void printInitialStatus(GameInfo gameInfo) {
         System.out.println(INITIAL_STATUS_HEADER_MESSAGE);
         printCarStatus(gameInfo);
+    }
+
+    // Scanner 종료
+    public void close() {
+        sc.close();
     }
 }
