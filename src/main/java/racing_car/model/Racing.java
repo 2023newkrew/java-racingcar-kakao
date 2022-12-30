@@ -9,6 +9,12 @@ public class Racing {
     private Car[] cars;
     private int round;
 
+
+    public Racing(String names, int round) {
+        createCars(names);
+        setRound(round);
+    }
+
     private int generateRandomNumber() {
         return new Random().nextInt(10);
     }
