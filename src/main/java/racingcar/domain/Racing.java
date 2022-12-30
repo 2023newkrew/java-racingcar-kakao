@@ -13,6 +13,9 @@ public class Racing {
     }
 
     public Racing(List<Car> cars, int turn, MovingStrategy movingStrategy) {
+        if (turn <= 0) {
+            throw new IllegalArgumentException("turn은 양수이어야 합니다.");
+        }
         this.cars = new Cars(cars);
         this.turn = turn;
         this.movingStrategy = movingStrategy;

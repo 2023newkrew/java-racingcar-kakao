@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.Arrays;
@@ -19,6 +20,13 @@ public class RacingTest {
     @Test
     void constructRacingWithCarNamesAndTurn() {
         assertThatCode(() -> new Racing(cars, 2)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("turn에 양수가 아닌 값이 들어오면 예외를 발생시켜야 한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -2, -3, -100, 0})
+    void shouldRaiseExceptionWithNonPositiveTurn(int turn) {
+        assertThatThrownBy(() -> new Racing(cars, turn)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Racing의 현재 턴이 남아있으면 true를 반환한다.")
