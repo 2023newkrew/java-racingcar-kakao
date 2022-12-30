@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class RacingGameTest {
@@ -20,6 +19,71 @@ class RacingGameTest {
 
         // when & then
         assertDoesNotThrow(() -> new RacingGame(carNames, roundToPlay, new RandomNumberSelector()));
+    }
+
+    @DisplayName("플레이 할 라운드 횟수는 음수가 되어서는 안된다.")
+    @Test
+    void validate_round_to_play_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        int invalidRoundToPlay = -2;
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new RacingGame(carNames, invalidRoundToPlay, new RandomNumberSelector()))
+                .withMessage("라운드는 양수여야 합니다.");
+    }
+
+    @DisplayName("RacingGame에서 라운드를 한 차례 진행할 수 있다 - 해당 테스트는 자동차 전진")
+    @Test
+    void move_cars_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        NumberSelector moveNumberSelector = new MoveNumberSelector();
+        RacingGame racingGame = new RacingGame(carNames, 5, moveNumberSelector);
+
+        // when
+        racingGame.proceedRound();
+
+        // then
+        List<Car> cars = racingGame.announceRoundResult();
+        assertThat(cars.get(0).getPosition()).isEqualTo(1);
+        assertThat(cars.get(1).getPosition()).isEqualTo(1);
+        assertThat(cars.get(2).getPosition()).isEqualTo(1);
+    }
+
+    @DisplayName("RacingGame에서 라운드를 한 차례 진행할 수 있다 - 해당 테스트는 자동차 멈춤")
+    @Test
+    void stay_cars_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        NumberSelector stayNumberSelector = new StayNumberSelector();
+        RacingGame racingGame = new RacingGame(carNames, 5, stayNumberSelector);
+
+        // when
+        racingGame.proceedRound();
+
+        // then
+        List<Car> cars = racingGame.announceRoundResult();
+        assertThat(cars.get(0).getPosition()).isEqualTo(0);
+        assertThat(cars.get(1).getPosition()).isEqualTo(0);
+        assertThat(cars.get(2).getPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("RacingGame에서 라운드는 게임이 종료되면 진행될 수 없다.")
+    @Test
+    void cannot_proceed_when_game_ended_test() {
+        // given
+        int roundToPlay = 1;
+        RacingGame racingGame = new RacingGame("joel,red,nell", roundToPlay, new RandomNumberSelector());
+
+        // when
+        racingGame.proceedRound();
+
+        // then
+        assertThatThrownBy(() -> racingGame.proceedRound())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("게임이 종료되었습니다.");
     }
 
     @DisplayName("게임에 할당된 모든 라운드가 종료되면 우승자를 확인할 수 있다.")

@@ -63,8 +63,8 @@
 - [x] Controller에 DTO를 도입하여 도메인 보호
 - [x] 생성자 주입을 통해 final 처리할 수 있는 인스턴스 변수라면 리팩터링하기
 - [x] MoveThreshold를 자동차가 자체적으로 가지도록 수정
-- [ ] 무의미한 Wrapping Method에 대한 사용 재고
-- [ ] 매 Round마다 결과를 리턴받아 출력하는 함수를 전달하는 방법 생각해보기
+- [x] 무의미한 Wrapping Method에 대한 사용 재고
+- [x] 매 Round마다 결과를 리턴받아 출력하는 함수를 전달하는 방법 생각해보기
 - [x] StringBuilder/String.repeat() 도입을 통한 View단 IO 최소화
 - [x] DTO로 변환은 Controller Layer에서 하기
-- [x] Domain Layer는 Domain을 리턴해도 괜찮지 않을까?
+- [x] Domain Layer는 Domain 객체를 리턴하기
