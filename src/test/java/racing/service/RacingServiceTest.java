@@ -2,30 +2,32 @@ package racing.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racing.model.Car;
+import racing.domain.Car;
+import racing.domain.Cars;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class CarNameSplitterTest {
-    private CarNameSplitter carNameSplitter;
+class RacingServiceTest {
+    private RacingService racingService;
 
     @BeforeEach
     void setUp(){
-        carNameSplitter = new CarNameSplitter();
+        racingService = new RacingService();
     }
 
     @Test
     void givenRacingCarString_whenRacingCarSplit_thenReturnCarList(){
         String input = "aaa,bbb,ccc";
-        List<Car> expected = new ArrayList<>();
-        expected.add(new Car("aaa", 0));
-        expected.add(new Car("bbb", 0));
-        expected.add(new Car("ccc", 0));
-
-        List<Car> result = carNameSplitter.split(input);
+        List<Car> carList = List.of(
+                new Car("aaa"),
+                new Car("bbb"),
+                new Car("ccc")
+        );
+        Cars expected = new Cars(carList);
+        Cars result = racingService.createCarsByNames(input);
 
         assertThat(result).hasSameElementsAs(expected);
     }

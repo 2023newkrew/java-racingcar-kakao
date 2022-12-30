@@ -2,13 +2,10 @@ package racing.view;
 
 import racing.exception.ErrorCode;
 import racing.exception.RacingException;
-import racing.model.Car;
+import racing.domain.Car;
+import racing.domain.Cars;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class RacingView {
     private final Scanner scanner;
@@ -37,19 +34,15 @@ public class RacingView {
         System.out.println("\n실행 결과");
     }
 
-    public void printCurrentStatus(List<Car> cars){
+    public void printRacingStatus(Cars cars){
         for(Car car : cars){
             System.out.println(car);
         }
         System.out.println();
     }
 
-    public void printWinners(List<Car> cars) {
-        int maxPos = Collections.max(cars).getPosition();  // todo Cars 일급컬렉션
-        String winnerCarNames = cars.stream()
-                .filter(car -> Objects.equals(car.getPosition(), maxPos))
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
+    public void printWinners(Cars cars) {
+        String winnerCarNames = cars.getWinnerNames();
         System.out.println(winnerCarNames + "가 최종 우승했습니다.");
     }
 }

@@ -1,18 +1,18 @@
-package racing.model;
+package racing.domain;
 
 import racing.exception.ErrorCode;
 import racing.exception.RacingException;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Car implements Comparable<Car>{
+public class Car {
     private final String name;
     private int position;
 
-    public Car(String name, int position) {
+    public Car(String name) {
         validateCarName(name);
         this.name = name;
-        this.position = position;
+        this.position = 1;
     }
 
     private void validateCarName(String carName) {
@@ -31,19 +31,19 @@ public class Car implements Comparable<Car>{
         return this.name;
     }
 
-    public Integer getPosition() {
-        return this.position;
+    public boolean isSamePos(Car other) {
+        return this.position == other.position;
     }
 
-    public boolean isSamePos(int pos) {
-        return this.position == pos;
+    public int comparePos(Car otherCar) {
+        return Integer.compare(this.position, otherCar.position);
     }
 
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Car){
             Car other = (Car) obj;
-            return this.name.equals(other.name);
+            return this.name.equals(other.name) && this.position == other.position;
         }
         return false;
     }
@@ -51,10 +51,5 @@ public class Car implements Comparable<Car>{
     @Override
     public String toString(){
         return name + " : " + "-".repeat(Math.max(1, position));
-    }
-
-    @Override
-    public int compareTo(Car otherCar) {
-        return Integer.compare(this.position, otherCar.position);
     }
 }
