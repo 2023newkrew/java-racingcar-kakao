@@ -44,28 +44,6 @@ public class RacingCarGameImpl implements RacingCarGame {
     }
 
     @Override
-    public List<Car> getWinner() {
-        int maxDistance = getMaxDistance();
-        return cars.stream()
-                .filter(car -> maxDistance == car.getPosition())
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<String> getWinnerNames() {
-        return getWinner().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<String> getCarResults() {
-        return cars.stream()
-                .map(Car::toString)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public void play() {
         outputView.printStartMessage();
         String[] names = inputView.inputName();
@@ -77,10 +55,4 @@ public class RacingCarGameImpl implements RacingCarGame {
         outputView.printFinalResult(getWinnerNames());
     }
 
-    private int getMaxDistance() {
-        return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
-                .orElseThrow()
-                .getPosition();
-    }
 }

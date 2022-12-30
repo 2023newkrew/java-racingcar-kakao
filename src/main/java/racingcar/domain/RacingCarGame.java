@@ -10,11 +10,5 @@ public interface RacingCarGame {
 
     void add(Car... cars);
 
-    List<Car> getWinner();
-
-    List<String> getWinnerNames();
-
-    List<String> getCarResults();
-
     void play();
 }
