@@ -1,38 +1,26 @@
 package CarRacing;
 
-import CarRacing.domain.Car;
 import CarRacing.domain.Racing;
-import CarRacing.domain.RacingLog;
+import CarRacing.domain.RacingResult;
 import CarRacing.view.InputView;
 import CarRacing.view.ResultView;
 
-import java.util.List;
 
 public class Controller {
-    private static Car[] carList;
-
-    public static void handleNames(Racing racing) {
-        String inputNames = InputView.inputNames();
-        String[] names = racing.handleNames(inputNames);
-        carList = racing.makeCarList(names);
-    }
-
-    public static void playRacing(Racing racing) {
-        int inputCount = InputView.inputCount();
-        racing.playRacing(carList, inputCount);
-        List<RacingLog[]> racingLogs = racing.getRacingLogs();
-        ResultView.printRacingLogs(racingLogs);
-    }
-
-    public static void winnerResult(Racing racing) {
-        List<String> winners = racing.getWinners(carList);
-        ResultView.printWinners(winners);
-    }
-
     public static void main(String[] args) {
-        Racing racing = new Racing();
-        handleNames(racing);
-        playRacing(racing);
-        winnerResult(racing);
+        while(true) {
+            String inputNames = InputView.inputNames();
+            String inputCount = InputView.inputCount();
+            Racing racing;
+            try {
+                racing = new Racing(inputNames, inputCount);
+            } catch (Exception e) {
+                System.out.println(e);
+                continue;
+            }
+            RacingResult racingResult = racing.playRacing();
+            ResultView.printRacingResult(racingResult);
+            break;
+        }
     }
 }

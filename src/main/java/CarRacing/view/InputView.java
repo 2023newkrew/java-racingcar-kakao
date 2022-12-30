@@ -14,15 +14,8 @@ public class InputView {
         return getUserInput();
     }
 
-    public static int inputCount() {
+    public static String inputCount() {
         System.out.println("시도할 회수는 몇 회인가요?");
-        int tryCount;
-        try {
-            tryCount = Integer.parseInt(getUserInput());
-        } catch (NumberFormatException e) {
-            System.out.println("숫자를 입력하세요");
-            return inputCount();
-        }
-        return tryCount;
+        return getUserInput();
     }
 }
