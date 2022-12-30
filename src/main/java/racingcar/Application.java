@@ -13,9 +13,9 @@ public class Application {
 
     public static void main(String[] args) {
         List<String> carNames = RacingCarView.receiveCarNamesCsv();
-        int runNumber = RacingCarView.receiveRunNumber();
-        RacingCarGame racingCarGame = new RacingCarGame(runNumber, prepareCars(carNames));
-        racingCarGame.start();
+        int totalRound = RacingCarView.receiveTotalRound();
+        RacingCarGame racingCarGame = new RacingCarGame(prepareCars(carNames));
+        racingCarGame.start(totalRound);
     }
 
     private static RacingCarCollection prepareCars(List<String> carNames) {

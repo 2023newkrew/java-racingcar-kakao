@@ -13,8 +13,8 @@ public class RacingCarCollection {
 
     public RacingCarCollection(List<RacingCar> cars) {
         this.cars = cars;
-        checkEmptyOrNull();
-        checkDuplicates();
+        validateNotEmptyOrNull();
+        validateNotDuplicates();
     }
 
     public List<RacingCar> getCars() {
@@ -41,13 +41,13 @@ public class RacingCarCollection {
                 .collect(Collectors.toList());
     }
 
-    private void checkEmptyOrNull() {
+    private void validateNotEmptyOrNull() {
         if (cars == null || cars.isEmpty()) {
             throw new BusinessException(ErrorCode.EMPTY_CAR_LIST_EXCEPTION);
         }
     }
 
-    private void checkDuplicates() {
+    private void validateNotDuplicates() {
         long distinctCount = cars.stream()
                 .distinct()
                 .count();

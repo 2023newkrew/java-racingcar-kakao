@@ -13,7 +13,7 @@ public abstract class RacingCar {
     protected final String carName;
 
     public RacingCar(String carName) {
-        checkEmptyOrNull(carName);
+        validateNotEmptyOrNull(carName);
         this.carName = carName;
     }
 
@@ -27,7 +27,7 @@ public abstract class RacingCar {
         return carPosition;
     }
 
-    private void checkEmptyOrNull(String name) {
+    private void validateNotEmptyOrNull(String name) {
         if (StringUtil.isEmpty(name)) {
             throw new BusinessException(ErrorCode.EMPTY_CAR_NAME_EXCEPTION);
         }

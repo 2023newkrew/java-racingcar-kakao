@@ -20,7 +20,7 @@ public class RacingCarView {
         return List.of(carNames.split(","));
     }
 
-    public static int receiveRunNumber() {
+    public static int receiveTotalRound() {
         System.out.println("시도할 회수는 몇회인가요?");
         return Integer.parseInt(sc.next());
     }
