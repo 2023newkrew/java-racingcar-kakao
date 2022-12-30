@@ -63,7 +63,7 @@
 ### ExceptionView 및 ExceptionViewKorean
 * 생성자에서 `errorStream`(PrintStream 값)을 주입받는다.
 * `errorHandling(Exception e)`으로 모든 에러를 handle하도록 만들었다.
-* 구체 클래스인 `ExceptionViewKorean`에서는 각각의 에러 타입, 메시지(에러코드 : 에러상황 => 특히 에러코드)로 구분하여 한국어로 에러를 출력하도록 한다.
+* 구체 클래스인 `ExceptionViewKorean`에서는 각각의 에러 타입, 메시지(`에러코드 : 에러설명` => 특히 에러코드)로 구분하여 한국어로 에러를 출력하도록 한다.
 
 ### InputView 및 InputViewKorean
 * 생성자에서 `inputStream`, `printStream`을 주입받는다.
