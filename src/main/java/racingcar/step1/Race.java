@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.step1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
