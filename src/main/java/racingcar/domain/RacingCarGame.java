@@ -14,4 +14,6 @@ public interface RacingCarGame {
     void add(List<Car> cars);
 
     void play();
+
+    int getCarsSize();
 }

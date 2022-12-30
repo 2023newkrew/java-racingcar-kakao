@@ -61,6 +61,14 @@ public class RacingCarGameTest {
                 .getName()).isEqualTo("pobi");
     }
 
+    @Test
+    void getCarsSizeTest(){
+        String[] carNames = new String[]{"pobi", "crong","honux"};
+        racingCarGame = new RacingCarGameImpl(appConfig, carNames);
+
+        assertThat(racingCarGame.getCarsSize()).isEqualTo(3);
+    }
+
 
     @Test
     public void runTest(){

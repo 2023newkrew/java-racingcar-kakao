@@ -61,4 +61,10 @@ public class RacingCarGameImpl implements RacingCarGame {
 
     }
 
+    @Override
+    public int getCarsSize() {
+        return getCars().getCars()
+                .size();
+    }
+
 }
