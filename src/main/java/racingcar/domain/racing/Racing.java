@@ -11,16 +11,11 @@ import java.util.stream.Collectors;
 
 public class Racing {
     private final List<Car> cars = new ArrayList<>();
-    private int turn = 0;
+    private final RacingTurn turn;
 
     public Racing(String nameInput, String turn) {
         makeCars(StringParser.parse(nameInput));
-
-        setTurn(turn);
-    }
-    
-    public static boolean isValidTurn(int turn) {
-        return turn > 0;
+        this.turn = new RacingTurn(turn);
     }
 
     public static boolean isDuplicateNames(List<String> names) {
@@ -38,23 +33,15 @@ public class Racing {
             this.cars.add(new Car(carName));
     }
 
-    private void setTurn(String turn) {
-        int parsedTurn = StringParser.parseTurn(turn);
-
-        if (!isValidTurn(parsedTurn)) throw new IllegalArgumentException();
-
-        this.turn = parsedTurn;
-    }
-
     public List<CarDTO> proceedTurn() {
         this.cars.forEach(car -> car.move(new RandomMovingAction()));
-        turn--;
+        turn.proceed();
 
         return getCarDTOs();
     }
 
     public boolean isEnd() {
-        return turn == 0;
+        return turn.isEnd();
     }
 
     public RacingWinner getWinners() {
