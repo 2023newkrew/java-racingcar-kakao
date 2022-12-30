@@ -8,25 +8,22 @@ import racingcar.view.OutputView;
 
 public class RacingCarMain {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
+        OutputView.printStartMessage();
+        String[] carNames = InputView.inputName();
 
-        outputView.printStartMessage();
-        String[] carNames = inputView.inputName();
-
-        outputView.printAskRunCount();
-        int runCount = inputView.inputRunCount();
+        OutputView.printAskRunCount();
+        int runCount = InputView.inputRunCount();
 
         RacingCarGame racingCarGame = new RacingCarGameImpl(new AppConfigImpl(), carNames);
-        outputView.printRunResult();
+        OutputView.printRunResult();
 
         for (int i = 0; i < runCount; i++) {
             racingCarGame.race();
-            outputView.printEachRunResult(racingCarGame.getCars()
+            OutputView.printEachRunResult(racingCarGame.getCars()
                     .getEachCarResults());
         }
 
-        outputView.printFinalResult(racingCarGame.getCars()
+        OutputView.printFinalResult(racingCarGame.getCars()
                 .getWinnerName());
     }
 }
