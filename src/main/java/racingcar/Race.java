@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.model.Car;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
