@@ -17,7 +17,8 @@ public class OutputView {
 
     private static String carPosToOutputText(RacingCar racingCar) {
         StringBuilder sb = new StringBuilder();
-        sb.append(racingCar.getCarName().getName()).append(" : ");
+        String displayName = (racingCar.getCarName().getName()+"     ").substring(0,5);
+        sb.append(displayName).append(" : ");
         for (int i = 0; i <= racingCar.getPos(); i++) {
             sb.append("-");
         }
