@@ -34,9 +34,8 @@ public class RacingGameInputView {
     }
 
     private void validateRacingCarNames(String[] racingCarNames) {
-        for (String racingCarName : racingCarNames) {
-            validateRacingCarName(racingCarName);
-        }
+        Arrays.stream(racingCarNames).
+                forEach(this::validateRacingCarName);
     }
 
     private void validateRacingCarName(String racingCarName) {
