@@ -1,12 +1,10 @@
 package racing.controller;
 
-import java.util.List;
 import racing.service.Game;
 import racing.view.InputView;
 import racing.view.OutputView;
 
 public class GameController {
-    private static final String RESULT_MESSAGE = "실행 결과";
     private final InputView inputView;
     private final OutputView outputView;
     private Game game;
@@ -20,8 +18,9 @@ public class GameController {
         try {
             String carNames = inputView.readCarNames();
             int repeat = inputView.readGameRepeat();
+
             game = new Game(carNames);
-            System.out.println(RESULT_MESSAGE);
+            outputView.printResultIntro();
             playMultipleTurns(repeat);
             outputView.printWinner(game.getWinners());
         } catch (Exception e) {
