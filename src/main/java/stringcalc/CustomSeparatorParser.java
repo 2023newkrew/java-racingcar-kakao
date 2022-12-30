@@ -5,11 +5,7 @@ import java.util.regex.Pattern;
 
 public class CustomSeparatorParser {
 
-    private final Pattern customSeparatorPattern;
-
-    public CustomSeparatorParser() {
-        this.customSeparatorPattern = Pattern.compile("//(.*)\n(.*)");
-    }
+    private static final Pattern customSeparatorPattern = Pattern.compile("//(.*)\n(.*)");
 
     public String parse(String input) {
         Matcher matcher = customSeparatorPattern.matcher(input);
