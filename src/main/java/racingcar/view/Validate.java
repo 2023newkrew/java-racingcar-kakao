@@ -2,7 +2,7 @@
  * 사용자 입력이 허용되는 것인지 확인한다
  * 허용되지 않은 인풋은 안내 메시지를 출력한다
  */
-package racingcar;
+package racingcar.view;
 
 public class Validate {
     public static boolean validateCarNames(String nameInput) {

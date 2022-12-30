@@ -1,7 +1,7 @@
 /**
  * 인풋 문자열을 다른 자료구조로 바꿔주는 역할을 한다
  */
-package racingcar;
+package racingcar.view;
 
 import java.util.ArrayList;
 import java.util.List;

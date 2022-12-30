@@ -6,7 +6,9 @@
  * - 라운드가 종료될 때 마다 결과를 확인할 수 있다
  * - 게임이 종료된 후 우승자를 확인할 수 있다
  */
-package racingcar;
+package racingcar.domain;
+
+import racingcar.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Racing {
     private int roundNum;
     private int currentRoundNum;
 
-    Racing(List<String> carNames, int roundNum) {
+    public Racing(List<String> carNames, int roundNum) {
         this.cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));

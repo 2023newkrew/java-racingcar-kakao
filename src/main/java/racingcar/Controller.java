@@ -1,8 +1,11 @@
 package racingcar;
 
+import racingcar.domain.Racing;
+import racingcar.view.View;
+
 import java.util.List;
 
-public class Main {
+public class Controller {
     public static void main(String[] args) {
         List<String> names = View.inputCarNames();
         int roundNum = View.inputRoundNum();

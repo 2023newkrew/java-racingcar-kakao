@@ -1,7 +1,7 @@
 /**
  * 기타 기능
  */
-package racingcar;
+package racingcar.utils;
 
 import java.util.Random;
 

@@ -6,14 +6,14 @@
  *  - 값이 3 이하일 경우 정지한다
  */
 
-package racingcar;
+package racingcar.domain;
 
 public class Car {
     private static final int MOVE_THRESHOLD = 4;
     private final String name;
     private int position;
 
-    Car(String name) {
+    public Car(String name) {
         this.name = name;
         position = 0;
     }

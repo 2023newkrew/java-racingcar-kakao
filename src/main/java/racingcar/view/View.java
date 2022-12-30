@@ -2,7 +2,9 @@
  * 사용자의 입력을 받아 검증하고, 형태를 바꿔서 반환한다
  * 게임의 결과를 출력한다
  */
-package racingcar;
+package racingcar.view;
+
+import racingcar.domain.Car;
 
 import java.util.Scanner;
 import java.util.List;
