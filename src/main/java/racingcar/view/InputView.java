@@ -4,6 +4,7 @@
  */
 package racingcar.view;
 
+import racingcar.dto.InputDto;
 import racingcar.utils.Parser;
 import racingcar.utils.Validate;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class InputView {
 
-    public static List<String> inputCarNames() {
+    private List<String> inputCarNames() {
         Scanner sc = new Scanner(System.in);
         String nameInput;
         do {
@@ -22,7 +23,7 @@ public class InputView {
         return Parser.stringArrayToStringList(nameInput.split(","));
     }
 
-    public static int inputRoundNum() {
+    private int inputRoundNum() {
         Scanner sc = new Scanner(System.in);
         String roundNumInput;
         do {
@@ -32,4 +33,9 @@ public class InputView {
         return Parser.stringToInt(roundNumInput);
     }
 
+    public InputDto creatInput() {
+        List<String> carNames = inputCarNames();
+        int roundNum = inputRoundNum();
+        return new InputDto(carNames, roundNum);
+    }
 }
