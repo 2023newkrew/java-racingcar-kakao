@@ -11,8 +11,9 @@ import java.util.Scanner;
  */
 public class IOService {
     private final Scanner sc;
-    final static String COMMA = ",";
-    final static String SPACE = " ";
+    private final ValidationService validationService = new ValidationService();
+    private final static String COMMA = ",";
+    private final static String SPACE = " ";
 
     public IOService() {
         sc = new Scanner(System.in);
@@ -23,6 +24,9 @@ public class IOService {
         String carNames = sc.next();
 
         List<String> carNameList = SplitCarNames(carNames);
+
+        validationService.validateInputCarNames(carNameList);
+
         return carNameList;
     }
 
@@ -33,6 +37,8 @@ public class IOService {
     public int trialNumberUserInput() {
         System.out.println("시도할 회수는 몇회인가요?");
         int trialNumber = Integer.parseInt(sc.next());
+
+        validationService.validateTrialUserInput(trialNumber);
 
         return trialNumber;
     }

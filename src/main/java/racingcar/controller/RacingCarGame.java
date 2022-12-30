@@ -1,9 +1,7 @@
 package racingcar.controller;
 
-import racingcar.model.Car;
 import racingcar.service.CarService;
 import racingcar.service.IOService;
-import racingcar.service.ValidationService;
 
 import java.util.List;
 
@@ -13,44 +11,24 @@ import java.util.List;
  */
 public class RacingCarGame {
 
-    ValidationService validationService;
     IOService ioService;
     CarService carService;
 
     public RacingCarGame() {
-        validationService = new ValidationService();
         ioService = new IOService();
         carService = new CarService();
     }
 
     public void start() {
-        List<String> carNamesInput = getValidatedCarNames();
+        List<String> carNamesInput = ioService.carNamesUserInput();
 
-        makeRacingCarList(carNamesInput);
+        carService.addAll(carNamesInput);
 
-        int trialNumber = getValidatedTrialNumber();
+        int trialNumber = ioService.trialNumberUserInput();
 
         playRacingGame(trialNumber);
 
         printFinalResult();
-    }
-
-    private List<String> getValidatedCarNames() {
-        List<String> carNamesInput = ioService.carNamesUserInput();
-        validationService.validateInputCarNames(carNamesInput);
-        return carNamesInput;
-    }
-
-    private void makeRacingCarList(List<String> carNamesInput) {
-        for (String carName : carNamesInput) {
-            carService.add(new Car(carName));
-        }
-    }
-
-    private int getValidatedTrialNumber() {
-        int trialNumber = ioService.trialNumberUserInput();
-        validationService.validateTrialUserInput(trialNumber);
-        return trialNumber;
     }
 
     private void playRacingGame(int trialNumber) {

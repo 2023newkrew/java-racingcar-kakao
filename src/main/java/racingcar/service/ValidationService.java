@@ -9,12 +9,8 @@ import java.util.Set;
  * IOSystem에 있는 validation logic을 여기에서 진행합니다.
  */
 public class ValidationService {
-    private final IOService ioService;
-    private final CarService carService;
 
     public ValidationService() {
-        ioService = new IOService();
-        carService = new CarService();
     }
 
     public void validateInputCarNames(List<String> carNameList) {
@@ -52,7 +48,7 @@ public class ValidationService {
         return trialNumber;
     }
 
-    private static void checkNegative(int trialNumber) {
+    private void checkNegative(int trialNumber) {
         if (trialNumber < 0) {
             throw new RuntimeException();
         }

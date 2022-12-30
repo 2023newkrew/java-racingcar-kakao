@@ -17,8 +17,10 @@ public class CarService {
         cars = new ArrayList<>();
     }
 
-    public void add(Car newCar) {
-        cars.add(newCar);
+    public void addAll(List<String> carNamesInput) {
+        for (String carName : carNamesInput) {
+            cars.add(new Car(carName));
+        }
     }
 
     public void moveAll() {
