@@ -73,16 +73,16 @@ public class Race {
         return sb.substring(0, sb.length() - 2);
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
     public boolean isEnd() {
         if (turn == 0) {
-            return true;
+            return false;
         }
 
         turn--;
-        return false;
+        return true;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

@@ -7,8 +7,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RaceTest {
     @DisplayName("Throw exception when name string is blank")
@@ -63,9 +62,15 @@ public class RaceTest {
         assertEquals(race.raceWinner(), "pobi, honux");
     }
 
-    @DisplayName("Race teminated when 0 turn left")
+    @DisplayName("Terminate race when 0 turn left")
     @Test
-    void isEndTest() {
-        assertTrue(new Race("test1,test2,test3", 0).isEnd());
+    void isEndFalseTest() {
+        assertFalse(new Race("test1,test2,test3", 0).isEnd());
+    }
+
+    @DisplayName("Don't terminate race when turn left")
+    @Test
+    void isEndTrueTest() {
+        assertTrue(new Race("test1,test2,test3", 1).isEnd());
     }
 }
