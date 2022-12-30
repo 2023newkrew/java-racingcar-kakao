@@ -14,10 +14,11 @@ public class Cars {
         return cars;
     }
 
-    public List<Car> getWinner() {
+    public List<String> getWinnerName() {
         int maxPosition = getMaxPosition();
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
