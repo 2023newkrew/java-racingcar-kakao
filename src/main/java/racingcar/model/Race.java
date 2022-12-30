@@ -76,7 +76,7 @@ public class Race {
     }
 
     public boolean isEnd() {
-        return turn != 0;
+        return turn == 0;
     }
 
     public List<Car> getCars() {

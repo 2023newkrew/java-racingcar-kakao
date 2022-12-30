@@ -64,13 +64,13 @@ public class RaceTest {
 
     @DisplayName("Terminate race when 0 turn left")
     @Test
-    void isEndFalseTest() {
-        assertFalse(new Race("test1,test2,test3", 0).isEnd());
+    void isEndTrueTest() {
+        assertTrue(new Race("test1,test2,test3", 0).isEnd());
     }
 
     @DisplayName("Don't terminate race when turn left")
     @Test
-    void isEndTrueTest() {
-        assertTrue(new Race("test1,test2,test3", 1).isEnd());
+    void isEndFalseTest() {
+        assertFalse(new Race("test1,test2,test3", 1).isEnd());
     }
 }
