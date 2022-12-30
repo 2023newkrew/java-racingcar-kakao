@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 import java.util.Random;
 
@@ -14,9 +14,6 @@ public class RandomMovable implements Movable {
 
     @Override
     public boolean canMove() {
-        if (random.nextInt(threshold) >= bound) {
-            return true;
-        }
-        return false;
+        return random.nextInt(threshold) >= bound;
     }
 }

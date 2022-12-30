@@ -1,15 +1,22 @@
 package racingcar;
 
 
+import racingcar.controller.RacingController;
+import racingcar.util.RandomMovable;
+import racingcar.view.RacingView;
+
 public class Main {
     public static void main(String[] args) {
-        Input input = new Input();
-        Racing racing = new Racing(new RandomMovable(10, 4));
-        String[] carNames = input.scanNames();
-        input.validate(carNames);
-        racing.generateCars(carNames);
-        racing.proceedRounds(input.scanTrialNumber());
-        System.out.println("최종결과");
-        System.out.println(racing.joinWinners() + "가 최종 우승했습니다.");
+        RacingController rc = new RacingController();
+        RacingView rv = new RacingView(rc);
+
+        rv.inputNames();
+        rv.inputTrialNumber();
+        rc.startRacing(new RandomMovable(10, 4));
+        while (!rc.isRacingEnd()) {
+            rc.proceedRound();
+            rv.printRoundResult();
+        }
+        rv.printWinners();
     }
 }

@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 @FunctionalInterface
 public interface Movable {

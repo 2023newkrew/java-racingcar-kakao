@@ -1,15 +1,7 @@
 package racingcar;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-
-public class InputTest {
-    Input input = new Input();
+//public class InputTest {
+//    RacingView input = new RacingView(racing);
 //    @ParameterizedTest
 //    @ValueSource(strings={"daniel",""})
 //    void inputLengthException(String inputStr) {
@@ -77,5 +69,5 @@ public class InputTest {
 //        assertThatExceptionOfType(RuntimeException.class)
 //                .isThrownBy(()-> input.validateTrialCount(trialCount));
 //    }
-
-}
+//
+//}
