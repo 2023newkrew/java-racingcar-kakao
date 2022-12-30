@@ -14,7 +14,7 @@ public class RaceTest {
     @NullAndEmptySource
     @ParameterizedTest
     void verifyNameStringTest(final String nameStr) {
-        assertThatThrownBy(() -> new Race(nameStr))
+        assertThatThrownBy(() -> new Race(nameStr, 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +22,7 @@ public class RaceTest {
     @ValueSource(strings = {"testtt", "testttt", "testtttt", "testttttt"})
     @ParameterizedTest
     void longNameTest(final String name) {
-        assertThatThrownBy(() -> new Race("test").verifyName(name))
+        assertThatThrownBy(() -> new Race("test", 1).verifyName(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,14 +30,14 @@ public class RaceTest {
     @NullAndEmptySource
     @ParameterizedTest
     void blankNameTest(final String name) {
-        assertThatThrownBy(() -> new Race("test").verifyName(name))
+        assertThatThrownBy(() -> new Race("test", 1).verifyName(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Max position is the biggest position in the list of cars")
     @Test
     void raceMaxPositionTest() {
-        Race race = new Race("pobi,crong,honux");
+        Race race = new Race("pobi,crong,honux", 1);
 
         race.getCars().get(0).move();
         race.getCars().get(0).move();
@@ -49,7 +49,7 @@ public class RaceTest {
     @DisplayName("Return names of cars that position is same with the max position")
     @Test
     void raceWinnerTest() {
-        Race race = new Race("pobi,crong,honux");
+        Race race = new Race("pobi,crong,honux", 1);
 
         race.getCars().get(0).move();
         race.getCars().get(0).move();

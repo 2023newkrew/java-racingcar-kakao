@@ -9,15 +9,6 @@ public class Car {
         this.position = 1;
     }
 
-    public void printStatus() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(name + " : ");
-        sb.append("-".repeat(Math.max(0, position)));
-
-        System.out.println(sb);
-    }
-
     public void move() {
         this.position++;
     }

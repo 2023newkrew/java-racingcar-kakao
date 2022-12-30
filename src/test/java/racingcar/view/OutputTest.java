@@ -65,7 +65,7 @@ public class OutputTest {
     @DisplayName("Print present race status")
     @Test
     void printRaceStatusTest() {
-        Race race = new Race("test1,test2,test3");
+        Race race = new Race("test1,test2,test3", 1);
 
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -81,7 +81,7 @@ public class OutputTest {
     @DisplayName("Print winner of race")
     @Test
     void printRaceWinnerTest() {
-        Race race = new Race("test1,test2,test3");
+        Race race = new Race("test1,test2,test3", 1);
 
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));

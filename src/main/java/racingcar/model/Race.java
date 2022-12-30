@@ -1,8 +1,5 @@
 package racingcar.model;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +8,15 @@ public class Race {
     private static final int MOVE_BOUNDARY = 4;
 
     private final List<Car> cars = new ArrayList<>();
+    private final int turn;
 
-    public Race(String nameStr) {
+    public Race(String nameStr, int turn) {
         if (nameStr == null || nameStr.isBlank()) {
             throw new IllegalArgumentException("There should be at least 1 car name in string");
         }
 
         carInput(nameStr.split(","));
+        this.turn = turn;
     }
 
     public void verifyName(String name) {
@@ -43,14 +42,6 @@ public class Race {
                 car.move();
             }
         }
-    }
-
-    public void printRace() {
-        for (Car car: cars) {
-            car.printStatus();
-        }
-
-        System.out.println();
     }
 
     public int raceMaxPosition() {
@@ -82,34 +73,7 @@ public class Race {
         return sb.substring(0, sb.length() - 2);
     }
 
-    public void playRace(int turn) {
-        System.out.println("실행결과");
-
-        printRace();
-
-        for (int i = 0; i < turn; i++) {
-            playTurn();
-            printRace();
-        }
-
-        raceWinner();
-    }
-
     public List<Car> getCars() {
         return cars;
-    }
-
-    public static void main(String[] args) throws IOException {
-        String text;
-        int turn;
-
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        text = reader.readLine();
-        System.out.println("시도할 회수는 몇회인가요?");
-        turn = Integer.parseInt(reader.readLine());
-
-        Race race = new Race(text);
-        race.playRace(turn);
     }
 }
