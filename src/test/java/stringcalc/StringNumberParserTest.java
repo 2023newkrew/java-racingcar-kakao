@@ -19,7 +19,7 @@ public class StringNumberParserTest {
 
         // when
         StringNumberParser stringNumberParser = new StringNumberParser();
-        List<Long> numbers = stringNumberParser.parse(input, separator);
+        List<Long> numbers = stringNumberParser.parseToNumberList(input, separator);
 
         // then
         assertThat(numbers).hasSize(4);
@@ -34,7 +34,7 @@ public class StringNumberParserTest {
 
         // when
         StringNumberParser stringNumberParser = new StringNumberParser();
-        List<Long> numbers = stringNumberParser.parse(input, separator);
+        List<Long> numbers = stringNumberParser.parseToNumberList(input, separator);
 
         // then
         assertThat(numbers).hasSize(1);
@@ -49,7 +49,7 @@ public class StringNumberParserTest {
 
         // when
         StringNumberParser stringNumberParser = new StringNumberParser();
-        List<Long> numbers = stringNumberParser.parse(input, separator);
+        List<Long> numbers = stringNumberParser.parseToNumberList(input, separator);
 
         // then
         assertThat(numbers).isEmpty();
@@ -63,7 +63,7 @@ public class StringNumberParserTest {
 
         // when
         StringNumberParser stringNumberParser = new StringNumberParser();
-        List<Long> numbers = stringNumberParser.parse(input, separator);
+        List<Long> numbers = stringNumberParser.parseToNumberList(input, separator);
 
         // then
         assertThat(numbers).hasSize(4);
@@ -80,7 +80,7 @@ public class StringNumberParserTest {
         StringNumberParser stringNumberParser = new StringNumberParser();
 
         // then
-        assertThatThrownBy(() -> stringNumberParser.parse(input, separator)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringNumberParser.parseToNumberList(input, separator)).isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest
@@ -93,6 +93,6 @@ public class StringNumberParserTest {
         StringNumberParser stringNumberParser = new StringNumberParser();
 
         // then
-        assertThatThrownBy(() -> stringNumberParser.parse(input, separator)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringNumberParser.parseToNumberList(input, separator)).isInstanceOf(RuntimeException.class);
     }
 }

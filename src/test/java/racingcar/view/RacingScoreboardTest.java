@@ -1,8 +1,9 @@
-package racingcar;
+package racingcar.view;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.RacingCar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,7 +17,6 @@ public class RacingScoreboardTest {
 
     List<RacingCar> racingCars;
     ByteArrayOutputStream out;
-    RacingScoreboard racingScoreboard;
 
     @BeforeEach
     void setUp() {
@@ -25,13 +25,12 @@ public class RacingScoreboardTest {
         racingCars.add(new RacingCar("car2"));
         racingCars.add(new RacingCar("car3"));
 
-        racingScoreboard = new RacingScoreboard();
-
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
     }
 
     @Test
+    @DisplayName("라운드 결과 출력 테스트")
     void printScore() {
         //given
         String expected = "car1 : -\n" +
@@ -40,31 +39,33 @@ public class RacingScoreboardTest {
                 "\n";
 
         //when
-        racingScoreboard.printScore(racingCars);
+        RacingScoreboard.printScore(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);
     }
 
     @Test
+    @DisplayName("경기 우승자가 다수일 때 출력 테스트")
     void printWinners() {
         //given
         String expected = "car1, car2, car3가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(racingCars);
+        RacingScoreboard.printWinners(racingCars);
 
         //then
         assertThat(out.toString()).hasToString(expected);
     }
 
     @Test
+    @DisplayName("경기 우승자가 하나일 때 출력 테스트")
     void printWinners_singleWinner() {
         //given
         String expected = "car1가 최종 우승했습니다.\n";
 
         //when
-        racingScoreboard.printWinners(Arrays.asList(new RacingCar("car1")));
+        RacingScoreboard.printWinners(Arrays.asList(new RacingCar("car1")));
 
         //then
         assertThat(out.toString()).hasToString(expected);

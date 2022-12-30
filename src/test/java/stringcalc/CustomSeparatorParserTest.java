@@ -1,12 +1,9 @@
 package stringcalc;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -26,7 +23,7 @@ public class CustomSeparatorParserTest {
         String input = "//;\n1;2;3";
 
         //when
-        String result = customSeparatorParser.parse(input);
+        String result = customSeparatorParser.parseToCustomSeparator(input);
 
         //then
         assertThat(result).isEqualTo(";");
@@ -36,7 +33,7 @@ public class CustomSeparatorParserTest {
     @ValueSource(strings = {"//;;\n1;2;3"})
     void parseCustomSeparator_throwEx(String input){
         //then
-        assertThatThrownBy(() -> customSeparatorParser.parse(input)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> customSeparatorParser.parseToCustomSeparator(input)).isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -45,7 +42,7 @@ public class CustomSeparatorParserTest {
         String input = "";
 
         //when
-        String result = customSeparatorParser.parse(input);
+        String result = customSeparatorParser.parseToCustomSeparator(input);
 
         //then
         assertThat(result).isNull();
