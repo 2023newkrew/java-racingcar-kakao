@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.dto.CarDTO;
@@ -15,15 +13,11 @@ public class Racing {
     private final RacingService racingService;
     private final MovingStrategy movingStrategy = new RandomMovingStrategy();
 
-    public Racing() {
-        cars = new ArrayList<>();
-        turn = 0;
+    public Racing(List<String> names, int turn) {
+        this.cars = names.stream().map(Car::new).collect(Collectors.toList());
+        this.turn = turn;
         racingUI = new RacingUI();
         racingService = new RacingService();
-    }
-
-    public int getCarNo() {
-        return cars.size();
     }
 
     public void printTurn() {
@@ -39,16 +33,6 @@ public class Racing {
         racingUI.displayWinner(result);
     }
 
-    public void startGame() {
-        String[] names = racingUI.getNames().split(",");
-        setCars(Arrays.asList(names));
-
-        int turn = racingService.validateTurn(racingUI.getTurn());
-        setTurn(turn);
-
-        startRace();
-    }
-
     private void startRace() {
         for (int i = 0; i < turn; i++) {
             proceedTurn();
@@ -59,15 +43,5 @@ public class Racing {
     private void proceedTurn() {
         this.cars.forEach(car -> car.move(movingStrategy));
         printTurn();
-    }
-
-    public void setCars(List<String> carNames) {
-        for (String carName : carNames) {
-            this.cars.add(new Car(carName));
-        }
-    }
-
-    private void setTurn(int turn) {
-        this.turn = turn;
     }
 }

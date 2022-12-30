@@ -1,23 +1,20 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.Arrays;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RacingTest {
 
-    private Racing racing;
-
-    @BeforeEach
-    void setUp() {
-        this.racing = new Racing();
-    }
-
+    @DisplayName("생성자로 차 이름 리스트와 턴 수를 받는다.")
     @Test
-    void checkCarNos() {
-        this.racing.setCars(Arrays.asList("aa", "bbb", "ccc"));
-        assertThat(this.racing.getCarNo()).isEqualTo(3);
+    void constructRacingWithCarNamesAndTurn() {
+        List<String> names = Arrays.asList("aa", "bb", "cc");
+        int turn = 2;
+
+        assertThatCode(() -> new Racing(names, turn)).doesNotThrowAnyException();
     }
 }
