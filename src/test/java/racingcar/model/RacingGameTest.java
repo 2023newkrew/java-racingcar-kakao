@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Collections;
 import java.util.List;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +17,14 @@ class RacingGameTest {
 
     private static final int MOVE = 4;
     private static final int STOP = 3;
+
+    @DisplayName("자동차 이름은 공백을 제거하고 6글자 이상일 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"ethaan   ", "veruasds   ", "   pasdobi\t\t\t"})
+    void inputUnderFiveLength(String carName) {
+        Assertions.assertThatThrownBy(() -> new Car(carName))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("1대 이상의 자동차가 경주에 참가해야한다.")
     @Test
@@ -31,10 +41,10 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
         RacingGame racingGame = new RacingGame(2, numberGenerator, List.of("a"));
 
-        racingGame.move();
-        racingGame.move();
+        racingGame.moveCars();
+        racingGame.moveCars();
 
-        assertThatThrownBy(() -> racingGame.move())
+        assertThatThrownBy(racingGame::moveCars)
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -45,10 +55,10 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(value);
         RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         Positions positions = racingGame.getPositions();
-        assertThat(positions.getPositionByName("a")).isEqualTo(1);
+        assertThat(positions.getPositionByName("a")).isOne();
     }
 
     @DisplayName("특정 값 이하인 경우 자동차를 정지시킨다")
@@ -58,10 +68,10 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(value);
         RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         Positions positions = racingGame.getPositions();
-        assertThat(positions.getPositionByName("a")).isEqualTo(0);
+        assertThat(positions.getPositionByName("a")).isZero();
     }
 
     @DisplayName("여러 대의 자동차를 이동 혹은 정지시킨다.")
@@ -70,12 +80,12 @@ class RacingGameTest {
         NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
         RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
         Positions positions = racingGame.getPositions();
-        assertThat(positions.getPositionByName("a")).isEqualTo(1);
-        assertThat(positions.getPositionByName("b")).isEqualTo(1);
-        assertThat(positions.getPositionByName("c")).isEqualTo(0);
+        assertThat(positions.getPositionByName("a")).isOne();
+        assertThat(positions.getPositionByName("b")).isOne();
+        assertThat(positions.getPositionByName("c")).isZero();
     }
 
     @DisplayName("가장 멀리 이동한 차가 단독 우승한다")
@@ -88,12 +98,12 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
-        racingGame.move();
-        racingGame.move();
-        Winners winners = racingGame.getWinners();
+        racingGame.moveCars();
+        racingGame.moveCars();
+        racingGame.moveCars();
 
-        assertThat(winners.getWinnerCars())
+        List<Car> winners = racingGame.getWinners();
+        assertThat(winners)
                 .extracting(Car::getName)
                 .hasSize(1)
                 .contains("a");
@@ -109,12 +119,12 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
-        racingGame.move();
-        racingGame.move();
+        racingGame.moveCars();
+        racingGame.moveCars();
+        racingGame.moveCars();
 
-        Winners winners = racingGame.getWinners();
-        assertThat(winners.getWinnerCars())
+        List<Car> winners = racingGame.getWinners();
+        assertThat(winners)
                 .hasSize(2)
                 .extracting(Car::getName)
                 .contains("a", "b");
@@ -130,9 +140,9 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        racingGame.move();
+        racingGame.moveCars();
 
-        assertThatThrownBy(() -> racingGame.getWinners())
+        assertThatThrownBy(racingGame::getWinners)
                 .isInstanceOf(IllegalStateException.class);
     }
 }

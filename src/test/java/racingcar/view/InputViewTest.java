@@ -22,23 +22,13 @@ class InputViewTest {
                 .contains("ethan", "verus", "pobi");
     }
 
-    @DisplayName("이름은 공백을 제거하고 6글자 이상일 수 없다.")
-    @Test
-    void inputUnderFiveLength() {
-        InputStream inputStream = new ByteArrayInputStream("ethanasd    ,\t\tverusasd  , pobiasd   \t\n".getBytes());
-        InputView inputView = new InputView(System.out, inputStream);
-
-        Assertions.assertThatThrownBy(() -> inputView.inputCarNames())
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("공백을 제거하고 중복된 자동차 이름을 입력할 수 없다.")
     @Test
     void inputDistinctNames() {
         InputStream inputStream = new ByteArrayInputStream("verus, verus, pobi".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> inputView.inputCarNames())
+        Assertions.assertThatThrownBy(inputView::inputCarNames)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,7 +49,7 @@ class InputViewTest {
         InputStream inputStream = new ByteArrayInputStream("abc".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> inputView.inputMaxTryCount())
+        Assertions.assertThatThrownBy(inputView::inputMaxTryCount)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -69,7 +59,7 @@ class InputViewTest {
         InputStream inputStream = new ByteArrayInputStream("100".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(() -> inputView.inputMaxTryCount())
+        Assertions.assertThatThrownBy(inputView::inputMaxTryCount)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

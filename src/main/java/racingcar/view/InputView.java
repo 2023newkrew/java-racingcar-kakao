@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class InputView {
 
     public static final int MAX_TRY_COUNT = 99;
-    public static final int MAX_NAME_LENGTH = 5;
     private final PrintStream printStream;
     private final Scanner scanner;
 
@@ -24,8 +23,8 @@ public class InputView {
         printStream.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         List<String> names = getCarNames();
 
-        if (hasOverLengthName(names) || hasDuplicatedName(names)) {
-            throw new IllegalArgumentException("자동차 이름은 " + MAX_NAME_LENGTH + "글자 이하의 유일한 이름이어야 합니다.");
+        if (hasDuplicatedName(names)) {
+            throw new IllegalArgumentException("자동차 이름은 유일한 이름이어야 합니다.");
         }
 
         return names;
@@ -49,11 +48,6 @@ public class InputView {
         return names.stream()
                 .map(String::trim)
                 .collect(Collectors.toList());
-    }
-
-    private boolean hasOverLengthName(List<String> trimmedNames) {
-        return trimmedNames.stream()
-                .anyMatch(name -> name.length() > MAX_NAME_LENGTH);
     }
 
     public int inputMaxTryCount() {

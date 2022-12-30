@@ -5,18 +5,20 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
+    private final NumberGenerator numberGenerator;
     private final int maxTryCount;
     private final Cars cars;
     private int tryCount;
 
     public RacingGame(int maxTryCount, NumberGenerator numberGenerator, List<String> names) {
-        this.cars = createCars(numberGenerator, names);
+        this.numberGenerator = numberGenerator;
+        this.cars = createCars(names);
         this.maxTryCount = maxTryCount;
         this.tryCount = 0;
     }
 
-    private Cars createCars(NumberGenerator numberGenerator, List<String> names) {
-        if (names.size() == 0) {
+    private Cars createCars(List<String> names) {
+        if (names.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
@@ -24,15 +26,15 @@ public class RacingGame {
                 .map(Car::new)
                 .collect(Collectors.toList());
 
-        return new Cars(numberGenerator, cars);
+        return new Cars(cars);
     }
 
-    public void move() {
+    public void moveCars() {
         if(isFinished()){
             throw new IllegalStateException();
         }
 
-        cars.move();
+        cars.move(numberGenerator);
         tryCount++;
     }
 
@@ -40,9 +42,9 @@ public class RacingGame {
         return tryCount >= maxTryCount;
     }
 
-    public Winners getWinners() {
+    public List<Car> getWinners() {
         if (isFinished()) {
-            return cars.getWinners();
+            return cars.getWinnerCars();
         }
         throw new IllegalStateException("자동차 경주가 끝나지 않았습니다.");
     }
