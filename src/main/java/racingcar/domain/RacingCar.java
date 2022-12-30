@@ -16,8 +16,8 @@ public class RacingCar extends Car {
 
     public RacingCar(String name) {
         super(name);
-        this.distance = 0;
         isNameValid(name);
+        this.distance = 0;
     }
 
     private void isNameValid(String name) {
