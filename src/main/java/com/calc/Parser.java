@@ -62,14 +62,14 @@ public class Parser {
 
     private List<Separator> getSeparators(String body) {
         return body.chars()
-                .mapToObj(this::checkNumber)
-                .filter(Objects::nonNull)
+                .filter(ch -> isValidSeparator((char) ch))
+                .mapToObj(String::valueOf)
+                .map(Separator::new)
                 .collect(Collectors.toList());
     }
 
-    private Separator checkNumber(int c){
-        if(Character.isDigit(c)) return null;
-        return new Separator(String.valueOf(c));
+    private boolean isValidSeparator(char c){
+        return !Character.isDigit(c);
     }
 
     private String changeToString(List<Separator> separators){
