@@ -26,6 +26,12 @@ public class RacingGameView {
         System.out.println("\n실행 결과");
     }
 
+    public void printRoundResults(List<Map<String, Integer>> roundResults) {
+        for (Map<String, Integer> roundResult: roundResults) {
+            printRoundResult(roundResult);
+        }
+    }
+
     public void printRoundResult(Map<String, Integer> roundResult) {
         for (Map.Entry<String, Integer> entry : roundResult.entrySet()) {
             System.out.print(entry.getKey() + " : ");

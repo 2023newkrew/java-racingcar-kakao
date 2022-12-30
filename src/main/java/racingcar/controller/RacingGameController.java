@@ -5,7 +5,6 @@ import racingcar.domain.RandomNumberSelector;
 import racingcar.view.RacingGameView;
 
 import java.util.List;
-import java.util.Map;
 
 public class RacingGameController {
 
@@ -19,11 +18,7 @@ public class RacingGameController {
     public void play() {
         initializeGame();
         racingGameView.printRoundResultMessage();
-        while (racingGame.checkWinners().isEmpty()) {
-            racingGame.proceedGame();
-            Map<String, Integer> roundResult = racingGame.announceRoundResult();
-            racingGameView.printRoundResult(roundResult);
-        }
+        racingGameView.printRoundResults(racingGame.operateRacingGame());
         announceWinner();
     }
 
@@ -34,7 +29,9 @@ public class RacingGameController {
     }
 
     private void announceWinner() {
-        List<String> winners = racingGame.checkWinners().get();
-        racingGameView.printWinners(winners);
+        if (racingGame.announceWinnersIfGameEnded().isPresent()) {
+            List<String> winners = racingGame.announceWinnersIfGameEnded().get();
+            racingGameView.printWinners(winners);
+        }
     }
 }

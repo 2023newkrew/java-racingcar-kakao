@@ -14,6 +14,15 @@ public class RacingGame {
         this.referee = new Referee(roundToPlay, registeredCars, numberSelector);
     }
 
+    public List<Map<String, Integer>> operateRacingGame() {
+        List<Map<String, Integer>> roundResults = new ArrayList<>();
+        while (announceWinnersIfGameEnded().isEmpty()) {
+            proceedGame();
+            roundResults.add(announceRoundResult());
+        }
+        return roundResults;
+    }
+
     private List<Car> registerCars(String inputCarNames) {
         String[] carNames = inputCarNames.split(",");
         List<Car> registeredCars = new ArrayList<>();
@@ -23,7 +32,7 @@ public class RacingGame {
         return registeredCars;
     }
 
-    public Optional<List<String>> checkWinners() {
+    public Optional<List<String>> announceWinnersIfGameEnded() {
         if (referee.isGameEnd()) {
             return Optional.of(referee.announceWinners());
         }
