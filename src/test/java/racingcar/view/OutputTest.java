@@ -36,6 +36,18 @@ public class OutputTest {
         assertEquals(actual, "시도할 회수는 몇회인가요?\n");
     }
 
+    @DisplayName("Print notice for race result")
+    @Test
+    void printNoticeResultTest() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        Output.printNoticeResult();
+
+        String actual = out.toString();
+        assertEquals(actual, "실행결과\n");
+    }
+
     @DisplayName("Print present car status")
     @Test
     void printCarStatusTest() {

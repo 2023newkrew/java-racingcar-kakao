@@ -12,6 +12,10 @@ public class Output {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
+    public static void printNoticeResult() {
+        System.out.println("실행결과");
+    }
+
     public static void printCarStatus(Car car) {
         StringBuilder sb = new StringBuilder();
 
