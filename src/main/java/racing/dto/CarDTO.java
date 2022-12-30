@@ -1,5 +1,6 @@
 package racing.dto;
 
+import racing.domain.Car;
 import racing.domain.CarName;
 import racing.domain.Position;
 
@@ -22,5 +23,9 @@ public class CarDTO {
 
     public Position getPosition() {
         return position;
+    }
+
+    public static CarDTO of(Car car) {
+        return new CarDTO(car.getCarName(), car.getPosition());
     }
 }

@@ -1,9 +1,7 @@
 package racing.domain;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import racing.dto.CarDTO;
 
 public class Cars {
     private static final String NULL_OR_EMPTY_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
@@ -22,24 +20,7 @@ public class Cars {
         cars.forEach(Car::move);
     }
 
-    public List<CarDTO> getCarDtoList() {
-        return cars.stream()
-                .map(Car::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    public List<CarName> getWinners(Comparator<CarDTO> comparator) {
-        List<CarDTO> carDtoList = getCarDtoList();
-        return selectWinners(carDtoList, comparator);
-    }
-
-    private List<CarName> selectWinners(List<CarDTO> carDtoList, Comparator<CarDTO> comparator) {
-        carDtoList.sort(comparator);
-        CarDTO lastWinner = carDtoList.get(cars.size() - 1);
-        List<CarName> winners = carDtoList.stream()
-                .filter(car -> comparator.compare(lastWinner, car) == 0)
-                .map(CarDTO::getName)
-                .collect(Collectors.toList());
-        return winners;
+    public List<Car> getCars() {
+        return cars;
     }
 }

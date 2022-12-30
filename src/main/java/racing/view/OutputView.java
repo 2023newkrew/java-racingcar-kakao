@@ -2,6 +2,7 @@ package racing.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import racing.dto.CarDTOs;
 import racing.domain.CarName;
 import racing.dto.CarDTO;
 
@@ -13,12 +14,12 @@ public class OutputView {
     private static final String WINNER_DELIMITER = ", ";
     private static final String WINNER_MESSAGE_FORMAT = "%s가 최종 우승했습니다.";
 
-    public void printResult(final List<CarDTO> status) {
+    public void printResult(final CarDTOs status) {
         if (isFirstCall) {
             System.out.println(RESULT_MESSAGE);
             isFirstCall = false;
         }
-        status.forEach(this::printSingleResult);
+        status.getCarDtoList().forEach(this::printSingleResult);
         System.out.println();
     }
 

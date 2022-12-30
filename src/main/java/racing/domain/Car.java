@@ -1,7 +1,5 @@
 package racing.domain;
 
-import java.util.Objects;
-import racing.dto.CarDTO;
 import racing.movable.Movable;
 import racing.movable.RandomlyMovable;
 
@@ -11,18 +9,27 @@ public class Car {
 
     private final CarName name;
     private final Movable movable;
-    private final Position position = new Position();
+    private final Position position;
 
     public Car(final CarName name) {
-        this(name, DEFAULT_MOVABLE);
+        this(name, DEFAULT_MOVABLE, new Position());
     }
 
     public Car(final CarName name, final Movable movable) {
-        if (name == null || Objects.isNull(movable)) {
+        this(name, movable, new Position());
+    }
+
+    public Car(final CarName name, final Position position) {
+        this(name, DEFAULT_MOVABLE, position);
+    }
+
+    public Car(final CarName name, final Movable movable, final Position position) {
+        if (name == null || movable == null || position == null) {
             throw new IllegalArgumentException(NULL_ARGUMENT_EXCEPTION_MESSAGE);
         }
         this.name = name;
         this.movable = movable;
+        this.position = position;
     }
 
     public void move() {
@@ -31,7 +38,11 @@ public class Car {
         }
     }
 
-    public CarDTO toDTO() {
-        return new CarDTO(name, position);
+    public CarName getCarName() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

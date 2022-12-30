@@ -39,12 +39,12 @@
 5. Car의 toString() 메서드 오버라이딩, getName() 메서드 제거 및 DTO 생성
    1. CarDTO로 전달하도록 수정, Outputview에는 CarDTO, CarName의 형태로 전달
    2. CarDTO의 거리를 비교하는 Comparator 구현
-6. 자동차 이름, 게임 반복 횟수에 대한 일급 컬렉션 생성 / 생성 시 검증 로직 구현
-   1. CarName, GameRepeat 클래스 생성, 생성 시 바로 검증
+6. 자동차 이름, 게임 반복 횟수, 자동차 위치에 대한 일급 컬렉션 생성 / 생성 시 검증 로직 구현
+   1. CarName, GameRepeat, Position 클래스 생성, 생성 시 바로 검증
    2. InputValidator 클래스 삭제
    3. view에서는 검증 로직 삭제
 7. 반복 횟수 관리 주체를 GameController에서 Game 내부로 변경
-
+8. CarDTOs 래핑, 우승자를 선정하는 로직을 해당 클래스에 구현
    
 
 ## 프로그램 설계
@@ -53,11 +53,6 @@
     - 지역 변수: GameController gameController
 
 ### Utils
-- ~~InputValidator~~
-  - ~~validateCarNames()~~
-  - ~~validateSingleCarName()~~
-  - ~~validateGameRepeat()~~
-  - ~~validatePositive()~~
 - RandomNumberGenerator
   - 클래스 변수: Random random
   - 메서드: generate()
@@ -65,20 +60,16 @@
 ### Domain
 - Car (implements Comparable)
   - 객체 변수: CarName name, Movable movable, Position position
-  - 메서드: move(), increaseDistance(), toDTO()
-
+  - 메서드: move(), getCarName(), getPosition()
 - Cars
   - 객체 변수: List<Car> cars
-  - 메서드: play(), getWinners(), getCarDtoList(), selectWinners()
-
+  - 메서드: play(), getCars()
 - CarName
   - 객체 변수: String name
   - 메서드: validateLength(), toString(), equals(), hashCode()
-
 - GameRepeat
   - 객체 변수: int remaining
   - 메서드: validateRange(), reduce(), hasRemaining()
-
 - Position
   - 객체 변수: int position
   - 메서드: validateNonNegative(), increase(), compareTo(), getPosition()
@@ -86,13 +77,16 @@
 ### DTO
 - CarDTO
   - 객체 변수: Carname name, Position position
-  - 메서드: getName(), getPosition()
+  - 메서드: getName(), getPosition(), of()
 - CarDtoDistanceComparator (implements Comparator<CarDTO>)
   - 메서드: compare()
+- CarDTOs
+  - 객체 변수: List<CarDTO> carDtoList
+  - 메서드: of(), getLastWinnerDTO(), getWinners(), getCarDtoList();
 
 ### Service
 - Game 
-  - 객체 변수: List<Car> cars, GameRepeat gameRepeat, Comparator<CarDTO> distanceComparator
+  - 객체 변수: List<Car> cars, GameRepeat gameRepeat
   - 메서드: validateUniqueness(), getDistinctNameCount(), wrapCarNames(), setRepeat(), isOver(), play(), getStatus(), getWinners()
 
 ### View
