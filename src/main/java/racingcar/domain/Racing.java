@@ -21,7 +21,7 @@ public class Racing {
 
     public void proceedRound() {
         for (Car car : cars) {
-            car.move(new RandomGeneratorImpl());
+            car.move(RandomGeneratorImpl.getInstance());
         }
     }
 
