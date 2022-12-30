@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.domain.engine.Engine;
 
 import java.util.Objects;
 
@@ -46,14 +48,18 @@ public class Car {
         this.engine = engine;
     }
 
-    public void moveOrStop() {
-        if (engine.move()) {
-            position++;
-        }
+    public String getName(){
+        return name;
     }
 
-    public CarDto getCarInfo() {
-        return CarDto.from(name, position);
+    public int getPosition(){
+        return position;
+    }
+
+    public void moveOrStop() {
+        if (engine.movable()) {
+            position++;
+        }
     }
 
     @Override

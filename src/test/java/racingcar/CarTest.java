@@ -3,26 +3,19 @@ package racingcar;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import racingcar.domain.Car;
+import racingcar.domain.CarDto;
+import racingcar.domain.engine.Engine;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 class CarTest {
-
-    @Mock
-    Engine engine;
-
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
@@ -31,6 +24,7 @@ class CarTest {
         @ParameterizedTest
         @MethodSource
         void should_throwException_when_invalidCarName(String carName, String message) {
+            Engine engine = () -> false;
             assertThatThrownBy(() -> Car.from(carName, engine))
                     .isInstanceOf(RuntimeException.class)
                     .hasMessage(message);
@@ -46,8 +40,9 @@ class CarTest {
         @ParameterizedTest
         @MethodSource
         void should_createSuccess_when_validCarName(String carName, String expectedCarName) {
+            Engine engine = () -> false;
             Car car = Car.from(carName, engine);
-            CarDto carDto = car.getCarInfo();
+            CarDto carDto = CarDto.from(car);
             assertThat(carDto.getName()).isEqualTo(expectedCarName);
             assertThat(carDto.getPosition()).isEqualTo(0);
         }
@@ -78,10 +73,10 @@ class CarTest {
         @ParameterizedTest
         @MethodSource
         void should_returnPosition_when_moveOrStop(boolean move, int position) {
-            when(engine.move()).thenReturn(move);
+            Engine engine = () -> move;
             Car car = Car.from("test", engine);
             car.moveOrStop();
-            CarDto carDto = car.getCarInfo();
+            CarDto carDto = CarDto.from(car);
             assertThat(carDto.getPosition()).isEqualTo(position);
         }
 
