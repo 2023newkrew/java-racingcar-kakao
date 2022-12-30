@@ -1,7 +1,5 @@
 package racingcar.domian;
 
-import racingcar.ui.OutputUI;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,15 +26,10 @@ public class RacingGame {
     }
 
     public void play() {
-        for(int i = 0; i < turn; i++){
-            playTurn();
-            OutputUI.printTurnResult(carList);
-        }
-
-        OutputUI.printGameResult(getWinners());
+        playTurn();
     }
 
-    private List<String> getWinners() {
+    public List<String> getWinners() {
         int maxPosition = getMaxPosition();
 
         return carList.stream()
@@ -57,5 +50,9 @@ public class RacingGame {
         for (Car car : carList) {
             car.moveCar();
         }
+    }
+
+    public boolean isEnd() {
+        return this.turn-- == 0;
     }
 }

@@ -1,11 +1,11 @@
-package racingcar.ui;
+package racingcar.view;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InputUI {
+public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
     public static List<String> inputCarNameList() {

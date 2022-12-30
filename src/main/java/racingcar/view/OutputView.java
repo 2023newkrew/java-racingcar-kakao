@@ -1,10 +1,10 @@
-package racingcar.ui;
+package racingcar.view;
 
 import racingcar.domian.Car;
 
 import java.util.List;
 
-public class OutputUI {
+public class OutputView {
     private static final String HYPHEN = "-";
 
     public static void printTurnResult(List<Car> carList) {
