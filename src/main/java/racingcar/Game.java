@@ -18,21 +18,29 @@ public class Game {
         }
     }
 
-    private void addIfAhead(ArrayList<Car> winners, Car car) {
-        if (winners.size() == 0 || car.getPosition() == winners.get(0).getPosition()) {
+    private void updateWinnerListWithCar(ArrayList<Car> winners, Car car) {
+        if (winners.isEmpty() || isEqualToWinnerPosition(winners, car)) {
             winners.add(car);
             return;
         }
-        if (car.getPosition() > winners.get(0).getPosition()) {
+        if (isBetterThanWinnerPosition(winners, car)) {
             winners.clear();
             winners.add(car);
         }
     }
 
+    private boolean isBetterThanWinnerPosition(ArrayList<Car> winners, Car car) {
+        return car.getPosition() > winners.get(0).getPosition();
+    }
+
+    private boolean isEqualToWinnerPosition(ArrayList<Car> winners, Car car) {
+        return car.getPosition() == winners.get(0).getPosition();
+    }
+
     public Car[] findWinners() {
         ArrayList<Car> winnersList = new ArrayList<>();
         for (Car car: cars) {
-            addIfAhead(winnersList, car);
+            updateWinnerListWithCar(winnersList, car);
         }
         return winnersList.toArray(new Car[winnersList.size()]);
     }
