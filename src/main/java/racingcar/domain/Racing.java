@@ -20,10 +20,6 @@ public class Racing {
         racingService = new RacingService();
     }
 
-    public void printTurn() {
-        racingUI.displayPosition(getCarDTOs());
-    }
-
     public List<CarDTO> getCarDTOs() {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }
@@ -33,20 +29,13 @@ public class Racing {
         racingUI.displayWinner(result);
     }
 
-    private void startRace() {
-        for (int i = 0; i < turn; i++) {
-            proceedTurn();
-        }
-        printResult();
-    }
-
     private void decreaseTurn() {
         this.turn--;
     }
 
-    private void proceedTurn() {
+    public void proceedTurn() {
         this.cars.forEach(car -> car.move(movingStrategy));
-        printTurn();
+        decreaseTurn();
     }
 
     public boolean isRacing() {

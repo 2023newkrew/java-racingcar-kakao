@@ -36,4 +36,12 @@ public class RacingTest {
 
         assertThat(racing.isRacing()).isFalse();
     }
+
+    @DisplayName("Racing의 proceedTurn이 실행되면 turn이 하나 줄어든다.")
+    @Test
+    void proceedTurn() {
+        Racing racing = new Racing(names, 1);
+        racing.proceedTurn();
+        assertThat(racing.isRacing()).isFalse();
+    }
 }
