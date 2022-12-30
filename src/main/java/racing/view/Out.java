@@ -27,9 +27,12 @@ public class Out {
         printText(RESULT_START_SENTENCE);
     }
 
-    public static void printResult(Car[] cars) {
+    private static String getLog(Car car) {
+        return car.getName() + " : " + "-".repeat(car.getPosition());
+    }
+
         for (int index = 0; index < cars.length; index++) {
-            printText(cars[index].getLog());
+            printText(getLog(cars[index]));
         }
         printText("");
     }

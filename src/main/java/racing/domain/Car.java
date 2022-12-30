@@ -54,8 +54,4 @@ public class Car {
         return name;
     }
 
-    public String getLog() {
-        return name + " : " + "-".repeat(position);
-    }
-
 }
