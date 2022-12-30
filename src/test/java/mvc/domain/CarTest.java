@@ -4,8 +4,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
+    @Test
+    @DisplayName("자동차 이름이 5자 초과이면 예외 발생")
+    void tooLongName() {
+        assertThatThrownBy(() -> new Car("long_name"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     @DisplayName("랜덤값이 4 이상일 때 자동자 전진")
     void move() {

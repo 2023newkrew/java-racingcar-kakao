@@ -11,6 +11,9 @@ public class Car {
     }
 
     public Car(String name, int position) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 함.");
+        }
         this.name = name;
         this.position = position;
     }
