@@ -1,6 +1,7 @@
 package racingcar.service;
 
 import racingcar.domain.RacingCar;
+import racingcar.domain.RandomNumberGeneratorImpl;
 
 import java.util.List;
 
