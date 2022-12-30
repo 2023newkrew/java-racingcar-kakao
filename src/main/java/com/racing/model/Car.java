@@ -1,10 +1,13 @@
 package com.racing.model;
 
+import com.racing.Service.RandomService;
+
 import java.util.Random;
 
 public class Car {
     private int location;
     private String carName;
+    private final RandomService randomService;
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_MOVE_FLAG = 4;
@@ -13,6 +16,7 @@ public class Car {
     public Car(String carName) {
         this.checkName(carName);
         this.carName = carName;
+        this.randomService = new RandomService();
     }
 
     /**
@@ -25,19 +29,10 @@ public class Car {
     }
 
     /**
-     * 0 ~ MAX_RANDOM 사이의 랜덤 정수 반환
-     * @return random값
-     */
-    public int makeRandom(){
-        Random random = new Random();
-        return random.nextInt(MAX_RANDOM_NUM);
-    }
-
-    /**
      * Random 값에 맞춰 차 이동
      */
     public void moveCar(){
-        this.move(makeRandom());
+        this.move(randomService.makeRandom(MAX_RANDOM_NUM));
     }
 
     /**
