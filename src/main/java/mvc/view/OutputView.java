@@ -1,7 +1,7 @@
 package mvc.view;
 
 import mvc.domain.Car;
-import mvc.domain.CarConverter;
+import mvc.domain.CarUtil;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public abstract class OutputView {
     }
 
     public static void printWinners(List<Car> winners) {
-        System.out.println(CarConverter.carListToNameStr(winners) + "가 최종 우승했습니다.");
+        System.out.println(CarUtil.extractCarNameStr(winners) + "가 최종 우승했습니다.");
     }
 
     private static void printOneCar(Car car) {

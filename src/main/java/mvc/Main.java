@@ -1,6 +1,6 @@
 package mvc;
 
-import mvc.domain.CarConverter;
+import mvc.domain.CarUtil;
 import mvc.domain.Game;
 import mvc.view.InputView;
 import mvc.view.OutputView;
@@ -10,7 +10,7 @@ public class Main {
         String carNameStr = InputView.inputCarNameStr();
         int totalTurn = InputView.inputTotalTurn();
 
-        Game game = new Game(CarConverter.nameStrToCarList(carNameStr), totalTurn);
+        Game game = new Game(CarUtil.generateCarsFromNameStr(carNameStr), totalTurn);
         OutputView.printInit(game.getCarList());
 
         while (!game.isEnd()) {
