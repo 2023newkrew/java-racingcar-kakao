@@ -12,15 +12,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
 
+    @DisplayName("움직이는 조건이 참일 경우 차가 1칸 앞으로 움직여야 한다.")
     @Test
-    void move() {
+    void shouldMove() {
         Car car = new Car("aa");
 
-        CarDTO beforeMoveCarDto = car.toDTO();
-        car.move(CarAction.FORWARD);
-        CarDTO afterMoveCarDto = car.toDTO();
+        car.move(() -> true);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
 
-        assertThat(afterMoveCarDto.getPosition()).isEqualTo(beforeMoveCarDto.getPosition() + 1);
+    @DisplayName("움직이는 조건이 거짓일 경우 차가 1칸 앞으로 움직여야 한다.")
+    @Test
+    void shouldNotMove() {
+        Car car = new Car("aa");
+
+        car.move(() -> false);
+        assertThat(car.getPosition()).isZero();
     }
 
     @DisplayName("자동차 이름은 5자 이하여야 한다.")

@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.car.Car;
-import racingcar.car.CarAction;
 import racingcar.car.CarDTO;
-import racingcar.util.RandomGenerator;
+import racingcar.car.MovingStrategy;
+import racingcar.car.RandomMovingStrategy;
 
 public class Racing {
 
@@ -15,6 +15,7 @@ public class Racing {
     private int turn;
     private final RacingUI racingUI;
     private final RacingService racingService;
+    private final MovingStrategy movingStrategy = new RandomMovingStrategy();
 
     public Racing() {
         cars = new ArrayList<>();
@@ -58,11 +59,7 @@ public class Racing {
     }
 
     private void proceedTurn() {
-        this.cars.forEach(car -> {
-            int randNo = RandomGenerator.generateOneDigit();
-            CarAction carAction = racingService.getActionResult(randNo);
-            car.move(carAction);
-        });
+        this.cars.forEach(car -> car.move(movingStrategy));
         printTurn();
     }
 
