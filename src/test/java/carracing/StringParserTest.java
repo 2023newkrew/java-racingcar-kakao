@@ -2,6 +2,7 @@ package carracing;
 
 import carracing.domain.StringParser;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 
 class StringParserTest {
+    @DisplayName("문자열 ',' 기준으로 split 성공")
     @Test
     void parseTest_validInput() {
         //given
@@ -19,6 +21,7 @@ class StringParserTest {
         Assertions.assertThat(parsedStrings).isEqualTo(new String[] {"a", "b", "c"});
     }
 
+    @DisplayName("처리 불가능한 이름 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaa,b,c", "a,,c"})
     void parseTest_invalidInput(String string) {
@@ -28,6 +31,7 @@ class StringParserTest {
         Assertions.assertThatRuntimeException().isThrownBy(() -> StringParser.parse(string));
     }
 
+    @DisplayName("빈문자열 & null 예외 발생")
     @ParameterizedTest
     @NullAndEmptySource
     void parseTest_nullAndEmpty(String string) {
