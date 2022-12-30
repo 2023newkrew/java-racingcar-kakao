@@ -18,8 +18,8 @@ public class RacingGameController {
     public void play() {
         initializeGame();
         racingGameView.printRoundResultMessage();
-        racingGameView.printRoundResults(racingGame.operateRacingGame());
-        announceWinner();
+        racingGameView.printRoundResults(racingGame.operateRounds());
+        announceWinners();
     }
 
     private void initializeGame() {
@@ -28,7 +28,7 @@ public class RacingGameController {
         this.racingGame = new RacingGame(carNames, roundToPlay, new RandomNumberSelector());
     }
 
-    private void announceWinner() {
+    private void announceWinners() {
         if (racingGame.announceWinnersIfGameEnded().isPresent()) {
             List<String> winners = racingGame.announceWinnersIfGameEnded().get();
             racingGameView.printWinners(winners);

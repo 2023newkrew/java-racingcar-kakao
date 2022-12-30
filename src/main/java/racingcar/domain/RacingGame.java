@@ -14,7 +14,7 @@ public class RacingGame {
         this.referee = new Referee(roundToPlay, registeredCars, numberSelector);
     }
 
-    public List<Map<String, Integer>> operateRacingGame() {
+    public List<Map<String, Integer>> operateRounds() {
         List<Map<String, Integer>> roundResults = new ArrayList<>();
         while (announceWinnersIfGameEnded().isEmpty()) {
             proceedGame();
