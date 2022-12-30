@@ -42,7 +42,7 @@ public class Car {
         }
     }
 
-    public void carEvent() {
+    public void moveCarRandomly() {
         moveCar(isMove(createRandomNumber()));
     }
 

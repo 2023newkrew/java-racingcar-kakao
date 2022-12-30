@@ -37,7 +37,7 @@ public class CarTest {
                 return numberUnderFour;
             }
         };
-        car.carEvent();
+        car.moveCarRandomly();
         assertThat(car.getPosition()).isEqualTo(nowPosition);
     }
 
@@ -52,7 +52,7 @@ public class CarTest {
                 return numberOverThree;
             }
         };
-        car.carEvent();
+        car.moveCarRandomly();
         assertThat(car.getPosition()).isEqualTo(nowPosition + 1);
     }
 
