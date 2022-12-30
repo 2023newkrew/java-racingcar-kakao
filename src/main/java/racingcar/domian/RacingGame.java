@@ -31,6 +31,12 @@ public class RacingGame {
         playTurn();
     }
 
+    private void playTurn() {
+        for (Car car : carList) {
+            car.moveCar();
+        }
+    }
+
     public List<String> getWinners() {
         int maxPosition = getMaxPosition();
 
@@ -47,14 +53,7 @@ public class RacingGame {
                 .getPosition();
     }
 
-
-    private void playTurn() {
-        for (Car car : carList) {
-            car.moveCar();
-        }
-    }
-
     public boolean isEnd() {
-        return this.turn--==0;
+        return this.turn-- == 0;
     }
 }

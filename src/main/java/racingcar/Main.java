@@ -12,7 +12,7 @@ public class Main {
         int turn = InputUI.inputTurn();
         RacingGame racingGame = new RacingGame(carNameList, turn);
 
-        while(!racingGame.isEnd()){
+        while (!racingGame.isEnd()) {
             racingGame.play();
             OutputUI.printTurnResult(racingGame.getCarList());
         }
