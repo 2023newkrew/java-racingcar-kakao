@@ -2,7 +2,6 @@ package racing.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -16,29 +15,27 @@ public class Game {
         this.cars = cars;
     }
 
-    public Game(List<String> carNames) {
+    public Game(String[] carNames){
         this.cars = new Cars(
-                carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList())
+                Arrays.stream(carNames)
+                        .map(RacingCar::new)
+                        .collect(Collectors.toList())
         );
-    }
-    public void initialize(String input) {
-
-        for (String carName : input.split(",")){
-            cars.add(new Car(carName));
-        }
-    }
-
-    public List<String> getWinnerNames() {
-        return cars.getWinnerNamesWithSamePosition(cars.getMaxPosition());
     }
 
     public void play() {
         cars.play();
     }
 
-    public Map<String, Integer> getStatus() {
-        return cars.getStatus();
+    public List<String> getWinnerNames() {
+        return cars.getCarsWithSamePosition(cars.getMaxPosition())
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<ImmutableCar> getCars() {
+        return cars.getCars();
     }
 }
