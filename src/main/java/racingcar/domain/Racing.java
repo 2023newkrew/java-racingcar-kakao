@@ -23,7 +23,9 @@ public class Racing {
     }
 
     public void doStep() {
-        cars.forEach(Car::forward);
+        cars.forEach(car -> {
+            car.forward(new RandomMovingStrategy());
+        });
         count--;
     }
 
