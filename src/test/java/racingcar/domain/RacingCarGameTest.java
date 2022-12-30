@@ -71,44 +71,4 @@ public class RacingCarGameTest {
                 .getPosition()).isEqualTo(2);
     }
 
-
-    @Test
-    public void getSingleWinner() {
-        Car car1 = CarFactory.createCar("pobi", 2);
-        Car car2 = CarFactory.createCar("crong", 3);
-        Car car3 = CarFactory.createCar("honux", 2);
-
-        racingCarGame.add(car1, car2, car3);
-
-        assertThat(racingCarGame.getWinner()
-                .size()).isEqualTo(1);
-        assertThat(racingCarGame.getWinner()
-                .get(0)).isEqualTo(car2);
-    }
-
-    @Test
-    public void getMultiWinner() {
-        Car car1 = CarFactory.createCar("pobi", 1);
-        Car car2 = CarFactory.createCar("crong", 4);
-        Car car3 = CarFactory.createCar("honux", 4);
-
-        racingCarGame.add(car1, car2, car3);
-
-        Assertions.assertThat(racingCarGame.getWinner()
-                        .size())
-                .isEqualTo(2);
-        Assertions.assertThat(racingCarGame.getWinner())
-                .containsExactly(car2, car3);
-    }
-
-    @Test
-    public void getCarResultsTest() {
-        Car car1 = CarFactory.createCar("pobi");
-        Car car2 = CarFactory.createCar("crong");
-
-        racingCarGame.add(car1, car2);
-        racingCarGame.run(5);
-
-        assertThat(racingCarGame.getCarResults()).containsExactly("pobi : ", "crong : -----");
-    }
 }

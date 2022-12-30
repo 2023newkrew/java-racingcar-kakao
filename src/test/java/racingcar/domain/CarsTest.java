@@ -49,8 +49,8 @@ public class CarsTest {
 
     @Test
     void getEachCarsResultsTest() {
-        Car car1 = CarFactory.createCar("pobi",0);
-        Car car2 = CarFactory.createCar("crong",4);
+        Car car1 = CarFactory.createCar("pobi", 0);
+        Car car2 = CarFactory.createCar("crong", 4);
 
         Cars cars = new Cars(List.of(car1, car2));
 
