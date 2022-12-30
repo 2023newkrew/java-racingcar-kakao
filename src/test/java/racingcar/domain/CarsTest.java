@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarsTest {
 
     @Test
-    void getMaxPosition() {
+    void getMaxPositionTest() {
         Car car1 = CarFactory.createCar("pobi", 2);
         Car car2 = CarFactory.createCar("crong", 3);
         Car car3 = CarFactory.createCar("honux", 2);
@@ -22,7 +22,7 @@ public class CarsTest {
     }
 
     @Test
-    void getSingleWinner() {
+    void getSingleWinnerTest() {
         Car car1 = CarFactory.createCar("pobi", 2);
         Car car2 = CarFactory.createCar("crong", 3);
         Car car3 = CarFactory.createCar("honux", 2);
@@ -35,7 +35,7 @@ public class CarsTest {
     }
 
     @Test
-    void getMultipleWinner() {
+    void getMultipleWinnerTest() {
         Car car1 = CarFactory.createCar("pobi", 2);
         Car car2 = CarFactory.createCar("crong", 3);
         Car car3 = CarFactory.createCar("honux", 3);
