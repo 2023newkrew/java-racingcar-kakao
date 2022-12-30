@@ -30,6 +30,6 @@ public class RacingController {
             racingView.printRacingStatus(cars);
         }
 
-        racingView.printWinners(cars);
+        racingView.printWinners(racingService.getWinnerNames(cars));
     }
 }

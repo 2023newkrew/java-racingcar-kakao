@@ -11,20 +11,21 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public List<Car> getSamePosCars(Car other) {
+    public Cars getSamePosCars(Car other) {
+        return new Cars(
+                cars.stream()
+                        .filter(car -> car.isSamePos(other))
+                        .collect(Collectors.toList())
+        );
+    }
+
+    public Car getMaxPosCar() {
+        return cars.stream().max(Car::comparePos).orElseThrow();
+    }
+
+    @Override
+    public String toString() {
         return cars.stream()
-                .filter(car -> car.isSamePos(other))
-                .collect(Collectors.toList());
-    }
-
-    public List<Car> getWinners() {
-        Car maxPosCar = cars.stream().max(Car::comparePos).orElseThrow();
-        return getSamePosCars(maxPosCar);
-    }
-
-    public String getWinnerNames() {
-        List<Car> winnerCars = getWinners();
-        return winnerCars.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
     }

@@ -21,4 +21,15 @@ public class RacingService {
             car.tryMove();
         }
     }
+
+    public Cars getWinners(Cars cars) {
+        Car maxPosCar = cars.getMaxPosCar();
+        return cars.getSamePosCars(maxPosCar);
+    }
+
+    public String getWinnerNames(Cars cars) {
+        Cars winnerCars = getWinners(cars);
+        return winnerCars.toString();
+    }
+
 }

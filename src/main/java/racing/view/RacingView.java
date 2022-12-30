@@ -41,8 +41,7 @@ public class RacingView {
         System.out.println();
     }
 
-    public void printWinners(Cars cars) {
-        String winnerCarNames = cars.getWinnerNames();
+    public void printWinners(String winnerCarNames) {
         System.out.println(winnerCarNames + "가 최종 우승했습니다.");
     }
 }
