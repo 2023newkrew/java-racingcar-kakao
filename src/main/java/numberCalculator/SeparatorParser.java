@@ -14,7 +14,7 @@ public class SeparatorParser {
     }
 
 
-    public boolean isIncludingSeparator(String input) {
+    private boolean isIncludingSeparator(String input) {
         return input.matches("^//(.*)\\n(.*)");
     }
 }

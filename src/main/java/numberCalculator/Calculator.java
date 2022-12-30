@@ -48,7 +48,7 @@ public class Calculator {
 
     public Integer summarizeNumbers(String s) {
         String separator = separatorParser.extract(s);
-        if (!separator.equals(",|:")) {
+        if (!separator.equals(SeparatorParser.DEFAULT_SEPARATORS)) {
             s = s.substring(s.indexOf("\n") + 1);
         }
         List<Integer> numbers = splitNumbers(s, separator);
