@@ -6,7 +6,7 @@ public class Car {
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 1;
-    private static final int CAR_VELOCITY = 1;
+    private static final int CAR_SPEED = 1;
     private static Random random = new Random();
     private final String name;
     private int position;
@@ -30,7 +30,7 @@ public class Car {
 
     public void moveCar(boolean move) {
         if (move) {
-            position += CAR_VELOCITY;
+            position += CAR_SPEED;
         }
     }
 
