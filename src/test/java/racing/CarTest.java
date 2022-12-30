@@ -56,11 +56,4 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(nowPosition + 1);
     }
 
-    @DisplayName("자동차 로그 출력 테스트")
-    @Test
-    public void getLogTest() {
-        Car car = new Car(5, "test");
-        assertThat(car.getLog()).isEqualTo("test : -----");
-    }
-
 }

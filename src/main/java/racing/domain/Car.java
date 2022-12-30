@@ -13,13 +13,13 @@ public class Car {
     private String name;
 
     public Car(int position, String name) {
-        this.position = position;
         if (name == null || name.isBlank()) {
-            throw new RuntimeException("빈칸은 입력할 수 없습니다.");
+            throw new IllegalArgumentException("빈칸은 입력할 수 없습니다.");
         }
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new RuntimeException("다섯 글자 이하로 입력해주세요.");
+            throw new IllegalArgumentException("다섯 글자 이하로 입력해주세요.");
         }
+        this.position = position;
         this.name = name;
     }
 
