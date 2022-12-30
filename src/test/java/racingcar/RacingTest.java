@@ -7,25 +7,25 @@ import racingcar.domain.Car;
 import racingcar.domain.Racing;
 
 public class RacingTest {
-    @DisplayName("주어진 이름에 따라 Cars 가 잘 생성되는가")
+    @DisplayName("주어진 이름에 따라 Cars 가 잘 생성되어야함")
     @Test
     void 주어진_이름에_따라_Cars_생성() {
-        String[] names = new String[]{"aaa","bbb","ccc"};
+        String[] names = new String[]{"aaa", "bbb", "ccc"};
 
         Racing racing = new Racing(names);
         Car[] cars = racing.cars();
         Assertions.assertThat(cars.length).isEqualTo(3);
 
-        for(int i =0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             Assertions.assertThat(cars[i].name()).isEqualTo(names[i]);
             Assertions.assertThat(cars[i].position()).isEqualTo(0);
         }
     }
 
-    @DisplayName("한 명의 승자가 의도한대로 결정되는가")
+    @DisplayName("가장 많이 전진한 자동차가 우승자가 되어야함")
     @Test
     void 무조건_이기는_한_명의_우승자() {
-        String[] names = new String[] {"a", "b", "c", "d", "e"};
+        String[] names = new String[]{"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;
         Racing racing = new Racing(names);
@@ -38,13 +38,13 @@ public class RacingTest {
             cars[4].move(bound -> 2);
         }
 
-        Assertions.assertThat(racing.getOneWinner().position()).isEqualTo(ROUND);
+        Assertions.assertThat(racing.getOneWinner()).isEqualTo(cars[2]);
     }
 
-    @DisplayName("여러 명의 승자가 의도한대로 결정되는가")
+    @DisplayName("여러 명의 우승자가 발생한 경우 '결과 배열'에는 모든 우승자가 포함되어야만함")
     @Test
-    void 무조건_이기는_최종_우승자들(){
-        String[] names = new String[] {"a", "b", "c", "d", "e"};
+    void 무조건_이기는_최종_우승자들() {
+        String[] names = new String[]{"a", "b", "c", "d", "e"};
 
         final int ROUND = 5;
         Racing racing = new Racing(names);

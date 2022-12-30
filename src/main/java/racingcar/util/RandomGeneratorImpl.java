@@ -7,6 +7,6 @@ public class RandomGeneratorImpl implements RandomGenerator {
 
     @Override
     public int generate(int bound) {
-        return random.nextInt(bound+1);
+        return random.nextInt(bound + 1);
     }
 }

@@ -13,9 +13,9 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class InputViewTest {
 
-    @DisplayName("자동차 이름의 길이는 0이상 5이하 여야 함 (예외발생)")
+    @DisplayName("자동차 이름의 길이가 1~5사이 범위가 아닌 경우 예외가 발생해야함")
     @ParameterizedTest
-    @ValueSource(strings={"daniel",""})
+    @ValueSource(strings = {"daniel", ""})
     void 자동차_이름의_길이_적합성_예외발생(String inputStr) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
@@ -23,16 +23,16 @@ public class InputViewTest {
                 });
     }
 
-    @DisplayName("자동차 이름의 길이는 0이상 5이하 여야 함 (통과)")
+    @DisplayName("자동차 이름의 길이가 1~5사이 범위에 있는 경우 예외가 발생하지 않아야함")
     @Test
     void 자동차_이름의_길이_적합성_통과() {
         String inputStr = "dan";
-        assertThatCode(()->{
+        assertThatCode(() -> {
             InputView.validateCarNameLength(inputStr);
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("자동차의 대수는 2대 이상이어야 함 (예외발생)")
+    @DisplayName("자동차의 대수가 1대 이하인 경우 예외가 발생해야함")
     @Test
     void 자동차_대수_적합성_예외발생() {
         String[] inputStr = {"kim"};
@@ -42,69 +42,50 @@ public class InputViewTest {
                 });
     }
 
-    @DisplayName("자동차의 대수는 2대 이상이어야 함 (통과)")
+    @DisplayName("자동차의 대수가 2대 이상인 경우 예외가 발생하지 않아야함")
     @Test
     void 자동차_대수_적합성_통과() {
         String[] inputStr = {"kim", "lee"};
-        assertThatCode(()->{
+        assertThatCode(() -> {
             InputView.validateCountOfCars(inputStr);
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("여러대의 자동차 이름의 길이는 모두 1 이상 5 이하여야 함 (통과)")
-    @Test
-    void 여러대의_자동차_이름의_길이_적합성_통과(){
-        String[] inputStr = {"kim", "lee", "han"};
-        assertThatCode(()->{
-            InputView.validateEachLengthOfCarNames(inputStr);
-        }).doesNotThrowAnyException();
-    }
 
-    @DisplayName("여러대의 자동차 이름의 길이는 모두 1 이상 5 이하여야 함 (예외발생)")
-    @ParameterizedTest
-    @ValueSource(strings={"daniel", ""})
-    void 여러대의_자동차_이름의_길이_적합성_예외발생(String abnormal){
-        String[] inputStr = {"kim", "lee", abnormal};
-        assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(() -> {
-                    InputView.validateEachLengthOfCarNames(inputStr);
-                });
-    }
-
-    @DisplayName("자동차 이름은 중복되지 않아야 함 (통과)")
+    @DisplayName("자동차의 이름이 중복되지 않은 경우 예외가 발생하지 않아야함")
     @Test
     void 여러대의_자동차_이름의_중복_통과() {
         String[] inputStr = {"kim", "lee", "park"};
-        assertThatCode(()->{
+        assertThatCode(() -> {
             InputView.validateDuplicationOfCarNames(inputStr);
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("자동차 이름은 중복되지 않아야 함 (예외발생)")
+    @DisplayName("자동차의 이름이 중복된 경우 예외가 발생해야함")
     @Test
     void 여러대의_자동차_이름의_중복_예외발생() {
         String[] inputStr = {"kim", "lee", "kim"};
         assertThatExceptionOfType(InvalidInputException.class)
-                .isThrownBy(()->{
+                .isThrownBy(() -> {
                     InputView.validateDuplicationOfCarNames(inputStr);
                 });
     }
 
-    @DisplayName("시도 횟수는 정수여야 하며 1 이상이어야 함 (통과)")
+    @DisplayName("시도 횟수가 정수이며 1 이상인 경우 예외가 발생하지 않아야함")
     @Test
     void 시도_횟수_적합성_통과() {
         String trialCount = "3";
-        Assertions.assertThatCode(()->{
+        Assertions.assertThatCode(() -> {
             InputView.validateTrialCount(trialCount);
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("시도 횟수는 정수여야 하며 1 이상이어야 함 (예외발생)")
+    @DisplayName("시도 횟수가 정수가 아니거나 0 이하인 경우 예외가 발생해야함")
     @ParameterizedTest
     @ValueSource(strings = {"3d", "xx", "-1", "0"})
     void 시도_횟수_적합성_예외발생(String trialCount) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(()->{
+                .isThrownBy(() -> {
                     InputView.validateTrialCount(trialCount);
                 });
     }

@@ -48,7 +48,7 @@ public class Car {
     }
 
     public Car determineWinner(Car otherCar) {
-        if(comparePositionToOtherCar(otherCar) >= 0) {
+        if (comparePositionToOtherCar(otherCar) >= 0) {
             return this;
         }
         return otherCar;

@@ -40,7 +40,7 @@ public class InputView {
     }
 
     private static String[] split(String stringInput) {
-        return  stringInput.split(",");
+        return stringInput.split(",");
     }
 
     public static void validateCarNameLength(String carName) {
@@ -50,13 +50,13 @@ public class InputView {
     }
 
     public static void validateCountOfCars(String[] inputCarNameArray) {
-        if (inputCarNameArray.length<=1){
+        if (inputCarNameArray.length <= 1) {
             throw new InvalidInputException("자동차는 2대 이상 입력해야 합니다.");
         }
     }
 
     public static void validateEachLengthOfCarNames(String[] inputCarNameArray) {
-        for (String carName : inputCarNameArray){
+        for (String carName : inputCarNameArray) {
             validateCarNameLength(carName);
         }
     }
