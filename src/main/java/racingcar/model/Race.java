@@ -7,19 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
+    private static final int MAX_NAME_LIMIT = 5;
+
     private final String nameStr;
     private final List<Car> cars = new ArrayList<>();
 
     public Race(String nameStr) {
+        if (nameStr == null || nameStr.isBlank()) {
+            throw new IllegalArgumentException("There should be at least 1 car name in string");
+        }
+
         this.nameStr = nameStr;
     }
 
-    public void verifyName(String input) {
-        if (input.length() < 6) {
-            return;
+    public void verifyName(String name) {
+        if (name.length() > MAX_NAME_LIMIT) {
+            throw new IllegalArgumentException();
         }
-
-        throw new IllegalArgumentException();
     }
 
     public String[] nameSplit() {

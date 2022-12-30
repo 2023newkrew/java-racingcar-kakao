@@ -1,17 +1,27 @@
 package racingcar.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RaceTest {
+    @DisplayName("Throw exception when name string is blank")
+    @NullAndEmptySource
+    @ParameterizedTest
+    void VerifyNameStringTest(final String nameStr) {
+        assertThatThrownBy(() -> new Race(nameStr))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @ParameterizedTest
     @CsvSource(value = {"Pobi;true",
