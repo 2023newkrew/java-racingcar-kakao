@@ -1,5 +1,5 @@
 # java-racingcar-kakao
-## Model
+## Model(domain)
 
 ### InvalidInputException
 * `racingcar.view.InputView`및 하위 클래스, `racingcar.domain.Car`에서 입력이 잘못 된 경우 생성하는 예외
