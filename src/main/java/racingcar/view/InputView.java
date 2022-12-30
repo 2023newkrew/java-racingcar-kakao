@@ -4,12 +4,13 @@
  */
 package racingcar.view;
 
-import racingcar.domain.Car;
+import racingcar.utils.Parser;
+import racingcar.utils.Validate;
 
 import java.util.Scanner;
 import java.util.List;
 
-public class View {
+public class InputView {
 
     public static List<String> inputCarNames() {
         Scanner sc = new Scanner(System.in);
@@ -31,16 +32,4 @@ public class View {
         return Parser.stringToInt(roundNumInput);
     }
 
-    public static void printRoundResult(List<Car> roundResult) {
-        for (Car car : roundResult) {
-            System.out.print(car.getName() + " : ");
-            System.out.println("-".repeat(car.getPosition()));
-        }
-        System.out.println();
-    }
-
-    public static void printWinner(List<String> winners) {
-        System.out.print(String.join(", ", winners));
-        System.out.println("가 최종 우승했습니다.");
-    }
 }
