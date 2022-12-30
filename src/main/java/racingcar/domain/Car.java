@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import racingcar.dto.CarDTO;
 
 public class Car {
 
@@ -28,10 +27,6 @@ public class Car {
         if (movingStrategy.isMovable()) {
             position++;
         }
-    }
-
-    public CarDTO toDTO() {
-        return new CarDTO(this.name, this.position);
     }
 
     public int getPosition() {

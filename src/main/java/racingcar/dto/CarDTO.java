@@ -12,14 +12,6 @@ public class CarDTO {
         this.position = position;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public static CarDTO from(Car car) {
         return new CarDTO(car.getName(), car.getPosition());
     }
