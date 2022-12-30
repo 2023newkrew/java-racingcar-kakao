@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import racingcar.generator.RandomNumberGenerator;
 
@@ -20,11 +21,12 @@ public class RacingCarGameImpl implements RacingCarGame {
         cars.forEach(car -> car.move(randomNumberGenerator.generate()));
     }
 
-
     @Override
-    public void add(String... carNames) {
-        Arrays.stream(carNames).forEach(carName -> cars.add(new RacingCar(carName)));
+    public void add(Set<String> names) {
+        names.stream().forEach(name -> this.cars.add(new RacingCar(name)));
+
     }
+
 
     @Override
     public void add(Car... multipleCar) {

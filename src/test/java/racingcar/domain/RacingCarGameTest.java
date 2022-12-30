@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +45,7 @@ public class RacingCarGameTest {
 
     @Test
     public void runTest() throws NoSuchFieldException, IllegalAccessException {
-        racingCarGame.add("pobi", "crong", "honux");
+        racingCarGame.add(Set.of("pobi","crong","honux"));
         run(5);
         Field cars = RacingCarGameImpl.class.getDeclaredField("cars");
         cars.setAccessible(true);
