@@ -12,7 +12,7 @@ public class RandomNumberGeneratorTest {
         generator = new RandomNumberGenerator();
     }
     @RepeatedTest(100)
-    void randomNumberGenerateTest() {
+    void 랜덤넘버가_0과_9_사이인지_확인() {
         assertThat(generator.generate()).isBetween(0, 9);
     }
 }
