@@ -15,7 +15,7 @@ public class Controller {
             try {
                 racing = new Racing(inputNames, inputCount);
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
                 continue;
             }
             RacingResult racingResult = racing.playRacing();

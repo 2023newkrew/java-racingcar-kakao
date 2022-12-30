@@ -1,7 +1,6 @@
 package CarRacing.domain;
 
 import CarRacing.util.StringUtil;
-import CarRacing.util.wrongInputCountException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,7 @@ public class Racing {
         try {
             StringUtil.convertStringToInt(racingCount);
         } catch (NumberFormatException e) {
-            //throw new wrongInputCountException("숫자가 아닌 입력입니다.");
-            throw new RuntimeException("숫자가 아닌 입력입니다.");
+            throw new RuntimeException("시도할 회수 입력이 숫자가 아닙니다.");
         }
     }
 
