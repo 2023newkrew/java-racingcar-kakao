@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.config.AppConfigImpl;
 import racingcar.domain.RacingCarGame;
 import racingcar.domain.RacingCarGameImpl;
 import racingcar.view.InputView;

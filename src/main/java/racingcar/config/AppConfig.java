@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.config;
 
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.InputView;

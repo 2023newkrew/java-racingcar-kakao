@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.AppConfig;
+import racingcar.config.AppConfig;
 import racingcar.factory.CarFactory;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.InputView;
@@ -45,21 +45,6 @@ public class RacingCarGameImpl implements RacingCarGame {
         }
 
         cars.move(movingNumbers);
-    }
-
-    @Override
-    public void add(String carName) {
-
-    }
-
-    @Override
-    public void add(List<Car> multipleCar) {
-        cars = new Cars(multipleCar);
-    }
-
-    @Override
-    public void play() {
-
     }
 
     @Override
