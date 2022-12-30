@@ -5,9 +5,11 @@ import racingcar.dto.GameInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Game {
+    private static final int MOVE_THRESHOLD = 4;
     private List<Car> cars;
     private int leftRoundCnt;
 
@@ -21,7 +23,7 @@ public class Game {
 
     public GameInfo runRound() {
         for (Car car : cars) {
-            car.move();
+            car.move(() -> pickRandomNumber() > MOVE_THRESHOLD);
         }
         leftRoundCnt--;
         return new GameInfo(cars, leftRoundCnt);
@@ -49,5 +51,9 @@ public class Game {
             maxPosition = Math.max(maxPosition, carInfo.getPosition());
         }
         return maxPosition;
+    }
+
+    public int pickRandomNumber() {
+        return new Random().nextInt(10);
     }
 }
