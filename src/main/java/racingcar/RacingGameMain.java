@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.view.RacingGameRunner;
+
 import java.util.Scanner;
 
 public class RacingGameMain {

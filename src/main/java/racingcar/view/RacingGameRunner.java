@@ -1,4 +1,7 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.model.Car;
+import racingcar.view.condition.InputParser;
 
 import java.util.List;
 import java.util.stream.Collectors;

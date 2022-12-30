@@ -1,6 +1,8 @@
-package racingcar;
+package racingcar.model;
 
-public class Car extends MovableStrategy{
+import racingcar.model.strategy.MovableStrategy;
+
+public class Car extends MovableStrategy {
     private final String name;
     private int position;
 
