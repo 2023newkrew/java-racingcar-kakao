@@ -39,12 +39,6 @@ public class RacingCarGame {
         }
     }
 
-    /*
-    private void playRacingGame_v2(int trialNumber) {
-        ioService.printInitialGameStatus(carService.getCarList());
-        carService.moveAllWithTrial(trialNumber);
-    }
-    */
     private void printFinalResult() {
         ioService.printWinners(carService.getWinners());
     }

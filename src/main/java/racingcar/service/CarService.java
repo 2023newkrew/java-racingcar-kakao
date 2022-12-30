@@ -19,8 +19,12 @@ public class CarService {
 
     public void addAll(List<String> carNamesInput) {
         for (String carName : carNamesInput) {
-            cars.add(new Car(carName));
+            add(new Car(carName));
         }
+    }
+
+    public void add(Car car) {
+        cars.add(car);
     }
 
     public void moveAll() {
@@ -28,15 +32,6 @@ public class CarService {
             car.move(RandomUtil.generateRandom());
         }
     }
-    /*
-    public void moveAllWithTrial(int trialNumber) {
-        IOService ioService = new IOService();
-        for (int round = 0; round < trialNumber; round++) {
-            moveAll();
-            ioService.printGameResult(cars);
-        }
-    }
-    */
 
     /**
      * 게임이 끝난 후 max position을 확인하고 그 max position에 있는 car들을 List로 반환
