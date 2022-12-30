@@ -1,8 +1,8 @@
 package racingcar.controller;
 
-import racingcar.domain.collection.GameResult;
-import racingcar.domain.collection.RaceRecord;
 import racingcar.domain.collection.RacingCarCollection;
+import racingcar.domain.dto.GameResultDto;
+import racingcar.domain.dto.RaceRecordDto;
 import racingcar.view.RacingCarView;
 
 import java.util.ArrayList;
@@ -20,19 +20,19 @@ public class RacingCarGame {
     }
 
     public void start() {
-        List<RaceRecord> raceRecords = new ArrayList<>();
-        raceRecords.add(RaceRecord.of(cars));
+        List<RaceRecordDto> raceRecords = new ArrayList<>();
+        raceRecords.add(RaceRecordDto.of(cars));
         while (!isGameEnd()) {
             raceRecords.add(race());
         }
-        RacingCarView.printGameResult(GameResult.of(raceRecords));
+        RacingCarView.printGameResult(GameResultDto.of(raceRecords));
         RacingCarView.printWinners(cars.selectWinners());
     }
 
-    private RaceRecord race() {
+    private RaceRecordDto race() {
         cars.moveAll();
         remainingRound--;
-        return RaceRecord.of(cars);
+        return RaceRecordDto.of(cars);
     }
 
     private boolean isGameEnd() {

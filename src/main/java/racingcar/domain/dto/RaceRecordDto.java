@@ -1,20 +1,20 @@
-package racingcar.domain.collection;
+package racingcar.domain.dto;
 
-import racingcar.domain.dto.RacingCarDto;
+import racingcar.domain.collection.RacingCarCollection;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RaceRecord {
+public class RaceRecordDto {
 
     private final List<RacingCarDto> cars;
 
-    private RaceRecord(List<RacingCarDto> cars) {
+    private RaceRecordDto(List<RacingCarDto> cars) {
         this.cars = cars;
     }
 
-    public static RaceRecord of(RacingCarCollection cars) {
-        return new RaceRecord(
+    public static RaceRecordDto of(RacingCarCollection cars) {
+        return new RaceRecordDto(
                 cars.getCars()
                         .stream()
                         .map(RacingCarDto::toDto)

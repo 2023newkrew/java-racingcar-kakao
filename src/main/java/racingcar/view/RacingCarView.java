@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.collection.GameResult;
-import racingcar.domain.collection.RaceRecord;
+import racingcar.domain.dto.GameResultDto;
+import racingcar.domain.dto.RaceRecordDto;
 import racingcar.domain.dto.RacingCarDto;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class RacingCarView {
         System.out.println(stringBuilder);
     }
 
-    public static void printGameResult(GameResult gameResult) {
+    public static void printGameResult(GameResultDto gameResult) {
         System.out.println("실행 결과");
         gameResult.getRaceRecords()
                 .forEach(RacingCarView::printRaceRecord);
@@ -49,7 +49,7 @@ public class RacingCarView {
         System.out.println(carStatusMessage);
     }
 
-    private static void printRaceRecord(RaceRecord raceRecord) {
+    private static void printRaceRecord(RaceRecordDto raceRecord) {
         raceRecord.getCars()
                 .forEach(RacingCarView::printCar);
         System.out.println();
