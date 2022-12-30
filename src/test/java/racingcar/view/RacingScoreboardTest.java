@@ -1,9 +1,9 @@
 package racingcar.view;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCar;
-import racingcar.view.RacingScoreboard;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -30,6 +30,7 @@ public class RacingScoreboardTest {
     }
 
     @Test
+    @DisplayName("라운드 결과 출력 테스트")
     void printScore() {
         //given
         String expected = "car1 : -\n" +
@@ -45,6 +46,7 @@ public class RacingScoreboardTest {
     }
 
     @Test
+    @DisplayName("경기 우승자가 다수일 때 출력 테스트")
     void printWinners() {
         //given
         String expected = "car1, car2, car3가 최종 우승했습니다.\n";
@@ -57,6 +59,7 @@ public class RacingScoreboardTest {
     }
 
     @Test
+    @DisplayName("경기 우승자가 하나일 때 출력 테스트")
     void printWinners_singleWinner() {
         //given
         String expected = "car1가 최종 우승했습니다.\n";
