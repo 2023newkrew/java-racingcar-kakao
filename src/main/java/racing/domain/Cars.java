@@ -3,12 +3,8 @@ package racing.domain;
 import racing.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-
-import static java.lang.Math.max;
 
 
 public class Cars {
@@ -29,10 +25,6 @@ public class Cars {
         return number >= THRESHOLD;
     }
 
-    public void add(Car car) {
-        cars.add(car);
-    }
-
     public int getMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
@@ -40,17 +32,15 @@ public class Cars {
                 .getAsInt();
     }
 
-    public List<String> getWinnerNamesWithSamePosition(int maxPosition) {
+    public List<ImmutableCar> getCarsWithSamePosition(int maxPosition) {
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
+                .map(ImmutableCar::new)
                 .collect(Collectors.toList());
     }
 
     public void play() {
-        for (Car car : cars) {
-            increasePositionIfMovable(car);
-        }
+        cars.forEach(this::increasePositionIfMovable);
     }
 
     private void increasePositionIfMovable(Car car) {
@@ -59,11 +49,10 @@ public class Cars {
         }
     }
 
-    public Map<String, Integer> getStatus() {
+    public List<ImmutableCar> getCars() {
         return cars.stream()
-                .collect(Collectors.toMap(
-                        Car::getName,
-                        Car::getPosition
-                ));
+                .map(ImmutableCar::new)
+                .collect(Collectors.toList());
     }
+
 }
