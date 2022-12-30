@@ -2,6 +2,7 @@ package racingcar.model;
 
 public class Car {
 
+    private static final int MOVE_THRESHOLD = 4;
     private final String name;
     private int position;
 
@@ -17,7 +18,7 @@ public class Car {
     }
 
     private boolean isMovable(int number) {
-        return number >= 4;
+        return number >= MOVE_THRESHOLD;
     }
 
     public String getName() {

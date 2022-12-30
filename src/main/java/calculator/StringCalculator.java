@@ -3,6 +3,7 @@ package calculator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator {
 
@@ -12,7 +13,7 @@ public class StringCalculator {
 
     public static int calculate(String text) {
         if (text == null || !isConsistedByPositiveNumbers(text)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("양의 정수만 입력할 수 있습니다.");
         }
 
         return reduceBySum(text);
@@ -38,7 +39,15 @@ public class StringCalculator {
     }
 
     private static boolean isPositiveNumber(String value) {
-        return !(value == null || value.matches("\\D") || value.contains("-") || value.isBlank());
+        return isNotBlank(value) && isNumeric(value);
+    }
+
+    private static boolean isNotBlank(String value) {
+        return StringUtils.isNotBlank(value);
+    }
+
+    private static boolean isNumeric(String value) {
+        return value.matches("\\d+");
     }
 
     private static int reduceBySum(String text) {

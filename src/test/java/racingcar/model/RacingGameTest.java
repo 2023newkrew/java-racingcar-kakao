@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.StubNumberGenerator;
 
 class RacingGameTest {
@@ -38,52 +36,12 @@ class RacingGameTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
-    @DisplayName("특정 값 이상인 경우 자동차를 이동시킨다")
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void moveCar(int value) {
-        NumberGenerator numberGenerator = new StubNumberGenerator(value);
-        RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
-
-        racingGame.move();
-
-        Positions positions = racingGame.getPositions();
-        assertThat(positions.getPositionByName("a")).isEqualTo(1);
-    }
-
-    @DisplayName("특정 값 이하인 경우 자동차를 정지시킨다")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    void stopCar(int value) {
-        NumberGenerator numberGenerator = new StubNumberGenerator(value);
-        RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a"));
-
-        racingGame.move();
-
-        Positions positions = racingGame.getPositions();
-        assertThat(positions.getPositionByName("a")).isEqualTo(0);
-    }
-
-    @DisplayName("여러 대의 자동차를 이동 혹은 정지시킨다.")
+    @DisplayName("가장 멀리 이동한 자동차가 우승한다")
     @Test
-    void moveOrStopCars() {
-        NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
-        RacingGame racingGame = new RacingGame(5, numberGenerator, List.of("a", "b", "c"));
-
-        racingGame.move();
-
-        Positions positions = racingGame.getPositions();
-        assertThat(positions.getPositionByName("a")).isEqualTo(1);
-        assertThat(positions.getPositionByName("b")).isEqualTo(1);
-        assertThat(positions.getPositionByName("c")).isEqualTo(0);
-    }
-
-    @DisplayName("가장 멀리 이동한 차가 단독 우승한다")
-    @Test
-    void getSoloWinner() {
+    void getWinners() {
         NumberGenerator numberGenerator = new StubNumberGenerator(
                 MOVE, MOVE, STOP,
-                MOVE, STOP, STOP,
+                STOP, STOP, STOP,
                 MOVE, MOVE, MOVE
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
@@ -95,28 +53,7 @@ class RacingGameTest {
 
         assertThat(winners.getWinnerCars())
                 .extracting(Car::getName)
-                .hasSize(1)
-                .contains("a");
-    }
-
-    @DisplayName("가장 멀리 이동한 자동차가 공동 우승한다")
-    @Test
-    void getCoWinners() {
-        NumberGenerator numberGenerator = new StubNumberGenerator(
-                MOVE, MOVE, STOP,
-                MOVE, MOVE, MOVE,
-                MOVE, MOVE, MOVE
-        );
-        RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
-
-        racingGame.move();
-        racingGame.move();
-        racingGame.move();
-
-        Winners winners = racingGame.getWinners();
-        assertThat(winners.getWinnerCars())
                 .hasSize(2)
-                .extracting(Car::getName)
                 .contains("a", "b");
     }
 
