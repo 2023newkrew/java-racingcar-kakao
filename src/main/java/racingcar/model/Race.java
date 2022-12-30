@@ -9,7 +9,6 @@ import java.util.List;
 public class Race {
     private static final int MAX_NAME_LIMIT = 5;
 
-    private final String nameStr;
     private final List<Car> cars = new ArrayList<>();
 
     public Race(String nameStr) {
@@ -17,17 +16,13 @@ public class Race {
             throw new IllegalArgumentException("There should be at least 1 car name in string");
         }
 
-        this.nameStr = nameStr;
+        carInput(nameStr.split(","));
     }
 
     public void verifyName(String name) {
         if (name.length() > MAX_NAME_LIMIT) {
             throw new IllegalArgumentException("Car name should be MAX_NAME_LIMIT or under");
         }
-    }
-
-    public String[] nameSplit() {
-        return nameStr.split(",");
     }
 
     public void carInput(String[] nameSplit) {
@@ -43,10 +38,6 @@ public class Race {
         }
 
         System.out.println();
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     public int raceMaxPosition() {
@@ -99,6 +90,10 @@ public class Race {
         raceWinner();
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public static void main(String[] args) throws IOException {
         String text;
         int turn;
@@ -110,7 +105,6 @@ public class Race {
         turn = Integer.parseInt(reader.readLine());
 
         Race race = new Race(text);
-        race.carInput(race.nameSplit());
         race.playRace(turn);
     }
 }

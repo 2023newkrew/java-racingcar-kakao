@@ -11,14 +11,13 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RaceTest {
     @DisplayName("Throw exception when name string is blank")
     @NullAndEmptySource
     @ParameterizedTest
-    void VerifyNameStringTest(final String nameStr) {
+    void verifyNameStringTest(final String nameStr) {
         assertThatThrownBy(() -> new Race(nameStr))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -32,20 +31,12 @@ public class RaceTest {
     }
 
     @Test
-    void nameSplitTest() {
-        Race race = new Race("pobi,crong,honux");
-
-        assertArrayEquals(race.nameSplit(), new String[] {"pobi", "crong", "honux"});
-    }
-
-    @Test
     void carInputTest() {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         Race race = new Race("pobi,crong,honux");
 
-        race.carInput(race.nameSplit());
         race.printRace();
 
         String actual = out.toString();
@@ -58,7 +49,6 @@ public class RaceTest {
     void raceMaxCntTest() {
         Race race = new Race("pobi,crong,honux");
 
-        race.carInput(race.nameSplit());
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
@@ -73,7 +63,6 @@ public class RaceTest {
 
         Race race = new Race("pobi,crong,honux");
 
-        race.carInput(race.nameSplit());
         race.getCars().get(0).move();
         race.getCars().get(0).move();
         race.getCars().get(0).move();
