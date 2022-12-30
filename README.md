@@ -45,7 +45,5 @@
 * Gmae 클래스
   * initialize 를 삭제하고 List<String> (자동차의 이름 List)를 입력받는 생성자를 만든다.
   * getStatus 메서드에서 Map 을 반환하는 대신 cars의 프록시 객체 (ImmutableCar)로 반환한다.
-    * 이 부분을 생각해봤는데 Car 객체 자체에서 막고싶은 메서드(private field를 변경시킬만한 메서드)가 없기 때문에 맞지 않는듯
-    * getStatus -> getCars 로 변경
 * Cars와 Car는 데이터 클래스로 정의 -> 비지니스 로직을 전부 Game 도메인 클래스로 추출
 * GameController 클래스를 만들어서 View와 Domain을 handling 하도록 변경
