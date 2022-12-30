@@ -12,6 +12,18 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OutputTest {
+    @DisplayName("Print notice for name string input")
+    @Test
+    void printNoticeNameStringTest() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        Output.printNoticeNameString();
+
+        String actual = out.toString();
+        assertEquals(actual, "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n");
+    }
+
     @DisplayName("Print present car status")
     @Test
     void printCarStatusTest() {
