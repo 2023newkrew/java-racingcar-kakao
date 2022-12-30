@@ -1,15 +1,22 @@
 package racingcar;
 
+import racingcar.domain.Racing;
+import racingcar.view.InputView;
+import racingcar.view.ResultView;
 
 public class Main {
     public static void main(String[] args) {
-        Input input = new Input();
-        Racing racing = new Racing();
+        String[] carNames = InputView.scanCarNames();
+        int trialCount = InputView.scanTrialCount();
 
-        racing.generateCars(input.scanNames());
-        racing.proceedRounds(input.scanTrialNumber());
+        Racing racing = new Racing(carNames);
 
-        System.out.println("최종결과");
-        System.out.println(racing.joinWinners() + "가 최종 우승했습니다.");
+        ResultView.printRacingStart();
+        for (int i = 0; i < trialCount; i++) {
+            racing.proceedRound();
+            ResultView.printCars(racing.cars());
+        }
+
+        ResultView.printWinners(racing.getTotalWinners());
     }
 }
