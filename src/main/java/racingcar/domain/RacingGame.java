@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.domain.power.PowerGeneratable;
+import racingcar.domain.power.RandomPowerGenerator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +12,7 @@ public class RacingGame {
     private List<RacingCar> cars;
     private final int finalTurn;
     private int turnCount;
+
     public RacingGame(List<String> names, int finalTurn) {
         this.cars = names.stream()
                 .map(RacingCar::new)
@@ -28,13 +32,11 @@ public class RacingGame {
         return this.turnCount >= this.finalTurn;
     }
 
-    private int generateRandomNumber() {
-        return (int)(Math.random()*1000) %10;
-    }
 
     public List<RacingCar> proceedTurn() {
-        for(RacingCar rc : cars) {
-            rc.accelerate(generateRandomNumber());
+        PowerGeneratable powerGenerator = new RandomPowerGenerator();
+        for (RacingCar rc : cars) {
+            rc.move(powerGenerator);
         }
         this.turnCount++;
         return this.cars;
@@ -46,7 +48,7 @@ public class RacingGame {
                 .max()
                 .getAsInt();
         List<RacingCar> winners = this.cars.stream()
-                .filter(car->car.getPos()==maxPos)
+                .filter(car -> car.getPos() == maxPos)
                 .collect(Collectors.toList());
         return winners;
     }

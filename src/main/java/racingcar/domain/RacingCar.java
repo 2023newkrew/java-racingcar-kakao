@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.power.PowerGeneratable;
+
 public class RacingCar {
     private final static int POWER_THRESHOLD = 4;
     private final static int MOVE_DISTANCE = 1;
@@ -22,9 +24,14 @@ public class RacingCar {
         return this.pos;
     }
 
-    public void accelerate(int power) {
+    public void move(PowerGeneratable powerGenerator) {
+        accelerate(powerGenerator.generate());
+    }
+
+    private void accelerate(int power) {
         if (power >= this.POWER_THRESHOLD) {
             this.pos += MOVE_DISTANCE;
         }
     }
+
 }
