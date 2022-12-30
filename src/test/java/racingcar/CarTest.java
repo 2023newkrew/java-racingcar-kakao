@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     private final int INITIAL_DISTANCE = 1;
+
     @Test
     @DisplayName("Car의 기본 위치는 1이다")
     void constructorTest() {
@@ -20,20 +21,23 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("0에서 9 사이 임의의 숫자를 뽑는다")
-    void pickRandomNumber() {
+    @DisplayName("차가 이동에 성공하는 경우 위치값은 1 증가한다")
+    void move_success() {
         Car car = new Car("car1");
-        assertThat(car.pickRandomNumber()).isBetween(0, 9);
+        int beforeDistance = car.getPosition();
+        car.move(() -> true);
+        int afterDistance = car.getPosition();
+        assertThat(afterDistance).isEqualTo(beforeDistance + 1);
     }
 
     @Test
-    @DisplayName("차가 이동하는 경우 위치값은 0 또는 1만큼 증가한다")
-    void move() {
+    @DisplayName("차가 이동에 실패하는 경우 위치값은 변하지 않는다")
+    void move_fail() {
         Car car = new Car("car1");
         int beforeDistance = car.getPosition();
-        car.move();
+        car.move(() -> false);
         int afterDistance = car.getPosition();
-        assertThat(afterDistance).isBetween(beforeDistance, beforeDistance + 1);
+        assertThat(afterDistance).isEqualTo(beforeDistance);
     }
 
     @Test

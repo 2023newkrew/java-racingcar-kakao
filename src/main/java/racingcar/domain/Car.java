@@ -19,14 +19,10 @@ public class Car {
         return position;
     }
 
-    public void move() {
-        if (pickRandomNumber() >= 4) {
+    public void move(Movable movable) {
+        if (movable.isMovable()) {
             position++;
         }
-    }
-
-    public int pickRandomNumber() {
-        return new Random().nextInt(10);
     }
 
     @Override

@@ -60,8 +60,8 @@ public class GameTest {
         cars.add(new Car("car1"));
         cars.add(new Car("car2"));
 
-        while(cars.get(0).getPosition() < 3) {
-            cars.get(0).move();
+        for (int i = 0; i < 2; i++) {
+            cars.get(0).move(() -> true);
         }
         GameInfo gameInfo = new GameInfo(cars, 0);
         int maxPosition = game.getMaxPosition(gameInfo);
@@ -75,8 +75,8 @@ public class GameTest {
         cars.add(new Car("car1"));
         cars.add(new Car("car2"));
 
-        while(cars.get(0).getPosition() < 3) {
-            cars.get(0).move();
+        for (int i = 0; i < 2; i++) {
+            cars.get(0).move(() -> true);
         }
 
         GameInfo gameInfo = new GameInfo(cars, 0);
@@ -96,11 +96,11 @@ public class GameTest {
         cars.add(new Car("car2"));
         cars.add(new Car("car3"));
 
-        while(cars.get(0).getPosition() < 3) {
-            cars.get(0).move();
+        for (int i = 0; i < 2; i++) {
+            cars.get(0).move(() -> true);
         }
-        while(cars.get(1).getPosition() < 3) {
-            cars.get(1).move();
+        for (int i = 0; i < 2; i++) {
+            cars.get(1).move(() -> true);
         }
 
         GameInfo gameInfo = new GameInfo(cars, 0);
@@ -112,5 +112,11 @@ public class GameTest {
         assertThat(winners.get(1).getName()).isEqualTo("car2");
         assertThat(winners.get(0).getPosition()).isEqualTo(3);
         assertThat(winners.get(1).getPosition()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("0에서 9 사이의 임의의 정수를 뽑는다")
+    void pickRandomNumber() {
+        assertThat(game.pickRandomNumber()).isBetween(0, 9);
     }
 }
