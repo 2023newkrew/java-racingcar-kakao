@@ -8,14 +8,16 @@
  */
 package racingcar.domain;
 
+import racingcar.dto.RoundResultDto;
+import racingcar.dto.WinnerDto;
 import racingcar.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
-    private List<Car> cars;
-    private int roundNum;
+    private final List<Car> cars;
+    private final int roundNum;
     private int currentRoundNum;
 
     public Racing(List<String> carNames, int roundNum) {
@@ -35,15 +37,11 @@ public class Racing {
         currentRoundNum++;
     }
 
-    public List<Car> getRoundResult() { //정보를 보내는 부분
-        List<Car> result = new ArrayList<>();
-        for (Car car : cars) {
-            result.add(car);
-        }
-        return result;
+    public RoundResultDto returnCarState() {
+        return new RoundResultDto(cars);
     }
 
-    public List<String> getWinner() { //정보를 보내는 부분
+    public WinnerDto returnWinner() {
         List<String> winners = new ArrayList<>();
         int maxPosition = 0;
         for (Car car : cars) {
@@ -54,7 +52,7 @@ public class Racing {
                 winners.add(car.getName());
             }
         }
-        return winners;
+        return new WinnerDto(winners);
     }
 
     public List<Car> getCars() {
