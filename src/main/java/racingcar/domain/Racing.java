@@ -29,7 +29,7 @@ public class Racing {
         currentRoundNum = 0;
     }
 
-    public void round() {
+    public void round() { //한 라운드를 진행한다. 즉, 모든 차에 대해 전진 혹은 정지를 진행한다
         for (Car car : cars) {
             int random = Utils.getRandomNumber();
             car.move(random);
@@ -37,11 +37,11 @@ public class Racing {
         currentRoundNum++;
     }
 
-    public RoundResultDto returnCarState() {
+    public RoundResultDto returnCarState() { //현재 자동차의 상태를 반환한다
         return new RoundResultDto(cars);
     }
 
-    public WinnerDto returnWinners() {
+    public WinnerDto returnWinners() { //게임의 승자를 출력한다
         List<String> winners = new ArrayList<>();
         int maxPosition = getMaxPosition();
         for (Car car : cars) {
@@ -50,7 +50,7 @@ public class Racing {
         return new WinnerDto(winners);
     }
 
-    private int getMaxPosition() {
+    private int getMaxPosition() { //returnWinners를 위한 서브루틴1
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(car.getPosition(), maxPosition);
@@ -58,7 +58,7 @@ public class Racing {
         return maxPosition;
     }
 
-    private void addWinner(List<String> winners, Car car, int maxPosition) {
+    private void addWinner(List<String> winners, Car car, int maxPosition) { //returnWinners를 위한 서브루틴2
         if (car.getPosition() == maxPosition) {
             winners.add(car.getName());
         }
@@ -68,7 +68,7 @@ public class Racing {
         return cars;
     }
 
-    public boolean isEnd() {
+    public boolean isEnd() { //게임이 종료되었는지 반환한다
         return currentRoundNum == roundNum;
     }
 
