@@ -2,28 +2,31 @@ package stringaccumulator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringSplitter {
 
     private static final List<String> DEFAULT_SEPARATORS = List.of(",", ":");
-    private static final String PREFIX = "//";
-    private static final String SUFFIX = "\n";
+    static final String PREFIX = "//";
+    static final String SUFFIX = "\n";
     private static final int PREFIX_LENGTH = PREFIX.length();
     private static final int SUFFIX_LENGTH = SUFFIX.length();
 
-    List<String> separators;
+    private final List<String> separators;
+
+    private StringSplitter(List<String> separators) {
+        this.separators = separators;
+    }
 
     public static StringSplitter from(String separatorFormat) {
-        return new StringSplitter(separatorFormat);
+        if (separatorFormat == null) {
+            return new StringSplitter(DEFAULT_SEPARATORS);
+        }
+        checkFormatValidation(separatorFormat);
+        return new StringSplitter(addCustomSeparator(separatorFormat));
     }
 
-    private StringSplitter(String separatorFormat) {
-        separators = new ArrayList<>(DEFAULT_SEPARATORS);
-        if (separatorFormat == null)
-            return;
-        checkFormatValidation(separatorFormat);
-        addCustomSeparator(separatorFormat);
-    }
 
     private static void checkFormatValidation(String separatorFormat) {
         if (isInvalidFormat(separatorFormat)) {
@@ -35,19 +38,33 @@ public class StringSplitter {
         return !separatorFormat.startsWith(PREFIX) || !separatorFormat.endsWith(SUFFIX);
     }
 
-    private void addCustomSeparator(String separatorFormat) {
+    private static List<String> addCustomSeparator(String separatorFormat) {
         int lengthWithoutSuffix = separatorFormat.length() - SUFFIX_LENGTH;
         String customSeparator = separatorFormat.substring(PREFIX_LENGTH, lengthWithoutSuffix);
-        if (!customSeparator.isEmpty())
-            separators.add(0, customSeparator);
+        if (!customSeparator.isEmpty()) {
+            return getSeparatorsWithCustom(customSeparator);
+        }
+        return DEFAULT_SEPARATORS;
     }
 
-    public boolean contains(String separator) {
+    private static List<String> getSeparatorsWithCustom(String customSeparator) {
+        List<String> separatorsWithCustomSeparator = new ArrayList<>(DEFAULT_SEPARATORS);
+        separatorsWithCustomSeparator.add(0, customSeparator);
+        return List.copyOf(separatorsWithCustomSeparator);
+    }
+
+    boolean contains(String separator) {
         return separators.contains(separator);
     }
 
     public List<String> split(String content) {
-        String splitRegex = String.join("|", separators);
+        String splitRegex = getSplitRegex();
         return List.of(content.split(splitRegex));
+    }
+
+    private String getSplitRegex() {
+        return separators.stream()
+                .map(Pattern::quote)
+                .collect(Collectors.joining("|"));
     }
 }

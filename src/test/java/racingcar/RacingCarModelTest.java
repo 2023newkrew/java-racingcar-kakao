@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -46,28 +47,27 @@ class RacingCarModelTest {
 
         @ParameterizedTest
         @MethodSource
-        void should_throwException_when_givenCars(List<Car> cars) {
+        void should_throwException_when_givenInvalidCars(List<Car> cars) {
             assertThatThrownBy(() -> RacingCarModel.from(cars))
                     .isInstanceOf(RuntimeException.class);
         }
 
-        Stream<Arguments> should_throwException_when_givenCars() {
-            Engine engine = Engine.defaultEngine;
+        Stream<Arguments> should_throwException_when_givenInvalidCars() {
+            Engine engine = Engine.getDefaultEngine();
+            List<Car> emptyCars = List.of();
+            List<Car> duplicateCars = List.of(Car.of("abc", engine), Car.of("abc", engine));
             return Stream.of(
                     Arguments.of((Object) null),
-                    Arguments.of(List.of()),
-                    Arguments.of(
-                            List.of(Car.from("abc", engine),
-                                    Car.from("abc", engine))
-                    ));
+                    Arguments.of(emptyCars),
+                    Arguments.of(duplicateCars));
         }
 
         @Test
         void should_returnRacingCarModel_when_givenValidCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             List<Car> cars = List.of(
-                    Car.from("abc", engine),
-                    Car.from("abcd", engine)
+                    Car.of("abc", engine),
+                    Car.of("abcd", engine)
             );
             RacingCarModel model = RacingCarModel.from(cars);
             assertThat(model).isNotNull();
@@ -83,33 +83,46 @@ class RacingCarModelTest {
         void should_returnCarInfos_when_givenCars(List<Car> cars, List<CarInfo> carInfos) {
             RacingCarModel model = RacingCarModel.from(cars);
             List<CarInfo> winners = model.getWinners();
-            assertThatList(winners).isEqualTo(carInfos);
+            assertThatList(getCarNames(winners)).isEqualTo(getCarNames(carInfos));
+            assertThatList(getCarPositions(winners)).isEqualTo(getCarPositions(carInfos));
+        }
+
+        private List<String> getCarNames(List<CarInfo> winners) {
+            return winners.stream()
+                    .map(CarInfo::getName)
+                    .collect(Collectors.toList());
+        }
+
+        private List<Integer> getCarPositions(List<CarInfo> winners) {
+            return winners.stream()
+                    .map(CarInfo::getPosition)
+                    .collect(Collectors.toList());
         }
 
         Stream<Arguments> should_returnCarInfos_when_givenCars() {
-            Engine engine = Engine.defaultEngine;
+            Engine engine = Engine.getDefaultEngine();
             return Stream.of(
                     Arguments.of(
                             List.of(
-                                    Car.from(CarInfo.from("car1", 1), engine),
-                                    Car.from(CarInfo.from("car2", 2), engine),
-                                    Car.from(CarInfo.from("car3", 3), engine)),
+                                    Car.of(CarInfo.of("car1", 1), engine),
+                                    Car.of(CarInfo.of("car2", 2), engine),
+                                    Car.of(CarInfo.of("car3", 3), engine)),
                             List.of(
-                                    CarInfo.from("car3", 3))),
+                                    CarInfo.of("car3", 3))),
                     Arguments.of(
                             List.of(
-                                    Car.from(CarInfo.from("car1", 1), engine),
-                                    Car.from(CarInfo.from("car2", 1), engine),
-                                    Car.from(CarInfo.from("car3", 1), engine)),
+                                    Car.of(CarInfo.of("car1", 1), engine),
+                                    Car.of(CarInfo.of("car2", 1), engine),
+                                    Car.of(CarInfo.of("car3", 1), engine)),
                             List.of(
-                                    CarInfo.from("car1", 1),
-                                    CarInfo.from("car2", 1),
-                                    CarInfo.from("car3", 1))),
+                                    CarInfo.of("car1", 1),
+                                    CarInfo.of("car2", 1),
+                                    CarInfo.of("car3", 1))),
                     Arguments.of(
                             List.of(
-                                    Car.from(CarInfo.from("car1", 1), engine)),
+                                    Car.of(CarInfo.of("car1", 1), engine)),
                             List.of(
-                                    CarInfo.from("car1", 1))));
+                                    CarInfo.of("car1", 1))));
         }
     }
 }

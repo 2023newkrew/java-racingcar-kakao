@@ -5,23 +5,24 @@ import java.util.Objects;
 public class Car {
     public static final int MIN_CAR_NAME_LENGTH = 1;
     public static final int MAX_CAR_NAME_LENGTH = 5;
-    
+
     private static final int POWER_THRESHOLD = 4;
 
     private final String name;
     private int position;
     private final Engine engine;
 
-    public static Car from(String name, Engine engine) {
-        return Car.from(CarInfo.from(name, 0), engine);
+    public static Car of(String name, Engine engine) {
+        return Car.of(CarInfo.of(name, 0), engine);
     }
 
-    public static Car from(CarInfo info, Engine engine) {
-        return new Car(info, engine);
+    public static Car of(CarInfo info, Engine engine) {
+        String validCarName = getValidCarName(info.getName());
+        return new Car(CarInfo.of(validCarName, info.getPosition()), engine);
     }
 
     private Car(CarInfo carInfo, Engine engine) {
-        this.name = getValidCarName(carInfo.getName());
+        this.name = carInfo.getName();
         this.position = carInfo.getPosition();
         this.engine = engine;
     }
@@ -51,6 +52,6 @@ public class Car {
     }
 
     public CarInfo getCarInfo() {
-        return CarInfo.from(name, position);
+        return CarInfo.of(name, position);
     }
 }

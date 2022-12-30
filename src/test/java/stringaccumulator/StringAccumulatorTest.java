@@ -10,8 +10,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
+import static stringaccumulator.StringSplitter.PREFIX;
+import static stringaccumulator.StringSplitter.SUFFIX;
 
 class StringAccumulatorTest {
 
@@ -20,16 +21,16 @@ class StringAccumulatorTest {
     class from {
         @ParameterizedTest
         @MethodSource
-        void should_returnStringAccumulator_when_validString(String input, String separator, String content) {
+        void should_returnStringAccumulator_when_validString(String input, StringAccumulator expectedAccumulator) {
             StringAccumulator accumulator = StringAccumulator.from(input);
-            assertThat(accumulator.equalsTo(separator, content)).isTrue();
+            assertThat(accumulator).isEqualTo(expectedAccumulator);
         }
 
         Stream<Arguments> should_returnStringAccumulator_when_validString() {
             return Stream.of(
-                    Arguments.of("//.\n123", "//.\n", "123"),
-                    Arguments.of("//\n//\n", "//\n", "//\n"),
-                    Arguments.of("////\n\n", "////\n", "\n")
+                    Arguments.of("//.\n123", new StringAccumulator("//.\n", "123", StringSplitter.from("//.\n"))),
+                    Arguments.of("//\n//\n", new StringAccumulator("//\n", "//\n", StringSplitter.from("//\n"))),
+                    Arguments.of("////\n\n", new StringAccumulator("////\n", "\n", StringSplitter.from("////\n")))
             );
         }
 
@@ -74,6 +75,26 @@ class StringAccumulatorTest {
                     Arguments.of(StringAccumulator.from(String.join(",", List.of("1 2", "3")))),
                     Arguments.of(StringAccumulator.from(String.join(",", List.of("asd")))),
                     Arguments.of(StringAccumulator.from(String.join(",", List.of(String.valueOf(Long.MAX_VALUE)) + "123")))
+            );
+        }
+    }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    class parseContentBySeparator {
+        @ParameterizedTest
+        @MethodSource
+        void should_returnSplitTokens_when_validSeparator(String separator, String content, List<String> expected) {
+            List<String> result = StringAccumulator.parseContentBySplitter(StringSplitter.from(separator), content);
+            assertThatList(result).isEqualTo(expected);
+        }
+
+        Stream<Arguments> should_returnSplitTokens_when_validSeparator() {
+            return Stream.of(
+                    Arguments.of(PREFIX + "." + SUFFIX, String.join(".", List.of("1", "2", "3")), List.of("1", "2", "3")),
+                    Arguments.of(PREFIX + "$" + SUFFIX, String.join("$", List.of("1", " 2", " 3")), List.of("1", "2", "3")),
+                    Arguments.of(PREFIX + "|" + SUFFIX, String.join("|", List.of("1", "2 ", "3 ")), List.of("1", "2", "3")),
+                    Arguments.of(PREFIX + "?" + SUFFIX, String.join("?", List.of("1", " ", "2", "3")), List.of("1", "2", "3"))
             );
         }
     }

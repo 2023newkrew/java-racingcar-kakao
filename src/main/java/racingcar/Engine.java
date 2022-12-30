@@ -1,19 +1,26 @@
 package racingcar;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Engine {
-    public static final Engine defaultEngine = new Engine(10);
-
     private static final Random RANDOM = new Random();
+    private static final int MAX_POWER = 10;
+    private static Engine defaultEngine;
 
-    private final int maxPower;
+    public static Engine getDefaultEngine() {
+        if (Objects.isNull(defaultEngine)) {
+            synchronized (Engine.class) {
+                defaultEngine = new Engine();
+            }
+        }
+        return defaultEngine;
+    }
 
-    private Engine(int maxPower) {
-        this.maxPower = maxPower;
+    private Engine() {
     }
 
     public int getPower() {
-        return RANDOM.nextInt(maxPower);
+        return RANDOM.nextInt(MAX_POWER);
     }
 }
