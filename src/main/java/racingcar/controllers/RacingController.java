@@ -1,19 +1,19 @@
-package racingcar.engine;
+package racingcar.controllers;
 
 import java.util.List;
-import racingcar.Console;
-import racingcar.NumberGenerator;
-import racingcar.engine.domain.Car;
-import racingcar.engine.domain.RacingGame;
-import racingcar.engine.view.RacingView;
+import racingcar.views.Console;
+import racingcar.models.NumberGenerator;
+import racingcar.models.Car;
+import racingcar.models.RacingGame;
+import racingcar.views.RacingView;
 
-public class RacingMain {
+public class RacingController {
 
     private final RacingView racingView;
 
     private final NumberGenerator numberGenerator;
 
-    public RacingMain(Console console, NumberGenerator numberGenerator) {
+    public RacingController(Console console, NumberGenerator numberGenerator) {
         this.racingView = new RacingView(console);
         this.numberGenerator = numberGenerator;
     }

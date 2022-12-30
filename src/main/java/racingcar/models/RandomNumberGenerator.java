@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.models;
 
 import java.util.Random;
 

@@ -1,11 +1,12 @@
-package racingcar.engine.view;
+package racingcar.views;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
-import racingcar.Console;
-import racingcar.engine.domain.Car;
+import java.util.stream.Collectors;
+import racingcar.utils.InputParser;
+import racingcar.models.Car;
 
 public class RacingView {
     private final Console console;
@@ -35,11 +36,7 @@ public class RacingView {
         return () -> {
             String input = console.input("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             String[] carNames = InputParser.splitByComma(input);
-            List<Car> cars = new ArrayList<>();
-            for (String carName : carNames) {
-                cars.add(new Car(carName));
-            }
-            return cars;
+            return Arrays.stream(carNames).map(Car::new).collect(Collectors.toList());
         };
     }
 

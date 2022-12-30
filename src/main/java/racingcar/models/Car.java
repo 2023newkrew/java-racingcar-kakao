@@ -1,6 +1,5 @@
-package racingcar.engine.domain;
+package racingcar.models;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Car {

@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.views;
 
 public interface Console {
     String input(String message);

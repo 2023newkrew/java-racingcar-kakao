@@ -1,9 +1,7 @@
-package racingcar.engine.domain;
+package racingcar.models;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.NumberGenerator;
 
 public class RacingGame {
     private final List<Car> cars;
