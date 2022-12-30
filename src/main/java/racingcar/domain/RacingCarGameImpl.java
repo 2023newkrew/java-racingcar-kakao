@@ -37,9 +37,10 @@ public class RacingCarGameImpl implements RacingCarGame {
     }
 
     @Override
-    public void race(int times) {
+    public void race() {
         List<Integer> movingNumbers = new ArrayList<>();
-        for(int i=0;i<times;i++){
+        int carsSize = getCarsSize();
+        for (int i = 0; i < carsSize; i++) {
             movingNumbers.add(randomNumberGenerator.generator());
         }
 

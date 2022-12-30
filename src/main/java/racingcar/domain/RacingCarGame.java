@@ -5,7 +5,7 @@ import java.util.List;
 public interface RacingCarGame {
 
     public Cars getCars();
-    void race(int times);
+    void race();
 
     public Cars createCars(String[] carNames);
 

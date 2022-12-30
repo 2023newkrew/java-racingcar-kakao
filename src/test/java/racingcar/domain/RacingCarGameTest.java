@@ -71,21 +71,21 @@ public class RacingCarGameTest {
 
 
     @Test
-    public void runTest(){
+    public void raceTest(){
         String[] carNames = new String[]{"pobi", "crong","honux"};
         racingCarGame = new RacingCarGameImpl(appConfig, carNames);
 
-        racingCarGame.race(5);
+        racingCarGame.race();
 
         List<Car> resultCars = racingCarGame.getCars()
                 .getCars();
 
         assertThat(resultCars.get(0)
-                .getPosition()).isEqualTo(2);
+                .getPosition()).isEqualTo(0);
         assertThat(resultCars.get(1)
-                .getPosition()).isEqualTo(3);
+                .getPosition()).isEqualTo(1);
         assertThat(resultCars.get(2)
-                .getPosition()).isEqualTo(2);
+                .getPosition()).isEqualTo(0);
 
     }
 //    @Test
