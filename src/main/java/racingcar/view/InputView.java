@@ -1,7 +1,3 @@
-/**
- * 사용자의 입력을 받아 검증하고, 형태를 바꿔서 반환한다
- * 게임의 결과를 출력한다
- */
 package racingcar.view;
 
 import racingcar.dto.InputDto;
@@ -13,7 +9,7 @@ import java.util.List;
 
 public class InputView {
 
-    private List<String> inputCarNames() {
+    private static List<String> inputCarNames() { //사용자의 입력을 받는다(자동차 이름)
         Scanner sc = new Scanner(System.in);
         String nameInput;
         do {
@@ -23,7 +19,7 @@ public class InputView {
         return Parser.stringArrayToStringList(nameInput.split(","));
     }
 
-    private int inputRoundNum() {
+    private static int inputRoundNum() { //사용자의 입력을 받는다(라운드 횟수)
         Scanner sc = new Scanner(System.in);
         String roundNumInput;
         do {
@@ -33,7 +29,7 @@ public class InputView {
         return Parser.stringToInt(roundNumInput);
     }
 
-    public InputDto creatInput() {
+    public static InputDto creatInput() { //입력받는 메서드를 호출하고, dto를 리턴한다
         List<String> carNames = inputCarNames();
         int roundNum = inputRoundNum();
         return new InputDto(carNames, roundNum);
