@@ -49,4 +49,13 @@ public class CarTest {
         assertThat(car.distance()).isEqualTo(start + 1);
     }
 
+    @Test
+    @DisplayName("차량 정지")
+    void stop(){
+        Car car = new Car("pobi");
+        int start = car.distance();
+        car.proceed(4);
+        assertThat(car.distance()).isEqualTo(start);
+    }
+
 }
