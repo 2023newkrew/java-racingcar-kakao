@@ -34,6 +34,7 @@ public class RaceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("Max position is the biggest position in the list of cars")
     @Test
     void raceMaxPositionTest() {
         Race race = new Race("pobi,crong,honux");
@@ -45,8 +46,9 @@ public class RaceTest {
         assertEquals(race.raceMaxPosition(), 4);
     }
 
+    @DisplayName("Return names of cars that position is same with the max position")
     @Test
-    void raceWinnerTest(){
+    void raceWinnerTest() {
         Race race = new Race("pobi,crong,honux");
 
         race.getCars().get(0).move();
