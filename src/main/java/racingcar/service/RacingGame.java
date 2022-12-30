@@ -21,9 +21,7 @@ public class RacingGame {
         if (isFinished()) {
             throw new IllegalStateException("모든 라운드가 종료되었습니다.");
         }
-        for (RacingCar racingCar : racingCars) {
-            racingCar.move(randomMovementManager.makeMovementDecision());
-        }
+        racingCars.forEach(racingCar -> racingCar.move(randomMovementManager.makeMovementDecision()));
         remainingRounds--;
         return racingCars;
     }
