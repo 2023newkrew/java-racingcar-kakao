@@ -1,11 +1,6 @@
 package racingcar.domain;
 
-import java.util.Random;
-
 public class Car {
-    public static final int MAXIMUM_POWER = 10;
-    public static final int FORWARD_THRESHOLD = 4;
-
     private final String name;
     private int distance;
 
@@ -19,23 +14,14 @@ public class Car {
         this.distance = 0;
     }
 
-    public void forward() {
-        forward(getRandomNumber());
-    }
-
-    public void forward(int power) {
-        if(power >= FORWARD_THRESHOLD)
+    public void forward(MovingStrategy movingStrategy) {
+        if(movingStrategy.getMoveState()==MoveState.FORWARD)
             distance++;
-    }
-
-    protected int getRandomNumber(){
-        return new Random().nextInt(MAXIMUM_POWER);
     }
 
     public int getDistance(){
         return this.distance;
     }
-
 
     public String getName() {
         return name;
