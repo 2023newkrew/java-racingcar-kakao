@@ -2,7 +2,6 @@ package racingcar;
 
 import racingcar.domain.Racing;
 import racingcar.dto.InputDto;
-import racingcar.dto.RoundResultDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -19,8 +18,7 @@ public class Controller {
     }
 
     private static void printRoundResult(Racing racing) { //라운드 진행 후, 결과를 출력한다
-        RoundResultDto roundResultDto = racing.returnCarState();
-        OutputView.printRoundResult(roundResultDto.getCarState());
+        OutputView.printRoundResult(racing.returnCarState().getCarState());
     }
 
     private static void printWinnerResult(Racing racing) { //우승자를 출력한다
