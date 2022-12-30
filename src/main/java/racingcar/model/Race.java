@@ -1,7 +1,4 @@
-package racingcar;
-
-import racingcar.model.Car;
-import racingcar.model.RandomMoveNumber;
+package racingcar.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
