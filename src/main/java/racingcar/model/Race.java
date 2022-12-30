@@ -8,7 +8,7 @@ public class Race {
     private static final int MOVE_BOUNDARY = 4;
 
     private final List<Car> cars = new ArrayList<>();
-    private final int turn;
+    private int turn;
 
     public Race(String nameStr, int turn) {
         if (nameStr == null || nameStr.isBlank()) {
@@ -75,5 +75,14 @@ public class Race {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public boolean isEnd() {
+        if (turn == 0) {
+            return true;
+        }
+
+        turn--;
+        return false;
     }
 }
