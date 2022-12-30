@@ -32,16 +32,16 @@ public class CarTest {
                 .isInstanceOf((IllegalArgumentException.class));
     }
 
-    @ValueSource(ints = {0, 3, 2, 3})
+    @ValueSource(ints = {0, 1, 2, 3})
     @ParameterizedTest
-    void 자동차가_움직이지_않는다(Integer number) {
+    void 숫자가_4보다_작으면_움직이지_않는다(Integer number) {
         car.move(number);
         assertThat(car.getDistance()).isEqualTo(0);
     }
 
-    @ValueSource(ints = {4, 5, 8})
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @ParameterizedTest
-    void 자동차가_움직인다(Integer number) {
+    void 숫자가_4_이상이면_움직인다(Integer number) {
         car.move(number);
         assertThat(car.getDistance()).isEqualTo(1);
     }
