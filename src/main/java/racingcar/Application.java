@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.Random;
+import racingcar.controller.RacingSimulator;
 import racingcar.model.NumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
