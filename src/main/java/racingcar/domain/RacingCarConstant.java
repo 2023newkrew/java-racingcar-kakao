@@ -6,4 +6,5 @@ public interface RacingCarConstant {
     int CONDITION_LOWER_BOUND =0;
     int CONDITION_UPPER_BOUND =9;
     int MAXIMUM_CAR_NAME = 5;
+    int BASIC_DIST = 1;
 }

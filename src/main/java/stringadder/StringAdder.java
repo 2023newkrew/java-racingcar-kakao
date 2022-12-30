@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import stringutils.StringUtils;
 
 public class StringAdder {
 
     public static final String PRIMITIVE_DELIMITER = ",|;";
 
     public int add(String text) {
-        if (isNullOrBlank(text)) {
+        if (StringUtils.checkNullOrBlankReturnBoolean(text)) {
             return StringAdderConstant.IS_NULL_OR_BLANK;
         }
         List<Integer> numbers = stringToInts(split(text));
@@ -31,10 +32,6 @@ public class StringAdder {
 
     }
 
-    public boolean isNullOrBlank(String text) {
-        return text == null || text.isBlank();
-    }
-
     public String[] split(String text) {
         DelimiterAndText delimiterAndText = getDelimiterAndText(text);
         return delimiterAndText.getText().split(delimiterAndText.getDelimiter());
@@ -47,7 +44,7 @@ public class StringAdder {
     }
 
     private Integer parseInt(String number) {
-        if (isNullOrBlank(number)) {
+        if (StringUtils.checkNullOrBlankReturnBoolean(number)) {
             return 0;
         }
         try {

@@ -80,7 +80,6 @@ public class RacingCarGameTest {
     public void getCarResultsTest() {
         Car car1 = new RacingCar("pobi");
         Car car2 = new RacingCar("crong");
-
         racingCarGame.add(car1, car2);
         run(5);
 
