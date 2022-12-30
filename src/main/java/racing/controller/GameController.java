@@ -21,7 +21,7 @@ public class GameController {
 
             game = new Game(carNames);
             outputView.printResultIntro();
-            playMultipleTurns(repeat);
+            playGameMultipleTurns(repeat);
             outputView.printWinner(game.getWinners());
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -29,14 +29,11 @@ public class GameController {
         }
     }
 
-    private void playMultipleTurns(int repeat) {
+    private void playGameMultipleTurns(int repeat) {
         for (int i = 0; i < repeat; i++) {
-            playSingleTurn();
+            game.play();
+            outputView.printResult(game.getStatus());
         }
     }
 
-    private void playSingleTurn() {
-        game.play();
-        outputView.printResult(game.getStatus());
-    }
 }
