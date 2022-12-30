@@ -14,6 +14,7 @@ public class IOService {
     private final ValidationService validationService = new ValidationService();
     private final static String COMMA = ",";
     private final static String SPACE = " ";
+    final static String NEW_LINE = "\n";
 
     public IOService() {
         sc = new Scanner(System.in);
@@ -43,13 +44,17 @@ public class IOService {
         return trialNumber;
     }
 
-    public void printInitialGameStatus(CarService carService) {
+    public void printInitialGameStatus(List<Car> cars) {
         System.out.println("실행 결과");
-        printGameResult(carService);
+        printGameResult(cars);
     }
 
-    public void printGameResult(CarService carService) {
-        System.out.println(carService);
+    public void printGameResult(List<Car> cars) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Car car : cars) {
+            stringBuilder.append(car.toString() + NEW_LINE);
+        }
+        System.out.println(stringBuilder.toString());
     }
 
     public void printWinners(List<Car> winners) {

@@ -32,13 +32,19 @@ public class RacingCarGame {
     }
 
     private void playRacingGame(int trialNumber) {
-        ioService.printInitialGameStatus(carService);
+        ioService.printInitialGameStatus(carService.getCarList());
         for (int round = 0; round < trialNumber; round++) {
             carService.moveAll();
-            ioService.printGameResult(carService);
+            ioService.printGameResult(carService.getCarList());
         }
     }
 
+    /*
+    private void playRacingGame_v2(int trialNumber) {
+        ioService.printInitialGameStatus(carService.getCarList());
+        carService.moveAllWithTrial(trialNumber);
+    }
+    */
     private void printFinalResult() {
         ioService.printWinners(carService.getWinners());
     }

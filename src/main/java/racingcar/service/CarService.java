@@ -4,6 +4,7 @@ import racingcar.model.Car;
 import racingcar.util.RandomUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,7 +12,6 @@ import java.util.List;
  */
 public class CarService {
     private final List<Car> cars;
-    final static String NEW_LINE = "\n";
 
     public CarService() {
         cars = new ArrayList<>();
@@ -28,6 +28,15 @@ public class CarService {
             car.move(RandomUtil.generateRandom());
         }
     }
+    /*
+    public void moveAllWithTrial(int trialNumber) {
+        IOService ioService = new IOService();
+        for (int round = 0; round < trialNumber; round++) {
+            moveAll();
+            ioService.printGameResult(cars);
+        }
+    }
+    */
 
     /**
      * 게임이 끝난 후 max position을 확인하고 그 max position에 있는 car들을 List로 반환
@@ -54,12 +63,7 @@ public class CarService {
                 .getAsInt();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.toString() + NEW_LINE);
-        }
-        return stringBuilder.toString();
+    public final List<Car> getCarList() {
+        return Collections.unmodifiableList(cars);
     }
 }
