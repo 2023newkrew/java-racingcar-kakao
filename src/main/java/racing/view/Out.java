@@ -1,6 +1,7 @@
 package racing.view;
 
 import racing.domain.Car;
+import racing.domain.CarList;
 
 import java.util.List;
 
@@ -31,6 +32,8 @@ public class Out {
         return car.getName() + " : " + "-".repeat(car.getPosition());
     }
 
+    public static void printResult(CarList carList) {
+        Car[] cars = carList.getCars();
         for (int index = 0; index < cars.length; index++) {
             printText(getLog(cars[index]));
         }

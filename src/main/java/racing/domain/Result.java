@@ -14,13 +14,13 @@ public class Result {
         return winners;
     }
 
-    public List<String> getWinner(Car[] cars) {
+    public List<String> getWinner(CarList carList) {
         List<String> winners = new ArrayList<>();
-        int maxPosition = Arrays.stream(cars)
+        int maxPosition = Arrays.stream(carList.getCars())
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-        return getCarsWithPosition(cars, maxPosition);
+        return getCarsWithPosition(carList.getCars(), maxPosition);
     }
 
 }

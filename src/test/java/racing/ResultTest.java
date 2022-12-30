@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racing.domain.Car;
+import racing.domain.CarList;
 import racing.domain.Result;
 import java.util.Arrays;
 
@@ -25,7 +26,8 @@ public class ResultTest {
         Car carB = new Car(4, "crong");
         Car carC = new Car(5, "honux");
         Car[] cars = new Car[] {carA, carB, carC};
-        assertThat(result.getWinner(cars)).isEqualTo(Arrays.asList("pobi", "honux"));
+        CarList carList = new CarList(cars);
+        assertThat(result.getWinner(carList)).isEqualTo(Arrays.asList("pobi", "honux"));
     }
 
 }
