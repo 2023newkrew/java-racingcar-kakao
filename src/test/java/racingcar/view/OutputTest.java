@@ -52,7 +52,7 @@ public class OutputTest {
 
     @DisplayName("Print present race status")
     @Test
-    void printRaceStatus() {
+    void printRaceStatusTest() {
         Race race = new Race("test1,test2,test3");
 
         OutputStream out = new ByteArrayOutputStream();
@@ -64,5 +64,19 @@ public class OutputTest {
         assertEquals(actual, "test1 : -\n" +
                 "test2 : -\n" +
                 "test3 : -\n");
+    }
+
+    @DisplayName("Print winner of race")
+    @Test
+    void printRaceWinnerTest() {
+        Race race = new Race("test1,test2,test3");
+
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        Output.printRaceWinner(race);
+
+        String actual = out.toString();
+        assertEquals(actual, "test1, test2, test3가 최종 우승했습니다.\n");
     }
 }

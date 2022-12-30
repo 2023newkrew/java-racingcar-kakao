@@ -26,4 +26,12 @@ public class Output {
             Output.printCarStatus(car);
         }
     }
+
+    public static void printRaceWinner(Race race) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(race.raceWinner() + "가 최종 우승했습니다.");
+
+        System.out.println(sb);
+    }
 }
