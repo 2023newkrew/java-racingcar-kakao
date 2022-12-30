@@ -1,42 +1,174 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class RacingGameTest {
+class RacingGameTest {
 
+    @DisplayName("차 이름과 플레이할 라운드 횟수를 통해 레이싱 게임을 생성할 수 있다.")
     @Test
     void create_racing_game_test() {
+        // given
         String carNames = "pobi,crong,honux";
         int roundToPlay = 5;
 
-        assertDoesNotThrow(() -> new RacingGame(carNames, roundToPlay, new RandomNumberSelector(0, 10)));
+        // when & then
+        assertDoesNotThrow(() -> new RacingGame(carNames, roundToPlay, new RandomNumberSelector()));
     }
 
+    @DisplayName("플레이 할 라운드 횟수는 음수가 되어서는 안된다.")
+    @Test
+    void validate_round_to_play_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        int invalidRoundToPlay = -2;
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new RacingGame(carNames, invalidRoundToPlay, new RandomNumberSelector()))
+                .withMessage("라운드는 양수여야 합니다.");
+    }
+
+    @DisplayName("RacingGame에서 라운드를 한 차례 진행할 수 있다 - 해당 테스트는 자동차 전진")
+    @Test
+    void move_cars_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        NumberSelector moveNumberSelector = new MoveNumberSelector();
+        RacingGame racingGame = new RacingGame(carNames, 5, moveNumberSelector);
+
+        // when
+        racingGame.proceedRound();
+
+        // then
+        List<Car> cars = racingGame.announceRoundResult();
+        assertThat(cars.get(0).getPosition()).isEqualTo(1);
+        assertThat(cars.get(1).getPosition()).isEqualTo(1);
+        assertThat(cars.get(2).getPosition()).isEqualTo(1);
+    }
+
+    @DisplayName("RacingGame에서 라운드를 한 차례 진행할 수 있다 - 해당 테스트는 자동차 멈춤")
+    @Test
+    void stay_cars_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        NumberSelector stayNumberSelector = new StayNumberSelector();
+        RacingGame racingGame = new RacingGame(carNames, 5, stayNumberSelector);
+
+        // when
+        racingGame.proceedRound();
+
+        // then
+        List<Car> cars = racingGame.announceRoundResult();
+        assertThat(cars.get(0).getPosition()).isEqualTo(0);
+        assertThat(cars.get(1).getPosition()).isEqualTo(0);
+        assertThat(cars.get(2).getPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("RacingGame에서 라운드는 게임이 종료되면 진행될 수 없다.")
+    @Test
+    void cannot_proceed_when_game_ended_test() {
+        // given
+        int roundToPlay = 1;
+        RacingGame racingGame = new RacingGame("joel,red,nell", roundToPlay, new RandomNumberSelector());
+
+        // when
+        racingGame.proceedRound();
+
+        // then
+        assertThatThrownBy(() -> racingGame.proceedRound())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("게임이 종료되었습니다.");
+    }
+
+    @DisplayName("게임에 할당된 모든 라운드가 종료되면 우승자를 확인할 수 있다.")
     @Test
     void check_winners_test() {
+        // given
         String carNames = "pobi,crong,honux";
         int roundToPlay = 2;
 
+        // when
+        RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
+        for (int i = 0; i < roundToPlay; i++) {
+            racingGame.proceedRound();
+        }
+
+        // then
+        List<Car> gameWinnersResult = racingGame.announceWinners();
+        assertThat(gameWinnersResult.get(0).getCarName()).isEqualTo("pobi");
+        assertThat(gameWinnersResult.get(1).getCarName()).isEqualTo("crong");
+        assertThat(gameWinnersResult.get(2).getCarName()).isEqualTo("honux");
+    }
+
+    @DisplayName("게임이 종료되지 않았다면, 우승자를 가려낼 수 없다.")
+    @Test
+    void cannot_announce_winner_if_game_not_ended_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        int roundToPlay = 2;
         RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
 
-        Optional<List<String>> gameWinnersResult0 = racingGame.checkWinners();
-        assertThat(gameWinnersResult0).isEmpty();
+        // when & then
+        assertThatThrownBy(() -> racingGame.announceWinners())
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("아직 게임이 종료되지 않았습니다.");
+    }
 
-        racingGame.proceedGame();
-        Optional<List<String>> gameWinnersResult1 = racingGame.checkWinners();
-        assertThat(gameWinnersResult1).isEmpty();
+    @DisplayName("게임이 진행중이라면, 진행중인 상태임을 확인할 수 있다.")
+    @Test
+    void is_game_playing_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        int roundToPlay = 2;
+        RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
 
-        racingGame.proceedGame();
-        Optional<List<String>> gameWinnersResult2 = racingGame.checkWinners();
-        assertThat(gameWinnersResult2).isPresent();
-        assertThat(gameWinnersResult2.get().get(0)).isEqualTo("pobi");
-        assertThat(gameWinnersResult2.get().get(1)).isEqualTo("crong");
-        assertThat(gameWinnersResult2.get().get(2)).isEqualTo("honux");
+        // when & then
+        boolean gamePlaying = racingGame.isGamePlaying();
+        assertThat(gamePlaying).isTrue();
+    }
+
+    @DisplayName("게임이 종료되었다면, 종료된 상태임을 확인할 수 있다.")
+    @Test
+    void is_game_ended_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        int roundToPlay = 2;
+
+        // when
+        RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
+        racingGame.proceedRound();
+        racingGame.proceedRound();
+
+        // then
+        boolean gameEnded = racingGame.isGameEnded();
+        assertThat(gameEnded).isTrue();
+    }
+
+    @DisplayName("게임의 라운드 진행 결과를 확인할 수 있다.")
+    @Test
+    void announce_round_result_test() {
+        // given
+        String carNames = "pobi,crong,honux";
+        int roundToPlay = 2;
+        RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
+
+        // when
+        racingGame.proceedRound();
+        racingGame.proceedRound();
+
+        // then
+        List<Car> secondRoundResult = racingGame.announceRoundResult();
+        assertThat(secondRoundResult.get(0).getCarName()).isEqualTo("pobi");
+        assertThat(secondRoundResult.get(0).getPosition()).isEqualTo(2);
+        assertThat(secondRoundResult.get(1).getCarName()).isEqualTo("crong");
+        assertThat(secondRoundResult.get(1).getPosition()).isEqualTo(2);
+        assertThat(secondRoundResult.get(2).getCarName()).isEqualTo("honux");
+        assertThat(secondRoundResult.get(2).getPosition()).isEqualTo(2);
     }
 }

@@ -1,10 +1,16 @@
 package racingcar.view;
 
+import racingcar.controller.response.CarRoundResultResponse;
+import racingcar.controller.response.CarWinnerResponse;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class RacingGameView {
+
+    private static final String NEWLINE = "\n";
+    private static final String CAR_NAME_POSITION_SEPARATOR = " : ";
+    private static final String MULTIPLE_WINNERS_SEPARATOR = ", ";
 
     private final Scanner scanner;
 
@@ -18,33 +24,58 @@ public class RacingGameView {
     }
 
     public int receiveRoundToPlay(){
-        System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        try {
+            System.out.println("시도할 회수는 몇회인가요?");
+            String userInput = scanner.nextLine();
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException exception) {
+            System.out.println("숫자를 입력해주세요");
+            return receiveRoundToPlay();
+        }
     }
 
     public void printRoundResultMessage() {
-        System.out.println("\n실행 결과");
+        String resultMessage = NEWLINE + "실행 결과";
+        System.out.println(resultMessage);
     }
 
-    public void printRoundResult(Map<String, Integer> roundResult) {
-        for (Map.Entry<String, Integer> entry : roundResult.entrySet()) {
-            System.out.print(entry.getKey() + " : ");
-            printMoveStatus(entry.getValue());
-            System.out.println();
+    public void printRoundResult(List<CarRoundResultResponse> carRoundResults) {
+        for (CarRoundResultResponse carRoundResult : carRoundResults) {
+            printSingleCarRoundResult(carRoundResult);
         }
         System.out.println();
     }
 
-    private void printMoveStatus(Integer move) {
-        for (int i = 0; i < move; i++) {
-            System.out.print("-");
-        }
+    private void printSingleCarRoundResult(CarRoundResultResponse carRoundResult) {
+        String carRoundResultStringBuilder = carRoundResult.getCarName() +
+                CAR_NAME_POSITION_SEPARATOR +
+                generatePositionStatus(carRoundResult.getPosition()) +
+                NEWLINE;
+        System.out.print(carRoundResultStringBuilder);
     }
 
-    public void printWinners(List<String> winners) {
-        for (int i = 0; i < winners.size() - 1; i++) {
-            System.out.print(winners.get(i) + ", ");
+    private String generatePositionStatus(int position) {
+        return "-".repeat(position);
+    }
+
+    public void printWinners(List<CarWinnerResponse> winners) {
+        String winnerResult = generateWinnerResult(winners);
+        System.out.print(winnerResult);
+    }
+
+    private String generateWinnerResult(List<CarWinnerResponse> winners) {
+        StringBuilder winnerStringBuilder = new StringBuilder();
+        int maxIndex = winners.size() - 1;
+        for (int i = 0; i < maxIndex; i++) {
+            winnerStringBuilder.append(winners.get(i).getCarName());
+            winnerStringBuilder.append(MULTIPLE_WINNERS_SEPARATOR);
         }
-        System.out.print(winners.get(winners.size() - 1) + "가 최종 우승했습니다.");
+        winnerStringBuilder.append(winners.get(maxIndex).getCarName());
+        winnerStringBuilder.append("가 최종 우승했습니다.");
+        return winnerStringBuilder.toString();
+    }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 }

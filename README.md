@@ -1,6 +1,6 @@
 # java-racingcar-kakao
 
-## 1단계 - 자동차 경주 구현
+## 자동차 경주 구현
 
 ### 기능 요구사항
 - 주어진 횟수 동안 n대의 자동차는 전진 or 멈춤 할 수 있다
@@ -49,3 +49,22 @@
     - [x] 게임이 종료되었는지 Referee에게 물어본다
       - [x] 게임이 종료되었다면 Referee에게 게임 우승자를 물어본다
     - [x] Referee에게 각 횟수의 결과를 물어본다
+
+### 리팩터링 중점 사안
+- [x] 생성 조건에 대한 validation을 더 추가하기
+- [x] 리턴 타입을 예상할 수 있는 메서드 네이밍을 작성하기
+- [x] 불필요한 인스턴스 변수를 제거하기 (RandomNumberSelector)
+- [x] 아무런 행위를 하지 않는 메서드 제거
+- [x] Map<Key, Value\> 사용에 대한 재고
+- [x] Optional.isPresent() / Optional.isEmpty() => boolean으로 리팩터링
+- [x] 유지 보수에 용이한 테스트 코드를 고민해보기
+- [x] 유지 보수에 용이한 테스트 코드로 변경해보기
+- [x] View에 알맞지 않은 Input에 대해 다시 입력받는 로직 구현
+- [x] Controller에 DTO를 도입하여 도메인 보호
+- [x] 생성자 주입을 통해 final 처리할 수 있는 인스턴스 변수라면 리팩터링하기
+- [x] MoveThreshold를 자동차가 자체적으로 가지도록 수정
+- [x] 무의미한 Wrapping Method에 대한 사용 재고
+- [x] 매 Round마다 결과를 리턴받아 출력하는 함수를 전달하는 방법 생각해보기
+- [x] StringBuilder/String.repeat() 도입을 통한 View단 IO 최소화
+- [x] DTO로 변환은 Controller Layer에서 하기
+- [x] Domain Layer는 Domain 객체를 리턴하기
