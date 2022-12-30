@@ -19,7 +19,7 @@ public class InputView {
         int tryCount;
         try {
             tryCount = Integer.parseInt(getUserInput());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력하세요");
             return inputCount();
         }
