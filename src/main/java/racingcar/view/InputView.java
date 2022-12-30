@@ -1,5 +1,9 @@
 package racingcar.view;
 
+import static racingcar.view.InputViewErrorMessage.INPUT_NAME_DUPLICATE_EXCEPTION;
+import static racingcar.view.InputViewErrorMessage.INPUT_NAME_LENGTH_EXCEPTION;
+import static racingcar.view.InputViewErrorMessage.INPUT_NAME_NULL_OR_BLANK_ERROR_MESSAGE;
+
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -29,16 +33,16 @@ public class InputView {
 
     private void validate(String name) {
         if (StringUtils.checkNullOrBlankReturnBoolean(name)) {
-            throw new IllegalArgumentException("이름은 널이거나, 공백일수 없습니다.");
+            throw new IllegalArgumentException(INPUT_NAME_NULL_OR_BLANK_ERROR_MESSAGE);
         }
         if (name.length() > MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException("이름은 5글자가 넘을 수 없습니다.");
+            throw new IllegalArgumentException(INPUT_NAME_LENGTH_EXCEPTION);
         }
     }
 
     private void isDuplicate(Set<String> names, String name) {
         if (names.contains(name)) {
-            throw new IllegalArgumentException("중복된 이름은 허용하지 않습니다.");
+            throw new IllegalArgumentException(INPUT_NAME_DUPLICATE_EXCEPTION);
         }
     }
 }
