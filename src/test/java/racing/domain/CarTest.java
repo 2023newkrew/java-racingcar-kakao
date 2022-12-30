@@ -9,6 +9,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racing.dto.CarDTO;
 import racing.movable.RandomlyMovable;
 
 public class CarTest {
@@ -39,7 +40,15 @@ public class CarTest {
     @DisplayName("생성자의 movable 인자가 null인 경우 예외가 발생한다.")
     @Test
     void 생성자의_movable_인자가_null인_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> new Car(carName, null))
+        assertThatThrownBy(() -> new Car(carName, null, new Position()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NULL_ARGUMENT_EXCEPTION_MESSAGE);
+    }
+
+    @DisplayName("생성자의 position 인자가 null인 경우 예외가 발생한다.")
+    @Test
+    void 생성자의_position_인자가_null인_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Car(carName, randomlyMovable, null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NULL_ARGUMENT_EXCEPTION_MESSAGE);
     }
@@ -49,7 +58,7 @@ public class CarTest {
     void movable의_isMoving_메서드가_false를_반환하면_이동하지_않는다() {
         car = new Car(carName, () -> false);
         car.move();
-        assertThat(car.toDTO().getPosition().getPosition()).isEqualTo(0);
+        assertThat(CarDTO.of(car).getPosition().getPosition()).isEqualTo(0);
     }
 
     @DisplayName("movable의 isMoving 메서드가 true를 반환하면 거리가 1 증가한다")
@@ -60,6 +69,6 @@ public class CarTest {
         for (int i = 0; i < repeat; i++) {
             car.move();
         }
-        assertThat(car.toDTO().getPosition().getPosition()).isEqualTo(repeat);
+        assertThat(CarDTO.of(car).getPosition().getPosition()).isEqualTo(repeat);
     }
 }
