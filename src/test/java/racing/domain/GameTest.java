@@ -1,5 +1,7 @@
 package racing.domain;
 
+import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,9 +12,16 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class GameTest {
 
+
+    @Test
+    void 문자열_리스트로_생성할_수_있다() {
+        assertDoesNotThrow(() -> new Game(Arrays.asList("user1", "user2", "user3")));
+    }
     @ParameterizedTest
     @ValueSource(strings = {"user1,user2,user3,user4", "user1,user2,user3"})
     void 쉼표로_구분된_유저의_명수만큼_자동차들이_만들어집니다(String input){
