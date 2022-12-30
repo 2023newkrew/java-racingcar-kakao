@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.condition.InputParser;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class NamingAssignmentTest {
@@ -16,8 +17,16 @@ public class NamingAssignmentTest {
     public void splitInput(){
         InputParser inputParser = new InputParser();
         String testString = "Car1,Car2,car3";
-        List<String> splittedNames = inputParser.splitNames(testString);
-        Assertions.assertThat(splittedNames).isEqualTo(Arrays.asList("Car1", "Car2", "car3"));
+        Set<String> splittedNames = inputParser.splitNames(testString);
+        Assertions.assertThat(splittedNames).isEqualTo(new HashSet<>(Arrays.asList("Car1", "Car2", "car3")));
+    }
+
+    @Test
+    public void duplicatedNames(){
+        InputParser inputParser = new InputParser();
+        String testString = "Car1,Car1,Car2";
+        Set<String> splittedNames = inputParser.splitNames(testString);
+        Assertions.assertThat(splittedNames.size()).isEqualTo(2);
     }
 
     @ParameterizedTest
