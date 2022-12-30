@@ -3,8 +3,8 @@ package racingcar.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -23,19 +23,12 @@ public class RaceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("Throw exception when car name is longer than 5")
+    @ValueSource(strings = {"testtt", "testttt", "testtttt", "testttttt"})
     @ParameterizedTest
-    @CsvSource(value = {"Pobi;true",
-                        "Ppoobbii;false"}, delimiter = ';')
-    void verifyNameTest(String input, String expected) {
-        Race race = new Race("");
-        String result = "false";
-
-        try {
-            race.verifyName(input);
-            result = "true";
-        } catch (Exception e) {}
-
-        assertEquals(result, expected);
+    void verifyNameTest(final String name) {
+        assertThatThrownBy(() -> new Race("test").verifyName(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

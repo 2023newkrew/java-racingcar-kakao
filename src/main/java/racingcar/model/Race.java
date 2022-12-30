@@ -22,7 +22,7 @@ public class Race {
 
     public void verifyName(String name) {
         if (name.length() > MAX_NAME_LIMIT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Car name should be MAX_NAME_LIMIT or under");
         }
     }
 
