@@ -23,8 +23,7 @@ public class RacingCarGameImpl implements RacingCarGame {
 
     @Override
     public void add(Set<String> names) {
-        names.stream().forEach(name -> this.cars.add(new RacingCar(name)));
-
+        names.forEach(name -> this.cars.add(new RacingCar(name)));
     }
 
 
