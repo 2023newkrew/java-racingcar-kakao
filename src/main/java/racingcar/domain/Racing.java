@@ -1,8 +1,8 @@
 /**
  * - 여러대의 자동차 정보를 가지고 있다
  * - 각 라운드마다 자동차를 전진하거나 정지한다
- *  - 랜덤 값이 4 이상일 경우 자동차를 전진한다
- *  - 랜덤 값이 3 이하일 경우 자동차를 정지한다
+ * - 랜덤 값이 4 이상일 경우 자동차를 전진한다
+ * - 랜덤 값이 3 이하일 경우 자동차를 정지한다
  * - 라운드가 종료될 때 마다 결과를 확인할 수 있다
  * - 게임이 종료된 후 우승자를 확인할 수 있다
  */
@@ -41,18 +41,27 @@ public class Racing {
         return new RoundResultDto(cars);
     }
 
-    public WinnerDto returnWinner() {
+    public WinnerDto returnWinners() {
         List<String> winners = new ArrayList<>();
+        int maxPosition = getMaxPosition();
+        for (Car car : cars) {
+            addWinner(winners, car, maxPosition);
+        }
+        return new WinnerDto(winners);
+    }
+
+    private int getMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(car.getPosition(), maxPosition);
         }
-        for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winners.add(car.getName());
-            }
+        return maxPosition;
+    }
+
+    private void addWinner(List<String> winners, Car car, int maxPosition) {
+        if (car.getPosition() == maxPosition) {
+            winners.add(car.getName());
         }
-        return new WinnerDto(winners);
     }
 
     public List<Car> getCars() {
