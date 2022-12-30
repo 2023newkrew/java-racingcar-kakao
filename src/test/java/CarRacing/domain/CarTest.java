@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -39,25 +38,11 @@ public class CarTest {
         });
     }
 
-    @DisplayName("랜덤 넘버가 0이상 3이하 일때 자동차가 움직이지 않는지 테스트")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    public void isNotMoveTest(int randomNumber) {
-        assertThat(car.isMove(randomNumber)).isEqualTo(false);
-    }
-
-    @DisplayName("랜덤 넘버가 4이상 9이하 일때 자동차가 움직이는지 테스트")
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    public void isMoveTest(int randomNumber) {
-        assertThat(car.isMove(randomNumber)).isEqualTo(true);
-    }
-
     @DisplayName("자동차 전진이 제대로 작동하는지 테스트")
     @ParameterizedTest
     @CsvSource({"true, 6", "false, 5"})
     public void moveCarTest(boolean move, int position) {
-        positionCar.moveCar(move);
+        positionCar.moveCar(() -> move);
         assertThat(positionCar.getPosition()).isEqualTo(position);
     }
 

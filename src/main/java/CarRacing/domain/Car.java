@@ -5,8 +5,6 @@ import CarRacing.util.RandomUtil;
 public class Car {
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
     private static final int MINIMUM_CAR_NAME_LENGTH = 1;
-    private static final int RANDOM_NUMBER_RANGE = 10;
-    private static final int MOVE_THRESHOLD = 4;
     private static final int DEFAULT_POSITION = 1;
     private static final int CAR_SPEED = 1;
     private final String name;
@@ -31,18 +29,14 @@ public class Car {
         }
     }
 
-    public boolean isMove(int randomNumber) {
-        return randomNumber >= MOVE_THRESHOLD;
-    }
-
-    public void moveCar(boolean move) {
-        if (move) {
+    public void moveCar(MovingStrategy movingStrategy) {
+        if(movingStrategy.movable()) {
             position += CAR_SPEED;
         }
     }
 
     public void carEvent() {
-        moveCar(isMove(RandomUtil.generateRandomNumber(RANDOM_NUMBER_RANGE)));
+        moveCar(new RandomValueMovingStrategy());
     }
 
     public int getMaxPosition(int maxPosition) {
