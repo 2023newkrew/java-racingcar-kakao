@@ -29,9 +29,8 @@ public class Racing {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }
 
-    public void printResult() {
-        List<String> result = racingService.getWinners(getCarDTOs());
-        racingUI.displayWinner(result);
+    public List<Car> getWinners() {
+        return racingService.getWinners(cars);
     }
 
     private void decreaseTurn() {

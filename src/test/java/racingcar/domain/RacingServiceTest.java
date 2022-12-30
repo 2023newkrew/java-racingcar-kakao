@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.dto.CarDTO;
 
 public class RacingServiceTest {
 
@@ -22,15 +21,15 @@ public class RacingServiceTest {
 
     @Test
     void getWinners() {
-        List<CarDTO> cars = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
 
-        cars.add(new CarDTO("aa", 1));
-        cars.add(new CarDTO("bb", 2));
-        cars.add(new CarDTO("cc", 3));
-        cars.add(new CarDTO("dd", 4));
-        cars.add(new CarDTO("ee", 4));
+        cars.add(new Car(1, "aa"));
+        cars.add(new Car(2, "bb"));
+        cars.add(new Car(3, "cc"));
+        cars.add(new Car(4, "dd"));
+        cars.add(new Car(4, "ee"));
 
-        assertThat(this.racingService.getWinners(cars)).isEqualTo(Arrays.asList("dd", "ee"));
+        assertThat(this.racingService.getWinners(cars)).isEqualTo(Arrays.asList(new Car(4, "dd"), new Car(4, "ee")));
     }
 
     @ParameterizedTest
