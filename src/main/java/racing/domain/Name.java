@@ -5,7 +5,7 @@ import static racing.constant.MessageConstant.INVALID_NAME_LENGTH_EXCEPTION;
 
 public class Name {
 
-    private String name;
+    private final String name;
 
     private static final int MAX_LENGTH = 5;
     public Name(String name) {
