@@ -1,6 +1,7 @@
 package racingcar.engine;
 
 import java.util.List;
+import racingcar.Console;
 import racingcar.NumberGenerator;
 import racingcar.engine.domain.Car;
 import racingcar.engine.domain.RacingGame;
@@ -12,8 +13,8 @@ public class RacingMain {
 
     private final NumberGenerator numberGenerator;
 
-    public RacingMain(RacingView racingView, NumberGenerator numberGenerator) {
-        this.racingView = racingView;
+    public RacingMain(Console console, NumberGenerator numberGenerator) {
+        this.racingView = new RacingView(console);
         this.numberGenerator = numberGenerator;
     }
 

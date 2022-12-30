@@ -7,9 +7,8 @@ public class App {
     public static void main(String[] args) {
         Console console = new StandardConsole();
         NumberGenerator numberGenerator = new RandomNumberGenerator();
-        RacingView racingView = new RacingView(console);
 
-        RacingMain racingMain = new RacingMain(racingView, numberGenerator);
+        RacingMain racingMain = new RacingMain(console, numberGenerator);
 
         racingMain.run();
     }
