@@ -34,7 +34,7 @@ public class RacingCarGame {
     }
 
     private void validateTotalRoundIsPositive(final int totalRound) {
-        if (totalRound < 0) {
+        if (totalRound <= 0) {
             throw new BusinessException(ErrorCode.OUT_OF_RANGE_EXCEPTION);
         }
     }
