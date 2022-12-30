@@ -15,11 +15,10 @@ public class Cars {
         this.cars = Collections.unmodifiableList(cars);
     }
 
-    public List<String> getWinner() {
+    public List<Car> getWinner() {
         int maxPosition = getMaxPosition();
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
@@ -29,4 +28,5 @@ public class Cars {
                 .orElseThrow(NoSuchElementException::new)
                 .getPosition();
     }
+
 }

@@ -31,7 +31,7 @@ public class CarsTest {
 
         assertThat(cars.getWinner()
                 .size()).isEqualTo(1);
-        assertThat(cars.getWinner()).isEqualTo(List.of(car2.getName()));
+        assertThat(cars.getWinner()).isEqualTo(List.of(car2));
     }
 
     @Test
@@ -46,4 +46,5 @@ public class CarsTest {
                 .size()).isEqualTo(2);
         assertThat(cars.getWinner()).isEqualTo(List.of(car2, car3));
     }
+
 }
