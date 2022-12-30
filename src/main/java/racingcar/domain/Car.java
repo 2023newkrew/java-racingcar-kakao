@@ -6,7 +6,7 @@ public interface Car {
     public String getName();
     public void move(int seed);
 
-    boolean outOfBound(int seed);
+    boolean outOfBound(int condition);
 
     public String toString();
 }
