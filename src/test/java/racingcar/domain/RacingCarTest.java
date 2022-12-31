@@ -42,4 +42,11 @@ class RacingCarTest {
         // then
         assertThat(curDist).isEqualTo(prevDist);
     }
+
+    @DisplayName("이름과 distance를 문자열로 표현한다")
+    @Test
+    void toStringTest() {
+        String expected = "name : -";
+        assertThat(racingCar.toString()).hasToString(expected);
+    }
 }
