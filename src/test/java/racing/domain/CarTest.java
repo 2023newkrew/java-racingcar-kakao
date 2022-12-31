@@ -73,4 +73,24 @@ public class CarTest {
                 Arguments.of("CAR1", 3, "CAR2", 2, 1)
         );
     }
+
+
+    @ParameterizedTest
+    @MethodSource("getProgressChar")
+    void progressChar(String name, int move, String progressChar, String expected) {
+        Car car = new Car(name);
+        car.setProgressChar(progressChar);
+        for (int i = 0; i < move; i++) {
+            car.move();
+        }
+        assertThat(car.toString()).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> getProgressChar() {
+        return Stream.of(
+                Arguments.of("ABCD", 2, "*", "ABCD : ***"),
+                Arguments.of("ABCD", 3, "!", "ABCD : !!!!"),
+                Arguments.of("ABCD", 4, "", "ABCD : ")
+        );
+    }
 }
