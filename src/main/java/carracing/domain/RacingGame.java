@@ -7,11 +7,13 @@ import java.util.Objects;
 
 public class RacingGame {
     private final List<RacingPlayer> racingPlayers = new ArrayList<>();
+    private final StringParser stringParser;
     private int curTurn = 0;
     private final int numberOfTurns;
 
-    public RacingGame(String stringOfNames, int numberOfTurns) {
-        String[] playerNames = StringParser.parse(stringOfNames);
+    public RacingGame(StringParser stringParser, String stringOfNames, int numberOfTurns) {
+        this.stringParser = stringParser;
+        String[] playerNames = this.stringParser.parse(stringOfNames);
         createPlayers(playerNames);
         InputVerifier.verifyNumberIsPos(numberOfTurns);
         this.numberOfTurns = numberOfTurns;

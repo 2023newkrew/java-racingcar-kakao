@@ -2,6 +2,7 @@ package carracing;
 
 import carracing.domain.StringParser;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,13 +11,20 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 
 class StringParserTest {
+    StringParser stringParser;
+
+    @BeforeEach
+    void init() {
+        stringParser = new StringParser();
+    }
+
     @DisplayName("문자열 ',' 기준으로 split 성공")
     @Test
     void parseTest_validInput() {
         //given
         String string = "a,b,c";
         //when
-        String[] parsedStrings = StringParser.parse(string);
+        String[] parsedStrings = stringParser.parse(string);
         //then
         Assertions.assertThat(parsedStrings).isEqualTo(new String[] {"a", "b", "c"});
     }
@@ -28,7 +36,7 @@ class StringParserTest {
         //given
         //when
         //then
-        Assertions.assertThatRuntimeException().isThrownBy(() -> StringParser.parse(string));
+        Assertions.assertThatRuntimeException().isThrownBy(() -> stringParser.parse(string));
     }
 
     @DisplayName("빈문자열 & null 예외 발생")
@@ -38,6 +46,6 @@ class StringParserTest {
         //given
         //when
         //then
-        Assertions.assertThatRuntimeException().isThrownBy(() -> StringParser.parse(string));
+        Assertions.assertThatRuntimeException().isThrownBy(() -> stringParser.parse(string));
     }
 }
