@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCar;
+import racingcar.domain.RacingCars;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,16 +14,13 @@ import static org.assertj.core.api.Assertions.*;
 
 class RacingGameTest {
 
-    List<RacingCar> racingCars;
+    RacingCars racingCars;
     int rounds;
     RacingGame racingGame;
 
     @BeforeEach
     void setUp() {
-        racingCars = Arrays.asList(
-                new RacingCar("car1"),
-                new RacingCar("car2"),
-                new RacingCar("car3"));
+        racingCars = new RacingCars(new String[]{"car1", "car2", "car3"});
         rounds = 5;
         racingGame = new RacingGame(racingCars, rounds);
     }
@@ -31,10 +29,10 @@ class RacingGameTest {
     @Test
     void playRound() {
         //when
-        List<RacingCar> roundResult = racingGame.playRound();
+        RacingCars roundResult = racingGame.playRound();
 
         //then
-        assertThat(roundResult).hasSize(3);
+        assertThat(roundResult.getNumOfRacingCars()).isEqualTo(3);
     }
 
     @DisplayName("입력받은 라운드만큼 라운드를 진행")
@@ -55,7 +53,7 @@ class RacingGameTest {
     @DisplayName("남은 라운드가 없는데 라운드를 진행하면 예외 발생")
     @Test
     void playRound_throwEx() {
-        racingGame = new RacingGame(new ArrayList<>(), 0);
+        racingGame = new RacingGame(racingCars, 0);
 
         assertThatThrownBy(racingGame::playRound).isInstanceOf(IllegalStateException.class);
     }
