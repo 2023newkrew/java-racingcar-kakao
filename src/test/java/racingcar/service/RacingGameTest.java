@@ -20,16 +20,6 @@ class RacingGameTest {
         racingGame = new RacingGame(racingCars, rounds);
     }
 
-    @DisplayName("한 라운드를 진행하고 진행 결과로 RacingCar 리스트를 반환")
-    @Test
-    void playRound() {
-        //when
-        RacingCars roundResult = racingGame.playRound();
-
-        //then
-        assertThat(roundResult.getNumOfRacingCars()).isEqualTo(3);
-    }
-
     @DisplayName("입력받은 라운드만큼 라운드를 진행")
     @Test
     void playRound_finish() {

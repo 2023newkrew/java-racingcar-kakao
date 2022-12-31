@@ -20,7 +20,7 @@ public class RacingGameApp {
         racingGameScoreView.printStartMessage(racingCars);
 
         while (!racingGame.isFinished()) {
-            racingCars = racingGame.playRound();
+            racingGame.playRound();
             racingGameScoreView.printRacingCarDist(racingCars);
         }
 

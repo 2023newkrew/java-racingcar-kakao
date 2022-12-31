@@ -15,13 +15,12 @@ public class RacingGame {
         this.remainingRounds = remainingRounds;
     }
 
-    public RacingCars playRound() {
+    public void playRound() {
         if (isFinished()) {
             throw new IllegalStateException("모든 라운드가 종료되었습니다.");
         }
         racingCars.moveAll(randomMovementManager);
         remainingRounds--;
-        return racingCars;
     }
 
     public boolean isFinished() {
