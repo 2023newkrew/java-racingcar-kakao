@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.RacingCar;
+import racingcar.domain.RacingCars;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
@@ -21,7 +22,7 @@ class RacingGameInputViewTest {
         racingGameInputView.close();
     }
 
-    @DisplayName("n개의 레이싱카의 이름을 읽어서 RacingCar List로 반환한다")
+    @DisplayName("n개의 레이싱카의 이름을 읽어서 RacingCars로 반환한다")
     @Test
     void readRacingCars(){
         // given
@@ -31,14 +32,14 @@ class RacingGameInputViewTest {
 
         // when
         racingGameInputView = new RacingGameInputView();
-        List<RacingCar> racingCars = racingGameInputView.readRacingCars();
+        RacingCars racingCars = racingGameInputView.readRacingCars();
 
         // then
-        assertThat(racingCars).hasSize(3)
-                        .contains(new RacingCar("car1"), new RacingCar("car2"), new RacingCar("car3"));
+        assertThat(racingCars.getNumOfRacingCars()).isEqualTo(3);
+        assertThat(racingCars).isEqualTo(new RacingCars(new String[]{"car1", "car2", "car3"}));
     }
 
-    @DisplayName("1개의 레이싱카의 이름을 읽어서 RacingCar List로 반환한다")
+    @DisplayName("1개의 레이싱카의 이름을 읽어서 RacingCars로 반환한다")
     @Test
     void readRacingCars_singleCar(){
         // given
@@ -49,11 +50,11 @@ class RacingGameInputViewTest {
         racingGameInputView = new RacingGameInputView();
 
         // when
-        List<RacingCar> racingCars = racingGameInputView.readRacingCars();
+        RacingCars racingCars = racingGameInputView.readRacingCars();
 
         // then
-        assertThat(racingCars).hasSize(1)
-                .contains(new RacingCar("car1"));
+        assertThat(racingCars.getNumOfRacingCars()).isEqualTo(1);
+        assertThat(racingCars).isEqualTo(new RacingCars(new String[]{"car1"}));
     }
 
     @DisplayName("레이싱카 이름이 공백이거나 5글자를 초과하면 예외를 던진다")
