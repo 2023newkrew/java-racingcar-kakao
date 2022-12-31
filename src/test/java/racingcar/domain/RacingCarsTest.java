@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,14 +10,19 @@ import static org.assertj.core.api.Assertions.*;
 
 class RacingCarsTest {
 
+    RacingCars racingCars;
+    String[] racingCarNames;
+
+    @BeforeEach
+    void setUp() {
+        racingCarNames = new String[]{"car1", "car2", "car3"};
+        racingCars = new RacingCars(racingCarNames);
+    }
+
     @DisplayName("자동차 이름 배열을 인자로 받아 RacingCars를 생성한다")
     @Test
     void create() {
-        String[] racingCarNames = new String[]{"car1", "car2", "car3"};
-
-        RacingCars racingCars = new RacingCars(racingCarNames);
-
-        assertThat(racingCars).isEqualTo(new RacingCars(new String[]{"car1", "car2", "car3"}));
+        assertThat(racingCars).isEqualTo(new RacingCars(racingCarNames));
     }
 
     @DisplayName("자동차 이름이 빈 문자열이거나 공백일 경우, 5글자 초과할 경우 예외 발생")
@@ -30,13 +36,9 @@ class RacingCarsTest {
     @Test
     void printScore() {
         //given
-        String[] racingCarNames = new String[]{"car1", "car2", "car3"};
         String expected = "car1 : -\n" +
                 "car2 : -\n" +
                 "car3 : -";
-
-        //when
-        RacingCars racingCars = new RacingCars(racingCarNames);
 
         //then
         assertThat(racingCars.toString()).hasToString(expected);
