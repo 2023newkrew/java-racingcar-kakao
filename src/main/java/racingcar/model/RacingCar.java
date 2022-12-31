@@ -27,4 +27,12 @@ public class RacingCar extends Car implements Comparable<RacingCar>{
     private int comparePosition(int otherCarPosition) {
         return otherCarPosition - this.position;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof RacingCar) {
+            return this.position == ((RacingCar)obj).position && this.name.equals(((RacingCar)obj).name);
+        }
+        return false;
+    }
 }
