@@ -15,12 +15,7 @@ public class RacingController {
         Simulator simulator = new Simulator();
         simulator.create(names);
 
-        racingView.printStartSimulator(simulator);
-        for (int i = 0; i < times; i++) {
-            simulator.run(new Random());
-            racingView.printSimulator(simulator);
-        }
-
-        racingView.printWinners(simulator);
+        simulator.simulate(new Random(), times);
+        racingView.printResults(simulator);
     }
 }
