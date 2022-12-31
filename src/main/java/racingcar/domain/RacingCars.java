@@ -16,9 +16,8 @@ public class RacingCars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public RacingCars moveAll(RandomMovementManager randomMovementManager) {
+    public void moveAll(RandomMovementManager randomMovementManager) {
         racingCars.forEach(racingCar -> racingCar.move(randomMovementManager.makeMovementDecision()));
-        return this;
     }
 
     public int getNumOfRacingCars() {
