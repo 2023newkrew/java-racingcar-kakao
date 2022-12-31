@@ -9,7 +9,17 @@ public class RacingGameWinners {
     List<RacingCar> racingCars;
 
     public RacingGameWinners(List<RacingCar> racingCars) {
-        this.racingCars = Collections.unmodifiableList(racingCars);
+        if (racingCars == null || racingCars.isEmpty()) {
+            throw new IllegalArgumentException("비어있는 자동차 목록입니다.");
+        }
+        this.racingCars = findWinners(racingCars);
+    }
+
+    private List<RacingCar> findWinners(List<RacingCar> racingCars) {
+        RacingCar winner = Collections.max(racingCars);
+        return racingCars.stream()
+                .filter(racingCar -> winner.getDistance() == racingCar.getDistance())
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
