@@ -4,26 +4,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCar;
+import racingcar.domain.RacingCars;
+import racingcar.domain.RacingGameWinners;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameScoreViewTest {
 
-    List<RacingCar> racingCars;
+    RacingCars racingCars;
     ByteArrayOutputStream out;
     RacingGameScoreView racingGameScoreView;
 
     @BeforeEach
     void setUp() {
-        racingCars = new ArrayList<>();
-        racingCars.add(new RacingCar("car1"));
-        racingCars.add(new RacingCar("car2"));
-        racingCars.add(new RacingCar("car3"));
+        racingCars = new RacingCars(new String[]{"car1", "car2", "car3"});
 
         racingGameScoreView = new RacingGameScoreView();
 
@@ -54,7 +53,14 @@ class RacingGameScoreViewTest {
         String expected = "car1, car2, car3가 최종 우승했습니다.\n";
 
         //when
-        racingGameScoreView.printWinners(racingCars);
+        RacingGameWinners winners = new RacingGameWinners(
+                Arrays.asList(
+                        new RacingCar("car1"),
+                        new RacingCar("car2"),
+                        new RacingCar("car3")
+                )
+        );
+        racingGameScoreView.printWinners(winners);
 
         //then
         assertThat(out.toString()).hasToString(expected);
@@ -67,7 +73,8 @@ class RacingGameScoreViewTest {
         String expected = "car1가 최종 우승했습니다.\n";
 
         //when
-        racingGameScoreView.printWinners(List.of(new RacingCar("car1")));
+        RacingGameWinners winners = new RacingGameWinners(List.of(new RacingCar("car1")));
+        racingGameScoreView.printWinners(winners);
 
         //then
         assertThat(out.toString()).hasToString(expected);
