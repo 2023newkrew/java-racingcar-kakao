@@ -9,44 +9,22 @@ public class DelimiterParser {
     private static final String REGEX = "//(.)\n(.*)"; // (.): 사용자 정의 구분자 (.*): 구분자로 나눌 문자열
     private final String delimiter;
     private final boolean hasCustomDelimiter;
-    private final String pureInput;
     private final String processedInput;
 
     public DelimiterParser(String pureInput, List<String> defaultDelimiters) {
-        this.pureInput = pureInput;
-        this.hasCustomDelimiter = judgeHasCustomDelimiter();
-        this.delimiter = extractDelimiter(defaultDelimiters);
-        this.processedInput = generateProcessedInput();
-    }
 
-    private Matcher generateMatcher() {
-        return Pattern.compile(REGEX).matcher(pureInput);
-    }
-
-    private boolean judgeHasCustomDelimiter() {
-        if (generateMatcher().find()) {
-            return true;
+        Matcher matcher = Pattern.compile(REGEX).matcher(pureInput);
+        if (matcher.find()) {
+            this.hasCustomDelimiter = true;
+            this.delimiter = matcher.group(1);
+            this.processedInput = matcher.group(2);
+            return;
         }
-        return false;
+        this.hasCustomDelimiter = false;
+        this.delimiter = String.join("|", defaultDelimiters);
+        this.processedInput = pureInput;
     }
 
-    private String extractDelimiter(List<String> defaultDelimiters) {
-        if (hasCustomDelimiter()) {
-            Matcher matcher = generateMatcher();
-            matcher.find();
-            return matcher.group(1);
-        }
-        return String.join("|", defaultDelimiters);
-    }
-
-    private String generateProcessedInput() {
-        if (hasCustomDelimiter()) {
-            Matcher matcher = generateMatcher();
-            matcher.find();
-            return matcher.group(2);
-        }
-        return pureInput;
-    }
 
     public boolean hasCustomDelimiter() {
         return this.hasCustomDelimiter;
