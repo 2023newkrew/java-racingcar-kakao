@@ -6,13 +6,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RacingGameWinners {
-    List<RacingCar> racingCars;
+    List<RacingCar> winners;
 
     public RacingGameWinners(List<RacingCar> racingCars) {
         if (racingCars == null || racingCars.isEmpty()) {
             throw new IllegalArgumentException("비어있는 자동차 목록입니다.");
         }
-        this.racingCars = findWinners(racingCars);
+        this.winners = findWinners(racingCars);
     }
 
     private List<RacingCar> findWinners(List<RacingCar> racingCars) {
@@ -31,17 +31,17 @@ public class RacingGameWinners {
             return false;
         }
         RacingGameWinners that = (RacingGameWinners) o;
-        return Objects.equals(racingCars, that.racingCars);
+        return Objects.equals(winners, that.winners);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(racingCars);
+        return Objects.hash(winners);
     }
 
     @Override
     public String toString() {
-        String winnerNames = racingCars.stream()
+        String winnerNames = winners.stream()
                 .map(RacingCar::getRacingCarName)
                 .map(RacingCarName::getName)
                 .collect(Collectors.joining(", "));
