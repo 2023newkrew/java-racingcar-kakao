@@ -18,13 +18,13 @@ public class Simulator {
         }
     }
 
-    public void move(Car car, int random) {
+    private void move(Car car, int random) {
         if (random > MOVE_THRESHOLD) {
             car.move();
         }
     }
 
-    public void run(Random random) {
+    private void run(Random random) {
         for (Car car : cars) {
             move(car, random.nextInt(RANDOM_MAX_RANGE));
         }

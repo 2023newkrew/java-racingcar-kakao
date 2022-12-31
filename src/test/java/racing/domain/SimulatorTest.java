@@ -27,42 +27,6 @@ public class SimulatorTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("getRandomMoveData")
-    void randomMove(String name, int random, String expected) {
-        Simulator simulator = new Simulator();
-        Car car = new Car(name);
-        simulator.move(car, random);
-        assertThat(car.toString()).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> getRandomMoveData() {
-        return Stream.of(
-                Arguments.of("ABCD", 1, "ABCD : -"),
-                Arguments.of("ABCD", 3, "ABCD : -"),
-                Arguments.of("ABCD", 4, "ABCD : --"),
-                Arguments.of("ABCD", 5, "ABCD : --")
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("getRunData")
-    void run(String names, List<Integer> randoms, String expected) {
-        Simulator simulator = new Simulator();
-        simulator.create(names);
-        simulator.run(createRandoms(randoms));
-        assertThat(simulator.toString()).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> getRunData() {
-        return Stream.of(
-                Arguments.of("A,B,C", List.of(4, 3, 2), "A : --\nB : -\nC : -"),
-                Arguments.of("D,E,F", List.of(1, 5, 6), "D : -\nE : --\nF : --"),
-                Arguments.of("1,2,3", List.of(8, 3, 5), "1 : --\n2 : -\n3 : --"),
-                Arguments.of("4,5,6", List.of(9, 9, 9), "4 : --\n5 : --\n6 : --")
-        );
-    }
-
     private Random createRandoms(List<Integer> returnValue) {
         return new Random() {
             int index = 0;
