@@ -34,7 +34,7 @@ public class Simulator {
         progress.add(this.toString());
         for (int i = 0; i < times; i++) {
             run(random);
-            progress.add(this.toString() + "\n");
+            progress.add(this + "\n");
         }
     }
 

@@ -7,15 +7,15 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",|:";
 
-    private static final Pattern NAMES_WITH_CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
+    private static final Pattern NUMBERS_WITH_CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
 
-    public String[] split(String names) {
-        Matcher m = NAMES_WITH_CUSTOM_DELIMITER_PATTERN.matcher(names);
+    public String[] split(String numbers) {
+        Matcher m = NUMBERS_WITH_CUSTOM_DELIMITER_PATTERN.matcher(numbers);
         if (m.find()) {
             String delimiter = m.group(1);
             return m.group(2).split(Pattern.quote(delimiter));
         }
-        return names.split(DEFAULT_DELIMITER);
+        return numbers.split(DEFAULT_DELIMITER);
     }
 
     public int sum(int[] ints) {
