@@ -48,4 +48,8 @@ public class RacingCars {
                 .map(RacingCar::toString)
                 .collect(Collectors.joining("\n"));
     }
+
+    public RacingGameWinners findWinners() {
+        return new RacingGameWinners(racingCars);
+    }
 }
