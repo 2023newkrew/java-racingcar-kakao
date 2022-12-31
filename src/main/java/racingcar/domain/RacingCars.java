@@ -1,6 +1,9 @@
 package racingcar.domain;
 
+import racingcar.service.RandomMovementManager;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -12,6 +15,10 @@ public class RacingCars {
         this.racingCars = Arrays.stream(racingCarNames)
                 .map(RacingCar::new)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public int getNumOfRacingCars() {
+        return racingCars.size();
     }
 
     @Override
@@ -29,5 +36,12 @@ public class RacingCars {
     @Override
     public int hashCode() {
         return Objects.hash(racingCars);
+    }
+
+    @Override
+    public String toString() {
+        return racingCars.stream()
+                .map(RacingCar::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
