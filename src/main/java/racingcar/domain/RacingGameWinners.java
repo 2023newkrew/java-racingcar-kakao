@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RacingGameWinners {
     List<RacingCar> racingCars;
@@ -26,5 +27,14 @@ public class RacingGameWinners {
     @Override
     public int hashCode() {
         return Objects.hash(racingCars);
+    }
+
+    @Override
+    public String toString() {
+        String winnerNames = racingCars.stream()
+                .map(RacingCar::getRacingCarName)
+                .map(RacingCarName::getName)
+                .collect(Collectors.joining(", "));
+        return winnerNames + "가 최종 우승했습니다.";
     }
 }

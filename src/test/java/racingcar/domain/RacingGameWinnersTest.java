@@ -22,4 +22,17 @@ class RacingGameWinnersTest {
                 )
         ));
     }
+
+    @Test
+    void toStringTest() {
+        String expected = "car1, car2가 최종 우승했습니다.";
+        RacingGameWinners racingGameWinners = new RacingGameWinners(
+                Arrays.asList(
+                        new RacingCar("car1"),
+                        new RacingCar("car2")
+                )
+        );
+
+        Assertions.assertThat(racingGameWinners.toString()).hasToString(expected);
+    }
 }
