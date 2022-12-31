@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringParser {
+public class StringParser implements Parser<String> {
     private static final Character[] BASIC_SPLITTER = new Character[]{',', ':'};
     private static final Pattern PATTERN = Pattern.compile("//(.)\\\\n(.*)");
     private static final int CUSTOM_SPLITTER_INDEX = 1;
     private static final int TARGET_STRING_INDEX = 2;
 
+    @Override
     public Integer[] parse(String s) {
         if (StringVerifier.isNullOrEmpty(s)) {
             return new Integer[] {0};
