@@ -1,4 +1,4 @@
-package string_calculator.model;
+package calculator.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,8 +13,10 @@ public class Parser {
 
     private final String equation;
 
+    private static final Pattern DELIMITER_REGEX_PATTERN = Pattern.compile("//(.)\n(.*)");
+
     public Parser(String inputString) {
-        inputString = emptyNull(inputString);
+        inputString = checkNullOrEmpty(inputString);
         String customDelimiter = extractCustomDelimiter(inputString);
         Optional.ofNullable(customDelimiter).map(delimiters::add);
         this.equation = inputString;
@@ -24,34 +26,26 @@ public class Parser {
         return separateByDelimiter(extractPureEquation(equation));
     }
 
-    private String emptyNull(String inputString) {
-        if (inputString == null) {
-            return "0";
-        }
-        if (inputString.length() == 0) {
-            return "0";
-        }
-        return inputString;
+    private String checkNullOrEmpty(String inputString) {
+
+        return inputString == null || inputString.isEmpty() ? "0" : inputString;
     }
 
     private String[] separateByDelimiter(String equation) {
         String regex = String.join("|", delimiters);
+
         return equation.split(regex);
     }
 
     private String extractCustomDelimiter(String inputString) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(inputString);
-        if (m.find()) {
-            return m.group(1);
-        }
-        return null;
+        Matcher m = DELIMITER_REGEX_PATTERN.matcher(inputString);
+
+        return m.find() ? m.group(1) : null;
     }
 
     private String extractPureEquation(String inputString) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(inputString);
-        if (m.find()) {
-            return m.group(2);
-        }
-        return inputString;
+        Matcher m = DELIMITER_REGEX_PATTERN.matcher(inputString);
+
+        return m.find() ? m.group(2) : inputString;
     }
 }

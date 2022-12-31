@@ -1,14 +1,17 @@
-package string_calculator.model;
+package calculator.model;
 
 import java.util.Arrays;
 
 public class Validator {
 
-    public static boolean validate(String[] numbers) throws RuntimeException {
-        return Arrays.stream(numbers).filter(number -> {
+    private Validator() {
+    }
+
+    public static void validate(String[] numbers) throws RuntimeException {
+        Arrays.stream(numbers).forEach(number -> {
             int converted = convertToNumber(number);
-            return validatePositive(converted);
-        }).count() == numbers.length;
+            validatePositive(converted);
+        });
     }
 
     private static int convertToNumber(String element) throws RuntimeException {
@@ -19,10 +22,9 @@ public class Validator {
         }
     }
 
-    private static boolean validatePositive(int number) throws RuntimeException {
-        if (number < 0){
+    private static void validatePositive(int number) throws RuntimeException {
+        if (number < 0) {
             throw new RuntimeException("숫자가 음수입니다.");
         }
-        return true;
     }
 }

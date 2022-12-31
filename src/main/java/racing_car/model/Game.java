@@ -1,48 +1,47 @@
 package racing_car.model;
 
-import java.util.Arrays;
+import racing_car.strategy.MoveCarStrategy;
+
 import java.util.Collections;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Game {
 
-    private final Car[] cars;
+    private final Cars cars;
 
-    public Game(Car[] cars) {
+    private final MoveCarStrategy moveCarStrategy;
+
+    public Game(Cars cars, MoveCarStrategy moveCarStrategy) {
         this.cars = cars;
+        this.moveCarStrategy = moveCarStrategy;
     }
 
-    public Car[] getCars() {
+    public Cars getCars() {
         return cars;
     }
 
-    private int generateRandomNumber() {
-        return new Random().nextInt(10);
-    }
-
-    private void moveCar(int carIndex, int number) {
-        if (number >= 4) {
-            cars[carIndex].move(1);
+    private void moveCar(int carIndex) {
+        if (!moveCarStrategy.isMovable()) {
+            return;
         }
-    }
 
-    public void moveCar(int carIndex) {
-        int randomNumber = generateRandomNumber();
-        moveCar(carIndex, randomNumber);
+        cars.moveCar(carIndex);
     }
 
     public void moveAllCars() {
-        for (int i = 0; i < cars.length; i++) {
+        for (int i = 0; i < cars.length(); i++) {
             moveCar(i);
         }
     }
 
-    public Car[] getWinners() {
-        Car maxDistance = Collections.max(Arrays.asList(cars));
-        return Arrays.stream(cars)
-                .filter(car -> car.compareTo(maxDistance) == 0)
-                .collect(Collectors.toList())
-                .toArray(Car[]::new);
+    public Cars getWinners() {
+        Car farthestCar = findFarthestCar();
+        return Cars.of(cars.getCars().stream()
+                .filter(car -> car.compareTo(farthestCar) == 0)
+                .collect(Collectors.toList()));
+    }
+
+    private Car findFarthestCar() {
+        return Collections.max(cars.getCars());
     }
 }
