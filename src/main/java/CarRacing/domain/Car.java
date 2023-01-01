@@ -34,7 +34,7 @@ public class Car {
     }
 
     public void carEvent() {
-        moveCar(new RandomValueMovingStrategy());
+        moveCar(new RandomValueMovingStrategy(new RandomNumberGenerator()));
     }
 
     public int getMaxPosition(int maxPosition) {

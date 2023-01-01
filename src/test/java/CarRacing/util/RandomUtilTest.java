@@ -11,5 +11,4 @@ public class RandomUtilTest {
     public void generateRandomNumberTest() {
         assertThat(RandomUtil.generateRandomNumber(10)).isBetween(0, 9);
     }
-
 }
