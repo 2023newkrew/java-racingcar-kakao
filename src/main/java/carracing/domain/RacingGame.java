@@ -3,6 +3,7 @@ package carracing.domain;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RacingGame {
     private final List<RacingPlayer> racingPlayers;
@@ -27,7 +28,7 @@ public class RacingGame {
         this.curTurn++;
     }
 
-    public RacingPlayer[] getWinners() {
+    public List<RacingPlayer> getWinners() {
         Integer maxPosition = racingPlayers.stream()
                 .mapToInt(RacingPlayer::getPosition)
                 .max()
@@ -35,7 +36,7 @@ public class RacingGame {
 
         return racingPlayers.stream()
                 .filter(p -> Objects.equals(p.getPosition(), maxPosition))
-                .toArray(RacingPlayer[]::new);
+                .collect(Collectors.toList());
     }
 
     public Boolean isFinished() {

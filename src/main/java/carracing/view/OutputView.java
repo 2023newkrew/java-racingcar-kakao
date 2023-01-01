@@ -23,14 +23,12 @@ public class OutputView {
         System.out.println(racingPlayer.getName() + " : " + "-".repeat(racingPlayer.getPosition()));
     }
 
-    public static void printWinners(RacingPlayer[] winners) {
-        String concatenatedName = getConcatenatedNameFromArray(winners);
+    public static void printWinners(List<RacingPlayer> winners) {
+        String concatenatedName = getConcatenatedNameFromList(winners);
         System.out.println(concatenatedName + "가 최종 우승했습니다.");
     }
 
-    private static String getConcatenatedNameFromArray(RacingPlayer[] winners) {
-        return Arrays.stream(winners)
-                .map(RacingPlayer::getName)
-                .collect(Collectors.joining(", "));
+    private static String getConcatenatedNameFromList(List<RacingPlayer> winners) {
+        return winners.stream().map(RacingPlayer::getName).collect(Collectors.joining(", "));
     }
 }
