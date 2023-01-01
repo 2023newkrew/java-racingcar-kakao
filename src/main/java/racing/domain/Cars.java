@@ -9,10 +9,8 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private final List<Car> cars;
-
     private static final int THRESHOLD = 4;
-
+    private final List<Car> cars;
     public Cars() {
         this.cars = new ArrayList<>();
     }

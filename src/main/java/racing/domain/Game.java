@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 public class Game {
     private final Cars cars;
 
-    public Game() {
-        this.cars = new Cars();
-    }
 
     public Game(Cars cars) {
         this.cars = cars;

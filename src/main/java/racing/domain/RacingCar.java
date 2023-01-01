@@ -3,9 +3,9 @@ package racing.domain;
 
 public class RacingCar implements Car {
 
-    private final Name name;
-    private int position;
     private static final int DEFAULT_POSITION = 0;
+    private int position;
+    private final Name name;
 
     public RacingCar(String name) {
         this(name, DEFAULT_POSITION);

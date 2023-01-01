@@ -6,8 +6,8 @@ import racing.domain.Game;
 public class GameController {
 
     private final GameView gameView;
-    private Game game;
     private int tryCount;
+    private Game game;
 
     public GameController(GameView gameView) {
         this.gameView = gameView;
