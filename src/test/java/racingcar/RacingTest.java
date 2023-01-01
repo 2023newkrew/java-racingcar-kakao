@@ -27,17 +27,45 @@ public class RacingTest {
         }
     }
 
-    @Test
-    public void registerCarRoundNumTest() {
-        Racing racing = new Racing();
-        assertTrue(racing.registerCarRoundNum("123"));
+    @Nested
+    @DisplayName("총 라운드 수 등록 테스트")
+    class registerCarRoundNumTest {
+        @Test
+        @DisplayName("양수")
+        public void positiveNumber() {
+            Racing racing = new Racing();
+            assertTrue(racing.registerCarRoundNum("123"));
+        }
+
+        @Test
+        @DisplayName("음수")
+        public void negativeNumber() {
+            Racing racing = new Racing();
+            assertFalse(racing.registerCarRoundNum("-12"));
+        }
+
+        @Test
+        @DisplayName("음수")
+        public void zero() {
+            Racing racing = new Racing();
+            assertFalse(racing.registerCarRoundNum("0"));
+        }
+
+        @Test
+        @DisplayName("문자열")
+        public void strings() {
+            Racing racing = new Racing();
+            assertFalse(racing.registerCarRoundNum("abcd"));
+        }
+
+        @Test
+        @DisplayName("혼합 테스트")
+        public void mix() {
+            Racing racing = new Racing();
+            assertFalse(racing.registerCarRoundNum("ab23c"));
+        }
     }
 
-    @Test
-    public void registerCarRoundNumTest2() {
-        Racing racing = new Racing();
-        assertFalse(racing.registerCarRoundNum("abcd"));
-    }
 
     @Test
     public void RoundTest() {
