@@ -14,28 +14,28 @@ public class GameController {
     }
 
     public void start() {
-        gameSetting();
-        gameStart();
-        gameFinish();
+        setGame();
+        startGame();
+        finishGame();
     }
 
-    private void gameSetting() {
+    private void setGame() {
         this.game = new Game(gameView.receiveCarNamesFromUser());
         this.tryCount = gameView.receiveTryCountFromUser();
     }
 
-    private void gameStart() {
+    private void startGame() {
         gameView.printStart();
         IntStream.range(0, tryCount)
-                .forEach(i -> gamePlay());
+                .forEach(i -> playGame());
     }
 
-    private void gamePlay() {
+    private void playGame() {
         game.play();
         gameView.printStatus(game.getCars());
     }
 
-    private void gameFinish() {
+    private void finishGame() {
         gameView.printFinish(game.getWinnerNames());
     }
 
