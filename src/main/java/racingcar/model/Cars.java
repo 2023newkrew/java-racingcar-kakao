@@ -1,20 +1,30 @@
-package racingcar.service;
+package racingcar.model;
 
-import racingcar.model.Car;
 import racingcar.util.RandomUtil;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Racing Game에 참가하는 Car객체들을 관리하는 클래스입니다.
  */
-public class CarService {
+public class Cars {
     private final List<Car> cars;
 
-    public CarService() {
+    public Cars(List<String> carNamesInput) {
+        checkDuplicatedCarName(carNamesInput);
         cars = new ArrayList<>();
+        addAll(carNamesInput);
+    }
+
+    private void checkDuplicatedCarName(List<String> carNameList) {
+        if (hasDuplicatedName(carNameList)) {
+            throw new IllegalArgumentException("Duplicated Car Name!");
+        }
+    }
+
+    private boolean hasDuplicatedName(List<String> carNameList) {
+        Set<String> carNameSet = new HashSet<>(carNameList);
+        return carNameSet.size() < carNameList.size();
     }
 
     public void addAll(List<String> carNamesInput) {

@@ -17,7 +17,7 @@ public class Car {
     public Car(String name) {
         position = 1;
         if (isInvalidName(name)) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("Invalid Car Name!");
         }
         this.name = name;
     }
