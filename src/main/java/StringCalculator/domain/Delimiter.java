@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Delimiter {
 
     private final static String CUSTOM_DELIMITER_REGEX = "//(.)\\\\n(.*)";
-    private final static Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_REGEX);;
+    private final static Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_REGEX);
     private final static int CUSTOM_DELIMITER_INDEX = 1;
     private final static int CUSTOM_INPUTSTRING_INDEX = 2;
 
