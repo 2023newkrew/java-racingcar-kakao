@@ -21,21 +21,6 @@ public class RacingTest {
         racingWithCars = new Racing(cars, 5);
     }
 
-    @DisplayName("레이싱 시도 횟수가 정상인 경우 테스트")
-    @Test
-    public void correctRacingCountTest() {
-        assertDoesNotThrow(() -> {
-            racing.validateRacingCount("5");
-        });
-    }
-
-    @DisplayName("레이싱 시도 횟수가 비정상인 경우 테스트")
-    @Test
-    public void wrongRacingCountTest() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            racing.validateRacingCount("abc");
-        });
-    }
     @DisplayName("이름 배열로 자동차 배열을 생성한 후 길이가 일치하는지 테스트")
     @Test
     public void makeCarListTest() {

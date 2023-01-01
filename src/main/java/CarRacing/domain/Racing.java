@@ -6,30 +6,20 @@ import java.util.List;
 
 
 public class Racing {
-    private int racingCount;
+    private RacingCount racingCount;
     private Car[] cars;
     private List<RacingLog[]> racingLogs = new ArrayList<>();
     private List<CarName> winners = new ArrayList<>();
 
 
     public Racing(String inputNames, String racingCount) {
-        validateRacingCount(racingCount);
-        this.racingCount = StringUtil.convertStringToInt(racingCount);
-
+        this.racingCount = new RacingCount(racingCount);
         makeCarList(splitInputNames(inputNames));
     }
 
     public Racing(Car[] cars, int racingCount) {
         this.cars = cars;
-        this.racingCount = racingCount;
-    }
-
-    public void validateRacingCount(String racingCount) {
-        try {
-            StringUtil.convertStringToInt(racingCount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("시도할 회수 입력이 숫자가 아닙니다.");
-        }
+        this.racingCount = new RacingCount(racingCount);
     }
 
     public String[] splitInputNames(String inputNames) {
@@ -87,10 +77,10 @@ public class Racing {
 
     public RacingResult playRacing() {
         writeRacingLog();
-        while (racingCount > 0) {
+        while (racingCount.isEnd()) {
             oneCycle();
             writeRacingLog();
-            racingCount--;
+            racingCount = racingCount.decreaseCount(1);
         }
         decideWinners();
         return new RacingResult(racingLogs, winners);
