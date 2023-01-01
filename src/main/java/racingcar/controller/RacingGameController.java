@@ -1,6 +1,7 @@
 package racingcar.controller;
 
-import racingcar.model.Cars;
+import racingcar.Constant.StringConstant;
+import racingcar.model.RacingGame;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -12,7 +13,6 @@ import java.util.Scanner;
  */
 public class RacingGameController {
 
-    private final static String COMMA = ",";
     OutputView outputView;
     Scanner sc;
 
@@ -24,13 +24,14 @@ public class RacingGameController {
     public void start() {
         List<String> carNamesInput = carNamesUserInput();
 
-        Cars cars = new Cars(carNamesInput);
-
         int trialNumber = trialNumberUserInput();
 
-        playRacingGame(cars, trialNumber);
+        RacingGame racingGame = new RacingGame(trialNumber, carNamesInput);
 
-        printFinalResult(cars);
+        racingGame.runRacingGame();
+        outputView.printGameResult(racingGame.gameLog());
+
+        outputView.printWinners(racingGame.winners());
     }
 
     public List<String> carNamesUserInput() {
@@ -43,7 +44,7 @@ public class RacingGameController {
     }
 
     private List<String> SplitCarNames(String carNames) {
-        return List.of(carNames.split(COMMA));
+        return List.of(carNames.split(StringConstant.COMMA));
     }
 
     public int trialNumberUserInput() {
@@ -51,17 +52,5 @@ public class RacingGameController {
         int trialNumber = Integer.parseInt(sc.next());
 
         return trialNumber;
-    }
-
-    private void playRacingGame(Cars cars, int trialNumber) {
-        outputView.printInitialGameStatus(cars.getCarList());
-        for (int round = 0; round < trialNumber; round++) {
-            cars.moveAll();
-            outputView.printGameResult(cars.getCarList());
-        }
-    }
-
-    private void printFinalResult(Cars cars) {
-        outputView.printWinners(cars.getWinners());
     }
 }

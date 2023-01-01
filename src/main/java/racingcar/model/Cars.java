@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import racingcar.Constant.StringConstant;
 import racingcar.util.RandomUtil;
 
 import java.util.*;
@@ -70,5 +71,14 @@ public class Cars {
 
     public final List<Car> getCarList() {
         return Collections.unmodifiableList(cars);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder carStatus = new StringBuilder();
+        for (Car car : cars) {
+            carStatus.append(car.toString() + StringConstant.NEW_LINE);
+        }
+        return carStatus.toString();
     }
 }
