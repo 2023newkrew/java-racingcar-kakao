@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.strategy.MovingStrategy;
 
 public class Car {
     private final String name;

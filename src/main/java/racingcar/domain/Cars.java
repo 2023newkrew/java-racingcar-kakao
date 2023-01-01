@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.strategy.MovingStrategy;
 
 import java.util.Collections;
 import java.util.List;
