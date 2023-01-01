@@ -17,7 +17,7 @@ public class Delimiter {
         Matcher matcher = pattern.matcher(inputString);
         this.inputString = inputString;
         if (matcher.find()) {
-            delimiterRegEx += "|" + matcher.group(CUSTOM_DELIMITER_INDEX);
+            this.delimiterRegEx = matcher.group(CUSTOM_DELIMITER_INDEX);
             this.inputString = matcher.group(CUSTOM_INPUTSTRING_INDEX);
         }
     }
