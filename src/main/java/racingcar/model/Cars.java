@@ -17,7 +17,7 @@ public class Cars {
         addAll(carNamesInput);
     }
 
-    private void checkDuplicatedCarName(List<String> carNameList) {
+    public void checkDuplicatedCarName(List<String> carNameList) {
         if (hasDuplicatedName(carNameList)) {
             throw new IllegalArgumentException("Duplicated Car Name!");
         }
