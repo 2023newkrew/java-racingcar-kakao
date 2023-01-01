@@ -46,12 +46,12 @@ public class CarsTest {
         assertThat(cars.getWinners(new CarPosition(5))).isEqualTo(Arrays.asList(new CarName("pobi"), new CarName("honux")));
     }
 
-//    @DisplayName("자동차 배열에서 로그를 제대로 구하는지 테스트")
-//    @Test
-//    public void getRacingLogTest() {
-//        RacingLog[] racingLog = {new RacingLog(new CarName("pobi"), new CarPosition(5)),
-//                new RacingLog(new CarName("crong"), new CarPosition(4)),
-//                new RacingLog(new CarName("hounx"), new CarPosition(5))};
-//        assertThat(cars.getRacingLog()).isEqualTo(racingLog);
-//    }
+    @DisplayName("자동차 배열에서 로그를 제대로 구하는지 테스트")
+    @Test
+    public void getRacingLogTest() {
+        RacingLog[] racingLogs = new RacingLog[]{new RacingLog(new CarName("pobi"), new CarPosition(5)),
+                new RacingLog(new CarName("crong"), new CarPosition(4)),
+                new RacingLog(new CarName("honux"), new CarPosition(5))};
+        assertThat(cars.getRacingLog()).isEqualTo(racingLogs);
+    }
 }
