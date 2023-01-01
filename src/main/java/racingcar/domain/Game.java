@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.dto.CarInfo;
 import racingcar.dto.GameInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -30,19 +29,14 @@ public class Game {
     }
 
     public List<CarInfo> findWinners(GameInfo gameInfo) {
-        List<CarInfo> winners = new ArrayList<>();
-        for (CarInfo carInfo : gameInfo.getCarInfos()) {
-            addWinnerByPosition(winners, carInfo, getMaxPosition(gameInfo));
-        }
-        return winners;
-    }
+        List<CarInfo> carInfos = gameInfo.getCarInfos();
+        int maxPosition = getMaxPosition(gameInfo);
 
-    private void addWinnerByPosition(List<CarInfo> winners,
-                                     CarInfo carInfo,
-                                     int maxPosition) {
-        if (carInfo.getPosition() == maxPosition) {
-            winners.add(carInfo);
-        }
+        List<CarInfo> winners = carInfos.stream()
+                .filter(carInfo -> carInfo.getPosition() == maxPosition)
+                .collect(Collectors.toList());
+
+        return winners;
     }
 
     public int getMaxPosition(GameInfo gameInfo) {
