@@ -1,28 +1,18 @@
 package carracing.domain;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
 public class RacingGame {
-    private final List<RacingPlayer> racingPlayers = new ArrayList<>();
-    private final StringParser stringParser;
+    private final List<RacingPlayer> racingPlayers;
     private int curTurn = 0;
     private final int numberOfTurns;
 
-    public RacingGame(StringParser stringParser, String stringOfNames, int numberOfTurns) {
-        this.stringParser = stringParser;
-        String[] playerNames = this.stringParser.parse(stringOfNames);
-        createPlayers(playerNames);
+    public RacingGame(List<RacingPlayer> racingPlayers, int numberOfTurns) {
+        this.racingPlayers = racingPlayers;
         InputVerifier.verifyNumberIsPos(numberOfTurns);
         this.numberOfTurns = numberOfTurns;
-    }
-
-    private void createPlayers(String[] playerNames) {
-        for (String playerName : playerNames) {
-            racingPlayers.add(new Car(playerName));
-        }
     }
 
     public List<RacingPlayer> getRacingPlayers() {
