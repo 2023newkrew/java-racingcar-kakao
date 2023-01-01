@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class View {
     Racing racing = new Racing();
 
-    public void input() {
+    public void getInput() {
         Scanner sc = new Scanner(System.in);
         String carNames;
         do {
@@ -22,7 +22,7 @@ public class View {
 
     void runRound() {
         for (int i = 0; i < racing.getRoundNum(); i++) {
-            racing.round();
+            racing.progressRound();
             String result = racing.roundResult();
             printRoundResult(result);
         }

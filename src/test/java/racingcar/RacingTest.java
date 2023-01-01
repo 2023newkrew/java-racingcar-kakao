@@ -72,6 +72,6 @@ public class RacingTest {
         Racing racing = new Racing();
         racing.registerCarNames("a,b,c");
         racing.registerCarRoundNum("5");
-        assertTrue(racing.round());
+        assertTrue(racing.progressRound());
     }
 }
