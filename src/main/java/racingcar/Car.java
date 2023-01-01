@@ -27,8 +27,8 @@ public class Car {
         return position;
     }
 
-    public void moveWithPower(int power) {
-        if (power >= 4) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.movable()) {
             this.position++;
         }
     }

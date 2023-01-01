@@ -1,22 +1,21 @@
 package racingcar;
 
 import java.util.List;
-import java.util.Random;
 
 public class RacingCarService implements Runnable {
 
     private final InputView inputView;
     private final Referee referee;
     private final OutputView outputView;
-    private final Random random = new Random();
+    private final MovingStrategy movingStrategy;
 
-    private final int POWER_BOUND = 10;
 
     public RacingCarService(InputView inputView, Referee referee,
-                            OutputView outputView) {
+                            OutputView outputView, MovingStrategy movingStrategy) {
         this.inputView = inputView;
         this.referee = referee;
         this.outputView = outputView;
+        this.movingStrategy = movingStrategy;
     }
 
     @Override
@@ -48,7 +47,7 @@ public class RacingCarService implements Runnable {
 
     private void moveAllCars(List<Car> cars) {
         for (Car car : cars) {
-            car.moveWithPower(random.nextInt(POWER_BOUND));
+            car.move(movingStrategy);
         }
     }
 

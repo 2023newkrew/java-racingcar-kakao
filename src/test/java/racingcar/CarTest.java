@@ -25,14 +25,14 @@ public class CarTest {
     }
 
     @Test
-    public void 랜덤값이_4이상이면_전진() {
-        car.moveWithPower(4);
+    public void 자동차_전진() {
+        car.move(() -> true);
         Assertions.assertThat(car.getCurrentStatus()).isEqualTo("pobi : --");
     }
 
     @Test
-    public void 랜덤값이_3이하면_정지() {
-        car.moveWithPower(3);
+    public void 자동차_정지() {
+        car.move(() -> false);
         Assertions.assertThat(car.getCurrentStatus()).isEqualTo("pobi : -");
     }
 }
