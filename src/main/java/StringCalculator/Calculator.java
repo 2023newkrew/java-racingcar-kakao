@@ -1,18 +1,14 @@
 package stringCalculator;
 
 import stringCalculator.domain.Delimiter;
-import stringCalculator.domain.StringSum;
+import stringCalculator.domain.Summation;
 import stringCalculator.view.In;
 import stringCalculator.view.Out;
 
-import java.util.Scanner;
-
-public class Main {
-    private static StringSum stringSum;
+public class Calculator {
 
     public static boolean textException(String inputString) {
-        if(inputString == null) return false;
-        if(inputString.isEmpty()) return false;
+        if(inputString == null || inputString.isBlank()) return false;
         return true;
     }
 
@@ -24,7 +20,9 @@ public class Main {
             return;
         }
         Delimiter delimiter = new Delimiter(input);
-        stringSum = new StringSum(input);
-        Out.printResult(stringSum.calculate());
+        Summation summation = new Summation(delimiter.getInputString());
+        int result = summation.calculate(delimiter.getDelimiterRegEx());
+        Out.printResult(result);
     }
+
 }
