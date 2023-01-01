@@ -29,7 +29,7 @@ public class Racing {
     boolean registerCarRoundNum(String input) {
         try {
             roundNum = Integer.parseInt(input);
-            return true;
+            return roundNum > 0;
         } catch (NumberFormatException ex) {
             return false;
         }
