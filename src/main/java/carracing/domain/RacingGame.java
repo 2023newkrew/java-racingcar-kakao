@@ -29,9 +29,9 @@ public class RacingGame {
 
     public RacingPlayer[] getWinners() {
         Integer maxPosition = racingPlayers.stream()
-                .max(Comparator.comparingInt(RacingPlayer::getPosition))
-                .get()
-                .getPosition();
+                .mapToInt(RacingPlayer::getPosition)
+                .max()
+                .orElse(0);
 
         return racingPlayers.stream()
                 .filter(p -> Objects.equals(p.getPosition(), maxPosition))
