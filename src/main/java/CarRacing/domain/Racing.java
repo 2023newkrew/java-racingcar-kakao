@@ -37,9 +37,16 @@ public class Racing {
     }
 
     public void makeCarList(String[] names) {
+        validateCarNamesLength(names.length);
         cars = new Car[names.length];
         for (int index = 0; index < cars.length; index++) {
             cars[index] = new Car(names[index]);
+        }
+    }
+
+    public void validateCarNamesLength(int carNamesLength) {
+        if (carNamesLength == 0) {
+            throw new IllegalArgumentException("자동차 이름을 입력하십시오.");
         }
     }
 

@@ -27,6 +27,22 @@ public class RacingTest {
         assertThat(cars.length).isEqualTo(3);
     }
 
+    @DisplayName("자동차 이름 배열 길이가 정상인 경우 테스트")
+    @Test
+    public void correctCarNamesLengthTest() {
+        assertDoesNotThrow(() -> {
+           racing.validateCarNamesLength(3);
+        });
+    }
+
+    @DisplayName("자동차 이름 배열 길이가 비정상인 경우 테스트")
+    @Test
+    public void wrongCarNamesLengthTest() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            racing.validateCarNamesLength(0);
+        });
+    }
+
     @DisplayName("자동차 배열에서 최대 포지션을 제대로 구하는지 테스트")
     @Test
     public void getMaxPositionTest() {
