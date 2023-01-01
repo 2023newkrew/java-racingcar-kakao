@@ -1,4 +1,6 @@
-package StringCalculator;
+package stringCalculator;
+
+import stringCalculator.domain.StringSum;
 
 import java.util.Scanner;
 
