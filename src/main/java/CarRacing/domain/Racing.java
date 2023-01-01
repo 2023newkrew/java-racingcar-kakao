@@ -28,7 +28,7 @@ public class Racing {
         try {
             StringUtil.convertStringToInt(racingCount);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("시도할 회수 입력이 숫자가 아닙니다.");
+            throw new IllegalArgumentException("시도할 회수 입력이 숫자가 아닙니다.");
         }
     }
 

@@ -34,7 +34,7 @@ public class CarTest {
     @Test
     public void validateWrongCarNameTest() {
         String wrong_name = "pororo";
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             car.validateName(wrong_name);
         });
     }
