@@ -2,6 +2,6 @@ package racingcar.view;
 
 
 public interface InputView {
-    String[] scanNames();
-    int scanTrialCount();
+    String[] getNamesArray();
+    int getTrialCount();
 }

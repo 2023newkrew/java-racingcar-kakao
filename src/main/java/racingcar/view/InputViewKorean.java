@@ -16,28 +16,30 @@ public class InputViewKorean implements InputView{
         scanner = new Scanner(inputStream);
         this.printStream = printStream;
     }
-    public String[] scanNames() {
+    public String[] getNamesArray() {
         printStream.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return scanNames(scanner.nextLine());
+        return getNamesArray(scanner.nextLine());
     }
-    public String[] scanNames(String names){ // inputStream을 거치지 않고 직접 입력
-        String[] stringArray = split(names);
+    public String[] getNamesArray(String names){ // inputStream을 거치지 않고 직접 입력
+        String[] stringArray = parseNames(names);
+        validateEachString(stringArray);
         validateDuplication(stringArray);
         validateArrayLength(stringArray);
-        validateEachString(stringArray);
         return stringArray;
     }
 
-    public int scanTrialCount() {
+    public int getTrialCount() {
         printStream.println("시도할 회수는 몇회인가요?");
-        return validateTrialCount(scanner.nextLine());
+        return getTrialCount(scanner.nextLine());
     }
 
-    public int scanTrialCount(String input) { // inputStream을 거치지 않고 직접 입력
-        return validateTrialCount(input);
+    public int getTrialCount(String input) { // inputStream을 거치지 않고 직접 입력
+        int trialCount = parseStringToInt(input);
+        validateTrialCount(trialCount);
+        return trialCount;
     }
 
-    private String[] split(String stringInput) {
+    private String[] parseNames(String stringInput) {
         return stringInput.split(DELIMITER);
     }
 
@@ -67,11 +69,12 @@ public class InputViewKorean implements InputView{
         }
     }
 
-    private int validateTrialCount(String trialCount) {
-        int result = Integer.parseInt(trialCount);
-        if (result < 1) {
+    private int parseStringToInt(String input){
+        return Integer.parseInt(input);
+    }
+    private void validateTrialCount(int trialCount) {
+        if (trialCount < 1) {
             throw new InvalidInputException("4 : Trial count must be over 0.");
         }
-        return result;
     }
 }

@@ -21,8 +21,8 @@ public class Main {
 
     private static void input(){
         racing = new Racing.Builder().
-                addCars(inputView.scanNames())
-                .setRounds(inputView.scanTrialCount())
+                addCars(inputView.getNamesArray())
+                .setRounds(inputView.getTrialCount())
                 .build();
     }
 

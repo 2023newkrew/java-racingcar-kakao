@@ -22,14 +22,14 @@ public class InputViewKoreanTest {
     void inputLengthException(String inputStr) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    inputViewKorean.scanNames(inputStr+",han");
+                    inputViewKorean.getNamesArray(inputStr+",han");
                 }).withMessageStartingWith("1");
     }
     @Test
     void inputLengthNotException() {
         String inputStr = "dan";
         assertThatCode(()->{
-            inputViewKorean.scanNames(inputStr+",han");
+            inputViewKorean.getNamesArray(inputStr+",han");
         }).doesNotThrowAnyException();
     }
 
@@ -38,7 +38,7 @@ public class InputViewKoreanTest {
         String inputStr = "kim";
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    inputViewKorean.scanNames(inputStr);
+                    inputViewKorean.getNamesArray(inputStr);
                 }).withMessageStartingWith("2");
 
     }
@@ -46,7 +46,7 @@ public class InputViewKoreanTest {
     void arrayLengthNotException() {
         String inputStr = "kim,lee";
         assertThatCode(()->{
-            inputViewKorean.scanNames(inputStr);
+            inputViewKorean.getNamesArray(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -54,7 +54,7 @@ public class InputViewKoreanTest {
     void EachStringNotException(){
         String inputStr = "kim,lee,han";
         assertThatCode(()->{
-            inputViewKorean.scanNames(inputStr);
+            inputViewKorean.getNamesArray(inputStr);
         }).doesNotThrowAnyException();
     }
 
@@ -64,7 +64,7 @@ public class InputViewKoreanTest {
         String inputStr = "kim,lee,abnormal";
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(() -> {
-                    inputViewKorean.scanNames(inputStr);
+                    inputViewKorean.getNamesArray(inputStr);
                 }).withMessageStartingWith("1");
     }
 
@@ -73,14 +73,14 @@ public class InputViewKoreanTest {
         String inputStr = "kim,lee,kim";
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
-                    inputViewKorean.scanNames(inputStr);
+                    inputViewKorean.getNamesArray(inputStr);
                 }).withMessageStartingWith("3");
     }
 
     @Test
     void trialCountNotExceptionTest() {
         String trialCount = "3";
-        Assertions.assertThat(inputViewKorean.scanTrialCount(trialCount)).isEqualTo(3);
+        Assertions.assertThat(inputViewKorean.getTrialCount(trialCount)).isEqualTo(3);
 
     }
 
@@ -89,7 +89,7 @@ public class InputViewKoreanTest {
     void trialCountNotNumber(String trialCount) {
         assertThatExceptionOfType(NumberFormatException.class)
                 .isThrownBy(()->{
-                    inputViewKorean.scanTrialCount(trialCount);
+                    inputViewKorean.getTrialCount(trialCount);
                 });
     }
     @ParameterizedTest
@@ -97,7 +97,7 @@ public class InputViewKoreanTest {
     void trialCountNotPositive(String trialCount) {
         assertThatExceptionOfType(InvalidInputException.class)
                 .isThrownBy(()->{
-                    inputViewKorean.scanTrialCount(trialCount);
+                    inputViewKorean.getTrialCount(trialCount);
                 }).withMessageStartingWith("4");
     }
 
