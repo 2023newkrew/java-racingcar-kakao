@@ -3,7 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.RacingCar;
-import racingcar.service.RacingCars;
+import racingcar.model.RacingCars;
 
 import java.util.ArrayList;
 

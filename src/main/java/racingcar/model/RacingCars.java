@@ -1,7 +1,5 @@
-package racingcar.service;
+package racingcar.model;
 
-import racingcar.model.Car;
-import racingcar.model.RacingCar;
 import racingcar.util.Movable;
 
 import java.util.ArrayList;
@@ -12,8 +10,15 @@ import java.util.stream.Collectors;
 public class RacingCars {
     private final List<RacingCar> cars;
 
-    public RacingCars(ArrayList<RacingCar> cars) {
+    public RacingCars(List<RacingCar> cars) {
         this.cars = cars;
+    }
+
+    public RacingCars(String[] carNames) {
+        cars = new ArrayList<>();
+        for (String carName : carNames) {
+            cars.add(new RacingCar(carName));
+        }
     }
 
     public void moveCars(Movable movable) {

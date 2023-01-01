@@ -1,43 +1,43 @@
 package racingcar.controller;
 
 import racingcar.model.RacingCar;
-import racingcar.service.RacingService;
+import racingcar.model.Racing;
 
 import java.util.List;
 
 public class RacingController {
-    private RacingService racingService;
+    private Racing racing;
     private String names;
     private int trialNumber;
 
 
     public List<RacingCar> getWinners() {
-        return racingService.getWinners();
+        return racing.getWinners();
     }
 
     public void processCarNames(String names) {
-        RacingService.validateCarNames(names);
+        Racing.validateCarNames(names);
         this.names = names;
     }
 
     public void processTrialNumber(String trialNumber) {
-        RacingService.validateTrialNumber(trialNumber);
+        Racing.validateTrialNumber(trialNumber);
         this.trialNumber = Integer.parseInt(trialNumber);
     }
     public void startRacing() {
-        this.racingService = new RacingService(names, trialNumber);
+        this.racing = new Racing(names, trialNumber);
     }
 
     public boolean isRacingEnd() {
-        return racingService.isRacingEnd();
+        return racing.isRacingEnd();
     }
 
     public void proceedRound() {
-        racingService.proceedRound();
+        racing.proceedRound();
     }
 
     public List<RacingCar> getCarsForPrintRoundResult() {
-        return racingService.getCarsForPrintRoundResult();
+        return racing.getCarsForPrintRoundResult();
     }
 
 }

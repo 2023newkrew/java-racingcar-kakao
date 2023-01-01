@@ -1,26 +1,23 @@
-package racingcar.service;
+package racingcar.model;
 
-import racingcar.model.RacingCar;
-import racingcar.repository.RacingRepository;
 import racingcar.util.Movable;
-import racingcar.util.RacingCarsGenerator;
 import racingcar.util.RacingCarsValidator;
 import racingcar.util.RandomMovable;
 
 import java.util.List;
 
 
-public class RacingService {
+public class Racing {
     private static final String DELIMITER = ",";
     private static final int RANDOM_THRESHOLD = 10;
     private static final int RANDOM_BOUND = 4;
     private final Movable movable;
     private final int totalRounds;
     private int trialCount = 0;
-    private final RacingRepository racingRepository;
+    private final RacingCars racingCars;
 
-    public RacingService(String carNames, int totalRounds) {
-        this.racingRepository = new RacingRepository(RacingCarsGenerator.generate(carNames.split(DELIMITER)));
+    public Racing(String carNames, int totalRounds) {
+        this.racingCars = new RacingCars(carNames.split(DELIMITER));
         this.totalRounds = totalRounds;
         this.movable = new RandomMovable(RANDOM_THRESHOLD, RANDOM_BOUND);
     }
@@ -31,12 +28,12 @@ public class RacingService {
     }
 
     public void proceedRound() {
-        racingRepository.getCars().moveCars(movable);
+        racingCars.moveCars(movable);
         trialCount++;
     }
 
     public List<RacingCar> getWinners() {
-        return racingRepository.getCars().getWinners();
+        return racingCars.getWinners();
     }
 
     public static void validateCarNames(String carNames) {
@@ -48,7 +45,7 @@ public class RacingService {
     }
 
     public List<RacingCar> getCarsForPrintRoundResult() {
-        return racingRepository.getCars().getCarsList();
+        return racingCars.getCarsList();
     }
 
 }

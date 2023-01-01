@@ -7,15 +7,15 @@ import racingcar.view.RacingView;
 public class Main {
     public static void main(String[] args) {
         RacingController rc = new RacingController();
-        RacingView rv = new RacingView(rc);
+        RacingView rv = new RacingView();
 
-        rv.inputNames();
-        rv.inputTrialNumber();
+        rc.processCarNames(rv.inputNames());
+        rc.processTrialNumber(rv.inputTrialNumber());
         rc.startRacing();
         while (!rc.isRacingEnd()) {
             rc.proceedRound();
-            rv.printRoundResult();
+            rv.printRoundResult(rc.getCarsForPrintRoundResult());
         }
-        rv.printWinners();
+        rv.printWinners(rc.getWinners());
     }
 }
