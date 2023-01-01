@@ -12,7 +12,7 @@ public class Result {
     private void getCarsWithPosition(Car[] cars, int position) {
         winners = Arrays.stream(cars)
                 .filter(car -> car.getPosition() == position)
-                .map(s -> s.getName()).collect(Collectors.toList());
+                .map(Car::getName).collect(Collectors.toList());
     }
 
     public List<String> getWinner(CarList carList) {
