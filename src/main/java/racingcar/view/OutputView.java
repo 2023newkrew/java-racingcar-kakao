@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 프로그램의 UI로직을 담당하는 클래스입니다.
- * 사용자 input도 여기에서 담당합니다.
+ * 컨트롤러에게 받은 데이터를 바탕으로 output string을 구성하고 프린트합니다.
  */
 public class OutputView {
 

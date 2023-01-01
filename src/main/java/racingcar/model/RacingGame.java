@@ -4,10 +4,15 @@ import racingcar.Constant.StringConstant;
 
 import java.util.List;
 
+/**
+ * 컨트롤러의 비즈니스로직을 최소화하기 위한 모델과 컨트롤러 사이의 서비스 레이어 개념을 생각하고 만들었습니다.
+ * trial number만큼 racing을 진행하는 for문 로직이 있습니다.
+ * 전체 게임 로그를 유지하여 컨트롤러에 넘겨줍니다.
+ */
 public class RacingGame {
     private final int trial;
     private final Cars cars;
-    private StringBuilder gameLog;
+    private final StringBuilder gameLog;
 
     public RacingGame(int trial_input, List<String> carNamesInput) {
         validateTrialUserInput(trial_input);
@@ -41,7 +46,7 @@ public class RacingGame {
         }
     }
 
-    public String gameLog() {
+    public final String gameLog() {
         return gameLog.toString();
     }
 

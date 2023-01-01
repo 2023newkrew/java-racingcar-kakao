@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * Racing Game을 실제로 구동시키는 클래스입니다.
- * 구현한 모든 클래스가 조합되어 사용되는 부분
+ * RacingGame 모델과 OutputView 뷰를 사용하여 구동됩니다.
  */
 public class RacingGameController {
 
