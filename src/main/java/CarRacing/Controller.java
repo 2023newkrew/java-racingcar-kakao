@@ -5,22 +5,12 @@ import CarRacing.domain.RacingResult;
 import CarRacing.view.InputView;
 import CarRacing.view.ResultView;
 
-
 public class Controller {
-    public static void main(String[] args) {
-        while (true) {
-            String inputNames = InputView.inputNames();
-            String inputCount = InputView.inputCount();
-            Racing racing;
-            try {
-                racing = new Racing(inputNames, inputCount);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            RacingResult racingResult = racing.playRacing();
-            ResultView.printRacingResult(racingResult);
-            break;
-        }
+    public static void RacingGame() {
+        String inputNames = InputView.inputNames();
+        String inputCount = InputView.inputCount();
+        Racing racing = new Racing(inputNames, inputCount);
+        RacingResult racingResult = racing.playRacing();
+        ResultView.printRacingResult(racingResult);
     }
 }
