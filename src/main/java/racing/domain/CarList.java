@@ -20,4 +20,8 @@ public class CarList {
         return cars;
     }
 
+    public int getLength() {
+        return cars.length;
+    }
+
 }
