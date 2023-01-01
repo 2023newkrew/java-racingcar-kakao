@@ -4,15 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputHandler {
+public class InputView {
 
     private final InputParser inputParser = new InputParser();
     private final Scanner scanner = new Scanner(System.in);
+    private final OutputView outputView;
+
+    public InputView(OutputView outputView) {
+        this.outputView = outputView;
+    }
 
     private final int MINIMUM_CARS = 2;
 
 
     public List<Car> getCars() {
+        outputView.printMessage("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNamesInput = scanner.nextLine();
         String[] carNames = inputParser.splitByComma(carNamesInput);
         validateCarNames(carNames);
@@ -24,6 +30,7 @@ public class InputHandler {
     }
 
     public int getRounds() {
+        outputView.printMessage("시도할 회수는 몇회인가요?");
         String roundInput = scanner.nextLine();
         return inputParser.parseToInt(roundInput);
     }
