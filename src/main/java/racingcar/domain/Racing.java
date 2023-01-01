@@ -30,8 +30,11 @@ public class Racing {
     public boolean isEnd(){
         return remainingRound<=0;
     }
+    public boolean isNotEnd(){
+        return !isEnd();
+    }
     public Car[] getWinners(){
-        if (remainingRound > 0){
+        if (isNotEnd()){
             throw new InvalidRacingConditionException("2 : Not yet race ended.");
         }
         Stream<Car> stream = Arrays.stream(cars);
@@ -62,10 +65,7 @@ public class Racing {
         private int remainingRounds = 0;
 
         public Builder addCars(String[] carNames){
-            for (String carName : carNames){
-                cars.add(new Car(carName, new RandomGeneratorImpl()));
-            }
-            checkDuplicatedName();
+            addCars(carNames, new RandomGeneratorImpl());
             return this;
         }
 

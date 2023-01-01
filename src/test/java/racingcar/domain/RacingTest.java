@@ -21,7 +21,7 @@ public class RacingTest {
                 .addCars(cars)
                 .setRounds(5)
                 .build();
-        while(!racing.isEnd()){
+        while(racing.isNotEnd()){
             racing.proceedRound();
         }
 
@@ -41,7 +41,7 @@ public class RacingTest {
                 .addCars(cars)
                 .setRounds(5)
                 .build();
-        while(!racing.isEnd()){
+        while(racing.isNotEnd()){
             racing.proceedRound();
         }
         Assertions.assertThat(racing.getWinners()).containsExactly(cars[1], cars[2], cars[4]);

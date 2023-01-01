@@ -29,7 +29,7 @@ public class Main {
     private static void race(){
         printView.printStart();
         printView.printCars(racing.getCars());
-        while(!racing.isEnd()){
+        while(racing.isNotEnd()){
             racing.proceedRound();
             printView.printCars(racing.getCars());
         }
