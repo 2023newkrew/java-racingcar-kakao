@@ -1,13 +1,9 @@
 package racing.domain;
 
-import java.util.Random;
-
 public class Car {
 
     private final static int INITIAL_POSITION = 1;
     private final int MAX_NAME_LENGTH = 5;
-    private final static int MAX_VALUE = 10;
-    private final static int THRESHOLD = 4;
 
     private int position;
     private String name;
@@ -27,23 +23,10 @@ public class Car {
         this(INITIAL_POSITION, name);
     }
 
-    protected int createRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(MAX_VALUE);
-    }
-
-    private boolean isMove(int randomNumber) {
-        return randomNumber >= THRESHOLD;
-    }
-
-    private void moveCar(boolean move) {
-        if(move) {
+    public void move(Move movingStrategy) {
+        if (movingStrategy.movable()) {
             position++;
         }
-    }
-
-    public void moveCarRandomly() {
-        moveCar(isMove(createRandomNumber()));
     }
 
     public int getPosition() {

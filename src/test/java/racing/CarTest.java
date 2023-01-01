@@ -2,8 +2,6 @@ package racing;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import racing.domain.Car;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -26,33 +24,21 @@ public class CarTest {
         assertThrows(RuntimeException.class, () -> new Car(longName));
     }
 
-    @DisplayName("랜덤 숫자가 4 미만일 때 자동차 정지 테스트")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    public void carStopTest(int numberUnderFour) {
+    @DisplayName("자동차 정지 테스트")
+    @Test
+    public void carStopTest() {
         int nowPosition = 5;
-        Car car = new Car(nowPosition, "test") {
-            @Override
-            protected int createRandomNumber() {
-                return numberUnderFour;
-            }
-        };
-        car.moveCarRandomly();
+        Car car = new Car(nowPosition, "test");
+        car.move(() -> false);
         assertThat(car.getPosition()).isEqualTo(nowPosition);
     }
 
-    @DisplayName("랜덤 숫자가 4 이상일 때 자동차 전진 테스트")
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    public void carForwardTest(int numberOverThree) {
+    @DisplayName("자동차 전진 테스트")
+    @Test
+    public void carForwardTest() {
         int nowPosition = 5;
-        Car car = new Car(nowPosition, "test") {
-            @Override
-            protected int createRandomNumber() {
-                return numberOverThree;
-            }
-        };
-        car.moveCarRandomly();
+        Car car = new Car(nowPosition, "test");
+        car.move(() -> true);
         assertThat(car.getPosition()).isEqualTo(nowPosition + 1);
     }
 
