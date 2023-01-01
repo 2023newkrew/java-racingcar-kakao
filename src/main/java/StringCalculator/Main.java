@@ -1,22 +1,22 @@
 package stringCalculator;
 
 import stringCalculator.domain.StringSum;
+import stringCalculator.view.In;
+import stringCalculator.view.Out;
 
 import java.util.Scanner;
 
 public class Main {
     private static StringSum stringSum;
 
-    public static String inputString() {
-        System.out.print("문자열을 입력해주세요. : ");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        if(input.startsWith("//")) {
-            String input_2 = scanner.nextLine();
-            input += "\n" + input_2;
-        }
-        return input;
-    }
+//    public static String inputString() {
+//        String input = In.inputString();
+//        if(input.startsWith("//")) {
+//            String input_2 = scanner.nextLine();
+//            input += "\n" + input_2;
+//        }
+//        return input;
+//}
 
     public static boolean textException(String inputString) {
         if(inputString == null) return false;
@@ -25,12 +25,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String input = inputString();
+        Out.printInputStringRequest();
+        String input = In.inputString();
         if (!textException(input)) {
-            System.out.println("합은 0입니다.");
+            Out.printBlankOrNullResponse();
             return;
         }
         stringSum = new StringSum(input);
-        System.out.println("합은 " + stringSum.calculate() + "입니다.");
+        Out.printResult(stringSum.calculate());
     }
 }
