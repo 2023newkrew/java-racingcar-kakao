@@ -2,9 +2,9 @@ package CarRacing.domain;
 
 public class RacingLog {
     private CarName name;
-    private int position;
+    private CarPosition position;
 
-    public RacingLog(CarName name, int position) {
+    public RacingLog(CarName name, CarPosition position) {
         this.name = name;
         this.position = position;
     }
@@ -13,7 +13,7 @@ public class RacingLog {
         return name;
     }
 
-    public int getPosition() {
+    public CarPosition getPosition() {
         return position;
     }
 }

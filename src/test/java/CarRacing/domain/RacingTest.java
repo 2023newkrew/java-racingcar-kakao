@@ -62,7 +62,7 @@ public class RacingTest {
     @DisplayName("자동차 배열에서 최대 포지션을 제대로 구하는지 테스트")
     @Test
     public void getMaxPositionTest() {
-        assertThat(racingWithCars.getMaxPosition()).isEqualTo(5);
+        assertThat(racingWithCars.getMaxPosition().getPosition()).isEqualTo(5);
     }
 
     @DisplayName("자동차 배열에서 우승자를 제대로 구하는지 테스트")

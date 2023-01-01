@@ -10,7 +10,7 @@ import java.util.List;
 public class ResultView {
     private static void printRacingLog(RacingLog[] racingLog) {
         for (RacingLog car : racingLog) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition().getPosition()));
         }
         System.out.println();
     }

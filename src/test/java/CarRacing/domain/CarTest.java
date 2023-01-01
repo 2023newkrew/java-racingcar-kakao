@@ -21,25 +21,18 @@ public class CarTest {
     @CsvSource({"true, 6", "false, 5"})
     public void moveCarTest(boolean move, int position) {
         car.moveCar(() -> move);
-        assertThat(car.getPosition()).isEqualTo(position);
-    }
-
-    @DisplayName("자동차의 포지션과 최대 포지션의 비교가 잘 이루어지는지 테스트")
-    @ParameterizedTest
-    @CsvSource({"6, 6", "4, 5", "5, 5"})
-    public void getMaxPositionTest(int maxPosition, int newMaxPosition) {
-        assertThat(car.getMaxPosition(maxPosition)).isEqualTo(newMaxPosition);
+        assertThat(car.getPosition().getPosition()).isEqualTo(position);
     }
 
     @DisplayName("우승자의 위치와 같으면 true를 반환하는지 테스트")
     @Test
     public void isWinnerTest() {
-        assertThat(car.isWinner(5)).isEqualTo(true);
+        assertThat(car.isWinner(new CarPosition(5))).isEqualTo(true);
     }
 
     @DisplayName("우승자의 위치와 다르면 false를 반환하는지 테스트")
     @Test
     public void getLoserNameTest() {
-        assertThat(car.isWinner(6)).isEqualTo(false);
+        assertThat(car.isWinner(new CarPosition(6))).isEqualTo(false);
     }
 }

@@ -50,8 +50,8 @@ public class Racing {
         }
     }
 
-    public int getMaxPosition() {
-        int maxPosition = 0;
+    public CarPosition getMaxPosition() {
+        CarPosition maxPosition = new CarPosition(0);
         for (Car car : cars) {
             maxPosition = car.getMaxPosition(maxPosition);
         }
@@ -59,7 +59,7 @@ public class Racing {
     }
 
     public void decideWinners() {
-        int maxPosition = getMaxPosition();
+        CarPosition maxPosition = getMaxPosition();
         for (Car car : cars) {
             if(car.isWinner(maxPosition)){
                 addWinner(car.getCarName());
