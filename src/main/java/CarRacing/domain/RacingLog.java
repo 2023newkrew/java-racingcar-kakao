@@ -1,15 +1,15 @@
 package CarRacing.domain;
 
 public class RacingLog {
-    private String name;
+    private CarName name;
     private int position;
 
-    public RacingLog(String name, int position) {
+    public RacingLog(CarName name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public String getName() {
+    public CarName getName() {
         return name;
     }
 

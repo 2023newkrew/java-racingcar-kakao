@@ -1,8 +1,10 @@
 package CarRacing.view;
 
+import CarRacing.domain.CarName;
 import CarRacing.domain.RacingLog;
 
 import CarRacing.domain.RacingResult;
+import CarRacing.util.StringUtil;
 import java.util.List;
 
 public class ResultView {
@@ -20,8 +22,8 @@ public class ResultView {
         }
     }
 
-    public static void printWinners(List<String> winners) {
-        System.out.println(String.join(",", winners) + "가 최종 우승했습니다.");
+    public static void printWinners(List<CarName> winners) {
+        System.out.println(StringUtil.joinStringList(",", StringUtil.convertCarNameListToStringList(winners)) + "가 최종 우승했습니다.");
     }
 
     public static void printRacingResult(RacingResult racingResult) {

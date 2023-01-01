@@ -9,7 +9,7 @@ public class Racing {
     private int racingCount;
     private Car[] cars;
     private List<RacingLog[]> racingLogs = new ArrayList<>();
-    private List<String> winners = new ArrayList<>();
+    private List<CarName> winners = new ArrayList<>();
 
 
     public Racing(String inputNames, String racingCount) {
@@ -61,15 +61,14 @@ public class Racing {
     public void decideWinners() {
         int maxPosition = getMaxPosition();
         for (Car car : cars) {
-            String winnerName = car.getWinnerName(maxPosition);
-            addWinner(winnerName);
+            if(car.isWinner(maxPosition)){
+                addWinner(car.getCarName());
+            }
         }
     }
 
-    public void addWinner(String name) {
-        if (name != null) {
-            winners.add(name);
-        }
+    public void addWinner(CarName name) {
+        winners.add(name);
     }
 
     public void oneCycle() {
@@ -81,7 +80,7 @@ public class Racing {
     public void writeRacingLog() {
         RacingLog[] racingLog = new RacingLog[cars.length];
         for (int carIndex = 0; carIndex < cars.length; carIndex++) {
-            racingLog[carIndex] = new RacingLog(cars[carIndex].getName(), cars[carIndex].getPosition());
+            racingLog[carIndex] = new RacingLog(cars[carIndex].getCarName(), cars[carIndex].getPosition());
         }
         racingLogs.add(racingLog);
     }
@@ -101,7 +100,7 @@ public class Racing {
         return cars;
     }
 
-    public List<String> getWinners() {
+    public List<CarName> getWinners() {
         return winners;
     }
 }

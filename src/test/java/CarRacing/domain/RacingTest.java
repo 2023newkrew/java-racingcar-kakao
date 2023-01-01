@@ -1,6 +1,5 @@
 package CarRacing.domain;
 
-import java.util.Collections;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -70,20 +69,13 @@ public class RacingTest {
     @Test
     public void decideWinnersTest() {
         racingWithCars.decideWinners();
-        assertThat(racingWithCars.getWinners()).isEqualTo(Arrays.asList("pobi", "honux"));
+        assertThat(racingWithCars.getWinners()).isEqualTo(Arrays.asList(new CarName("pobi"), new CarName("honux")));
     }
 
-    @DisplayName("우승자 이름이 null이 아니면 목록이 제대로 갱신되는지 테스트")
+    @DisplayName("우승자 이름 목록이 제대로 갱신되는지 테스트")
     @Test
     public void addWinnerTest() {
-        racing.addWinner("leo");
-        assertThat(racing.getWinners()).isEqualTo(Arrays.asList("leo"));
-    }
-
-    @DisplayName("우승자 이름이 null이면 목록이 제대로 갱신되는지 테스트")
-    @Test
-    public void notAddWinnerTest() {
-        racing.addWinner(null);
-        assertThat(racing.getWinners()).isEqualTo(Collections.emptyList());
+        racing.addWinner(new CarName("leo"));
+        assertThat(racing.getWinners()).isEqualTo(Arrays.asList(new CarName("leo")));
     }
 }
