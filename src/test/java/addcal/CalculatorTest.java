@@ -3,13 +3,14 @@ package addcal;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CalculatorTest {
     @Test
-    void CalculatorInputTest(){
+    void CalculatorInputTest() {
         Calculator cal = new Calculator();
         String input = "//a\n1a2a3a4a5";
-        cal.Run(input);
+        cal.run(input);
         int result = cal.addCal.resultNum.getNum();
         assertEquals(result, 15);
     }
@@ -18,7 +19,7 @@ public class CalculatorTest {
     void RunTest() {
         Calculator cal = new Calculator();
         String input = "1,2,3";
-        assertEquals(cal.Run(input), true);
+        assertTrue(cal.run(input));
     }
 
 }

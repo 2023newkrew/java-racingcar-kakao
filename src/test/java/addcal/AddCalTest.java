@@ -20,8 +20,9 @@ public class AddCalTest {
         tmp.add(new CalNum(45));
         assertThat(calNumList).usingRecursiveComparison().isEqualTo(tmp);
     }
+
     @Test
-    void customSeparatorTest(){
+    void customSeparatorTest() {
         String inputString = "//a\n1a2a3";
         AddCal addCal = new AddCal(inputString);
         String separator = addCal.separator;
