@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class CarsTest {
     private Cars cars;
 
@@ -43,7 +44,8 @@ public class CarsTest {
     @DisplayName("자동차 배열에서 최대 포지션으로 우승자들을 제대로 구하는지 테스트")
     @Test
     public void getWinnersTest() {
-        assertThat(cars.getWinners(new CarPosition(5))).isEqualTo(Arrays.asList(new CarName("pobi"), new CarName("honux")));
+        assertThat(cars.getWinners(new CarPosition(5))).isEqualTo(
+                Arrays.asList(new CarName("pobi"), new CarName("honux")));
     }
 
     @DisplayName("자동차 배열에서 로그를 제대로 구하는지 테스트")

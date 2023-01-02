@@ -8,6 +8,7 @@ public class RandomValueMovingStrategy implements MovingStrategy {
     public RandomValueMovingStrategy(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
+
     @Override
     public boolean movable() {
         return generateRandomNumber() >= MOVE_THRESHOLD;

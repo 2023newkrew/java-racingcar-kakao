@@ -46,10 +46,6 @@ public class Racing {
         return new RacingResult(racingLogs, winners);
     }
 
-    public Cars getCars() {
-        return cars;
-    }
-
     public List<CarName> getWinners() {
         return winners;
     }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class RacingCountTest {
     private RacingCount racingCount;
+
     @BeforeEach
     void setUp() {
         racingCount = new RacingCount(5);

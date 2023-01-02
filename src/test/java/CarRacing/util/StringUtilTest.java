@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StringUtilTest {
     private static final List<String> DUMMY_STRING_LIST = Arrays.asList("pobi", "crong", "honux");
     private static final String DUMMY_STRING = "pobi,crong,honux";
+
     @DisplayName("문자열을 잘 스플릿하는지 테스트")
     @Test
     public void splitStringTest() {

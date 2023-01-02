@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CarPositionTest {
     private CarPosition carPosition;
     private CarPosition comparePosition;
+
     @BeforeEach
     void setUp() {
         carPosition = new CarPosition(5);

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarNameTest {
     private CarName carName;
+
     @BeforeEach
     void setUp() {
         carName = new CarName("test");

@@ -16,8 +16,9 @@ public class CarPosition {
     public boolean comparePosition(int positionToCompare) {
         return position > positionToCompare;
     }
+
     public CarPosition largerPosition(CarPosition positionToCompare) {
-        if(positionToCompare.comparePosition(position)) {
+        if (positionToCompare.comparePosition(position)) {
             return new CarPosition(positionToCompare.getPosition());
         }
         return new CarPosition(position);

@@ -23,7 +23,8 @@ public class ResultView {
     }
 
     public static void printWinners(List<CarName> winners) {
-        System.out.println(StringUtil.joinStringList(",", StringUtil.convertCarNameListToStringList(winners)) + "가 최종 우승했습니다.");
+        System.out.println(
+                StringUtil.joinStringList(",", StringUtil.convertCarNameListToStringList(winners)) + "가 최종 우승했습니다.");
     }
 
     public static void printRacingResult(RacingResult racingResult) {

@@ -35,7 +35,7 @@ public class Cars {
     public List<CarName> getWinners(CarPosition maxPosition) {
         List<CarName> winners = new ArrayList<>();
         for (Car car : cars) {
-            if(car.isWinner(maxPosition)){
+            if (car.isWinner(maxPosition)) {
                 winners.add(car.getCarName());
             }
         }
