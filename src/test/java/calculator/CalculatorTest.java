@@ -51,13 +51,12 @@ public class CalculatorTest {
     @ValueSource(strings = {"-1,2,3", "//ab\n1ab2,-4"})
     void negativeNumber(String input) {
         Assertions.assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> {
-                    calculator.calc(input);
-                });
+                .isThrownBy(() -> calculator.calc(input));
     }
 
     void assertThatCalcResultEqualTo(String input, Integer expected) {
         Integer result = calculator.calc(input);
-        Assertions.assertThat(result).isEqualTo(expected);
+        Assertions.assertThat(result)
+                .isEqualTo(expected);
     }
 }

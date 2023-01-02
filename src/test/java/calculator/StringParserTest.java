@@ -10,7 +10,8 @@ public class StringParserTest {
         String input = "1,2;3";
         StringParser stringParser = new StringParser();
         String[] result = stringParser.split(input);
-        Assertions.assertThat(result).hasSize(3);
+        Assertions.assertThat(result)
+                .hasSize(3);
     }
 
     @Test
@@ -18,6 +19,7 @@ public class StringParserTest {
         String input = "1:2,3;4";
         StringParser stringParser = new StringParser();
         String[] result = stringParser.split(input, ":");
-        Assertions.assertThat(result).hasSize(4);
+        Assertions.assertThat(result)
+                .hasSize(4);
     }
 }
