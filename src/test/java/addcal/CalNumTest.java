@@ -1,23 +1,36 @@
 package addcal;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalNumTest {
-    @Test
-    void ValidNumTest() { // CalNum에 들어온 값이 유효한지.
-        CalNum num1 = new CalNum(30);
-        assertEquals(num1.checkValid(), true);
+    @Nested
+    @DisplayName("유효성 테스트")
+    class validNumTest {
+        @Test
+        @DisplayName("성공")
+        void success() {
+            CalNum num1 = new CalNum(30);
+            assertTrue(num1.checkValid());
+        }
+
+        @Test
+        @DisplayName("실패")
+        void fail() {
+            CalNum num1 = new CalNum(-30);
+            assertFalse(num1.checkValid());
+        }
     }
 
     @Test
-    void AddTest() {
+    @DisplayName("덧셈 테스트")
+    void addTest() {
         CalNum num1 = new CalNum(10);
         CalNum num2 = new CalNum(20);
         num1.add(num2);
         assertEquals(num1.getNum(), 30);
     }
-
-
 }
