@@ -6,7 +6,7 @@ import racing.utils.InputValidator;
 
 public class InputView {
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
-    private static final String INPUT_REPEAT_MESSAGE = "시도할 회수는 몇회인가요?";
+    private static final String INPUT_GAME_TURN_MESSAGE = "시도할 회수는 몇회인가요?";
     private final Scanner scanner;
     private final InputValidator validator;
 
@@ -25,14 +25,14 @@ public class InputView {
         }
     }
 
-    public int readGameRepeat() {
-        System.out.println(INPUT_REPEAT_MESSAGE);
+    public int readGameTurn() {
+        System.out.println(INPUT_GAME_TURN_MESSAGE);
         try {
             String input = scanner.nextLine();
             return validator.validateGameRepeat(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readGameRepeat();
+            return readGameTurn();
         }
     }
 }

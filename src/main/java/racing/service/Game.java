@@ -9,11 +9,13 @@ public class Game {
     private final Cars cars;
     private final int length;
     private final RandomNumberGenerator generator;
+    private int gameTurn;
 
-    public Game(String carNames) {
-        cars = new Cars(carNames);
-        length = carNames.split(",").length;
-        generator = new RandomNumberGenerator();
+    public Game(String carNames, int gameTurn) {
+        this.cars = new Cars(carNames);
+        this.gameTurn = gameTurn;
+        this.length = carNames.split(",").length;
+        this.generator = new RandomNumberGenerator();
     }
 
     public void play() {
@@ -22,7 +24,13 @@ public class Game {
             randomNumbers.add(generator.generate());
         }
         cars.play(randomNumbers);
+        gameTurn--;
     }
+
+    public boolean isEnd() {
+        return gameTurn == 0;
+    }
+
 
     public List<String> getStatus() {
         return cars.getStatus();
