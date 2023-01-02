@@ -34,7 +34,7 @@
 ### Domain
 - Car (implements Comparable)
   - 속성: name, distance
-  - 메서드: toString(), compareTo(), move(), increaseDistance(), getDifference(), isMoving()
+  - 메서드: validateName(), getName(), getDistance(), move(), equalsDistance(),toString()
 
 - Cars
   - 속성: cars
@@ -46,25 +46,21 @@
   - printWinner()
 - InputView
   - readCarNames()
-  - readGameRepeat()
+  - readGameTurn()
 
 ### Controller
 - GameController
   - inputView, outputView, game
-  - play(), playMultipleTurns(), playSingleTurn()
+  - play(), playGame()
 
 ### Service
 - Game
-  - 속성: cars, length, generator
-  - 메서드: play(), getStatus(), getWinners()
+  - 속성: cars, length, generator, gameTurn
+  - 메서드: play(), isEnd(), getStatus(), getWinners()
 
 ### Utils
 - InputValidator
-  - validateGameRepeat()
+  - validateGameTurn()
   - validatePositive()
 - RandomNumberGenerator
   - generate()
-
-
-  
-
