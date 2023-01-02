@@ -10,7 +10,7 @@ public class Car implements Comparable<Car>{
     private static final int MAX_BOUND = 9;
 
     public Car(String name, RandomGenerator rg) {
-        if (name.length() < 0 || name.length()>5){
+        if (name.length() == 0 || name.length()>5){
             throw new InvalidInputException("1 : Name should be between 1 and 5.");
         }
         this.name = name;
