@@ -18,7 +18,7 @@ public class RacingGame {
     }
 
     private Cars createCars(List<String> names) {
-        if (names.isEmpty()) {
+        if (names == null || names.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
