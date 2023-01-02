@@ -3,18 +3,22 @@ package racingcar;
 public class Car {
     private final String name;
     private int position;
+    private final static int MOVE_THRESHOLD = 4;
 
-    Car(String name) {
+    Car(final String name) {
+        this(name, 0);
+    }
+
+    Car(final String name, final int position) {
         this.name = name;
-        position = 0;
+        this.position = position;
     }
 
-    int move(boolean flag) { //flag = 1이면 포지션을 증가시키고, 포지션을 반환, 0이면 포지션을 반환
-        if (flag) position++;
-        return position;
+    void move(final int value) { //flag = 1이면 포지션을 증가시키고, 포지션을 반환, 0이면 포지션을 반환
+        if (value >= MOVE_THRESHOLD) position++;
     }
 
-    int getPosition(){
+    int getPosition() {
         return position;
     }
 
@@ -23,8 +27,8 @@ public class Car {
     }
 
     String matchPosition(int maxPosition) {
-        if(maxPosition == position){
-            return name+",";
+        if (maxPosition == position) {
+            return name + ",";
         }
         return "";
     }

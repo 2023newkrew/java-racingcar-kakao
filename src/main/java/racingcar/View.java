@@ -28,7 +28,7 @@ public class View {
         }
     }
 
-    void printRoundResult(String result) {
+    void printRoundResult(final String result) {
         String[] temp = result.split(",");
         for (int i = 0; i < temp.length; i += 2) {
             System.out.print(temp[i] + " : ");

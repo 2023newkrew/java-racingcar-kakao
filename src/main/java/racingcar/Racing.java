@@ -2,15 +2,13 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Racing {
     private final List<Car> cars = new ArrayList<>();
     private int roundNum;
     private final static int MAX_LENGTH = 5;
-    private final static int MOVE_THRESHOLD = 5;
 
-    boolean registerCarNames(String input) {
+    boolean registerCarNames(final String input) {
         String[] temp = input.split(",");
         if (!checkLength(temp)) return false;
 
@@ -20,7 +18,7 @@ public class Racing {
         return true;
     }
 
-    private boolean checkLength(String[] nameList) {
+    private boolean checkLength(final String[] nameList) {
         boolean check = true;
         for (String name : nameList) {
             check &= (name.length() <= MAX_LENGTH);
@@ -28,7 +26,7 @@ public class Racing {
         return check;
     }
 
-    boolean registerCarRoundNum(String input) {
+    boolean registerCarRoundNum(final String input) {
         try {
             roundNum = Integer.parseInt(input);
             return roundNum > 0;
@@ -38,8 +36,9 @@ public class Racing {
     }
 
     boolean progressRound() {
+        CarRandom random = new CarRandom();
         for (Car car : cars) {
-            car.move(random());
+            car.move(random.generateRandom10());
         }
         return true;
     }
@@ -50,11 +49,6 @@ public class Racing {
             temp += car.getName() + "," + car.getPosition() + ",";
         }
         return temp;
-    }
-
-    private boolean random() {
-        Random rand = new Random();
-        return rand.nextInt(10) >= MOVE_THRESHOLD;
     }
 
     String getWinner() {

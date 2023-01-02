@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RacingTest {
-
     @Nested
     @DisplayName("자동차 이름 등록 테스트")
     class registerCarNamesTest {
