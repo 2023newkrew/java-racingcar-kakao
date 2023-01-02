@@ -15,12 +15,12 @@ public class RacingController {
         return racing.getWinners();
     }
 
-    public void processCarNames(String names) {
+    public void setCarNames(String names) {
         Racing.validateCarNames(names);
         this.names = names;
     }
 
-    public void processTrialNumber(String trialNumber) {
+    public void setTrialNumber(String trialNumber) {
         Racing.validateTrialNumber(trialNumber);
         this.trialNumber = Integer.parseInt(trialNumber);
     }

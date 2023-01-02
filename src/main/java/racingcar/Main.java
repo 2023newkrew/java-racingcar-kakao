@@ -9,8 +9,8 @@ public class Main {
         RacingController rc = new RacingController();
         RacingView rv = new RacingView();
 
-        rc.processCarNames(rv.inputNames());
-        rc.processTrialNumber(rv.inputTrialNumber());
+        rc.setCarNames(rv.inputNames());
+        rc.setTrialNumber(rv.inputTrialNumber());
         rc.startRacing();
         while (!rc.isRacingEnd()) {
             rc.proceedRound();

@@ -21,7 +21,7 @@ public class RacingParameterTest {
     void carNameLengthExceptionTest(String inputStr) {
         assertThatExceptionOfType(RacingException.class)
                 .isThrownBy(() -> {
-                    rc.processCarNames(inputStr);
+                    rc.setCarNames(inputStr);
                 }).withMessage(RacingExceptionCode.INVALID_CAR_LENGTH.getErrorMessage());
     }
 
@@ -29,7 +29,7 @@ public class RacingParameterTest {
     @ValueSource(strings = {"a,b,c", "a,bc,def,ghij"})
     @DisplayName("입력값이 요구사항대로 주어질 때 예외를 발생시키지 않는다.")
     void carNameLengthNoExceptionTest(String inputStr) {
-        Assertions.assertThatCode(() -> rc.processCarNames(inputStr)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> rc.setCarNames(inputStr)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -38,7 +38,7 @@ public class RacingParameterTest {
     void RacingCarNumberException(String inputStr) {
         assertThatExceptionOfType(RacingException.class)
                 .isThrownBy(
-                        () -> rc.processCarNames(inputStr)
+                        () -> rc.setCarNames(inputStr)
                 ).withMessage(RacingExceptionCode.INVALID_CARS_SIZE.getErrorMessage());
     }
 
@@ -47,7 +47,7 @@ public class RacingParameterTest {
     void duplicatedCarNameExceptionTest() {
         String inputStr = "kim,lee,kim";
         assertThatExceptionOfType(RacingException.class)
-                .isThrownBy(() -> rc.processCarNames(inputStr)).withMessage(RacingExceptionCode.CAR_NAME_DUPLICATION.getErrorMessage());
+                .isThrownBy(() -> rc.setCarNames(inputStr)).withMessage(RacingExceptionCode.CAR_NAME_DUPLICATION.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -55,7 +55,7 @@ public class RacingParameterTest {
     @DisplayName("라운드 횟수 입력시 자연수가 아닌 입력에 대해 예외를 발생시킨다.")
     void trialCountExceptionTest(String trialCount) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> rc.processTrialNumber(trialCount));
+                .isThrownBy(() -> rc.setTrialNumber(trialCount));
     }
 
 }
