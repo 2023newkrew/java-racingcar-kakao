@@ -5,12 +5,11 @@ import java.util.List;
 public class RacingGame {
     private final Cars cars;
     private int curTurn = 0;
-    private final int numberOfTurns;
+    private final TurnNumber numberOfTurns;
 
     public RacingGame(Cars cars, int numberOfTurns) {
         this.cars = cars;
-        InputVerifier.verifyNumberIsPos(numberOfTurns);
-        this.numberOfTurns = numberOfTurns;
+        this.numberOfTurns = new TurnNumber(numberOfTurns);
     }
 
     public List<Car> getRacingPlayers() {
@@ -32,6 +31,6 @@ public class RacingGame {
     }
 
     public Boolean isFinished() {
-        return curTurn == numberOfTurns;
+        return curTurn == numberOfTurns.getTurnNumber();
     }
 }
