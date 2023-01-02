@@ -23,6 +23,9 @@ public class Validator {
     }
 
     public static boolean isValidGameRoundCnt(String roundInput) {
+        if (roundInput.isEmpty()) {
+            return false;
+        }
         if (!isInteger(roundInput)) {
             return false;
         }

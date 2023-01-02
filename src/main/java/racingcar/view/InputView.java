@@ -26,7 +26,6 @@ public class InputView {
         while (!Validator.isValidCarNames(names)) {
             System.out.println(NOTICE_CAR_NAME);
             String input = sc.nextLine();
-
             names = getTrimNames(input);
         }
         return names;
@@ -43,12 +42,10 @@ public class InputView {
 
     public int getRoundInput() {
         String roundInput = "";
-        boolean flag = true;
-        while (flag) {
+
+        while (!Validator.isValidGameRoundCnt(roundInput)) {
             System.out.println(NOTICE_GAME_ROUND_CNT);
             roundInput = sc.next();
-
-            flag = !Validator.isValidGameRoundCnt(roundInput);
         }
         return Integer.parseInt(roundInput);
     }
