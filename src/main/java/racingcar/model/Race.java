@@ -19,6 +19,13 @@ public class Race {
         this.turn = turn;
     }
 
+    public void carInput(String[] nameSplit) {
+        for (String name : nameSplit) {
+            verifyName(name);
+            cars.add(new Car(name));
+        }
+    }
+
     public void verifyName(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("There should be at least 1 character for car name");
@@ -26,13 +33,6 @@ public class Race {
 
         if (name.length() > MAX_NAME_LIMIT) {
             throw new IllegalArgumentException("Car name should be MAX_NAME_LIMIT or under");
-        }
-    }
-
-    public void carInput(String[] nameSplit) {
-        for (String name : nameSplit) {
-            verifyName(name);
-            cars.add(new Car(name));
         }
     }
 
