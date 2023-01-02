@@ -15,8 +15,12 @@ public class StringSum {
     }
 
     public boolean textException(String inputString) {
-        if(inputString == null) return true;
-        if(inputString.isEmpty()) return true;
+        if (inputString == null) {
+            return true;
+        }
+        if (inputString.isEmpty()) {
+            return true;
+        }
         return false;
     }
 
@@ -25,7 +29,7 @@ public class StringSum {
         String customDelimiter = null;
         if (m.find()) {
             customDelimiter = m.group(1);
-            formula =  m.group(2);
+            formula = m.group(2);
             delimiter += "|" + customDelimiter;
         }
         return customDelimiter;
@@ -63,7 +67,7 @@ public class StringSum {
     }
 
     public int calculate() {
-        if(textException(formula)) {
+        if (textException(formula)) {
             return 0;
         }
         customDelimiter();

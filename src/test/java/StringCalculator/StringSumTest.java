@@ -25,7 +25,7 @@ public class StringSumTest {
 
     @Test
     public void splitTest() {
-        String[] testList = new String[] {"1", "2", "3"};
+        String[] testList = new String[]{"1", "2", "3"};
         String[] list = stringSum.splitByDelimiter();
         assertThat(list).isEqualTo(testList);
     }
@@ -44,7 +44,7 @@ public class StringSumTest {
 
     @Test
     public void summationTest() {
-        int[] numbers = new int[] {1, 2, 3};
+        int[] numbers = new int[]{1, 2, 3};
         assertThat(stringSum.summation(numbers)).isEqualTo(6);
     }
 }

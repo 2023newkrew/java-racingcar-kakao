@@ -1,36 +1,16 @@
 package CarRacing;
 
-import java.util.List;
+import CarRacing.domain.Racing;
+import CarRacing.domain.RacingResult;
+import CarRacing.view.InputView;
+import CarRacing.view.ResultView;
 
 public class Controller {
-    static View view = new View();
-    static Racing racing = new Racing();
-    static Car[] carList;
-
-    public static void handleNames() {
-        String inputNames = view.inputNames();
-        String[] names = racing.handleNames(inputNames);
-        carList =  racing.makeCarList(names);
-    }
-
-    public static void playRacing() {
-        int inputCount = view.inputCount();
-        view.printText();
-        view.printResult(carList);
-        for (int count = 0; count < inputCount; count++) {
-            carList = racing.oneCycle(carList);
-            view.printResult(carList);
-        }
-    }
-
-    public static void winnerResult() {
-        List<String> winners = racing.getWinner(carList);
-        view.printWinners(winners);
-    }
-
-    public static void main(String[] args) {
-        handleNames();
-        playRacing();
-        winnerResult();
+    public static void RacingGame() {
+        String inputNames = InputView.inputNames();
+        String inputCount = InputView.inputCount();
+        Racing racing = new Racing(inputNames, inputCount);
+        RacingResult racingResult = racing.playRacing();
+        ResultView.printRacingResult(racingResult);
     }
 }

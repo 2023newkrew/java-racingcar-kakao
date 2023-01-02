@@ -9,7 +9,7 @@ public class Main {
         System.out.print("문자열을 입력해주세요. : ");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        if(input.startsWith("//")) {
+        if (input.startsWith("//")) {
             String input_2 = scanner.nextLine();
             input += "\n" + input_2;
         }
