@@ -9,7 +9,7 @@ import racingcar.util.RandomMovable;
 import java.util.List;
 
 
-public class Racing {
+public class RacingService {
     private static final String DELIMITER = ",";
     private static final int RANDOM_THRESHOLD = 10;
     private static final int RANDOM_BOUND = 4;
@@ -18,7 +18,7 @@ public class Racing {
     private int trialCount = 0;
     private final RacingCars racingCars;
 
-    public Racing(String carNames, int totalRounds) {
+    public RacingService(String carNames, int totalRounds) {
         if (carNames == null || totalRounds < 1) {
             throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
         }

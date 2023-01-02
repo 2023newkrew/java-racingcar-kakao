@@ -3,12 +3,12 @@ package racingcar.controller;
 import racingcar.exception.RacingException;
 import racingcar.exception.RacingExceptionCode;
 import racingcar.model.RacingCar;
-import racingcar.model.Racing;
+import racingcar.model.RacingService;
 
 import java.util.List;
 
 public class RacingController {
-    private Racing racing;
+    private RacingService racing;
     private String names;
     private int trialNumber = 0;
 
@@ -18,15 +18,15 @@ public class RacingController {
     }
 
     public void setCarNames(String names) {
-        Racing.validateCarNames(names);
+        RacingService.validateCarNames(names);
         this.names = names;
     }
 
     public void setTrialNumber(String trialNumber) {
-        this.trialNumber = Racing.validateTrialNumber(trialNumber);
+        this.trialNumber = RacingService.validateTrialNumber(trialNumber);
     }
     public void startRacing() {
-        this.racing = new Racing(names, trialNumber);
+        this.racing = new RacingService(names, trialNumber);
     }
 
     public boolean isRacingEnd() {
