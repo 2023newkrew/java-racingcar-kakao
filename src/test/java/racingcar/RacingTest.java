@@ -1,9 +1,10 @@
 package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Racing;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,12 +14,19 @@ public class RacingTest {
 
     @BeforeEach
     void setUp() {
-        racing = new Racing();
-        racing.setCount(5);
-        racing.addCars(Arrays.asList("davi", "sean"));
+        racing = new Racing(Arrays.asList("davi", "sean"), 5);
     }
 
     @Test
+    @DisplayName("자동차 이름 목록과 시뮬레이션 횟수를 인자로 레이싱을 생성한다.")
+    void CreateRacing() {
+        Racing racing = new Racing(Arrays.asList("davi", "sean"), 5);
+        assertThat(racing.getCarList().size()).isEqualTo(2);
+        assertThat(racing.getCount()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("자동차 이름 목록에 있는 자동차가 생성된다.")
     void racingCreateCar() {
         assertThat(racing.getCarList()).hasSize(2);
         assertThat(racing.getCarList().get(0).getName()).isEqualTo("davi");
@@ -28,24 +36,25 @@ public class RacingTest {
     }
 
     @Test
+    @DisplayName("레이싱이 진행될 때 횟수가 하나 소진된다.")
     void racingProgress() {
         racing.doStep();
-        racing.getCarList().forEach((car)->{
-            assertThat(car.getDistance()).isGreaterThanOrEqualTo(0);
-        });
         assertThat(racing.getCount()).isEqualTo(4);
     }
 
     @Test
+    @DisplayName("정해진 횟수 5회가 모두 소진되면 레이싱이 종료된다.")
     void racingIsFinished() {
-        while (!racing.isFinished()) {
-            racing.doStep();
-        }
-
-        assertThat(racing.getCount()).isEqualTo(0);
+        racing.doStep();
+        racing.doStep();
+        racing.doStep();
+        racing.doStep();
+        racing.doStep();
+        assertThat(racing.isFinished()).isTrue();
     }
 
     @Test
+    @DisplayName("레이싱 종료 후 승자 목록을 반환한다.")
     void racingResult() {
         while(!racing.isFinished()){
             racing.doStep();

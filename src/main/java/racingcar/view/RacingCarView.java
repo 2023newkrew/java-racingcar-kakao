@@ -1,6 +1,7 @@
-package racingcar;
+package racingcar.view;
 
-import javax.management.RuntimeMBeanException;
+import racingcar.domain.Car;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;

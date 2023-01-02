@@ -1,12 +1,17 @@
 package racingcar;
 
+import racingcar.domain.Racing;
+import racingcar.view.RacingCarView;
+
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
         RacingCarView racingCarView = new RacingCarView();
-        Racing racing = new Racing();
+        List<String> carNames = racingCarView.inputCarNames();
+        int count=  racingCarView.inputCount();
 
-        racing.addCars(racingCarView.inputCarNames());
-        racing.setCount(racingCarView.inputCount());
+        Racing racing = new Racing(carNames, count);
         racingCarView.resultMessage();
         while (!racing.isFinished()) {
             racing.doStep();
