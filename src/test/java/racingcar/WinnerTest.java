@@ -13,4 +13,11 @@ public class WinnerTest {
         Winner winner = new Winner(cars);
         Assertions.assertThat(winner.getWinnerNames()).containsExactly("jaws");
     }
+
+    @Test
+    public void testMultipleWinners() {
+        List<Car> cars = List.of(new Car("jaws", 12), new Car("jayde", 12), new Car("musc", 12));
+        Winner winner = new Winner(cars);
+        Assertions.assertThat(winner.getWinnerNames()).containsExactly("jaws", "jayde", "musc");
+    }
 }
