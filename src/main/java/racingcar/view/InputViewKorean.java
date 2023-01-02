@@ -18,10 +18,10 @@ public class InputViewKorean implements InputView{
     }
     public String[] getNamesArray() {
         printStream.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return getNamesArray(scanner.nextLine());
+        return parseAndValidateNames(scanner.nextLine());
     }
-    public String[] getNamesArray(String names){ // inputStream을 거치지 않고 직접 입력
-        String[] stringArray = parseNames(names);
+    private String[] parseAndValidateNames(String input){
+        String[] stringArray = parseNames(input);
         validateEachString(stringArray);
         validateDuplication(stringArray);
         validateArrayLength(stringArray);
@@ -30,10 +30,10 @@ public class InputViewKorean implements InputView{
 
     public int getTrialCount() {
         printStream.println("시도할 회수는 몇회인가요?");
-        return getTrialCount(scanner.nextLine());
+        return parseAndValidateCount(scanner.nextLine());
     }
 
-    public int getTrialCount(String input) { // inputStream을 거치지 않고 직접 입력
+    private int parseAndValidateCount(String input) {
         int trialCount = parseStringToInt(input);
         validateTrialCount(trialCount);
         return trialCount;
