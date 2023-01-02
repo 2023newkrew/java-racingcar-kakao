@@ -42,14 +42,7 @@ public class AddCal {
     }
 
     public String parseCustomSeparator(String inputString) {
-        //inputString = "//a\n1a2a3a4a5";
         inputString = inputString.replaceAll("\\n", "\n");
-        if (inputString.equals("//a\n1a2a3a4a5")) {
-            System.out.println("same");
-        } else {
-            System.out.println("89078");
-        }
-
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(inputString);
         String customSeparator = ",|;";
         processedInputString = inputString;
@@ -70,6 +63,4 @@ public class AddCal {
             resultNum.add(num);
         }
     }
-
-
 }
