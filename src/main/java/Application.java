@@ -1,4 +1,5 @@
 import carracing.domain.CarCreator;
+import carracing.domain.Cars;
 import carracing.domain.RacingGame;
 import carracing.domain.StringParser;
 import carracing.view.InputView;
@@ -9,14 +10,13 @@ public class Application {
     public static void main(String[] args) {
         StringParser stringParser = new StringParser();
         CarCreator carCreator = new CarCreator(stringParser);
-        RacingGame racingGame = new RacingGame(carCreator.createCars(InputView.getPlayerNames()), InputView.getNumberOfTurns());
-
+        Cars cars = carCreator.createCars(InputView.getPlayerNames());
+        RacingGame racingGame = new RacingGame(cars, InputView.getNumberOfTurns());
         OutputView.printInitialStatus(racingGame.getRacingPlayers());
         while (!racingGame.isFinished()) {
             racingGame.runSingleTurn();
             OutputView.printCurrentStatus(racingGame.getRacingPlayers());
         }
-
         OutputView.printWinners(racingGame.getWinners());
     }
 }
