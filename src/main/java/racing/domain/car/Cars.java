@@ -8,10 +8,10 @@ import static java.util.Collections.*;
 import static racing.util.RandomNumberGenerator.generateRandomNumber;
 
 public class Cars {
-    private final List<Car> cars;
-
     private static final int THRESHOLD = 4;
     private static final int RANDOM_BOUND = 10;
+
+    private final List<Car> cars;
 
     public Cars() {
         this.cars = new ArrayList<>();

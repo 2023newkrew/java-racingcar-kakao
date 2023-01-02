@@ -5,11 +5,11 @@ import racing.strategy.interfaces.MovableStrategy;
 import racing.strategy.strategy.RandomNumberMovableStrategy;
 
 public class Car implements Comparable<Car> {
+    private static final int DEFAULT_POSITION = 0;
+
     private final Name name;
     private int position;
     private MovableStrategy movableStrategy;
-
-    private static final int DEFAULT_POSITION = 0;
 
     public Car(Builder builder) {
         this.name = builder.name;
