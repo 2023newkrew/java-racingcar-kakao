@@ -22,4 +22,11 @@ public class TurnVerifyTest {
         assertThatThrownBy(() -> TurnVerify.verifyTurn(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("Throw exception when turn is too big")
+    @Test
+    void bigTurnTest() {
+        assertThatThrownBy(() -> TurnVerify.verifyTurn(1001))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
