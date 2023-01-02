@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.model.NameStringVerify;
 import racingcar.model.Race;
+import racingcar.model.TurnVerify;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
@@ -13,6 +14,7 @@ public class Controller {
         NameStringVerify.verifyNameString(nameString);
 
         int turn = Input.turnInput();
+        TurnVerify.verifyTurn(turn);
 
         Race race = new Race(nameString, turn);
 
