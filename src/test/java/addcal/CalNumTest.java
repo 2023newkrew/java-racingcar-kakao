@@ -4,7 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalNumTest {
     @Nested
@@ -13,15 +15,13 @@ public class CalNumTest {
         @Test
         @DisplayName("성공")
         void success() {
-            CalNum num1 = new CalNum(30);
-            assertTrue(num1.checkValid());
+            assertThatCode(() -> new CalNum(30)).doesNotThrowAnyException();
         }
 
         @Test
         @DisplayName("실패")
         void fail() {
-            CalNum num1 = new CalNum(-30);
-            assertFalse(num1.checkValid());
+            assertThatIllegalArgumentException().isThrownBy(() -> new CalNum(-30));
         }
     }
 
