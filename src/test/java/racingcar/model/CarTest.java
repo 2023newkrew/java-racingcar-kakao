@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
 
-    @DisplayName("자동차 이름은 공백을 제거하고 6글자 이상일 수 없다.")
+    @DisplayName("자동차 이름은 1글자 이상 5글자 이하여야한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"ethaan   ", "veruasds   ", "   pasdobi\t\t\t"})
+    @ValueSource(strings = {"aaaaaa", "       ", ""})
     void inputUnderFiveLength(String carName) {
         Assertions.assertThatThrownBy(() -> new Car(carName))
                 .isInstanceOf(IllegalArgumentException.class);

@@ -1,9 +1,12 @@
 package racingcar.model;
 
+import util.StringUtil;
+
 public class Car {
 
     public static final int MOVE_THRESHOLD = 4;
     public static final int MAX_NAME_LENGTH = 5;
+    public static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
     private int position;
@@ -14,8 +17,11 @@ public class Car {
     }
 
     public Car(String name) {
-        if(hasOverLengthName(name)){
-            throw new IllegalArgumentException("자동차 이름은" + MAX_NAME_LENGTH + " 이하여야 합니다.");
+        if(isBlank(name)){
+            throw new IllegalArgumentException("자동차는 반드시 이름을 가져야 합니다.");
+        }
+        if(!isValidNameLength(name)){
+            throw new IllegalArgumentException("자동차 이름은 " + MIN_NAME_LENGTH + " 이상 " + MAX_NAME_LENGTH + " 이하여야 합니다.");
         }
 
         this.name = name;
@@ -28,8 +34,12 @@ public class Car {
         }
     }
 
-    private boolean hasOverLengthName(String name) {
-        return name.length() > MAX_NAME_LENGTH;
+    private boolean isValidNameLength(String name) {
+        return (MIN_NAME_LENGTH <= name.length() && name.length() <= MAX_NAME_LENGTH);
+    }
+
+    public static boolean isBlank(String value){
+        return (value == null || value.isEmpty() || value.isBlank());
     }
 
     private boolean isMovable(int number) {
