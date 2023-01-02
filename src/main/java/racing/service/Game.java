@@ -3,17 +3,15 @@ package racing.service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import racing.domain.Car;
 import racing.dto.CarDTOs;
 import racing.domain.CarName;
 import racing.domain.Cars;
 import racing.domain.GameRepeat;
-import racing.dto.CarDTO;
-import racing.dto.CarDtoDistanceComparator;
 
 public class Game {
     private static final String CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 이름은 중복될 수 없습니다.";
     private static final String NULL_OR_EMPTY_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
-    private static final Comparator<CarDTO> DEFAULT_CAR_DTO_COMPARATOR = new CarDtoDistanceComparator();
     private final Cars cars;
     private GameRepeat gameRepeat;
 
@@ -65,11 +63,10 @@ public class Game {
     }
 
     public List<CarName> getWinners() {
-        return getWinners(DEFAULT_CAR_DTO_COMPARATOR);
+        return cars.getWinners();
     }
 
-    public List<CarName> getWinners(Comparator<CarDTO> carDTOComparator) {
-        return CarDTOs.of(cars)
-                .getWinners(carDTOComparator);
+    public List<CarName> getWinners(Comparator<Car> carComparator) {
+        return cars.getWinners(carComparator);
     }
 }

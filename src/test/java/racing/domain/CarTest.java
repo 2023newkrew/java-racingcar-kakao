@@ -3,6 +3,7 @@ package racing.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Comparator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -70,5 +71,18 @@ public class CarTest {
             car.move();
         }
         assertThat(CarDTO.of(car).getPosition().getPosition()).isEqualTo(repeat);
+    }
+
+    @DisplayName("자동차의_거리를_비교한다")
+    @Test
+    void 자동차의_거리를_비교한다() {
+        Comparator<Car> comparator = new CarDistanceComparator();
+        Car car = new Car(new CarName(DEFAULT_NAME), new Position(1));
+        Car opponentCar = new Car(new CarName("1234"), new Position(1));
+        assertThat(comparator.compare(opponentCar, car)).isEqualTo(0);
+
+        opponentCar = new Car(new CarName("1234"), new Position(3));
+        assertThat(comparator.compare(opponentCar, car)).isGreaterThan(0);
+        assertThat(comparator.compare(car, opponentCar)).isLessThan(0);
     }
 }

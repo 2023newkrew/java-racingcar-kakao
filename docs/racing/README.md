@@ -36,15 +36,17 @@
 4. Functional Interface - Movable 추가
    1. 이동 여부는 Movable을 통해 결정
    2. 게임 규칙을 반영한 RandomlyMovable 구현
-5. Car의 toString() 메서드 오버라이딩, getName() 메서드 제거 및 DTO 생성
+5. Car의 toString() 메서드 오버라이딩, getName() 메서드 제거 및 비교 방식 수정
+   1. Comparable을 구현하는 대신 거리를 비교하는 Comparator 클래스 생성
+   2. 비교하는 로직은 Cars에서 진행
+6. DTO 생성
    1. CarDTO로 전달하도록 수정, Outputview에는 CarDTO, CarName의 형태로 전달
-   2. CarDTO의 거리를 비교하는 Comparator 구현
-6. 자동차 이름, 게임 반복 횟수, 자동차 위치에 대한 일급 컬렉션 생성 / 생성 시 검증 로직 구현
+7. 자동차 이름, 게임 반복 횟수, 자동차 위치에 대한 일급 컬렉션 생성 / 생성 시 검증 로직 구현
    1. CarName, GameRepeat, Position 클래스 생성, 생성 시 바로 검증
    2. InputValidator 클래스 삭제
    3. view에서는 검증 로직 삭제
 7. 반복 횟수 관리 주체를 GameController에서 Game 내부로 변경
-8. CarDTOs 래핑, 우승자를 선정하는 로직을 해당 클래스에 구현
+8. CarDTOs 래핑
    
 
 ## 프로그램 설계
@@ -61,9 +63,11 @@
 - Car (implements Comparable)
   - 객체 변수: CarName name, Movable movable, Position position
   - 메서드: move(), getCarName(), getPosition()
+- CarDistanceComparator (implements Comparator<Car>)
+  - 메서드: compare()
 - Cars
   - 객체 변수: List<Car> cars
-  - 메서드: play(), getCars()
+  - 메서드: play(), convertNamesToCars(), play(), getWinners(), getLastWinner(), getCars()
 - CarName
   - 객체 변수: String name
   - 메서드: validateLength(), toString(), equals(), hashCode()
@@ -78,11 +82,9 @@
 - CarDTO
   - 객체 변수: Carname name, Position position
   - 메서드: getName(), getPosition(), of()
-- CarDtoDistanceComparator (implements Comparator<CarDTO>)
-  - 메서드: compare()
 - CarDTOs
   - 객체 변수: List<CarDTO> carDtoList
-  - 메서드: of(), getLastWinnerDTO(), getWinners(), getCarDtoList();
+  - 메서드: of(), getCarDtoList();
 
 ### Service
 - Game 
