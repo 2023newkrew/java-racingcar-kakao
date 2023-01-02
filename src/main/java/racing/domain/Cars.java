@@ -53,7 +53,7 @@ public class Cars {
         Integer maxDistance = cars.stream()
                 .map(Car::getDistance)
                 .max(Integer::compareTo)
-                .orElseThrow(NoSuchElementException::new);
+                .orElse(0);
         return maxDistance;
     }
 
