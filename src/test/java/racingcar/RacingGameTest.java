@@ -14,6 +14,7 @@ import racingcar.models.RandomNumberGenerator;
 
 public class RacingGameTest {
 
+    private final Random random = new Random();
     List<Car> cars;
     Car car1;
     Car car2;
@@ -21,7 +22,7 @@ public class RacingGameTest {
 
     @Nested
     @DisplayName("Racing Game 종료 테스트")
-    public class testIsEndMethod {
+    public class EndGame {
 
         @BeforeEach
         public void setUp() {
@@ -49,7 +50,7 @@ public class RacingGameTest {
 
     @Nested
     @DisplayName("Racing Game 레이스 테스트")
-    public class testRaceMethod {
+    public class RaceGame {
 
         @BeforeEach
         public void setUp() {
@@ -71,10 +72,7 @@ public class RacingGameTest {
         @DisplayName("Race 시 4 이상의 숫자가 들어오면 Car의 Position은 1씩 증가한다.")
         public void testRaceWhenCarsAlwaysMove() {
             final int COUNT = 5;
-            RacingGame racingGame = new RacingGame(cars, COUNT, () -> {
-                Random random = new Random();
-                return random.nextInt(6) + 4;
-            });
+            RacingGame racingGame = new RacingGame(cars, COUNT, () -> 4 + random.nextInt(6));
             for (int i = 0; i < COUNT; i++) {
                 racingGame.race();
                 for (Car car : cars) {
@@ -87,10 +85,7 @@ public class RacingGameTest {
         @DisplayName("Race 시 4 미만의 숫자가 들어오면 Car의 Position은 변화가 없다.")
         public void testRaceWhenCarsAlwaysStop() {
             final int COUNT = 5;
-            RacingGame racingGame = new RacingGame(cars, COUNT, () -> {
-                Random random = new Random();
-                return random.nextInt(4);
-            });
+            RacingGame racingGame = new RacingGame(cars, COUNT, () -> random.nextInt(4));
             for (int i = 0; i < COUNT; i++) {
                 racingGame.race();
                 for (Car car : cars) {
