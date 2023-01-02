@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    private static final int MOVE_BOUNDARY = 4;
 
     private final List<Car> cars = new ArrayList<>();
     private int turn;
@@ -22,7 +21,7 @@ public class Race {
 
     public void playTurn() {
         for (Car car : cars) {
-            if (RandomMoveNumber.getRandomMoveNumber() >= MOVE_BOUNDARY) {
+            if (CarMove.isMove()) {
                 car.move();
             }
         }
