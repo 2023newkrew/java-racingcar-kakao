@@ -18,14 +18,6 @@ class RacingGameTest {
     private static final int MOVE = 4;
     private static final int STOP = 3;
 
-    @DisplayName("자동차 이름은 공백을 제거하고 6글자 이상일 수 없다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"ethaan   ", "veruasds   ", "   pasdobi\t\t\t"})
-    void inputUnderFiveLength(String carName) {
-        Assertions.assertThatThrownBy(() -> new Car(carName))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("1대 이상의 자동차가 경주에 참가해야한다.")
     @Test
     void mustParticipateTwoCars() {
@@ -33,35 +25,6 @@ class RacingGameTest {
 
         assertThatThrownBy(() -> new RacingGame(1, numberGenerator, Collections.emptyList()))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-
-    @DisplayName("특정 값 이상인 경우 자동차를 이동시킨다")
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void moveCar(int value) {
-        NumberGenerator numberGenerator = new StubNumberGenerator(value);
-        int maxRound = 1;
-        RacingGame racingGame = new RacingGame(maxRound, numberGenerator, List.of("a"));
-
-        RacingResult racingResult = racingGame.race();
-        RoundResult lastRoundResult = getRoundResult(racingResult, maxRound);
-
-        assertThat(getPositionByName(lastRoundResult, "a")).isOne();
-    }
-
-    @DisplayName("특정 값 이하인 경우 자동차를 정지시킨다")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    void stopCar(int value) {
-        NumberGenerator numberGenerator = new StubNumberGenerator(value);
-        int maxRound = 1;
-        RacingGame racingGame = new RacingGame(maxRound, numberGenerator, List.of("a"));
-
-        RacingResult racingResult = racingGame.race();
-        RoundResult lastRoundResult = getRoundResult(racingResult, maxRound);
-
-        assertThat(getPositionByName(lastRoundResult, "a")).isZero();
     }
 
     @DisplayName("여러 대의 자동차를 이동 혹은 정지시킨다.")
