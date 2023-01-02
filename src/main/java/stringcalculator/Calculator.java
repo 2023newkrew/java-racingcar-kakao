@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 import static java.lang.Integer.parseInt;
 
 public class Calculator {
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+
     private final String[] tokens;
 
     public Calculator(String[] tokens) {
@@ -55,8 +58,8 @@ public class Calculator {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         text = reader.readLine().replace("\\n","\n");
 
-        str_arr = text.split(",|:");
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        str_arr = text.split(DEFAULT_DELIMITER);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(text);
         if (m.find()) {
             String customDelimiter = m.group(1);
             str_arr = m.group(2).split(customDelimiter);
