@@ -1,6 +1,6 @@
-package carracing.model;
+package racing.domain.tactic;
 
-public class RandomPlayerStrategy implements GamePlayerStrategy {
+public final class RandomTacticStrategy implements GameTacticStrategy {
 
     @Override
     public Integer generateScore() {

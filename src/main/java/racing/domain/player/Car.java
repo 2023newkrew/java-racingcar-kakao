@@ -1,6 +1,8 @@
-package carracing.model;
+package racing.domain.player;
 
-public class Car implements RacingPlayer {
+import org.jetbrains.annotations.NotNull;
+
+public final class Car implements RacingPlayer {
     private final String name;
 
     private Integer position;
@@ -10,7 +12,7 @@ public class Car implements RacingPlayer {
     }
 
     @Override
-    public void proceedNextTurn(Boolean proceed) {
+    public void proceedNextTurn(@NotNull Boolean proceed) {
         if (proceed) {
             this.position += 1;
         }

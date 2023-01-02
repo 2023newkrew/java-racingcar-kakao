@@ -1,15 +1,17 @@
-package carracing.controller;
+package racing.controller;
 
-import carracing.common.exception.InvalidInputFormatException;
-import carracing.model.Car;
-import carracing.model.GameRule;
-import carracing.model.RacingPlayer;
-import carracing.view.InputView;
-import carracing.view.OutputView;
+import racing.common.exception.InvalidInputFormatException;
+import racing.domain.player.Car;
+import racing.domain.gamerule.GameRule;
+import racing.domain.player.RacingPlayer;
+import racing.view.InputView;
+import racing.view.OutputView;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingController implements GameController {
+public final class RacingController implements GameController {
     private final InputView inputView = new InputView();
     private List<RacingPlayer> racingPlayers;
     private Integer numberOfTurns;
@@ -36,8 +38,7 @@ public class RacingController implements GameController {
     }
 
     private void runWholeGame() {
-        System.out.println();
-        System.out.println("실행결과");
+        OutputView.printResultTitle();
         OutputView.printCurrentStatus(racingPlayers);
         for (int i = 0; i < numberOfTurns; i++) {
             sleepForMillis(500);
@@ -60,7 +61,7 @@ public class RacingController implements GameController {
         OutputView.printWinners(winners);
     }
 
-    private void createPlayers(List<String> playerNames) {
+    private void createPlayers(@NotNull List<String> playerNames) {
         racingPlayers = playerNames.stream()
             .map(Car::new)
             .collect(Collectors.toList());

@@ -1,5 +1,5 @@
-import carracing.controller.GameController;
-import carracing.controller.RacingController;
+import racing.controller.GameController;
+import racing.controller.RacingController;
 
 public class Application {
     public static void main(String[] args) {
