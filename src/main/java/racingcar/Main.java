@@ -2,20 +2,22 @@ package racingcar;
 
 
 import racingcar.controller.RacingController;
-import racingcar.view.RacingView;
+import racingcar.view.RacingInputView;
+import racingcar.view.RacingOutputView;
 
 public class Main {
     public static void main(String[] args) {
         RacingController rc = new RacingController();
-        RacingView rv = new RacingView();
+        RacingInputView riv = new RacingInputView();
+        RacingOutputView rov = new RacingOutputView();
 
-        rc.setCarNames(rv.inputNames());
-        rc.setTrialNumber(rv.inputTrialNumber());
+        rc.setCarNames(riv.inputNames());
+        rc.setTrialNumber(riv.inputTrialNumber());
         rc.startRacing();
         while (!rc.isRacingEnd()) {
             rc.proceedRound();
-            rv.printRoundResult(rc.getCarsForPrintRoundResult());
+            rov.printRoundResult(rc.getCarsForPrintRoundResult());
         }
-        rv.printWinners(rc.getWinners());
+        rov.printWinners(rc.getWinners());
     }
 }
