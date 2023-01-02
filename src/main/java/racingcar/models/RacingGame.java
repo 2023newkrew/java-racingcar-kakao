@@ -16,19 +16,19 @@ public class RacingGame {
         this.currentCount = 0;
     }
 
+    private List<Car> checkCars(List<Car> cars) {
+        if (cars.size() < 2) {
+            throw new RuntimeException("자동차는 2대 이상이어야 합니다.");
+        }
+        return cars;
+    }
+
     public List<Car> getCars() {
         return cars;
     }
 
     public Winner getWinners() {
         return new Winner(cars);
-    }
-
-    private List<Car> checkCars(List<Car> cars) {
-        if (cars.size() < 2) {
-            throw new RuntimeException("자동차는 2대 이상이어야 합니다.");
-        }
-        return cars;
     }
 
     public boolean isEnd() {
