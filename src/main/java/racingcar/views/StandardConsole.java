@@ -1,8 +1,8 @@
-package racingcar;
+package racingcar.views;
 
 import java.util.Scanner;
 
-public class Console {
+public class StandardConsole implements Console {
     private final Scanner scanner = new Scanner(System.in);
 
     public String input(String message) {
