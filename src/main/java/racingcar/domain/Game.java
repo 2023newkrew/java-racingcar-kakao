@@ -9,6 +9,7 @@ public class Game {
     private int leftRoundCnt;
 
     private static final int RANDOM_BOUND = 10;
+    private static final int NO_DISTANCE = -1;
 
     public GameInfo init(List<String> names, int roundCnt) {
         this.cars = names
@@ -41,6 +42,6 @@ public class Game {
         return carInfos.stream()
                 .mapToInt(CarInfo::getDistance)
                 .max()
-                .orElseGet(()->-1);
+                .orElseGet(()->NO_DISTANCE);
     }
 }
