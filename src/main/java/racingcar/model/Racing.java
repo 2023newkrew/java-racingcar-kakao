@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.exception.RacingException;
+import racingcar.exception.RacingExceptionCode;
 import racingcar.util.Movable;
 import racingcar.util.RacingCarsValidator;
 import racingcar.util.RandomMovable;
@@ -17,6 +19,9 @@ public class Racing {
     private final RacingCars racingCars;
 
     public Racing(String carNames, int totalRounds) {
+        if (carNames == null || totalRounds < 1) {
+            throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
+        }
         this.racingCars = new RacingCars(carNames.split(DELIMITER));
         this.totalRounds = totalRounds;
         this.movable = new RandomMovable(RANDOM_THRESHOLD, RANDOM_BOUND);
@@ -28,6 +33,9 @@ public class Racing {
     }
 
     public void proceedRound() {
+        if (isRacingEnd()) {
+            throw new RacingException(RacingExceptionCode.ALREADY_RACING_END);
+        }
         racingCars.moveCars(movable);
         trialCount++;
     }

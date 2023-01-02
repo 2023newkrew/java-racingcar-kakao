@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import racingcar.exception.RacingException;
+import racingcar.exception.RacingExceptionCode;
 import racingcar.model.RacingCar;
 import racingcar.model.Racing;
 
@@ -8,7 +10,7 @@ import java.util.List;
 public class RacingController {
     private Racing racing;
     private String names;
-    private int trialNumber;
+    private int trialNumber = 0;
 
 
     public List<RacingCar> getWinners() {
@@ -28,10 +30,16 @@ public class RacingController {
     }
 
     public boolean isRacingEnd() {
+        if (racing == null) {
+            throw new RacingException(RacingExceptionCode.RACING_NOT_STARTED);
+        }
         return racing.isRacingEnd();
     }
 
     public void proceedRound() {
+        if (racing == null) {
+            throw new RacingException(RacingExceptionCode.RACING_NOT_STARTED);
+        }
         racing.proceedRound();
     }
 
