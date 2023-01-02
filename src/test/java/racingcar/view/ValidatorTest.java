@@ -23,22 +23,15 @@ class ValidatorTest {
         assertFalse(Validator.isValidCarNames(List.of("가나", "다라", "마바사아자차")));
     }
 
-    @ValueSource(strings = {"0","1","5","10","100"})
+    @ValueSource(ints = {0, 1, 5, 10, 100, 1000})
     @ParameterizedTest
-    void 유효한_게임_실행횟수인_경우_true_를_반환한다(String roundInput) {
-        assertTrue(Validator.isValidGameRoundCnt(roundInput));
+    void 유효한_게임_실행횟수인_경우_true_를_반환한다(int roundCnt) {
+        assertTrue(Validator.isValidGameRoundCnt(roundCnt));
     }
 
-    @ValueSource(strings = {"asdf","!","@"})
-    @NullAndEmptySource
+    @ValueSource(ints = {-1, -345, -9999})
     @ParameterizedTest
-    void 게임_실행횟수를_정수로_변활할_수_없는_경우_false_를_반환한다(String roundInput) {
-        assertFalse(Validator.isValidGameRoundCnt(roundInput));
-    }
-
-    @ValueSource(strings = {"-1","-1234"})
-    @ParameterizedTest
-    void 게임_실행횟수가_음수인_경우_false_를_반환한다(String roundInput) {
-        assertFalse(Validator.isValidGameRoundCnt(roundInput));
+    void 게임_실행횟수가_음수인_경우_false_를_반환한다(int roundCnt) {
+        assertFalse(Validator.isValidGameRoundCnt(roundCnt));
     }
 }
