@@ -19,7 +19,7 @@ public class RacingCarsValidator {
         validateDuplication(carNames);
     }
 
-    public static void validateTrialNumber(String trialNumberInput) {
+    public static int validateTrialNumber(String trialNumberInput) {
         int trialNumber;
         try {
             trialNumber = Integer.parseInt(trialNumberInput);
@@ -29,6 +29,7 @@ public class RacingCarsValidator {
         if (trialNumber < 1) {
             throw new RacingException(RacingExceptionCode.INVALID_TRIAL_NUMBER);
         }
+        return trialNumber;
     }
 
     private static void validateCarNumber(String[] carNames) {

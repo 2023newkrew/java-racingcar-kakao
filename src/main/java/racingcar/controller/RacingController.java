@@ -21,8 +21,7 @@ public class RacingController {
     }
 
     public void setTrialNumber(String trialNumber) {
-        Racing.validateTrialNumber(trialNumber);
-        this.trialNumber = Integer.parseInt(trialNumber);
+        this.trialNumber = Racing.validateTrialNumber(trialNumber);
     }
     public void startRacing() {
         this.racing = new Racing(names, trialNumber);
