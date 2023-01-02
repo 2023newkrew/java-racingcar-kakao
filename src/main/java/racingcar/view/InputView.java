@@ -39,15 +39,17 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-
     public int getRoundInput() {
         String roundInput = "";
+        int roundCnt = Parser.INTEGER_PARSER_ERROR;
 
-        while (!Validator.isValidGameRoundCnt(roundInput)) {
+        while (roundCnt == Parser.INTEGER_PARSER_ERROR ||
+                !Validator.isValidGameRoundCnt(roundCnt)) {
             System.out.println(NOTICE_GAME_ROUND_CNT);
             roundInput = sc.next();
+            roundCnt = Parser.parseInt(roundInput);
         }
-        return Integer.parseInt(roundInput);
+        return roundCnt;
     }
 
 }

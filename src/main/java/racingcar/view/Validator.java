@@ -22,27 +22,12 @@ public class Validator {
         return name.length() <= CAR_NAME_MAX_LENGTH;
     }
 
-    public static boolean isValidGameRoundCnt(String roundInput) {
-        if (roundInput.isEmpty()) {
-            return false;
-        }
-        if (!isInteger(roundInput)) {
-            return false;
-        }
-        if (Integer.parseInt(roundInput)<0) {
+    public static boolean isValidGameRoundCnt(int roundCnt) {
+        if (roundCnt < 0) {
             System.err.println(NOTICE_INVALID_INPUT);
             return false;
         }
         return true;
     }
 
-    private static boolean isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.err.println(NOTICE_INVALID_INPUT);
-            return false;
-        }
-        return true;
-    }
 }
