@@ -44,7 +44,7 @@ public class RacingTest {
         }
 
         @Test
-        @DisplayName("음수")
+        @DisplayName("0")
         public void zero() {
             Racing racing = new Racing();
             assertFalse(racing.registerCarRoundNum("0"));

@@ -1,9 +1,9 @@
 package racingcar;
 
 public class Car {
+    private static final int MOVE_THRESHOLD = 4;
     private final String name;
     private int position;
-    private final static int MOVE_THRESHOLD = 4;
 
     Car(final String name) {
         this(name, 0);
