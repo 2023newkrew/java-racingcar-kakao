@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     private static void printRacingPlayerStatus(Car racingPlayer) {
-        System.out.println(racingPlayer.getName() + " : " + "-".repeat(racingPlayer.getPosition()));
+        System.out.println(racingPlayer.getCarName() + " : " + "-".repeat(racingPlayer.getPosition()));
     }
 
     public static void printWinners(List<Car> winners) {
@@ -28,6 +28,6 @@ public class OutputView {
     }
 
     private static String getConcatenatedNameFromList(List<Car> winners) {
-        return winners.stream().map(Car::getName).collect(Collectors.joining(", "));
+        return winners.stream().map(Car::getCarName).collect(Collectors.joining(", "));
     }
 }

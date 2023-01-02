@@ -7,26 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputVerifierTest {
-    @DisplayName("길이 5이하인 이름 검사 통과")
-    @ParameterizedTest
-    @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
-    void verifyNameTest_validInput(String name) {
-        //given
-        //when
-        //then
-        Assertions.assertThatNoException().isThrownBy(() -> InputVerifier.verifyName(name));
-    }
-
-    @DisplayName("길이 5보다 큰 이름 예외 발생")
-    @ParameterizedTest
-    @ValueSource(strings = {"abcdef", "abcdefg", "abcdefgh"})
-    void verifyNameTest_invalidInput(String name) {
-        //given
-        //when
-        //then
-        Assertions.assertThatRuntimeException().isThrownBy(() -> InputVerifier.verifyName(name));
-    }
-
     @DisplayName("양수 검사 통과")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})

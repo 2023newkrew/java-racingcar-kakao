@@ -1,15 +1,15 @@
 package carracing.domain;
 
 public class Car{
-    private final String name;
+    private final CarName carName;
     private Integer position;
 
-    public Car(String name) {
-        this(name, 1);
+    public Car(String carName) {
+        this(carName, 1);
     }
 
-    public Car(String name, int position) {
-        this.name = name;
+    public Car(String carName, int position) {
+        this.carName = new CarName(carName);
         this.position = position;
     }
 
@@ -23,7 +23,7 @@ public class Car{
         return this.position;
     }
 
-    public String getName() {
-        return this.name;
+    public String getCarName() {
+        return carName.getName();
     }
 }

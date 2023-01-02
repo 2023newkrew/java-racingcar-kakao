@@ -12,7 +12,7 @@ public class RacingPlayerTest {
     void proceedNextTurnTest_forwardSuccess() {
         //given
         int initialPosition = 2;
-        Car racingPlayer = new Car("Tester", initialPosition);
+        Car racingPlayer = new Car("Test", initialPosition);
         //when
         racingPlayer.proceedNextTurn(true);
         //then
@@ -24,7 +24,7 @@ public class RacingPlayerTest {
     void proceedNextTurnTest_forwardFail() {
         //given
         int initialPosition = 2;
-        Car racingPlayer = new Car("Tester", initialPosition);
+        Car racingPlayer = new Car("Test", initialPosition);
         //when
         racingPlayer.proceedNextTurn(false);
         //then

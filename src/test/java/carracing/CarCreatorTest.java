@@ -28,7 +28,7 @@ class CarCreatorTest {
         String playerNames = "a,b,c";
         //when
         Cars cars = carCreator.createCars(playerNames);
-        List<String> carNames = cars.getCarList().stream().map(Car::getName).collect(Collectors.toList());
+        List<String> carNames = cars.getCarList().stream().map(Car::getCarName).collect(Collectors.toList());
         //then
         Assertions.assertThat(carNames).containsExactly("a", "b", "c");
     }

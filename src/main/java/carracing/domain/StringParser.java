@@ -2,10 +2,6 @@ package carracing.domain;
 
 public class StringParser {
     public String[] parse(String inputString) {
-        String[] splitStrings = inputString.split(",", -1);
-        for (String splitString: splitStrings) {
-            InputVerifier.verifyName(splitString);
-        }
-        return splitStrings;
+        return inputString.split(",", -1);
     }
 }
