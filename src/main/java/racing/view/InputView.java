@@ -29,7 +29,7 @@ public class InputView {
         System.out.println(INPUT_GAME_TURN_MESSAGE);
         try {
             String input = scanner.nextLine();
-            return validator.validateGameRepeat(input);
+            return validator.validateGameTurn(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameTurn();
