@@ -4,6 +4,7 @@ import racingcar.util.Movable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +29,9 @@ public class RacingCarGroup {
     }
 
     public List<RacingCar> getWinners() {
-        RacingCar winner = Collections.max(cars);
+        RacingCar winner = cars.stream().max(Comparator.comparingInt(RacingCar::getPosition)).orElse(null);
         return cars.stream()
-                .filter(car -> winner.compareTo(car) == 0)
+                .filter(car -> car.getPosition() == winner.getPosition())
                 .collect(Collectors.toList());
     }
 

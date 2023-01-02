@@ -2,7 +2,7 @@ package racingcar.model;
 
 import racingcar.util.Movable;
 
-public class RacingCar extends Car implements Comparable<RacingCar>{
+public class RacingCar extends Car{
 
     public RacingCar(String name) {
         this(name, 1);
@@ -16,16 +16,6 @@ public class RacingCar extends Car implements Comparable<RacingCar>{
         if (movable.canMove()) {
             position++;
         }
-    }
-
-
-    @Override
-    public int compareTo(RacingCar o) {
-        return o.comparePosition(this.position);
-    }
-
-    private int comparePosition(int otherCarPosition) {
-        return otherCarPosition - this.position;
     }
 
     @Override
