@@ -1,41 +1,34 @@
 package carracing.domain;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    private final List<Car> racingPlayers;
+    private final Cars cars;
     private int curTurn = 0;
     private final int numberOfTurns;
 
-    public RacingGame(List<Car> racingPlayers, int numberOfTurns) {
-        this.racingPlayers = racingPlayers;
+    public RacingGame(Cars cars, int numberOfTurns) {
+        this.cars = cars;
         InputVerifier.verifyNumberIsPos(numberOfTurns);
         this.numberOfTurns = numberOfTurns;
     }
 
     public List<Car> getRacingPlayers() {
-        return racingPlayers;
+        return cars.getCarList();
     }
 
     public void runSingleTurn() {
-        for (Car player : racingPlayers) {
-            boolean proceed = GameRule.isAbleToProceed();
-            player.proceedNextTurn(proceed);
-        }
+        cars.moveCars();
         this.curTurn++;
     }
 
     public List<Car> getWinners() {
-        Integer maxPosition = racingPlayers.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+        int maxPosition = cars.getMaxPosition();
+        return cars.getCarsInPosition(maxPosition);
+    }
 
-        return racingPlayers.stream()
-                .filter(p -> Objects.equals(p.getPosition(), maxPosition))
-                .collect(Collectors.toList());
+    public int getCurrentTurn() {
+        return this.curTurn;
     }
 
     public Boolean isFinished() {

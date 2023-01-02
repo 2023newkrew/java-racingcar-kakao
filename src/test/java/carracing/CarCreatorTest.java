@@ -2,6 +2,7 @@ package carracing;
 
 import carracing.domain.Car;
 import carracing.domain.CarCreator;
+import carracing.domain.Cars;
 import carracing.domain.StringParser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,8 +27,8 @@ class CarCreatorTest {
         //given
         String playerNames = "a,b,c";
         //when
-        List<Car> cars = carCreator.createCars(playerNames);
-        List<String> carNames = cars.stream().map(Car::getName).collect(Collectors.toList());
+        Cars cars = carCreator.createCars(playerNames);
+        List<String> carNames = cars.getCarList().stream().map(Car::getName).collect(Collectors.toList());
         //then
         Assertions.assertThat(carNames).containsExactly("a", "b", "c");
     }

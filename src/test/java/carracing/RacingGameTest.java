@@ -1,6 +1,7 @@
 package carracing;
 
 import carracing.domain.Car;
+import carracing.domain.Cars;
 import carracing.domain.RacingGame;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,14 +11,30 @@ import java.util.List;
 
 class RacingGameTest {
 
-    @DisplayName("턴 진행 후 턴 카운트가 올라갔는지 & 게임 끝 판정 검사")
+    @DisplayName("턴 진행 후 턴 카운트가 올라갔는지 검사")
     @Test
-    void runSingleTurnAndIsFinished() {
+    void runSingleTurnTest() {
         //given
-        List<Car> racingPlayers = new ArrayList<>();
-        racingPlayers.add(new Car("a"));
-        racingPlayers.add(new Car("b"));
-        RacingGame racingGame = new RacingGame(racingPlayers, 1);
+        List<Car> racingPlayers = new ArrayList<>(
+                List.of(new Car("a"), new Car("b"))
+        );
+        Cars cars = new Cars(racingPlayers);
+        RacingGame racingGame = new RacingGame(cars, 10);
+        //when
+        racingGame.runSingleTurn();
+        //then
+        Assertions.assertThat(racingGame.getCurrentTurn()).isEqualTo(1);
+    }
+
+    @DisplayName("최종 턴 까지 진행 후 게임 종료 판정 검사")
+    @Test
+    void isFinishedTest() {
+        //given
+        List<Car> racingPlayers = new ArrayList<>(
+                List.of(new Car("a"), new Car("b"))
+        );
+        Cars cars = new Cars(racingPlayers);
+        RacingGame racingGame = new RacingGame(cars, 1);
         //when
         racingGame.runSingleTurn();
         //then
@@ -28,12 +45,13 @@ class RacingGameTest {
     @Test
     void getWinners() {
         //given
-        List<Car> racingPlayers = new ArrayList<>();
         Car carA = new Car("a", 3);
         Car carB = new Car("a", 1);
-        racingPlayers.add(carA);
-        racingPlayers.add(carB);
-        RacingGame racingGame = new RacingGame(racingPlayers, 1);
+        List<Car> racingPlayers = new ArrayList<>(
+                List.of(carA, carB)
+        );
+        Cars cars = new Cars(racingPlayers);
+        RacingGame racingGame = new RacingGame(cars, 1);
         //when
         //then
         Assertions.assertThat(racingGame.getWinners()).containsExactly(carA);

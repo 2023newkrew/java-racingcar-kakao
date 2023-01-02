@@ -10,7 +10,7 @@ public class CarCreator {
         this.stringParser = stringParser;
     }
 
-    public List<Car> createCars(String playerNames) {
+    public Cars createCars(String playerNames) {
         List<Car> cars = new ArrayList<>();
 
         String[] parsedNames = stringParser.parse(playerNames);
@@ -18,6 +18,6 @@ public class CarCreator {
             cars.add(new Car(name));
         }
 
-        return cars;
+        return new Cars(cars);
     }
 }
