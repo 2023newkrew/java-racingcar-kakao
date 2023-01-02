@@ -4,35 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    private static final int MAX_NAME_LIMIT = 5;
     private static final int MOVE_BOUNDARY = 4;
 
     private final List<Car> cars = new ArrayList<>();
     private int turn;
 
     public Race(String nameStr, int turn) {
-        if (nameStr == null || nameStr.isBlank()) {
-            throw new IllegalArgumentException("There should be at least 1 car name in string");
-        }
-
         carInput(nameStr.split(","));
         this.turn = turn;
     }
 
     public void carInput(String[] nameSplit) {
         for (String name : nameSplit) {
-            verifyName(name);
             cars.add(new Car(name));
-        }
-    }
-
-    public void verifyName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("There should be at least 1 character for car name");
-        }
-
-        if (name.length() > MAX_NAME_LIMIT) {
-            throw new IllegalArgumentException("Car name should be MAX_NAME_LIMIT or under");
         }
     }
 
