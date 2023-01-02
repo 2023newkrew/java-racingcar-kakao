@@ -17,7 +17,7 @@ public class MessageContainer {
     }
     public MessageContainer(Map<Integer, String> messages, String defaultMessage){
         if (messages.containsKey(DEFAULT_CODE)){
-            throw new RuntimeException("code -1 is nor permitted for inner logic.");
+            throw new RuntimeException("code -1 is not permitted for inner logic.");
         }
         this.messages = messages;
         this.defaultMessage = defaultMessage;
