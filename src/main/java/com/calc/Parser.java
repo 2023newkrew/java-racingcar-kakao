@@ -1,99 +1,87 @@
 package com.calc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Parser {
 
-
-    private final String text;
-
-    public Parser(String text) {
-        this.text = text;
-    }
-
-    public Expr checkNull() {
-        if (this.text == null) {
-            return new Expr(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
-        }
-        if (this.text.isEmpty()) {
-            return new Expr(new ArrayList<>(), new ArrayList<>(), ""); // 0이 나오는 값
+    public Expression checkNull(String text) {
+        if (text == null || text.isEmpty()) { // null 이거나 빈 문자열이라면
+            return Expression.createEmpty();
         }
         return null;
     }
 
-    public String separateHeader() {
+    private String separateHeader(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)")
-                .matcher(this.text);
+                .matcher(text);
         if (m.find()) {
             return m.group(1);
         }
         return "";
     }
 
-    public String separateBody() {
+    private String separateBody(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)")
-                .matcher(this.text);
+                .matcher(text);
         if (m.find()) {
             return m.group(2);
         }
-        return this.text;
-    }
-    public Expr parsing() {
-
-        Expr nullCheck = checkNull();
-        if (nullCheck != null) return nullCheck;
-
-        // //;\n 1:2:3 -> 헤더 분리
-        String header = separateHeader();
-        String body = separateBody();
-
-        // method
-        ArrayList<Separator> arrSep = getSeparators(body);
-
-        // method
-        ArrayList<Integer> splitValues = getSplitValues(body, arrSep);
-
-
-        return new Expr(splitValues, arrSep, header);
+        return text;
     }
 
-    private ArrayList<Integer> getSplitValues(String body, ArrayList<Separator> arrSep) {
+    private List<Separator> parseSeparator(String text){
+        return getSeparators(separateBody(text));
+    }
+
+    private List<Integer> splitValues(String text, List<Separator> arrSep){
+        return getSplitValues(separateBody(text), arrSep);
+    }
+
+    public Expression parsing(String text) {
+
+        checkNull(text);
+
+        List<Separator> arrSep = parseSeparator(text);
+        List<Integer> splitValues = splitValues(text, arrSep);
+
+        return new Expression(splitValues, arrSep, separateHeader(text));
+    }
+
+    private List<Integer> getSplitValues(String body, List<Separator> arrSep) {
         String sepRegex = changeToString(arrSep);
 
         String[] splitValues = body.split(sepRegex);
         return changeToArray(splitValues);
     }
 
-    private ArrayList<Separator> getSeparators(String body) {
-        ArrayList<Separator> arrSep = new ArrayList<>(); // arrSep = 사용한 구분자들
-        for(int i = 0; i< body.length(); i++){
-            arrSep.add(checkNumber(body.charAt(i)));
-        }
-        arrSep.removeIf(Objects::isNull);
-        return arrSep;
+    private List<Separator> getSeparators(String body) {
+        return body.chars()
+                .filter(ch -> isValidSeparator((char) ch))
+                .mapToObj(String::valueOf)
+                .map(Separator::new)
+                .collect(Collectors.toList());
     }
 
-    public Separator checkNumber(char c){
-        if(Character.isDigit(c)) return null;
-        return new Separator(String.valueOf(c));
+    private boolean isValidSeparator(char c){
+        return !Character.isDigit(c);
     }
 
-    public String changeToString(ArrayList<Separator> separators){
-        String sep = "";
-        for(Separator separator : separators){
-            sep += separator.toString() + "|";
-        }
-        return sep.equals("") ? sep : sep.substring(0, sep.length() - 1);
+    private String changeToString(List<Separator> separators){
+        return separators.stream()
+                .map(Separator::toString)
+                .collect(Collectors.joining("|"));
     }
 
-    public ArrayList<Integer> changeToArray(String[] arr){
-        ArrayList<Integer> ret = new ArrayList<>();
-        for(String str : arr){
-            ret.add(Integer.parseInt(str));
-        }
-        return ret;
+    private List<Integer> changeToArray(String[] arr){
+        return Arrays.stream(arr)
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }

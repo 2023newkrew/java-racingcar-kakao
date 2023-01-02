@@ -7,6 +7,11 @@ public class Separator {
         this.sep = sep;
     }
 
+    public void checkSeparator(String allowSep){
+        checkDefaultSep();
+        checkCustomSep(allowSep);
+    }
+
     public void checkDefaultSep(){
         if(!(this.sep.equals(",") || this.sep.equals(":"))){
             throw new RuntimeException("default");
