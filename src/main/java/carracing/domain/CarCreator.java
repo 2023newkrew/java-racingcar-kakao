@@ -10,8 +10,8 @@ public class CarCreator {
         this.stringParser = stringParser;
     }
 
-    public List<RacingPlayer> createCars(String playerNames) {
-        List<RacingPlayer> cars = new ArrayList<>();
+    public List<Car> createCars(String playerNames) {
+        List<Car> cars = new ArrayList<>();
 
         String[] parsedNames = stringParser.parse(playerNames);
         for (String name : parsedNames) {

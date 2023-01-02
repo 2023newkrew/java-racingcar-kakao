@@ -1,6 +1,6 @@
 package carracing.domain;
 
-public class Car implements RacingPlayer {
+public class Car{
     private final String name;
     private Integer position;
 
@@ -13,19 +13,16 @@ public class Car implements RacingPlayer {
         this.position = position;
     }
 
-    @Override
     public void proceedNextTurn(Boolean proceed) {
         if (proceed) {
             this.position += 1;
         }
     }
 
-    @Override
     public Integer getPosition() {
         return this.position;
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
