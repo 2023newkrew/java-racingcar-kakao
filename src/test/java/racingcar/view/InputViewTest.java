@@ -34,32 +34,32 @@ class InputViewTest {
 
     @DisplayName("시도 횟수를 입력한다.")
     @Test
-    void inputTryCount() {
+    void inputMaxRound() {
         InputStream inputStream = new ByteArrayInputStream("012".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
-        int tryCount = inputView.inputMaxTryCount();
+        int maxRound = inputView.inputMaxRound();
 
-        Assertions.assertThat(tryCount).isEqualTo(12);
+        Assertions.assertThat(maxRound).isEqualTo(12);
     }
 
     @DisplayName("시도 횟수는 숫자여야 한다.")
     @Test
-    void inputNotNumberTryCount() {
+    void inputNotNumberMaxRound() {
         InputStream inputStream = new ByteArrayInputStream("abc".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(inputView::inputMaxTryCount)
+        Assertions.assertThatThrownBy(inputView::inputMaxRound)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("100 이상의 시도 횟수를 입력 시 예외가 발생한다.")
     @Test
-    void inputOver100TryNumber() {
+    void inputOver100MaxRound() {
         InputStream inputStream = new ByteArrayInputStream("100".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
-        Assertions.assertThatThrownBy(inputView::inputMaxTryCount)
+        Assertions.assertThatThrownBy(inputView::inputMaxRound)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

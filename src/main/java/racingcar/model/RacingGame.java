@@ -1,35 +1,33 @@
 package racingcar.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    public static final int MAX_TRY_COUNT_LIMIT = 99;
+    public static final int MAX_ROUND_LIMIT = 99;
 
     private final NumberGenerator numberGenerator;
-    private final Cars cars;
-    private final int maxTryCount;
-    private int tryCount;
+    private final Cars racingCars;
+    private final int maxRound;
+    private int currentRound;
 
-    public RacingGame(int maxTryCount, NumberGenerator numberGenerator, List<String> names) {
-        if (hasDuplicatedName(names)) {
+    public RacingGame(int maxRound, NumberGenerator numberGenerator, List<String> racingCarNames) {
+        if (hasDuplicatedName(racingCarNames)) {
             throw new IllegalArgumentException("자동차 이름은 유일한 이름이어야 합니다.");
         }
 
-        if (isInvalidTryCount(maxTryCount)) {
-            throw new IllegalArgumentException("시도 회수는 " + MAX_TRY_COUNT_LIMIT + "이하의 숫자여야합니다.");
+        if (isInvalidRound(maxRound)) {
+            throw new IllegalArgumentException("시도 회수는 " + MAX_ROUND_LIMIT + "이하의 숫자여야합니다.");
         }
 
         this.numberGenerator = numberGenerator;
-        this.cars = createCars(names);
-        this.maxTryCount = maxTryCount;
-        this.tryCount = 0;
+        this.racingCars = createCars(racingCarNames);
+        this.maxRound = maxRound;
+        this.currentRound = 1;
     }
 
-    private static boolean isInvalidTryCount(int maxTryCount) {
-        return maxTryCount > MAX_TRY_COUNT_LIMIT;
+    private static boolean isInvalidRound(int maxRound) {
+        return maxRound > MAX_ROUND_LIMIT;
     }
 
     private boolean hasDuplicatedName(List<String> names) {
@@ -49,27 +47,16 @@ public class RacingGame {
         return new Cars(cars);
     }
 
-    public void moveCars() {
-        if(isFinished()){
-            throw new IllegalStateException();
+    public RacingResult race() {
+        List<RoundResult> roundResults = new ArrayList<>();
+
+        while(currentRound <= maxRound){
+            racingCars.move(numberGenerator);
+            roundResults.add(new RoundResult(currentRound, racingCars.deepCopy()));
+            currentRound++;
         }
 
-        cars.move(numberGenerator);
-        tryCount++;
-    }
-
-    public boolean isFinished() {
-        return tryCount >= maxTryCount;
-    }
-
-    public List<Car> getWinners() {
-        if (isFinished()) {
-            return cars.getWinnerCars();
-        }
-        throw new IllegalStateException("자동차 경주가 끝나지 않았습니다.");
-    }
-
-    public Positions getPositions() {
-        return cars.getPositions();
+        List<Car> winnerCars = racingCars.getWinnerCars();
+        return new RacingResult(roundResults, new Cars(winnerCars).deepCopy());
     }
 }

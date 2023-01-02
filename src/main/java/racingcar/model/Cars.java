@@ -34,7 +34,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Positions getPositions() {
-        return new Positions(cars);
+    public List<Car> deepCopy(){
+        return cars.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 }

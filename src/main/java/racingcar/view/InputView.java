@@ -33,13 +33,13 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int inputMaxTryCount() {
+    public int inputMaxRound() {
         printStream.println("시도할 회수는 몇회인가요?");
-        String maxTryCount = scanner.nextLine();
-        if(!isInteger(maxTryCount)){
+        String maxRound = scanner.nextLine();
+        if(!isInteger(maxRound)){
             throw new IllegalArgumentException("시도할 횟수는 정수여야합니다.");
         }
-        return Integer.parseInt(maxTryCount);
+        return Integer.parseInt(maxRound);
     }
 
     public boolean isInteger(String value){
