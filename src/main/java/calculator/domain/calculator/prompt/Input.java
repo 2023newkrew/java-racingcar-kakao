@@ -11,7 +11,7 @@ import static calculator.constant.RegexConstant.*;
 import static calculator.util.RegexUtils.getMatcherForInput;
 
 public class Input {
-    String input;
+    private String input;
     public Input(String input) {
         this.input = input;
     }
