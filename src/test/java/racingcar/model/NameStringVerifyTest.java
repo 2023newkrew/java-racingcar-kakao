@@ -11,7 +11,7 @@ public class NameStringVerifyTest {
     @NullAndEmptySource
     @ParameterizedTest
     void blankNameStringTest(final String nameStr) {
-        assertThatThrownBy(() -> NameStringVerify.veirfyNameString(nameStr))
+        assertThatThrownBy(() -> NameStringVerify.verifyNameString(nameStr))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
