@@ -3,7 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.RacingCar;
-import racingcar.model.RacingCars;
+import racingcar.model.RacingCarGroup;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class RacingWinnersTest {
         carsList.add(new RacingCar("d", 4));
         carsList.add(new RacingCar("e", 5));
 
-        RacingCars racingCars = new RacingCars(carsList);
+        RacingCarGroup racingCars = new RacingCarGroup(carsList);
 
         assertThat(racingCars.getWinners()).containsExactly(new RacingCar("e", 5));
     }
@@ -35,7 +35,7 @@ public class RacingWinnersTest {
         carsList.add(new RacingCar("d", 5));
         carsList.add(new RacingCar("e", 4));
 
-        RacingCars racingCars = new RacingCars(carsList);
+        RacingCarGroup racingCars = new RacingCarGroup(carsList);
 
         assertThat(racingCars.getWinners()).containsExactly(new RacingCar("b", 5), new RacingCar("d", 5));
     }

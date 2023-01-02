@@ -16,13 +16,13 @@ public class RacingService {
     private final Movable movable;
     private final int totalRounds;
     private int trialCount = 0;
-    private final RacingCars racingCars;
+    private final RacingCarGroup racingCars;
 
     public RacingService(String carNames, int totalRounds) {
         if (carNames == null || totalRounds < 1) {
             throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
         }
-        this.racingCars = new RacingCars(carNames.split(DELIMITER));
+        this.racingCars = new RacingCarGroup(carNames.split(DELIMITER));
         this.totalRounds = totalRounds;
         this.movable = new RandomMovable(RANDOM_THRESHOLD, RANDOM_BOUND);
     }

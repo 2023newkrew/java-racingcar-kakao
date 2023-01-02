@@ -7,14 +7,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingCars {
+public class RacingCarGroup {
     private final List<RacingCar> cars;
 
-    public RacingCars(List<RacingCar> cars) {
+    public RacingCarGroup(List<RacingCar> cars) {
         this.cars = cars;
     }
 
-    public RacingCars(String[] carNames) {
+    public RacingCarGroup(String[] carNames) {
         cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new RacingCar(carName));
