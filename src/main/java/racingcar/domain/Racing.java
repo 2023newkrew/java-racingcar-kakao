@@ -65,8 +65,7 @@ public class Racing {
         private int remainingRounds = 0;
 
         public Builder addCars(String[] carNames){
-            addCars(carNames, new RandomGeneratorImpl());
-            return this;
+            return addCars(carNames, new RandomGeneratorImpl());
         }
 
         public Builder addCars(String[] carNames, RandomGenerator rg){
