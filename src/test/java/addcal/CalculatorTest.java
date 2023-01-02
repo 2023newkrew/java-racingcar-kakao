@@ -11,7 +11,7 @@ public class CalculatorTest {
         Calculator cal = new Calculator();
         String input = "//a\n1a2a3a4a5";
         cal.run(input);
-        int result = cal.addCal.resultNum.getNum();
+        int result = cal.addCal.getResultSum();
         assertEquals(result, 15);
     }
 

@@ -28,7 +28,6 @@ public class Calculator {
 
     public boolean run(String input) {
         addCal = new AddCal(input);
-        addCal.add();
         printCalculatorOutput();
         return true;
     }

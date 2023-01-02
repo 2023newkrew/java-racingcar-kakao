@@ -6,43 +6,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AddCal {
-    public String separator;
+    private final String separator;
     private String processedInputString;
+    private final CalNum resultNum;
+    private final List<CalNum> numList;
 
-    public List<CalNum> calNumList;
-    public CalNum resultNum;
-
-    public AddCal(String inputString) {
+    AddCal(String inputString) {
         separator = parseCustomSeparator(inputString);
-        calNumList = new ArrayList();
-        calNumList = parse(processedInputString);
+        numList = new ArrayList<>();
         resultNum = new CalNum(0);
+        splitNums(processedInputString);
+        sum();
     }
 
-
-    public List<CalNum> parse(String inputString) {
-        if (inputString == null || inputString.isEmpty()) {
-            CalNum calnum = new CalNum(0);
-            calNumList.add(calnum);
-            return calNumList;
+    private void splitNums(String inputString) {
+        if (isBlank(inputString)) {
+            numList.add(new CalNum(0));
+            return;
         }
         for (String num : inputString.split(separator)) {
-            CalNum calnum = new CalNum(Integer.parseInt(num));
-            calNumList.add(calnum);
+            numList.add(new CalNum(Integer.parseInt(num)));
         }
-        return calNumList;
     }
 
-    public boolean calNumListValid() {
-        boolean flag = true;
-        for (CalNum num : calNumList) {
-            flag &= num.checkValid();
-        }
-        return flag;
+    public static boolean isBlank(String input) {
+        return input == null || input.isEmpty();
     }
 
-    public String parseCustomSeparator(String inputString) {
-        inputString = inputString.replaceAll("\\n", "\n");
+    private String parseCustomSeparator(String inputString) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(inputString);
         String customSeparator = ",|;";
         processedInputString = inputString;
@@ -58,9 +49,21 @@ public class AddCal {
         resultNum.printNum();
     }
 
-    public void add() {
-        for (CalNum num : calNumList) {
+    private void sum() {
+        for (CalNum num : numList) {
             resultNum.add(num);
         }
+    }
+
+    public String getSeparator() {
+        return separator;
+    }
+
+    public int getResultSum() {
+        return resultNum.getNum();
+    }
+
+    public List<CalNum> getNumList() {
+        return numList;
     }
 }
