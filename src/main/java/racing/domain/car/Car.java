@@ -6,9 +6,9 @@ import racing.strategy.strategy.RandomNumberMovableStrategy;
 
 public class Car implements Comparable<Car> {
     private final Name name;
-    private Position position;
+    private final Position position;
     private MovableStrategy movableStrategy;
-
+    
     public Car(Builder builder) {
         this.name = builder.name;
         this.position = builder.position;
@@ -36,7 +36,7 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean isEqualPosition(Car car) {
-        return position.compare(car.position) == 0;
+        return compareTo(car) == 0;
     }
 
     public static class Builder {

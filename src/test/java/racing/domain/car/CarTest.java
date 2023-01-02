@@ -1,43 +1,60 @@
 package racing.domain.car;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racing.strategy.strategy.AlwaysMovableStrategy;
-import racing.strategy.strategy.AlwaysNotMovableStrategy;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import racing.strategy.interfaces.MovableStrategy;
 
 import static org.assertj.core.api.Assertions.*;
 
 
 public class CarTest {
-
-    @Test
+    @ParameterizedTest
     @DisplayName("이동한 후에는 포지션이 1 증가한다.")
-    public void move() {
-        Car car = new Car.Builder("car")
-                    .movableStrategy(new AlwaysMovableStrategy())
-                    .build();
-        int expected = car.getPosition() + 1;
-        int actual;
+    @CsvSource(value = {"1:2", "2:3", "3:4", "4:5"}, delimiter = ':')
+    public void move(int before, int after) {
+        Car car1 = new Car.Builder("car1")
+                .position(before)
+                .movableStrategy(new MovableStrategy() {
+                    @Override
+                    public boolean isMovable() {
+                        return true;
+                    }
+                })
+                .build();
 
-        car.movePositionIfMovable();
-        actual = car.getPosition();
+        Car car2 = new Car.Builder("car2")
+                .position(after)
+                .build();
 
-        assertThat(actual).isEqualTo(expected);
+        car1.movePositionIfMovable();
+
+        assertThat(car1.isEqualPosition(car2)).isEqualTo(true);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("이동에 실패하면 위치가 그대로 유지된다.")
-    public void notMove() {
-        Car car = new Car.Builder("car")
-                .movableStrategy(new AlwaysNotMovableStrategy())
+    @CsvSource(value = {"1:1", "2:2", "3:3", "4:4"}, delimiter = ':')
+    public void notMove(int before, int after) {
+        Car car1 = new Car.Builder("car")
+                .position(before)
+                .movableStrategy(new MovableStrategy() {
+                    @Override
+                    public boolean isMovable() {
+                        return false;
+                    }
+                })
                 .build();
-        int expected = car.getPosition();
-        int actual;
 
-        car.movePositionIfMovable();
-        actual = car.getPosition();
+        Car car2 = new Car.Builder("car2")
+                .position(after)
+                .build();
 
-        assertThat(actual).isEqualTo(expected);
+        car1.movePositionIfMovable();
+
+        assertThat(car1.isEqualPosition(car2)).isEqualTo(true);
     }
 
     @Test
