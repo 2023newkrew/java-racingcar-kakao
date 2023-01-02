@@ -1,44 +1,50 @@
 package racing.domain;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String NULL_OR_EMPTY_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private static final Comparator<Car> DEFAULT_CAR_COMPARATOR = new CarDistanceComparator();
+
     private final List<Car> cars;
-    private final int length;
-    private final String RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE = "[ERROR] 정확히 자동차 개수만큼의 랜덤 값이 필요합니다.";
 
-    public Cars(List<String> carNames) {
-        cars = carNames.stream()
-                .map(name -> new Car(name))
-                .collect(Collectors.toList());
-        length = cars.size();
-    }
-
-    public void play(List<Double> randomNumbers) {
-        if (randomNumbers.size() != length) {
-            throw new IllegalArgumentException(RANDOM_NUMBER_COUNT_EXCEPTION_MESSAGE);
+    public Cars(List<?> args) {
+        if (args == null || args.isEmpty()) {
+            throw new IllegalArgumentException(NULL_OR_EMPTY_ARGUMENT_EXCEPTION_MESSAGE);
         }
-        for (int i = 0; i < length; i++) {
-            cars.get(i).move(randomNumbers.get(i));
+        if (args.stream().allMatch(car -> car instanceof CarName)) {
+            args = convertNamesToCars((List<CarName>) args);
         }
+        this.cars = (List<Car>) args;
     }
 
-    public List<String> getWinners() {
-        Collections.sort(cars);
-        Car winnerCar = cars.get(length - 1);
-        List<String> winners = cars.stream()
-                .filter(car -> car.compareTo(winnerCar) == 0)
-                .map(Car::getName)
-                .collect(Collectors.toList());
-        return winners;
+    private List<Car> convertNamesToCars(List<CarName> carNames) {
+        return carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
-    public List<String> getStatus() {
-        List<String> status = cars.stream()
-                .map(Car::toString)
+    public void play() {
+        cars.forEach(Car::move);
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public List<CarName> getWinners() {
+        return getWinners(DEFAULT_CAR_COMPARATOR);
+    }
+
+    public List<CarName> getWinners(Comparator<Car> comparator) {
+        Car lastWinner = getLastWinner(comparator);
+        return cars.stream()
+                .filter(car -> comparator.compare(lastWinner, car) == 0)
+                .map(Car::getCarName)
                 .collect(Collectors.toList());
-        return status;
+    }
+
+    private Car getLastWinner(Comparator<Car> comparator) {
+        return cars.stream().max(comparator).orElseThrow();
     }
 }

@@ -6,24 +6,45 @@ import racing.view.InputView;
 import racing.view.OutputView;
 
 public class GameController {
-    private final String RESULT_MESSAGE = "실행 결과";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private Game game;
 
-    public void play() {
-        List<String> carNames = inputView.readCarNames();
-        int repeat = inputView.readGameRepeat();
-        game = new Game(carNames);
-        System.out.println(RESULT_MESSAGE);
-        for (int i = 0; i < repeat; i++) {
+    public void run() {
+        initialize();
+        setGameRepeat();
+        while (!game.isOver()) {
             playSingleTurn();
         }
-        outputView.printWinner(game.getWinners());
+        wrapUp();
+    }
+
+    private void initialize() {
+        try {
+            List<String> rawCarNames = inputView.readCarNames();
+            game = new Game(rawCarNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            initialize();
+        }
+    }
+
+    private void setGameRepeat() {
+        try {
+            int repeat = inputView.readGameRepeat();
+            game.setRepeat(repeat);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setGameRepeat();
+        }
     }
 
     private void playSingleTurn() {
         game.play();
         outputView.printResult(game.getStatus());
+    }
+
+    private void wrapUp() {
+        outputView.printWinners(game.getWinners());
     }
 }

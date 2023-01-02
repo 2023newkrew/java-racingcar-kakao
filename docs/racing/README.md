@@ -10,59 +10,101 @@
 
 
 ## 기능 목록
-1. 0에서 9 사이의 random 값을 생성한다.
+1. 0에서 9 사이의 random __정수__ 값을 생성한다.
 2. 값이 4 이상인지 판정한다.
 3. 값이 4 이상이면 자동차의 이동 거리를 1 증가시킨다.
 4. 두 자동차의 이동 거리를 비교한다.
 5. 게임 종료 시 누가 우승했는지 판단한다.
-6. 이름이 6자 이상인 경우 IllegalArgumentException 예외가 발생해야 한다.
-7. 게임 진행 횟수 입력이 정수가 아닌 경우 IllegalArgumentException 예외가 발생해야 한다. 
-8. 게임 진행 횟수 입력이 0 이하인 경우 IllegalArgumentException 예외가 발생해야 한다.
+6. __이름의 앞 뒤 공백은 제거한다.__
+7. 이름이 __1자 미만이거나__ 6자 이상인 경우 IllegalArgumentException 예외가 발생해야 한다.
+8. 이름이 중복되는 경우 IllegalArgumentException 예외가 발생해야 한다.
+9. 게임 진행 횟수 입력이 정수가 아닌 경우 IllegalArgumentException 예외가 발생해야 한다. 
+10. 게임 진행 횟수 입력이 1 미만인 경우 IllegalArgumentException 예외가 발생해야 한다. 
+11. __게임 진행 횟수 입력이 100 초과인 경우 IllegalArgumentException 예외가 발생해야 한다.__
 
+<br>
 
-## 프로그래밍 요구사항
-- 규칙 1: 한 메서드에 오직 한 단계의 들여쓰기(indent)만 한다.
-  - depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
-- 규칙 2: else 예약어를 쓰지 않는다.
-- 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다. 
-  - method가 한 가지 일만 하도록 최대한 작게 만들어라.
+## step2 주요 변경
+1. 규칙 수정
+   1. 수정한 규칙을 위 기능 목록에서 bold 처리하였습니다.
+2. random 값을 정수로 변경 
+   1. 기능 요구 사항의 `3 이하면 멈춘다`를 고려하여 double이 아닌 int로 변경 
+   2. Math.Random() -> Random.nextInt()
+3. static, final 추가, 상수 접근제어자 수정
+   1. static, final 각각을 붙여야 할 곳에 누락된 것들을 수정
+   2. 일부 클래스 내에서만 쓰이는 상수가 public으로 되어있던 것을 private으로 수정
+4. Functional Interface - Movable 추가
+   1. 이동 여부는 Movable을 통해 결정
+   2. 게임 규칙을 반영한 RandomlyMovable 구현
+5. Car의 toString() 메서드 오버라이딩, getName() 메서드 제거 및 비교 방식 수정
+   1. Comparable을 구현하는 대신 거리를 비교하는 Comparator 클래스 생성
+   2. 비교하는 로직은 Cars에서 진행
+6. DTO 생성
+   1. CarDTO로 전달하도록 수정, Outputview에는 CarDTO, CarName의 형태로 전달
+7. 자동차 이름, 게임 반복 횟수, 자동차 위치에 대한 일급 컬렉션 생성 / 생성 시 검증 로직 구현
+   1. CarName, GameRepeat, Position 클래스 생성, 생성 시 바로 검증
+   2. InputValidator 클래스 삭제
+   3. view에서는 검증 로직 삭제
+7. 반복 횟수 관리 주체를 GameController에서 Game 내부로 변경
+8. CarDTOs 래핑
+   
 
 ## 프로그램 설계
 - Application
-  - gameController
+  - 메서드: main()
+    - 지역 변수: GameController gameController
 
 ### Utils
-- InputValidator
-  - validateCarNames()
-  - validateSingleCarName()
-  - validateGameRepeat()
-  - validatePositive()
 - RandomNumberGenerator
-  - generate()
+  - 클래스 변수: Random random
+  - 메서드: generate()
 
 ### Domain
 - Car (implements Comparable)
-  - 속성: name, distance
-  - 메서드: toString(), compareTo(), move(), increaseDistance(), getDifference(), isMoving()
-
+  - 객체 변수: CarName name, Movable movable, Position position
+  - 메서드: move(), getCarName(), getPosition()
+- CarDistanceComparator (implements Comparator<Car>)
+  - 메서드: compare()
 - Cars
-  - 속성: cars, length
-  - 메서드: play(), getWinners(), getStatus()
+  - 객체 변수: List<Car> cars
+  - 메서드: play(), convertNamesToCars(), play(), getWinners(), getLastWinner(), getCars()
+- CarName
+  - 객체 변수: String name
+  - 메서드: validateLength(), toString(), equals(), hashCode()
+- GameRepeat
+  - 객체 변수: int remaining
+  - 메서드: validateRange(), reduce(), hasRemaining()
+- Position
+  - 객체 변수: int position
+  - 메서드: validateNonNegative(), increase(), compareTo(), getPosition()
+
+### DTO
+- CarDTO
+  - 객체 변수: Carname name, Position position
+  - 메서드: getName(), getPosition(), of()
+- CarDTOs
+  - 객체 변수: List<CarDTO> carDtoList
+  - 메서드: of(), getCarDtoList();
 
 ### Service
 - Game 
-  - 속성: cars, length, generator
-  - 메서드: play(), getStatus(), getWinners()
+  - 객체 변수: List<Car> cars, GameRepeat gameRepeat
+  - 메서드: validateUniqueness(), getDistinctNameCount(), wrapCarNames(), setRepeat(), isOver(), play(), getStatus(), getWinners()
 
 ### View
 - OutputView
-  - printResult()
-  - printWinner()
+  - boolean isFirstCall
+  - printResult(), printSingleResult(), printWinners()
 - InputView
-  - readCarNames()
-  - readGameRepeat()
+  - readCarNames(), splitInputCarNames(), readGameRepeat()
   
 ### Controller
 - GameController
-  - inputView, outputView, game
-  - play()
+  - 객체 변수: InputView inputView, OutputView outputView, Game game
+  - 메서드: run(), initialize(), setGameRepeat(), playSingleTurn(), wrapUp()
+
+### Movable
+- Movable (Interface)
+  - 메서드: isMoving()
+- RandomlyMovable
+  - 메서드: isMoving(), generateRandomNumber()
