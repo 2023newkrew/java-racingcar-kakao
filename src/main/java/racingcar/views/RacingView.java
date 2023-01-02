@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import racingcar.models.Winner;
 import racingcar.utils.InputParser;
 import racingcar.models.Car;
 
@@ -28,8 +29,8 @@ public class RacingView {
         cars.forEach((car) -> console.printOutput(car.getCurrentPosition()));
     }
 
-    public void showResult(List<Car> winners) {
-        console.printOutput(winners.stream().map(Car::getName).collect(Collectors.joining(", ")) + "(이)가 최종 우승했습니다.");
+    public void showResult(Winner winner) {
+        console.printOutput(String.join(", ", winner.getWinnerNames()) + "(이)가 최종 우승했습니다.");
     }
 
     private List<Car> getCarsSupplier() {

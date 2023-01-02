@@ -68,23 +68,4 @@ public class RacingGameTest {
             }
         }
     }
-    @Test
-    public void testGetWinnersWhenCarsAlwaysMove() {
-        final int COUNT = 5;
-        RacingGame racingGame = new RacingGame(cars, COUNT, () -> 5);
-        for (int i = 0; i < COUNT; i++) {
-            racingGame.race();
-        }
-        Assertions.assertThat(racingGame.getWinners()).containsExactly(car1);
-    }
-
-    @Test
-    public void testGetWinnersWhenCarsAlwaysStop() {
-        final int COUNT = 5;
-        RacingGame racingGame = new RacingGame(cars, COUNT, () -> 0);
-        for (int i = 0; i < COUNT; i++) {
-            racingGame.race();
-        }
-        Assertions.assertThat(racingGame.getWinners()).containsExactly(car1);
-    }
 }
