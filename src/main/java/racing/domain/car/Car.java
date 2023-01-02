@@ -5,10 +5,8 @@ import racing.strategy.interfaces.MovableStrategy;
 import racing.strategy.strategy.RandomNumberMovableStrategy;
 
 public class Car implements Comparable<Car> {
-    private static final int DEFAULT_POSITION = 0;
-
     private final Name name;
-    private int position;
+    private Position position;
     private MovableStrategy movableStrategy;
 
     public Car(Builder builder) {
@@ -23,27 +21,27 @@ public class Car implements Comparable<Car> {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public void movePositionIfMovable() {
         if(movableStrategy.isMovable()) {
-            this.position++;
+            position.increase();
         }
     }
 
     @Override
     public int compareTo(@NotNull Car car) {
-        return this.position - car.position;
+        return position.compare(car.position);
     }
 
     public boolean isEqualPosition(Car car) {
-        return compareTo(car) == 0;
+        return position.compare(car.position) == 0;
     }
 
     public static class Builder {
         private final Name name;
-        private int position = DEFAULT_POSITION;
+        private Position position = new Position();
         private MovableStrategy movableStrategy = new RandomNumberMovableStrategy();
 
         public Builder(String name) {
@@ -51,7 +49,7 @@ public class Car implements Comparable<Car> {
         }
 
         public Builder position(int position) {
-            this.position = position;
+            this.position = new Position(position);
             return this;
         }
 

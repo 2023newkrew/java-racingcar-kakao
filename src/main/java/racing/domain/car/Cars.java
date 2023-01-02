@@ -27,7 +27,7 @@ public class Cars {
     }
 
     public Car getCarWithMaxPosition() {
-        return max(cars);
+        return Collections.max(cars);
     }
 
     public List<String> getNamesWithSamePosition(Car car) {
