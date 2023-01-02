@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Car implements Comparable{
+public class Car implements Comparable<Car>{
     private final String name;
     private final RandomGenerator randomGenerator;
     private final Position position;
@@ -35,11 +35,8 @@ public class Car implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (!(o instanceof Car)) {
-            throw new RuntimeException();
-        }
-        return this.position.compareTo(((Car) o).position);
+    public int compareTo(Car car) {
+        return this.position.compareTo(car.position);
     }
 
     @Override
