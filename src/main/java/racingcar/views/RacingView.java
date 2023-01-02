@@ -16,11 +16,11 @@ public class RacingView {
     }
 
     public List<Car> getCars() {
-        return requestUntilSuccess(getCarsSupplier());
+        return requestUntilSuccess(this::getCarsSupplier);
     }
 
     public int getCount() {
-        return requestUntilSuccess(getCountSupplier());
+        return requestUntilSuccess(this::getCountSupplier);
     }
 
     public void showCurrentStatus(List<Car> cars) {
@@ -29,25 +29,21 @@ public class RacingView {
     }
 
     public void showResult(List<Car> winners) {
-        console.printOutput(String.join(", ", winners.stream().map(Car::getName) + "(이)가 최종 우승했습니다."));
+        console.printOutput(winners.stream().map(Car::getName).collect(Collectors.joining(", ")) + "(이)가 최종 우승했습니다.");
     }
 
-    private Supplier<List<Car>> getCarsSupplier() {
-        return () -> {
+    private List<Car> getCarsSupplier() {
             String input = console.input("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             String[] carNames = InputParser.splitByComma(input);
             return Arrays.stream(carNames).map(Car::new).collect(Collectors.toList());
-        };
     }
 
-    private Supplier<Integer> getCountSupplier() {
-        return () -> {
+    private int getCountSupplier() {
             String countInput = console.input("시도할 회수는 몇회인가요?");
             return InputParser.parseStringToPositiveInt(countInput);
-        };
     }
 
-    private <T> T requestUntilSuccess(Supplier<T> getT) {
+    public <T> T requestUntilSuccess(Supplier<T> getT) {
         Optional<T> result = wrapTryCatch(getT);
         while (result.isEmpty()) {
             result = wrapTryCatch(getT);

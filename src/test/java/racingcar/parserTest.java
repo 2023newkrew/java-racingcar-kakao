@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.utils.InputParser;
 
-public class InputParserTest {
+public class parserTest {
 
     @Test
     public void 입력값_파싱() {

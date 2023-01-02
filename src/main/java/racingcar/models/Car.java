@@ -3,14 +3,14 @@ package racingcar.models;
 import java.util.Objects;
 
 public class Car {
-    private String name;
+    private final String name;
     private int position = 1;
 
     private final static int MAX_NAME_LENGTH = 5;
 
     public Car(String name, int position) {
-        setName(name);
-        setPosition(position);
+        this.name = checkName(name);
+        this.position = checkPosition(position);
     }
 
     public Car(String name) {
@@ -24,18 +24,18 @@ public class Car {
         return position;
     }
 
-    private void setName(String name) {
+    private String checkName(String name) {
         if (Objects.isNull(name) || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException("잘못된 자동차 이름입니다.");
         }
-        this.name = name;
+        return name;
     }
 
-    private void setPosition(int position) {
+    private int checkPosition(int position) {
         if (position < 1) {
             throw new RuntimeException("잘못된 위치입니다.");
         }
-        this.position = position;
+        return position;
     }
 
     public void moveWithPower(int power) {
