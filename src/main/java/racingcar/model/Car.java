@@ -17,7 +17,7 @@ public class Car {
     }
 
     public Car(String name) {
-        if(isBlank(name)){
+        if(StringUtil.isBlank(name)){
             throw new IllegalArgumentException("자동차는 반드시 이름을 가져야 합니다.");
         }
         if(!isValidNameLength(name)){
@@ -36,10 +36,6 @@ public class Car {
 
     private boolean isValidNameLength(String name) {
         return (MIN_NAME_LENGTH <= name.length() && name.length() <= MAX_NAME_LENGTH);
-    }
-
-    public static boolean isBlank(String value){
-        return (value == null || value.isEmpty() || value.isBlank());
     }
 
     private boolean isMovable(int number) {
