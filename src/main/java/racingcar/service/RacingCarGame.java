@@ -4,8 +4,8 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Movable;
 import racingcar.domain.RandomNumberMovable;
-import racingcar.service.dto.FinalResult;
-import racingcar.service.dto.RoundResult;
+import racingcar.view.FinalResult;
+import racingcar.view.RoundResult;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ public class RacingCarGame {
     private int round;
     private Movable movable;
 
-    public RacingCarGame(List<Car> cars, int gameRound) {
+    public RacingCarGame(List<Car> cars, int gameRound, Movable movable) {
         this.cars = new Cars(cars);
         this.round = gameRound;
-        movable = new RandomNumberMovable();
+        this.movable = movable;
     }
 
     public RoundResult doNextRound() {

@@ -30,8 +30,7 @@ public class StringCalculator {
             str = parseNumberContainingString(input);
         }
 
-        PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitter.splitByDelimiters(str));
-        return positiveIntegerList.calculateSum();
+        return new PositiveIntegerList(splitter.splitByDelimiters(str)).calculateSum();
     }
 
     private boolean registerDelimiterIfNotExist(String input) {

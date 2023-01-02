@@ -4,8 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.dto.CarRequest;
-import racingcar.service.dto.FinalResult;
-import racingcar.service.dto.RoundResult;
+import racingcar.domain.RandomNumberMovable;
+import racingcar.view.FinalResult;
+import racingcar.view.RoundResult;
 import racingcar.utils.RacingCarConverter;
 
 import java.util.List;
@@ -21,7 +22,7 @@ class RacingCarGameTest {
     void setUp() {
         int round = 5;
         inputCars = List.of(new CarRequest("car1"), new CarRequest("car2"));
-        racingCarGame = new RacingCarGame(RacingCarConverter.toCars(inputCars), round);
+        racingCarGame = new RacingCarGame(RacingCarConverter.toCars(inputCars), round, new RandomNumberMovable());
     }
 
     @Test
