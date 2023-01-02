@@ -34,15 +34,3 @@ StringAdder
 - 전체 앱을 관리하는 기능이 있어야한다.
   - 시작
 
-
-App(config) - Game(config)
-            |- config
-            |- ArrayList<Car>
-            |- RandomIntGenerator
-            |- view
-        
-
-
-  
-
-

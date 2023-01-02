@@ -1,21 +1,12 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public interface RacingCarGame {
 
-    void run(int times);
+    public Cars getCars();
 
-    void add(String carName);
+    void race();
 
-    void add(Car... cars);
+    public Cars createCars(String[] carNames);
 
-    List<Car> getWinner();
-
-    List<String> getWinnerNames();
-
-    List<String> getCarResults();
-
-    void play();
+    int getCarsSize();
 }

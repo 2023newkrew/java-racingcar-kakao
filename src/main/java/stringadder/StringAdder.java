@@ -9,14 +9,18 @@ import java.util.regex.Pattern;
 public class StringAdder {
     public int add(String text) {
         int result;
+
         if (isNullOrBlank(text)) {
             return StringAdderConstant.IS_NULL_OR_BLANK;
         }
         try {
-            result = sum(split(text));
+            String[] splitText = split(text);
+            isValid(splitText);
+            result = sum(splitText);
         } catch (NumberFormatException e) {
             throw e;
         }
+
         return result;
     }
 
