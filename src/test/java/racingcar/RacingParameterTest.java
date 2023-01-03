@@ -5,15 +5,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.controller.RacingController;
 import racingcar.exception.RacingException;
 import racingcar.exception.RacingExceptionCode;
+import racingcar.model.RacingService;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class RacingParameterTest {
 
-    RacingController rc = new RacingController();
+    private static final String TEST_TRIAL_NUMBER_STRING = "2";
+    private static final String TEST_CAR_NAMES = "abc,def,ghi";
 
     @ParameterizedTest
     @ValueSource(strings = {"a,,b", "a,daniel,b"})
@@ -21,7 +22,7 @@ public class RacingParameterTest {
     void carNameLengthExceptionTest(String inputStr) {
         assertThatExceptionOfType(RacingException.class)
                 .isThrownBy(() -> {
-                    rc.setCarNames(inputStr);
+                    new RacingService(inputStr, TEST_TRIAL_NUMBER_STRING);
                 }).withMessage(RacingExceptionCode.INVALID_CAR_LENGTH.getErrorMessage());
     }
 
@@ -29,7 +30,7 @@ public class RacingParameterTest {
     @ValueSource(strings = {"a,b,c", "a,bc,def,ghij"})
     @DisplayName("입력값이 요구사항대로 주어질 때 예외를 발생시키지 않는다.")
     void carNameLengthNoExceptionTest(String inputStr) {
-        Assertions.assertThatCode(() -> rc.setCarNames(inputStr)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> new RacingService(inputStr, TEST_TRIAL_NUMBER_STRING)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -38,7 +39,7 @@ public class RacingParameterTest {
     void RacingCarNumberException(String inputStr) {
         assertThatExceptionOfType(RacingException.class)
                 .isThrownBy(
-                        () -> rc.setCarNames(inputStr)
+                        () -> new RacingService(inputStr, TEST_TRIAL_NUMBER_STRING)
                 ).withMessage(RacingExceptionCode.INVALID_CARS_SIZE.getErrorMessage());
     }
 
@@ -47,7 +48,7 @@ public class RacingParameterTest {
     void duplicatedCarNameExceptionTest() {
         String inputStr = "kim,lee,kim";
         assertThatExceptionOfType(RacingException.class)
-                .isThrownBy(() -> rc.setCarNames(inputStr)).withMessage(RacingExceptionCode.CAR_NAME_DUPLICATION.getErrorMessage());
+                .isThrownBy(() -> new RacingService(inputStr, TEST_TRIAL_NUMBER_STRING)).withMessage(RacingExceptionCode.CAR_NAME_DUPLICATION.getErrorMessage());
     }
 
     @ParameterizedTest
@@ -55,7 +56,7 @@ public class RacingParameterTest {
     @DisplayName("라운드 횟수 입력시 자연수가 아닌 입력에 대해 예외를 발생시킨다.")
     void trialCountExceptionTest(String trialCount) {
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> rc.setTrialNumber(trialCount));
+                .isThrownBy(() -> new RacingService(TEST_CAR_NAMES, trialCount));
     }
 
 }

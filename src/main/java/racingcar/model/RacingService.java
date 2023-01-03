@@ -18,12 +18,15 @@ public class RacingService {
     private int trialCount = 0;
     private final RacingCarGroup racingCars;
 
-    public RacingService(String carNames, int totalRounds) {
-        if (carNames == null || totalRounds < 1) {
-            throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
-        }
+    public RacingService(String carNames, String trialNumberStr) {
+
+        validateCarNames(carNames);
+
+        int trialNumber = parseIntTrialNumber(trialNumberStr);
+        validateTrialNumber(trialNumber);
+
         this.racingCars = new RacingCarGroup(carNames.split(DELIMITER));
-        this.totalRounds = totalRounds;
+        this.totalRounds = trialNumber;
         this.movable = new RandomMovable(RANDOM_THRESHOLD, RANDOM_BOUND);
     }
 
@@ -45,6 +48,9 @@ public class RacingService {
     }
 
     public static void validateCarNames(String carNames) {
+        if (carNames == null) {
+            throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
+        }
         RacingCarsValidator.validateCarNames(carNames.split(DELIMITER));
     }
 
