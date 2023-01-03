@@ -13,7 +13,7 @@ public class RacingService {
     private static final String DELIMITER = ",";
     private static final int RANDOM_THRESHOLD = 10;
     private static final int RANDOM_BOUND = 4;
-    private final Movable movable;
+    private final Movable movable = new RandomMovable(RANDOM_THRESHOLD, RANDOM_BOUND);
     private final int totalRounds;
     private int trialCount = 0;
     private final RacingCarGroup racingCars;
@@ -27,7 +27,6 @@ public class RacingService {
 
         this.racingCars = new RacingCarGroup(carNames.split(DELIMITER));
         this.totalRounds = trialNumber;
-        this.movable = new RandomMovable(RANDOM_THRESHOLD, RANDOM_BOUND);
     }
 
 
