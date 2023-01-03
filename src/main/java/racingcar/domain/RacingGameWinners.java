@@ -15,6 +15,10 @@ public class RacingGameWinners {
         this.winners = findWinners(racingCars);
     }
 
+    public List<RacingCar> getWinners() {
+        return winners;
+    }
+
     private List<RacingCar> findWinners(List<RacingCar> racingCars) {
         RacingCar winner = Collections.max(racingCars);
         return racingCars.stream()
@@ -37,14 +41,5 @@ public class RacingGameWinners {
     @Override
     public int hashCode() {
         return Objects.hash(winners);
-    }
-
-    @Override
-    public String toString() {
-        String winnerNames = winners.stream()
-                .map(RacingCar::getRacingCarName)
-                .map(RacingCarName::getName)
-                .collect(Collectors.joining(", "));
-        return winnerNames + "가 최종 우승했습니다.";
     }
 }
