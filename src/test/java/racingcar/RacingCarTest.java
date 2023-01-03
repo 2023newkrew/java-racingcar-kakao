@@ -11,7 +11,7 @@ public class RacingCarTest {
     @ParameterizedTest(name = "power : {0}")
     @DisplayName("전진 기능 테스트 : 이동하지 않음")
     @ValueSource(ints = {1, 2, 3})
-    public void not_move(final int power) {
+    public void notMove(final int power) {
         //given
         RacingCar car = new RacingCar();
 
