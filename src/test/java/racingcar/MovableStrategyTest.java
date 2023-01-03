@@ -3,6 +3,7 @@ package racingcar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import racingcar.model.strategy.MovableStrategy;
 
 public class MovableStrategyTest {
 
@@ -14,7 +15,7 @@ public class MovableStrategyTest {
     }
 
     @Test
-    public void moveIfNumberGreaterOrEqualThan4() {
+    public void moveIfNumberGreaterOrEqualThan4Test() {
         MovableStrategy movableStrategy = new MovableStrategy();
         int number = 4;
         boolean result = movableStrategy.canMove(number);
@@ -22,7 +23,7 @@ public class MovableStrategyTest {
     }
 
     @Test
-    public void notMoveIfNumberGreaterOrEqualThan4() {
+    public void notMoveIfNumberGreaterOrEqualThan4Test() {
         MovableStrategy movableStrategy = new MovableStrategy();
         int number = 3;
         boolean result = movableStrategy.canMove(number);

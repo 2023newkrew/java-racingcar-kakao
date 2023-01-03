@@ -2,19 +2,18 @@ package numberCalculator;
 
 import java.util.regex.Pattern;
 
-public class SeperatorParser {
-
-
+public class SeparatorParser {
+    public static final String DEFAULT_STRING_SEPARATOR = ",|:";
 
     public String extract(String input) {
-        if (isIncludingSeperator(input)) {
+        if (isIncludingSeparator(input)) {
             return Pattern.quote(input.substring(input.indexOf("//") + 2, input.indexOf("\n")));
         }
-        return ",|:";
+        return DEFAULT_STRING_SEPARATOR;
     }
 
 
-    public boolean isIncludingSeperator(String input) {
+    public boolean isIncludingSeparator(String input) {
         return input.matches("^//(.*)\\n(.*)");
     }
 }

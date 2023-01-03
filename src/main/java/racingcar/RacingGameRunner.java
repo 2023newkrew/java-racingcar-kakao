@@ -1,23 +1,25 @@
 package racingcar;
 
-public class RacingGameRunner {
-    private final String carNames;
-    private final int numberOfGames;
+import racingcar.model.Car;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
-    public RacingGameRunner(final String carNames, final int numberOfGames) {
-        this.carNames = carNames;
-        this.numberOfGames = numberOfGames;
-    }
+import java.util.*;
+
+public class RacingGameRunner {
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
-        InputParser inputParser = new InputParser();
+        Integer numberOfGames;
+        List<Car> carList = inputView.askCarsInfo();
+        numberOfGames = inputView.getNumberOfGames();
 
-        Cars cars = new Cars(inputParser.splitNames(carNames));
         for (int i = 0; i < numberOfGames; i++) {
-            cars.move();
-            cars.printCars();
+            carList.forEach(Car::move);
+            outputView.printCars(carList);
             System.out.println();
         }
-        cars.printWinners();
+        outputView.printWinners(carList);
     }
 }

@@ -1,4 +1,4 @@
-package numberCalculator.exceptions;
+package racingcar.view.exceptions;
 
 public class InvalidFormatException extends RuntimeException{
     public InvalidFormatException(String message) {
