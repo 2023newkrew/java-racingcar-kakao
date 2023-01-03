@@ -1,5 +1,7 @@
 package calculator;
 
+import util.StringUtil;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -12,7 +14,7 @@ public class StringCalculator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER_REGEX);
 
     public static int calculate(String text) {
-        if (isBlank(text) || !isConsistedByPositiveNumbers(text)) {
+        if (StringUtil.isBlank(text) || !isConsistedByPositiveNumbers(text)) {
             throw new IllegalArgumentException();
         }
 
@@ -38,12 +40,8 @@ public class StringCalculator {
         return text.split(DEFAULT_DELIMITER_REGEX);
     }
 
-    private static boolean isBlank(String value){
-        return (value == null || value.isEmpty() || value.isBlank());
-    }
-
     private static boolean isPositiveNumber(String value) {
-        return !(isBlank(value) || value.matches("\\D") || value.contains("-"));
+        return !(StringUtil.isBlank(value) || value.matches("\\D") || value.contains("-"));
     }
 
     private static int reduceBySum(String text) {

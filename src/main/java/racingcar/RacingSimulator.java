@@ -3,6 +3,7 @@ package racingcar;
 import java.util.List;
 import racingcar.model.NumberGenerator;
 import racingcar.model.RacingGame;
+import racingcar.model.RacingResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -19,17 +20,13 @@ public class RacingSimulator {
     public void simulate(NumberGenerator numberGenerator) {
         RacingGame racingGame = createRacingGame(numberGenerator);
 
-        outputView.printExecuteResultMessage();
-        while (!racingGame.isFinished()) {
-            racingGame.moveCars();
-            outputView.printPositions(racingGame.getPositions());
-        }
-        outputView.printWinners(racingGame.getWinners());
+        RacingResult racingResult = racingGame.start();
+        outputView.printRacingResult(racingResult);
     }
 
     private RacingGame createRacingGame(NumberGenerator numberGenerator) {
         List<String> carNames = inputView.inputCarNames();
-        int maxTryCount = inputView.inputMaxTryCount();
-        return new RacingGame(maxTryCount, numberGenerator, carNames);
+        int maxRound = inputView.inputMaxRound();
+        return new RacingGame(maxRound, numberGenerator, carNames);
     }
 }
