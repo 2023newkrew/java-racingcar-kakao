@@ -1,16 +1,22 @@
-import car_racing.RacingController;
-import string_calculator.CalculatorRunner;
-import string_calculator.StringParser;
+import carracing.domain.CarCreator;
+import carracing.domain.Cars;
+import carracing.domain.RacingGame;
+import carracing.domain.StringParser;
+import carracing.view.InputView;
+import carracing.view.OutputView;
+
 
 public class Application {
     public static void main(String[] args) {
-
-//        StringParser parser = new StringParser();
-//        CalculatorRunner runner = new CalculatorRunner(parser);
-//
-//        runner.run();
-
-        RacingController racingController = new RacingController();
-        racingController.run();
+        StringParser stringParser = new StringParser();
+        CarCreator carCreator = new CarCreator(stringParser);
+        Cars cars = carCreator.createCars(InputView.getPlayerNames());
+        RacingGame racingGame = new RacingGame(cars, InputView.getNumberOfTurns());
+        OutputView.printInitialStatus(racingGame.getRacingPlayers());
+        while (!racingGame.isFinished()) {
+            racingGame.runSingleTurn();
+            OutputView.printCurrentStatus(racingGame.getRacingPlayers());
+        }
+        OutputView.printWinners(racingGame.getWinners());
     }
 }

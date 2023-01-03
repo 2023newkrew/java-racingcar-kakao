@@ -1,11 +1,12 @@
-package string_calculator;
+package stringcalculator;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import string_calculator.StringVerifier;
 
 public class StringVerifierTest {
 
+    @DisplayName("isInteger 검증 작동 확인")
     @Test
     void isIntegerTest() {
         String[] s0 = new String[]{"1", "-1" ,"99999999"};
@@ -19,6 +20,7 @@ public class StringVerifierTest {
         }
     }
 
+    @DisplayName("isPositive 검증 작동 확인")
     @Test
     void isPositiveTest() {
         Integer[] intArr1 = new Integer[]{0, 1, 2 ,99999999};
@@ -32,6 +34,7 @@ public class StringVerifierTest {
         }
     }
 
+    @DisplayName("isNullOrEmpty 검증 작동 확인")
     @Test
     void isNullOrEmpty() {
         String[] s0 = new String[]{"", null};
