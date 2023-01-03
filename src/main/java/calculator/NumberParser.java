@@ -15,8 +15,8 @@ public class NumberParser {
     public String[] parseNumbersStr() {
         DelimiterParser delimiterParser = new DelimiterParser(numbersStr, defaultDelimiters);
         String delimiter = delimiterParser.getDelimiter();
-        this.parsedNumbers = delimiterParser.getProcessedInput().split(delimiter);
-        return this.parsedNumbers;
+        parsedNumbers = delimiterParser.getProcessedInput().split(delimiter);
+        return parsedNumbers;
     }
 
     private void checkNegativeNumber(int val) throws NegativeValueException {
