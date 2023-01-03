@@ -3,7 +3,6 @@ package racingcar.model;
 import racingcar.exception.RacingException;
 import racingcar.exception.RacingExceptionCode;
 import racingcar.util.Movable;
-import racingcar.util.RacingCarsValidator;
 import racingcar.util.RandomMovable;
 
 import java.util.List;
@@ -20,7 +19,9 @@ public class RacingService {
 
     public RacingService(String carNames, String trialNumberStr) {
 
-        validateCarNames(carNames);
+        if (carNames == null || trialNumberStr == null) {
+            throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
+        }
 
         int trialNumber = parseIntTrialNumber(trialNumberStr);
         validateTrialNumber(trialNumber);
@@ -46,23 +47,23 @@ public class RacingService {
         return racingCars.getWinners();
     }
 
-    public static void validateCarNames(String carNames) {
-        if (carNames == null) {
-            throw new RacingException(RacingExceptionCode.INVALID_RACING_ARGUMENT);
-        }
-        RacingCarsValidator.validateCarNames(carNames.split(DELIMITER));
-    }
-
-    public static int parseIntTrialNumber(String trialNumberInput) {
-        return RacingCarsValidator.parseIntTrialNumber(trialNumberInput);
-    }
-
-    public static void validateTrialNumber(int trialNumber) {
-        RacingCarsValidator.validateTrialNumber(trialNumber);
-    }
-
     public List<RacingCar> getCarsForPrintRoundResult() {
         return racingCars.getCarsList();
     }
 
+    public  void validateTrialNumber(int trialNumber) {
+        if (trialNumber < 1) {
+            throw new RacingException(RacingExceptionCode.INVALID_TRIAL_NUMBER);
+        }
+    }
+
+    public  int parseIntTrialNumber(String trialNumberStr) {
+        int parsedTrialNumber;
+        try {
+            parsedTrialNumber = Integer.parseInt(trialNumberStr);
+        } catch (NumberFormatException e) {
+            throw new RacingException(RacingExceptionCode.TRIAL_NOT_NUMBER);
+        }
+        return parsedTrialNumber;
+    }
 }
