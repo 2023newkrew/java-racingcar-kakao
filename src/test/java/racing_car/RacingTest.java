@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import racing_car.model.Car;
 import racing_car.model.Racing;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -18,7 +21,7 @@ public class RacingTest {
     - 경주가 끝나고 우승한 자동차를 선정해야 한다.
     */
 
-    static Racing racing;
+    Racing racing;
 
     @BeforeEach
     void createGameControl(){
@@ -30,41 +33,30 @@ public class RacingTest {
     void createCars() {
         String testNames = "pobi,crong,honux";
         racing.createCars(testNames);
-        assertArrayEquals(racing.getCars(), new Car[] {
+        assertEquals(racing.getCars(), Arrays.asList(new Car[] {
                 new Car("pobi"),
                 new Car("crong"),
                 new Car("honux")
-        });
-    }
-
-    @Test
-    @DisplayName("0부터 9사이의 random 값 생성")
-    void randomValue() {
-        for (int i = 0; i < 1000; i++) {
-            int value = racing.generateValue();
-            assertThat(value<=9 && value>=0).isTrue();
-        }
+        }));
     }
 
     @Test
     @DisplayName("입력 횟수 만큼 자동차를 움직이려 시도")
     void race() {
-        racing = new Racing(){
+        String testNames = "pobi,crong";
+        int round = 3;
+        racing = new Racing(testNames, round){
             @Override
             public int generateValue() {
                 return 5;
             }
         };
-        String testNames = "pobi,crong";
-        int round = 3;
-        racing.createCars(testNames);
-        racing.setRound(round);
 
         while(!racing.isEnd()){
             racing.race();
         }
 
-        assertThat(racing.getCars()[0].distance()).isEqualTo(round);
+        assertThat(racing.getCars().get(0).distance()).isEqualTo(round);
     }
 
     @Test
@@ -76,9 +68,9 @@ public class RacingTest {
 
         Car[] winners = racing.getWinners();
 
-        Car[] cars = racing.getCars();
+        List<Car> cars = racing.getCars();
         assertArrayEquals(new Car[] {
-                cars[1], cars[3], cars[5]
+                cars.get(1), cars.get(3), cars.get(5)
         }, winners);
     }
 

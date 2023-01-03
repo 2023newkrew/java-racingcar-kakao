@@ -4,6 +4,7 @@ import racing_car.model.Car;
 import racing_car.model.Racing;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class GameView {
@@ -19,7 +20,7 @@ public class GameView {
         return scanner.nextInt();
     }
 
-    public static void printGameProcess(Car[] cars) {
+    public static void printGameProcess(List<Car> cars) {
         for (Car car: cars) {
             System.out.print(car.name() + " : " + "-".repeat(car.distance()) + "\n");
         }

@@ -2,12 +2,14 @@ package racing_car.model;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Racing {
 
-    private Car[] cars;
+    private List<Car> cars;
     private int round;
 
     public Racing(){}
@@ -22,18 +24,17 @@ public class Racing {
 
     public void createCars(String testNames, int[] distances) {
         String[] names = testNames.split(",");
-        cars = new Car[names.length];
-        for (int i = 0; i < names.length; i++) {
-            cars[i] = new Car(names[i], distances[i]);
-        }
+        cars = IntStream.range(0, names.length)
+                .mapToObj(i->new Car(names[i], distances[i]))
+                .collect(Collectors.toList());
     }
 
-    public void setRound(int round) {
+    private void setRound(int round) {
         this.round = round;
     }
 
 
-    public Car[] getCars() {
+    public List<Car> getCars() {
         return cars;
     }
     public boolean isEnd() {
@@ -41,14 +42,14 @@ public class Racing {
     }
 
     public Car[] getWinners() {
-        Car maxDistance = Arrays.stream(cars).max(Comparator.naturalOrder()).get();
-        return Arrays.stream(cars)
+        Car maxDistance = cars.stream().max(Comparator.naturalOrder()).get();
+        return cars.stream()
                 .filter(car -> car.compareTo(maxDistance) == 0)
                 .collect(Collectors.toList())
                 .toArray(Car[]::new);
     }
 
-    public int generateValue() {
+    protected int generateValue() {
         return new Random().nextInt(10);
     }
 
