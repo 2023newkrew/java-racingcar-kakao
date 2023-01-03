@@ -22,8 +22,8 @@ public class RacingController {
     private final Racing racing;
     private final View view;
     public RacingController() {
-        racing = settings();
         view = new View();
+        racing = settings();
 
         while (!racing.isEnd()) {
             racing.round();
@@ -43,23 +43,29 @@ public class RacingController {
     private void printWinnerResult() { //우승자를 출력한다
         view.printWinner(racing.returnWinners().getWinners());
     }
+
     private List<String> inputCarNames() { //사용자의 입력을 받는다(자동차 이름)
         Scanner sc = new Scanner(System.in);
-        String nameInput;
-        do {
-            view.printInputNameMessage();
+        view.printInputNameMessage();
+        String nameInput = sc.nextLine();
+
+        while(!Validate.validateCarNames(nameInput)) {
+            view.printLengthErrorMessage();
             nameInput = sc.nextLine();
-        } while (!Validate.validateCarNames(nameInput));
+        }
+
         return Utils.stringToStringList(nameInput);
     }
 
     private int inputRoundNum() { //사용자의 입력을 받는다(라운드 횟수)
         Scanner sc = new Scanner(System.in);
-        String roundNumInput;
-        do {
-            view.printInputRoundNumberMessage();
+        view.printInputRoundNumberMessage();
+        String roundNumInput = sc.nextLine();
+
+        while(!Validate.validateCarNames(roundNumInput)) {
+            view.printIntegerErrorMessage();
             roundNumInput = sc.nextLine();
-        } while (!Validate.validateRoundNumber(roundNumInput));
+        }
         return Utils.stringToInt(roundNumInput);
     }
 
