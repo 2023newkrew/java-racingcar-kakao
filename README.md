@@ -106,15 +106,18 @@ class Application {
 }
 ```
 
-##### void moveByCondition(int value)
-* `value`가 `3` 초과일 경우 자동차가 전진
-* `3` 이하일 경우 정지
+##### void moveByCondition(Movable movable) 
+~~void moveByCondition(int value)~~
+* `movable`의 `isMove()`의 조건에 의해서 전진 혹은 정지
+* 람다식에 의해서 전진 혹은 정지
+* ~~`value`가 `3` 초과일 경우 자동차가 전진~~
+* ~~`3` 이하일 경우 정지~~
 ```java
 class Application {
   static void main() {
     Car car = new Car("TEST");
-    car.moveByCondition(4); //Move
-    car.moveByCondition(3); //Not move
+    car.moveByCondition(() -> true); //Move
+    car.moveByCondition(() -> false); //Not move
   }
 }
 ```
@@ -142,7 +145,7 @@ class Application {
 class Application {
   static void main() {
     Car car = new Car("TEST2");
-    car.moveByCondition(4); //Move
+    car.moveByCondition(() -> true); //Move
     System.out.println(car); //"TEST2 : --"
   }
 }
@@ -151,9 +154,9 @@ class Application {
 class Application {
   static void main() {
     Car car = new Car("TEST3");
-    car.moveByCondition(4); //Move
-    car.moveByCondition(5); //Move
-    car.moveByCondition(6); //Move
+    car.moveByCondition(() -> true); //Move
+    car.moveByCondition(() -> true); //Move
+    car.moveByCondition(() -> true); //Move
     System.out.println(car); //"TEST3 : ----"
   }
 }
@@ -167,7 +170,7 @@ class Application {
   static void main() {
     Car car1 = new Car("1");
     Car car2 = new Car("2");
-    car2.moveByCondition(4); //Move
+    car2.moveByCondition(() -> true); //Move
     int result = car1.compareTo(car2); //-1 
   }
 }
@@ -178,7 +181,7 @@ class Application {
   static void main() {
     Car car1 = new Car("1");
     Car car2 = new Car("2");
-    car1.moveByCondition(4); //Move
+    car1.moveByCondition(() -> true); //Move
     int result = car1.compareTo(car2); //1 
   }
 }
@@ -193,29 +196,45 @@ class Application {
 }
 ```
 
-#### Simulator
+#### RacingCar
+~~Simulator~~
 
-##### void create(String names)
-* 자동차들을 생성해주는 함수
-* 문자열을 받아 `,`를 기준으로 분할해 생성
+##### RacingCar(String carNames, int tryNo, Random random)
+* `carNames`를 이용해 자동차를 생성
+  * `carNames`를 `,`를 기준으로 분할해 생성
+* `tyrNo`와 `random`을 내장 인스턴스 변수로 저장
+  * `tryNo`는 `isEnd()`에 사용
+  * `random`은 `race()`에서 자동차의 전진 조건에 사용
+
+##### ~~void create(String names)~~
+* ~~자동차들을 생성해주는 함수~~
+* ~~문자열을 받아 `,`를 기준으로 분할해 생성~~
+> 생성자가 역할을 대신 수행
+
+##### void race() 
+~~void run(Random random)~~
+* 한턴을 진행시키는 함수
+* 내장 랜덤 인스턴스를 이용해 랜덤한 숫자를 생성해 자동차의 조건으로 사용
+* ~~랜덤 인스턴스를 받아 랜덤한 숫자를 생성해 자동차의 조건으로 사용~~
 ```java
 class Application {
   static void main() {
-    Simulator simulator = new Simulator();
-    simulator.create("A,B");
+    RacingCar racingCar = new RacingCar("A,B", 1, new Random());
+    racingCar.race();
   }
 }
 ```
 
-##### void run(Random random)
-* 한턴을 진행시키는 함수
-* 랜덤 인스턴스를 받아 랜덤한 숫자를 생성해 자동차의 조건으로 사용
+##### boolean isEnd()
+* 자동차 경주가 끝났는지 판별하는 함수
+* 끝났으면 `true`, 끝나지 않았으면 `false` 리턴
 ```java
 class Application {
   static void main() {
-    Simulator simulator = new Simulator();
-    simulator.create("A,B");
-    simulator.run(new Random());
+    RacingCar racingCar = new RacingCar("A,B", 1, new Random());
+    racingCar.isEnd(); //false
+    racingCar.race();
+    racingCar.isEnd(); //true
   }
 }
 ```
@@ -226,10 +245,9 @@ class Application {
 ```java
 class Application {
   static void main() {
-    Simulator simulator = new Simulator();
-    simulator.create("A,B");
-    simulator.run(new Random());
-    String result = simulator.getWinners(); //"A" or "B" or "A, B"
+    RacingCar racingCar = new RacingCar("A,B", 1, new Random());
+    racingCar.race();
+    String result = racingCar.getWinners(); //"A" or "B" or "A, B"
   }
 }
 ```
@@ -246,9 +264,45 @@ class Application {
 ```java
 class Application {
   static void main() {
-    Simulator simulator = new Simulator();
-    simulator.create("A,B");
-    System.out.println(simulator.toString()); //"A : -\nB : -"
+    RacingCar racingCar = new RacingCar("A,B", 0, new Random());
+    System.out.println(racingCar.toString()); //"A : -\nB : -"
+  }
+}
+```
+
+#### Movable (interface)
+
+##### boolean isMove()
+* 움직이는 조건을 정의하는 추상메소드
+```java
+class AlwaysTrueMovable implements Movable {
+  @Override
+  public boolean isMove() {
+    return true;
+  }
+}
+```
+#### RandomMovable
+
+##### RandomMovable(Random random)
+* `random`을 내장 인스턴스 변수로 저장하는 생성자
+  * `random` 변수는 `isMove()`의 조건으로 사용
+```java
+class Application {
+  static void main() {
+    RandomMovable randomMovable = new RandomMovable(new Random());
+  }
+}
+```
+
+##### boolean isMove()
+* `BOUND(10)`보다 작은 `0` 이상의 정수(0~9 사이의 정수)를 랜덤으로 생성
+* 생성된 정수가 `THRESHOLD(3)`보다 크면 `true`, 작으면 `false`
+```java
+class Application {
+  static void main() {
+    RandomMovable randomMovable = new RandomMovable(new Random());
+    randomMovable.isMove(); //true or false
   }
 }
 ```
