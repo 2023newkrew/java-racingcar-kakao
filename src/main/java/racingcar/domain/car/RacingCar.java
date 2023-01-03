@@ -18,8 +18,8 @@ public class RacingCar {
         this.pos = 0;
         this.carName = new RacingCarName(carName);
     }
-    public RacingCarName getCarName() {
-        return this.carName;
+    public String getCarName() {
+        return this.carName.getName();
     }
 
     public int getPos() {

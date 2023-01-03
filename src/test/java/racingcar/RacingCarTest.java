@@ -27,8 +27,10 @@ public class RacingCarTest {
         //given
         RacingCar car = new RacingCar();
 
-        //when, then
+        //when
         car.move(() -> power);
+
+        //then
         assertEquals(1, car.getPos());
     }
 }

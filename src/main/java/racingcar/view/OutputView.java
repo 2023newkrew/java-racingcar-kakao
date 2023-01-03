@@ -17,7 +17,7 @@ public class OutputView {
 
     private static String carPosToOutputText(RacingCar racingCar) {
         StringBuilder sb = new StringBuilder();
-        String displayName = (racingCar.getCarName().getName()+"     ").substring(0,5);
+        String displayName = (racingCar.getCarName()+"     ").substring(0,5);
         sb.append(displayName).append(" : ");
         for (int i = 0; i <= racingCar.getPos(); i++) {
             sb.append("-");
@@ -33,7 +33,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         List<String> winnerNames = new ArrayList<>();
         for (RacingCar winner : winners) {
-            winnerNames.add(winner.getCarName().getName());
+            winnerNames.add(winner.getCarName());
         }
         sb.append(String.join(", ", winnerNames));
         System.out.println(sb + " 가 최종 우승했습니다.");
