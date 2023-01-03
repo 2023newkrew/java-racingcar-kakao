@@ -1,6 +1,6 @@
 package racingcar.service;
 
-import racingcar.domain.Cars;
+import racingcar.domain.CarsManager;
 import racingcar.domain.RacingGame;
 import racingcar.strategy.MovingStrategy;
 import racingcar.view.InputView;
@@ -21,10 +21,10 @@ public class RacingCarService implements Runnable {
 
     @Override
     public void run() {
-        Cars cars = new Cars(inputView.getCars());
+        CarsManager carsManager = new CarsManager(inputView.getCars());
         int round = inputView.getRounds();
 
-        RacingGame racingGame = new RacingGame(movingStrategy, cars, round);
+        RacingGame racingGame = new RacingGame(movingStrategy, carsManager, round);
         resultView.printInitialStatus(racingGame.getCars());
         while(!racingGame.isEnd()) {
             racingGame.race();

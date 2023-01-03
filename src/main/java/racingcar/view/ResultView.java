@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.Cars;
+import racingcar.domain.CarsManager;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ public class ResultView {
         System.out.println();
     }
 
-    public void printCars(Cars cars) {
-        for (String status : cars.getCurrentStatus()) {
+    public void printCars(CarsManager carsManager) {
+        for (String status : carsManager.getCurrentStatus()) {
             printMessage(status);
         }
         printEmptyLine();
@@ -25,8 +25,8 @@ public class ResultView {
         printMessage(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 
-    public void printInitialStatus(Cars cars) {
+    public void printInitialStatus(CarsManager carsManager) {
         printMessage("실행 결과");
-        printCars(cars);
+        printCars(carsManager);
     }
 }

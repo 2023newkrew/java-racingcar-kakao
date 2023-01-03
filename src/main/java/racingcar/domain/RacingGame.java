@@ -8,11 +8,11 @@ public class RacingGame {
 
     private final MovingStrategy movingStrategy;
     private int roundCount;
-    private final Cars cars;
+    private final CarsManager carsManager;
 
-    public RacingGame(MovingStrategy movingStrategy, Cars cars, int roundCount) {
+    public RacingGame(MovingStrategy movingStrategy, CarsManager carsManager, int roundCount) {
         this.movingStrategy = movingStrategy;
-        this.cars = cars;
+        this.carsManager = carsManager;
         this.roundCount = roundCount;
     }
 
@@ -20,12 +20,12 @@ public class RacingGame {
         return this.roundCount == 0;
     }
 
-    public Cars getCars() {
-        return cars;
+    public CarsManager getCars() {
+        return carsManager;
     }
 
     public List<String> getWinners() {
-        return cars.findWinners();
+        return carsManager.findWinners();
     }
 
     public void race() {
@@ -34,6 +34,6 @@ public class RacingGame {
     }
 
     private void moveCars(MovingStrategy movingStrategy) {
-        cars.moveAll(movingStrategy);
+        carsManager.moveAll(movingStrategy);
     }
 }

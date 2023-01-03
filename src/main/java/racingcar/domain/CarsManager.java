@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class CarsManager {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public CarsManager(List<Car> cars) {
         this.cars = Collections.unmodifiableList(cars);
     }
 
