@@ -29,7 +29,7 @@ public class GameTest {
     @Test
     @DisplayName("게임을 초기화하면 차의 이름과 초기 거리, 남은 시도(라운드) 수가 설정된다")
     void init() {
-        GameInfo gameInfo = game.init(carNames, roundInput);
+        GameInfo gameInfo = game.init(carNames, roundInput, () -> true);
 
         for (int i = 0; i < gameInfo.getCarInfos().size(); i++) {
             assertThat(gameInfo.getCarInfos().get(i).getName()).isEqualTo(carNames.get(i));
@@ -41,7 +41,7 @@ public class GameTest {
     @Test
     @DisplayName("시도 1회당 남은 시도 수가 1씩 줄어들고 각 차들의 위치값이 0 또는 1씩 증가한다")
     void runRound() {
-        game.init(carNames, roundInput);
+        game.init(carNames, roundInput, () -> true);
 
         GameInfo gameInfo = game.runRound();
 
