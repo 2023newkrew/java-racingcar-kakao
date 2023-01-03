@@ -6,7 +6,7 @@
  * - 라운드가 종료될 때 마다 결과를 확인할 수 있다
  * - 게임이 종료된 후 우승자를 확인할 수 있다
  */
-package racingcar.domain;
+package racingcar.model;
 
 import racingcar.dto.RoundResultDto;
 import racingcar.dto.WinnerDto;
