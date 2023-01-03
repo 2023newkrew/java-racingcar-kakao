@@ -13,6 +13,14 @@ public class View {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
+    public void printLengthErrorMessage() {
+        System.out.println("자동차의 이름은 길이 1 이상 5 이하여야 합니다");
+    }
+
+    public void printIntegerErrorMessage() {
+        System.out.println("1 이상의 정수를 입력해주세요");
+    }
+
     public void printRoundResult(List<Car> roundResult) { //라운드의 결과를 출력한다
         for (Car car : roundResult) {
             System.out.print(car.getName() + " : ");

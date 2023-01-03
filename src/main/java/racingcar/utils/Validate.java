@@ -6,19 +6,11 @@ package racingcar.utils;
 
 public class Validate {
     public static boolean validateCarNames(String nameInput) {
-        boolean flag = lengthLessThan5(nameInput);
-        if (!flag) {
-            System.out.println("자동차의 이름은 길이 1 이상 5 이하여야 합니다");
-        }
-        return flag;
+        return lengthLessThan5(nameInput);
     }
 
     public static boolean validateRoundNumber(String roundNumInput) {
-        boolean flag = isPositiveInteger(roundNumInput);
-        if (!flag) {
-            System.out.println("1 이상의 정수를 입력해주세요");
-        }
-        return flag;
+        return isPositiveInteger(roundNumInput);
     }
 
     private static boolean lengthLessThan5(String input) {
