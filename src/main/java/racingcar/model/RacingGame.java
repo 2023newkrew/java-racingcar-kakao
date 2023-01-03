@@ -3,9 +3,9 @@ package racingcar.model;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class RacingGame {
-    public static final int MAX_ROUND_LIMIT = 99;
+import static racingcar.model.RacingConstant.*;
 
+public class RacingGame {
     private final NumberGenerator numberGenerator;
     private final Cars racingCars;
     private final int maxRound;
@@ -13,11 +13,11 @@ public class RacingGame {
 
     public RacingGame(int maxRound, NumberGenerator numberGenerator, List<String> racingCarNames) {
         if (hasDuplicatedName(racingCarNames)) {
-            throw new IllegalArgumentException("자동차 이름은 유일한 이름이어야 합니다.");
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION_MSG);
         }
 
         if (isInvalidRound(maxRound)) {
-            throw new IllegalArgumentException("시도 회수는 " + MAX_ROUND_LIMIT + "이하의 숫자여야합니다.");
+            throw new IllegalArgumentException(MAX_ROUND_OUT_OF_RANGE_EXCEPTION_MSG);
         }
 
         this.numberGenerator = numberGenerator;
@@ -37,7 +37,7 @@ public class RacingGame {
 
     private Cars createCars(List<String> names) {
         if (names == null || names.isEmpty()) {
-            throw new IllegalArgumentException("경주에는 최소 하나의 자동차가 참가해야 합니다.");
+            throw new IllegalArgumentException(NUMBER_OF_PARTICIPATING_CARS_EXCEPTION_MSG);
         }
 
         List<Car> cars = names.stream()
@@ -49,7 +49,7 @@ public class RacingGame {
 
     public RacingResult start() {
         if(isRaceFinished()){
-            throw new IllegalStateException("이미 자동차 경주가 종료되었습니다.");
+            throw new IllegalStateException(ALREADY_CLOSED_RACE_EXCEPTION_MSG);
         }
 
         return race();
