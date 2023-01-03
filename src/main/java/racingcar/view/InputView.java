@@ -37,7 +37,7 @@ public class InputView {
     }
 
     private static void validateCarName(String carName) {
-        if (carName.isEmpty() || carName.length() > 5)
+        if (carName == null || carName.isEmpty() || carName.length() > 5)
             throw new IllegalArgumentException("차 이름은 1~5 글자로 입력해주세요.");
     }
 
