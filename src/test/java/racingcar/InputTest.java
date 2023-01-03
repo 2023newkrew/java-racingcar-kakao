@@ -3,7 +3,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.ui.InputUI;
+import racingcar.view.InputView;
 
 import java.util.Arrays;
 
@@ -15,7 +15,7 @@ public class InputTest {
     @ParameterizedTest
     void nullAndEmptyExceptionTest(String input){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            InputUI.validateCarList(Arrays.asList("123", "345", input));
+            InputView.validateCarList(Arrays.asList("123", "345", input));
         });
     }
 
@@ -24,7 +24,7 @@ public class InputTest {
     @ParameterizedTest
     void maxLengthExceptionTest(String input){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            InputUI.validateCarList(Arrays.asList("123", "345", input));
+            InputView.validateCarList(Arrays.asList("123", "345", input));
         });
     }
 
@@ -33,7 +33,7 @@ public class InputTest {
     @ParameterizedTest
     void inputTurnExceptionTest(String input){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            InputUI.validateTurn(input);
+            InputView.validateTurn(input);
         });
     }
 }
