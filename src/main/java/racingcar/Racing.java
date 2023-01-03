@@ -2,15 +2,15 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Racing {
     private final List<Car> cars = new ArrayList<>();
     private int roundNum;
+    private final static int MAX_LENGTH = 5;
 
-    boolean registerCarNames(String input) {
+    boolean registerCarNames(final String input) {
         String[] temp = input.split(",");
-        if (!lengthCheck(temp)) return false;
+        if (!checkLength(temp)) return false;
 
         for (String name : temp) {
             cars.add(new Car(name));
@@ -18,26 +18,27 @@ public class Racing {
         return true;
     }
 
-    private boolean lengthCheck(String[] nameList) {
+    private boolean checkLength(final String[] nameList) {
         boolean check = true;
         for (String name : nameList) {
-            check &= (name.length() <= 5);
+            check &= (name.length() <= MAX_LENGTH);
         }
         return check;
     }
 
-    boolean registerCarRoundNum(String input) {
+    boolean registerCarRoundNum(final String input) {
         try {
             roundNum = Integer.parseInt(input);
-            return true;
+            return roundNum > 0;
         } catch (NumberFormatException ex) {
             return false;
         }
     }
 
-    boolean round() {
+    boolean progressRound() {
+        CarRandom random = new CarRandom();
         for (Car car : cars) {
-            car.move(random());
+            car.move(random.generateRandom10());
         }
         return true;
     }
@@ -48,11 +49,6 @@ public class Racing {
             temp += car.getName() + "," + car.getPosition() + ",";
         }
         return temp;
-    }
-
-    private boolean random() {
-        Random rand = new Random();
-        return rand.nextInt(10) >= 4;
     }
 
     String getWinner() {

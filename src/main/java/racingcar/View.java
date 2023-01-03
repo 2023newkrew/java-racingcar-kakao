@@ -2,17 +2,21 @@ package racingcar;
 
 import java.util.Scanner;
 
+
 public class View {
     Racing racing = new Racing();
 
-    public void input() {
+    public void getInputCarNames() {
         Scanner sc = new Scanner(System.in);
         String carNames;
         do {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             carNames = sc.nextLine();
         } while (!racing.registerCarNames(carNames));
+    }
 
+    public void getInputRoundNum() {
+        Scanner sc = new Scanner(System.in);
         String roundNum;
         do {
             System.out.println("시도할 회수는 몇회인가요?");
@@ -22,13 +26,13 @@ public class View {
 
     void runRound() {
         for (int i = 0; i < racing.getRoundNum(); i++) {
-            racing.round();
+            racing.progressRound();
             String result = racing.roundResult();
             printRoundResult(result);
         }
     }
 
-    void printRoundResult(String result) {
+    void printRoundResult(final String result) {
         String[] temp = result.split(",");
         for (int i = 0; i < temp.length; i += 2) {
             System.out.print(temp[i] + " : ");
