@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RacingCarName {
-    private String name;
+    private final String name;
 
     public RacingCarName(String name) {
         this.name = name;
