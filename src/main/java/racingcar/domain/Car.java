@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.config.GameSetting;
-import racingcar.service.dto.CarResponse;
 
 public class Car {
 
@@ -27,8 +26,11 @@ public class Car {
         return position - other.position;
     }
 
-    public CarResponse toResponse() {
-        return new CarResponse(name, position);
+    public String getName() {
+        return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
 }

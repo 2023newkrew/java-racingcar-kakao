@@ -22,8 +22,8 @@ class CarTest {
             car.move(movable);
         }
 
-        CarResponse carResponse = car.toResponse();
-        assertThat(carResponse.getPosition()).isEqualTo(movingCount);
+        CarResponse carResponse = CarResponse.of(car);
+        assertThat(carResponse).isEqualTo(new CarResponse(carName, movingCount));
     }
 
     @DisplayName("자동차가 정지한다.")
@@ -36,8 +36,8 @@ class CarTest {
             car.move(movable);
         }
 
-        CarResponse carResponse = car.toResponse();
-        assertThat(carResponse.getPosition()).isZero();
+        CarResponse carResponse = CarResponse.of(car);
+        assertThat(carResponse).isEqualTo(new CarResponse(carName, 0));
     }
 
     private static Stream<Arguments> provideMovableTrue() {

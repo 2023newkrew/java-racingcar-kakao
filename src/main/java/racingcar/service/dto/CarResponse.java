@@ -1,5 +1,7 @@
 package racingcar.service.dto;
 
+import racingcar.domain.Car;
+
 import java.util.Objects;
 
 public class CarResponse {
@@ -18,6 +20,10 @@ public class CarResponse {
 
     public int getPosition() {
         return position;
+    }
+
+    public static CarResponse of(Car car) {
+        return new CarResponse(car.getName(), car.getPosition());
     }
 
     @Override

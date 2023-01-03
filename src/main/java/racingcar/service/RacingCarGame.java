@@ -3,7 +3,6 @@ package racingcar.service;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Movable;
-import racingcar.domain.RandomNumberMovable;
 import racingcar.view.FinalResult;
 import racingcar.view.RoundResult;
 

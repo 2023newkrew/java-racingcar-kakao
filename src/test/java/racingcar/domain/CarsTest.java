@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.service.dto.CarResponse;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ class CarsTest {
         car3.move(() -> true);
 
         Cars cars = new Cars(List.of(car1, car2, car3));
-        assertThat(cars.selectWinners()).isEqualTo(List.of(car1.toResponse(), car3.toResponse()));
+        assertThat(cars.selectWinners()).isEqualTo(List.of(CarResponse.of(car1), CarResponse.of(car3)));
     }
 
 }
