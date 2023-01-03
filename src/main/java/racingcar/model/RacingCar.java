@@ -2,7 +2,7 @@ package racingcar.model;
 
 import racingcar.util.Movable;
 
-public class RacingCar extends Car{
+public class RacingCar extends Car {
 
     public RacingCar(String name) {
         this(name, 1);
@@ -21,7 +21,7 @@ public class RacingCar extends Car{
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof RacingCar) {
-            return this.position == ((RacingCar)obj).position && this.name.equals(((RacingCar)obj).name);
+            return this.position == ((RacingCar) obj).position && this.name.equals(((RacingCar) obj).name);
         }
         return false;
     }

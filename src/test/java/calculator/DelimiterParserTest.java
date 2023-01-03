@@ -11,6 +11,7 @@ import java.util.List;
 public class DelimiterParserTest {
 
     private static final List<String> defaultDelimiters = Arrays.asList(",", ":");
+
     @Test
     @DisplayName("사용자 정의 구분자가 있을 때 True를 반환한다.")
     void checkCustomMatch() {

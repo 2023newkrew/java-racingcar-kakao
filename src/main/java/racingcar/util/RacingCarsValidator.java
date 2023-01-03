@@ -19,17 +19,10 @@ public class RacingCarsValidator {
         validateDuplication(carNames);
     }
 
-    public static int validateTrialNumber(String trialNumberInput) {
-        int trialNumber;
-        try {
-            trialNumber = Integer.parseInt(trialNumberInput);
-        } catch (NumberFormatException e) {
-            throw new RacingException(RacingExceptionCode.TRIAL_NOT_NUMBER);
-        }
+    public static void validateTrialNumber(int trialNumber) {
         if (trialNumber < 1) {
             throw new RacingException(RacingExceptionCode.INVALID_TRIAL_NUMBER);
         }
-        return trialNumber;
     }
 
     private static void validateCarNumber(String[] carNames) {
@@ -42,6 +35,16 @@ public class RacingCarsValidator {
         if (inputStr.length() > CAR_NAME_LENGTH_LIMIT || inputStr.length() == 0) {
             throw new RacingException(RacingExceptionCode.INVALID_CAR_LENGTH);
         }
+    }
+
+    public static int parseIntTrialNumber(String trialNumberInput) {
+        int parsedTrialNumber;
+        try {
+            parsedTrialNumber = Integer.parseInt(trialNumberInput);
+        } catch (NumberFormatException e) {
+            throw new RacingException(RacingExceptionCode.TRIAL_NOT_NUMBER);
+        }
+        return parsedTrialNumber;
     }
 
     private static void validateDuplication(String[] inputStr) {

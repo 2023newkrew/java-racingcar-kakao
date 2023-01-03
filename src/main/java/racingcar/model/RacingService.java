@@ -48,8 +48,12 @@ public class RacingService {
         RacingCarsValidator.validateCarNames(carNames.split(DELIMITER));
     }
 
-    public static int validateTrialNumber(String trialNumber) {
-        return RacingCarsValidator.validateTrialNumber(trialNumber);
+    public static int parseIntTrialNumber(String trialNumberInput) {
+        return RacingCarsValidator.parseIntTrialNumber(trialNumberInput);
+    }
+
+    public static void validateTrialNumber(int trialNumber) {
+        RacingCarsValidator.validateTrialNumber(trialNumber);
     }
 
     public List<RacingCar> getCarsForPrintRoundResult() {

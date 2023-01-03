@@ -13,6 +13,7 @@ import java.util.List;
 public class AdderTest {
 
     private static final List<String> defaultDelimiters = Arrays.asList(",", ":");
+
     @Test
     @DisplayName("기본 구분자가 주어졌을 때 올바른 계산결과를 반환한다.")
     void addNormalTest() {

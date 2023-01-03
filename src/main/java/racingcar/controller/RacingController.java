@@ -22,9 +22,12 @@ public class RacingController {
         this.names = names;
     }
 
-    public void setTrialNumber(String trialNumber) {
-        this.trialNumber = RacingService.validateTrialNumber(trialNumber);
+    public void setTrialNumber(String trialNumberInput) {
+        int trialNumber = RacingService.parseIntTrialNumber(trialNumberInput);
+        RacingService.validateTrialNumber(trialNumber);
+        this.trialNumber = trialNumber;
     }
+
     public void startRacing() {
         this.racing = new RacingService(names, trialNumber);
     }

@@ -20,10 +20,11 @@ public class NumberParser {
     }
 
     private void checkNegativeNumber(int val) throws NegativeValueException {
-        if (val < 0){
+        if (val < 0) {
             throw new NegativeValueException();
         }
     }
+
     public int[] convertParsedNumbersToIntArr() throws NumberFormatException, NegativeValueException {
         int[] result = new int[parsedNumbers.length];
         for (int i = 0; i < parsedNumbers.length; i++) {
