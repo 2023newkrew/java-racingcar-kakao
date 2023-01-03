@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.strategy.MovingStrategy;
 
 public class Car {
     private final String name;
@@ -27,8 +29,8 @@ public class Car {
         return position;
     }
 
-    public void moveWithPower(int power) {
-        if (power >= 4) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.movable()) {
             this.position++;
         }
     }
