@@ -40,10 +40,9 @@ public class RacingGame {
                 .mapToInt(RacingCar::getPos)
                 .max()
                 .getAsInt();
-        List<RacingCar> winners = this.cars.stream()
+        return this.cars.stream()
                 .filter(car -> car.getPos() == maxPos)
                 .collect(Collectors.toList());
-        return winners;
     }
 
 }
