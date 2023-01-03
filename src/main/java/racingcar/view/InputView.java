@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final int MAX_CAR_NAME_LENGTH = 5;
     private static Scanner scanner = new Scanner(System.in);
 
     public static List<String> inputCarNames() {
@@ -37,7 +38,7 @@ public class InputView {
     }
 
     private static void validateCarName(String carName) {
-        if (carName == null || carName.isEmpty() || carName.length() > 5)
+        if (carName == null || carName.isEmpty() || carName.length() > MAX_CAR_NAME_LENGTH)
             throw new IllegalArgumentException("차 이름은 1~5 글자로 입력해주세요.");
     }
 
