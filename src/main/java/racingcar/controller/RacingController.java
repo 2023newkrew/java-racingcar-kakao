@@ -7,7 +7,7 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-public class Controller {
+public class RacingController {
     private static Racing settings() { // 게임에 필요한 정보를 받아오고, 레이싱 객체를 생성한다
         InputDto inputDto = InputView.creatInput();
 
