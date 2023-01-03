@@ -9,11 +9,11 @@ public class InputParser {
     public List<String> splitNames(String inputString){
         List<String> nameList = List.of(inputString.split(","));
         return nameList.stream()
-                .filter(this::checkInputParserLength)
+                .filter(this::carNameLimitLength)
                 .collect(Collectors.toList());
     }
 
-    public boolean checkInputParserLength(String testString) {
-        return testString.length() <= CAR_NAME_MAX_LENGTH;
+    public boolean carNameLimitLength(String carName) {
+        return carName.length() <= CAR_NAME_MAX_LENGTH;
     }
 }

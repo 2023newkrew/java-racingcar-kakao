@@ -10,10 +10,9 @@ public class RacingGameRunner {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
-
     public void run() {
         Integer numberOfGames;
-        List<Car> carList = inputView.inputData();
+        List<Car> carList = inputView.askCarsInfo();
         numberOfGames = inputView.getNumberOfGames();
 
         for (int i = 0; i < numberOfGames; i++) {

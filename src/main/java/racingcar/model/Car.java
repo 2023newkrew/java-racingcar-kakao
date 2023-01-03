@@ -3,7 +3,7 @@ package racingcar.model;
 import racingcar.model.strategy.MovableStrategy;
 
 public class Car extends MovableStrategy {
-    private final String inputParser;
+    private final String carName;
     private int position;
 
     public Car() {
@@ -11,7 +11,7 @@ public class Car extends MovableStrategy {
     }
 
     public Car(String name) {
-        this.inputParser = name;
+        this.carName = name;
     }
 
     public void moveOne(boolean canMove) {
@@ -24,16 +24,15 @@ public class Car extends MovableStrategy {
         return position;
     }
 
-    public String getName() { return inputParser; }
+    public String getName() { return carName; }
 
     public void move(){
         int randomNumber = generateRandomNumber();
         moveOne(canMove(randomNumber));
     }
 
-
     public void print() {
-        System.out.print(inputParser + " : ");
+        System.out.print(carName + " : ");
         for (int i = 0; i < position; i++) {
             System.out.print("-");
         }

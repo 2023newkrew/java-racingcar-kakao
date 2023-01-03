@@ -9,23 +9,23 @@ import java.util.regex.Pattern;
 import static numberCalculator.SeparatorParser.DEFAULT_STRING_SEPARATOR;
 
 public class SeparatorParserTest {
-    private SeparatorParser SeparatorParser;
+    private SeparatorParser separatorParser;
 
     @BeforeEach
     public void setUp(){
-        this.SeparatorParser = new SeparatorParser();
+        this.separatorParser = new SeparatorParser();
     }
 
     @Test
     public void extractCustomSeparator() {
-        String Separator = SeparatorParser.extract("//.232\n1");
+        String separator = separatorParser.extract("//.232\n1");
 
-        Assertions.assertThat(Separator).isEqualTo(Pattern.quote(".232"));
+        Assertions.assertThat(separator).isEqualTo(Pattern.quote(".232"));
     }
 
     @Test
     public void extractCustomSeparatorNotMatch() {
-        String Separator = SeparatorParser.extract("/.232\n1");
-        Assertions.assertThat(Separator).isEqualTo(DEFAULT_STRING_SEPARATOR);
+        String separator = separatorParser.extract("/.232\n1");
+        Assertions.assertThat(separator).isEqualTo(DEFAULT_STRING_SEPARATOR);
     }
 }

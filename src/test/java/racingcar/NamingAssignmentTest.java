@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class NamingAssignmentTest {
 
     @Test
-    public void splitInput(){
+    public void splitInputTest(){
         String testString = "Car1,Car2,car3";
         InputParser inputParser = new InputParser();
         List<String> splittedNames = inputParser.splitNames(testString);
@@ -25,29 +25,29 @@ public class NamingAssignmentTest {
     }
 
     @Test
-    public void duplicatedNames(){
+    public void duplicatedNamesTest(){
         assertThrows(DuplicatedNameException.class, (() -> {
             InputView inputView = new InputView();
             String testString = "Car1,Car1,Car2";
-            inputView.isInputParserDuplicated(testString);
+            inputView.registerCarsName(testString);
         }));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"Car1", "Car2", "car3"})
-    public void validateInputParserLengthSuccess(String testString){
+    public void validateInputParserLengthSuccessTest(String testString){
         InputParser inputParser = new InputParser();
 
-        boolean result = inputParser.checkInputParserLength(testString);
+        boolean result = inputParser.carNameLimitLength(testString);
         Assertions.assertThat(result).isTrue();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"Car123"})
-    public void validateInputParserLengthFail(String testString){
+    public void validateInputParserLengthFailTest(String testString){
         InputParser inputParser = new InputParser();
 
-        boolean result = inputParser.checkInputParserLength(testString);
+        boolean result = inputParser.carNameLimitLength(testString);
         Assertions.assertThat(result).isFalse();
     }
 }
