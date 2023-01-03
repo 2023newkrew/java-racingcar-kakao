@@ -1,12 +1,15 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
-public class Position implements Comparable{
+public class Position implements Comparable<Position>{
     private int val;
 
     public Position() {
-        this.val = 1;
+        this(1);
+    }
+    public Position(int val){
+        this.val = val;
     }
 
     public void move() {
@@ -14,11 +17,8 @@ public class Position implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (!(o instanceof Position)) {
-            throw new RuntimeException();
-        }
-        return val - ((Position)o).val;
+    public int compareTo(Position position) {
+        return val - position.val;
     }
 
     @Override

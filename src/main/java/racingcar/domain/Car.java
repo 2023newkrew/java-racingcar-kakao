@@ -1,8 +1,8 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
-public class Car implements Comparable{
+public class Car implements Comparable<Car>{
     private final String name;
     private final RandomGenerator randomGenerator;
     private final Position position;
@@ -10,6 +10,9 @@ public class Car implements Comparable{
     private static final int MAX_BOUND = 9;
 
     public Car(String name, RandomGenerator rg) {
+        if (name.length() == 0 || name.length()>5){
+            throw new InvalidInputException("1 : Name should be between 1 and 5.");
+        }
         this.name = name;
         this.randomGenerator = rg;
         this.position = new Position();
@@ -32,21 +35,26 @@ public class Car implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (!(o instanceof Car)) {
-            throw new RuntimeException();
-        }
-        return this.position.compareTo(((Car) o).position);
+    public int compareTo(Car car) {
+        return this.position.compareTo(car.position);
     }
 
-    public boolean equalsPosition(Object o) {
-        if (this == o){
-            return true;
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()){
             return false;
         }
         Car car = (Car) o;
-        return Objects.equals(position, car.position);
+        return name.equals(car.name) && position.equals(car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
+
+    public boolean equalsPosition(Car otherCar) {
+        return this.position.equals(otherCar.position);
     }
 }
