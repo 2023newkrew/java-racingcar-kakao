@@ -1,22 +1,31 @@
 package mvc;
 
-import mvc.domain.CarUtil;
+import mvc.domain.Car;
+import mvc.domain.CarFactory;
 import mvc.domain.Game;
 import mvc.view.InputView;
 import mvc.view.OutputView;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        String carNameStr = InputView.inputCarNameStr();
-        int totalTurn = InputView.inputTotalTurn();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
 
-        Game game = new Game(CarUtil.generateCarsFromNameStr(carNameStr), totalTurn);
-        OutputView.printInit(game.getCarList());
+        String carNameStr = inputView.inputCarNameStr();
+        int totalTurn = inputView.inputTotalTurn();
+
+        CarFactory carFactory = new CarFactory();
+        List<Car> cars = carFactory.createCarsFromNameStr(carNameStr);
+
+        Game game = new Game(cars, totalTurn);
+        outputView.printInit(game.getCarList());
 
         while (!game.isEnd()) {
             game.playOneTurn();
-            OutputView.printCars(game.getCarList());
+            outputView.printCars(game.getCarList());
         }
-        OutputView.printWinners(game.findWinners());
+        outputView.printWinners(game.findWinners());
     }
 }
