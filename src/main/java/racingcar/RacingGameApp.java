@@ -1,16 +1,36 @@
 package racingcar;
 
-import java.util.List;
+import racingcar.domain.RacingCars;
+import racingcar.service.RacingGame;
+import racingcar.view.RacingGameInputView;
+import racingcar.view.RacingGameScoreView;
 
 public class RacingGameApp {
+    private static RacingGameInputView racingGameInputView;
+    private static RacingGameScoreView racingGameScoreView;
+
     public static void main(String[] args) {
-        RacingGameInfoReader racingGameInfoReader = new RacingGameInfoReader();
-        List<RacingCar> racingCars = racingGameInfoReader.readRacingCars();
-        int rounds = racingGameInfoReader.readRound();
+        init();
 
-        RacingGame racingGame = new RacingGame();
-        racingGame.play(racingCars, rounds);
+        RacingCars racingCars = racingGameInputView.readRacingCars();
+        int rounds = racingGameInputView.readRound();
 
-        racingGameInfoReader.close();
+        RacingGame racingGame = new RacingGame(racingCars, rounds);
+
+        racingGameScoreView.printStartMessage(racingCars);
+
+        while (!racingGame.isFinished()) {
+            racingGame.playRound();
+            racingGameScoreView.printRacingCarDist(racingCars);
+        }
+
+        racingGameScoreView.printWinners(racingCars.findWinners());
+
+        racingGameInputView.close();
+    }
+
+    private static void init() {
+        racingGameInputView = new RacingGameInputView();
+        racingGameScoreView = new RacingGameScoreView();
     }
 }

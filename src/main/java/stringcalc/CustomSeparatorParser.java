@@ -5,10 +5,12 @@ import java.util.regex.Pattern;
 
 public class CustomSeparatorParser {
 
+    private static final Pattern customSeparatorPattern = Pattern.compile("//(.*)\n(.*)");
+
     public String parse(String input) {
-        Matcher m = Pattern.compile("//(.*)\n(.*)").matcher(input);
-        if (m.find()) {
-            String customSeparator = m.group(1);
+        Matcher matcher = customSeparatorPattern.matcher(input);
+        if (matcher.find()) {
+            String customSeparator = matcher.group(1);
             validateSeparatorLength(customSeparator);
             return customSeparator;
         }

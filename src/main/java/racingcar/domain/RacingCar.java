@@ -1,23 +1,23 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.Objects;
 
 public class RacingCar implements Comparable<RacingCar> {
 
-    private final String name;
+    private final RacingCarName racingCarName;
     private int distance;
 
-    public RacingCar(String name) {
-        this(name, 1);
+    public RacingCar(String racingCarName) {
+        this(racingCarName, 1);
     }
 
-    public RacingCar(String name, int distance) {
-        this.name = name;
+    public RacingCar(String racingCarName, int distance) {
+        this.racingCarName = new RacingCarName(racingCarName);
         this.distance = distance;
     }
 
-    public String getName() {
-        return name;
+    public RacingCarName getRacingCarName() {
+        return racingCarName;
     }
 
     public int getDistance() {
@@ -40,17 +40,18 @@ public class RacingCar implements Comparable<RacingCar> {
             return false;
         }
         RacingCar racingCar = (RacingCar) o;
-        return distance == racingCar.distance && Objects.equals(name, racingCar.name);
+        return distance == racingCar.distance && Objects.equals(racingCarName, racingCar.racingCarName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, distance);
+        return Objects.hash(racingCarName, distance);
     }
 
     @Override
     public String toString() {
-        return name + " : " +
+        return racingCarName.toString() +
+                " : " +
                 "-".repeat(Math.max(0, distance));
     }
 
