@@ -22,7 +22,7 @@ public class RacingCarNameTest {
 
     @ParameterizedTest(name = "name : {0}")
     @DisplayName("이름 글자 수 예외 테스트")
-    @ValueSource(strings = {"jack,,,gene", "jack,oscar.award,tom", "tom,matt,wronglongname"})
+    @ValueSource(strings = {"jack,,,gene", "jack,oscar.award,tom", "tom,matt,sixman"})
     public void validateNameException(final String name) {
         assertThrows(IllegalArgumentException.class, () -> InputView.parseCarNames(name));
     }
