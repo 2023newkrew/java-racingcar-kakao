@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.step1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class Main {
     private static List<Car> makeCarList(List<String> carNameList) {
         List<Car> carList = new ArrayList<>();
         for (String carName : carNameList) {
-            carList.add(new Car(carName, 0));
+            carList.add(new Car(carName));
         }
         return carList;
     }
