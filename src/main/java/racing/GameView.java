@@ -4,7 +4,7 @@ import java.util.List;
 
 
 import java.util.Scanner;
-import racing.domain.ImmutableCar;
+import racing.domain.Car;
 
 import static racing.util.PrintUtils.*;
 
@@ -32,12 +32,12 @@ public class GameView {
         System.out.println("실행 결과");
     }
 
-    public void printStatus(List<ImmutableCar> cars) {
+    public void printStatus(List<Car> cars) {
         cars.forEach(this::printCarStatus);
         System.out.println();
     }
 
-    private void printCarStatus(ImmutableCar car) {
+    private void printCarStatus(Car car) {
         System.out.println(car.getName() + " : " + getHyphen(car.getPosition()));
     }
 

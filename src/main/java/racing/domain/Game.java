@@ -32,7 +32,7 @@ public class Game {
     }
 
 
-    public List<ImmutableCar> getCars() {
+    public List<Car> getCars() {
         return cars.getCars();
     }
 }

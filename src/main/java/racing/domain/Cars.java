@@ -30,7 +30,7 @@ public class Cars {
                 .orElse(0);
     }
 
-    public List<ImmutableCar> getCarsWithSamePosition(int maxPosition) {
+    public List<Car> getCarsWithSamePosition(int maxPosition) {
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(ImmutableCar::new)
@@ -47,7 +47,7 @@ public class Cars {
         }
     }
 
-    public List<ImmutableCar> getCars() {
+    public List<Car> getCars() {
         return cars.stream()
                 .map(ImmutableCar::new)
                 .collect(Collectors.toList());
