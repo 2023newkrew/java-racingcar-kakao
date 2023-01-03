@@ -1,12 +1,34 @@
 package racing.service;
 
-import racing.model.Car;
 import racing.repository.RacingCarRepository;
 
+import java.util.List;
+
 public class RacingService {
-    public void turn() {
-        for (Car car : RacingCarRepository.getCars()) {
-            car.tryMove();
-        }
+    private final RacingSplitter racingSplitter;
+
+    public RacingService(){
+        racingSplitter = new RacingSplitter();
     }
+
+    public void cycleProgress() {
+        RacingCarRepository.getCars()
+                .tryMoveAll();
+    }
+
+    public void insertCars(String carString){
+        RacingCarRepository.saveCars(
+                racingSplitter.split(carString)
+        );
+    }
+    public List<String> getCarStatusStrings(){
+        return RacingCarRepository.getCars()
+                .getAllCarStatusStrings();
+    }
+
+    public List<String> getWinnerCarNames(){
+        return RacingCarRepository.getCars()
+                .getWinnerCarName();
+    }
+
 }

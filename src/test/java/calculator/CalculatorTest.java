@@ -1,8 +1,5 @@
 package calculator;
 
-import static org.assertj.core.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,42 +7,55 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-public class CalculatorTest {
-    private Calculator calculator;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-    @BeforeEach
-    void setUp() {
-        this.calculator = new Calculator();
+public class CalculatorTest {
+    private final Calculator calculator;
+
+    CalculatorTest(){
+        calculator = new Calculator();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "     "})
-    void givenEmptyOrNullString_thenReturnZero(String input){
+    void 빈_문자열이_입력되면_0을_반환(String input){
+        //given
+        //when
         int result = calculator.calculate(input);
 
+        //then
         assertThat(result).isEqualTo(0);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "12"})
-    void givenOneNum_thenReturnItSelf(String input){
+    void 숫자가_하나만_입력되면_그대로_반환(String input){
+        //given
+        //when
         int result = calculator.calculate(input);
 
+        //then
         assertThat(result).isEqualTo(Integer.parseInt(input));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "!ss", "12a"})
-    void givenOneChar_thenReturnException(String input) {
+    void 숫자가_아닌_문자열이_입력되면_예외반환(String input) {
+        //given
+        //when & then
         assertThatThrownBy(() -> calculator.calculate(input))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest
     @MethodSource("generator")
-    void givenExpressionString_thenReturnSum(String input, Integer expected){
+    void 정상문자열_입력되면_숫자합_반환(String input, Integer expected){
+        //given
+        //when
         int result = calculator.calculate(input);
 
+        //then
         assertThat(result).isEqualTo(expected);
     }
 
