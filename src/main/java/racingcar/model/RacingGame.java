@@ -26,18 +26,18 @@ public class RacingGame {
         this.currentRound = 1;
     }
 
-    private static boolean isInvalidRound(int maxRound) {
-        return maxRound > MAX_ROUND_LIMIT;
-    }
-
     private boolean hasDuplicatedName(List<String> names) {
         Set<String> set = new HashSet<>(names);
         return set.size() != names.size();
     }
 
+    private static boolean isInvalidRound(int maxRound) {
+        return maxRound > MAX_ROUND_LIMIT;
+    }
+
     private Cars createCars(List<String> names) {
         if (names == null || names.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("경주에는 최소 하나의 자동차가 참가해야 합니다.");
         }
 
         List<Car> cars = names.stream()
@@ -47,9 +47,16 @@ public class RacingGame {
         return new Cars(cars);
     }
 
-    public RacingResult race() {
-        List<RoundResult> roundResults = new ArrayList<>();
+    public RacingResult start() {
+        if(isRaceFinished()){
+            throw new IllegalStateException("이미 자동차 경주가 종료되었습니다.");
+        }
 
+        return race();
+    }
+
+    private RacingResult race() {
+        List<RoundResult> roundResults = new ArrayList<>();
         while(currentRound <= maxRound){
             racingCars.move(numberGenerator);
             roundResults.add(new RoundResult(currentRound, racingCars.deepCopy()));
@@ -58,5 +65,9 @@ public class RacingGame {
 
         List<Car> winnerCars = racingCars.getWinnerCars();
         return new RacingResult(roundResults, new Cars(winnerCars).deepCopy());
+    }
+
+    private boolean isRaceFinished(){
+        return currentRound > maxRound;
     }
 }

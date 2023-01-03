@@ -20,7 +20,7 @@ public class RacingSimulator {
     public void simulate(NumberGenerator numberGenerator) {
         RacingGame racingGame = createRacingGame(numberGenerator);
 
-        RacingResult racingResult = racingGame.race();
+        RacingResult racingResult = racingGame.start();
         outputView.printRacingResult(racingResult);
     }
 

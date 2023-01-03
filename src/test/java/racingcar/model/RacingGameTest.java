@@ -6,17 +6,23 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.StubNumberGenerator;
 
 class RacingGameTest {
 
     private static final int MOVE = 4;
     private static final int STOP = 3;
+
+    @DisplayName("레이싱에 참가하는 자동차는 중복된 이름을 가질 수 없다.")
+    @Test
+    void inputDistinctNames() {
+        NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
+
+        assertThatThrownBy(() -> new RacingGame(1, numberGenerator, List.of("ethan", "ethan")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("1대 이상의 자동차가 경주에 참가해야한다.")
     @Test
@@ -27,6 +33,22 @@ class RacingGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("시도 횟수를 넘어서 자동차를 이동시킬 수 없다")
+    @Test
+    void overMaxRound() {
+        NumberGenerator numberGenerator = new StubNumberGenerator(MOVE, MOVE, STOP);
+        int maxRound = 2;
+        RacingGame racingGame = new RacingGame(maxRound, numberGenerator, List.of("a"));
+
+        RacingResult racingResult = racingGame.start();
+
+        assertThat(racingResult.getRoundResults())
+                .hasSize(maxRound);
+
+        assertThatThrownBy(racingGame::start)
+                .isInstanceOf(IllegalStateException.class);
+    }
+
     @DisplayName("여러 대의 자동차를 이동 혹은 정지시킨다.")
     @Test
     void moveOrStopCars() {
@@ -34,7 +56,7 @@ class RacingGameTest {
         int maxRound = 1;
         RacingGame racingGame = new RacingGame(maxRound, numberGenerator, List.of("a", "b", "c"));
 
-        RacingResult racingResult = racingGame.race();
+        RacingResult racingResult = racingGame.start();
         RoundResult lastRoundResult = getRoundResult(racingResult, maxRound);
         assertThat(getPositionByName(lastRoundResult, "a")).isOne();
         assertThat(getPositionByName(lastRoundResult, "b")).isOne();
@@ -51,7 +73,7 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        RacingResult racingResult = racingGame.race();
+        RacingResult racingResult = racingGame.start();
 
         List<Car> winners = racingResult.getWinnerCars();
         assertThat(winners)
@@ -70,7 +92,7 @@ class RacingGameTest {
         );
         RacingGame racingGame = new RacingGame(3, numberGenerator, List.of("a", "b", "c"));
 
-        RacingResult racingResult = racingGame.race();
+        RacingResult racingResult = racingGame.start();
 
         List<Car> winners = racingResult.getWinnerCars();
         assertThat(winners)
