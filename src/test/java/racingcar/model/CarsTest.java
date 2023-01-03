@@ -28,10 +28,12 @@ public class CarsTest {
 
     @Test
     void selectWinners() {
-        cars.getCarList().get(0).move(5);
-        cars.getCarList().get(1).move(5);
+        Car car1 = cars.getCarList().get(0);
+        Car car2 = cars.getCarList().get(1);
+        car1.move(5);
+        car2.move(5);
         List<Car> winner = cars.getWinners();
         Assertions.assertThat(winner)
-                .containsOnly(cars.getCarList().get(0), cars.getCarList().get(1));
+                .containsOnly(car1, car2);
     }
 }

@@ -50,10 +50,10 @@ public class Cars {
      * @return max position에 있는 car들이 들어있는 리스트
      */
     public List<Car> getWinners() {
-        List<Car> winners = new ArrayList<>();
+        final List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxPosition();
         selectWinners(winners, maxPosition);
-        return winners;
+        return Collections.unmodifiableList(winners);
     }
 
     private void selectWinners(List<Car> winners, int maxPosition) {
@@ -69,7 +69,7 @@ public class Cars {
                 .getAsInt();
     }
 
-    public final List<Car> getCarList() {
+    public List<Car> getCarList() {
         return Collections.unmodifiableList(cars);
     }
 

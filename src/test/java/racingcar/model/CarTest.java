@@ -32,6 +32,7 @@ public class CarTest {
         assertEquals(car.getPosition(), prevPosition);
     }
 
+
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"", "abcdef"})
