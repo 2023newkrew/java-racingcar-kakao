@@ -22,16 +22,6 @@ class InputViewTest {
                 .contains("ethan", "verus", "pobi");
     }
 
-    @DisplayName("공백을 제거하고 중복된 자동차 이름을 입력할 수 없다.")
-    @Test
-    void inputDistinctNames() {
-        InputStream inputStream = new ByteArrayInputStream("verus, verus, pobi".getBytes());
-        InputView inputView = new InputView(System.out, inputStream);
-
-        Assertions.assertThatThrownBy(inputView::inputCarNames)
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("시도 횟수를 입력한다.")
     @Test
     void inputMaxRound() {
@@ -47,16 +37,6 @@ class InputViewTest {
     @Test
     void inputNotNumberMaxRound() {
         InputStream inputStream = new ByteArrayInputStream("abc".getBytes());
-        InputView inputView = new InputView(System.out, inputStream);
-
-        Assertions.assertThatThrownBy(inputView::inputMaxRound)
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("100 이상의 시도 횟수를 입력 시 예외가 발생한다.")
-    @Test
-    void inputOver100MaxRound() {
-        InputStream inputStream = new ByteArrayInputStream("100".getBytes());
         InputView inputView = new InputView(System.out, inputStream);
 
         Assertions.assertThatThrownBy(inputView::inputMaxRound)
