@@ -1,13 +1,13 @@
-import racingcar.Game;
-import racingcar.IOHelper;
+import racingcar.Controller;
+import racingcar.domain.Game;
+import racingcar.view.InputView;
 
 public class Main {
     public static void main(String[] args) {
-        IOHelper ioHelper = new IOHelper();
-
+        InputView inputView = new InputView();
         Game game = new Game();
-        game.run(ioHelper);
+        Controller controller = new Controller(inputView, game);
 
-        ioHelper.close();
+        controller.playGame();
     }
 }

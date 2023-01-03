@@ -1,14 +1,16 @@
-package racingcar;
+package racingcar.domain;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
-    private final int INITIAL_DISTANCE = 1;
+    private static final int INITIAL_DISTANCE = 1;
+    private static final int MOVE_STANDARD = 4;
 
     @Test
     void 자동자_생성시_주어진_이름과_초기_거리를_가진다() {
@@ -18,22 +20,26 @@ public class CarTest {
         assertThat(car.getDistance()).isEqualTo(INITIAL_DISTANCE);
     }
 
-    @Test
-    void 자동차는_0과_9_사이의_정수를_고를_수_있다() {
+    @ValueSource(ints = {0,1,2,3,4})
+    @ParameterizedTest
+    void 자동차는_값이_기준_이상이면_한_칸_전진한다(int number) {
         Car car = new Car("new_car");
+        int beforeDistance = car.getDistance();
 
-        assertThat(car.pickNumber()).isBetween(0, 9);
+        car.move(MOVE_STANDARD+number);
+
+        assertThat(car.getDistance()).isEqualTo(beforeDistance+1);
     }
 
-    @RepeatedTest(100)
-    void 자동차는_움직일_때_전진하거나_정지힐_수_있다() {
+    @ValueSource(ints = {0,1,2,3,4})
+    @ParameterizedTest
+    void 자동차는_값이_기준_미만이면_전진하지_않는다(int number) {
         Car car = new Car("new_car");
-
         int beforeDistance = car.getDistance();
-        car.move();
-        int afterDistance = car.getDistance();
 
-        assertThat(afterDistance).isBetween(beforeDistance, beforeDistance + 1);
+        car.move(MOVE_STANDARD-1-number);
+
+        assertThat(car.getDistance()).isEqualTo(beforeDistance);
     }
 
     @Test
