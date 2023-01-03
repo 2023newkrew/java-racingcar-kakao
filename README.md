@@ -64,6 +64,12 @@ SumHelper
 - 입력
 - 출력
 
+
+**Validator**
+- 차 이름 입력 유효성 검증
+- 시도 횟수 입력 유효성 검증
+- 구현체: **BasicValidator**
+
 **Game**
 - 차 목록 / 남은 라운드 횟수
 - 게임 시작(차 정보 초기화)
@@ -77,3 +83,6 @@ SumHelper
 - 이동시 랜덤 생성 및 판단
 - Dto
   - **CarInfo**
+
+**Movable**
+- Car의 이동 조건 설정을 위한 함수형 인터페이스
