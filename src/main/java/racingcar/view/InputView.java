@@ -3,6 +3,7 @@ package racingcar.view;
 import racingcar.domain.car.RacingCarName;
 import racingcar.domain.game.RacingGameTurnInfo;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,11 +21,24 @@ public class InputView {
 
     private static List<String> tryInputCarNames() {
         try {
-            return RacingCarName.parseCarNames(scanner.nextLine());
+            return parseCarNames(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    public static List<String> parseCarNames(String carNamesInput) {
+        List<String> carNames = Arrays.asList(carNamesInput.split(","));
+        for (String carName : carNames) {
+            validateCarName(carName);
+        }
+        return carNames;
+    }
+
+    private static void validateCarName(String carName) {
+        if (carName.isEmpty() || carName.length() > 5)
+            throw new IllegalArgumentException("차 이름은 1~5 글자로 입력해주세요.");
     }
 
     public static Integer inputFinalTurn() {
