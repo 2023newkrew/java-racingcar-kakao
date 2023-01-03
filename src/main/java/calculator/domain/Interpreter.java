@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Interpreter {
 
-
     public Command decode(String input) {
         if (isEmptyInput(input)) {
             return new Command("0");

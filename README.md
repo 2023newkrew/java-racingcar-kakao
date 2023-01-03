@@ -36,3 +36,14 @@
 * 자동차 이름으로 5글자 이상이 입력될 때 Exception이 발생한다..
 * n회 시행 후 가장 많이 전진한 자동차가 우승한다.
   * 동점자가 있을 시, 공동 우승자가 된다.
+
+  
+
+---
+
+## Step 2 리팩토링 기능 정의
+* Gmae 클래스
+  * initialize 를 삭제하고 List<String> (자동차의 이름 List)를 입력받는 생성자를 만든다.
+  * getStatus 메서드에서 Map 을 반환하는 대신 cars의 프록시 객체 (ImmutableCar)로 반환한다.
+* Cars와 Car는 데이터 클래스로 정의 -> 비지니스 로직을 전부 Game 도메인 클래스로 추출
+* GameController 클래스를 만들어서 View와 Domain을 handling 하도록 변경

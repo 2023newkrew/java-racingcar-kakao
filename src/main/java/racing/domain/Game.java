@@ -1,34 +1,38 @@
 package racing.domain;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Game {
     private final Cars cars;
 
-    public Game() {
-        this.cars = new Cars();
-    }
 
     public Game(Cars cars) {
         this.cars = cars;
     }
 
-    public void initialize(String input) {
-        for (String carName : input.split(",")){
-            cars.add(new Car(carName));
-        }
-    }
-
-    public List<String> decideWinners() {
-        return cars.getWinnerNamesWithSamePosition(cars.getMaxPosition());
+    public Game(String[] carNames){
+        this.cars = new Cars(
+                Arrays.stream(carNames)
+                        .map(RacingCar::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     public void play() {
         cars.play();
     }
 
-    public Map<String, Integer> getStatus() {
-        return cars.getStatus();
+    public List<String> getWinnerNames() {
+        return cars.getCarsWithSamePosition(cars.getMaxPosition())
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Car> getCars() {
+        return cars.getCars();
     }
 }

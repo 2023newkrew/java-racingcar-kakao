@@ -4,7 +4,7 @@ import static calculator.constant.MessageConstant.NEGATIVE_NUMBER_EXCEPTION;
 
 public class Number {
 
-    int number;
+    private final int number;
 
     public Number(int number) {
         if (number < 0) {

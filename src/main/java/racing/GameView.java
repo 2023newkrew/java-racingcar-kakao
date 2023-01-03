@@ -1,63 +1,47 @@
 package racing;
 
-import racing.domain.Game;
-import racing.util.PrintUtils;
-
 import java.util.List;
-import java.util.Map;
+
+
 import java.util.Scanner;
-import java.util.stream.IntStream;
+import racing.domain.Car;
 
 import static racing.util.PrintUtils.*;
 
 
 public class GameView {
 
-    private final Scanner scanner;
-    private final Game game;
-    private int tryNum;
-
     private static final String REQUEST_CAR_INPUT = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String REQUEST_TRY_NUM_INPUT = "시도할 회수는 몇회인가요?";
+    private final Scanner scanner;
 
-    public GameView(Game game) {
-        this.game = game;
+    public GameView() {
         this.scanner = new Scanner(System.in);
     }
 
-    public void init() {
-        receiveCarNamesFromUser();
-        receiveTryNumFromUser();
-    }
-
-    private void receiveCarNamesFromUser() {
+    public String[] receiveCarNamesFromUser() {
         System.out.println(REQUEST_CAR_INPUT);
-        game.initialize(scanner.nextLine());
+        return scanner.nextLine().split(",");
     }
 
-
-    private void receiveTryNumFromUser() {
+    public int receiveTryCountFromUser() {
         System.out.println(REQUEST_TRY_NUM_INPUT);
-        tryNum = scanner.nextInt();
+        return scanner.nextInt();
     }
-
-    public void gameStart() {
+    public void printStart() {
         System.out.println("실행 결과");
-        IntStream.range(0, tryNum)
-                .forEach(i -> gamePlay());
     }
 
-    public void gamePlay() {
-        game.play();
-        Map<String, Integer> status = game.getStatus();
-        for (Map.Entry<String, Integer> entry : status.entrySet()) {
-            System.out.println(entry.getKey() + " : " + getHyphen(entry.getValue()));
-        }
+    public void printStatus(List<Car> cars) {
+        cars.forEach(this::printCarStatus);
         System.out.println();
     }
 
-    public void gameFinish() {
-        List<String> winners = game.decideWinners();
-        System.out.println(String.join(", ", winners) + " 가 최종 우승했습니다.");
+    private void printCarStatus(Car car) {
+        System.out.println(car.getName() + " : " + getHyphen(car.getPosition()));
+    }
+
+    public void printFinish(List<String> winnerNames) {
+        System.out.println(String.join(", ", winnerNames) + " 가 최종 우승했습니다.");
     }
 }
