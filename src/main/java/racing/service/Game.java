@@ -6,21 +6,26 @@ import racing.domain.Cars;
 import racing.utils.RandomNumberGenerator;
 
 public class Game {
+    private static final String INPUT_GAME_TURN_RANGE_EXCEPTION_MESSAGE = "[ERROR] 반복 횟수는 양수여야 합니다.";
     private final Cars cars;
-    private final int length;
     private final RandomNumberGenerator generator;
     private int gameTurn;
 
     public Game(String carNames, int gameTurn) {
         this.cars = new Cars(carNames);
+        validatePositive(gameTurn);
         this.gameTurn = gameTurn;
-        this.length = carNames.split(",").length;
         this.generator = new RandomNumberGenerator();
+    }
+    private void validatePositive(int value) {
+        if (value <= 0) {
+            throw new IllegalArgumentException(INPUT_GAME_TURN_RANGE_EXCEPTION_MESSAGE);
+        }
     }
 
     public void play() {
         List<Integer> randomNumbers = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < cars.size(); i++) {
             randomNumbers.add(generator.generate());
         }
         cars.play(randomNumbers);
