@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
+import racingcar.dto.CarInfo;
 import racingcar.utils.RacingCarConverter;
 import racingcar.utils.RandomNumberGenerator;
 
@@ -14,26 +14,26 @@ public class RacingCarGame {
 
     private final RandomNumberGenerator randomNumberGenerator;
 
-    public RacingCarGame(List<CarDto> carDtos, int gameRound) {
+    public RacingCarGame(List<CarInfo> carDtos, int gameRound) {
         this.cars = RacingCarConverter.toCars(carDtos);
         this.round = gameRound;
-        this.randomNumberGenerator = new RandomNumberGenerator();
+        this.randomNumberGenerator = new RandomNumberGenerator(10);
     }
 
     public GameResult doNextRound() {
         for (Car car : cars) {
-            int randomNumber = randomNumberGenerator.generateBetweenZeroAndNine();
+            int randomNumber = randomNumberGenerator.generate();
             car.move(() ->  randomNumber >= Threshold.NORMAL_THRESHOLD.getNumber());
         }
         round--;
 
-        List<CarDto> intermediateResult = RacingCarConverter.toCarDtos(cars);
+        List<CarInfo> intermediateResult = RacingCarConverter.toCarDtos(cars);
         return new GameResult(intermediateResult);
     }
 
     public GameResult selectWinners() {
         Car maxPositionCar = calculateMaxPositionCar();
-        List<CarDto> finalResult = cars.stream()
+        List<CarInfo> finalResult = cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .map(Car::toDto)
                 .collect(Collectors.toList());

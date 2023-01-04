@@ -8,7 +8,7 @@ import racingcar.domain.Car;
 import racingcar.domain.GameResult;
 import racingcar.domain.RacingCarGame;
 import racingcar.domain.Threshold;
-import racingcar.dto.CarDto;
+import racingcar.dto.CarInfo;
 import racingcar.utils.RandomNumberGenerator;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public class RacingCarTest {
     @Test
     @DisplayName("0에서 9 사이에서 random값을 구한다.")
     void generateRandomNumber() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(10);
 
-        assertThat(randomNumberGenerator.generateBetweenZeroAndNine())
+        assertThat(randomNumberGenerator.generate())
                 .isBetween(0, 9);
     }
 
@@ -53,7 +53,7 @@ public class RacingCarTest {
     @Test
     @DisplayName("시도할 횟수만큼 게임을 진행한다.")
     void playGame() {
-        List<CarDto> inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        List<CarInfo> inputCars = List.of(new CarInfo("avante"), new CarInfo("sonata"));
         RacingCarGame racingCarGame = new RacingCarGame(inputCars, tryCount);
 
         while (!racingCarGame.isFinish()) {
@@ -67,7 +67,7 @@ public class RacingCarTest {
     @DisplayName("시도할 횟수만큼 게임 진행 시 매 시도마다 결과가 반환된다.")
     void returnIntermediateGameResult() {
         int count = 5;
-        List<CarDto> inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        List<CarInfo> inputCars = List.of(new CarInfo("avante"), new CarInfo("sonata"));
         RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
 
         while (!racingCarGame.isFinish()) {
@@ -80,7 +80,7 @@ public class RacingCarTest {
     @Test
     @DisplayName("자동차마다 이동한 거리를 비교해서 가장 많이 이동한 자동차들을 선정한다.")
     void selectWinner() {
-        List<CarDto> inputCars = List.of(new CarDto("avante"), new CarDto("sonata"));
+        List<CarInfo> inputCars = List.of(new CarInfo("avante"), new CarInfo("sonata"));
         RacingCarGame racingCarGame = new RacingCarGame(inputCars, tryCount);
 
         while (!racingCarGame.isFinish()) {

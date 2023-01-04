@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
+import racingcar.dto.CarInfo;
 
-public class Car{
+public class Car {
     private final String name;
     private int position = 1;
 
@@ -24,8 +24,8 @@ public class Car{
         return position - other.position;
     }
 
-    public CarDto toDto() {
-        return new CarDto(name, position);
+    public CarInfo toDto() {
+        return new CarInfo(name, position);
     }
 
 }
