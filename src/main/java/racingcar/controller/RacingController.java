@@ -1,12 +1,3 @@
-/*
-사용자의 입력을 가장 처음 받는 것이 여기임
-뷰는.. 모델이 변화되었을 때 보여주는 것만 기능하고..
-
-모델: 레이싱 객체를 가진다.
-뷰: 레이싱 상태가 변경될 때 마다 화면에 출력하는 역할을 한다.
-컨트롤러: 입력에 대한 응답으로 모델 이나 뷰를 업데이트 한다.
-
- */
 package racingcar.controller;
 
 import racingcar.model.Racing;
@@ -24,13 +15,15 @@ public class RacingController {
     public RacingController() {
         view = new View();
         racing = settings();
-
+    }
+    public void start() {
         while (!racing.isEnd()) {
             racing.round();
             printRoundResult();
         }
         printWinnerResult();
     }
+
     private Racing settings() { //유저 입력을 받으며 게임 시작
         InputDto inputDto = creatInput();
         return new Racing(inputDto.getCarNames(), inputDto.getRoundNum());
@@ -48,12 +41,10 @@ public class RacingController {
         Scanner sc = new Scanner(System.in);
         view.printInputNameMessage();
         String nameInput = sc.nextLine();
-
         while(!Validate.validateCarNames(nameInput)) {
             view.printLengthErrorMessage();
             nameInput = sc.nextLine();
         }
-
         return Utils.stringToStringList(nameInput);
     }
 
@@ -61,8 +52,7 @@ public class RacingController {
         Scanner sc = new Scanner(System.in);
         view.printInputRoundNumberMessage();
         String roundNumInput = sc.nextLine();
-
-        while(!Validate.validateCarNames(roundNumInput)) {
+        while(!Validate.validateRoundNumber(roundNumInput)) {
             view.printIntegerErrorMessage();
             roundNumInput = sc.nextLine();
         }
