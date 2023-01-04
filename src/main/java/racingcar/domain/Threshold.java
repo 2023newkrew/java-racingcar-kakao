@@ -9,7 +9,7 @@ public enum Threshold {
         this.value = number;
     }
 
-    public int getNumber() {
+    public int value() {
         return value;
     }
 }
