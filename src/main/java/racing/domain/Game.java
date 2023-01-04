@@ -2,6 +2,7 @@ package racing.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import racing.utils.RandomNumberGenerator;
 
 public class Game {
@@ -16,6 +17,7 @@ public class Game {
         this.generator = new RandomNumberGenerator();
         this.gameTurn = gameTurn;
     }
+
     private void validateGameTurnPositive(int value) {
         if (value <= 0) {
             throw new IllegalArgumentException(INPUT_GAME_TURN_RANGE_EXCEPTION_MESSAGE);
@@ -23,12 +25,17 @@ public class Game {
     }
 
     public void play() {
+        validateGameTurnPositive(gameTurn);
         List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
             randomNumbers.add(generator.generate());
         }
         cars.play(randomNumbers);
         gameTurn--;
+    }
+
+    public int gameTurn() {
+        return gameTurn;
     }
 
     public boolean isEnd() {
