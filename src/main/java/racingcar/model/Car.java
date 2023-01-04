@@ -4,7 +4,6 @@ import java.util.Objects;
 
 /**
  * Racing Game에 참가하는 Car 각각의 정보를 담는 클래스입니다.
- * Car Name의 Validation check를 여기서도 진행합니다(Double Check).
  */
 public class Car {
 
@@ -17,7 +16,7 @@ public class Car {
     public Car(String name) {
         position = 1;
         if (isInvalidName(name)) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("Invalid Car Name!");
         }
         this.name = name;
     }
