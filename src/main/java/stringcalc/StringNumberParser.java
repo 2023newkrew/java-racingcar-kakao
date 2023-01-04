@@ -2,22 +2,20 @@ package stringcalc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StringNumberParser {
-    public static List<Long> parseToNumberList(String input, String separator) {
+
+    public static final String DEFAULT_SEPARATOR = "[,:]";
+
+    public static List<Long> parseToNumberList(String input, Optional<String> separator) {
         if (input.isBlank()) {
             return new ArrayList<>();
         }
-        if (separator == null) {
-            String[] stringNumbers = input.split("[,:]");
-            return convertToNumberList(stringNumbers);
+        if (input.startsWith("//")) {
+            input = input.substring("//.\n".length());
         }
-        return separateWithCustomSeparator(input, separator);
-    }
-
-    private static List<Long> separateWithCustomSeparator(String input, String separator) {
-        String sequentialNumberString = input.substring("//.\n".length());
-        String[] stringNumbers = sequentialNumberString.split(separator);
+        String[] stringNumbers = input.split(separator.orElse(DEFAULT_SEPARATOR));
         return convertToNumberList(stringNumbers);
     }
 

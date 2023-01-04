@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -14,7 +15,7 @@ public class StringNumberParserTest {
     @Test
     public void parseStringNumber_defaultSeparator() {
         // given
-        String separator = null;
+        Optional<String> separator = Optional.empty();
         String input = "1:2:3,4";
 
         // when
@@ -29,7 +30,7 @@ public class StringNumberParserTest {
     @Test
     public void parseStringNumber_singleNumber() {
         // given
-        String separator = null;
+        Optional<String> separator = Optional.empty();
         String input = "1";
 
         // when
@@ -44,7 +45,7 @@ public class StringNumberParserTest {
     @Test
     public void parseStringNumber_empty() {
         // given
-        String separator = null;
+        Optional<String> separator = Optional.empty();
         String input = "";
 
         // when
@@ -58,7 +59,7 @@ public class StringNumberParserTest {
     @Test
     public void parseStringNumber_customSeparator() {
         // given
-        String separator = ";";
+        Optional<String> separator = Optional.of(";");
         String input = "//;\n1;2;3;4";
 
         // when
@@ -74,7 +75,7 @@ public class StringNumberParserTest {
     @ValueSource(strings = {"1:-2:3,4", "1, ,3:4", "1,a:3,4", "1,2,3,4\n", "1,,,2"})
     public void parseStringNumber_throw(String input) {
         // given
-        String separator = null;
+        Optional<String> separator = Optional.empty();
 
         // when
         StringNumberParser stringNumberParser = new StringNumberParser();
@@ -87,7 +88,7 @@ public class StringNumberParserTest {
     @ValueSource(strings = {"//;\n1;-2;3;4", "//;\n1; ;3;4", "//;\n1;a;3;4", "//;\n\n1;2;3;4"})
     public void parseStringNumber_throw_customSeparator(String input) {
         // given
-        String separator = ";";
+        Optional<String> separator = Optional.of(";");
 
         // when
         StringNumberParser stringNumberParser = new StringNumberParser();

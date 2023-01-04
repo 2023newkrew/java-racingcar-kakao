@@ -1,6 +1,7 @@
 package stringcalc;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StringCalculator {
 
@@ -9,7 +10,7 @@ public class StringCalculator {
     }
 
     public Long calculate(String input) {
-        String customSeparator = CustomSeparatorParser.parseToCustomSeparator(input);
+        Optional<String> customSeparator = CustomSeparatorParser.parseToCustomSeparator(input);
         List<Long> numbers = StringNumberParser.parseToNumberList(input, customSeparator);
         return sum(numbers);
     }
