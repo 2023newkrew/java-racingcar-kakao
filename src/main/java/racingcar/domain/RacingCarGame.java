@@ -23,7 +23,7 @@ public class RacingCarGame {
     public GameResult doNextRound() {
         for (Car car : cars) {
             int randomNumber = randomNumberGenerator.generate();
-            car.move(() ->  randomNumber >= Threshold.NORMAL_THRESHOLD.getNumber());
+            car.move(() ->  randomNumber >= Threshold.NORMAL_THRESHOLD.value());
         }
         round--;
 

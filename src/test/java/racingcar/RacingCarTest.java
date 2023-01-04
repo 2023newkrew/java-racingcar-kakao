@@ -34,7 +34,7 @@ public class RacingCarTest {
     void moveIfRandomNumberIsGreaterThanEqualFour(int number) {
         Car avante = new Car("avante");
 
-        avante.move(() -> number >= Threshold.NORMAL_THRESHOLD.getNumber());
+        avante.move(() -> number >= Threshold.NORMAL_THRESHOLD.value());
 
         assertThat(avante.toDto().getPosition()).isEqualTo(2);
     }
@@ -45,7 +45,7 @@ public class RacingCarTest {
     void stopIfRandomNumberIsLessThanEqualThree(int number) {
         Car avante = new Car("avante");
 
-        avante.move(() -> number >= Threshold.NORMAL_THRESHOLD.getNumber());
+        avante.move(() -> number >= Threshold.NORMAL_THRESHOLD.value());
 
         assertThat(avante.toDto().getPosition()).isOne();
     }
