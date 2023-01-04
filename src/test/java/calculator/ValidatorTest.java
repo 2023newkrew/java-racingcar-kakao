@@ -10,14 +10,14 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ValidatorTest {
+class ValidatorTest {
 
     @ParameterizedTest
     @MethodSource("generator")
     void givenNegativeNumber_thenThrowException(List<Integer> numbers){
         Validator validator = new Validator();
 
-        assertThatThrownBy(() -> validator.hasNegative(numbers))
+        assertThatThrownBy(() -> validator.nonNegativeOrThrow(numbers))
                 .isInstanceOf(RuntimeException.class);
     }
 

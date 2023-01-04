@@ -1,18 +1,17 @@
 package racing.view;
 
-import racing.model.Car;
-import racing.repository.RacingCarRepository;
-import racing.service.RacingValidator;
+import racing.exception.ErrorCode;
+import racing.exception.RacingException;
+import racing.domain.Car;
+import racing.domain.Cars;
 
 import java.util.Scanner;
 
-public class RacingTemplate {
+public class RacingView {
     private final Scanner scanner;
-    private final RacingValidator racingValidator;
 
-    public RacingTemplate(){
+    public RacingView(){
         scanner = new Scanner(System.in);
-        racingValidator = new RacingValidator();
     }
 
     public String inputCarName(){
@@ -25,7 +24,9 @@ public class RacingTemplate {
         System.out.println("시도할 횟수는 몇회인가요?");
         attempt = scanner.nextInt();
 
-        racingValidator.attemptValidate(attempt);
+        if(attempt < 0) {
+            throw new RacingException(ErrorCode.NEGATIVE_ATTEMPT);
+        }
         return attempt;
     }
 
@@ -33,15 +34,14 @@ public class RacingTemplate {
         System.out.println("\n실행 결과");
     }
 
-    public void printCurrentStatus(){
-        for(Car car : RacingCarRepository.getCars()){
+    public void printRacingStatus(Cars cars){
+        for(Car car : cars){
             System.out.println(car);
         }
         System.out.println();
     }
 
-    public void printWinners() {
-        String winners = String.join(", ", RacingCarRepository.getWinners());
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public void printWinners(String winnerCarNames) {
+        System.out.println(winnerCarNames + "가 최종 우승했습니다.");
     }
 }

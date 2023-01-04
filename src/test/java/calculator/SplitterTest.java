@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,10 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class SplitterTest {
+class SplitterTest {
 
     @ParameterizedTest
     @MethodSource("generator1")
+    @DisplayName("splitter 테스트 1")
     void givenCommaString_thenReturnArrayList(String input, List<Integer> expected){
         Splitter splitter = new Splitter();
         List<Integer> result = splitter.split(input);
@@ -31,6 +33,7 @@ public class SplitterTest {
 
     @ParameterizedTest
     @MethodSource("generator2")
+    @DisplayName("splitter 테스트 2")
     void givenCommaAndSemiColonString_thenReturnArrayList(String input, List<Integer> expected){
         Splitter splitter = new Splitter();
         List<Integer> result = splitter.split(input);
@@ -46,6 +49,7 @@ public class SplitterTest {
 
     @ParameterizedTest
     @MethodSource("generator3")
+    @DisplayName("delimiter 테스트")
     void givenCustomDelimiter_thenReturnList(String input, List<Integer> expected){
         Splitter splitter = new Splitter();
         List<Integer> result = splitter.split(input);

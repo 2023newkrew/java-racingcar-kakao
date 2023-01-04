@@ -1,34 +1,35 @@
 package racing.controller;
 
+import racing.domain.Cars;
 import racing.service.RacingService;
-import racing.service.RacingSplitter;
-import racing.view.RacingTemplate;
-import racing.repository.RacingCarRepository;
+import racing.view.RacingView;
 
 public class RacingController {
+    private final RacingView racingView;
     private final RacingService racingService;
-    private final RacingSplitter racingSplitter;
-    private final RacingTemplate racingTemplate;
+    private Cars cars;
+    private int attempt;
 
     public RacingController() {
+        racingView = new RacingView();
         racingService = new RacingService();
-        racingSplitter = new RacingSplitter();
-        racingTemplate = new RacingTemplate();
     }
 
-    public void raceStart(){
-        String carString = racingTemplate.inputCarName();
-        RacingCarRepository.init(racingSplitter.split(carString));
-        Integer attempt = racingTemplate.inputAttempt();
+    public void initRace() {
+        String carNamesInput = racingView.inputCarName();
+        cars = racingService.createCarsByNames(carNamesInput);
+        attempt = racingView.inputAttempt();
+    }
 
-        racingTemplate.printResultString();
-        racingTemplate.printCurrentStatus();
+    public void startRace() {
+        racingView.printResultString();
+        racingView.printRacingStatus(cars);
 
         for (int i = 0; i < attempt; i++) {
-            racingService.turn();
-            racingTemplate.printCurrentStatus();
+            racingService.turn(cars);
+            racingView.printRacingStatus(cars);
         }
 
-        racingTemplate.printWinners();
+        racingView.printWinners(racingService.getWinnerNames(cars));
     }
 }

@@ -9,10 +9,10 @@ public class Calculator {
     public Calculator(){
         this.splitter = new Splitter();
         this.validator = new Validator();
-
     }
+
     public Integer calculate(String expression) {
-        if (expression.isBlank()){
+        if (expression == null || expression.isBlank()){
             return 0;
         }
         if (validator.isOneNumber(expression)){
@@ -25,5 +25,4 @@ public class Calculator {
     private Integer calcSum(List<Integer> numbers){
         return numbers.stream().reduce(0, Integer::sum);
     }
-
 }
