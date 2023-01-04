@@ -1,4 +1,6 @@
-package calculator.domain;
+package calculator.domain.calculator;
+
+import calculator.domain.calculator.prompt.Prompt;
 
 import java.util.Arrays;
 
@@ -15,21 +17,16 @@ public class Calculator {
     }
 
     private int calculateWithDelimiter(Prompt prompt) {
-        String[] stringNumbers = prompt.getParsedStringNumbers();
-        return Arrays.stream(stringNumbers)
+        return Arrays.stream(prompt.getParsedStringNumbers())
                 .mapToInt(this::parseIntOnlyPositiveStringNumber)
                 .sum();
     }
 
-    public int parseIntOnlyPositiveStringNumber(String stringNumber) {
-        try {
-            int number = Integer.parseInt(stringNumber);
-            if (number < 0) {
-                throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
-            }
-            return number;
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(INVALID_INPUT_EXCEPTION);
+    private int parseIntOnlyPositiveStringNumber(String stringNumber) {
+        int number = Integer.parseInt(stringNumber);
+        if (number < 0) {
+            throw new RuntimeException(NEGATIVE_NUMBER_EXCEPTION);
         }
+        return number;
     }
 }

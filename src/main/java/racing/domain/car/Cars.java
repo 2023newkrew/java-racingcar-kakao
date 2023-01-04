@@ -1,15 +1,17 @@
-package racing.domain;
+package racing.domain.car;
+
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.*;
 import static racing.util.RandomNumberGenerator.generateRandomNumber;
 
 public class Cars {
-    private final List<Car> cars;
-
     private static final int THRESHOLD = 4;
     private static final int RANDOM_BOUND = 10;
+
+    private final List<Car> cars;
 
     public Cars() {
         this.cars = new ArrayList<>();
@@ -24,14 +26,13 @@ public class Cars {
         cars.add(car);
     }
 
-    public int getMaxPosition() {
-        return Collections.max(cars, Comparator.comparing(Car::getPosition))
-                .getPosition();
+    public Car getCarWithMaxPosition() {
+        return Collections.max(cars);
     }
 
-    public List<String> getNamesWithSamePosition(int position) {
+    public List<String> getNamesWithSamePosition(Car car) {
         return cars.stream()
-                .filter(car -> car.getPosition() == position)
+                .filter(car::isEqualPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
@@ -41,13 +42,15 @@ public class Cars {
     }
 
     private void movePositionIfMovable(Car car) {
-        if (isMovable()) {
-            car.move();
-        }
+        car.movePositionIfMovable();
+    }
+
+    public boolean isMovable(int input) {
+        return input >= THRESHOLD;
     }
 
     public boolean isMovable() {
-        return generateRandomNumber(RANDOM_BOUND) >= THRESHOLD;
+        return isMovable(generateRandomNumber(RANDOM_BOUND));
     }
 
     public Map<String, Integer> getStatus() {

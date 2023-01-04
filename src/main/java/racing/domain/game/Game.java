@@ -1,7 +1,9 @@
-package racing.domain;
+package racing.domain.game;
+
+import racing.domain.car.Car;
+import racing.domain.car.Cars;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -10,7 +12,7 @@ public class Game {
     private final Cars cars;
     public Game(List<String> carNames) {
         this.cars = new Cars(carNames.stream()
-                    .map(Car::new)
+                    .map((carName) -> new Car.Builder(carName).build())
                     .collect(Collectors.toList()));
     }
 
@@ -19,7 +21,7 @@ public class Game {
     }
 
     public List<String> getWinnerNames() {
-        return cars.getNamesWithSamePosition(cars.getMaxPosition());
+        return cars.getNamesWithSamePosition(cars.getCarWithMaxPosition());
     }
 
     public Map<String, Integer> playTurn() {

@@ -1,7 +1,7 @@
 package racing.controller;
 
 import racing.view.GameView;
-import racing.domain.Game;
+import racing.domain.game.Game;
 
 import java.util.Arrays;
 import java.util.List;
