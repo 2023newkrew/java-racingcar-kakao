@@ -11,12 +11,12 @@ public class Game {
     private int gameTurn;
 
     public Game(String carNames, int gameTurn) {
+        validateGameTurnPositive(gameTurn);
         this.cars = new Cars(carNames);
-        validatePositive(gameTurn);
-        this.gameTurn = gameTurn;
         this.generator = new RandomNumberGenerator();
+        this.gameTurn = gameTurn;
     }
-    private void validatePositive(int value) {
+    private void validateGameTurnPositive(int value) {
         if (value <= 0) {
             throw new IllegalArgumentException(INPUT_GAME_TURN_RANGE_EXCEPTION_MESSAGE);
         }
