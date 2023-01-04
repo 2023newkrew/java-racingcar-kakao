@@ -10,9 +10,12 @@ import java.util.stream.Collectors;
 
 public class RacingGameInfoReader {
 
-    private static final RacingGameInfoReader instance = new RacingGameInfoReader();
+    private static final RacingGameInfoReader instance = new RacingGameInfoReader(new Scanner(System.in));
 
-    public RacingGameInfoReader() {
+    private final Scanner scanner;
+
+    private RacingGameInfoReader(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public static RacingGameInfoReader getInstance(){
@@ -21,7 +24,7 @@ public class RacingGameInfoReader {
 
     public List<RacingCar> readRacingCars() {
         String[] racingCarNames = readNamesAndSplit();
-        validateRacingCarNames(racingCarNames);
+        CarNameValidator.validateRacingCarNames(racingCarNames);
         return Arrays.stream(racingCarNames).map(RacingCar::new).collect(Collectors.toList());
     }
 
@@ -32,7 +35,6 @@ public class RacingGameInfoReader {
     }
 
     public int readRound() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println(Message.ROUND_INPUT_MESSAGE.getMessage());
         int round = scanner.nextInt();
         return round;
