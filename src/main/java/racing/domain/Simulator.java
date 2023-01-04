@@ -1,4 +1,4 @@
-package racing;
+package racing.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,10 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Simulator {
-    List<Car> cars = new ArrayList<>();
+    private static final int MOVE_THRESHOLD = 3;
+    private static final int RANDOM_MAX_RANGE = 10;
+    private final List<Car> cars = new ArrayList<>();
+    private final List<String> progress = new ArrayList<>();
 
     public void create(String names) {
         for (String name : names.split(",")) {
@@ -15,16 +18,28 @@ public class Simulator {
         }
     }
 
-    public void run(Random random) {
+    private void move(Car car, int random) {
+        if (random > MOVE_THRESHOLD) {
+            car.move();
+        }
+    }
+
+    private void run(Random random) {
         for (Car car : cars) {
-            car.move(random.nextInt(9));
+            move(car, random.nextInt(RANDOM_MAX_RANGE));
         }
     }
 
     public void simulate(Random random, int times) {
+        progress.add(this.toString());
         for (int i = 0; i < times; i++) {
             run(random);
+            progress.add(this + "\n");
         }
+    }
+
+    public String getProgress() {
+        return String.join("\n", progress);
     }
 
     public String winners() {

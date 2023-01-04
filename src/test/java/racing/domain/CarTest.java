@@ -1,10 +1,11 @@
-package racing;
+package racing.domain;
 
-import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -73,20 +74,23 @@ public class CarTest {
         );
     }
 
+
     @ParameterizedTest
-    @MethodSource("getRandomMoveData")
-    void randomMove(String name, int random, String expected) {
+    @MethodSource("getProgressChar")
+    void progressChar(String name, int move, String progressChar, String expected) {
         Car car = new Car(name);
-        car.move(random);
+        car.setProgressChar(progressChar);
+        for (int i = 0; i < move; i++) {
+            car.move();
+        }
         assertThat(car.toString()).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> getRandomMoveData() {
+    private static Stream<Arguments> getProgressChar() {
         return Stream.of(
-                Arguments.of("ABCD", 1, "ABCD : -"),
-                Arguments.of("ABCD", 3, "ABCD : -"),
-                Arguments.of("ABCD", 4, "ABCD : --"),
-                Arguments.of("ABCD", 5, "ABCD : --")
+                Arguments.of("ABCD", 2, "*", "ABCD : ***"),
+                Arguments.of("ABCD", 3, "!", "ABCD : !!!!"),
+                Arguments.of("ABCD", 4, "", "ABCD : ")
         );
     }
 }
