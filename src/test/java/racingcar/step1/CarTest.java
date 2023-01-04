@@ -1,7 +1,8 @@
-package racingcar;
+package racingcar.step1;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.step1.Car;
 
 import static org.assertj.core.api.Assertions.*;
 

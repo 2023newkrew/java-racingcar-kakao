@@ -5,10 +5,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Number {
+    private static final Pattern pattern = Pattern.compile("(\\d*)");
+
     private final int value;
 
     public Number(String value) {
-        Matcher m = Pattern.compile("(\\d*)").matcher(value);
+        Matcher m = pattern.matcher(value);
         if (!m.matches()) {
             throw new IllegalArgumentException("0부터 9 사이의 수만 입력할 수 있습니다.");
         }
