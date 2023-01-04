@@ -61,7 +61,7 @@ public class RacingController {
         return Utils.stringToInt(roundNumInput);
     }
 
-    public InputDto creatInput() { //입력받는 메서드를 호출하고, dto를 리턴한다
+    private InputDto creatInput() { //입력받는 메서드를 호출하고, dto를 리턴한다
         List<String> carNames = inputCarNames();
         int roundNum = inputRoundNum();
         return new InputDto(carNames, roundNum);
