@@ -1,12 +1,12 @@
 package racingcar;
 
-import racingcar.racing.Racing;
+import racingcar.controller.RacingController;
 
 public class Main {
 
     public static void main(String[] args) {
-        Racing racingGame = new Racing();
+        RacingController racingController = new RacingController();
 
-        racingGame.init();
+        racingController.startRace();
     }
 }

@@ -1,8 +1,9 @@
-package racingcar.racing;
+package racingcar.view;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.car.CarDTO;
+import racingcar.dto.CarDTO;
+import racingcar.dto.WinnerDTO;
 
 public class RacingUI {
 
@@ -23,8 +24,8 @@ public class RacingUI {
         System.out.println();
     }
 
-    public void displayWinner(List<String> names) {
-        names.forEach(e -> System.out.print(e + " "));
+    public void displayWinner(List<WinnerDTO> winners) {
+        winners.forEach(System.out::print);
         System.out.println();
     }
 }
