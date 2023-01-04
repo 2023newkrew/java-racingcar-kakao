@@ -5,9 +5,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.step2.util.MessageConstants.ERR_NAME_DUPLICATED;
-
 public class Cars {
+
+    private static final String ERR_NAME_DUPLICATED = "자동차 이름은 중복될 수 없습니다.";
+
     private final List<Car> carList;
 
     public Cars(List<String> carNames) {

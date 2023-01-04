@@ -6,9 +6,10 @@ import racingcar.step2.view.ResultView;
 
 import java.util.List;
 
-import static racingcar.step2.util.MessageConstants.MSG_PRINT_HEADER;
-
 public class RacingGameController {
+
+    private static final String MSG_PRINT_HEADER = "\n실행 결과";
+
     public void run() {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();

@@ -1,10 +1,16 @@
 package racingcar.step2.domain;
 
-import static racingcar.step2.util.MessageConstants.*;
-import static racingcar.step2.util.RacingCarConstants.*;
 import static racingcar.step2.util.RandomNumberGenerator.generateRandomNumber;
 
 public class Car {
+
+    private static final String MSG_TURN_RESULT_FORMAT = "%s : %s";
+    private static final String ERR_NAME_DOESNT_EXISTS = "자동차는 이름이 존재해야 합니다.";
+    private static final String ERR_NAME_OVER_FIVE_LETTERS = "5글자 이하의 이름만 가능합니다.";
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int RANDOM_NUMBER_UPPERBOUND = 10;
+    private static final int MOVE_THRESHOLD = 4;
+    public static final String PROGRESS_CHARACTER = "-";
 
     private final String name;
     private int position;

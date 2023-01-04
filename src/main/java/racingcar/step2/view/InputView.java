@@ -3,11 +3,11 @@ package racingcar.step2.view;
 import java.util.List;
 import java.util.Scanner;
 
-import static racingcar.step2.util.MessageConstants.MSG_INPUT_NAMES;
-import static racingcar.step2.util.MessageConstants.MSG_INPUT_TURN;
-import static racingcar.step2.util.RacingCarConstants.INPUT_SPLIT_DELIMITER;
-
 public class InputView {
+
+    private static final String MSG_INPUT_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String MSG_INPUT_TURN = "시도할 횟수는 몇 회인가요?";
+    private static final String INPUT_SPLIT_DELIMITER = ",";
 
     private final Scanner sc = new Scanner(System.in);
 

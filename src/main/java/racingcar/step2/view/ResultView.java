@@ -5,10 +5,10 @@ import racingcar.step2.domain.Cars;
 
 import java.util.List;
 
-import static racingcar.step2.util.MessageConstants.MSG_FINAL_RESULT_FORMAT;
-import static racingcar.step2.util.RacingCarConstants.WINNERS_DELIMITER;
-
 public class ResultView {
+
+    private static final String MSG_FINAL_RESULT_FORMAT = "%s(이)가 최종 우승했습니다.\n";
+    private static final String WINNERS_DELIMITER = ", ";
 
     public void printTurnResult(Cars cars) {
         for (Car car : cars.getCarList()) {
