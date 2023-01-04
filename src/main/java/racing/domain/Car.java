@@ -1,7 +1,7 @@
 package racing.domain;
 
 public class Car {
-    private static final double MOVE_LOWER_BOUND = 4.0;
+    private static final int MOVE_LOWER_BOUND = 4;
     private static final String PROGRESS_INNER_STRING = " : ";
     private static final String PROGRESS_SYMBOL = "-";
     private static final String NAME_MINIMUM_LENGTH_MESSAGE = "자동차 이름은 1자 이상이어야 합니다.";
@@ -25,11 +25,11 @@ public class Car {
         }
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public int getDistance() {
+    public int distance() {
         return distance;
     }
 
