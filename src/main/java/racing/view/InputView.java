@@ -1,7 +1,7 @@
 package racing.view;
 
-import java.util.List;
 import java.util.Scanner;
+
 import racing.utils.InputValidator;
 
 public class InputView {

@@ -1,14 +1,8 @@
 package racing.utils;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class InputValidator {
     private static final String INPUT_REPEAT_FORMAT_EXCEPTION_MESSAGE = "[ERROR] 반복 횟수는 정수여야 합니다.";
     private static final String INPUT_GAME_TURN_RANGE_EXCEPTION_MESSAGE = "[ERROR] 반복 횟수는 양수여야 합니다.";
-
 
     public int validateGameTurn(String inputTurn) {
         int gameTurn;
