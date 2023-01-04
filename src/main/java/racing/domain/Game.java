@@ -1,8 +1,7 @@
-package racing.service;
+package racing.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import racing.domain.Cars;
 import racing.utils.RandomNumberGenerator;
 
 public class Game {
@@ -35,7 +34,6 @@ public class Game {
     public boolean isEnd() {
         return gameTurn == 0;
     }
-
 
     public List<String> getStatus() {
         return cars.getStatus();
