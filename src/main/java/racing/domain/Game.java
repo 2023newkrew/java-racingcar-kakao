@@ -35,12 +35,12 @@ public class Game {
         return gameTurn == 0;
     }
 
-    public List<String> getStatus() {
-        return cars.getStatus();
+    public List<String> status() {
+        return cars.status();
     }
 
-    public List<String> getWinners() {
-        return cars.getWinners();
+    public List<String> winners() {
+        return cars.winners();
     }
 
 

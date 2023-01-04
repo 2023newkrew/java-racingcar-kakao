@@ -36,26 +36,26 @@ public class CarTest {
     @ParameterizedTest
     void 숫자가_4보다_작으면_움직이지_않는다(Integer number) {
         car.move(number);
-        assertThat(car.getDistance()).isEqualTo(0);
+        assertThat(car.distance()).isEqualTo(0);
     }
 
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @ParameterizedTest
     void 숫자가_4_이상이면_움직인다(Integer number) {
         car.move(number);
-        assertThat(car.getDistance()).isEqualTo(1);
+        assertThat(car.distance()).isEqualTo(1);
     }
 
     @Test
     void 두대의_자동차로_움직이는_조건이_잘_동작하는지_테스트(){
         Car opponent = new Car("car2");
         assertAll(
-                () -> assertTrue(opponent.equalsDistance(car.getDistance())),
+                () -> assertTrue(opponent.equalsDistance(car.distance())),
 
                 () -> {
                     opponent.move(5);
                     car.move(3);
-                    assertTrue(opponent.getDistance() > car.getDistance());
+                    assertTrue(opponent.distance() > car.distance());
                 }
         );
     }

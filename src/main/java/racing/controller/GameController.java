@@ -22,7 +22,7 @@ public class GameController {
             game = new Game(carNames, gameTurn);
             outputView.printResultIntro();
             playGame();
-            outputView.printWinner(game.getWinners());
+            outputView.printWinner(game.winners());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             play();
@@ -32,7 +32,7 @@ public class GameController {
     private void playGame() {
         while (!game.isEnd()) {
             game.play();
-            outputView.printResult(game.getStatus());
+            outputView.printResult(game.status());
         }
     }
 

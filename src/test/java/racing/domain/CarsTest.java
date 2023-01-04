@@ -26,13 +26,13 @@ public class CarsTest {
         cars.play(List.of(0, 1, 2, 8, 3));
         cars.play(List.of(0, 5, 4, 8, 3));
         cars.play(List.of(0, 7, 7, 8, 5));
-        assertThat(cars.getWinners()).isEqualTo(Arrays.asList("cosmo"));
+        assertThat(cars.winners()).isEqualTo(Arrays.asList("cosmo"));
     }
 
     @Test
     void 두명의_우승자가_발생하는_경우() {
         cars.play(List.of(0, 1, 2, 8, 4));
         cars.play(List.of(0, 5, 2, 7, 6));
-        assertThat(cars.getWinners()).isEqualTo(Arrays.asList("cosmo", "kyne"));
+        assertThat(cars.winners()).isEqualTo(Arrays.asList("cosmo", "kyne"));
     }
 }

@@ -25,11 +25,11 @@ public class Car {
         }
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public int getDistance() {
+    public int distance() {
         return distance;
     }
 
