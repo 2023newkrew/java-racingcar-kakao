@@ -37,11 +37,7 @@ public class Referee {
     }
 
     private void moveOrStay(Car car, int selectedNumber) {
-        if (selectedNumber >= MOVE_THRESHOLD) {
-            car.move();
-            return;
-        }
-        car.stay();
+            car.move(selectedNumber >= MOVE_THRESHOLD);
     }
 
     public boolean isGameEnd() {

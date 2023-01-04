@@ -25,15 +25,15 @@ public class RacingGameTest {
 
         RacingGame racingGame = new RacingGame(carNames, roundToPlay, new MoveNumberSelector());
 
-        Optional<List<String>> gameWinnersResult0 = racingGame.checkWinners();
+        Optional<List<String>> gameWinnersResult0 = racingGame.announceWinnersIfGameEnded();
         assertThat(gameWinnersResult0).isEmpty();
 
         racingGame.proceedGame();
-        Optional<List<String>> gameWinnersResult1 = racingGame.checkWinners();
+        Optional<List<String>> gameWinnersResult1 = racingGame.announceWinnersIfGameEnded();
         assertThat(gameWinnersResult1).isEmpty();
 
         racingGame.proceedGame();
-        Optional<List<String>> gameWinnersResult2 = racingGame.checkWinners();
+        Optional<List<String>> gameWinnersResult2 = racingGame.announceWinnersIfGameEnded();
         assertThat(gameWinnersResult2).isPresent();
         assertThat(gameWinnersResult2.get().get(0)).isEqualTo("pobi");
         assertThat(gameWinnersResult2.get().get(1)).isEqualTo("crong");

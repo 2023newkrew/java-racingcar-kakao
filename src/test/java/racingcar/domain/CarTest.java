@@ -34,25 +34,25 @@ public class CarTest {
         int position1 = car.getPosition();
         assertThat(position1).isEqualTo(0);
 
-        car.move();
+        car.move(true);
         int position2 = car.getPosition();
         assertThat(position2).isEqualTo(1);
 
-        car.stay();
+        car.move(false);
         int position3 = car.getPosition();
         assertThat(position3).isEqualTo(1);
 
-        car.move();
+        car.move(true);
         int position4 = car.getPosition();
         assertThat(position4).isEqualTo(2);
 
-        car.stay();
-        car.stay();
+        car.move(false);
+        car.move(false);
         int position5 = car.getPosition();
         assertThat(position5).isEqualTo(2);
 
-        car.move();
-        car.move();
+        car.move(true);
+        car.move(true);
         int position6 = car.getPosition();
         assertThat(position6).isEqualTo(4);
     }

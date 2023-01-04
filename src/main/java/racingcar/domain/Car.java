@@ -19,11 +19,10 @@ public class Car {
         }
     }
 
-    public void move() {
-        this.position++;
-    }
-
-    public void stay() {
+    public void move(boolean bit) {
+        if (bit ) {
+            this.position++;
+        }
     }
 
     public boolean isAt(int position) {
