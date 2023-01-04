@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.RacingCar;
+import racingcar.utils.CarNameValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,22 +26,9 @@ public class RacingGameInfoReader {
     }
 
     private String[] readNamesAndSplit(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println(Message.NAME_INPUT_MESSAGE.getMessage());
         String input = scanner.next();
         return input.split(",");
-    }
-
-    private void validateRacingCarNames(String[] racingCarNames) {
-        for (String racingCarName : racingCarNames) {
-            validateRacingCarName(racingCarName);
-        }
-    }
-
-    private void validateRacingCarName(String racingCarName) {
-        if (racingCarName.isBlank() || racingCarName.length() > 5) {
-            throw new IllegalArgumentException(Message.WRONG_NAME.getMessage());
-        }
     }
 
     public int readRound() {
