@@ -12,10 +12,12 @@ import java.util.Scanner;
 public class RacingController {
     private final Racing racing;
     private final View view;
+
     public RacingController() {
         view = new View();
         racing = settings();
     }
+
     public void start() {
         while (!racing.isEnd()) {
             racing.round();
@@ -41,7 +43,7 @@ public class RacingController {
         Scanner sc = new Scanner(System.in);
         view.printInputNameMessage();
         String nameInput = sc.nextLine();
-        while(!Validate.validateCarNames(nameInput)) {
+        while (!Validate.validateCarNames(nameInput)) {
             view.printLengthErrorMessage();
             nameInput = sc.nextLine();
         }
@@ -52,7 +54,7 @@ public class RacingController {
         Scanner sc = new Scanner(System.in);
         view.printInputRoundNumberMessage();
         String roundNumInput = sc.nextLine();
-        while(!Validate.validateRoundNumber(roundNumInput)) {
+        while (!Validate.validateRoundNumber(roundNumInput)) {
             view.printIntegerErrorMessage();
             roundNumInput = sc.nextLine();
         }
