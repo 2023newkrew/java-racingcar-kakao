@@ -20,8 +20,7 @@ public class Cars {
 
     private void validateDuplicateCarNames(String carNames) {
         List<String> names = getSplitNames(carNames);
-        Set<String> nameSet = new HashSet<>();
-        nameSet.addAll(names);
+        Set<String> nameSet = new HashSet<>(names);
         if (nameSet.size() != names.size()) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION_MESSAGE);
         }
@@ -43,24 +42,25 @@ public class Cars {
 
     public List<String> getWinners() {
         Integer maxDistance = getMaxDistance();
-        List<String> winners = cars.stream()
+        return cars.stream()
                 .filter(car -> car.equalsDistance(maxDistance))
                 .map(Car::getName).collect(Collectors.toList());
-        return winners;
     }
 
     private Integer getMaxDistance() {
-        Integer maxDistance = cars.stream()
+        return cars.stream()
                 .map(Car::getDistance)
                 .max(Integer::compareTo)
                 .orElse(0);
-        return maxDistance;
     }
 
     public List<String> getStatus() {
-        List<String> status = cars.stream()
+        return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.toList());
-        return status;
+    }
+
+    public int size() {
+        return cars.size();
     }
 }
