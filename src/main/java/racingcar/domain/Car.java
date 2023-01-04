@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
+import racingcar.config.GameSetting;
 
 public class Car {
 
@@ -12,14 +12,10 @@ public class Car {
         position = GameSetting.INITIAL_POSITION;
     }
 
-    public void move(int randomNumber) {
-        if (isMovable(randomNumber)) {
+    public void move(Movable movable) {
+        if (movable.isMovable()) {
             position += 1;
         }
-    }
-
-    public boolean isMovable(int randomNumber) {
-        return randomNumber >= GameSetting.MOVABLE_MIN_VALUE;
     }
 
     public boolean isSamePosition(Car other) {
@@ -30,8 +26,11 @@ public class Car {
         return position - other.position;
     }
 
-    public CarDto toDto() {
-        return new CarDto(name, position);
+    public String getName() {
+        return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.CarDto;
+import racingcar.service.dto.CarResponse;
 
 import java.util.stream.Stream;
 
@@ -12,45 +12,45 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
 
-    @DisplayName("자동차는 random값이 4 이상일 경우 전진한다.")
+    @DisplayName("자동차가 전진한다.")
     @ParameterizedTest
-    @MethodSource("provideMovingCountWithMovableNumber")
-    void moveIfRandomNumberIsGreaterThanEqualFour(String carName, int movingCount, int randomNumber) {
+    @MethodSource("provideMovableTrue")
+    void moveIfRandomNumberIsGreaterThanEqualFour(String carName, Movable movable, int movingCount) {
         Car car = new Car(carName);
 
         for (int i = 0; i < movingCount; i++) {
-            car.move(randomNumber);
+            car.move(movable);
         }
 
-        CarDto carDto = car.toDto();
-        assertThat(carDto.getPosition()).isEqualTo(movingCount);
+        CarResponse carResponse = CarResponse.of(car);
+        assertThat(carResponse).isEqualTo(new CarResponse(carName, movingCount));
     }
 
-    @DisplayName("자동차는 random값이 3 이하의 값일 경우 멈춘다.")
+    @DisplayName("자동차가 정지한다.")
     @ParameterizedTest
-    @MethodSource("provideMovingCountWithUnMovableNumber")
-    void stopIfRandomNumberIsLessThanEqualThree(String carName, int movingCount, int randomNumber) {
+    @MethodSource("provideMovableFalse")
+    void stopIfRandomNumberIsLessThanEqualThree(String carName, Movable movable, int movingCount) {
         Car car = new Car(carName);
 
         for (int i = 0; i < movingCount; i++) {
-            car.move(randomNumber);
+            car.move(movable);
         }
 
-        CarDto carDto = car.toDto();
-        assertThat(carDto.getPosition()).isZero();
+        CarResponse carResponse = CarResponse.of(car);
+        assertThat(carResponse).isEqualTo(new CarResponse(carName, 0));
     }
 
-    public static Stream<Arguments> provideMovingCountWithMovableNumber() {
+    private static Stream<Arguments> provideMovableTrue() {
         return Stream.of(
-                Arguments.of("car1", 1, 4),
-                Arguments.of("car2", 2, 9)
+                Arguments.of("car1", (Movable)() -> true, 1),
+                Arguments.of("car2", (Movable)() -> true, 3)
         );
     }
 
-    public static Stream<Arguments> provideMovingCountWithUnMovableNumber() {
+    private static Stream<Arguments> provideMovableFalse() {
         return Stream.of(
-                Arguments.of("car1", 2, 1),
-                Arguments.of("car2", 2, 3)
+                Arguments.of("car1", (Movable)() -> false, 1),
+                Arguments.of("car2", (Movable)() -> false, 3)
         );
     }
 

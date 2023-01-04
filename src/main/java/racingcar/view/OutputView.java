@@ -10,8 +10,8 @@ public class OutputView {
         }
     }
 
-    public void printInitialStatus(String result) {
-        print(RESULT_TITLE, result);
+    public void printResultTitle() {
+        print(RESULT_TITLE);
     }
 
 }

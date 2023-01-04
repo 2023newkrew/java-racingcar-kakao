@@ -1,54 +1,34 @@
 package racingcar.service;
 
 import racingcar.domain.Car;
-import racingcar.dto.GameResult;
-import racingcar.dto.CarDto;
-import racingcar.utils.RacingCarConverter;
-import racingcar.utils.RacingCarValidator;
-import racingcar.utils.RandomNumberGenerator;
+import racingcar.domain.Cars;
+import racingcar.domain.Movable;
+import racingcar.view.FinalResult;
+import racingcar.view.RoundResult;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCarGame {
 
-    private List<Car> cars;
+    private Cars cars;
     private int round;
-    private RandomNumberGenerator randomNumberGenerator;
-    private RacingCarValidator racingCarValidator;
+    private Movable movable;
 
-    public RacingCarGame(List<CarDto> carDtos, int gameRound) {
-        cars = RacingCarConverter.toCars(carDtos);
-        round = gameRound;
-        randomNumberGenerator = new RandomNumberGenerator();
-        racingCarValidator = new RacingCarValidator();
+    public RacingCarGame(List<Car> cars, int gameRound, Movable movable) {
+        this.cars = new Cars(cars);
+        this.round = gameRound;
+        this.movable = movable;
     }
 
-    public GameResult doNextRound() {
-        racingCarValidator.validateGameRound(round);
-        for (Car car : cars) {
-            car.move(randomNumberGenerator.generateBetweenZeroAndNine());
-        }
+    public RoundResult doNextRound() {
+        cars.moveAll(movable);
         round -= 1;
 
-        List<CarDto> intermediateResult = RacingCarConverter.toCarDtos(cars);
-        return new GameResult(intermediateResult);
+        return new RoundResult(cars.toCarResponses());
     }
 
-    public GameResult selectWinners() {
-        Car maxPositionCar = calculateMaxPositionCar();
-        List<CarDto> finalResult = cars.stream()
-                .filter(car -> car.isSamePosition(maxPositionCar))
-                .map(Car::toDto)
-                .collect(Collectors.toList());
-
-        return new GameResult(finalResult);
-    }
-
-    public Car calculateMaxPositionCar() {
-        return cars.stream()
-                .max(Car::comparePosition)
-                .orElseThrow();
+    public FinalResult selectWinners() {
+        return new FinalResult(cars.selectWinners());
     }
 
     public boolean isFinish() {
