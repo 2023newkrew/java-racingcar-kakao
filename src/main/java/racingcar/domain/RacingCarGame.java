@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 public class RacingCarGame {
 
     private final List<Car> cars;
-    private int round;
+    private int leftRound;
 
     private final RandomNumberGenerator randomNumberGenerator;
 
     public RacingCarGame(List<CarInfo> carDtos, int gameRound) {
         this.cars = RacingCarConverter.toCars(carDtos);
-        this.round = gameRound;
+        this.leftRound = gameRound;
         this.randomNumberGenerator = new RandomNumberGenerator(10);
     }
 
@@ -25,7 +25,7 @@ public class RacingCarGame {
             int randomNumber = randomNumberGenerator.generate();
             car.move(() ->  randomNumber >= Threshold.NORMAL_THRESHOLD.value());
         }
-        round--;
+        leftRound--;
 
         List<CarInfo> intermediateResult = RacingCarConverter.toCarDtos(cars);
         return new GameResult(intermediateResult);
@@ -48,6 +48,6 @@ public class RacingCarGame {
     }
 
     public boolean isFinish() {
-        return round == 0;
+        return leftRound == 0;
     }
 }

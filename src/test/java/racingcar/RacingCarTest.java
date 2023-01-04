@@ -16,9 +16,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class RacingCarTest {
-
-    private static final int tryCount = 5;
-
     @Test
     @DisplayName("0에서 9 사이에서 random값을 구한다.")
     void generateRandomNumber() {
@@ -53,8 +50,9 @@ public class RacingCarTest {
     @Test
     @DisplayName("시도할 횟수만큼 게임을 진행한다.")
     void playGame() {
+        final int leftRound = 5;
         List<CarInfo> inputCars = List.of(new CarInfo("avante"), new CarInfo("sonata"));
-        RacingCarGame racingCarGame = new RacingCarGame(inputCars, tryCount);
+        RacingCarGame racingCarGame = new RacingCarGame(inputCars, leftRound);
 
         while (!racingCarGame.isFinish()) {
             racingCarGame.doNextRound();
@@ -66,9 +64,9 @@ public class RacingCarTest {
     @Test
     @DisplayName("시도할 횟수만큼 게임 진행 시 매 시도마다 결과가 반환된다.")
     void returnIntermediateGameResult() {
-        int count = 5;
+        final int leftRound = 5;
         List<CarInfo> inputCars = List.of(new CarInfo("avante"), new CarInfo("sonata"));
-        RacingCarGame racingCarGame = new RacingCarGame(inputCars, count);
+        RacingCarGame racingCarGame = new RacingCarGame(inputCars, leftRound);
 
         while (!racingCarGame.isFinish()) {
             GameResult gameResult = racingCarGame.doNextRound();
@@ -80,8 +78,9 @@ public class RacingCarTest {
     @Test
     @DisplayName("자동차마다 이동한 거리를 비교해서 가장 많이 이동한 자동차들을 선정한다.")
     void selectWinner() {
+        final int leftRound = 5;
         List<CarInfo> inputCars = List.of(new CarInfo("avante"), new CarInfo("sonata"));
-        RacingCarGame racingCarGame = new RacingCarGame(inputCars, tryCount);
+        RacingCarGame racingCarGame = new RacingCarGame(inputCars, leftRound);
 
         while (!racingCarGame.isFinish()) {
             racingCarGame.doNextRound();
@@ -91,6 +90,4 @@ public class RacingCarTest {
         assertThat(gameResult).isNotNull();
         assertThat(gameResult.getCarStatusList()).isNotEmpty();
     }
-
-
 }
