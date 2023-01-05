@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
+import racingcar.dto.CarInfo;
 import racingcar.utils.RacingCarConverter;
 import racingcar.utils.RandomNumberGenerator;
 
@@ -9,29 +9,31 @@ import java.util.stream.Collectors;
 
 public class RacingCarGame {
 
-    private List<Car> cars;
-    private int round;
-    private RandomNumberGenerator randomNumberGenerator;
+    private final List<Car> cars;
+    private int leftRound;
 
-    public RacingCarGame(List<CarDto> carDtos, int gameRound) {
+    private final RandomNumberGenerator randomNumberGenerator;
+
+    public RacingCarGame(List<CarInfo> carDtos, int gameRound) {
         this.cars = RacingCarConverter.toCars(carDtos);
-        this.round = gameRound;
-        this.randomNumberGenerator = new RandomNumberGenerator();
+        this.leftRound = gameRound;
+        this.randomNumberGenerator = new RandomNumberGenerator(10);
     }
 
     public GameResult doNextRound() {
         for (Car car : cars) {
-            car.move(randomNumberGenerator.generateBetweenZeroAndNine());
+            int randomNumber = randomNumberGenerator.generate();
+            car.move(() ->  randomNumber >= Threshold.NORMAL_THRESHOLD.value());
         }
-        round--;
+        leftRound--;
 
-        List<CarDto> intermediateResult = RacingCarConverter.toCarDtos(cars);
+        List<CarInfo> intermediateResult = RacingCarConverter.toCarDtos(cars);
         return new GameResult(intermediateResult);
     }
 
     public GameResult selectWinners() {
         Car maxPositionCar = calculateMaxPositionCar();
-        List<CarDto> finalResult = cars.stream()
+        List<CarInfo> finalResult = cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .map(Car::toDto)
                 .collect(Collectors.toList());
@@ -46,6 +48,6 @@ public class RacingCarGame {
     }
 
     public boolean isFinish() {
-        return round == 0;
+        return leftRound == 0;
     }
 }

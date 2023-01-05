@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.GameResult;
 import racingcar.domain.RacingCarGame;
-import racingcar.dto.CarDto;
+import racingcar.dto.CarInfo;
 import racingcar.utils.RacingCarValidator;
 import racingcar.view.GameView;
 
@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class RacingCarGameController {
 
-    private GameView gameView;
-    private RacingCarValidator racingCarValidator;
+    private final GameView gameView;
+    private final RacingCarValidator racingCarValidator;
 
     public RacingCarGameController() {
         gameView = new GameView();
@@ -24,14 +24,14 @@ public class RacingCarGameController {
         String[] carNames = gameView.getCarNames().split(",");
         racingCarValidator.validateCarNames(carNames);
 
-        List<CarDto> carDtos = createCarList(carNames);
+        List<CarInfo> carDtos = createCarList(carNames);
         int gameRound = gameView.getRound();
 
         gameView.printInitialResult(createInitialStatus(carDtos));
         execute(carDtos, gameRound);
     }
 
-    public void execute(List<CarDto> carDtos, int count) {
+    public void execute(List<CarInfo> carDtos, int count) {
         RacingCarGame racingCarGame = new RacingCarGame(carDtos, count);
 
         while (!racingCarGame.isFinish()) {
@@ -42,13 +42,13 @@ public class RacingCarGameController {
         gameView.printResult(racingCarGame.selectWinners().getFinalResult());
     }
 
-    public String createInitialStatus(List<CarDto> carDtos) {
+    public String createInitialStatus(List<CarInfo> carDtos) {
         return new GameResult(carDtos).getIntermediateResult();
     }
 
-    public List<CarDto> createCarList(String[] carNames) {
+    public List<CarInfo> createCarList(String[] carNames) {
         return Arrays.stream(carNames)
-                .map(carName -> new CarDto(carName, 1))
+                .map(carName -> new CarInfo(carName, 1))
                 .collect(Collectors.toList());
     }
 

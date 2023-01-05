@@ -1,25 +1,19 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
+import racingcar.dto.CarInfo;
 
 public class Car {
+    private final String name;
+    private int position = 1;
 
-    private String name;
-    private int position;
-
-    public Car(String carName) {
-        name = carName;
-        position = 1;
+    public Car(final String name) {
+        this.name = name;
     }
 
-    public void move(int randomNumber) {
-        if (isMovable(randomNumber)) {
+    public void move(final MovableStrategy movableStrategy) {
+        if (movableStrategy.isMovable()) {
             position += 1;
         }
-    }
-
-    public boolean isMovable(int randomNumber) {
-        return randomNumber >= 4;
     }
 
     public boolean isSamePosition(Car other) {
@@ -30,8 +24,8 @@ public class Car {
         return position - other.position;
     }
 
-    public CarDto toDto() {
-        return new CarDto(name, position);
+    public CarInfo toDto() {
+        return new CarInfo(name, position);
     }
 
 }

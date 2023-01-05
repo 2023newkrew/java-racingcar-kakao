@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private Set<String> delimiters;
+    private final Set<String> delimiters;
 
     public StringCalculator(Set<String> baseDelimiters) {
         delimiters = baseDelimiters;
@@ -24,11 +24,11 @@ public class StringCalculator {
     private int calculate(String input) {
         String str = input;
         if (registerDelimiterIfNotExist(input)) {
-            str = parseNumberContainingString(input);
+            str = parseNumberContainingString(input).orElseThrow(RuntimeException::new);
         }
 
+        PositiveIntegerList.validate(splitByDelimiter(str));
         PositiveIntegerList positiveIntegerList = new PositiveIntegerList(splitByDelimiter(str));
-        positiveIntegerList.validate();
         return positiveIntegerList.calculateSum();
     }
 
@@ -43,22 +43,25 @@ public class StringCalculator {
     public boolean registerDelimiterIfNotExist(String input) {
         Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
-        if (m.find()) {
+        if (hasCustomDelimiter(m)) {
             delimiters.add(m.group(1));
             return true;
         }
-
         return false;
     }
 
-    public String parseNumberContainingString(String input) {
+    private boolean hasCustomDelimiter(final Matcher m) {
+        return m.find();
+    }
+
+    public Optional<String> parseNumberContainingString(String input) {
         Matcher m = Pattern.compile("//([^0-9])\n(.*)").matcher(input);
 
-        if (m.find()) {
-            return m.group(2);
+        if (hasCustomDelimiter(m)) {
+            return Optional.of(m.group(2));
         }
 
-        return null;
+        return Optional.empty();
     }
 
     public String[] splitByDelimiter(String input) {

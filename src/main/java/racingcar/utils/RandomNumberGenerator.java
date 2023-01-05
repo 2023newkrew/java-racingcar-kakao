@@ -3,13 +3,16 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-    private Random random;
+    private final Random random;
 
-    public RandomNumberGenerator() {
-        random = new Random();
+    private final int bound;
+
+    public RandomNumberGenerator(int bound) {
+        this.random = new Random();
+        this.bound = bound;
     }
 
-    public int generateBetweenZeroAndNine() {
-        return random.nextInt(10);
+    public int generate() {
+        return random.nextInt(bound);
     }
 }
