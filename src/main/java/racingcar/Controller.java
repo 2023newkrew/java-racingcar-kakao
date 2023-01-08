@@ -5,25 +5,16 @@ import racingcar.view.Input;
 import racingcar.view.Output;
 
 public class Controller {
-
-    private Input input;
-    private Output output;
-
-    public Controller() {
-        this.input = new Input();
-        this.output = new Output();
-    }
-
     public void start() {
-        RacingGame game = new RacingGame(input.getCarNames());
-        int turnIteration = input.getTurnIteration();
+        RacingGame game = new RacingGame(Input.getCarNames());
+        int turnIteration = Input.getTurnIteration();
 
-        output.sendGameResultMessage();
-        output.sendTurnResult(game.getCars());
+        Output.displayGameResultMessage();
+        Output.displayTurnResult(game.getCars());
         for (int i = 0; i < turnIteration; i++) {
             game.proceedTurn();
-            output.sendTurnResult(game.getCars());
+            Output.displayTurnResult(game.getCars());
         }
-        output.sendWinners(game.getFarthestCars());
+        Output.displayWinners(game.getFarthestCars());
     }
 }

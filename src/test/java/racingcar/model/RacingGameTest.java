@@ -2,8 +2,6 @@ package racingcar.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.Car;
-import racingcar.model.RacingGame;
 
 import java.util.List;
 
@@ -14,16 +12,22 @@ public class RacingGameTest {
     @DisplayName("can get only the farthest cars")
     public void can_get_the_farthest_cars() {
         RacingGame game = new RacingGame(List.of("a", "b", "c"));
-        List<Car> farthestCars = game.getFarthestCars();
+        for (int i = 0; i < 100; i++) {
+            game.proceedTurn();
+        }
+        FarthestCars farthestCars = game.getFarthestCars();
 
-        int maxPosition = farthestCars.get(0).getPosition();
-        for (Car car : farthestCars) {
-            assertEquals(maxPosition, car.getPosition());
+        int farthestDistance = farthestCars.getCars().getCars().get(0).getDistance();
+        for (Car car : farthestCars.getCars().getCars()) {
+            assertEquals(farthestDistance, car.getDistance());
         }
 
-        for (Car car : game.getCars()) {
-            if (farthestCars.contains(car)) continue;
-            assertTrue(car.getPosition() < maxPosition);
+        for (Car car : game.getCars().getCars()) {
+            assertTrue(
+                    car.getDistance() < farthestDistance
+                    || car.getDistance() == farthestDistance
+                            && farthestCars.getCars().getCars().contains(car)
+            );
         }
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IntegerConverter {
-    private int toInt(String token) {
+    private static int toInt(String token) {
         if ("".equals(token) || token == null) {
             return 0;
         }
@@ -13,7 +13,7 @@ public class IntegerConverter {
         return intValue;
     }
 
-    public List<Integer> toIntList(List<String> splitText) {
+    public static List<Integer> toIntList(List<String> splitText) {
         List<Integer> intList = new ArrayList<>();
         for (String token : splitText) {
             intList.add(toInt(token));

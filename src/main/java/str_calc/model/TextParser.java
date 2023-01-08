@@ -7,12 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextParser {
-    static final List<String> defaultDelimiters = List.of(",", ":");
-    static final String REGEX_DELIMITER = "//(.)\n(.*)";
+    private static final List<String> DEFAULT_DELIMITERS = List.of(",", ":");
+    private static final String REGEX_DELIMITER = "//(.)\n(.*)";
     private final List<String> delimiters;
 
     public TextParser() {
-        this.delimiters = new ArrayList<>(TextParser.defaultDelimiters);
+        this.delimiters = new ArrayList<>(TextParser.DEFAULT_DELIMITERS);
     }
 
     private void addDelimiter(String delimiter) {

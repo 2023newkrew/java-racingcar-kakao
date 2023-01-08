@@ -1,52 +1,49 @@
 package racingcar.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    private List<Car> cars;
-    private int turn;
+    private Cars cars;
     private PowerGenerator powerGenerator;
 
     public RacingGame(List<String> carNames) {
-        this.cars = new ArrayList<>();
+        this.cars = new Cars();
         for (String name : carNames) {
             cars.add(new Car(name));
         }
-        this.turn = 0;
-        this.powerGenerator = new PowerGenerator();
+        this.powerGenerator = new RandomPowerGenerator();
+        this.powerGenerator.setPowerGenerationStrategy(new RandomPowerGenerationStrategy());
     }
 
-    public List<Car> getCars() {
+    public Cars getCars() {
         return this.cars;
     }
 
     public void proceedTurn() {
-        for (Car car : cars) {
-            car.accelerate(this.powerGenerator.getRandomPower());
+        for (Car car : cars.getCars()) {
+            car.accelerate(this.powerGenerator.generatePower());
         }
-        this.turn += 1;
     }
 
-    private int getMaxPosition() {
-        int maxPosition = -1;
-        for (Car car : this.cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
+    private int getFarthestDistance() {
+        int farthestDistance = -1;
+        for (Car car : this.cars.getCars()) {
+            farthestDistance = Math.max(farthestDistance, car.getDistance());
         }
-        return maxPosition;
+        return farthestDistance;
     }
 
-    private void collectFarthest(List<Car> farthestCars, Car racingCar, int maxPosition) {
-        if (racingCar.getPosition() == maxPosition) {
+    private void collectFarthestCar(Cars farthestCars, Car racingCar, int farthestDistance) {
+        if (racingCar.getDistance() == farthestDistance) {
             farthestCars.add(racingCar);
         }
     }
 
-    public List<Car> getFarthestCars() {
-        int maxPosition = this.getMaxPosition();
-        List<Car> farthestCars = new ArrayList<>();
-        for (Car car : this.cars) {
-            this.collectFarthest(farthestCars, car, maxPosition);
+    public FarthestCars getFarthestCars() {
+        int farthestDistance = this.getFarthestDistance();
+        FarthestCars farthestCars = new FarthestCars(farthestDistance);
+        for (Car car : this.cars.getCars()) {
+            farthestCars.collectIfFarthest(car);
         }
         return farthestCars;
     }

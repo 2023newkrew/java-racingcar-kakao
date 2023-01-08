@@ -1,16 +1,14 @@
 package racingcar.model;
 
-import java.util.Random;
-
 public class PowerGenerator {
-    public static final int POWER_LIMIT = 10;
-    private Random random;
+    private static final int POWER_LIMIT = 10;
+    private PowerGenerationStrategy strategy;
 
-    public PowerGenerator() {
-        this.random = new Random();
+    public int generatePower() {
+        return this.strategy.generatePower(PowerGenerator.POWER_LIMIT);
     }
 
-    public int getRandomPower() {
-        return (int) random.nextInt(PowerGenerator.POWER_LIMIT);
+    public void setPowerGenerationStrategy(PowerGenerationStrategy strategy) {
+        this.strategy = strategy;
     }
 }
