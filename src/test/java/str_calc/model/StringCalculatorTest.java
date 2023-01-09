@@ -27,6 +27,7 @@ public class StringCalculatorTest {
     public void can_convert_empty_to_0() {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(6, stringCalculator.sum("1,2:,:3"));
+        assertEquals(0, stringCalculator.sum(null));
     }
 
     @Test

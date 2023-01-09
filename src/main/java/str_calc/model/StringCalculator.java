@@ -18,6 +18,9 @@ public class StringCalculator {
     }
 
     public int sum(String text) {
+        if (text == null) {
+            return 0;
+        }
         List<String> splitText = this.textParser.splitText(text);
         return this.sum(IntegerConverter.toIntList(splitText));
     }
