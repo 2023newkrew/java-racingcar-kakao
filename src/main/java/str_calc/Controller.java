@@ -1,5 +1,7 @@
 package str_calc;
 
+import str_calc.model.StringCalculator;
+
 public class Controller {
     private StringCalculator stringCalculator;
     private IO io;
@@ -8,9 +10,9 @@ public class Controller {
         this.stringCalculator = new StringCalculator();
         this.io = new IO();
     }
+
     public void start() {
         String text = io.inputText();
-        text = stringCalculator.extractDelimiter(text);
-        io.printSum(stringCalculator.sumText(text));
+        io.printSum(stringCalculator.sum(text));
     }
 }
